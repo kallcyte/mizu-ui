@@ -1,0 +1,30 @@
+---
+import SectionHeader from "./SectionHeader.astro";
+---
+
+<section class="bg-surface-subtle">
+  <div class="container">
+    <SectionHeader num="01" title="Usage" sub="Install the token package and start building. No configuration needed — just import and use." />
+    <div class="flex gap-4 flex-wrap mb-6">
+      <div class="flex-1 min-w-[240px] p-5 rounded-xl border bg-surface-base border-surface-muted">
+        <div class="text-xs font-semibold uppercase tracking-widest mb-2 text-fg-tertiary">npm</div>
+        <code class="block text-sm p-2.5 rounded-md border break-all font-mono bg-surface-subtle border-surface-muted text-fg-primary">npm install @hub/blueprint-tokens</code>
+      </div>
+      <div class="flex-1 min-w-[240px] p-5 rounded-xl border bg-surface-base border-surface-muted">
+        <div class="text-xs font-semibold uppercase tracking-widest mb-2 text-fg-tertiary">yarn</div>
+        <code class="block text-sm p-2.5 rounded-md border break-all font-mono bg-surface-subtle border-surface-muted text-fg-primary">yarn add @hub/blueprint-tokens</code>
+      </div>
+    </div>
+    <div class="p-5 rounded-lg border overflow-x-auto font-mono text-[13px] leading-[1.7] bg-surface-subtle border-surface-muted">
+      <span class="text-fg-tertiary">// Import tokens into your project</span><br/>
+      <span class="text-brand-accent font-semibold">import</span> &#123; colors, spacing, typography &#125; <span class="text-brand-accent font-semibold">from</span> <span class="text-success-base">'@hub/blueprint-tokens'</span>;<br/><br/>
+      <span class="text-fg-tertiary">// Use in styled-components or CSS-in-JS</span><br/>
+      <span class="text-brand-accent font-semibold">const</span> Button = styled.button`<br/>
+      &nbsp;&nbsp;background: &#36;&#123;colors.brand.primary&#125;;<br/>
+      &nbsp;&nbsp;color: &#36;&#123;colors.text.inverse&#125;;<br/>
+      &nbsp;&nbsp;padding: &#36;&#123;spacing.sm&#125; &#36;&#123;spacing.md&#125;;<br/>
+      &nbsp;&nbsp;border-radius: &#36;&#123;spacing.radius.md&#125;;<br/>
+      `;
+    </div>
+  </div>
+</section>

@@ -1,0 +1,196 @@
+@import "tailwindcss";
+
+@theme {
+  /* Colors — brand */
+  --color-brand-primary: #001C44;
+  --color-brand-primary-hover: #001536;
+  --color-brand-primary-focus: #000F28;
+  --color-brand-primary-subtle: #D6E4FF;
+  --color-brand-secondary: #1524A9;
+  --color-brand-secondary-hover: #101C82;
+  --color-brand-secondary-focus: #0C1561;
+  --color-brand-secondary-subtle: #E1E7FF;
+  --color-brand-accent: #007FFF;
+  --color-brand-accent-hover: #0066CC;
+  --color-brand-accent-focus: #004C99;
+  --color-brand-accent-subtle: #E0F2FE;
+  --color-brand-muted: #EDF0FF;
+  --color-brand-neutral: #1B1B1D;
+  /* Colors — surface */
+  --color-surface-base: #FFFFFF;
+  --color-surface-subtle: #F9FAFB;
+  --color-surface-muted: #F3F4F6;
+  /* Colors — fg */
+  --color-fg-primary: #1B1B1D;
+  --color-fg-secondary: #4B5563;
+  --color-fg-tertiary: #9CA3AF;
+  --color-fg-inverse: #FFFFFF;
+  /* Colors — feedback */
+  --color-success-base: #15803D;
+  --color-success-hover: #166534;
+  --color-success-focus: #14532D;
+  --color-success-subtle: #DCFCE7;
+  --color-error-base: #DC2626;
+  --color-error-hover: #B91C1C;
+  --color-error-focus: #991B1B;
+  --color-error-subtle: #FEF2F2;
+  /* Colors — feedback warning */
+  --color-warning-base: #D97706;
+  --color-warning-hover: #B45309;
+  --color-warning-focus: #92400E;
+  --color-warning-subtle: #FFFBEB;
+  /* Colors — feedback info */
+  --color-info-base: #0284C7;
+  --color-info-hover: #0369A1;
+  --color-info-focus: #075985;
+  --color-info-subtle: #F0F9FF;
+  /* Font families */
+  --font-family-sans: "DM Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-family-mono: "JetBrains Mono", "SF Mono", "Fira Code", "Cascadia Code", monospace;
+  --font-sans: var(--font-family-sans);
+  --font-mono: var(--font-family-mono);
+  /* Font sizes */
+  --font-size-display: 36px;
+  --font-size-h1: 24px;
+  --font-size-h2: 18px;
+  --font-size-h3: 15px;
+  --font-size-body: 15px;
+  --font-size-caption: 13px;
+  --font-size-label: 11px;
+  /* Font weights */
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --font-weight-extrabold: 800;
+  /* Line heights */
+  --leading-display: 1.1;
+  --leading-h1: 1.2;
+  --leading-h2: 1.25;
+  --leading-h3: 1.3;
+  --leading-body: 1.6;
+  --leading-caption: 1.45;
+  --leading-label: 1.35;
+  --leading-tight: 1.15;
+  --leading-comfortable: 1.4;
+  /* Letter spacing */
+  --tracking-tight: -0.03em;
+  --tracking-snug: -0.02em;
+  --tracking-wide: 0.05em;
+  --tracking-wider: 0.06em;
+  /* Spacing */
+  --spacing-xs: 4px;
+  --spacing-sm: 6px;
+  --spacing-md: 12px;
+  --spacing-lg: 24px;
+  --spacing-xl: 48px;
+  --spacing-xxl: 80px;
+  --spacing-section-y: 80px;
+  --spacing-container: 1040px;
+  --spacing-nav-h: 56px;
+  /* Border radius */
+  --radius-tight: 4px;
+  --radius-default: 8px;
+  --radius-card: 12px;
+  --radius-feature: 16px;
+  --radius-large: 24px;
+  --radius-full: 9999px;
+  /* Shadows */
+  --shadow-ring: 0 0 0 1px #F3F4F6;
+  --shadow-whisper: 0 2px 16px rgba(0,0,0,0.04);
+  /* Z-index */
+  --z-nav: 100;
+  /* Durations */
+  --duration-fast: 200ms;
+  --duration-normal: 300ms;
+}
+
+html { scroll-behavior: smooth; scroll-padding-top: 72px; }
+
+body {
+  font-family: var(--font-family-sans);
+  color: var(--color-fg-primary);
+  background: var(--color-surface-base);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+.container { max-width: var(--spacing-container); margin: 0 auto; padding: 0 24px; }
+
+section { padding: var(--spacing-section-y) 0; border-bottom: 1px solid var(--color-surface-muted); }
+section:last-of-type { border-bottom: none; }
+
+.hero-gradient {
+  position: absolute; top: -40%; right: -20%;
+  width: 600px; height: 600px;
+  background: radial-gradient(circle, var(--color-brand-muted) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.color-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 16px; margin-top: 24px;
+}
+
+.type-scale { display: grid; gap: 20px; }
+
+.comp-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px; margin-top: 24px;
+}
+
+.anti-grid { display: grid; gap: 16px; }
+.anti-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+.diagram-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 24px; margin-top: 24px;
+}
+
+.tbl { width: 100%; border-collapse: collapse; margin: 16px 0; }
+.tbl th, .tbl td {
+  text-align: left; padding: 10px 14px; font-size: 13px;
+  border-bottom: 1px solid var(--color-surface-muted);
+}
+.tbl th { font-weight: 600; color: var(--color-fg-secondary); font-size: 12px; text-transform: uppercase; letter-spacing: 0.05em; }
+.tbl td { color: var(--color-fg-primary); }
+
+.faq-list { display: grid; gap: 4px; }
+
+.faq-a {
+  max-height: 0;
+  overflow: hidden;
+  transition: all var(--duration-normal);
+  padding: 0 1.25rem;
+}
+.faq-item.open .faq-a {
+  max-height: 400px;
+  padding: 1rem 1.25rem;
+}
+
+.card-hover { transition: box-shadow var(--duration-fast); }
+.card-hover:hover { box-shadow: 0 4px 24px rgba(0,0,0,0.05); }
+.card-hover-lg:hover { box-shadow: 0 4px 24px rgba(0,0,0,0.06); }
+
+.faq-q-hover { transition: background var(--duration-fast); }
+.faq-q-hover:hover { background: var(--color-surface-subtle); }
+
+.nav-link { color: var(--color-fg-secondary); transition: color var(--duration-fast); }
+.nav-link:hover { color: var(--color-brand-accent); }
+
+@media (max-width: 768px) {
+  section { padding: 48px 0; }
+  .anti-pair { grid-template-columns: 1fr; }
+  .color-grid { grid-template-columns: 1fr; }
+  .faq-q { font-size: 14px; padding: 12px 16px; }
+  .tbl { display: block; overflow-x: auto; white-space: nowrap; }
+  .container { padding: 0 16px; }
+  .diagram-grid { grid-template-columns: 1fr; }
+  footer .container { flex-direction: column; text-align: center; gap: 12px; }
+  footer .flex { justify-content: center; }
+}
+
+@media (max-width: 480px) {
+  section { padding: 40px 0; }
+  .comp-grid { grid-template-columns: 1fr; }
+}

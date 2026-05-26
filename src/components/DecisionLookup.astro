@@ -1,0 +1,24 @@
+---
+import SectionHeader from "./SectionHeader.astro";
+---
+
+<section>
+  <div class="container">
+    <SectionHeader num="08" title="Decision Lookup" sub="Quick reference. If it's not here, go back to first principles." />
+    <table class="tbl">
+      <thead><tr><th>Task</th><th>How</th></tr></thead>
+      <tbody>
+        <tr><td>Large heading</td><td>Sans 700, size by hierarchy, line-height 1.10-1.20</td></tr>
+        <tr><td>Body text</td><td>Sans 400, 15-16px, line-height 1.60</td></tr>
+        <tr><td>Emphasize a number</td><td>color: var(--brand-accent), not bold</td></tr>
+        <tr><td>Separate two sections</td><td>3px brand left bar, or 1px muted-gray dashed</td></tr>
+        <tr><td>Quote someone</td><td>Left 3px brand accent + secondary text</td></tr>
+        <tr><td>Show code</td><td>Subtle bg + 1px border + 8px radius + mono font</td></tr>
+        <tr><td>Primary vs secondary</td><td>Primary: brand fill + white text; Ghost: border + neutral</td></tr>
+        <tr><td>Mark a special card</td><td>border-left: 3px solid var(--brand-accent) or ring shadow</td></tr>
+        <tr><td>Begin a section</td><td>Sans 700; size-led hierarchy, no decoration</td></tr>
+        <tr><td>Data card</td><td>Subtle bg + 8px radius + large number + small label</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>

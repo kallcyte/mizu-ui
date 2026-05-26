@@ -1,0 +1,63 @@
+---
+import SectionHeader from "./SectionHeader.astro";
+---
+
+<section id="typography">
+  <div class="container">
+    <SectionHeader num="04" title="Typography" sub="Sans-serif leads UI. Serif reserved for editorial moments. Mono for code." />
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+      <div class="p-7 rounded-xl border bg-surface-base border-surface-muted">
+        <div class="mb-4 font-sans">
+          <div class="text-[56px] font-bold leading-none text-brand-primary">Aa</div>
+        </div>
+        <div class="text-xs font-medium text-fg-tertiary">Sans-Serif &middot; UI + Headings<br/>DM Sans / System UI</div>
+      </div>
+      <div class="p-7 rounded-xl border bg-surface-base border-surface-muted">
+        <div class="mb-4 font-mono">
+          <div class="text-[56px] font-bold leading-none text-brand-primary"><span class="text-brand-accent">Aa</span></div>
+        </div>
+        <div class="text-xs font-medium text-fg-tertiary">Mono &middot; Code<br/>JetBrains Mono / SF Mono</div>
+      </div>
+    </div>
+
+    <h3 class="text-base font-semibold mb-3 text-fg-secondary">Scale</h3>
+    <div class="type-scale">
+      <div class="flex flex-col sm:flex-row sm:items-baseline gap-2 sm:gap-6 p-4 rounded-lg border bg-surface-base border-surface-muted">
+        <span class="w-[100px] text-xs font-semibold shrink-0 text-fg-tertiary">Display</span>
+        <span class="flex-1 text-display font-bold tracking-tight leading-display">Blueprint</span>
+        <span class="text-xs shrink-0 text-fg-tertiary font-mono">36px &middot; 700 &middot; 1.10</span>
+      </div>
+      <div class="flex flex-col sm:flex-row sm:items-baseline gap-2 sm:gap-6 p-4 rounded-lg border bg-surface-base border-surface-muted">
+        <span class="w-[100px] text-xs font-semibold shrink-0 text-fg-tertiary">H1</span>
+        <span class="flex-1 text-h1 font-bold tracking-snug leading-h1">Color System &middot; Palette</span>
+        <span class="text-xs shrink-0 text-fg-tertiary font-mono">24px &middot; 700 &middot; 1.20</span>
+      </div>
+      <div class="flex flex-col sm:flex-row sm:items-baseline gap-2 sm:gap-6 p-4 rounded-lg border bg-surface-base border-surface-muted">
+        <span class="w-[100px] text-xs font-semibold shrink-0 text-fg-tertiary">H2</span>
+        <span class="flex-1 text-h2 font-semibold leading-h2">Canvas &middot; Brand &middot; Neutrals</span>
+        <span class="text-xs shrink-0 text-fg-tertiary font-mono">18px &middot; 600 &middot; 1.25</span>
+      </div>
+      <div class="flex flex-col sm:flex-row sm:items-baseline gap-2 sm:gap-6 p-4 rounded-lg border bg-surface-base border-surface-muted">
+        <span class="w-[100px] text-xs font-semibold shrink-0 text-fg-tertiary">H3</span>
+        <span class="flex-1 text-h3 font-semibold leading-h3">Tag Tints &middot; Solid Hex</span>
+        <span class="text-xs shrink-0 text-fg-tertiary font-mono">15px &middot; 600 &middot; 1.30</span>
+      </div>
+      <div class="flex flex-col sm:flex-row sm:items-baseline gap-2 sm:gap-6 p-4 rounded-lg border bg-surface-base border-surface-muted">
+        <span class="w-[100px] text-xs font-semibold shrink-0 text-fg-tertiary">Body</span>
+        <span class="flex-1 text-body leading-body text-fg-secondary">The primary navy covers no more than 10% of any page. Beyond that is clutter, not restraint. All grays are neutral.</span>
+        <span class="text-xs shrink-0 text-fg-tertiary font-mono">15px &middot; 400 &middot; 1.60</span>
+      </div>
+      <div class="flex flex-col sm:flex-row sm:items-baseline gap-2 sm:gap-6 p-4 rounded-lg border bg-surface-base border-surface-muted">
+        <span class="w-[100px] text-xs font-semibold shrink-0 text-fg-tertiary">Caption</span>
+        <span class="flex-1 text-caption leading-caption text-fg-tertiary">Figure notes, footnotes, annotation text</span>
+        <span class="text-xs shrink-0 text-fg-tertiary font-mono">13px &middot; 400 &middot; 1.45</span>
+      </div>
+      <div class="flex flex-col sm:flex-row sm:items-baseline gap-2 sm:gap-6 p-4 rounded-lg border bg-surface-base border-surface-muted">
+        <span class="w-[100px] text-xs font-semibold shrink-0 text-fg-tertiary">Label</span>
+        <span class="flex-1 text-label font-semibold leading-label uppercase tracking-wider text-fg-tertiary">Design System &middot; v1.0.0</span>
+        <span class="text-xs shrink-0 text-fg-tertiary font-mono">11px &middot; 600 &middot; 1.35</span>
+      </div>
+    </div>
+  </div>
+</section>

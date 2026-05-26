@@ -1,0 +1,51 @@
+---
+import SectionHeader from "./SectionHeader.astro";
+---
+
+<section class="bg-surface-subtle" id="spacing">
+  <div class="container">
+    <SectionHeader num="05" title="Spacing &amp; Shape" sub="Base unit: 4px. Dense layouts get tighter margins; formal documents get larger ones." />
+
+    <h3 class="text-base font-semibold mb-3 text-fg-secondary">Scale</h3>
+    <table class="tbl">
+      <thead><tr><th>Token</th><th>Value</th><th>Use</th></tr></thead>
+      <tbody>
+        <tr><td>xs</td><td>2-4px</td><td>Inline elements, tight icons</td></tr>
+        <tr><td>sm</td><td>4-6px</td><td>Tag padding, dense layout</td></tr>
+        <tr><td>md</td><td>8-12px</td><td>Component internals, button padding</td></tr>
+        <tr><td>lg</td><td>16-24px</td><td>Between components, card padding</td></tr>
+        <tr><td>xl</td><td>32-48px</td><td>Section title margins, page gutters</td></tr>
+        <tr><td>2xl</td><td>64-80px</td><td>Between major sections</td></tr>
+      </tbody>
+    </table>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+      <div>
+        <h3 class="text-base font-semibold mb-3 text-fg-secondary">Radii</h3>
+        <table class="tbl">
+          <thead><tr><th>Value</th><th>Use</th></tr></thead>
+          <tbody>
+            <tr><td>4px</td><td>Tight / code inline</td></tr>
+            <tr><td>8px</td><td>Default button, input</td></tr>
+            <tr><td>12px</td><td>Card, container</td></tr>
+            <tr><td>16px</td><td>Feature card, hero</td></tr>
+            <tr><td>24px</td><td>Large container</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div>
+        <h3 class="text-base font-semibold mb-3 text-fg-secondary">Depth</h3>
+        <div class="grid gap-3">
+          <div class="p-3.5 rounded-lg border text-sm bg-surface-base border-surface-muted">
+            <strong>Ring Shadow</strong><br/>
+            <span class="text-fg-tertiary">0 0 0 1px var(--color-surface-muted) &mdash; Buttons, card hover</span>
+          </div>
+          <div class="p-3.5 rounded-lg border text-sm bg-surface-base border-surface-muted" style="box-shadow: 0 2px 16px rgba(0,0,0,0.04);">
+            <strong>Whisper Shadow</strong><br/>
+            <span class="text-fg-tertiary">0 2px 16px rgba(0,0,0,0.04) &mdash; Cards, menus</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

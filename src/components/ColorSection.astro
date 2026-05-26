@@ -1,0 +1,117 @@
+---
+import SectionHeader from "./SectionHeader.astro";
+
+interface ColorCard {
+  hex: string;
+  name: string;
+  desc: string;
+  border?: boolean;
+}
+
+const brands: ColorCard[] = [
+  { hex: "#001C44", name: "Primary", desc: "Strongest brand presence for hero emphasis and dark branded surfaces." },
+  { hex: "#1524A9", name: "Secondary", desc: "Supporting brand blue for charts, secondary emphasis, and accent pairing." },
+  { hex: "#007FFF", name: "Accent", desc: "Interactive accent for links, focus states, and highlighted controls." },
+  { hex: "#EDF0FF", name: "Muted", desc: "Soft brand-tinted surface for subtle highlights and selected rows." },
+  { hex: "#1B1B1D", name: "Neutral", desc: "Deep neutral for high-contrast text and key borders." },
+  { hex: "#001536", name: "Primary Hover", desc: "Darker hover state for primary-filled buttons and nav items." },
+  { hex: "#D6E4FF", name: "Primary Subtle", desc: "Light-tinted primary surface for quiet branded backgrounds." },
+  { hex: "#E0F2FE", name: "Accent Subtle", desc: "Light accent-tinted background for info callouts and highlights." },
+];
+
+const backgrounds: ColorCard[] = [
+  { hex: "#FFFFFF", name: "Base", desc: "Default page and card background. Highest-contrast surface.", border: true },
+  { hex: "#F9FAFB", name: "Subtle", desc: "Secondary surface for grouped sections and side panels.", border: true },
+  { hex: "#F3F4F6", name: "Muted", desc: "Tertiary surface for table rows and disabled zones.", border: true },
+];
+
+const texts: ColorCard[] = [
+  { hex: "#1B1B1D", name: "Primary", desc: "Default high-emphasis text for titles and body copy." },
+  { hex: "#4B5563", name: "Secondary", desc: "Supporting text for descriptions and metadata." },
+  { hex: "#9CA3AF", name: "Tertiary", desc: "Low-emphasis text for placeholders and disabled content." },
+  { hex: "#FFFFFF", name: "Inverse", desc: "Text on dark or saturated backgrounds — preserves legibility.", border: true },
+];
+
+const feedbacks: ColorCard[] = [
+  { hex: "#15803D", name: "Success Base", desc: "Primary success for confirmed positive status and badges." },
+  { hex: "#DCFCE7", name: "Success Subtle", desc: "Light success background for banners and highlights." },
+  { hex: "#DC2626", name: "Error Base", desc: "Primary error for critical statuses and destructive actions." },
+  { hex: "#FEF2F2", name: "Error Subtle", desc: "Light error background for error banners and toast backgrounds." },
+  { hex: "#D97706", name: "Warning Base", desc: "Primary warning for caution states and pending indicators." },
+  { hex: "#FFFBEB", name: "Warning Subtle", desc: "Light amber background for warning banners." },
+  { hex: "#0284C7", name: "Info Base", desc: "Primary info for on-progress and processing states." },
+  { hex: "#F0F9FF", name: "Info Subtle", desc: "Light sky background for info banners." },
+];
+
+function swatchStyle(c: ColorCard) {
+  let s = `background: ${c.hex};`;
+  if (c.border) s += 'border:1px solid #E5E7EB;';
+  return s;
+}
+---
+
+<section class="bg-surface-subtle" id="color">
+  <div class="container">
+    <SectionHeader num="03" title="Color" sub="Restrained palette. One navy primary, one blue accent, neutral grays. No second accent color." />
+
+    <h3 class="text-lg font-semibold mb-2 mt-8 text-brand-primary">Brand</h3>
+    <div class="color-grid">
+      {brands.map(c => (
+        <div class="rounded-xl overflow-hidden border border-surface-muted bg-surface-base">
+          <div class="h-20 flex items-end p-2.5" style={swatchStyle(c)}>
+            <span class="text-xs font-semibold px-2 py-0.5 rounded backdrop-blur font-mono" style="background: rgba(255,255,255,0.85);">{c.hex}</span>
+          </div>
+          <div class="p-3">
+            <div class="text-sm font-semibold mb-1">{c.name}</div>
+            <div class="text-xs leading-relaxed text-fg-secondary">{c.desc}</div>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <h3 class="text-lg font-semibold mb-2 mt-8 text-brand-primary">Background</h3>
+    <div class="color-grid">
+      {backgrounds.map(c => (
+        <div class="rounded-xl overflow-hidden border border-surface-muted bg-surface-base">
+          <div class="h-20 flex items-end p-2.5" style={swatchStyle(c)}>
+            <span class="text-xs font-semibold px-2 py-0.5 rounded backdrop-blur font-mono" style="background: rgba(255,255,255,0.85);">{c.hex}</span>
+          </div>
+          <div class="p-3">
+            <div class="text-sm font-semibold mb-1">{c.name}</div>
+            <div class="text-xs leading-relaxed text-fg-secondary">{c.desc}</div>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <h3 class="text-lg font-semibold mb-2 mt-8 text-brand-primary">Text</h3>
+    <div class="color-grid">
+      {texts.map(c => (
+        <div class="rounded-xl overflow-hidden border border-surface-muted bg-surface-base">
+          <div class="h-20 flex items-end p-2.5" style={swatchStyle(c)}>
+            <span class="text-xs font-semibold px-2 py-0.5 rounded backdrop-blur font-mono" style="background: rgba(255,255,255,0.85);">{c.hex}</span>
+          </div>
+          <div class="p-3">
+            <div class="text-sm font-semibold mb-1">{c.name}</div>
+            <div class="text-xs leading-relaxed text-fg-secondary">{c.desc}</div>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <h3 class="text-lg font-semibold mb-2 mt-8 text-brand-primary">Feedback</h3>
+    <div class="color-grid">
+      {feedbacks.map(c => (
+        <div class="rounded-xl overflow-hidden border border-surface-muted bg-surface-base">
+          <div class="h-20 flex items-end p-2.5" style={swatchStyle(c)}>
+            <span class="text-xs font-semibold px-2 py-0.5 rounded backdrop-blur font-mono" style="background: rgba(255,255,255,0.85);">{c.hex}</span>
+          </div>
+          <div class="p-3">
+            <div class="text-sm font-semibold mb-1">{c.name}</div>
+            <div class="text-xs leading-relaxed text-fg-secondary">{c.desc}</div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
