@@ -21,10 +21,10 @@
   --color-surface-subtle: #F9FAFB;
   --color-surface-muted: #F3F4F6;
   /* Colors — fg */
-  --color-fg-primary: #1B1B1D;
-  --color-fg-secondary: #4B5563;
-  --color-fg-tertiary: #9CA3AF;
-  --color-fg-inverse: #FFFFFF;
+  --color-foreground-primary: #1B1B1D;
+  --color-foreground-secondary: #4B5563;
+  --color-foreground-tertiary: #9CA3AF;
+  --color-foreground-inverse: #FFFFFF;
   /* Colors — feedback */
   --color-success-base: #15803D;
   --color-success-hover: #166534;
@@ -50,13 +50,13 @@
   --font-sans: var(--font-family-sans);
   --font-mono: var(--font-family-mono);
   /* Font sizes */
-  --font-size-display: 36px;
-  --font-size-h1: 24px;
-  --font-size-h2: 18px;
-  --font-size-h3: 15px;
-  --font-size-body: 15px;
-  --font-size-caption: 13px;
-  --font-size-label: 11px;
+  --text-display: 36px;
+  --text-h1: 24px;
+  --text-h2: 18px;
+  --text-h3: 15px;
+  --text-body: 15px;
+  --text-caption: 13px;
+  --text-label: 11px;
   /* Font weights */
   --font-weight-regular: 400;
   --font-weight-medium: 500;
@@ -109,7 +109,7 @@ html { scroll-behavior: smooth; scroll-padding-top: 72px; }
 
 body {
   font-family: var(--font-family-sans);
-  color: var(--color-fg-primary);
+  color: var(--color-foreground-primary);
   background: var(--color-surface-base);
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
@@ -152,8 +152,8 @@ section:last-of-type { border-bottom: none; }
   text-align: left; padding: 10px 14px; font-size: 13px;
   border-bottom: 1px solid var(--color-surface-muted);
 }
-.tbl th { font-weight: 600; color: var(--color-fg-secondary); font-size: 12px; text-transform: uppercase; letter-spacing: 0.05em; }
-.tbl td { color: var(--color-fg-primary); }
+.tbl th { font-weight: 600; color: var(--color-foreground-secondary); font-size: 12px; text-transform: uppercase; letter-spacing: 0.05em; }
+.tbl td { color: var(--color-foreground-primary); }
 
 .faq-list { display: grid; gap: 4px; }
 
@@ -175,7 +175,7 @@ section:last-of-type { border-bottom: none; }
 .faq-q-hover { transition: background var(--duration-fast); }
 .faq-q-hover:hover { background: var(--color-surface-subtle); }
 
-.nav-link { color: var(--color-fg-secondary); transition: color var(--duration-fast); }
+.nav-link { color: var(--color-foreground-secondary); transition: color var(--duration-fast); }
 .nav-link:hover { color: var(--color-brand-accent); }
 
 @media (max-width: 768px) {
