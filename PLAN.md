@@ -7,7 +7,7 @@ A multi-framework design system built on DTCG tokens. Serves as both a documenta
 ## Repository Structure
 
 ```
-hub-design-system/
+blueprint-ui/
 ├── packages/
 │   ├── tokens/              @blueprint/tokens     — JS/TS token exports from tokens.json
 │   ├── vue/                 @blueprint/vue        — Vue 3 + Reka UI components
