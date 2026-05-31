@@ -6,16 +6,20 @@
     "dev": "astro dev",
     "build": "astro build",
     "build:tokens": "pnpm --filter @blueprint/tokens build",
+    "build:vue": "pnpm --filter @blueprint/vue build",
     "preview": "astro preview"
   },
   "dependencies": {
+    "@astrojs/starlight": "^0.39.2",
     "@astrojs/vue": "^6.0.1",
-    "astro": "^5.0.0",
+    "@fontsource/dm-sans": "^5.2.8",
+    "@fontsource/jetbrains-mono": "^5.2.8",
+    "astro": "^6.3.8",
     "reka-ui": "^2.9.8",
     "vue": "^3.5.35"
   },
   "devDependencies": {
-    "@tailwindcss/vite": "^4.0.0",
-    "tailwindcss": "^4.0.0"
+    "@tailwindcss/vite": "^4.3.0",
+    "tailwindcss": "^4.3.0"
   }
 }

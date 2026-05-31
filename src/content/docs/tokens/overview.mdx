@@ -1,0 +1,109 @@
+---
+title: Tokens Overview
+description: Blueprint's design token system for consistent styling across frameworks.
+---
+
+Blueprint uses design tokens as the single source of truth for all visual design decisions. Tokens are stored in `tokens.json` using the DTCG (Design Tokens Community Group) format.
+
+## Token Categories
+
+Blueprint includes 13 token categories:
+
+| Category | Description | Examples |
+|----------|-------------|----------|
+| **color** | Brand, surface, foreground, feedback colors | `brand-primary`, `surface-base`, `error-subtle` |
+| **fontFamily** | Typeface definitions | `sans`, `mono` |
+| **fontSize** | Type scale values | `display`, `h1`, `body`, `caption` |
+| **fontWeight** | Font weight values | `regular`, `medium`, `semibold`, `bold` |
+| **lineHeight** | Line height scale | `display`, `h1`, `body`, `tight` |
+| **letterSpacing** | Tracking values | `tight`, `snug`, `wide` |
+| **spacing** | Spatial values | `xs`, `sm`, `md`, `lg`, `xl`, `xxl` |
+| **borderRadius** | Corner radius values | `tight`, `default`, `card`, `full` |
+| **shadow** | Elevation shadows | `ring`, `whisper` |
+| **sizing** | Component dimensions | `icon-inline`, `card-visual` |
+| **zIndex** | Stack order values | `nav` |
+| **duration** | Animation timing | `fast`, `normal` |
+| **breakpoint** | Responsive breakpoints | `sm`, `md`, `lg`, `xl` |
+
+## Color Tokens
+
+### Brand Colors
+
+| Token | Value | Usage |
+|-------|-------|-------|
+| `brand-primary` | #001C44 | Primary brand color |
+| `brand-primary-hover` | #001536 | Primary hover state |
+| `brand-primary-focus` | #000F28 | Primary focus state |
+| `brand-primary-subtle` | #D6E4FF | Light primary background |
+| `brand-accent` | #007FFF | Interactive accent |
+| `brand-accent-hover` | #0066CC | Accent hover state |
+
+### Surface Colors
+
+| Token | Value | Usage |
+|-------|-------|-------|
+| `surface-base` | #FFFFFF | Default background |
+| `surface-subtle` | #F9FAFB | Secondary surface |
+| `surface-muted` | #F3F4F6 | Tertiary surface |
+
+### Foreground Colors
+
+| Token | Value | Usage |
+|-------|-------|-------|
+| `foreground-primary` | #1B1B1D | High-emphasis text |
+| `foreground-secondary` | #4B5563 | Supporting text |
+| `foreground-tertiary` | #9CA3AF | Low-emphasis text |
+| `foreground-inverse` | #FFFFFF | Text on dark backgrounds |
+
+### Feedback Colors
+
+| Token | Base | Hover | Focus | Subtle |
+|-------|------|-------|-------|--------|
+| **success** | #15803D | #166534 | #14532D | #DCFCE7 |
+| **error** | #DC2626 | #B91C1C | #991B1B | #FEF2F2 |
+| **warning** | #D97706 | #B45309 | #92400E | #FFFBEB |
+| **info** | #0284C7 | #0369A1 | #075985 | #F0F9FF |
+
+## Using Tokens
+
+### In CSS
+
+```css
+.my-component {
+  background: var(--color-surface-base);
+  color: var(--color-foreground-primary);
+  border-radius: var(--radius-default);
+  padding: var(--spacing-md);
+}
+```
+
+### In Tailwind CSS
+
+Blueprint tokens are mapped to Tailwind v4 utility classes:
+
+```html
+<div class="bg-surface-base text-foreground-primary rounded-default p-md">
+  Content
+</div>
+```
+
+### In JavaScript/TypeScript
+
+```typescript
+import { 
+  COLOR_BRAND_PRIMARY,
+  SPACING_MD,
+  RADIUS_DEFAULT 
+} from '@blueprint/tokens';
+```
+
+## Naming Convention
+
+Tokens follow a consistent naming pattern:
+
+| Type | Pattern | Example |
+|------|---------|---------|
+| Surface colors | `--color-surface-{variant}` | `bg-surface-base` |
+| Foreground colors | `--color-foreground-{variant}` | `text-foreground-primary` |
+| Brand colors | `--color-brand-{variant}` | `bg-brand-primary` |
+| Feedback colors | `--color-{type}-{variant}` | `bg-error-subtle` |

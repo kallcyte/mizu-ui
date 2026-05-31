@@ -1,0 +1,443 @@
+/*
+ * Blueprint Starlight Theme
+ * Maps Blueprint design tokens to Starlight CSS variables
+ * Supports light and dark modes with WCAG AA compliant colors
+ */
+
+/* Light mode (default) */
+:root,
+.sl-theme-light {
+  color-scheme: light;
+
+  /* Accent colors */
+  --sl-color-accent-high: #001C44;
+  --sl-color-accent-low: #D6E4FF;
+  --sl-color-accent: #007FFF;
+  --sl-color-accent-subtle: #E0F2FE;
+
+  /* Gray scale */
+  --sl-color-gray-1: #FFFFFF;
+  --sl-color-gray-2: #F9FAFB;
+  --sl-color-gray-3: #F3F4F6;
+  --sl-color-gray-4: #E5E7EB;
+  --sl-color-gray-5: #D1D5DB;
+  --sl-color-gray-6: #9CA3AF;
+  --sl-color-gray-7: #6B7280;
+  --sl-color-gray-8: #4B5563;
+  --sl-color-gray-9: #1B1B1D;
+
+  /* Text colors */
+  --sl-color-text: #1B1B1D;
+  --sl-color-text-light: #4B5563;
+  --sl-color-text-lighter: #9CA3AF;
+  --sl-color-text-accent: #007FFF;
+
+  /* Background colors */
+  --sl-color-bg: #FFFFFF;
+  --sl-color-bg-nav: #FFFFFF;
+  --sl-color-bg-sidebar: #FFFFFF;
+  --sl-color-bg-inline-code: #F3F4F6;
+  --sl-color-black: #FFFFFF;
+  --sl-color-white: #1B1B1D;
+
+  /* Border colors */
+  --sl-color-hairline: #F3F4F6;
+  --sl-color-hairline-shade: #E5E7EB;
+
+  /* Fonts */
+  --sl-font: "DM Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --sl-font-mono: "JetBrains Mono", "SF Mono", "Fira Code", "Cascadia Code", monospace;
+
+  /* Font sizes */
+  --sl-text-2xs: 0.6875rem;
+  --sl-text-xs: 0.8125rem;
+  --sl-text-sm: 0.9375rem;
+  --sl-text-base: 0.9375rem;
+  --sl-text-lg: 1.125rem;
+  --sl-text-xl: 1.5rem;
+  --sl-text-2xl: 2.25rem;
+  --sl-text-3xl: 2.25rem;
+  --sl-text-4xl: 3rem;
+  --sl-text-h1: 1.5rem;
+  --sl-text-h2: 1.125rem;
+  --sl-text-h3: 0.9375rem;
+  --sl-text-h4: 0.9375rem;
+  --sl-text-h5: 0.8125rem;
+  --sl-text-h6: 0.8125rem;
+  --sl-text-code: 0.8125rem;
+
+  /* Line heights */
+  --sl-line-height-headings: 1.2;
+  --sl-line-height: 1.6;
+
+  /* Letter spacing */
+  --sl-tracking-tight: -0.03em;
+  --sl-tracking-snug: -0.02em;
+
+  /* Border radius */
+  --sl-radius-sm: 4px;
+  --sl-radius-md: 8px;
+  --sl-radius-lg: 12px;
+  --sl-radius-xl: 16px;
+  --sl-radius-full: 9999px;
+
+  /* Content width */
+  --sl-content-width: 45rem;
+}
+
+/* Dark mode */
+[data-theme="dark"],
+.sl-theme-dark {
+  color-scheme: dark;
+
+  /* Accent colors — lighter for dark backgrounds */
+  --sl-color-accent-high: #D6E4FF;
+  --sl-color-accent-low: #1E2A3A;
+  --sl-color-accent: #60A5FA;
+  --sl-color-accent-subtle: #1E3A5F;
+
+  /* Gray scale — inverted */
+  --sl-color-gray-1: #0F1117;
+  --sl-color-gray-2: #161822;
+  --sl-color-gray-3: #1E2030;
+  --sl-color-gray-4: #2A2D3E;
+  --sl-color-gray-5: #3B3F52;
+  --sl-color-gray-6: #64748B;
+  --sl-color-gray-7: #94A3B8;
+  --sl-color-gray-8: #CBD5E1;
+  --sl-color-gray-9: #F1F5F9;
+
+  /* Text colors */
+  --sl-color-text: #F1F5F9;
+  --sl-color-text-light: #94A3B8;
+  --sl-color-text-lighter: #64748B;
+  --sl-color-text-accent: #60A5FA;
+
+  /* Background colors */
+  --sl-color-bg: #0F1117;
+  --sl-color-bg-nav: #161822;
+  --sl-color-bg-sidebar: #161822;
+  --sl-color-bg-inline-code: #1E2030;
+  --sl-color-black: #0F1117;
+  --sl-color-white: #F1F5F9;
+
+  /* Border colors */
+  --sl-color-hairline: #1E2030;
+  --sl-color-hairline-shade: #2A2D3E;
+}
+
+/* Base styles */
+html,
+body,
+.page,
+.header,
+.sidebar-pane,
+.sidebar-content,
+.main-frame,
+.main-pane {
+  background-color: var(--sl-color-bg) !important;
+  color: var(--sl-color-text) !important;
+}
+
+/* Sidebar styling */
+.starlight-aside {
+  border-radius: var(--sl-radius-md);
+}
+
+/* Code blocks */
+.sl-markdown-content code {
+  border-radius: var(--sl-radius-sm);
+  font-size: var(--sl-text-code);
+  background-color: var(--sl-color-bg-inline-code);
+  color: var(--sl-color-text);
+  font-family: var(--sl-font-mono);
+}
+
+/* Tables */
+.sl-markdown-content table {
+  border-radius: var(--sl-radius-md);
+  overflow: hidden;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+.sl-markdown-content th,
+.sl-markdown-content td {
+  padding: 0.75rem 1rem;
+}
+
+.sl-markdown-content th {
+  background-color: var(--sl-color-gray-3);
+  font-weight: 600;
+  color: var(--sl-color-text);
+  text-align: left;
+}
+
+.sl-markdown-content td,
+.sl-markdown-content th {
+  border-color: var(--sl-color-hairline-shade);
+  border-bottom: 1px solid var(--sl-color-hairline-shade);
+}
+
+.sl-markdown-content tr:last-child td {
+  border-bottom: none;
+}
+
+.sl-markdown-content tr:nth-child(even) {
+  background-color: var(--sl-color-gray-2);
+}
+
+/* Links */
+.sl-markdown-content a {
+  color: var(--sl-color-accent);
+  text-decoration: none;
+}
+
+.sl-markdown-content a:hover {
+  text-decoration: underline;
+}
+
+/* Header */
+.site-title {
+  font-weight: 700 !important;
+  letter-spacing: -0.02em;
+  color: var(--sl-color-accent-high) !important;
+}
+
+/* Search */
+site-search button {
+  border-radius: var(--sl-radius-md) !important;
+}
+
+/* Asides */
+.sl-markdown-content .starlight-aside {
+  border-radius: var(--sl-radius-md);
+}
+
+/* Badges */
+.badge {
+  border-radius: var(--sl-radius-full);
+}
+
+/* Page title */
+h1.title {
+  letter-spacing: -0.03em;
+  color: var(--sl-color-accent-high);
+}
+
+/* Sidebar section labels */
+.sidebar-label {
+  color: var(--sl-color-text-light);
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.6875rem;
+  letter-spacing: 0.05em;
+}
+
+/* Ensure all text is visible */
+.sl-markdown-content {
+  color: var(--sl-color-text);
+}
+
+.sl-markdown-content h1,
+.sl-markdown-content h2,
+.sl-markdown-content h3,
+.sl-markdown-content h4,
+.sl-markdown-content h5,
+.sl-markdown-content h6 {
+  color: var(--sl-color-accent-high);
+}
+
+/* Inline code */
+:not(pre) > code {
+  background-color: var(--sl-color-bg-inline-code);
+  color: var(--sl-color-text);
+  padding: 0.125rem 0.375rem;
+  border-radius: 4px;
+  font-size: 0.875em;
+}
+
+/* Blockquote */
+.sl-markdown-content blockquote {
+  border-left-color: var(--sl-color-accent);
+  background-color: var(--sl-color-gray-2);
+}
+
+/* Horizontal rule */
+.sl-markdown-content hr {
+  border-color: var(--sl-color-hairline-shade);
+}
+
+/* Table header */
+.sl-markdown-content th {
+  background-color: var(--sl-color-gray-3);
+  border-bottom: 2px solid var(--sl-color-hairline-shade);
+  padding: 0.75rem 1rem;
+}
+
+/* Sidebar links */
+.sidebar-content a {
+  color: var(--sl-color-text);
+  border-inline-start: none !important;
+  border-left: none !important;
+}
+
+.sidebar-content li {
+  border-inline-start: none !important;
+  border-left: none !important;
+}
+
+.sidebar-content ul ul li {
+  border-inline-start: none !important;
+  border-left: none !important;
+}
+
+.sidebar-content a:hover {
+  color: var(--sl-color-accent);
+  background-color: var(--sl-color-gray-2);
+}
+
+/* Sidebar active item */
+.sidebar-content [aria-current="page"],
+.sidebar-content [aria-current="page"] a,
+.sidebar-content li[aria-current="page"] > a {
+  color: var(--sl-color-accent) !important;
+  background-color: rgba(96, 165, 250, 0.1) !important;
+  border-left: 3px solid var(--sl-color-accent);
+  padding-left: calc(1rem - 3px);
+}
+
+.sidebar-content [aria-current="page"]:hover,
+.sidebar-content [aria-current="page"]:hover > a,
+.sidebar-content li[aria-current="page"]:hover > a {
+  background-color: rgba(96, 165, 250, 0.15) !important;
+}
+
+/* Search button */
+[data-open-modal] {
+  background-color: var(--sl-color-gray-1) !important;
+  color: var(--sl-color-text) !important;
+  border: 1px solid var(--sl-color-hairline-shade) !important;
+}
+
+[data-open-modal]:hover {
+  border-color: var(--sl-color-accent) !important;
+  color: var(--sl-color-accent) !important;
+}
+
+/* Theme selector */
+starlight-theme-select {
+  display: block !important;
+}
+
+starlight-theme-select label {
+  color: var(--sl-color-text) !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.25rem !important;
+  padding-right: 1.75rem !important;
+}
+
+starlight-theme-select label:hover {
+  color: var(--sl-color-accent) !important;
+}
+
+starlight-theme-select .label-icon {
+  position: static !important;
+  transform: none !important;
+  margin-right: 0.5rem !important;
+}
+
+starlight-theme-select select {
+  background-color: var(--sl-color-gray-1) !important;
+  color: var(--sl-color-text) !important;
+  border: 1px solid var(--sl-color-hairline-shade) !important;
+  border-radius: var(--sl-radius-md) !important;
+  padding: 0.25rem 1.75rem 0.25rem 0.5rem !important;
+}
+
+starlight-theme-select select:hover {
+  border-color: var(--sl-color-accent) !important;
+}
+
+starlight-theme-select select option {
+  background-color: var(--sl-color-gray-1) !important;
+  color: var(--sl-color-text) !important;
+}
+
+starlight-theme-select .caret {
+  position: static !important;
+  transform: none !important;
+  margin-left: -1.25rem !important;
+  pointer-events: none !important;
+  color: var(--sl-color-text) !important;
+}
+
+/* Table of Contents (right sidebar) */
+.right-sidebar-panel {
+  color: var(--sl-color-text) !important;
+}
+
+.right-sidebar-panel h2 {
+  color: var(--sl-color-accent-high) !important;
+  font-size: 1.125rem !important;  /* 18px — h2 */
+}
+
+.right-sidebar-panel a {
+  color: var(--sl-color-text-light) !important;
+}
+
+.right-sidebar-panel a:hover {
+  color: var(--sl-color-accent) !important;
+}
+
+.right-sidebar-panel a[aria-current="true"] {
+  color: var(--sl-color-accent) !important;
+  font-weight: 500;
+}
+
+/* Pagination links (prev/next) */
+.pagination-links {
+  color: var(--sl-color-text) !important;
+}
+
+.pagination-links a {
+  color: var(--sl-color-text) !important;
+  background-color: var(--sl-color-gray-2) !important;
+  border: 1px solid var(--sl-color-hairline-shade) !important;
+  border-radius: var(--sl-radius-md) !important;
+  padding: 0.75rem 1rem !important;
+  text-decoration: none !important;
+}
+
+.pagination-links a:hover {
+  background-color: var(--sl-color-gray-3) !important;
+  border-color: var(--sl-color-accent) !important;
+  color: var(--sl-color-accent) !important;
+}
+
+.pagination-links .link-title {
+  color: var(--sl-color-text) !important;
+  font-size: 1.125rem !important;  /* 18px — h2 */
+  font-weight: 600 !important;
+}
+
+/* Typography */
+body {
+  font-weight: 400;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 600;
+}
+
+strong {
+  font-weight: 600;
+}
+
+/* Code blocks */
+pre,
+pre code,
+code {
+  font-family: var(--sl-font-mono);
+}

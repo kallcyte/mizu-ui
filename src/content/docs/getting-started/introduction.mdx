@@ -1,0 +1,75 @@
+---
+title: Introduction
+description: Learn about the Blueprint Design System and how to get started.
+---
+
+Blueprint is a multi-framework design system built on DTCG tokens. It serves as both a documentation site (Astro + Tailwind v4) and a component library (Vue via Reka UI, React via shadcn/ui + ReUI).
+
+## What is Blueprint?
+
+Blueprint provides:
+
+- **Design tokens** in DTCG format for consistent styling
+- **Vue components** built on Reka UI primitives
+- **React components** (coming soon) via shadcn/ui + ReUI
+- **Documentation** with comprehensive specs for each component
+
+## Quick Start
+
+### Install the tokens package
+
+```bash
+pnpm add @blueprint/tokens
+```
+
+### Use tokens in your code
+
+```typescript
+import { COLOR_BRAND_PRIMARY, FONT_FAMILY_SANS } from '@blueprint/tokens';
+```
+
+### Install the Vue component library
+
+```bash
+pnpm add @blueprint/vue
+```
+
+### Use components in your Vue app
+
+```vue
+<script setup>
+import { BlueprintButton } from '@blueprint/vue';
+</script>
+
+<template>
+  <BlueprintButton variant="primary" size="md">
+    Get Started
+  </BlueprintButton>
+</template>
+```
+
+## Token System
+
+Blueprint uses a comprehensive token system with 13 categories:
+
+- **Colors**: brand, surface, foreground, feedback (success/error/warning/info)
+- **Typography**: fontFamily, fontSize, fontWeight, lineHeight, letterSpacing
+- **Spacing**: xs, sm, md, lg, xl, xxl
+- **Border Radius**: tight, default, card, feature, large, full
+- **Shadows**: ring, whisper
+- **Duration**: fast, normal
+
+Learn more about [tokens overview](/tokens/overview).
+
+## Component Library
+
+Blueprint provides a set of production-ready Vue components:
+
+- [Button](/components/button) - Primary actions and interactions
+
+Each component includes:
+
+- Comprehensive specification
+- Accessibility compliance
+- Token-based styling
+- Full TypeScript support
