@@ -1,0 +1,27 @@
+@import "tailwindcss/theme" layer(theme);
+@import "tailwindcss/utilities" layer(utilities);
+
+/* Blueprint CSS Custom Properties */
+:root {
+  --bp-color-brand-primary: #001C44;
+  --bp-color-brand-primary-hover: #001536;
+  --bp-color-brand-accent: #007FFF;
+  --bp-color-brand-accent-hover: #0066CC;
+  --bp-color-foreground-primary: #1B1B1D;
+  --bp-color-foreground-inverse: #FFFFFF;
+  --bp-color-foreground-tertiary: #9CA3AF;
+  --bp-color-surface-muted: #F3F4F6;
+  --bp-color-surface-subtle: #F9FAFB;
+  --bp-color-feedback-success-base: #15803D;
+  --bp-color-feedback-success-hover: #166534;
+  --bp-color-feedback-success-subtle: #DCFCE7;
+  --bp-color-feedback-warning-base: #D97706;
+  --bp-color-feedback-warning-hover: #B45309;
+  --bp-color-feedback-warning-subtle: #FFFBEB;
+  --bp-color-feedback-error-base: #DC2626;
+  --bp-color-feedback-error-hover: #B91C1C;
+  --bp-color-feedback-error-subtle: #FEF2F2;
+  --bp-color-feedback-info-base: #0284C7;
+  --bp-color-feedback-info-hover: #0369A1;
+  --bp-color-feedback-info-subtle: #F0F9FF;
+}

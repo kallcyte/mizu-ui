@@ -12,8 +12,10 @@
   "dependencies": {
     "@astrojs/starlight": "^0.39.2",
     "@astrojs/vue": "^6.0.1",
+    "@blueprint/vue": "workspace:*",
     "@fontsource/dm-sans": "^5.2.8",
     "@fontsource/jetbrains-mono": "^5.2.8",
+    "@lucide/vue": "^1.17.0",
     "astro": "^6.3.8",
     "reka-ui": "^2.9.8",
     "vue": "^3.5.35"

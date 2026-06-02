@@ -2,7 +2,7 @@
 import { computed, useAttrs } from "vue";
 
 export interface ButtonProps {
-  variant?: "primary" | "accent" | "ghost" | "outline";
+  variant?: "primary" | "accent" | "ghost" | "outline" | "success" | "warning" | "error" | "info" | "outline-success" | "outline-warning" | "outline-error" | "outline-info";
   size?: "sm" | "md" | "lg";
   disabled?: boolean;
   loading?: boolean;
@@ -33,52 +33,44 @@ const hasLeadingIcon = computed(() => !!slots["leading-icon"]);
 const hasTrailingIcon = computed(() => !!slots["trailing-icon"]);
 const hasDefaultSlot = computed(() => !!slots.default);
 
-const buttonClasses = computed(() => {
-  const base =
-    "inline-flex items-center justify-center font-medium transition-all duration-fast rounded-default focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brand-accent disabled:cursor-not-allowed select-none";
+const variantColors: Record<string, { bg: string; text: string; border: string }> = {
+  primary: { bg: "var(--bp-color-brand-primary)", text: "var(--bp-color-foreground-inverse)", border: "transparent" },
+  accent: { bg: "var(--bp-color-brand-accent)", text: "var(--bp-color-foreground-inverse)", border: "transparent" },
+  success: { bg: "var(--bp-color-feedback-success-base)", text: "var(--bp-color-foreground-inverse)", border: "transparent" },
+  warning: { bg: "var(--bp-color-feedback-warning-base)", text: "var(--bp-color-foreground-inverse)", border: "transparent" },
+  error: { bg: "var(--bp-color-feedback-error-base)", text: "var(--bp-color-foreground-inverse)", border: "transparent" },
+  info: { bg: "var(--bp-color-feedback-info-base)", text: "var(--bp-color-foreground-inverse)", border: "transparent" },
+  ghost: { bg: "transparent", text: "var(--bp-color-foreground-primary)", border: "transparent" },
+  outline: { bg: "transparent", text: "var(--bp-color-foreground-primary)", border: "var(--bp-color-foreground-primary)" },
+  "outline-success": { bg: "transparent", text: "var(--bp-color-feedback-success-base)", border: "var(--bp-color-feedback-success-base)" },
+  "outline-warning": { bg: "transparent", text: "var(--bp-color-feedback-warning-base)", border: "var(--bp-color-feedback-warning-base)" },
+  "outline-error": { bg: "transparent", text: "var(--bp-color-feedback-error-base)", border: "var(--bp-color-feedback-error-base)" },
+  "outline-info": { bg: "transparent", text: "var(--bp-color-feedback-info-base)", border: "var(--bp-color-feedback-info-base)" },
+};
 
-  const variants: Record<string, string> = {
-    primary:
-      "bg-brand-primary text-foreground-inverse hover:bg-brand-primary-hover focus:bg-brand-primary-focus active:bg-brand-primary-focus",
-    accent:
-      "bg-brand-accent text-foreground-inverse hover:bg-brand-accent-hover focus:bg-brand-accent-focus active:bg-brand-accent-focus",
-    ghost:
-      "bg-transparent text-foreground-primary hover:bg-surface-subtle focus:bg-surface-subtle active:bg-surface-muted",
-    outline:
-      "bg-transparent text-foreground-primary border border-surface-muted hover:bg-surface-subtle focus:border-brand-accent active:bg-surface-muted",
-  };
+const variantColor = computed(() => variantColors[props.variant] || variantColors.primary);
 
-  const sizes: Record<string, string> = {
-    sm: "h-8 px-3 py-1.5 text-caption gap-1.5 min-w-16",
-    md: "h-10 px-4 py-2.5 text-body gap-2 min-w-20",
-    lg: "h-12 px-6 py-3 text-body font-semibold gap-2 min-w-24",
-  };
-
-  const disabledState = props.disabled
-    ? "bg-surface-muted text-foreground-tertiary hover:bg-surface-muted focus:bg-surface-muted active:bg-surface-muted border-transparent"
-    : "";
-
-  const loadingState = props.loading
-    ? "pointer-events-none opacity-80"
-    : "";
-
-  return [
-    base,
-    variants[props.variant],
-    sizes[props.size],
-    disabledState,
-    loadingState,
-    attrs.class as string,
-  ]
-    .filter(Boolean)
-    .join(" ");
+const hasBorder = computed(() => {
+  return props.variant === "outline" || props.variant.startsWith("outline-");
 });
 
-const iconSizes: Record<string, string> = {
-  sm: "w-4 h-4",
-  md: "w-5 h-5",
-  lg: "w-5 h-5",
-};
+const spinnerSizeClass = computed(() => `bp-spinner--${props.size}`);
+
+const buttonClasses = computed(() => {
+  const classes = [
+    "bp-button",
+    `bp-button--${props.size}`,
+    `bp-${props.variant}`,
+  ];
+
+  if (props.disabled) classes.push("bp-button--disabled");
+  if (props.loading) classes.push("bp-button--loading");
+  if (hasBorder.value) classes.push("bp-button--bordered");
+
+  if (attrs.class) classes.push(attrs.class as string);
+
+  return classes.join(" ");
+});
 
 function handleClick(event: MouseEvent) {
   if (!props.disabled && !props.loading) {
@@ -94,49 +86,121 @@ function handleClick(event: MouseEvent) {
     :aria-disabled="disabled"
     :aria-busy="loading"
     :class="buttonClasses"
+    :style="{
+      '--bp-btn-bg': variantColor.bg,
+      '--bp-btn-text': variantColor.text,
+      '--bp-btn-border': variantColor.border,
+    }"
     @click="handleClick"
   >
     <template v-if="loading">
       <svg
-        class="animate-spin"
-        :class="iconSizes[size]"
-        xmlns="http://www.w3.org/2000/svg"
-        fill="none"
+        :class="['bp-spinner', spinnerSizeClass]"
         viewBox="0 0 24 24"
+        fill="none"
       >
-        <circle
-          class="opacity-25"
-          cx="12"
-          cy="12"
-          r="10"
-          stroke="currentColor"
-          stroke-width="4"
-        />
-        <path
-          class="opacity-75"
-          fill="currentColor"
-          d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-        />
+        <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4" opacity="0.25" />
+        <path d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" fill="currentColor" opacity="0.75" />
       </svg>
     </template>
     <template v-else>
-      <span
-        v-if="hasLeadingIcon"
-        :class="iconSizes[size]"
-        class="shrink-0"
-      >
+      <span v-if="hasLeadingIcon" class="bp-icon-wrapper">
         <slot name="leading-icon" />
       </span>
-      <span v-if="hasDefaultSlot">
+      <span v-if="hasDefaultSlot" class="bp-button__label">
         <slot />
       </span>
-      <span
-        v-if="hasTrailingIcon"
-        :class="iconSizes[size]"
-        class="shrink-0"
-      >
+      <span v-if="hasTrailingIcon" class="bp-icon-wrapper">
         <slot name="trailing-icon" />
       </span>
     </template>
   </button>
 </template>
+
+<style>
+@reference "../index.css";
+
+/* Base button */
+.bp-button {
+  @apply inline-flex items-center justify-center font-medium transition-all duration-200 ease-in-out cursor-pointer select-none border-none m-0 font-[inherit] focus:outline-none shrink-0;
+  background-color: var(--bp-btn-bg);
+  color: var(--bp-btn-text);
+}
+.bp-button:focus-visible {
+  @apply outline outline-1 outline-[var(--bp-color-brand-accent)] outline-offset-2;
+}
+.bp-button:active:not(:disabled) {
+  @apply scale-[0.98];
+}
+.bp-button--bordered {
+  border-style: solid;
+  border-width: 1px;
+  border-color: var(--bp-btn-border);
+}
+
+/* Sizes */
+.bp-button--sm {
+  @apply h-[22px] px-[6px] py-[6px] text-[10px] leading-none gap-[4px] rounded-[4px];
+}
+.bp-button--md {
+  @apply h-[36px] px-[10px] py-[10px] text-[12px] leading-none gap-[6px] rounded-[6px];
+}
+.bp-button--lg {
+  @apply h-[40px] px-[10px] py-[10px] text-[14px] leading-none gap-[8px] rounded-[6px];
+}
+
+/* Icon wrapper */
+.bp-icon-wrapper {
+  @apply inline-flex items-center justify-center shrink-0 w-[1.25em] h-[1.25em];
+}
+
+/* Spinner */
+.bp-spinner {
+  @apply shrink-0;
+  animation: bp-spin 1s linear infinite;
+}
+.bp-button--sm .bp-spinner { @apply w-[10px] h-[10px]; }
+.bp-button--md .bp-spinner { @apply w-[16px] h-[16px]; }
+.bp-button--lg .bp-spinner { @apply w-[20px] h-[20px]; }
+
+@keyframes bp-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Hover states */
+.bp-primary:hover:not(:disabled) { @apply bg-[var(--bp-color-brand-primary-hover)]; }
+.bp-accent:hover:not(:disabled) { @apply bg-[var(--bp-color-brand-accent-hover)]; }
+.bp-ghost:hover:not(:disabled) { @apply text-[var(--bp-color-brand-primary-hover)]; }
+.bp-outline:hover:not(:disabled) { @apply bg-[var(--bp-color-surface-subtle)]; }
+.bp-success:hover:not(:disabled) { @apply bg-[var(--bp-color-feedback-success-hover)]; }
+.bp-warning:hover:not(:disabled) { @apply bg-[var(--bp-color-feedback-warning-hover)]; }
+.bp-error:hover:not(:disabled) { @apply bg-[var(--bp-color-feedback-error-hover)]; }
+.bp-info:hover:not(:disabled) { @apply bg-[var(--bp-color-feedback-info-hover)]; }
+.bp-outline-success:hover:not(:disabled) { @apply bg-[var(--bp-color-feedback-success-subtle)]; }
+.bp-outline-warning:hover:not(:disabled) { @apply bg-[var(--bp-color-feedback-warning-subtle)]; }
+.bp-outline-error:hover:not(:disabled) { @apply bg-[var(--bp-color-feedback-error-subtle)]; }
+.bp-outline-info:hover:not(:disabled) { @apply bg-[var(--bp-color-feedback-info-subtle)]; }
+
+/* Outline press inset shadow */
+.bp-outline:active:not(:disabled),
+[class*="bp-outline-"]:active:not(:disabled) {
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Loading state */
+.bp-button--loading {
+  @apply pointer-events-none opacity-80;
+}
+.bp-button--loading:active {
+  @apply scale-100;
+}
+
+/* Disabled state */
+.bp-button--disabled {
+  @apply bg-[var(--bp-color-surface-muted)] text-[var(--bp-color-foreground-tertiary)] border-transparent cursor-not-allowed;
+}
+.bp-button--disabled:hover {
+  @apply bg-[var(--bp-color-surface-muted)];
+}
+</style>

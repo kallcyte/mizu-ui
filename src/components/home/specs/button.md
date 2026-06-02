@@ -8,16 +8,7 @@ Buttons allow users to take actions and make choices with a single tap. They com
 
 A button consists of up to 4 parts:
 
-```
-┌─────────────────────────────────┐
-│  ┌─────┐                        │
-│  │ Icon│  Label Text             │  ← Container
-│  └─────┘                        │
-└─────────────────────────────────┘
-      ↑           ↑          ↑
-   Leading     Label     Trailing
-    Icon       Text       Icon
-```
+![Button Anatomy](/images/button-anatomy.svg)
 
 | Part | Required | Description |
 |------|----------|-------------|
@@ -72,18 +63,18 @@ Icon:      text-foreground-primary
 
 ### Height & Padding
 
-| Size | Height | Horizontal Padding | Vertical Padding | Gap (icon↔label) |
-|------|--------|-------------------|------------------|-------------------|
-| **SM** | 32px | 12px | 6px | 6px |
-| **MD** | 40px | 16px | 10px | 8px |
-| **LG** | 48px | 24px | 12px | 8px |
+| Size | Height | Horizontal Padding | Vertical Padding | Gap (icon↔label) | Border Radius |
+|------|--------|-------------------|------------------|-------------------|---------------|
+| **SM** | 22px | 6px | 6px | 4px | 4px |
+| **MD** | 36px | 10px | 10px | 6px | 6px |
+| **LG** | 40px | 10px | 10px | 8px | 6px |
 
 ### Icon Sizes
 
 | Size | Icon Size | Icon Stroke Width |
 |------|-----------|-------------------|
-| **SM** | 16px | 1.5px |
-| **MD** | 20px | 1.5px |
+| **SM** | 10px | 1.5px |
+| **MD** | 16px | 1.5px |
 | **LG** | 20px | 2px |
 
 ### Touch Target
@@ -94,16 +85,16 @@ All button sizes maintain a minimum touch target of **44px × 44px** for accessi
 
 | Size | Font Size | Font Weight | Line Height | Letter Spacing |
 |------|-----------|-------------|-------------|----------------|
-| **SM** | 13px (caption) | 500 (medium) | 1.45 | 0 |
-| **MD** | 15px (body) | 500 (medium) | 1.6 | 0 |
-| **LG** | 15px (body) | 600 (semibold) | 1.6 | 0 |
+| **SM** | 10px | 500 (medium) | 1 | 0 |
+| **MD** | 12px | 500 (medium) | 1 | 0 |
+| **LG** | 14px | 500 (medium) | 1 | 0 |
 
 ## Shape
 
-| Property | Value | Token |
-|----------|-------|-------|
-| Border Radius | 8px | `--radius-default` |
-| Corner Radius (Full) | 9999px | `--radius-full` |
+| Property | SM | MD | LG |
+|----------|----|----|-----|
+| Border Radius | 4px | 6px | 6px |
+| Corner Radius (Full) | 9999px | 9999px | 9999px |
 
 ## Color Specifications
 
@@ -141,18 +132,17 @@ All button sizes maintain a minimum touch target of **44px × 44px** for accessi
 
 | Property | SM | MD | LG |
 |----------|----|----|-----|
-| Horizontal Padding | 12px | 16px | 24px |
-| Vertical Padding | 6px | 10px | 12px |
-| Icon-Label Gap | 6px | 8px | 8px |
-| Min Width | 64px | 80px | 96px |
+| Horizontal Padding | 6px | 10px | 10px |
+| Vertical Padding | 6px | 10px | 10px |
+| Icon-Label Gap | 4px | 6px | 8px |
 
 ### Single Icon Button (No Label)
 
-| Size | Width | Height |
-|------|-------|--------|
-| **SM** | 32px | 32px |
-| **MD** | 40px | 40px |
-| **LG** | 48px | 48px |
+| Size | Padding |
+|------|---------|
+| **SM** | 6px |
+| **MD** | 10px |
+| **LG** | 10px |
 
 ## Transitions
 

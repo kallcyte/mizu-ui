@@ -15,16 +15,7 @@ Buttons allow users to take actions and make choices with a single tap. They com
 
 A button consists of up to 4 parts:
 
-```
-┌─────────────────────────────────┐
-│  ┌─────┐                        │
-│  │ Icon│  Label Text             │  ← Container
-│  └─────┘                        │
-└─────────────────────────────────┘
-      ↑           ↑          ↑
-   Leading     Label     Trailing
-    Icon       Text       Icon
-```
+![Button Anatomy](/images/button-anatomy.png)
 
 | Part | Required | Description |
 |------|----------|-------------|
@@ -77,18 +68,18 @@ Icon:      text-foreground-primary
 
 ### Height & Padding
 
-| Size | Height | Horizontal Padding | Vertical Padding | Gap (icon↔label) |
-|------|--------|-------------------|------------------|-------------------|
-| **SM** | 32px | 12px | 6px | 6px |
-| **MD** | 40px | 16px | 10px | 8px |
-| **LG** | 48px | 24px | 12px | 8px |
+| Size | Height | Horizontal Padding | Vertical Padding | Gap (icon↔label) | Border Radius |
+|------|--------|-------------------|------------------|-------------------|---------------|
+| **SM** | 22px | 6px | 6px | 4px | 4px |
+| **MD** | 36px | 10px | 10px | 6px | 6px |
+| **LG** | 40px | 10px | 10px | 8px | 6px |
 
 ### Icon Sizes
 
 | Size | Icon Size | Icon Stroke Width |
 |------|-----------|-------------------|
-| **SM** | 16px | 1.5px |
-| **MD** | 20px | 1.5px |
+| **SM** | 10px | 1.5px |
+| **MD** | 16px | 1.5px |
 | **LG** | 20px | 2px |
 
 ### Touch Target
@@ -99,16 +90,16 @@ All button sizes maintain a minimum touch target of **44px × 44px** for accessi
 
 | Size | Font Size | Font Weight | Line Height | Letter Spacing |
 |------|-----------|-------------|-------------|----------------|
-| **SM** | 13px (caption) | 500 (medium) | 1.45 | 0 |
-| **MD** | 15px (body) | 500 (medium) | 1.6 | 0 |
-| **LG** | 15px (body) | 600 (semibold) | 1.6 | 0 |
+| **SM** | 10px | 500 (medium) | 1 | 0 |
+| **MD** | 12px | 500 (medium) | 1 | 0 |
+| **LG** | 14px | 500 (medium) | 1 | 0 |
 
 ## Shape
 
-| Property | Value | Token |
-|----------|-------|-------|
-| Border Radius | 8px | `--radius-default` |
-| Corner Radius (Full) | 9999px | `--radius-full` |
+| Property | SM | MD | LG |
+|----------|----|----|-----|
+| Border Radius | 4px | 6px | 6px |
+| Corner Radius (Full) | 9999px | 9999px | 9999px |
 
 ## Color Specifications
 
@@ -116,11 +107,20 @@ All button sizes maintain a minimum touch target of **44px × 44px** for accessi
 
 | State | Primary | Accent | Ghost | Outline |
 |-------|---------|--------|-------|---------|
-| **Enabled** | bg: `brand-primary` fg: `foreground-inverse` | bg: `brand-accent` fg: `foreground-inverse` | bg: transparent fg: `foreground-primary` | bg: transparent border: `surface-muted` fg: `foreground-primary` |
-| **Hovered** | bg: `brand-primary-hover` fg: `foreground-inverse` | bg: `brand-accent-hover` fg: `foreground-inverse` | bg: `surface-subtle` fg: `foreground-primary` | bg: `surface-subtle` border: `surface-muted` fg: `foreground-primary` |
-| **Focused** | bg: `brand-primary-focus` fg: `foreground-inverse` ring: 2px `brand-accent` | bg: `brand-accent-focus` fg: `foreground-inverse` ring: 2px `brand-accent` | bg: `surface-subtle` fg: `foreground-primary` ring: 2px `brand-accent` | bg: `surface-subtle` border: `brand-accent` fg: `foreground-primary` ring: 2px `brand-accent` |
-| **Pressed** | bg: `brand-primary-focus` fg: `foreground-inverse` | bg: `brand-accent-focus` fg: `foreground-inverse` | bg: `surface-muted` fg: `foreground-primary` | bg: `surface-muted` border: `surface-muted` fg: `foreground-primary` |
-| **Disabled** | bg: `surface-muted` fg: `foreground-tertiary` | bg: `surface-muted` fg: `foreground-tertiary` | bg: transparent fg: `foreground-tertiary` | bg: transparent border: `surface-muted` fg: `foreground-tertiary` |
+| **Enabled** | bg: `brand-primary` fg: `foreground-inverse` | bg: `brand-accent` fg: `foreground-inverse` | bg: transparent fg: `foreground-primary` | bg: transparent border: `foreground-primary` fg: `foreground-primary` |
+| **Hovered** | bg: `brand-primary-hover` fg: `foreground-inverse` | bg: `brand-accent-hover` fg: `foreground-inverse` | color: `brand-primary-hover` fg: `foreground-primary` | bg: `surface-subtle` fg: `foreground-primary` |
+| **Focused** | ring: 1px `brand-accent` offset 2px | ring: 1px `brand-accent` offset 2px | ring: 1px `brand-accent` offset 2px | ring: 1px `brand-accent` offset 2px |
+| **Pressed** | `scale(0.98)` | `scale(0.98)` | None | inset shadow |
+| **Disabled** | bg: `surface-muted` fg: `foreground-tertiary` | bg: `surface-muted` fg: `foreground-tertiary` | bg: transparent fg: `foreground-tertiary` | bg: transparent fg: `foreground-tertiary` |
+
+### Feedback Variants
+
+| Variant | Filled BG | Filled FG | Outline Border | Outline Hover BG |
+|---------|-----------|-----------|----------------|------------------|
+| **Success** | `feedback-success-base` | `foreground-inverse` | `feedback-success-base` | `feedback-success-subtle` |
+| **Warning** | `feedback-warning-base` | `foreground-inverse` | `feedback-warning-base` | `feedback-warning-subtle` |
+| **Error** | `feedback-error-base` | `foreground-inverse` | `feedback-error-base` | `feedback-error-subtle` |
+| **Info** | `feedback-info-base` | `foreground-inverse` | `feedback-info-base` | `feedback-info-subtle` |
 
 ### Loading State
 
@@ -146,18 +146,17 @@ All button sizes maintain a minimum touch target of **44px × 44px** for accessi
 
 | Property | SM | MD | LG |
 |----------|----|----|-----|
-| Horizontal Padding | 12px | 16px | 24px |
-| Vertical Padding | 6px | 10px | 12px |
-| Icon-Label Gap | 6px | 8px | 8px |
-| Min Width | 64px | 80px | 96px |
+| Horizontal Padding | 6px | 10px | 10px |
+| Vertical Padding | 6px | 10px | 10px |
+| Icon-Label Gap | 4px | 6px | 8px |
 
 ### Single Icon Button (No Label)
 
-| Size | Width | Height |
-|------|-------|--------|
-| **SM** | 32px | 32px |
-| **MD** | 40px | 40px |
-| **LG** | 48px | 48px |
+| Size | Padding |
+|------|---------|
+| **SM** | 6px |
+| **MD** | 10px |
+| **LG** | 10px |
 
 ## Transitions
 
@@ -239,10 +238,10 @@ All button sizes maintain a minimum touch target of **44px × 44px** for accessi
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `variant` | `'primary' \| 'accent' \| 'ghost' \| 'outline'` | `'primary'` | Visual variant |
+| `variant` | `'primary' \| 'accent' \| 'ghost' \| 'outline' \| 'success' \| 'warning' \| 'error' \| 'info' \| 'outline-success' \| 'outline-warning' \| 'outline-error' \| 'outline-info'` | `'primary'` | Visual variant |
 | `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | Button size |
 | `disabled` | `boolean` | `false` | Disabled state |
-| `loading` | `boolean` | `false` | Loading state |
+| `loading` | `boolean` | `false` | Loading state with spinner |
 | `type` | `'button' \| 'submit' \| 'reset'` | `'button'` | Native button type |
 
 ### Slots
@@ -276,12 +275,28 @@ All button sizes maintain a minimum touch target of **44px × 44px** for accessi
 <BlueprintButton variant="ghost" size="sm">
   Cancel
 </BlueprintButton>
+
+<BlueprintButton variant="success">
+  <template #leading-icon>
+    <IconCheck />
+  </template>
+  Approved
+</BlueprintButton>
+
+<BlueprintButton variant="outline-error">
+  <template #leading-icon>
+    <IconX />
+  </template>
+  Delete
+</BlueprintButton>
 ```
 
 ## Implementation Notes
 
 1. **Native `<button>` element** — No Reka UI primitive needed; use native HTML button for maximum accessibility
-2. **Tailwind classes** — Use Blueprint token classes directly (`bg-brand-primary`, `text-foreground-inverse`, etc.)
-3. **Class inheritance** — Accept `class` prop for Tailwind overrides via `useAttrs()`
-4. **TypeScript** — Full type safety with `<script setup lang="ts">`
-5. **Tree-shakeable** — Export as ESM + CJS via Vite library mode
+2. **Tailwind `@apply`** — Component styles use `@apply` with `@reference` for Tailwind v4 compatibility
+3. **CSS Custom Properties** — Colors are resolved at runtime via inline `:style` binding (`--bp-btn-bg`, `--bp-btn-text`, `--bp-btn-border`)
+4. **Self-contained CSS** — Tailwind utilities are bundled into `dist/index.css` via `@tailwindcss/vite`; consumers do not need Tailwind installed
+5. **Class inheritance** — Accept `class` prop for overrides via `useAttrs()`
+6. **TypeScript** — Full type safety with `<script setup lang="ts">`
+7. **Tree-shakeable** — Export as ESM + CJS via Vite library mode
