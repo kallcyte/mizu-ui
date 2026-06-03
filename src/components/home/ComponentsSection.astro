@@ -1,5 +1,6 @@
 ---
 import SectionHeader from "./SectionHeader.astro";
+import ComponentCardButtons from "./ComponentCardButtons.vue";
 ---
 
 <section id="components">
@@ -7,86 +8,14 @@ import SectionHeader from "./SectionHeader.astro";
     <SectionHeader num="06" title="Components" sub="A small fixed set of atomic modules, kept only where they solve a concrete UI problem." />
 
     <div class="comp-grid">
-      <div class="p-6 rounded-xl border transition-shadow duration-200 card-hover border-surface-muted bg-surface-base">
-        <h4 class="text-[16px] font-semibold mb-1">Buttons</h4>
-        <p class="text-sm mb-4 text-foreground-secondary">Ring shadow instead of hard drop &middot; 8px radius</p>
-        <div class="flex gap-2 flex-wrap">
-          <span class="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg text-sm font-medium border-none bg-brand-primary text-foreground-inverse">Primary</span>
-          <span class="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg text-sm font-medium border-none bg-brand-accent text-foreground-inverse">Accent</span>
-          <span class="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg text-sm font-medium border border-surface-muted bg-transparent text-foreground-secondary">Ghost</span>
-        </div>
+      <a href="/components/button" class="block p-6 rounded-xl border transition-all duration-200 card-hover border-surface-muted bg-surface-base no-underline group hover:border-brand-accent/30 hover:shadow-[0_0_0_1px_var(--color-brand-accent)]">
+        <h4 class="text-[16px] font-semibold mb-1 group-hover:text-brand-accent transition-colors">Button</h4>
+        <p class="text-sm mb-4 text-foreground-secondary">Multi-variant button with primary, accent, ghost, outline, and feedback states.</p>
+        <ComponentCardButtons client:load />
+      </a>
+      <div class="p-6 rounded-xl border border-dashed border-surface-muted bg-surface-subtle flex flex-col items-center justify-center text-center min-h-[140px]">
+        <span class="text-foreground-tertiary text-sm">More components coming soon</span>
       </div>
-      <div class="p-6 rounded-xl border transition-shadow duration-200 card-hover border-surface-muted bg-surface-base">
-        <h4 class="text-[16px] font-semibold mb-1">Tags</h4>
-        <p class="text-sm mb-4 text-foreground-secondary">Three levels of emphasis, branded or neutral</p>
-        <div class="flex gap-2 flex-wrap">
-          <span class="inline-flex px-3 py-0.5 rounded-full text-xs font-medium bg-brand-primary text-foreground-inverse">Primary</span>
-          <span class="inline-flex px-3 py-0.5 rounded-full text-xs font-medium bg-brand-accent-subtle text-brand-accent">Accent</span>
-          <span class="inline-flex px-3 py-0.5 rounded-full text-xs font-medium bg-surface-muted text-foreground-secondary">Muted</span>
-          <span class="inline-flex px-3 py-0.5 rounded-full text-xs font-medium bg-success-subtle text-success-base">Success</span>
-          <span class="inline-flex px-3 py-0.5 rounded-full text-xs font-medium bg-warning-subtle text-warning-base">Warning</span>
-          <span class="inline-flex px-3 py-0.5 rounded-full text-xs font-medium bg-info-subtle text-info-base">Info</span>
-          <span class="inline-flex px-3 py-0.5 rounded-full text-xs font-medium bg-error-subtle text-error-base">Error</span>
-        </div>
-      </div>
-      <div class="p-6 rounded-xl border transition-shadow duration-200 card-hover border-surface-muted bg-surface-base">
-        <h4 class="text-[16px] font-semibold mb-1">Quote</h4>
-        <p class="text-sm mb-4 text-foreground-secondary">Left 3px brand accent + secondary text</p>
-        <div class="p-5 border-l-[3px] rounded-r-lg border-l-brand-accent bg-surface-subtle">
-          <p class="text-sm italic text-foreground-secondary">Prefer clarity over decoration. Every token has a purpose.</p>
-        </div>
-      </div>
-      <div class="p-6 rounded-xl border transition-shadow duration-200 card-hover border-surface-muted bg-surface-base">
-        <h4 class="text-[16px] font-semibold mb-1">Metric</h4>
-        <p class="text-sm mb-4 text-foreground-secondary">Large number + sans label</p>
-        <div class="flex gap-6 flex-wrap">
-          <div class="p-3 rounded-xl text-center border flex-1 min-w-[80px] bg-surface-subtle border-surface-muted">
-            <div class="text-[32px] font-bold leading-tight text-brand-primary font-mono">36</div>
-            <div class="text-xs font-medium mt-1 text-foreground-secondary">Tokens</div>
-          </div>
-          <div class="p-3 rounded-xl text-center border flex-1 min-w-[80px] bg-surface-subtle border-surface-muted">
-            <div class="text-[32px] font-bold leading-tight text-brand-accent font-mono">1</div>
-            <div class="text-xs font-medium mt-1 text-foreground-secondary">Accent</div>
-          </div>
-          <div class="p-3 rounded-xl text-center border flex-1 min-w-[80px] bg-surface-subtle border-surface-muted">
-            <div class="text-[32px] font-bold leading-tight text-brand-primary font-mono">8</div>
-            <div class="text-xs font-medium mt-1 text-foreground-secondary">Rules</div>
-          </div>
-        </div>
-      </div>
-      <div class="p-6 rounded-xl border transition-shadow duration-200 card-hover border-surface-muted bg-surface-base">
-        <h4 class="text-[16px] font-semibold mb-1">Dash List</h4>
-        <p class="text-sm mb-4 text-foreground-secondary">Dot prefix instead of bullet &middot; editorial tone</p>
-        <ul class="list-none m-0">
-          <li class="flex items-center gap-2.5 py-1 text-sm text-foreground-secondary"><span class="w-1.5 h-1.5 rounded-full shrink-0 bg-brand-accent"></span>Pure white canvas, never tinted</li>
-          <li class="flex items-center gap-2.5 py-1 text-sm text-foreground-secondary"><span class="w-1.5 h-1.5 rounded-full shrink-0 bg-brand-accent"></span>Deep navy primary, no second hue</li>
-          <li class="flex items-center gap-2.5 py-1 text-sm text-foreground-secondary"><span class="w-1.5 h-1.5 rounded-full shrink-0 bg-brand-accent"></span>Restraint over decoration</li>
-        </ul>
-      </div>
-      <div class="p-6 rounded-xl border transition-shadow duration-200 card-hover border-surface-muted bg-surface-base">
-        <h4 class="text-[16px] font-semibold mb-1">Code Block</h4>
-        <p class="text-sm mb-4 text-foreground-secondary">Subtle bg + 1px border + 8px radius</p>
-        <div class="p-3.5 rounded-lg border overflow-x-auto text-xs leading-relaxed font-mono bg-surface-subtle border-surface-muted">
-          <span class="text-foreground-tertiary">// tokens define the system</span><br/>
-          canvas   = white; accent = blue<br/>
-          palette  = neutrals − warm<br/>
-          ui       = sans × spacing + restraint
-        </div>
-      </div>
-    </div>
-
-    <h3 class="text-lg font-semibold mt-10 mb-4 text-brand-primary">Featured Card</h3>
-    <div class="flex max-md:flex-col gap-6 p-6 rounded-2xl border items-start transition-shadow duration-200 card-hover-lg border-surface-muted bg-surface-base">
-      <div class="flex-1">
-        <h4 class="text-[17px] font-semibold mb-1.5">Brand Portal &middot; Design System</h4>
-        <p class="text-sm mb-3 text-foreground-secondary">Complete reference site &middot; 6 sections + component library + color tokens</p>
-        <div class="flex gap-2 flex-wrap">
-          <span class="inline-flex px-3 py-0.5 rounded-full text-xs font-medium bg-brand-accent-subtle text-brand-accent">Reference</span>
-          <span class="inline-flex px-3 py-0.5 rounded-full text-xs font-medium bg-surface-muted text-foreground-secondary">Desktop</span>
-          <span class="inline-flex px-3 py-0.5 rounded-full text-xs font-medium bg-surface-muted text-foreground-secondary">Single Page</span>
-        </div>
-      </div>
-      <div class="w-[120px] h-[120px] rounded-xl shrink-0 flex items-center justify-center max-md:w-full max-md:h-20 text-[28px] font-bold text-brand-primary bg-brand-muted">B</div>
     </div>
   </div>
 </section>
