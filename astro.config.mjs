@@ -18,7 +18,7 @@ export default defineConfig({
   integrations: [
     vue(),
     starlight({
-      title: "Blueprint Design System",
+      title: "Nagi Design System",
       customCss: ["./src/styles/starlight.css"],
       head: [
         {

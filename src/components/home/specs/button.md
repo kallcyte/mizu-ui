@@ -1,4 +1,4 @@
-# Blueprint Button — Specification
+# Nagi Button — Specification
 
 ## Overview
 
@@ -19,7 +19,7 @@ A button consists of up to 4 parts:
 
 ## Variants
 
-Blueprint buttons support 4 visual variants:
+Nagi buttons support 4 visual variants:
 
 | Variant | Container | Border | Use Case |
 |---------|-----------|--------|----------|
@@ -247,26 +247,26 @@ All button sizes maintain a minimum touch target of **44px × 44px** for accessi
 ### Example Usage
 
 ```vue
-<BlueprintButton variant="primary" size="md">
+<NagiButton variant="primary" size="md">
   Submit
-</BlueprintButton>
+</NagiButton>
 
-<BlueprintButton variant="accent" size="lg" :loading="isSubmitting">
+<NagiButton variant="accent" size="lg" :loading="isSubmitting">
   <template #leading-icon>
     <IconSave />
   </template>
   Save Changes
-</BlueprintButton>
+</NagiButton>
 
-<BlueprintButton variant="ghost" size="sm">
+<NagiButton variant="ghost" size="sm">
   Cancel
-</BlueprintButton>
+</NagiButton>
 ```
 
 ## Implementation Notes
 
 1. **Native `<button>` element** — No Reka UI primitive needed; use native HTML button for maximum accessibility
-2. **Tailwind classes** — Use Blueprint token classes directly (`bg-brand-primary`, `text-foreground-inverse`, etc.)
+2. **Tailwind classes** — Use Nagi token classes directly (`bg-brand-primary`, `text-foreground-inverse`, etc.)
 3. **Class inheritance** — Accept `class` prop for Tailwind overrides via `useAttrs()`
 4. **TypeScript** — Full type safety with `<script setup lang="ts">`
 5. **Tree-shakeable** — Export as ESM + CJS via Vite library mode

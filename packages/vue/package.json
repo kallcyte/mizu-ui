@@ -1,5 +1,5 @@
 {
-  "name": "@blueprint/vue",
+  "name": "@nagi/vue",
   "version": "1.0.0",
   "type": "module",
   "main": "./dist/index.cjs",

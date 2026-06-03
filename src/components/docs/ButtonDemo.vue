@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from "vue";
-import { BlueprintButton } from "@blueprint/vue";
+import { NagiButton } from "@nagi/vue";
 import {
     Plus,
     ArrowRight,
@@ -12,7 +12,7 @@ import {
     XCircle,
     Info,
 } from "@lucide/vue";
-import "@blueprint/vue/style.css";
+import "@nagi/vue/style.css";
 
 const loading = ref(false);
 
@@ -29,24 +29,24 @@ const handleClick = () => {
         <div class="demo-section">
             <h3>Variants</h3>
             <div class="button-row">
-                <BlueprintButton variant="primary">Primary</BlueprintButton>
-                <BlueprintButton variant="accent">Accent</BlueprintButton>
-                <BlueprintButton variant="ghost">Ghost</BlueprintButton>
-                <BlueprintButton variant="outline">Outline</BlueprintButton>
+                <NagiButton variant="primary">Primary</NagiButton>
+                <NagiButton variant="accent">Accent</NagiButton>
+                <NagiButton variant="ghost">Ghost</NagiButton>
+                <NagiButton variant="outline">Outline</NagiButton>
             </div>
         </div>
 
         <div class="demo-section">
             <h3>Sizes</h3>
             <div class="button-row">
-                <BlueprintButton variant="primary" size="sm"
-                    >Small</BlueprintButton
+                <NagiButton variant="primary" size="sm"
+                    >Small</NagiButton
                 >
-                <BlueprintButton variant="primary" size="md"
-                    >Medium</BlueprintButton
+                <NagiButton variant="primary" size="md"
+                    >Medium</NagiButton
                 >
-                <BlueprintButton variant="primary" size="lg"
-                    >Large</BlueprintButton
+                <NagiButton variant="primary" size="lg"
+                    >Large</NagiButton
                 >
             </div>
         </div>
@@ -54,90 +54,90 @@ const handleClick = () => {
         <div class="demo-section">
             <h3>States</h3>
             <div class="button-row">
-                <BlueprintButton variant="primary" disabled
-                    >Disabled</BlueprintButton
+                <NagiButton variant="primary" disabled
+                    >Disabled</NagiButton
                 >
-                <BlueprintButton
+                <NagiButton
                     variant="primary"
                     :loading="loading"
                     @click="handleClick"
                 >
                     {{ loading ? "Loading..." : "Click me" }}
-                </BlueprintButton>
+                </NagiButton>
             </div>
         </div>
 
         <div class="demo-section">
             <h3>With Icons</h3>
             <div class="button-row">
-                <BlueprintButton variant="primary">
+                <NagiButton variant="primary">
                     <template #leading-icon>
                         <Plus />
                     </template>
                     Add Item
-                </BlueprintButton>
-                <BlueprintButton variant="accent">
+                </NagiButton>
+                <NagiButton variant="accent">
                     Save
                     <template #trailing-icon>
                         <ArrowRight />
                     </template>
-                </BlueprintButton>
+                </NagiButton>
             </div>
         </div>
 
         <div class="demo-section">
             <h3>Feedback</h3>
             <div class="button-row">
-                <BlueprintButton variant="success">
+                <NagiButton variant="success">
                     <template #leading-icon>
                         <CheckCircle />
                     </template>
                     Success
-                </BlueprintButton>
-                <BlueprintButton variant="warning">
+                </NagiButton>
+                <NagiButton variant="warning">
                     <template #leading-icon>
                         <AlertTriangle />
                     </template>
                     Warning
-                </BlueprintButton>
-                <BlueprintButton variant="error">
+                </NagiButton>
+                <NagiButton variant="error">
                     <template #leading-icon>
                         <XCircle />
                     </template>
                     Error
-                </BlueprintButton>
-                <BlueprintButton variant="info">
+                </NagiButton>
+                <NagiButton variant="info">
                     <template #leading-icon>
                         <Info />
                     </template>
                     Info
-                </BlueprintButton>
+                </NagiButton>
             </div>
             <div class="button-row">
-                <BlueprintButton variant="outline-success">
+                <NagiButton variant="outline-success">
                     <template #leading-icon>
                         <CheckCircle />
                     </template>
                     Success
-                </BlueprintButton>
-                <BlueprintButton variant="outline-warning">
+                </NagiButton>
+                <NagiButton variant="outline-warning">
                     <template #leading-icon>
                         <AlertTriangle />
                     </template>
                     Warning
-                </BlueprintButton>
-                <BlueprintButton variant="outline-error">
+                </NagiButton>
+                <NagiButton variant="outline-error">
                     <template #leading-icon>
                         <XCircle />
                     </template>
                     Error
-                </BlueprintButton>
-                <BlueprintButton variant="outline-info">
+                </NagiButton>
+                <NagiButton variant="outline-info">
                     <template #leading-icon>
                         <Info />
                     </template>
                     Info
-                </BlueprintButton>
+                </NagiButton>
             </div>
         </div>
 
@@ -147,67 +147,67 @@ const handleClick = () => {
             <div class="combo-group">
                 <span class="combo-label">Form Actions</span>
                 <div class="button-row">
-                    <BlueprintButton variant="ghost">
+                    <NagiButton variant="ghost">
                         <template #leading-icon>
                             <X />
                         </template>
                         Cancel
-                    </BlueprintButton>
-                    <BlueprintButton variant="primary">
+                    </NagiButton>
+                    <NagiButton variant="primary">
                         <template #leading-icon>
                             <Check />
                         </template>
                         Submit
-                    </BlueprintButton>
+                    </NagiButton>
                 </div>
             </div>
 
             <div class="combo-group">
                 <span class="combo-label">Dialog Actions</span>
                 <div class="button-row">
-                    <BlueprintButton variant="outline">Cancel</BlueprintButton>
-                    <BlueprintButton variant="primary">
+                    <NagiButton variant="outline">Cancel</NagiButton>
+                    <NagiButton variant="primary">
                         <template #leading-icon>
                             <Save />
                         </template>
                         Save Changes
-                    </BlueprintButton>
+                    </NagiButton>
                 </div>
             </div>
 
             <div class="combo-group">
                 <span class="combo-label">Destructive</span>
                 <div class="button-row">
-                    <BlueprintButton variant="ghost"
-                        >Keep Original</BlueprintButton
+                    <NagiButton variant="ghost"
+                        >Keep Original</NagiButton
                     >
-                    <BlueprintButton variant="outline-error">
+                    <NagiButton variant="outline-error">
                         <template #leading-icon>
                             <X />
                         </template>
                         Delete
-                    </BlueprintButton>
+                    </NagiButton>
                 </div>
             </div>
 
             <div class="combo-group">
                 <span class="combo-label">Icon Only</span>
                 <div class="button-row">
-                    <BlueprintButton variant="ghost" size="sm">
+                    <NagiButton variant="ghost" size="sm">
                         <template #leading-icon>
                             <Plus />
                         </template>
-                    </BlueprintButton>
-                    <BlueprintButton variant="outline" size="md">
+                    </NagiButton>
+                    <NagiButton variant="outline" size="md">
                         <template #leading-icon>
                             <Plus />
                         </template>
-                    </BlueprintButton>
-                    <BlueprintButton variant="primary" size="lg">
+                    </NagiButton>
+                    <NagiButton variant="primary" size="lg">
                         <template #leading-icon>
                             <Plus />
                         </template>
-                    </BlueprintButton>
+                    </NagiButton>
                 </div>
             </div>
         </div>

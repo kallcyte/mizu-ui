@@ -1,4 +1,4 @@
-# Blueprint Design System — Plan
+# Nagi Design System — Plan
 
 ## Overview
 
@@ -7,11 +7,11 @@ A multi-framework design system built on DTCG tokens. Serves as both a documenta
 ## Repository Structure
 
 ```
-blueprint-ui/
+nagi-ui/
 ├── packages/
-│   ├── tokens/              @blueprint/tokens     — JS/TS token exports from tokens.json
-│   ├── vue/                 @blueprint/vue        — Vue 3 + Reka UI components
-│   └── react/               @blueprint/react      — React + shadcn/ui + ReUI (future)
+│   ├── tokens/              @nagi/tokens     — JS/TS token exports from tokens.json
+│   ├── vue/                 @nagi/vue        — Vue 3 + Reka UI components
+│   └── react/               @nagi/react      — React + shadcn/ui + ReUI (future)
 ├── public/                                        — Static assets (faq.js)
 ├── src/
 │   ├── components/                                — Astro documentation components
@@ -42,20 +42,20 @@ blueprint-ui/
 | Brand colors | `--color-brand-{variant}` | `bg-brand-primary`, `text-brand-accent` |
 | Feedback colors | `--color-{type}-{variant}` | `bg-error-subtle`, `text-success-base` |
 
-## Phase 1: @blueprint/tokens (packages/tokens/)
+## Phase 1: @nagi/tokens (packages/tokens/)
 
 - Script extracts `tokens.json` → typed JS/TS exports
 - Used by both Vue and React packages
 - Avoids runtime JSON parsing
 
-## Phase 2: @blueprint/vue (packages/vue/)
+## Phase 2: @nagi/vue (packages/vue/)
 
 **Stack**: Vue 3 + TypeScript + Reka UI v2.9 + Vite library mode
 
 Each component:
 - Wraps a Reka UI primitive (or native element where none exists)
 - Accepts a `class` prop for Tailwind overrides
-- Uses Blueprint token classes directly (`text-foreground-primary`, `bg-surface-base`, etc.)
+- Uses Nagi token classes directly (`text-foreground-primary`, `bg-surface-base`, etc.)
 - Fully typed with `<script setup lang="ts">`
 - Published as ESM + CJS, tree-shakeable
 
@@ -63,36 +63,36 @@ Each component:
 
 | Component | Reka primitive | Key props |
 |---|---|---|
-| `BlueprintButton` | native button | `variant` (primary/accent/ghost), `size` (sm/md/lg), `disabled`, `loading` |
-| `BlueprintTag` | native span | `variant` (all 7 feedback colors + brand), `closable` |
-| `BlueprintCard` | native div | `variant` (default/featured), `padding` |
-| `BlueprintInput` | TextField | `modelValue`, `placeholder`, `disabled`, `error`, `type` |
-| `BlueprintSelect` | Select | `modelValue`, `options`, `placeholder`, `disabled` |
-| `BlueprintTextarea` | Textarea | `modelValue`, `placeholder`, `disabled`, `rows` |
-| `BlueprintCheckbox` | Checkbox | `modelValue`, `disabled`, `indeterminate`, `label` |
-| `BlueprintRadio` | RadioGroup | `modelValue`, `options`, `disabled`, `orientation` |
-| `BlueprintSwitch` | Switch | `modelValue`, `disabled`, `label` |
-| `BlueprintAlert` | native div | `variant` (success/error/warning/info), `title`, `closable` |
-| `BlueprintAvatar` | Avatar | `src`, `alt`, `fallback`, `size` |
-| `BlueprintDivider` | Separator | `orientation` (horizontal/vertical), `label` |
-| `BlueprintProgress` | Progress | `modelValue`, `max`, `indeterminate` |
-| `BlueprintQuote` | native blockquote | `cite`, `accent` |
-| `BlueprintDashList` | native ul | `items: string[]` |
-| `BlueprintMetric` | native div | `value`, `label`, `color` |
+| `NagiButton` | native button | `variant` (primary/accent/ghost), `size` (sm/md/lg), `disabled`, `loading` |
+| `NagiTag` | native span | `variant` (all 7 feedback colors + brand), `closable` |
+| `NagiCard` | native div | `variant` (default/featured), `padding` |
+| `NagiInput` | TextField | `modelValue`, `placeholder`, `disabled`, `error`, `type` |
+| `NagiSelect` | Select | `modelValue`, `options`, `placeholder`, `disabled` |
+| `NagiTextarea` | Textarea | `modelValue`, `placeholder`, `disabled`, `rows` |
+| `NagiCheckbox` | Checkbox | `modelValue`, `disabled`, `indeterminate`, `label` |
+| `NagiRadio` | RadioGroup | `modelValue`, `options`, `disabled`, `orientation` |
+| `NagiSwitch` | Switch | `modelValue`, `disabled`, `label` |
+| `NagiAlert` | native div | `variant` (success/error/warning/info), `title`, `closable` |
+| `NagiAvatar` | Avatar | `src`, `alt`, `fallback`, `size` |
+| `NagiDivider` | Separator | `orientation` (horizontal/vertical), `label` |
+| `NagiProgress` | Progress | `modelValue`, `max`, `indeterminate` |
+| `NagiQuote` | native blockquote | `cite`, `accent` |
+| `NagiDashList` | native ul | `items: string[]` |
+| `NagiMetric` | native div | `value`, `label`, `color` |
 
-## Phase 3: @blueprint/react (packages/react/) — future
+## Phase 3: @nagi/react (packages/react/) — future
 
 **Stack**: React 19 + TypeScript + shadcn/ui + ReUI registry
 
 Approach:
-1. Initialize shadcn/ui with CSS variables mapped to Blueprint token values
+1. Initialize shadcn/ui with CSS variables mapped to Nagi token values
 2. Install ReUI components via `shadcn add @reui/...`
-3. Components land as local source files; customize and re-export as `@blueprint/react`
-4. Custom Blueprint tokens (warning, info, success, subtle variants) added via shadcn's "Adding New Tokens" pattern
+3. Components land as local source files; customize and re-export as `@nagi/react`
+4. Custom Nagi tokens (warning, info, success, subtle variants) added via shadcn's "Adding New Tokens" pattern
 
 CSS variable mapping (one-way adapter):
 
-| shadcn variable | Blueprint token |
+| shadcn variable | Nagi token |
 |---|---|
 | `--background` / `--foreground` | `surface-base` / `foreground-primary` |
 | `--primary` / `--primary-foreground` | `brand-primary` / `foreground-inverse` |
@@ -107,22 +107,22 @@ CSS variable mapping (one-way adapter):
 
 - **DTCG format** for `tokens.json` with `$value`, `$type`, `$description`
 - **Tailwind v4** via `@tailwindcss/vite` plugin (not PostCSS)
-- **Vue components**: Reka UI primitives for accessibility; Blueprint token classes for styling
-- **React components**: shadcn/ui + ReUI; Blueprint tokens injected via CSS variable overrides
+- **Vue components**: Reka UI primitives for accessibility; Nagi token classes for styling
+- **React components**: shadcn/ui + ReUI; Nagi tokens injected via CSS variable overrides
 - **Monorepo**: pnpm workspaces with `packages/*`
-- **Docs site**: Astro 5, uses Blueprint's own Tailwind classes (not shadcn semantic classes)
+- **Docs site**: Astro 5, uses Nagi's own Tailwind classes (not shadcn semantic classes)
 - **No showcase page yet** — deferred to a later phase
 
 ## Sample Pages (Future)
 
-Blueprint product pages that exercise the full component set and demonstrate ERP UI patterns:
+Nagi product pages that exercise the full component set and demonstrate ERP UI patterns:
 
 | Page | Primary UX pattern | Components exercised |
 |---|---|---|
 | Login | Auth form | Input, Button, Checkbox, Alert, Card |
 | Dashboard | Data overview | Metric, Tag, Avatar, Progress, DashList |
 
-Each page lives in `src/pages/samples/` and imports components from `@blueprint/vue` (or directly from `src/components/ui/` when the Vue package isn't ready).
+Each page lives in `src/pages/samples/` and imports components from `@nagi/vue` (or directly from `src/components/ui/` when the Vue package isn't ready).
 
 ## Build & Dev
 
@@ -135,9 +135,9 @@ pnpm preview      # Preview built docs site
 Package builds (once scaffolded):
 
 ```bash
-pnpm --filter @blueprint/tokens build
-pnpm --filter @blueprint/vue build
-pnpm --filter @blueprint/react build
+pnpm --filter @nagi/tokens build
+pnpm --filter @nagi/vue build
+pnpm --filter @nagi/react build
 ```
 
 ## Design Files

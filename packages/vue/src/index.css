@@ -1,7 +1,7 @@
 @import "tailwindcss/theme" layer(theme);
 @import "tailwindcss/utilities" layer(utilities);
 
-/* Blueprint CSS Custom Properties — Light Mode */
+/* Nagi CSS Custom Properties — Light Mode */
 :root {
   --bp-color-brand-primary: #001C44;
   --bp-color-brand-primary-hover: #001536;
@@ -26,7 +26,7 @@
   --bp-color-feedback-info-subtle: #F0F9FF;
 }
 
-/* Blueprint CSS Custom Properties — Dark Mode */
+/* Nagi CSS Custom Properties — Dark Mode */
 [data-theme="dark"] {
   --bp-color-brand-primary: #D6E4FF;
   --bp-color-brand-primary-hover: #E8F0FF;

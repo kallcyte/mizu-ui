@@ -26,7 +26,7 @@ A button consists of up to 4 parts:
 
 ## Variants
 
-Blueprint buttons support 4 visual variants:
+Nagi buttons support 4 visual variants:
 
 | Variant | Container | Border | Use Case |
 |---------|-----------|--------|----------|
@@ -261,34 +261,34 @@ All button sizes maintain a minimum touch target of **44px × 44px** for accessi
 ### Example Usage
 
 ```vue
-<BlueprintButton variant="primary" size="md">
+<NagiButton variant="primary" size="md">
   Submit
-</BlueprintButton>
+</NagiButton>
 
-<BlueprintButton variant="accent" size="lg" :loading="isSubmitting">
+<NagiButton variant="accent" size="lg" :loading="isSubmitting">
   <template #leading-icon>
     <IconSave />
   </template>
   Save Changes
-</BlueprintButton>
+</NagiButton>
 
-<BlueprintButton variant="ghost" size="sm">
+<NagiButton variant="ghost" size="sm">
   Cancel
-</BlueprintButton>
+</NagiButton>
 
-<BlueprintButton variant="success">
+<NagiButton variant="success">
   <template #leading-icon>
     <IconCheck />
   </template>
   Approved
-</BlueprintButton>
+</NagiButton>
 
-<BlueprintButton variant="outline-error">
+<NagiButton variant="outline-error">
   <template #leading-icon>
     <IconX />
   </template>
   Delete
-</BlueprintButton>
+</NagiButton>
 ```
 
 ## Implementation Notes

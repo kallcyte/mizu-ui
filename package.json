@@ -1,18 +1,18 @@
 {
-  "name": "blueprint-design-system",
+  "name": "nagi-design-system",
   "type": "module",
   "version": "1.0.0",
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
-    "build:tokens": "pnpm --filter @blueprint/tokens build",
-    "build:vue": "pnpm --filter @blueprint/vue build",
+    "build:tokens": "pnpm --filter @nagi/tokens build",
+    "build:vue": "pnpm --filter @nagi/vue build",
     "preview": "astro preview"
   },
   "dependencies": {
     "@astrojs/starlight": "^0.39.2",
     "@astrojs/vue": "^6.0.1",
-    "@blueprint/vue": "workspace:*",
+    "@nagi/vue": "workspace:*",
     "@fontsource/dm-sans": "^5.2.8",
     "@fontsource/jetbrains-mono": "^5.2.8",
     "@lucide/vue": "^1.17.0",

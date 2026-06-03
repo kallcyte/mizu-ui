@@ -1,13 +1,13 @@
 ---
 title: Introduction
-description: Learn about the Blueprint Design System and how to get started.
+description: Learn about the Nagi Design System and how to get started.
 ---
 
-Blueprint is a multi-framework design system built on DTCG tokens. It serves as both a documentation site (Astro + Tailwind v4) and a component library (Vue via Reka UI, React via shadcn/ui + ReUI).
+Nagi is a multi-framework design system built on DTCG tokens. It serves as both a documentation site (Astro + Tailwind v4) and a component library (Vue via Reka UI, React via shadcn/ui + ReUI).
 
-## What is Blueprint?
+## What is Nagi?
 
-Blueprint provides:
+Nagi provides:
 
 - **Design tokens** in DTCG format for consistent styling
 - **Vue components** built on Reka UI primitives
@@ -19,38 +19,38 @@ Blueprint provides:
 ### Install the tokens package
 
 ```bash
-pnpm add @blueprint/tokens
+pnpm add @nagi/tokens
 ```
 
 ### Use tokens in your code
 
 ```typescript
-import { COLOR_BRAND_PRIMARY, FONT_FAMILY_SANS } from '@blueprint/tokens';
+import { COLOR_BRAND_PRIMARY, FONT_FAMILY_SANS } from '@nagi/tokens';
 ```
 
 ### Install the Vue component library
 
 ```bash
-pnpm add @blueprint/vue
+pnpm add @nagi/vue
 ```
 
 ### Use components in your Vue app
 
 ```vue
 <script setup>
-import { BlueprintButton } from '@blueprint/vue';
+import { NagiButton } from '@nagi/vue';
 </script>
 
 <template>
-  <BlueprintButton variant="primary" size="md">
+  <NagiButton variant="primary" size="md">
     Get Started
-  </BlueprintButton>
+  </NagiButton>
 </template>
 ```
 
 ## Token System
 
-Blueprint uses a comprehensive token system with 13 categories:
+Nagi uses a comprehensive token system with 13 categories:
 
 - **Colors**: brand, surface, foreground, feedback (success/error/warning/info)
 - **Typography**: fontFamily, fontSize, fontWeight, lineHeight, letterSpacing
@@ -63,7 +63,7 @@ Learn more about [tokens overview](/tokens/overview).
 
 ## Component Library
 
-Blueprint provides a set of production-ready Vue components:
+Nagi provides a set of production-ready Vue components:
 
 - [Button](/components/button) - Primary actions and interactions
 
