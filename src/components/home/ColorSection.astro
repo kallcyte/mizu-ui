@@ -19,10 +19,27 @@ const brands: ColorCard[] = [
   { hex: "#E0F2FE", name: "Accent Subtle", desc: "Light accent-tinted background for info callouts and highlights." },
 ];
 
+const brandsDark: ColorCard[] = [
+  { hex: "#D6E4FF", name: "Primary", desc: "Lighter primary for readability on dark backgrounds." },
+  { hex: "#93C5FD", name: "Secondary", desc: "Lighter secondary for charts and emphasis on dark." },
+  { hex: "#60A5FA", name: "Accent", desc: "Lighter blue for links and interactive states." },
+  { hex: "#1E2A3A", name: "Muted", desc: "Subtle brand tint on dark surfaces." },
+  { hex: "#F1F5F9", name: "Neutral", desc: "High-emphasis text on dark backgrounds." },
+  { hex: "#E8F0FF", name: "Primary Hover", desc: "Hover state for primary elements on dark." },
+  { hex: "#BFDBFE", name: "Primary Focus", desc: "Focus ring color for primary elements on dark." },
+  { hex: "#1E3A5F", name: "Accent Subtle", desc: "Subtle accent background on dark." },
+];
+
 const backgrounds: ColorCard[] = [
   { hex: "#FFFFFF", name: "Base", desc: "Default page and card background. Highest-contrast surface.", border: true },
   { hex: "#F9FAFB", name: "Subtle", desc: "Secondary surface for grouped sections and side panels.", border: true },
   { hex: "#F3F4F6", name: "Muted", desc: "Tertiary surface for table rows and disabled zones.", border: true },
+];
+
+const backgroundsDark: ColorCard[] = [
+  { hex: "#0F1117", name: "Base", desc: "Default page and card background on dark.", border: true },
+  { hex: "#161822", name: "Subtle", desc: "Secondary surface for grouped sections on dark.", border: true },
+  { hex: "#1E2030", name: "Muted", desc: "Tertiary surface for table rows on dark.", border: true },
 ];
 
 const texts: ColorCard[] = [
@@ -30,6 +47,13 @@ const texts: ColorCard[] = [
   { hex: "#4B5563", name: "Secondary", desc: "Supporting text for descriptions and metadata." },
   { hex: "#9CA3AF", name: "Tertiary", desc: "Low-emphasis text for placeholders and disabled content." },
   { hex: "#FFFFFF", name: "Inverse", desc: "Text on dark or saturated backgrounds — preserves legibility.", border: true },
+];
+
+const textsDark: ColorCard[] = [
+  { hex: "#F1F5F9", name: "Primary", desc: "High-emphasis text on dark backgrounds." },
+  { hex: "#94A3B8", name: "Secondary", desc: "Supporting text on dark backgrounds." },
+  { hex: "#64748B", name: "Tertiary", desc: "Low-emphasis text on dark backgrounds." },
+  { hex: "#0F1117", name: "Inverse", desc: "Text on light or saturated backgrounds.", border: true },
 ];
 
 const feedbacks: ColorCard[] = [
@@ -43,9 +67,20 @@ const feedbacks: ColorCard[] = [
   { hex: "#F0F9FF", name: "Info Subtle", desc: "Light sky background for info banners." },
 ];
 
+const feedbacksDark: ColorCard[] = [
+  { hex: "#4ADE80", name: "Success Base", desc: "Lighter green for success on dark backgrounds." },
+  { hex: "#14532D", name: "Success Subtle", desc: "Dark success background for banners on dark." },
+  { hex: "#F87171", name: "Error Base", desc: "Lighter red for errors on dark backgrounds." },
+  { hex: "#7F1D1D", name: "Error Subtle", desc: "Dark error background for banners on dark." },
+  { hex: "#FBBF24", name: "Warning Base", desc: "Lighter amber for warnings on dark backgrounds." },
+  { hex: "#78350F", name: "Warning Subtle", desc: "Dark amber background for warning banners on dark." },
+  { hex: "#38BDF8", name: "Info Base", desc: "Lighter sky for info on dark backgrounds." },
+  { hex: "#1E3A5F", name: "Info Subtle", desc: "Dark sky background for info banners on dark." },
+];
+
 function swatchStyle(c: ColorCard) {
   let s = `background: ${c.hex};`;
-  if (c.border) s += 'border:1px solid #E5E7EB;';
+  if (c.border) s += 'border:1px solid var(--color-surface-muted);';
   return s;
 }
 ---
@@ -55,7 +90,7 @@ function swatchStyle(c: ColorCard) {
     <SectionHeader num="03" title="Color" sub="Restrained palette. One navy primary, one blue accent, neutral grays. No second accent color." />
 
     <h3 class="text-lg font-semibold mb-2 mt-8 text-brand-primary">Brand</h3>
-    <div class="color-grid">
+    <div class="color-grid color-light">
       {brands.map(c => (
         <div class="rounded-xl overflow-hidden border border-surface-muted bg-surface-base">
           <div class="h-20 flex items-end p-2.5" style={swatchStyle(c)}>
@@ -68,9 +103,22 @@ function swatchStyle(c: ColorCard) {
         </div>
       ))}
     </div>
+    <div class="color-grid color-dark">
+      {brandsDark.map(c => (
+        <div class="rounded-xl overflow-hidden border border-surface-muted bg-surface-base">
+          <div class="h-20 flex items-end p-2.5" style={swatchStyle(c)}>
+            <span class="text-xs font-semibold px-2 py-0.5 rounded backdrop-blur font-mono" style="background: rgba(0,0,0,0.6); color: #FFFFFF;">{c.hex}</span>
+          </div>
+          <div class="p-3">
+            <div class="text-sm font-semibold mb-1">{c.name}</div>
+            <div class="text-xs leading-relaxed text-foreground-secondary">{c.desc}</div>
+          </div>
+        </div>
+      ))}
+    </div>
 
     <h3 class="text-lg font-semibold mb-2 mt-8 text-brand-primary">Background</h3>
-    <div class="color-grid">
+    <div class="color-grid color-light">
       {backgrounds.map(c => (
         <div class="rounded-xl overflow-hidden border border-surface-muted bg-surface-base">
           <div class="h-20 flex items-end p-2.5" style={swatchStyle(c)}>
@@ -83,9 +131,22 @@ function swatchStyle(c: ColorCard) {
         </div>
       ))}
     </div>
+    <div class="color-grid color-dark">
+      {backgroundsDark.map(c => (
+        <div class="rounded-xl overflow-hidden border border-surface-muted bg-surface-base">
+          <div class="h-20 flex items-end p-2.5" style={swatchStyle(c)}>
+            <span class="text-xs font-semibold px-2 py-0.5 rounded backdrop-blur font-mono" style="background: rgba(0,0,0,0.6); color: #FFFFFF;">{c.hex}</span>
+          </div>
+          <div class="p-3">
+            <div class="text-sm font-semibold mb-1">{c.name}</div>
+            <div class="text-xs leading-relaxed text-foreground-secondary">{c.desc}</div>
+          </div>
+        </div>
+      ))}
+    </div>
 
     <h3 class="text-lg font-semibold mb-2 mt-8 text-brand-primary">Text</h3>
-    <div class="color-grid">
+    <div class="color-grid color-light">
       {texts.map(c => (
         <div class="rounded-xl overflow-hidden border border-surface-muted bg-surface-base">
           <div class="h-20 flex items-end p-2.5" style={swatchStyle(c)}>
@@ -98,9 +159,22 @@ function swatchStyle(c: ColorCard) {
         </div>
       ))}
     </div>
+    <div class="color-grid color-dark">
+      {textsDark.map(c => (
+        <div class="rounded-xl overflow-hidden border border-surface-muted bg-surface-base">
+          <div class="h-20 flex items-end p-2.5" style={swatchStyle(c)}>
+            <span class="text-xs font-semibold px-2 py-0.5 rounded backdrop-blur font-mono" style="background: rgba(0,0,0,0.6); color: #FFFFFF;">{c.hex}</span>
+          </div>
+          <div class="p-3">
+            <div class="text-sm font-semibold mb-1">{c.name}</div>
+            <div class="text-xs leading-relaxed text-foreground-secondary">{c.desc}</div>
+          </div>
+        </div>
+      ))}
+    </div>
 
     <h3 class="text-lg font-semibold mb-2 mt-8 text-brand-primary">Feedback</h3>
-    <div class="color-grid">
+    <div class="color-grid color-light">
       {feedbacks.map(c => (
         <div class="rounded-xl overflow-hidden border border-surface-muted bg-surface-base">
           <div class="h-20 flex items-end p-2.5" style={swatchStyle(c)}>
@@ -113,5 +187,24 @@ function swatchStyle(c: ColorCard) {
         </div>
       ))}
     </div>
+    <div class="color-grid color-dark">
+      {feedbacksDark.map(c => (
+        <div class="rounded-xl overflow-hidden border border-surface-muted bg-surface-base">
+          <div class="h-20 flex items-end p-2.5" style={swatchStyle(c)}>
+            <span class="text-xs font-semibold px-2 py-0.5 rounded backdrop-blur font-mono" style="background: rgba(0,0,0,0.6); color: #FFFFFF;">{c.hex}</span>
+          </div>
+          <div class="p-3">
+            <div class="text-sm font-semibold mb-1">{c.name}</div>
+            <div class="text-xs leading-relaxed text-foreground-secondary">{c.desc}</div>
+          </div>
+        </div>
+      ))}
+    </div>
   </div>
 </section>
+
+<style is:global>
+  .color-dark { display: none; }
+  [data-theme="dark"] .color-light { display: none; }
+  [data-theme="dark"] .color-dark { display: grid; }
+</style>

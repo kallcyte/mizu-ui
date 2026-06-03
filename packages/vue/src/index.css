@@ -1,7 +1,7 @@
 @import "tailwindcss/theme" layer(theme);
 @import "tailwindcss/utilities" layer(utilities);
 
-/* Blueprint CSS Custom Properties */
+/* Blueprint CSS Custom Properties — Light Mode */
 :root {
   --bp-color-brand-primary: #001C44;
   --bp-color-brand-primary-hover: #001536;
@@ -24,4 +24,29 @@
   --bp-color-feedback-info-base: #0284C7;
   --bp-color-feedback-info-hover: #0369A1;
   --bp-color-feedback-info-subtle: #F0F9FF;
+}
+
+/* Blueprint CSS Custom Properties — Dark Mode */
+[data-theme="dark"] {
+  --bp-color-brand-primary: #D6E4FF;
+  --bp-color-brand-primary-hover: #E8F0FF;
+  --bp-color-brand-accent: #60A5FA;
+  --bp-color-brand-accent-hover: #93C5FD;
+  --bp-color-foreground-primary: #F1F5F9;
+  --bp-color-foreground-inverse: #0F1117;
+  --bp-color-foreground-tertiary: #64748B;
+  --bp-color-surface-muted: #1E2030;
+  --bp-color-surface-subtle: #161822;
+  --bp-color-feedback-success-base: #4ADE80;
+  --bp-color-feedback-success-hover: #86EFAC;
+  --bp-color-feedback-success-subtle: #14532D;
+  --bp-color-feedback-warning-base: #FBBF24;
+  --bp-color-feedback-warning-hover: #FCD34D;
+  --bp-color-feedback-warning-subtle: #78350F;
+  --bp-color-feedback-error-base: #F87171;
+  --bp-color-feedback-error-hover: #FCA5A5;
+  --bp-color-feedback-error-subtle: #7F1D1D;
+  --bp-color-feedback-info-base: #38BDF8;
+  --bp-color-feedback-info-hover: #7DD3FC;
+  --bp-color-feedback-info-subtle: #1E3A5F;
 }

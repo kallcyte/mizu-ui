@@ -14,7 +14,7 @@
     <p class="text-xl max-w-[640px] leading-relaxed mb-9 text-foreground-secondary">
       Precision foundations for building coherent interfaces. A constrained token system, one accent flow, and deliberate restraint.
     </p>
-    <div class="flex flex-wrap gap-3 items-center p-5 rounded-xl border bg-surface-subtle border-surface-muted">
+    <div class="hero-swatches hero-swatches--light flex flex-wrap gap-3 items-center p-5 rounded-xl border bg-surface-subtle border-surface-muted">
       <span class="flex items-center gap-2 text-sm font-medium text-foreground-secondary">
         <span class="w-5 h-5 rounded-md shrink-0 border border-black/6" style="background: #001C44;"></span> Primary #001C44
       </span>
@@ -31,5 +31,28 @@
         <span class="w-5 h-5 rounded-md shrink-0 border border-black/6" style="background: #1524A9;"></span> Secondary #1524A9
       </span>
     </div>
+    <div class="hero-swatches hero-swatches--dark flex flex-wrap gap-3 items-center p-5 rounded-xl border bg-surface-subtle border-surface-muted">
+      <span class="flex items-center gap-2 text-sm font-medium text-foreground-secondary">
+        <span class="w-5 h-5 rounded-md shrink-0 border border-white/10" style="background: #D6E4FF;"></span> Primary #D6E4FF
+      </span>
+      <span class="text-xs text-foreground-tertiary">|</span>
+      <span class="flex items-center gap-2 text-sm font-medium text-foreground-secondary">
+        <span class="w-5 h-5 rounded-md shrink-0 border border-white/10" style="background: #60A5FA;"></span> Accent #60A5FA
+      </span>
+      <span class="text-xs text-foreground-tertiary">|</span>
+      <span class="flex items-center gap-2 text-sm font-medium text-foreground-secondary">
+        <span class="w-5 h-5 rounded-md shrink-0 border border-white/10" style="background: #0F1117;"></span> Canvas #0F1117
+      </span>
+      <span class="text-xs text-foreground-tertiary">|</span>
+      <span class="flex items-center gap-2 text-sm font-medium text-foreground-secondary">
+        <span class="w-5 h-5 rounded-md shrink-0 border border-white/10" style="background: #93C5FD;"></span> Secondary #93C5FD
+      </span>
+    </div>
   </div>
 </section>
+
+<style is:global>
+  .hero-swatches--dark { display: none; }
+  [data-theme="dark"] .hero-swatches--light { display: none; }
+  [data-theme="dark"] .hero-swatches--dark { display: flex; }
+</style>

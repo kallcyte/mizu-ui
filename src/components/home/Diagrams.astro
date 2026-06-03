@@ -11,47 +11,99 @@ import SectionHeader from "./SectionHeader.astro";
         <h4 class="text-sm font-semibold mb-1">Architecture</h4>
         <p class="text-xs mb-3.5 text-foreground-secondary">System components and connections</p>
         <svg viewBox="0 0 280 100" xmlns="http://www.w3.org/2000/svg" class="w-full h-auto rounded-md bg-surface-subtle">
-          <rect x="10" y="30" width="70" height="40" rx="8" fill="#EDF0FF" stroke="#001C44" stroke-width="1.5"/>
-          <text x="45" y="55" text-anchor="middle" fill="#001C44" font-size="10" font-weight="600" font-family="system-ui">CLIENT</text>
-          <line x1="80" y1="50" x2="100" y2="50" stroke="#9CA3AF" stroke-width="1" stroke-dasharray="3,2"/>
-          <line x1="100" y1="50" x2="120" y2="50" stroke="#9CA3AF" stroke-width="1" stroke-dasharray="3,2"/>
-          <rect x="120" y="30" width="70" height="40" rx="8" fill="#E0F2FE" stroke="#007FFF" stroke-width="1.5"/>
-          <text x="155" y="55" text-anchor="middle" fill="#007FFF" font-size="10" font-weight="600" font-family="system-ui">SERVICE</text>
-          <line x1="190" y1="50" x2="210" y2="50" stroke="#9CA3AF" stroke-width="1" stroke-dasharray="3,2"/>
-          <rect x="210" y="30" width="60" height="40" rx="8" fill="#F3F4F6" stroke="#1B1B1D" stroke-width="1.5"/>
-          <text x="240" y="55" text-anchor="middle" fill="#1B1B1D" font-size="10" font-weight="600" font-family="system-ui">DATA</text>
+          <rect x="10" y="30" width="70" height="40" rx="8" class="arch-client-box"/>
+          <text x="45" y="55" text-anchor="middle" class="arch-client-text" font-size="10" font-weight="600" font-family="system-ui">CLIENT</text>
+          <line x1="80" y1="50" x2="100" y2="50" class="arch-line"/>
+          <line x1="100" y1="50" x2="120" y2="50" class="arch-line"/>
+          <rect x="120" y="30" width="70" height="40" rx="8" class="arch-service-box"/>
+          <text x="155" y="55" text-anchor="middle" class="arch-service-text" font-size="10" font-weight="600" font-family="system-ui">SERVICE</text>
+          <line x1="190" y1="50" x2="210" y2="50" class="arch-line"/>
+          <rect x="210" y="30" width="60" height="40" rx="8" class="arch-data-box"/>
+          <text x="240" y="55" text-anchor="middle" class="arch-data-text" font-size="10" font-weight="600" font-family="system-ui">DATA</text>
         </svg>
       </div>
       <div class="p-5 rounded-xl border border-surface-muted bg-surface-base">
         <h4 class="text-sm font-semibold mb-1">Bar Chart</h4>
         <p class="text-xs mb-3.5 text-foreground-secondary">Quarterly comparison</p>
         <svg viewBox="0 0 280 100" xmlns="http://www.w3.org/2000/svg" class="w-full h-auto rounded-md bg-surface-subtle">
-          <rect x="25" y="55" width="35" height="35" rx="3" fill="#001C44"/>
-          <rect x="75" y="30" width="35" height="60" rx="3" fill="#1524A9"/>
-          <rect x="125" y="45" width="35" height="45" rx="3" fill="#007FFF"/>
-          <rect x="175" y="20" width="35" height="70" rx="3" fill="#001C44" opacity="0.6"/>
-          <text x="42" y="98" text-anchor="middle" fill="#9CA3AF" font-size="8" font-family="system-ui">Q1</text>
-          <text x="92" y="98" text-anchor="middle" fill="#9CA3AF" font-size="8" font-family="system-ui">Q2</text>
-          <text x="142" y="98" text-anchor="middle" fill="#9CA3AF" font-size="8" font-family="system-ui">Q3</text>
-          <text x="192" y="98" text-anchor="middle" fill="#9CA3AF" font-size="8" font-family="system-ui">Q4</text>
+          <rect x="25" y="55" width="35" height="35" rx="3" class="bar-q1"/>
+          <rect x="75" y="30" width="35" height="60" rx="3" class="bar-q2"/>
+          <rect x="125" y="45" width="35" height="45" rx="3" class="bar-q3"/>
+          <rect x="175" y="20" width="35" height="70" rx="3" class="bar-q4"/>
+          <text x="42" y="98" text-anchor="middle" class="bar-label" font-size="8" font-family="system-ui">Q1</text>
+          <text x="92" y="98" text-anchor="middle" class="bar-label" font-size="8" font-family="system-ui">Q2</text>
+          <text x="142" y="98" text-anchor="middle" class="bar-label" font-size="8" font-family="system-ui">Q3</text>
+          <text x="192" y="98" text-anchor="middle" class="bar-label" font-size="8" font-family="system-ui">Q4</text>
         </svg>
       </div>
       <div class="p-5 rounded-xl border border-surface-muted bg-surface-base">
         <h4 class="text-sm font-semibold mb-1">Donut Chart</h4>
         <p class="text-xs mb-3.5 text-foreground-secondary">Revenue structure breakdown</p>
         <svg viewBox="0 0 280 100" xmlns="http://www.w3.org/2000/svg" class="w-full h-auto rounded-md bg-surface-subtle">
-          <circle cx="100" cy="50" r="35" fill="none" stroke="#001C44" stroke-width="14" stroke-dasharray="88 132" stroke-dashoffset="0" transform="rotate(-90, 100, 50)"/>
-          <circle cx="100" cy="50" r="35" fill="none" stroke="#007FFF" stroke-width="14" stroke-dasharray="66 154" stroke-dashoffset="-88" transform="rotate(-90, 100, 50)"/>
-          <circle cx="100" cy="50" r="35" fill="none" stroke="#1524A9" stroke-width="14" stroke-dasharray="44 176" stroke-dashoffset="-154" transform="rotate(-90, 100, 50)"/>
-          <text x="100" y="54" text-anchor="middle" fill="#1B1B1D" font-size="11" font-weight="700" font-family="system-ui">60%</text>
-          <circle cx="175" cy="30" r="4" fill="#001C44"/>
-          <text x="184" y="34" fill="#4B5563" font-size="9" font-family="system-ui">Primary</text>
-          <circle cx="175" cy="50" r="4" fill="#007FFF"/>
-          <text x="184" y="54" fill="#4B5563" font-size="9" font-family="system-ui">Accent</text>
-          <circle cx="175" cy="70" r="4" fill="#1524A9"/>
-          <text x="184" y="74" fill="#4B5563" font-size="9" font-family="system-ui">Secondary</text>
+          <circle cx="100" cy="50" r="35" fill="none" class="donut-primary" stroke-width="14" stroke-dasharray="88 132" stroke-dashoffset="0" transform="rotate(-90, 100, 50)"/>
+          <circle cx="100" cy="50" r="35" fill="none" class="donut-accent" stroke-width="14" stroke-dasharray="66 154" stroke-dashoffset="-88" transform="rotate(-90, 100, 50)"/>
+          <circle cx="100" cy="50" r="35" fill="none" class="donut-secondary" stroke-width="14" stroke-dasharray="44 176" stroke-dashoffset="-154" transform="rotate(-90, 100, 50)"/>
+          <text x="100" y="54" text-anchor="middle" class="donut-center-text" font-size="11" font-weight="700" font-family="system-ui">60%</text>
+          <circle cx="175" cy="30" r="4" class="legend-primary"/>
+          <text x="184" y="34" class="legend-label" font-size="9" font-family="system-ui">Primary</text>
+          <circle cx="175" cy="50" r="4" class="legend-accent"/>
+          <text x="184" y="54" class="legend-label" font-size="9" font-family="system-ui">Accent</text>
+          <circle cx="175" cy="70" r="4" class="legend-secondary"/>
+          <text x="184" y="74" class="legend-label" font-size="9" font-family="system-ui">Secondary</text>
         </svg>
       </div>
     </div>
   </div>
 </section>
+
+<style is:global>
+  /* Architecture diagram */
+  .arch-client-box { fill: #EDF0FF; stroke: #001C44; stroke-width: 1.5; }
+  .arch-client-text { fill: #001C44; }
+  .arch-service-box { fill: #E0F2FE; stroke: #007FFF; stroke-width: 1.5; }
+  .arch-service-text { fill: #007FFF; }
+  .arch-data-box { fill: #F3F4F6; stroke: #1B1B1D; stroke-width: 1.5; }
+  .arch-data-text { fill: #1B1B1D; }
+  .arch-line { stroke: #9CA3AF; stroke-width: 1; stroke-dasharray: 3,2; }
+
+  /* Bar chart */
+  .bar-q1 { fill: #001C44; }
+  .bar-q2 { fill: #1524A9; }
+  .bar-q3 { fill: #007FFF; }
+  .bar-q4 { fill: #001C44; opacity: 0.6; }
+  .bar-label { fill: #9CA3AF; }
+
+  /* Donut chart */
+  .donut-primary { stroke: #001C44; }
+  .donut-accent { stroke: #007FFF; }
+  .donut-secondary { stroke: #1524A9; }
+  .donut-center-text { fill: #1B1B1D; }
+  .legend-primary { fill: #001C44; }
+  .legend-accent { fill: #007FFF; }
+  .legend-secondary { fill: #1524A9; }
+  .legend-label { fill: #4B5563; }
+
+  /* Dark mode */
+  [data-theme="dark"] .arch-client-box { fill: #1E2A3A; stroke: #D6E4FF; }
+  [data-theme="dark"] .arch-client-text { fill: #D6E4FF; }
+  [data-theme="dark"] .arch-service-box { fill: #1E3A5F; stroke: #60A5FA; }
+  [data-theme="dark"] .arch-service-text { fill: #60A5FA; }
+  [data-theme="dark"] .arch-data-box { fill: #1E2030; stroke: #F1F5F9; }
+  [data-theme="dark"] .arch-data-text { fill: #F1F5F9; }
+  [data-theme="dark"] .arch-line { stroke: #64748B; }
+
+  [data-theme="dark"] .bar-q1 { fill: #D6E4FF; }
+  [data-theme="dark"] .bar-q2 { fill: #93C5FD; }
+  [data-theme="dark"] .bar-q3 { fill: #60A5FA; }
+  [data-theme="dark"] .bar-q4 { fill: #D6E4FF; opacity: 0.6; }
+  [data-theme="dark"] .bar-label { fill: #64748B; }
+
+  [data-theme="dark"] .donut-primary { stroke: #D6E4FF; }
+  [data-theme="dark"] .donut-accent { stroke: #60A5FA; }
+  [data-theme="dark"] .donut-secondary { stroke: #93C5FD; }
+  [data-theme="dark"] .donut-center-text { fill: #F1F5F9; }
+  [data-theme="dark"] .legend-primary { fill: #D6E4FF; }
+  [data-theme="dark"] .legend-accent { fill: #60A5FA; }
+  [data-theme="dark"] .legend-secondary { fill: #93C5FD; }
+  [data-theme="dark"] .legend-label { fill: #94A3B8; }
+</style>
