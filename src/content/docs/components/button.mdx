@@ -26,7 +26,7 @@ A button consists of up to 4 parts:
 
 ## Variants
 
-Nagi buttons support 4 visual variants:
+Mizunagi buttons support 4 visual variants:
 
 | Variant | Container | Border | Use Case |
 |---------|-----------|--------|----------|
@@ -261,34 +261,34 @@ All button sizes maintain a minimum touch target of **44px × 44px** for accessi
 ### Example Usage
 
 ```vue
-<NagiButton variant="primary" size="md">
+<MizunagiButton variant="primary" size="md">
   Submit
-</NagiButton>
+</MizunagiButton>
 
-<NagiButton variant="accent" size="lg" :loading="isSubmitting">
+<MizunagiButton variant="accent" size="lg" :loading="isSubmitting">
   <template #leading-icon>
     <IconSave />
   </template>
   Save Changes
-</NagiButton>
+</MizunagiButton>
 
-<NagiButton variant="ghost" size="sm">
+<MizunagiButton variant="ghost" size="sm">
   Cancel
-</NagiButton>
+</MizunagiButton>
 
-<NagiButton variant="success">
+<MizunagiButton variant="success">
   <template #leading-icon>
     <IconCheck />
   </template>
   Approved
-</NagiButton>
+</MizunagiButton>
 
-<NagiButton variant="outline-error">
+<MizunagiButton variant="outline-error">
   <template #leading-icon>
     <IconX />
   </template>
   Delete
-</NagiButton>
+</MizunagiButton>
 ```
 
 ## Implementation Notes

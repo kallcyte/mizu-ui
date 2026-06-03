@@ -1,13 +1,13 @@
 ---
 title: Introduction
-description: Learn about the Nagi Design System and how to get started.
+description: Learn about the Mizunagi Design System and how to get started.
 ---
 
-Nagi is a multi-framework design system built on DTCG tokens. It serves as both a documentation site (Astro + Tailwind v4) and a component library (Vue via Reka UI, React via shadcn/ui + ReUI).
+Mizunagi is a multi-framework design system built on DTCG tokens. It serves as both a documentation site (Astro + Tailwind v4) and a component library (Vue via Reka UI, React via shadcn/ui + ReUI).
 
-## What is Nagi?
+## What is Mizunagi?
 
-Nagi provides:
+Mizunagi provides:
 
 - **Design tokens** in DTCG format for consistent styling
 - **Vue components** built on Reka UI primitives
@@ -19,41 +19,41 @@ Nagi provides:
 ### Install the tokens package
 
 ```bash
-pnpm add @nagi/tokens
+pnpm add @mizunagi/tokens
 ```
 
 ### Use tokens in your code
 
 ```typescript
-import { COLOR_BRAND_PRIMARY, FONT_FAMILY_SANS } from '@nagi/tokens';
+import { COLOR_BRAND_PRIMARY, FONT_FAMILY_SANS } from '@mizunagi/tokens';
 ```
 
 ### Install the Vue component library
 
 ```bash
-pnpm add @nagi/vue
+pnpm add @mizunagi/vue
 ```
 
 ### Use components in your Vue app
 
 ```vue
 <script setup>
-import { NagiButton } from '@nagi/vue';
+import { MizunagiButton } from '@mizunagi/vue';
 </script>
 
 <template>
-  <NagiButton variant="primary" size="md">
+  <MizunagiButton variant="primary" size="md">
     Get Started
-  </NagiButton>
+  </MizunagiButton>
 </template>
 ```
 
 ## Token System
 
-Nagi uses a comprehensive token system with 13 categories:
+Mizunagi uses a comprehensive token system with 13 categories:
 
 - **Colors**: brand, surface, foreground, feedback (success/error/warning/info)
-- **Typography**: fontFamily, fontSize, fontWeight, lineHeight, letterSpacing
+- **Typography**: fontFamily (sans, mono, serif), fontSize, fontWeight, lineHeight, letterSpacing
 - **Spacing**: xs, sm, md, lg, xl, xxl
 - **Border Radius**: tight, default, card, feature, large, full
 - **Shadows**: ring, whisper
@@ -63,7 +63,7 @@ Learn more about [tokens overview](/tokens/overview).
 
 ## Component Library
 
-Nagi provides a set of production-ready Vue components:
+Mizunagi provides a set of production-ready Vue components:
 
 - [Button](/components/button) - Primary actions and interactions
 

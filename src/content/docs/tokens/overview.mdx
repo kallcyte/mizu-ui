@@ -1,18 +1,18 @@
 ---
 title: Tokens Overview
-description: Nagi's design token system for consistent styling across frameworks.
+description: Mizunagi's design token system for consistent styling across frameworks.
 ---
 
-Nagi uses design tokens as the single source of truth for all visual design decisions. Tokens are stored in `tokens.json` using the DTCG (Design Tokens Community Group) format.
+Mizunagi uses design tokens as the single source of truth for all visual design decisions. Tokens are stored in `tokens.json` using the DTCG (Design Tokens Community Group) format.
 
 ## Token Categories
 
-Nagi includes 13 token categories:
+Mizunagi includes 13 token categories:
 
 | Category | Description | Examples |
 |----------|-------------|----------|
 | **color** | Brand, surface, foreground, feedback colors | `brand-primary`, `surface-base`, `error-subtle` |
-| **fontFamily** | Typeface definitions | `sans`, `mono` |
+| **fontFamily** | Typeface definitions | `sans`, `mono`, `serif` |
 | **fontSize** | Type scale values | `display`, `h1`, `body`, `caption` |
 | **fontWeight** | Font weight values | `regular`, `medium`, `semibold`, `bold` |
 | **lineHeight** | Line height scale | `display`, `h1`, `body`, `tight` |
@@ -79,7 +79,7 @@ Nagi includes 13 token categories:
 
 ### In Tailwind CSS
 
-Nagi tokens are mapped to Tailwind v4 utility classes:
+Mizunagi tokens are mapped to Tailwind v4 utility classes:
 
 ```html
 <div class="bg-surface-base text-foreground-primary rounded-default p-md">
@@ -94,7 +94,7 @@ import {
   COLOR_BRAND_PRIMARY,
   SPACING_MD,
   RADIUS_DEFAULT 
-} from '@nagi/tokens';
+} from '@mizunagi/tokens';
 ```
 
 ## Naming Convention

@@ -18,7 +18,7 @@ export default defineConfig({
   integrations: [
     vue(),
     starlight({
-      title: "Nagi Design System",
+      title: "Mizunagi Design System",
       customCss: ["./src/styles/starlight.css"],
       head: [
         {
@@ -40,7 +40,7 @@ export default defineConfig({
           tag: "link",
           attrs: {
             rel: "stylesheet",
-            href: "https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap",
+            href: "https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Noto+Serif:wght@400;500;600;700&display=swap",
           },
         },
       ],

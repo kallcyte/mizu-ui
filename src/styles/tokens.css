@@ -47,8 +47,10 @@
   /* Font families */
   --font-family-sans: "DM Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   --font-family-mono: "JetBrains Mono", "SF Mono", "Fira Code", "Cascadia Code", monospace;
+  --font-family-serif: "Noto Serif", "Yu Mincho", YuMincho, "MS PMincho", SimSun, "Songti SC", serif;
   --font-sans: var(--font-family-sans);
   --font-mono: var(--font-family-mono);
+  --font-serif: var(--font-family-serif);
   /* Font sizes */
   --text-display: 36px;
   --text-h1: 24px;

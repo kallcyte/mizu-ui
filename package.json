@@ -1,18 +1,18 @@
 {
-  "name": "nagi-design-system",
+  "name": "mizunagi-design-system",
   "type": "module",
-  "version": "1.0.0",
+  "version": "0.2.0",
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
-    "build:tokens": "pnpm --filter @nagi/tokens build",
-    "build:vue": "pnpm --filter @nagi/vue build",
+    "build:tokens": "pnpm --filter @mizunagi/tokens build",
+    "build:vue": "pnpm --filter @mizunagi/vue build",
     "preview": "astro preview"
   },
   "dependencies": {
     "@astrojs/starlight": "^0.39.2",
     "@astrojs/vue": "^6.0.1",
-    "@nagi/vue": "workspace:*",
+    "@mizunagi/vue": "workspace:*",
     "@fontsource/dm-sans": "^5.2.8",
     "@fontsource/jetbrains-mono": "^5.2.8",
     "@lucide/vue": "^1.17.0",

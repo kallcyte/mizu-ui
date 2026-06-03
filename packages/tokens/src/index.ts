@@ -81,10 +81,44 @@ export const COLOR_FEEDBACK_INFO_HOVER = "#0369A1" as const;
 export const COLOR_FEEDBACK_INFO_FOCUS = "#075985" as const;
 /** Light sky background for info banners. */
 export const COLOR_FEEDBACK_INFO_SUBTLE = "#F0F9FF" as const;
+/** Dark mode primary — lighter for dark backgrounds. */
+export const COLOR_DARK_BRAND_PRIMARY = "#D6E4FF" as const;
+/** Dark mode primary hover. */
+export const COLOR_DARK_BRAND_PRIMARY_HOVER = "#E8F0FF" as const;
+/** Dark mode accent — lighter blue for links. */
+export const COLOR_DARK_BRAND_ACCENT = "#60A5FA" as const;
+/** Dark mode accent hover. */
+export const COLOR_DARK_BRAND_ACCENT_HOVER = "#93C5FD" as const;
+/** Dark mode muted — subtle brand tint on dark. */
+export const COLOR_DARK_BRAND_MUTED = "#1E2A3A" as const;
+/** Dark mode page background. */
+export const COLOR_DARK_SURFACE_BASE = "#0F1117" as const;
+/** Dark mode secondary surface. */
+export const COLOR_DARK_SURFACE_SUBTLE = "#161822" as const;
+/** Dark mode tertiary surface. */
+export const COLOR_DARK_SURFACE_MUTED = "#1E2030" as const;
+/** Dark mode high-emphasis text (WCAG AA on #0F1117). */
+export const COLOR_DARK_FOREGROUND_PRIMARY = "#F1F5F9" as const;
+/** Dark mode supporting text (WCAG AA on #0F1117). */
+export const COLOR_DARK_FOREGROUND_SECONDARY = "#94A3B8" as const;
+/** Dark mode low-emphasis text. */
+export const COLOR_DARK_FOREGROUND_TERTIARY = "#64748B" as const;
+/** Dark mode text on light surfaces. */
+export const COLOR_DARK_FOREGROUND_INVERSE = "#0F1117" as const;
+/** Dark mode success — lighter green. */
+export const COLOR_DARK_FEEDBACK_SUCCESS = "#4ADE80" as const;
+/** Dark mode error — lighter red. */
+export const COLOR_DARK_FEEDBACK_ERROR = "#F87171" as const;
+/** Dark mode warning — lighter amber. */
+export const COLOR_DARK_FEEDBACK_WARNING = "#FBBF24" as const;
+/** Dark mode info — lighter sky. */
+export const COLOR_DARK_FEEDBACK_INFO = "#38BDF8" as const;
 /** Primary sans-serif typeface for UI and headings. */
 export const FONTFAMILY_SANS: string[] = ["DM Sans","-apple-system","BlinkMacSystemFont","Segoe UI","Roboto","Helvetica Neue","Arial","sans-serif"];
 /** Monospace typeface for code and technical content. */
 export const FONTFAMILY_MONO: string[] = ["JetBrains Mono","SF Mono","Fira Code","Cascadia Code","monospace"];
+/** Serif typeface for editorial and long-form content. Includes CJK (Japanese & Chinese) system font fallbacks. */
+export const FONTFAMILY_SERIF: string[] = ["Noto Serif","Yu Mincho","YuMincho","MS PMincho","SimSun","Songti SC","serif"];
 /** Largest heading size for hero and splash text. */
 export const FONTSIZE_DISPLAY = "36px" as const;
 /** Primary section heading. */
@@ -233,8 +267,25 @@ export const tokens: Record<string, Token> = {
   "color/feedback/info/hover": { value: COLOR_FEEDBACK_INFO_HOVER, type: "color" },
   "color/feedback/info/focus": { value: COLOR_FEEDBACK_INFO_FOCUS, type: "color" },
   "color/feedback/info/subtle": { value: COLOR_FEEDBACK_INFO_SUBTLE, type: "color" },
+  "color/dark/brand/primary": { value: COLOR_DARK_BRAND_PRIMARY, type: "color" },
+  "color/dark/brand/primary-hover": { value: COLOR_DARK_BRAND_PRIMARY_HOVER, type: "color" },
+  "color/dark/brand/accent": { value: COLOR_DARK_BRAND_ACCENT, type: "color" },
+  "color/dark/brand/accent-hover": { value: COLOR_DARK_BRAND_ACCENT_HOVER, type: "color" },
+  "color/dark/brand/muted": { value: COLOR_DARK_BRAND_MUTED, type: "color" },
+  "color/dark/surface/base": { value: COLOR_DARK_SURFACE_BASE, type: "color" },
+  "color/dark/surface/subtle": { value: COLOR_DARK_SURFACE_SUBTLE, type: "color" },
+  "color/dark/surface/muted": { value: COLOR_DARK_SURFACE_MUTED, type: "color" },
+  "color/dark/foreground/primary": { value: COLOR_DARK_FOREGROUND_PRIMARY, type: "color" },
+  "color/dark/foreground/secondary": { value: COLOR_DARK_FOREGROUND_SECONDARY, type: "color" },
+  "color/dark/foreground/tertiary": { value: COLOR_DARK_FOREGROUND_TERTIARY, type: "color" },
+  "color/dark/foreground/inverse": { value: COLOR_DARK_FOREGROUND_INVERSE, type: "color" },
+  "color/dark/feedback/success": { value: COLOR_DARK_FEEDBACK_SUCCESS, type: "color" },
+  "color/dark/feedback/error": { value: COLOR_DARK_FEEDBACK_ERROR, type: "color" },
+  "color/dark/feedback/warning": { value: COLOR_DARK_FEEDBACK_WARNING, type: "color" },
+  "color/dark/feedback/info": { value: COLOR_DARK_FEEDBACK_INFO, type: "color" },
   "fontFamily/sans": { value: FONTFAMILY_SANS, type: "fontFamily" },
   "fontFamily/mono": { value: FONTFAMILY_MONO, type: "fontFamily" },
+  "fontFamily/serif": { value: FONTFAMILY_SERIF, type: "fontFamily" },
   "fontSize/display": { value: FONTSIZE_DISPLAY, type: "dimension" },
   "fontSize/h1": { value: FONTSIZE_H1, type: "dimension" },
   "fontSize/h2": { value: FONTSIZE_H2, type: "dimension" },
@@ -330,8 +381,25 @@ export const cssVariables: Record<string, string | number | readonly string[]> =
   "--color-feedback-info-hover": COLOR_FEEDBACK_INFO_HOVER,
   "--color-feedback-info-focus": COLOR_FEEDBACK_INFO_FOCUS,
   "--color-feedback-info-subtle": COLOR_FEEDBACK_INFO_SUBTLE,
+  "--color-dark-brand-primary": COLOR_DARK_BRAND_PRIMARY,
+  "--color-dark-brand-primary-hover": COLOR_DARK_BRAND_PRIMARY_HOVER,
+  "--color-dark-brand-accent": COLOR_DARK_BRAND_ACCENT,
+  "--color-dark-brand-accent-hover": COLOR_DARK_BRAND_ACCENT_HOVER,
+  "--color-dark-brand-muted": COLOR_DARK_BRAND_MUTED,
+  "--color-dark-surface-base": COLOR_DARK_SURFACE_BASE,
+  "--color-dark-surface-subtle": COLOR_DARK_SURFACE_SUBTLE,
+  "--color-dark-surface-muted": COLOR_DARK_SURFACE_MUTED,
+  "--color-dark-foreground-primary": COLOR_DARK_FOREGROUND_PRIMARY,
+  "--color-dark-foreground-secondary": COLOR_DARK_FOREGROUND_SECONDARY,
+  "--color-dark-foreground-tertiary": COLOR_DARK_FOREGROUND_TERTIARY,
+  "--color-dark-foreground-inverse": COLOR_DARK_FOREGROUND_INVERSE,
+  "--color-dark-feedback-success": COLOR_DARK_FEEDBACK_SUCCESS,
+  "--color-dark-feedback-error": COLOR_DARK_FEEDBACK_ERROR,
+  "--color-dark-feedback-warning": COLOR_DARK_FEEDBACK_WARNING,
+  "--color-dark-feedback-info": COLOR_DARK_FEEDBACK_INFO,
   "--fontFamily-sans": FONTFAMILY_SANS,
   "--fontFamily-mono": FONTFAMILY_MONO,
+  "--fontFamily-serif": FONTFAMILY_SERIF,
   "--fontSize-display": FONTSIZE_DISPLAY,
   "--fontSize-h1": FONTSIZE_H1,
   "--fontSize-h2": FONTSIZE_H2,

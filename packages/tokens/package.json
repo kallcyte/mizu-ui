@@ -1,6 +1,6 @@
 {
-  "name": "@nagi/tokens",
-  "version": "1.0.0",
+  "name": "@mizunagi/tokens",
+  "version": "0.2.0",
   "type": "module",
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",

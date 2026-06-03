@@ -1,4 +1,4 @@
-# Nagi Button — Specification
+# Mizunagi Button — Specification
 
 ## Overview
 
@@ -19,7 +19,7 @@ A button consists of up to 4 parts:
 
 ## Variants
 
-Nagi buttons support 4 visual variants:
+Mizunagi buttons support 4 visual variants:
 
 | Variant | Container | Border | Use Case |
 |---------|-----------|--------|----------|
@@ -247,26 +247,26 @@ All button sizes maintain a minimum touch target of **44px × 44px** for accessi
 ### Example Usage
 
 ```vue
-<NagiButton variant="primary" size="md">
+<MizunagiButton variant="primary" size="md">
   Submit
-</NagiButton>
+</MizunagiButton>
 
-<NagiButton variant="accent" size="lg" :loading="isSubmitting">
+<MizunagiButton variant="accent" size="lg" :loading="isSubmitting">
   <template #leading-icon>
     <IconSave />
   </template>
   Save Changes
-</NagiButton>
+</MizunagiButton>
 
-<NagiButton variant="ghost" size="sm">
+<MizunagiButton variant="ghost" size="sm">
   Cancel
-</NagiButton>
+</MizunagiButton>
 ```
 
 ## Implementation Notes
 
 1. **Native `<button>` element** — No Reka UI primitive needed; use native HTML button for maximum accessibility
-2. **Tailwind classes** — Use Nagi token classes directly (`bg-brand-primary`, `text-foreground-inverse`, etc.)
+2. **Tailwind classes** — Use Mizunagi token classes directly (`bg-brand-primary`, `text-foreground-inverse`, etc.)
 3. **Class inheritance** — Accept `class` prop for Tailwind overrides via `useAttrs()`
 4. **TypeScript** — Full type safety with `<script setup lang="ts">`
 5. **Tree-shakeable** — Export as ESM + CJS via Vite library mode

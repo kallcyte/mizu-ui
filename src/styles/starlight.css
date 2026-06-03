@@ -1,6 +1,6 @@
 /*
- * Nagi Starlight Theme
- * Maps Nagi design tokens to Starlight CSS variables
+ * Mizunagi Starlight Theme
+ * Maps Mizunagi design tokens to Starlight CSS variables
  * Supports light and dark modes with WCAG AA compliant colors
  */
 
@@ -202,6 +202,21 @@ body,
   font-weight: 700 !important;
   letter-spacing: -0.02em;
   color: var(--sl-color-accent-high) !important;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Version badge */
+.site-title::after {
+  content: "v0.2.0";
+  font-size: 0.6875rem;
+  font-weight: 600;
+  padding: 0.125rem 0.5rem;
+  border-radius: 9999px;
+  background-color: var(--sl-color-accent-subtle);
+  color: var(--sl-color-accent);
+  line-height: 1.4;
 }
 
 /* Search */

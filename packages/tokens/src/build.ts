@@ -69,7 +69,7 @@ function generateValue(value: unknown, type: string): string {
 }
 
 function main() {
-  console.log("Building @nagi/tokens...");
+  console.log("Building @mizunagi/tokens...");
 
   const raw = JSON.parse(readFileSync(TOKENS_PATH, "utf-8"));
   const { $schema, description, ...tokenCategories } = raw;
