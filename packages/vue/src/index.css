@@ -1,12 +1,14 @@
 @import "tailwindcss/theme" layer(theme);
 @import "tailwindcss/utilities" layer(utilities);
 
-/* Mizunagi CSS Custom Properties — Light Mode */
+/* Mizu CSS Custom Properties — Light Mode */
 :root {
   --bp-color-brand-primary: #001C44;
   --bp-color-brand-primary-hover: #001536;
+  --bp-color-brand-primary-subtle: #D6E4FF;
   --bp-color-brand-accent: #007FFF;
   --bp-color-brand-accent-hover: #0066CC;
+  --bp-color-brand-accent-subtle: #E0F2FE;
   --bp-color-foreground-primary: #1B1B1D;
   --bp-color-foreground-inverse: #FFFFFF;
   --bp-color-foreground-tertiary: #9CA3AF;
@@ -26,12 +28,14 @@
   --bp-color-feedback-info-subtle: #F0F9FF;
 }
 
-/* Mizunagi CSS Custom Properties — Dark Mode */
+/* Mizu CSS Custom Properties — Dark Mode */
 [data-theme="dark"] {
   --bp-color-brand-primary: #D6E4FF;
   --bp-color-brand-primary-hover: #E8F0FF;
+  --bp-color-brand-primary-subtle: #1E2A45;
   --bp-color-brand-accent: #60A5FA;
   --bp-color-brand-accent-hover: #93C5FD;
+  --bp-color-brand-accent-subtle: #172554;
   --bp-color-foreground-primary: #F1F5F9;
   --bp-color-foreground-inverse: #0F1117;
   --bp-color-foreground-tertiary: #64748B;

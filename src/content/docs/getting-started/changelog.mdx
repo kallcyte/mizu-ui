@@ -16,6 +16,18 @@ This project follows **semantic versioning** (SemVer) during pre-1.0 development
 Changes that require a minor bump: adding a new component, renaming tokens, changing component APIs, adding new packages (e.g. React).
 Changes that keep the patch version: renames, copy edits, styling tweaks, build config changes, favicon updates.
 
+## 0.2.1 (2026-06-04)
+
+### Fixed
+
+- Tag close button not working (missing `client:load` hydration in MDX)
+
+### Changed
+
+- Added semi-transparent border (25% opacity) to all tag variants matching label color
+- Added Status workflow section to TagDemo (Pending, Draft, In Progress, Success, Done, Rejected, Cancelled)
+- Simplified interactive demo: replaced text input with MizuButton for adding random tags
+
 ## 0.2.0 (2026-06-04)
 
 ### Changed
@@ -29,7 +41,10 @@ Changes that keep the patch version: renames, copy edits, styling tweaks, build 
 ### Added
 
 - Theme-aware favicon with light/dark variants
+- `MizuTag` component with 6 variants, closable option, and pill shape
+- Tag documentation page with anatomy, variants, status mappings, and token spec
 
 ## 0.1.0 (2026-05-28)
 
 - Initial project scaffold
+- `MizuButton` component with 12 variants, 3 sizes, loading and disabled states

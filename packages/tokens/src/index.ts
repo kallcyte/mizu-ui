@@ -89,6 +89,10 @@ export const COLOR_DARK_BRAND_PRIMARY_HOVER = "#E8F0FF" as const;
 export const COLOR_DARK_BRAND_ACCENT = "#60A5FA" as const;
 /** Dark mode accent hover. */
 export const COLOR_DARK_BRAND_ACCENT_HOVER = "#93C5FD" as const;
+/** Dark mode subtle primary — dark navy tint for branded backgrounds. */
+export const COLOR_DARK_BRAND_PRIMARY_SUBTLE = "#1E2A45" as const;
+/** Dark mode subtle accent — dark blue tint for highlighted backgrounds. */
+export const COLOR_DARK_BRAND_ACCENT_SUBTLE = "#172554" as const;
 /** Dark mode muted — subtle brand tint on dark. */
 export const COLOR_DARK_BRAND_MUTED = "#1E2A3A" as const;
 /** Dark mode page background. */
@@ -271,6 +275,8 @@ export const tokens: Record<string, Token> = {
   "color/dark/brand/primary-hover": { value: COLOR_DARK_BRAND_PRIMARY_HOVER, type: "color" },
   "color/dark/brand/accent": { value: COLOR_DARK_BRAND_ACCENT, type: "color" },
   "color/dark/brand/accent-hover": { value: COLOR_DARK_BRAND_ACCENT_HOVER, type: "color" },
+  "color/dark/brand/primary-subtle": { value: COLOR_DARK_BRAND_PRIMARY_SUBTLE, type: "color" },
+  "color/dark/brand/accent-subtle": { value: COLOR_DARK_BRAND_ACCENT_SUBTLE, type: "color" },
   "color/dark/brand/muted": { value: COLOR_DARK_BRAND_MUTED, type: "color" },
   "color/dark/surface/base": { value: COLOR_DARK_SURFACE_BASE, type: "color" },
   "color/dark/surface/subtle": { value: COLOR_DARK_SURFACE_SUBTLE, type: "color" },
@@ -385,6 +391,8 @@ export const cssVariables: Record<string, string | number | readonly string[]> =
   "--color-dark-brand-primary-hover": COLOR_DARK_BRAND_PRIMARY_HOVER,
   "--color-dark-brand-accent": COLOR_DARK_BRAND_ACCENT,
   "--color-dark-brand-accent-hover": COLOR_DARK_BRAND_ACCENT_HOVER,
+  "--color-dark-brand-primary-subtle": COLOR_DARK_BRAND_PRIMARY_SUBTLE,
+  "--color-dark-brand-accent-subtle": COLOR_DARK_BRAND_ACCENT_SUBTLE,
   "--color-dark-brand-muted": COLOR_DARK_BRAND_MUTED,
   "--color-dark-surface-base": COLOR_DARK_SURFACE_BASE,
   "--color-dark-surface-subtle": COLOR_DARK_SURFACE_SUBTLE,
