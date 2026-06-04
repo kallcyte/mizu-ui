@@ -1,4 +1,4 @@
-# Mizunagi Design System — Plan
+# Mizu Design System — Plan
 
 ## Overview
 
@@ -7,11 +7,11 @@ A multi-framework design system built on DTCG tokens. Serves as both a documenta
 ## Repository Structure
 
 ```
-mizunagi/
+mizu/
 ├── packages/
-│   ├── tokens/              @mizunagi/tokens     — JS/TS token exports from tokens.json
-│   ├── vue/                 @mizunagi/vue        — Vue 3 + Reka UI components
-│   └── react/               @mizunagi/react      — React + shadcn/ui + ReUI (future)
+│   ├── tokens/              @mizu/tokens     — JS/TS token exports from tokens.json
+│   ├── vue/                 @mizu/vue        — Vue 3 + Reka UI components
+│   └── react/               @mizu/react      — React + shadcn/ui + ReUI (future)
 ├── public/                                        — Static assets (faq.js)
 ├── src/
 │   ├── components/                                — Astro documentation components
@@ -42,20 +42,20 @@ mizunagi/
 | Brand colors | `--color-brand-{variant}` | `bg-brand-primary`, `text-brand-accent` |
 | Feedback colors | `--color-{type}-{variant}` | `bg-error-subtle`, `text-success-base` |
 
-## Phase 1: @mizunagi/tokens (packages/tokens/)
+## Phase 1: @mizu/tokens (packages/tokens/)
 
 - Script extracts `tokens.json` → typed JS/TS exports
 - Used by both Vue and React packages
 - Avoids runtime JSON parsing
 
-## Phase 2: @mizunagi/vue (packages/vue/)
+## Phase 2: @mizu/vue (packages/vue/)
 
 **Stack**: Vue 3 + TypeScript + Reka UI v2.9 + Vite library mode
 
 Each component:
 - Wraps a Reka UI primitive (or native element where none exists)
 - Accepts a `class` prop for Tailwind overrides
-- Uses Mizunagi token classes directly (`text-foreground-primary`, `bg-surface-base`, etc.)
+- Uses Mizu token classes directly (`text-foreground-primary`, `bg-surface-base`, etc.)
 - Fully typed with `<script setup lang="ts">`
 - Published as ESM + CJS, tree-shakeable
 
@@ -63,36 +63,36 @@ Each component:
 
 | Component | Reka primitive | Key props |
 |---|---|---|
-| `MizunagiButton` | native button | `variant` (primary/accent/ghost), `size` (sm/md/lg), `disabled`, `loading` |
-| `MizunagiTag` | native span | `variant` (all 7 feedback colors + brand), `closable` |
-| `MizunagiCard` | native div | `variant` (default/featured), `padding` |
-| `MizunagiInput` | TextField | `modelValue`, `placeholder`, `disabled`, `error`, `type` |
-| `MizunagiSelect` | Select | `modelValue`, `options`, `placeholder`, `disabled` |
-| `MizunagiTextarea` | Textarea | `modelValue`, `placeholder`, `disabled`, `rows` |
-| `MizunagiCheckbox` | Checkbox | `modelValue`, `disabled`, `indeterminate`, `label` |
-| `MizunagiRadio` | RadioGroup | `modelValue`, `options`, `disabled`, `orientation` |
-| `MizunagiSwitch` | Switch | `modelValue`, `disabled`, `label` |
-| `MizunagiAlert` | native div | `variant` (success/error/warning/info), `title`, `closable` |
-| `MizunagiAvatar` | Avatar | `src`, `alt`, `fallback`, `size` |
-| `MizunagiDivider` | Separator | `orientation` (horizontal/vertical), `label` |
-| `MizunagiProgress` | Progress | `modelValue`, `max`, `indeterminate` |
-| `MizunagiQuote` | native blockquote | `cite`, `accent` |
-| `MizunagiDashList` | native ul | `items: string[]` |
-| `MizunagiMetric` | native div | `value`, `label`, `color` |
+| `MizuButton` | native button | `variant` (primary/accent/ghost), `size` (sm/md/lg), `disabled`, `loading` |
+| `MizuTag` | native span | `variant` (all 7 feedback colors + brand), `closable` |
+| `MizuCard` | native div | `variant` (default/featured), `padding` |
+| `MizuInput` | TextField | `modelValue`, `placeholder`, `disabled`, `error`, `type` |
+| `MizuSelect` | Select | `modelValue`, `options`, `placeholder`, `disabled` |
+| `MizuTextarea` | Textarea | `modelValue`, `placeholder`, `disabled`, `rows` |
+| `MizuCheckbox` | Checkbox | `modelValue`, `disabled`, `indeterminate`, `label` |
+| `MizuRadio` | RadioGroup | `modelValue`, `options`, `disabled`, `orientation` |
+| `MizuSwitch` | Switch | `modelValue`, `disabled`, `label` |
+| `MizuAlert` | native div | `variant` (success/error/warning/info), `title`, `closable` |
+| `MizuAvatar` | Avatar | `src`, `alt`, `fallback`, `size` |
+| `MizuDivider` | Separator | `orientation` (horizontal/vertical), `label` |
+| `MizuProgress` | Progress | `modelValue`, `max`, `indeterminate` |
+| `MizuQuote` | native blockquote | `cite`, `accent` |
+| `MizuDashList` | native ul | `items: string[]` |
+| `MizuMetric` | native div | `value`, `label`, `color` |
 
-## Phase 3: @mizunagi/react (packages/react/) — future
+## Phase 3: @mizu/react (packages/react/) — future
 
 **Stack**: React 19 + TypeScript + shadcn/ui + ReUI registry
 
 Approach:
-1. Initialize shadcn/ui with CSS variables mapped to Mizunagi token values
+1. Initialize shadcn/ui with CSS variables mapped to Mizu token values
 2. Install ReUI components via `shadcn add @reui/...`
-3. Components land as local source files; customize and re-export as `@mizunagi/react`
-4. Custom Mizunagi tokens (warning, info, success, subtle variants) added via shadcn's "Adding New Tokens" pattern
+3. Components land as local source files; customize and re-export as `@mizu/react`
+4. Custom Mizu tokens (warning, info, success, subtle variants) added via shadcn's "Adding New Tokens" pattern
 
 CSS variable mapping (one-way adapter):
 
-| shadcn variable | Mizunagi token |
+| shadcn variable | Mizu token |
 |---|---|
 | `--background` / `--foreground` | `surface-base` / `foreground-primary` |
 | `--primary` / `--primary-foreground` | `brand-primary` / `foreground-inverse` |
@@ -107,22 +107,22 @@ CSS variable mapping (one-way adapter):
 
 - **DTCG format** for `tokens.json` with `$value`, `$type`, `$description`
 - **Tailwind v4** via `@tailwindcss/vite` plugin (not PostCSS)
-- **Vue components**: Reka UI primitives for accessibility; Mizunagi token classes for styling
-- **React components**: shadcn/ui + ReUI; Mizunagi tokens injected via CSS variable overrides
+- **Vue components**: Reka UI primitives for accessibility; Mizu token classes for styling
+- **React components**: shadcn/ui + ReUI; Mizu tokens injected via CSS variable overrides
 - **Monorepo**: pnpm workspaces with `packages/*`
-- **Docs site**: Astro 5, uses Mizunagi's own Tailwind classes (not shadcn semantic classes)
+- **Docs site**: Astro 5, uses Mizu's own Tailwind classes (not shadcn semantic classes)
 - **No showcase page yet** — deferred to a later phase
 
 ## Sample Pages (Future)
 
-Mizunagi product pages that exercise the full component set and demonstrate ERP UI patterns:
+Mizu product pages that exercise the full component set and demonstrate ERP UI patterns:
 
 | Page | Primary UX pattern | Components exercised |
 |---|---|---|
 | Login | Auth form | Input, Button, Checkbox, Alert, Card |
 | Dashboard | Data overview | Metric, Tag, Avatar, Progress, DashList |
 
-Each page lives in `src/pages/samples/` and imports components from `@mizunagi/vue` (or directly from `src/components/ui/` when the Vue package isn't ready).
+Each page lives in `src/pages/samples/` and imports components from `@mizu/vue` (or directly from `src/components/ui/` when the Vue package isn't ready).
 
 ## Build & Dev
 
@@ -135,9 +135,9 @@ pnpm preview      # Preview built docs site
 Package builds (once scaffolded):
 
 ```bash
-pnpm --filter @mizunagi/tokens build
-pnpm --filter @mizunagi/vue build
-pnpm --filter @mizunagi/react build
+pnpm --filter @mizu/tokens build
+pnpm --filter @mizu/vue build
+pnpm --filter @mizu/react build
 ```
 
 ## Design Files

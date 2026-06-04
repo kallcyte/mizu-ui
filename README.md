@@ -1,33 +1,33 @@
-# Mizunagi Design System
+# Mizu Design System
 
 Constraint-based design tokens and multi-framework UI components for building coherent interfaces.
 
 - **Tokens** — DTCG-compliant (`tokens.json`) with 13 categories: color, typography, spacing, shadows, and more
 - **Docs site** — Astro 5 + Tailwind CSS v4
-- **Vue components** — `@mizunagi/vue` built on Reka UI primitives
-- **React components** — `@mizunagi/react` built on shadcn/ui + ReUI _(future release)_
+- **Vue components** — `@mizu/vue` built on Reka UI primitives
+- **React components** — `@mizu/react` built on shadcn/ui + ReUI _(future release)_
 
 ## Packages
 
 | Package | Description |
 |---|---|
-| `@mizunagi/tokens` | Typed JS/TS exports from `tokens.json` |
-| `@mizunagi/vue` | Vue 3 component library with Reka UI |
-| `@mizunagi/react` | React component library with shadcn/ui _(coming soon)_ |
+| `@mizu/tokens` | Typed JS/TS exports from `tokens.json` |
+| `@mizu/vue` | Vue 3 component library with Reka UI |
+| `@mizu/react` | React component library with shadcn/ui _(coming soon)_ |
 
 ## Quick Start
 
 ```bash
-npm install @mizunagi/vue
+npm install @mizu/vue
 ```
 
 ```vue
 <script setup>
-import { MizunagiButton } from '@mizunagi/vue'
+import { MizuButton } from '@mizu/vue'
 </script>
 
 <template>
-  <MizunagiButton variant="primary">Get Started</MizunagiButton>
+  <MizuButton variant="primary">Get Started</MizuButton>
 </template>
 ```
 

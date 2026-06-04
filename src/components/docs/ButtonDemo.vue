@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from "vue";
-import { MizunagiButton } from "@mizunagi/vue";
+import { MizuButton } from "@mizu/vue";
 import {
     Plus,
     ArrowRight,
@@ -12,7 +12,7 @@ import {
     XCircle,
     Info,
 } from "@lucide/vue";
-import "@mizunagi/vue/style.css";
+import "@mizu/vue/style.css";
 
 const loading = ref(false);
 
@@ -29,24 +29,24 @@ const handleClick = () => {
         <div class="demo-section">
             <h3>Variants</h3>
             <div class="button-row">
-                <MizunagiButton variant="primary">Primary</MizunagiButton>
-                <MizunagiButton variant="accent">Accent</MizunagiButton>
-                <MizunagiButton variant="ghost">Ghost</MizunagiButton>
-                <MizunagiButton variant="outline">Outline</MizunagiButton>
+                <MizuButton variant="primary">Primary</MizuButton>
+                <MizuButton variant="accent">Accent</MizuButton>
+                <MizuButton variant="ghost">Ghost</MizuButton>
+                <MizuButton variant="outline">Outline</MizuButton>
             </div>
         </div>
 
         <div class="demo-section">
             <h3>Sizes</h3>
             <div class="button-row">
-                <MizunagiButton variant="primary" size="sm"
-                    >Small</MizunagiButton
+                <MizuButton variant="primary" size="sm"
+                    >Small</MizuButton
                 >
-                <MizunagiButton variant="primary" size="md"
-                    >Medium</MizunagiButton
+                <MizuButton variant="primary" size="md"
+                    >Medium</MizuButton
                 >
-                <MizunagiButton variant="primary" size="lg"
-                    >Large</MizunagiButton
+                <MizuButton variant="primary" size="lg"
+                    >Large</MizuButton
                 >
             </div>
         </div>
@@ -54,90 +54,90 @@ const handleClick = () => {
         <div class="demo-section">
             <h3>States</h3>
             <div class="button-row">
-                <MizunagiButton variant="primary" disabled
-                    >Disabled</MizunagiButton
+                <MizuButton variant="primary" disabled
+                    >Disabled</MizuButton
                 >
-                <MizunagiButton
+                <MizuButton
                     variant="primary"
                     :loading="loading"
                     @click="handleClick"
                 >
                     {{ loading ? "Loading..." : "Click me" }}
-                </MizunagiButton>
+                </MizuButton>
             </div>
         </div>
 
         <div class="demo-section">
             <h3>With Icons</h3>
             <div class="button-row">
-                <MizunagiButton variant="primary">
+                <MizuButton variant="primary">
                     <template #leading-icon>
                         <Plus />
                     </template>
                     Add Item
-                </MizunagiButton>
-                <MizunagiButton variant="accent">
+                </MizuButton>
+                <MizuButton variant="accent">
                     Save
                     <template #trailing-icon>
                         <ArrowRight />
                     </template>
-                </MizunagiButton>
+                </MizuButton>
             </div>
         </div>
 
         <div class="demo-section">
             <h3>Feedback</h3>
             <div class="button-row">
-                <MizunagiButton variant="success">
+                <MizuButton variant="success">
                     <template #leading-icon>
                         <CheckCircle />
                     </template>
                     Success
-                </MizunagiButton>
-                <MizunagiButton variant="warning">
+                </MizuButton>
+                <MizuButton variant="warning">
                     <template #leading-icon>
                         <AlertTriangle />
                     </template>
                     Warning
-                </MizunagiButton>
-                <MizunagiButton variant="error">
+                </MizuButton>
+                <MizuButton variant="error">
                     <template #leading-icon>
                         <XCircle />
                     </template>
                     Error
-                </MizunagiButton>
-                <MizunagiButton variant="info">
+                </MizuButton>
+                <MizuButton variant="info">
                     <template #leading-icon>
                         <Info />
                     </template>
                     Info
-                </MizunagiButton>
+                </MizuButton>
             </div>
             <div class="button-row">
-                <MizunagiButton variant="outline-success">
+                <MizuButton variant="outline-success">
                     <template #leading-icon>
                         <CheckCircle />
                     </template>
                     Success
-                </MizunagiButton>
-                <MizunagiButton variant="outline-warning">
+                </MizuButton>
+                <MizuButton variant="outline-warning">
                     <template #leading-icon>
                         <AlertTriangle />
                     </template>
                     Warning
-                </MizunagiButton>
-                <MizunagiButton variant="outline-error">
+                </MizuButton>
+                <MizuButton variant="outline-error">
                     <template #leading-icon>
                         <XCircle />
                     </template>
                     Error
-                </MizunagiButton>
-                <MizunagiButton variant="outline-info">
+                </MizuButton>
+                <MizuButton variant="outline-info">
                     <template #leading-icon>
                         <Info />
                     </template>
                     Info
-                </MizunagiButton>
+                </MizuButton>
             </div>
         </div>
 
@@ -147,67 +147,67 @@ const handleClick = () => {
             <div class="combo-group">
                 <span class="combo-label">Form Actions</span>
                 <div class="button-row">
-                    <MizunagiButton variant="ghost">
+                    <MizuButton variant="ghost">
                         <template #leading-icon>
                             <X />
                         </template>
                         Cancel
-                    </MizunagiButton>
-                    <MizunagiButton variant="primary">
+                    </MizuButton>
+                    <MizuButton variant="primary">
                         <template #leading-icon>
                             <Check />
                         </template>
                         Submit
-                    </MizunagiButton>
+                    </MizuButton>
                 </div>
             </div>
 
             <div class="combo-group">
                 <span class="combo-label">Dialog Actions</span>
                 <div class="button-row">
-                    <MizunagiButton variant="outline">Cancel</MizunagiButton>
-                    <MizunagiButton variant="primary">
+                    <MizuButton variant="outline">Cancel</MizuButton>
+                    <MizuButton variant="primary">
                         <template #leading-icon>
                             <Save />
                         </template>
                         Save Changes
-                    </MizunagiButton>
+                    </MizuButton>
                 </div>
             </div>
 
             <div class="combo-group">
                 <span class="combo-label">Destructive</span>
                 <div class="button-row">
-                    <MizunagiButton variant="ghost"
-                        >Keep Original</MizunagiButton
+                    <MizuButton variant="ghost"
+                        >Keep Original</MizuButton
                     >
-                    <MizunagiButton variant="outline-error">
+                    <MizuButton variant="outline-error">
                         <template #leading-icon>
                             <X />
                         </template>
                         Delete
-                    </MizunagiButton>
+                    </MizuButton>
                 </div>
             </div>
 
             <div class="combo-group">
                 <span class="combo-label">Icon Only</span>
                 <div class="button-row">
-                    <MizunagiButton variant="ghost" size="sm">
+                    <MizuButton variant="ghost" size="sm">
                         <template #leading-icon>
                             <Plus />
                         </template>
-                    </MizunagiButton>
-                    <MizunagiButton variant="outline" size="md">
+                    </MizuButton>
+                    <MizuButton variant="outline" size="md">
                         <template #leading-icon>
                             <Plus />
                         </template>
-                    </MizunagiButton>
-                    <MizunagiButton variant="primary" size="lg">
+                    </MizuButton>
+                    <MizuButton variant="primary" size="lg">
                         <template #leading-icon>
                             <Plus />
                         </template>
-                    </MizunagiButton>
+                    </MizuButton>
                 </div>
             </div>
         </div>

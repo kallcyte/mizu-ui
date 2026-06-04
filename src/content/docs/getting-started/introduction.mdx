@@ -1,13 +1,13 @@
 ---
 title: Introduction
-description: Learn about the Mizunagi Design System and how to get started.
+description: Learn about the Mizu Design System and how to get started.
 ---
 
-Mizunagi is a multi-framework design system built on DTCG tokens. It serves as both a documentation site (Astro + Tailwind v4) and a component library (Vue via Reka UI, React via shadcn/ui + ReUI).
+Mizu is a multi-framework design system built on DTCG tokens. It serves as both a documentation site (Astro + Tailwind v4) and a component library (Vue via Reka UI, React via shadcn/ui + ReUI).
 
-## What is Mizunagi?
+## What is Mizu?
 
-Mizunagi provides:
+Mizu provides:
 
 - **Design tokens** in DTCG format for consistent styling
 - **Vue components** built on Reka UI primitives
@@ -19,38 +19,38 @@ Mizunagi provides:
 ### Install the tokens package
 
 ```bash
-pnpm add @mizunagi/tokens
+pnpm add @mizu/tokens
 ```
 
 ### Use tokens in your code
 
 ```typescript
-import { COLOR_BRAND_PRIMARY, FONT_FAMILY_SANS } from '@mizunagi/tokens';
+import { COLOR_BRAND_PRIMARY, FONT_FAMILY_SANS } from '@mizu/tokens';
 ```
 
 ### Install the Vue component library
 
 ```bash
-pnpm add @mizunagi/vue
+pnpm add @mizu/vue
 ```
 
 ### Use components in your Vue app
 
 ```vue
 <script setup>
-import { MizunagiButton } from '@mizunagi/vue';
+import { MizuButton } from '@mizu/vue';
 </script>
 
 <template>
-  <MizunagiButton variant="primary" size="md">
+  <MizuButton variant="primary" size="md">
     Get Started
-  </MizunagiButton>
+  </MizuButton>
 </template>
 ```
 
 ## Token System
 
-Mizunagi uses a comprehensive token system with 13 categories:
+Mizu uses a comprehensive token system with 13 categories:
 
 - **Colors**: brand, surface, foreground, feedback (success/error/warning/info)
 - **Typography**: fontFamily (sans, mono, serif), fontSize, fontWeight, lineHeight, letterSpacing
@@ -63,7 +63,7 @@ Learn more about [tokens overview](/tokens/overview).
 
 ## Component Library
 
-Mizunagi provides a set of production-ready Vue components:
+Mizu provides a set of production-ready Vue components:
 
 - [Button](/components/button) - Primary actions and interactions
 

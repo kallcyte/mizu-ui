@@ -1,18 +1,18 @@
 {
-  "name": "mizunagi-design-system",
+  "name": "mizu-design-system",
   "type": "module",
   "version": "0.2.0",
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
-    "build:tokens": "pnpm --filter @mizunagi/tokens build",
-    "build:vue": "pnpm --filter @mizunagi/vue build",
+    "build:tokens": "pnpm --filter @mizu/tokens build",
+    "build:vue": "pnpm --filter @mizu/vue build",
     "preview": "astro preview"
   },
   "dependencies": {
     "@astrojs/starlight": "^0.39.2",
     "@astrojs/vue": "^6.0.1",
-    "@mizunagi/vue": "workspace:*",
+    "@mizu/vue": "workspace:*",
     "@fontsource/dm-sans": "^5.2.8",
     "@fontsource/jetbrains-mono": "^5.2.8",
     "@lucide/vue": "^1.17.0",
