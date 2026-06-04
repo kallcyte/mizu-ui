@@ -12,3 +12,5 @@ export { default as MizuCardDescription } from "./components/MizuCardDescription
 export { default as MizuCardAction } from "./components/MizuCardAction.vue";
 export { default as MizuCardContent } from "./components/MizuCardContent.vue";
 export { default as MizuCardFooter } from "./components/MizuCardFooter.vue";
+export { default as MizuCardImage } from "./components/MizuCardImage.vue";
+export type { CardImageProps } from "./components/MizuCardImage.vue";

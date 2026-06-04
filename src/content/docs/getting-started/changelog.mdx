@@ -16,6 +16,33 @@ This project follows **semantic versioning** (SemVer) during pre-1.0 development
 Changes that require a minor bump: adding a new component, renaming tokens, changing component APIs, adding new packages (e.g. React).
 Changes that keep the patch version: renames, copy edits, styling tweaks, build config changes, favicon updates.
 
+## 0.3.0 (2026-06-04)
+
+### Added
+
+- `MizuCardImage` sub-component for full-width card images with `object-fit: cover` and `aspect-ratio: 2/1`
+- Card spacing variants via `spacing` prop: `compact` (12px), `default` (16px), `comfortable` (24px)
+- Subtle `surface-subtle` background on CardHeader and CardFooter sections
+- Subtle separators between card sections (header bottom-border, footer top-border) at 25% foreground-tertiary opacity
+- Card docs page updated with image anatomy, spacing variants, section backgrounds, and full typography token spec
+
+### Changed
+
+- Card padding from 20px → 16px (default spacing)
+- Replaced `size` prop (`'default' | 'sm'`) with `spacing` prop (`'compact' | 'default' | 'comfortable'`)
+- Card border radius from `rounded-lg` (8px) → `rounded-md` (6px)
+- CardDescription color from `foreground-secondary` (#4B5563) → `foreground-tertiary` (#9CA3AF)
+- CardDescription font size from 14px → 12px (caption token)
+- CardContent children font size from 15px → 14px (body token)
+- Added `overflow-hidden` to card root for proper image corner clipping
+
+### Fixed
+
+- Card typography now uses `!important` to override Starlight global heading/paragraph styles
+- Missing `--bp-color-surface-base` token added to Vue package (light: #FFFFFF, dark: #0F1117)
+- Missing `--bp-letter-spacing-*` tokens added to Vue package
+- Font size values in Vue package aligned with homepage tokens (`h3: 16px`, `body: 14px`, `caption: 12px`, `label: 10px`)
+
 ## 0.2.2 (2026-06-04)
 
 ### Added

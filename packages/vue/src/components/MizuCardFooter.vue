@@ -20,6 +20,9 @@ const classes = computed(() => {
 @reference "../index.css";
 
 .bp-card-footer {
-  @apply flex items-center p-5;
+  @apply flex items-center;
+  padding: var(--bp-card-py) var(--bp-card-px);
+  background-color: var(--bp-color-surface-subtle);
+  border-top: 1px solid color-mix(in srgb, var(--bp-color-foreground-tertiary) 25%, transparent);
 }
 </style>

@@ -2,11 +2,11 @@
 import { computed, useAttrs } from "vue";
 
 export interface CardProps {
-  size?: "default" | "sm";
+  spacing?: "compact" | "default" | "comfortable";
 }
 
 const props = withDefaults(defineProps<CardProps>(), {
-  size: "default",
+  spacing: "default",
 });
 
 const attrs = useAttrs();
@@ -14,7 +14,7 @@ const attrs = useAttrs();
 const cardClasses = computed(() => {
   const classes = [
     "bp-card",
-    `bp-card--${props.size}`,
+    `bp-card--spacing-${props.spacing}`,
   ];
   if (attrs.class) classes.push(attrs.class as string);
   return classes.join(" ");
@@ -31,16 +31,23 @@ const cardClasses = computed(() => {
 @reference "../index.css";
 
 .bp-card {
-  @apply rounded-lg border transition-colors duration-200;
+  @apply rounded-md border transition-colors duration-200 overflow-hidden;
   background-color: var(--bp-color-surface-base);
   border-color: var(--bp-color-foreground-tertiary);
+  --bp-card-px: 16px;
+  --bp-card-py: 16px;
+  --bp-card-gap: 6px;
 }
 
-.bp-card--default {
-  @apply p-0;
+.bp-card--spacing-compact {
+  --bp-card-px: 12px;
+  --bp-card-py: 12px;
+  --bp-card-gap: 4px;
 }
 
-.bp-card--sm {
-  @apply p-0;
+.bp-card--spacing-comfortable {
+  --bp-card-px: 24px;
+  --bp-card-py: 24px;
+  --bp-card-gap: 8px;
 }
 </style>

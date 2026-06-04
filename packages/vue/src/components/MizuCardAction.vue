@@ -20,6 +20,9 @@ const classes = computed(() => {
 @reference "../index.css";
 
 .bp-card-action {
-  @apply absolute right-5 top-5 flex items-center;
+  position: absolute;
+  right: var(--bp-card-px);
+  top: var(--bp-card-py);
+  @apply flex items-center;
 }
 </style>

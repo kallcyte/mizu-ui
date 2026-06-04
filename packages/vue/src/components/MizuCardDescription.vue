@@ -19,8 +19,10 @@ const classes = computed(() => {
 <style>
 @reference "../index.css";
 
-.bp-card-description {
-  @apply text-[13px] font-normal leading-relaxed m-0;
-  color: var(--bp-color-foreground-tertiary);
+.bp-card .bp-card-description {
+  @apply font-normal m-0;
+  font-size: var(--bp-font-size-caption) !important;
+  line-height: var(--bp-line-height-caption) !important;
+  color: var(--bp-color-foreground-tertiary) !important;
 }
 </style>

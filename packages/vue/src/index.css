@@ -13,6 +13,7 @@
   --bp-color-foreground-primary: #1B1B1D;
   --bp-color-foreground-inverse: #FFFFFF;
   --bp-color-foreground-tertiary: #9CA3AF;
+  --bp-color-surface-base: #FFFFFF;
   --bp-color-surface-muted: #F3F4F6;
   --bp-color-surface-subtle: #F9FAFB;
   --bp-color-feedback-success-base: #15803D;
@@ -32,10 +33,10 @@
   --bp-font-size-display: 36px;
   --bp-font-size-h1: 24px;
   --bp-font-size-h2: 18px;
-  --bp-font-size-h3: 15px;
-  --bp-font-size-body: 15px;
-  --bp-font-size-caption: 13px;
-  --bp-font-size-label: 11px;
+  --bp-font-size-h3: 16px;
+  --bp-font-size-body: 14px;
+  --bp-font-size-caption: 12px;
+  --bp-font-size-label: 10px;
 
   --bp-font-weight-regular: 400;
   --bp-font-weight-medium: 500;
@@ -50,6 +51,12 @@
   --bp-line-height-body: 1.6;
   --bp-line-height-caption: 1.45;
   --bp-line-height-label: 1.35;
+
+  /* Letter spacing */
+  --bp-letter-spacing-tight: -0.03em;
+  --bp-letter-spacing-snug: -0.02em;
+  --bp-letter-spacing-wide: 0.05em;
+  --bp-letter-spacing-wider: 0.06em;
 }
 
 /* Mizu CSS Custom Properties — Dark Mode */
@@ -63,6 +70,7 @@
   --bp-color-foreground-primary: #F1F5F9;
   --bp-color-foreground-inverse: #0F1117;
   --bp-color-foreground-tertiary: #64748B;
+  --bp-color-surface-base: #0F1117;
   --bp-color-surface-muted: #1E2030;
   --bp-color-surface-subtle: #161822;
   --bp-color-feedback-success-base: #4ADE80;

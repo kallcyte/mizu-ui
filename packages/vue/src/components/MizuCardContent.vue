@@ -20,11 +20,14 @@ const classes = computed(() => {
 @reference "../index.css";
 
 .bp-card-content {
-  @apply p-5;
+  padding: var(--bp-card-py) var(--bp-card-px);
+  background-color: var(--bp-color-surface-base);
 }
 
-.bp-card-content > * {
-  @apply text-[15px] font-normal leading-relaxed;
-  color: var(--bp-color-foreground-primary);
+.bp-card .bp-card-content > * {
+  @apply font-normal;
+  font-size: var(--bp-font-size-body) !important;
+  line-height: var(--bp-line-height-body) !important;
+  color: var(--bp-color-foreground-primary) !important;
 }
 </style>

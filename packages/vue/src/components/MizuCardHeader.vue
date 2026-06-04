@@ -20,6 +20,10 @@ const classes = computed(() => {
 @reference "../index.css";
 
 .bp-card-header {
-  @apply relative flex flex-col gap-1.5 p-5;
+  @apply relative flex flex-col;
+  padding: var(--bp-card-py) var(--bp-card-px);
+  gap: var(--bp-card-gap);
+  background-color: var(--bp-color-surface-subtle);
+  border-bottom: 1px solid color-mix(in srgb, var(--bp-color-foreground-tertiary) 25%, transparent);
 }
 </style>

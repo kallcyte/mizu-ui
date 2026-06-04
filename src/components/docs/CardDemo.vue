@@ -7,6 +7,7 @@ import {
     MizuCardAction,
     MizuCardContent,
     MizuCardFooter,
+    MizuCardImage,
     MizuButton,
     MizuTag,
 } from "@mizu/vue";
@@ -71,14 +72,44 @@ import "@mizu/vue/style.css";
         </div>
 
         <div class="demo-section">
-            <h3>Small Size</h3>
-            <MizuCard size="sm">
+            <h3>With Image</h3>
+            <MizuCard>
+                <MizuCardImage src="https://placecats.com/800/400" alt="Cute kitten" />
                 <MizuCardHeader>
-                    <MizuCardTitle>Compact Card</MizuCardTitle>
-                    <MizuCardDescription>Uses the small size variant.</MizuCardDescription>
+                    <MizuCardTitle>Whiskers</MizuCardTitle>
+                    <MizuCardDescription>A fluffy feline companion.</MizuCardDescription>
                 </MizuCardHeader>
                 <MizuCardContent>
-                    <p class="card-text">Smaller padding for compact layouts.</p>
+                    <p class="card-text">Cats are independent, curious, and make wonderful pets. This card demonstrates an image at the top.</p>
+                </MizuCardContent>
+                <MizuCardFooter>
+                    <MizuButton variant="accent" size="md">Adopt Me</MizuButton>
+                </MizuCardFooter>
+            </MizuCard>
+        </div>
+
+        <div class="demo-section">
+            <h3>Compact Spacing</h3>
+            <MizuCard spacing="compact">
+                <MizuCardHeader>
+                    <MizuCardTitle>Compact Card</MizuCardTitle>
+                    <MizuCardDescription>Uses the compact spacing variant.</MizuCardDescription>
+                </MizuCardHeader>
+                <MizuCardContent>
+                    <p class="card-text">Tighter padding for dense layouts.</p>
+                </MizuCardContent>
+            </MizuCard>
+        </div>
+
+        <div class="demo-section">
+            <h3>Comfortable Spacing</h3>
+            <MizuCard spacing="comfortable">
+                <MizuCardHeader>
+                    <MizuCardTitle>Spacious Card</MizuCardTitle>
+                    <MizuCardDescription>Uses the comfortable spacing variant.</MizuCardDescription>
+                </MizuCardHeader>
+                <MizuCardContent>
+                    <p class="card-text">More breathing room for content.</p>
                 </MizuCardContent>
             </MizuCard>
         </div>
@@ -100,13 +131,6 @@ import "@mizu/vue/style.css";
     margin: 0;
 }
 
-.card-demo :deep(h3),
-.card-demo :deep(h4),
-.card-demo :deep(p) {
-    all: unset;
-    display: revert;
-}
-
 .demo-section {
     display: flex;
     flex-direction: column;
@@ -121,8 +145,8 @@ import "@mizu/vue/style.css";
 }
 
 .card-text {
-    font-size: 13px;
-    color: var(--sl-color-text-light);
+    font-size: var(--bp-font-size-body);
+    color: var(--bp-color-foreground-primary);
     margin: 0;
 }
 </style>
