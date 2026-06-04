@@ -1,4 +1,4 @@
-# Mizu Design System
+# Mizu[水] Design System
 
 Constraint-based design tokens and multi-framework UI components for building coherent interfaces.
 
