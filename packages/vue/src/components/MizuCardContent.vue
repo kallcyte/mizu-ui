@@ -21,13 +21,13 @@ const classes = computed(() => {
 
 .bp-card-content {
   padding: var(--bp-card-py) var(--bp-card-px);
-  background-color: var(--bp-color-surface-base);
+  background-color: var(--color-surface-base);
 }
 
 .bp-card .bp-card-content > * {
   @apply font-normal;
-  font-size: var(--bp-font-size-body) !important;
-  line-height: var(--bp-line-height-body) !important;
-  color: var(--bp-color-foreground-primary) !important;
+  font-size: var(--font-size-body) !important;
+  line-height: var(--line-height-body) !important;
+  color: var(--color-foreground-primary) !important;
 }
 </style>

@@ -1,16 +1,21 @@
 {
   "name": "@mizu/tokens",
-  "version": "0.3.0",
+  "version": "0.4.1",
   "type": "module",
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
+  "sideEffects": ["**/*.css"],
   "exports": {
     ".": {
       "import": "./dist/index.js",
       "require": "./dist/index.cjs",
       "types": "./dist/index.d.ts"
-    }
+    },
+    "./light.css": "./dist/light.css",
+    "./dark.css": "./dist/dark.css",
+    "./tailwind.css": "./dist/tailwind.css",
+    "./starlight.css": "./dist/starlight.css"
   },
   "files": ["dist"],
   "scripts": {

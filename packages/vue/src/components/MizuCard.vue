@@ -32,8 +32,8 @@ const cardClasses = computed(() => {
 
 .bp-card {
   @apply rounded-md border transition-colors duration-200 overflow-hidden;
-  background-color: var(--bp-color-surface-base);
-  border-color: var(--bp-color-foreground-tertiary);
+  background-color: var(--color-surface-base);
+  border-color: var(--color-foreground-tertiary);
   --bp-card-px: 16px;
   --bp-card-py: 16px;
   --bp-card-gap: 6px;

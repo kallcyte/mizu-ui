@@ -85,16 +85,28 @@ export const COLOR_FEEDBACK_INFO_SUBTLE = "#F0F9FF" as const;
 export const COLOR_DARK_BRAND_PRIMARY = "#D6E4FF" as const;
 /** Dark mode primary hover. */
 export const COLOR_DARK_BRAND_PRIMARY_HOVER = "#E8F0FF" as const;
+/** Dark mode primary focus. */
+export const COLOR_DARK_BRAND_PRIMARY_FOCUS = "#BFDBFE" as const;
+/** Dark mode subtle primary — dark navy tint for branded backgrounds. */
+export const COLOR_DARK_BRAND_PRIMARY_SUBTLE = "#1E2A45" as const;
+/** Dark mode supporting brand blue. */
+export const COLOR_DARK_BRAND_SECONDARY = "#93C5FD" as const;
+/** Dark mode secondary hover. */
+export const COLOR_DARK_BRAND_SECONDARY_HOVER = "#BFDBFE" as const;
+/** Dark mode secondary focus. */
+export const COLOR_DARK_BRAND_SECONDARY_FOCUS = "#DBEAFE" as const;
+/** Dark mode secondary subtle. */
+export const COLOR_DARK_BRAND_SECONDARY_SUBTLE = "#1E2A3A" as const;
 /** Dark mode accent — lighter blue for links. */
 export const COLOR_DARK_BRAND_ACCENT = "#60A5FA" as const;
 /** Dark mode accent hover. */
 export const COLOR_DARK_BRAND_ACCENT_HOVER = "#93C5FD" as const;
-/** Dark mode subtle primary — dark navy tint for branded backgrounds. */
-export const COLOR_DARK_BRAND_PRIMARY_SUBTLE = "#1E2A45" as const;
 /** Dark mode subtle accent — dark blue tint for highlighted backgrounds. */
 export const COLOR_DARK_BRAND_ACCENT_SUBTLE = "#172554" as const;
 /** Dark mode muted — subtle brand tint on dark. */
 export const COLOR_DARK_BRAND_MUTED = "#1E2A3A" as const;
+/** Dark mode deep neutral for high-contrast text. */
+export const COLOR_DARK_BRAND_NEUTRAL = "#F1F5F9" as const;
 /** Dark mode page background. */
 export const COLOR_DARK_SURFACE_BASE = "#0F1117" as const;
 /** Dark mode secondary surface. */
@@ -110,13 +122,37 @@ export const COLOR_DARK_FOREGROUND_TERTIARY = "#64748B" as const;
 /** Dark mode text on light surfaces. */
 export const COLOR_DARK_FOREGROUND_INVERSE = "#0F1117" as const;
 /** Dark mode success — lighter green. */
-export const COLOR_DARK_FEEDBACK_SUCCESS = "#4ADE80" as const;
+export const COLOR_DARK_FEEDBACK_SUCCESS_BASE = "#4ADE80" as const;
+/** Dark mode success hover. */
+export const COLOR_DARK_FEEDBACK_SUCCESS_HOVER = "#86EFAC" as const;
+/** Dark mode success focus. */
+export const COLOR_DARK_FEEDBACK_SUCCESS_FOCUS = "#BBF7D0" as const;
+/** Dark mode success subtle — deep green background. */
+export const COLOR_DARK_FEEDBACK_SUCCESS_SUBTLE = "#14532D" as const;
 /** Dark mode error — lighter red. */
-export const COLOR_DARK_FEEDBACK_ERROR = "#F87171" as const;
+export const COLOR_DARK_FEEDBACK_ERROR_BASE = "#F87171" as const;
+/** Dark mode error hover. */
+export const COLOR_DARK_FEEDBACK_ERROR_HOVER = "#FCA5A5" as const;
+/** Dark mode error focus. */
+export const COLOR_DARK_FEEDBACK_ERROR_FOCUS = "#FECACA" as const;
+/** Dark mode error subtle — deep red background. */
+export const COLOR_DARK_FEEDBACK_ERROR_SUBTLE = "#7F1D1D" as const;
 /** Dark mode warning — lighter amber. */
-export const COLOR_DARK_FEEDBACK_WARNING = "#FBBF24" as const;
+export const COLOR_DARK_FEEDBACK_WARNING_BASE = "#FBBF24" as const;
+/** Dark mode warning hover. */
+export const COLOR_DARK_FEEDBACK_WARNING_HOVER = "#FCD34D" as const;
+/** Dark mode warning focus. */
+export const COLOR_DARK_FEEDBACK_WARNING_FOCUS = "#FDE68A" as const;
+/** Dark mode warning subtle — deep amber background. */
+export const COLOR_DARK_FEEDBACK_WARNING_SUBTLE = "#78350F" as const;
 /** Dark mode info — lighter sky. */
-export const COLOR_DARK_FEEDBACK_INFO = "#38BDF8" as const;
+export const COLOR_DARK_FEEDBACK_INFO_BASE = "#38BDF8" as const;
+/** Dark mode info hover. */
+export const COLOR_DARK_FEEDBACK_INFO_HOVER = "#7DD3FC" as const;
+/** Dark mode info focus. */
+export const COLOR_DARK_FEEDBACK_INFO_FOCUS = "#BAE6FD" as const;
+/** Dark mode info subtle — deep sky background. */
+export const COLOR_DARK_FEEDBACK_INFO_SUBTLE = "#1E3A5F" as const;
 /** Primary sans-serif typeface for UI and headings. */
 export const FONTFAMILY_SANS: string[] = ["DM Sans","-apple-system","BlinkMacSystemFont","Segoe UI","Roboto","Helvetica Neue","Arial","sans-serif"];
 /** Monospace typeface for code and technical content. */
@@ -209,6 +245,10 @@ export const BORDERRADIUS_FULL = "9999px" as const;
 export const SHADOW_RING = "0 0 0 1px #F3F4F6" as const;
 /** Subtle elevation for cards and menus. */
 export const SHADOW_WHISPER = "0 2px 16px rgba(0,0,0,0.04)" as const;
+/** Dark mode border ring for buttons and card hover states. */
+export const SHADOW_DARK_RING = "0 0 0 1px #1E2030" as const;
+/** Dark mode subtle elevation for cards and menus. */
+export const SHADOW_DARK_WHISPER = "0 2px 16px rgba(0,0,0,0.24)" as const;
 /** Color swatch preview height. */
 export const SIZING_COLOR_SWATCH_H = "80px" as const;
 /** Card visual block dimension. */
@@ -273,11 +313,17 @@ export const tokens: Record<string, Token> = {
   "color/feedback/info/subtle": { value: COLOR_FEEDBACK_INFO_SUBTLE, type: "color" },
   "color/dark/brand/primary": { value: COLOR_DARK_BRAND_PRIMARY, type: "color" },
   "color/dark/brand/primary-hover": { value: COLOR_DARK_BRAND_PRIMARY_HOVER, type: "color" },
+  "color/dark/brand/primary-focus": { value: COLOR_DARK_BRAND_PRIMARY_FOCUS, type: "color" },
+  "color/dark/brand/primary-subtle": { value: COLOR_DARK_BRAND_PRIMARY_SUBTLE, type: "color" },
+  "color/dark/brand/secondary": { value: COLOR_DARK_BRAND_SECONDARY, type: "color" },
+  "color/dark/brand/secondary-hover": { value: COLOR_DARK_BRAND_SECONDARY_HOVER, type: "color" },
+  "color/dark/brand/secondary-focus": { value: COLOR_DARK_BRAND_SECONDARY_FOCUS, type: "color" },
+  "color/dark/brand/secondary-subtle": { value: COLOR_DARK_BRAND_SECONDARY_SUBTLE, type: "color" },
   "color/dark/brand/accent": { value: COLOR_DARK_BRAND_ACCENT, type: "color" },
   "color/dark/brand/accent-hover": { value: COLOR_DARK_BRAND_ACCENT_HOVER, type: "color" },
-  "color/dark/brand/primary-subtle": { value: COLOR_DARK_BRAND_PRIMARY_SUBTLE, type: "color" },
   "color/dark/brand/accent-subtle": { value: COLOR_DARK_BRAND_ACCENT_SUBTLE, type: "color" },
   "color/dark/brand/muted": { value: COLOR_DARK_BRAND_MUTED, type: "color" },
+  "color/dark/brand/neutral": { value: COLOR_DARK_BRAND_NEUTRAL, type: "color" },
   "color/dark/surface/base": { value: COLOR_DARK_SURFACE_BASE, type: "color" },
   "color/dark/surface/subtle": { value: COLOR_DARK_SURFACE_SUBTLE, type: "color" },
   "color/dark/surface/muted": { value: COLOR_DARK_SURFACE_MUTED, type: "color" },
@@ -285,10 +331,22 @@ export const tokens: Record<string, Token> = {
   "color/dark/foreground/secondary": { value: COLOR_DARK_FOREGROUND_SECONDARY, type: "color" },
   "color/dark/foreground/tertiary": { value: COLOR_DARK_FOREGROUND_TERTIARY, type: "color" },
   "color/dark/foreground/inverse": { value: COLOR_DARK_FOREGROUND_INVERSE, type: "color" },
-  "color/dark/feedback/success": { value: COLOR_DARK_FEEDBACK_SUCCESS, type: "color" },
-  "color/dark/feedback/error": { value: COLOR_DARK_FEEDBACK_ERROR, type: "color" },
-  "color/dark/feedback/warning": { value: COLOR_DARK_FEEDBACK_WARNING, type: "color" },
-  "color/dark/feedback/info": { value: COLOR_DARK_FEEDBACK_INFO, type: "color" },
+  "color/dark/feedback/success/base": { value: COLOR_DARK_FEEDBACK_SUCCESS_BASE, type: "color" },
+  "color/dark/feedback/success/hover": { value: COLOR_DARK_FEEDBACK_SUCCESS_HOVER, type: "color" },
+  "color/dark/feedback/success/focus": { value: COLOR_DARK_FEEDBACK_SUCCESS_FOCUS, type: "color" },
+  "color/dark/feedback/success/subtle": { value: COLOR_DARK_FEEDBACK_SUCCESS_SUBTLE, type: "color" },
+  "color/dark/feedback/error/base": { value: COLOR_DARK_FEEDBACK_ERROR_BASE, type: "color" },
+  "color/dark/feedback/error/hover": { value: COLOR_DARK_FEEDBACK_ERROR_HOVER, type: "color" },
+  "color/dark/feedback/error/focus": { value: COLOR_DARK_FEEDBACK_ERROR_FOCUS, type: "color" },
+  "color/dark/feedback/error/subtle": { value: COLOR_DARK_FEEDBACK_ERROR_SUBTLE, type: "color" },
+  "color/dark/feedback/warning/base": { value: COLOR_DARK_FEEDBACK_WARNING_BASE, type: "color" },
+  "color/dark/feedback/warning/hover": { value: COLOR_DARK_FEEDBACK_WARNING_HOVER, type: "color" },
+  "color/dark/feedback/warning/focus": { value: COLOR_DARK_FEEDBACK_WARNING_FOCUS, type: "color" },
+  "color/dark/feedback/warning/subtle": { value: COLOR_DARK_FEEDBACK_WARNING_SUBTLE, type: "color" },
+  "color/dark/feedback/info/base": { value: COLOR_DARK_FEEDBACK_INFO_BASE, type: "color" },
+  "color/dark/feedback/info/hover": { value: COLOR_DARK_FEEDBACK_INFO_HOVER, type: "color" },
+  "color/dark/feedback/info/focus": { value: COLOR_DARK_FEEDBACK_INFO_FOCUS, type: "color" },
+  "color/dark/feedback/info/subtle": { value: COLOR_DARK_FEEDBACK_INFO_SUBTLE, type: "color" },
   "fontFamily/sans": { value: FONTFAMILY_SANS, type: "fontFamily" },
   "fontFamily/mono": { value: FONTFAMILY_MONO, type: "fontFamily" },
   "fontFamily/serif": { value: FONTFAMILY_SERIF, type: "fontFamily" },
@@ -335,6 +393,8 @@ export const tokens: Record<string, Token> = {
   "borderRadius/full": { value: BORDERRADIUS_FULL, type: "dimension" },
   "shadow/ring": { value: SHADOW_RING, type: "shadow" },
   "shadow/whisper": { value: SHADOW_WHISPER, type: "shadow" },
+  "shadow/dark/ring": { value: SHADOW_DARK_RING, type: "shadow" },
+  "shadow/dark/whisper": { value: SHADOW_DARK_WHISPER, type: "shadow" },
   "sizing/color-swatch-h": { value: SIZING_COLOR_SWATCH_H, type: "dimension" },
   "sizing/card-visual": { value: SIZING_CARD_VISUAL, type: "dimension" },
   "sizing/icon-inline": { value: SIZING_ICON_INLINE, type: "dimension" },
@@ -348,7 +408,7 @@ export const tokens: Record<string, Token> = {
   "breakpoint/xl": { value: BREAKPOINT_XL, type: "dimension" },
 };
 
-/** Token values mapped to CSS custom property names */
+/** Token values mapped to CSS custom property names (light mode only — dark mode overrides live in dark.css) */
 export const cssVariables: Record<string, string | number | readonly string[]> = {
   "--color-brand-primary": COLOR_BRAND_PRIMARY,
   "--color-brand-primary-hover": COLOR_BRAND_PRIMARY_HOVER,
@@ -387,53 +447,35 @@ export const cssVariables: Record<string, string | number | readonly string[]> =
   "--color-feedback-info-hover": COLOR_FEEDBACK_INFO_HOVER,
   "--color-feedback-info-focus": COLOR_FEEDBACK_INFO_FOCUS,
   "--color-feedback-info-subtle": COLOR_FEEDBACK_INFO_SUBTLE,
-  "--color-dark-brand-primary": COLOR_DARK_BRAND_PRIMARY,
-  "--color-dark-brand-primary-hover": COLOR_DARK_BRAND_PRIMARY_HOVER,
-  "--color-dark-brand-accent": COLOR_DARK_BRAND_ACCENT,
-  "--color-dark-brand-accent-hover": COLOR_DARK_BRAND_ACCENT_HOVER,
-  "--color-dark-brand-primary-subtle": COLOR_DARK_BRAND_PRIMARY_SUBTLE,
-  "--color-dark-brand-accent-subtle": COLOR_DARK_BRAND_ACCENT_SUBTLE,
-  "--color-dark-brand-muted": COLOR_DARK_BRAND_MUTED,
-  "--color-dark-surface-base": COLOR_DARK_SURFACE_BASE,
-  "--color-dark-surface-subtle": COLOR_DARK_SURFACE_SUBTLE,
-  "--color-dark-surface-muted": COLOR_DARK_SURFACE_MUTED,
-  "--color-dark-foreground-primary": COLOR_DARK_FOREGROUND_PRIMARY,
-  "--color-dark-foreground-secondary": COLOR_DARK_FOREGROUND_SECONDARY,
-  "--color-dark-foreground-tertiary": COLOR_DARK_FOREGROUND_TERTIARY,
-  "--color-dark-foreground-inverse": COLOR_DARK_FOREGROUND_INVERSE,
-  "--color-dark-feedback-success": COLOR_DARK_FEEDBACK_SUCCESS,
-  "--color-dark-feedback-error": COLOR_DARK_FEEDBACK_ERROR,
-  "--color-dark-feedback-warning": COLOR_DARK_FEEDBACK_WARNING,
-  "--color-dark-feedback-info": COLOR_DARK_FEEDBACK_INFO,
-  "--fontFamily-sans": FONTFAMILY_SANS,
-  "--fontFamily-mono": FONTFAMILY_MONO,
-  "--fontFamily-serif": FONTFAMILY_SERIF,
-  "--fontSize-display": FONTSIZE_DISPLAY,
-  "--fontSize-h1": FONTSIZE_H1,
-  "--fontSize-h2": FONTSIZE_H2,
-  "--fontSize-h3": FONTSIZE_H3,
-  "--fontSize-body": FONTSIZE_BODY,
-  "--fontSize-caption": FONTSIZE_CAPTION,
-  "--fontSize-label": FONTSIZE_LABEL,
-  "--fontWeight-regular": FONTWEIGHT_REGULAR,
-  "--fontWeight-medium": FONTWEIGHT_MEDIUM,
-  "--fontWeight-semibold": FONTWEIGHT_SEMIBOLD,
-  "--fontWeight-bold": FONTWEIGHT_BOLD,
-  "--fontWeight-extrabold": FONTWEIGHT_EXTRABOLD,
-  "--lineHeight-display": LINEHEIGHT_DISPLAY,
-  "--lineHeight-h1": LINEHEIGHT_H1,
-  "--lineHeight-h2": LINEHEIGHT_H2,
-  "--lineHeight-h3": LINEHEIGHT_H3,
-  "--lineHeight-body": LINEHEIGHT_BODY,
-  "--lineHeight-caption": LINEHEIGHT_CAPTION,
-  "--lineHeight-label": LINEHEIGHT_LABEL,
-  "--lineHeight-tight": LINEHEIGHT_TIGHT,
-  "--lineHeight-comfortable": LINEHEIGHT_COMFORTABLE,
-  "--lineHeight-reading": LINEHEIGHT_READING,
-  "--letterSpacing-tight": LETTERSPACING_TIGHT,
-  "--letterSpacing-snug": LETTERSPACING_SNUG,
-  "--letterSpacing-wide": LETTERSPACING_WIDE,
-  "--letterSpacing-wider": LETTERSPACING_WIDER,
+  "--font-family-sans": FONTFAMILY_SANS,
+  "--font-family-mono": FONTFAMILY_MONO,
+  "--font-family-serif": FONTFAMILY_SERIF,
+  "--font-size-display": FONTSIZE_DISPLAY,
+  "--font-size-h1": FONTSIZE_H1,
+  "--font-size-h2": FONTSIZE_H2,
+  "--font-size-h3": FONTSIZE_H3,
+  "--font-size-body": FONTSIZE_BODY,
+  "--font-size-caption": FONTSIZE_CAPTION,
+  "--font-size-label": FONTSIZE_LABEL,
+  "--font-weight-regular": FONTWEIGHT_REGULAR,
+  "--font-weight-medium": FONTWEIGHT_MEDIUM,
+  "--font-weight-semibold": FONTWEIGHT_SEMIBOLD,
+  "--font-weight-bold": FONTWEIGHT_BOLD,
+  "--font-weight-extrabold": FONTWEIGHT_EXTRABOLD,
+  "--line-height-display": LINEHEIGHT_DISPLAY,
+  "--line-height-h1": LINEHEIGHT_H1,
+  "--line-height-h2": LINEHEIGHT_H2,
+  "--line-height-h3": LINEHEIGHT_H3,
+  "--line-height-body": LINEHEIGHT_BODY,
+  "--line-height-caption": LINEHEIGHT_CAPTION,
+  "--line-height-label": LINEHEIGHT_LABEL,
+  "--line-height-tight": LINEHEIGHT_TIGHT,
+  "--line-height-comfortable": LINEHEIGHT_COMFORTABLE,
+  "--line-height-reading": LINEHEIGHT_READING,
+  "--letter-spacing-tight": LETTERSPACING_TIGHT,
+  "--letter-spacing-snug": LETTERSPACING_SNUG,
+  "--letter-spacing-wide": LETTERSPACING_WIDE,
+  "--letter-spacing-wider": LETTERSPACING_WIDER,
   "--spacing-xs": SPACING_XS,
   "--spacing-sm": SPACING_SM,
   "--spacing-md": SPACING_MD,
@@ -443,23 +485,23 @@ export const cssVariables: Record<string, string | number | readonly string[]> =
   "--spacing-section-y": SPACING_SECTION_Y,
   "--spacing-container": SPACING_CONTAINER,
   "--spacing-nav-h": SPACING_NAV_H,
-  "--borderRadius-tight": BORDERRADIUS_TIGHT,
-  "--borderRadius-default": BORDERRADIUS_DEFAULT,
-  "--borderRadius-card": BORDERRADIUS_CARD,
-  "--borderRadius-feature": BORDERRADIUS_FEATURE,
-  "--borderRadius-large": BORDERRADIUS_LARGE,
-  "--borderRadius-full": BORDERRADIUS_FULL,
+  "--border-radius-tight": BORDERRADIUS_TIGHT,
+  "--border-radius-default": BORDERRADIUS_DEFAULT,
+  "--border-radius-card": BORDERRADIUS_CARD,
+  "--border-radius-feature": BORDERRADIUS_FEATURE,
+  "--border-radius-large": BORDERRADIUS_LARGE,
+  "--border-radius-full": BORDERRADIUS_FULL,
   "--shadow-ring": SHADOW_RING,
   "--shadow-whisper": SHADOW_WHISPER,
   "--sizing-color-swatch-h": SIZING_COLOR_SWATCH_H,
   "--sizing-card-visual": SIZING_CARD_VISUAL,
   "--sizing-icon-inline": SIZING_ICON_INLINE,
   "--sizing-hero-gradient": SIZING_HERO_GRADIENT,
-  "--zIndex-nav": ZINDEX_NAV,
+  "--z-index-nav": ZINDEX_NAV,
   "--duration-fast": DURATION_FAST,
   "--duration-normal": DURATION_NORMAL,
   "--breakpoint-sm": BREAKPOINT_SM,
   "--breakpoint-md": BREAKPOINT_MD,
   "--breakpoint-lg": BREAKPOINT_LG,
   "--breakpoint-xl": BREAKPOINT_XL,
-};
+}

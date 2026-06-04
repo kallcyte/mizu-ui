@@ -27,11 +27,36 @@ mizu/
 
 ## Token System
 
-- **Source of truth**: `tokens.json` in DTCG format (`$value`, `$type`, `$description`)
-- **13 categories**: color, fontFamily, fontSize, fontWeight, lineHeight, letterSpacing, spacing, borderRadius, shadow, sizing, zIndex, duration, breakpoint
-- **Color groups**: brand, surface, foreground, feedback (success/error/warning/info)
-- **Tailwind mapping**: `src/styles/global.css` `@theme` block maps tokens to `--color-*`, `--font-*`, `--spacing-*`, `--radius-*`, etc.
-- **Package**: `packages/tokens/` exports typed JS/TS constants for use by Vue and React packages
+Single source of truth: `tokens.json` (DTCG format, `$value` / `$type` / `$description`) → consumed by `@mizu/tokens` build → emitted as CSS for every consumer.
+
+### Pipeline
+
+```
+tokens.json (DTCG)
+  └─→ packages/tokens/src/build.ts
+        ├─→ dist/index.ts              typed TS exports + cssVariables map
+        └─→ dist/{light,dark}.css      raw CSS custom properties (`:root` / `[data-theme="dark"]`)
+        └─→ dist/tailwind.css          Tailwind v4 `@theme` block + dark overrides
+        └─→ dist/starlight.css         `--sl-*` mappings → Mizu `--color-*` tokens
+```
+
+### Consumers
+
+| Consumer | Imports | Purpose |
+|---|---|---|
+| `packages/vue/src/index.css` | `@mizu/tokens/light.css` + `dark.css` (in `layer(base)`) | Vue components read `var(--color-*)` |
+| `src/styles/tokens.css` | `@mizu/tokens/tailwind.css` | Marketing pages use Tailwind utilities like `bg-surface-base` |
+| `astro.config.mjs` `customCss` → `src/styles/starlight.css` | `@mizu/tokens/starlight.css` | Starlight pages read `var(--sl-*)` which resolve to Mizu tokens |
+
+### Categories
+
+13 token categories: color, fontFamily, fontSize, fontWeight, lineHeight, letterSpacing, spacing, borderRadius, shadow, sizing, zIndex, duration, breakpoint.
+
+### Color groups
+
+`brand` (primary/secondary/accent + variants), `surface` (base/subtle/muted), `foreground` (primary/secondary/tertiary/inverse), `feedback` (success/error/warning/info × base/hover/focus/subtle).
+
+Each color has a light and dark variant. The dark variant path drops the `dark` segment in the emitted CSS var name so the same `--color-*` is overridden by `[data-theme="dark"] { ... }`.
 
 ### Naming convention
 
@@ -40,7 +65,29 @@ mizu/
 | Surface colors | `--color-surface-{variant}` | `bg-surface-base`, `border-surface-muted` |
 | Foreground colors | `--color-foreground-{variant}` | `text-foreground-primary`, `text-foreground-secondary` |
 | Brand colors | `--color-brand-{variant}` | `bg-brand-primary`, `text-brand-accent` |
-| Feedback colors | `--color-{type}-{variant}` | `bg-error-subtle`, `text-success-base` |
+| Feedback colors | `--color-feedback-{type}-{variant}` | `bg-feedback-error-subtle`, `text-feedback-success-base` |
+
+### Tailwind v4 `@theme` mapping
+
+| Token category | CSS namespace |
+|---|---|
+| `color` | `--color-*` |
+| `fontFamily` | `--font-family-*` (+ `--font-sans`/`--font-mono`/`--font-serif` aliases) |
+| `fontSize` | `--text-*` |
+| `fontWeight` | `--font-weight-*` |
+| `lineHeight` | `--leading-*` |
+| `letterSpacing` | `--tracking-*` |
+| `spacing` | `--spacing-*` |
+| `borderRadius` | `--radius-*` |
+| `shadow` | `--shadow-*` |
+| `sizing` | `--sizing-*` |
+| `zIndex` | `--z-*` |
+| `duration` | `--duration-*` |
+| `breakpoint` | `--breakpoint-*` |
+
+### Starlight mapping
+
+`starlight.css` emits `--sl-color-*` variables in both light and dark blocks that resolve to Mizu tokens. The 9-step gray ramp Starlight requires is hardcoded in the generated file (Mizu does not emit one) — kept here so this file remains the single source for Starlight theming.
 
 ## Phase 1: @mizu/tokens (packages/tokens/)
 
@@ -99,7 +146,7 @@ CSS variable mapping (one-way adapter):
 | `--accent` / `--accent-foreground` | `brand-accent` / `foreground-inverse` |
 | `--secondary` / `--secondary-foreground` | `surface-muted` / `foreground-secondary` |
 | `--muted` / `--muted-foreground` | `surface-subtle` / `foreground-tertiary` |
-| `--destructive` | `error-base` |
+| `--destructive` | `feedback-error-base` |
 | `--border` / `--ring` | `surface-muted` / `brand-accent` |
 | `--radius` | `0.5rem` (8px) |
 
@@ -111,6 +158,9 @@ CSS variable mapping (one-way adapter):
 - **React components**: shadcn/ui + ReUI; Mizu tokens injected via CSS variable overrides
 - **Monorepo**: pnpm workspaces with `packages/*`
 - **Docs site**: Astro 5, uses Mizu's own Tailwind classes (not shadcn semantic classes)
+- **Single token source**: `@mizu/tokens` is consumed by every package and the docs site — no duplicate hardcoded values anywhere
+- **Token naming**: canonical CSS vars are `--color-{group}-{variant}` with full kebab-case path. Feedback colors keep the `feedback` segment (e.g. `--color-feedback-success-base`); previously the docs used the short form `--color-success-base`, now removed
+- **`@mizu/tokens` 0.4.0** is a breaking change: Vue components drop the `--bp-color-*` prefix in favor of canonical `--color-*`; the `--bp-card-*` / `--bp-btn-*` / `--bp-tag-*` component-local vars are preserved
 - **No showcase page yet** — deferred to a later phase
 
 ## Sample Pages (Future)

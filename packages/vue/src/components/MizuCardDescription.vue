@@ -21,8 +21,8 @@ const classes = computed(() => {
 
 .bp-card .bp-card-description {
   @apply font-normal m-0;
-  font-size: var(--bp-font-size-caption) !important;
-  line-height: var(--bp-line-height-caption) !important;
-  color: var(--bp-color-foreground-tertiary) !important;
+  font-size: var(--font-size-caption) !important;
+  line-height: var(--line-height-caption) !important;
+  color: var(--color-foreground-tertiary) !important;
 }
 </style>

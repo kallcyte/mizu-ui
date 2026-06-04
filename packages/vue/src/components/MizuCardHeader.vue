@@ -23,7 +23,7 @@ const classes = computed(() => {
   @apply relative flex flex-col;
   padding: var(--bp-card-py) var(--bp-card-px);
   gap: var(--bp-card-gap);
-  background-color: var(--bp-color-surface-subtle);
-  border-bottom: 1px solid color-mix(in srgb, var(--bp-color-foreground-tertiary) 25%, transparent);
+  background-color: var(--color-surface-subtle);
+  border-bottom: 1px solid color-mix(in srgb, var(--color-foreground-tertiary) 25%, transparent);
 }
 </style>

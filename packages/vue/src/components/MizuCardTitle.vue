@@ -21,9 +21,9 @@ const classes = computed(() => {
 
 .bp-card .bp-card-title {
   @apply font-semibold m-0;
-  font-size: var(--bp-font-size-h3) !important;
-  line-height: var(--bp-line-height-h3) !important;
-  letter-spacing: var(--bp-letter-spacing-tight, -0.03em) !important;
-  color: var(--bp-color-foreground-primary) !important;
+  font-size: var(--font-size-h3) !important;
+  line-height: var(--line-height-h3) !important;
+  letter-spacing: var(--letter-spacing-tight, -0.03em) !important;
+  color: var(--color-foreground-primary) !important;
 }
 </style>

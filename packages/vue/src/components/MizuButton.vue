@@ -34,18 +34,18 @@ const hasTrailingIcon = computed(() => !!slots["trailing-icon"]);
 const hasDefaultSlot = computed(() => !!slots.default);
 
 const variantColors: Record<string, { bg: string; text: string; border: string }> = {
-  primary: { bg: "var(--bp-color-brand-primary)", text: "var(--bp-color-foreground-inverse)", border: "transparent" },
-  accent: { bg: "var(--bp-color-brand-accent)", text: "var(--bp-color-foreground-inverse)", border: "transparent" },
-  success: { bg: "var(--bp-color-feedback-success-base)", text: "var(--bp-color-foreground-inverse)", border: "transparent" },
-  warning: { bg: "var(--bp-color-feedback-warning-base)", text: "var(--bp-color-foreground-inverse)", border: "transparent" },
-  error: { bg: "var(--bp-color-feedback-error-base)", text: "var(--bp-color-foreground-inverse)", border: "transparent" },
-  info: { bg: "var(--bp-color-feedback-info-base)", text: "var(--bp-color-foreground-inverse)", border: "transparent" },
-  ghost: { bg: "transparent", text: "var(--bp-color-foreground-primary)", border: "transparent" },
-  outline: { bg: "transparent", text: "var(--bp-color-foreground-primary)", border: "var(--bp-color-foreground-primary)" },
-  "outline-success": { bg: "transparent", text: "var(--bp-color-feedback-success-base)", border: "var(--bp-color-feedback-success-base)" },
-  "outline-warning": { bg: "transparent", text: "var(--bp-color-feedback-warning-base)", border: "var(--bp-color-feedback-warning-base)" },
-  "outline-error": { bg: "transparent", text: "var(--bp-color-feedback-error-base)", border: "var(--bp-color-feedback-error-base)" },
-  "outline-info": { bg: "transparent", text: "var(--bp-color-feedback-info-base)", border: "var(--bp-color-feedback-info-base)" },
+  primary: { bg: "var(--color-brand-primary)", text: "var(--color-foreground-inverse)", border: "transparent" },
+  accent: { bg: "var(--color-brand-accent)", text: "var(--color-foreground-inverse)", border: "transparent" },
+  success: { bg: "var(--color-feedback-success-base)", text: "var(--color-foreground-inverse)", border: "transparent" },
+  warning: { bg: "var(--color-feedback-warning-base)", text: "var(--color-foreground-inverse)", border: "transparent" },
+  error: { bg: "var(--color-feedback-error-base)", text: "var(--color-foreground-inverse)", border: "transparent" },
+  info: { bg: "var(--color-feedback-info-base)", text: "var(--color-foreground-inverse)", border: "transparent" },
+  ghost: { bg: "transparent", text: "var(--color-foreground-primary)", border: "transparent" },
+  outline: { bg: "transparent", text: "var(--color-foreground-primary)", border: "var(--color-foreground-primary)" },
+  "outline-success": { bg: "transparent", text: "var(--color-feedback-success-base)", border: "var(--color-feedback-success-base)" },
+  "outline-warning": { bg: "transparent", text: "var(--color-feedback-warning-base)", border: "var(--color-feedback-warning-base)" },
+  "outline-error": { bg: "transparent", text: "var(--color-feedback-error-base)", border: "var(--color-feedback-error-base)" },
+  "outline-info": { bg: "transparent", text: "var(--color-feedback-info-base)", border: "var(--color-feedback-info-base)" },
 };
 
 const variantColor = computed(() => variantColors[props.variant] || variantColors.primary);
@@ -127,7 +127,7 @@ function handleClick(event: MouseEvent) {
   color: var(--bp-btn-text);
 }
 .bp-button:focus-visible {
-  @apply outline outline-1 outline-[var(--bp-color-brand-accent)] outline-offset-2;
+  @apply outline outline-1 outline-[var(--color-brand-accent)] outline-offset-2;
 }
 .bp-button:active:not(:disabled) {
   @apply scale-[0.98];
@@ -169,18 +169,18 @@ function handleClick(event: MouseEvent) {
 }
 
 /* Hover states */
-.bp-primary:hover:not(:disabled) { @apply bg-[var(--bp-color-brand-primary-hover)]; }
-.bp-accent:hover:not(:disabled) { @apply bg-[var(--bp-color-brand-accent-hover)]; }
-.bp-ghost:hover:not(:disabled) { @apply text-[var(--bp-color-brand-primary-hover)]; }
-.bp-outline:hover:not(:disabled) { @apply bg-[var(--bp-color-surface-subtle)]; }
-.bp-success:hover:not(:disabled) { @apply bg-[var(--bp-color-feedback-success-hover)]; }
-.bp-warning:hover:not(:disabled) { @apply bg-[var(--bp-color-feedback-warning-hover)]; }
-.bp-error:hover:not(:disabled) { @apply bg-[var(--bp-color-feedback-error-hover)]; }
-.bp-info:hover:not(:disabled) { @apply bg-[var(--bp-color-feedback-info-hover)]; }
-.bp-outline-success:hover:not(:disabled) { @apply bg-[var(--bp-color-feedback-success-subtle)]; }
-.bp-outline-warning:hover:not(:disabled) { @apply bg-[var(--bp-color-feedback-warning-subtle)]; }
-.bp-outline-error:hover:not(:disabled) { @apply bg-[var(--bp-color-feedback-error-subtle)]; }
-.bp-outline-info:hover:not(:disabled) { @apply bg-[var(--bp-color-feedback-info-subtle)]; }
+.bp-primary:hover:not(:disabled) { @apply bg-[var(--color-brand-primary-hover)]; }
+.bp-accent:hover:not(:disabled) { @apply bg-[var(--color-brand-accent-hover)]; }
+.bp-ghost:hover:not(:disabled) { @apply text-[var(--color-brand-primary-hover)]; }
+.bp-outline:hover:not(:disabled) { @apply bg-[var(--color-surface-subtle)]; }
+.bp-success:hover:not(:disabled) { @apply bg-[var(--color-feedback-success-hover)]; }
+.bp-warning:hover:not(:disabled) { @apply bg-[var(--color-feedback-warning-hover)]; }
+.bp-error:hover:not(:disabled) { @apply bg-[var(--color-feedback-error-hover)]; }
+.bp-info:hover:not(:disabled) { @apply bg-[var(--color-feedback-info-hover)]; }
+.bp-outline-success:hover:not(:disabled) { @apply bg-[var(--color-feedback-success-subtle)]; }
+.bp-outline-warning:hover:not(:disabled) { @apply bg-[var(--color-feedback-warning-subtle)]; }
+.bp-outline-error:hover:not(:disabled) { @apply bg-[var(--color-feedback-error-subtle)]; }
+.bp-outline-info:hover:not(:disabled) { @apply bg-[var(--color-feedback-info-subtle)]; }
 
 /* Outline press inset shadow */
 .bp-outline:active:not(:disabled),
@@ -198,9 +198,9 @@ function handleClick(event: MouseEvent) {
 
 /* Disabled state */
 .bp-button--disabled {
-  @apply bg-[var(--bp-color-surface-muted)] text-[var(--bp-color-foreground-tertiary)] border-transparent cursor-not-allowed;
+  @apply bg-[var(--color-surface-muted)] text-[var(--color-foreground-tertiary)] border-transparent cursor-not-allowed;
 }
 .bp-button--disabled:hover {
-  @apply bg-[var(--bp-color-surface-muted)];
+  @apply bg-[var(--color-surface-muted)];
 }
 </style>

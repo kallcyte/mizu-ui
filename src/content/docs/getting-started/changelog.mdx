@@ -16,6 +16,32 @@ This project follows **semantic versioning** (SemVer) during pre-1.0 development
 Changes that require a minor bump: adding a new component, renaming tokens, changing component APIs, adding new packages (e.g. React).
 Changes that keep the patch version: renames, copy edits, styling tweaks, build config changes, favicon updates.
 
+## 0.4.1 (2026-06-05)
+
+### Added
+
+- **Single source of truth for tokens** — `@mizu/tokens` (built from `tokens.json`) now generates `light.css`, `dark.css`, `tailwind.css` (Tailwind v4 `@theme`), and `starlight.css` (Starlight `--sl-*` mappings). Replaces the duplicated hardcoded values in `packages/vue/src/index.css`, `src/styles/tokens.css`, and `src/styles/starlight.css`.
+- **Dark mode coverage** — added `color/dark/brand/primary-focus`, `secondary/hover/focus/subtle`, `neutral`, and full `feedback/{success,error,warning,info}/{base,hover,focus,subtle}` trees. Also added `shadow/dark/{ring,whisper}` so cards and hover states render correctly in dark mode.
+- **Starlight theme variables** — generated `starlight.css` emits `--sl-color-*` mappings, the required 9-step gray ramp, type scale, and radii. `--sl-color-white` / `--sl-color-black` hardcoded as constants to match Starlight's "always-light/always-dark" intent.
+- **Tag pill styles** — `.tag`, `.tag-accent`, `.tag-warning` defined in `docs.css` using Mizu tokens.
+- **"Coming soon" pills** on the Login and Dashboard sample cards in the See It section.
+
+### Changed
+
+- **Breaking: token naming** — all color/typography/spacing tokens now use canonical `--color-*`, `--font-size-*`, `--line-height-*`, `--letter-spacing-*` etc. (the legacy `--bp-color-*` prefix on token references is removed across all Vue SFCs).
+- **`tokens.css` aggregate removed** — consumers now import the four specialized subpaths (`@mizu/tokens/light.css`, `@mizu/tokens/dark.css`, `@mizu/tokens/tailwind.css`, `@mizu/tokens/starlight.css`) instead of a single bundled aggregate.
+- **Homepage sections** — removed `Manifesto` and `AntiPatterns` sections from the homepage.
+- **Starlight dropdown + select theming** — search button, theme select, and mobile-TOC dropdown all use `--sl-color-bg-nav` for background and explicit `var(--sl-color-gray-2)` for dropdown text. Theme-select `<option>` elements use hardcoded `#ffffff` / `#1B1B1D` (light) and `#1B1B1D` / `#F1F5F9` (dark) to avoid white-on-white.
+- **Visible Starlight elements** — added explicit `color` overrides for page title (`h1.astro-n5dwoyeh`), markdown headings, table headers, summary, aside, link hovers, large sidebar labels, link buttons, kudos, and step number circles. Starlight's defaults use `var(--sl-color-white)` for text, which becomes invisible on Mizu's white page background in light mode.
+- **PLAN.md** — §"Token System" rewritten with the build pipeline, consumer table, naming convention, and Tailwind/Starlight mapping tables. §"shadcn adapter" updated (`--destructive` → `feedback-error-base`). Key Decisions expanded to document the single-source-of-truth approach and breaking token rename.
+- **`@mizu/tokens` 0.4.1**, **`@mizu/vue` 0.4.1** — versions aligned so the GitHub release workflow produces a single `v0.4.1` tag.
+
+### Fixed
+
+- Dark-mode shadows (`--shadow-ring`, `--shadow-whisper`) now resolve to the dark values (`#1E2030` border, `rgba(0,0,0,0.24)` elevation) instead of leaking the light values. The build script's `isDarkPath()` helper generalizes dark-override emission to both `color/dark/*` and `shadow/dark/*` paths.
+- White-on-white text in the Starlight docs sidebar and page title (root cause: theme-aware `--sl-color-white` mapping; fix: hardcoded constants in `starlight.css`).
+- Theme-select dropdown options showing white text on white background in light mode (root cause: same theme-aware `--sl-color-white` mapping; fix: hardcoded hex values per theme).
+
 ## 0.3.0 (2026-06-04)
 
 ### Added

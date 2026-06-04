@@ -19,7 +19,10 @@ export default defineConfig({
     vue(),
     starlight({
       title: "Mizu Design System",
-      customCss: ["./src/styles/starlight.css"],
+      customCss: [
+        "./src/styles/tokens.css",
+        "./src/styles/starlight.css",
+      ],
       head: [
         {
           tag: "link",
