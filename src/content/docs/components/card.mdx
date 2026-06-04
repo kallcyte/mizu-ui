@@ -1,0 +1,234 @@
+---
+title: Card
+description: Displays a card with header, content, and footer.
+---
+
+import CardDemo from '../../../components/docs/CardDemo.vue';
+
+Cards are containers for grouping related content and actions. They provide a clean, organized way to present information with optional visual emphasis.
+
+## Demo
+
+<CardDemo client:load />
+
+## Anatomy
+
+A card consists of up to 5 parts:
+
+| Part | Required | Description |
+|------|----------|-------------|
+| Card | Yes | Root container with border and rounded corners |
+| CardHeader | No | Container for title, description, and action |
+| CardTitle | No | The card's heading |
+| CardDescription | No | Helper text under the title |
+| CardAction | No | Action area in the top-right of the header |
+| CardContent | No | Main body content |
+| CardFooter | No | Actions or secondary content at the bottom |
+
+## Composition
+
+Use the following composition to build a Card:
+
+```
+Card
+├── CardHeader
+│   ├── CardTitle
+│   ├── CardDescription
+│   └── CardAction
+├── CardContent
+└── CardFooter
+```
+
+## Size
+
+| Size | Padding | Use Case |
+|------|---------|----------|
+| **default** | Standard | Standard cards |
+| **sm** | Compact | Compact layouts, tight spaces |
+
+## Shape
+
+| Property | Value |
+|----------|-------|
+| Border Radius | 8px |
+| Border Width | 1px |
+
+## Color Specifications
+
+### Card
+
+| Property | Token | Value |
+|----------|-------|-------|
+| Background | `surface-base` | #FFFFFF |
+| Border | `foreground-tertiary` | #9CA3AF |
+
+### CardTitle
+
+| Property | Token | Value |
+|----------|-------|-------|
+| Text Color | `foreground-primary` | #1B1B1D |
+| Font Size | 16px | — |
+| Font Weight | 600 (semibold) | — |
+
+### CardDescription
+
+| Property | Token | Value |
+|----------|-------|-------|
+| Text Color | `foreground-secondary` | #4B5563 |
+| Font Size | 14px | — |
+
+## Spacing Details
+
+### CardHeader
+
+| Property | Value |
+|----------|-------|
+| Padding | 20px |
+| Gap | 6px |
+
+### CardContent
+
+| Property | Value |
+|----------|-------|
+| Padding | 20px |
+| Padding Top | 0 |
+
+### CardFooter
+
+| Property | Value |
+|----------|-------|
+| Padding | 20px |
+| Padding Top | 0 |
+| Gap | 8px |
+
+## Transitions
+
+| Property | Duration | Easing |
+|----------|----------|--------|
+| Border Color | 200ms | ease-in-out |
+
+## Accessibility
+
+### Requirements
+
+| Criterion | Implementation |
+|-----------|----------------|
+| Semantic HTML | Use `<article>` or `<section>` for card containers when interactive |
+| Heading Hierarchy | Cards should contain headings for screen reader navigation |
+| Keyboard Navigation | If card is interactive, ensure focusable elements inside are reachable |
+| Color Contrast | Border and background meet 3:1 contrast ratio |
+
+### ARIA Attributes
+
+```html
+<!-- Static card -->
+<article class="bp-card">
+  <div class="bp-card-header">
+    <h3 class="bp-card-title">Card Title</h3>
+    <p class="bp-card-description">Card description.</p>
+  </div>
+  <div class="bp-card-content">
+    <p>Card content goes here.</p>
+  </div>
+</article>
+```
+
+## Token Mapping
+
+### CSS Custom Properties
+
+| Token | Value | Usage |
+|-------|-------|-------|
+| `--color-surface-base` | #FFFFFF | Card background |
+| `--color-foreground-tertiary` | #9CA3AF | Card border |
+| `--color-foreground-primary` | #1B1B1D | Title text |
+| `--color-foreground-secondary` | #4B5563 | Description text |
+| `--radius-lg` | 8px | Card border radius |
+| `--duration-normal` | 200ms | Border color transition |
+
+## Vue Component API
+
+### Card Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `size` | `'default' \| 'sm'` | `'default'` | Card size variant |
+
+### CardHeader Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `className` | `string` | — | Additional CSS classes |
+
+### CardTitle Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `className` | `string` | — | Additional CSS classes |
+
+### CardDescription Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `className` | `string` | — | Additional CSS classes |
+
+### CardAction Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `className` | `string` | — | Additional CSS classes |
+
+### CardContent Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `className` | `string` | — | Additional CSS classes |
+
+### CardFooter Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `className` | `string` | — | Additional CSS classes |
+
+### Slots
+
+| Component | Slot | Description |
+|-----------|------|-------------|
+| Card | `default` | Card child components |
+| CardHeader | `default` | Header content (title, description, action) |
+| CardTitle | `default` | Title text |
+| CardDescription | `default` | Description text |
+| CardAction | `default` | Action content |
+| CardContent | `default` | Main content |
+| CardFooter | `default` | Footer content |
+
+### Example Usage
+
+```vue
+<MizuCard>
+  <MizuCardHeader>
+    <MizuCardTitle>Card Title</MizuCardTitle>
+    <MizuCardDescription>Card description text.</MizuCardDescription>
+    <MizuCardAction>
+      <MizuButton variant="ghost" size="sm">Action</MizuButton>
+    </MizuCardAction>
+  </MizuCardHeader>
+  <MizuCardContent>
+    <p>Main content goes here.</p>
+  </MizuCardContent>
+  <MizuCardFooter>
+    <MizuButton variant="primary" size="sm">Save</MizuButton>
+    <MizuButton variant="ghost" size="sm">Cancel</MizuButton>
+  </MizuCardFooter>
+</MizuCard>
+```
+
+## Implementation Notes
+
+1. **Composition pattern** — Follows shadcn/ui's card structure for consistency
+2. **Native `<div>` elements** — No Reka UI primitives needed; all components are lightweight containers
+3. **Single border radius** — Fixed at 8px for consistency across all cards
+4. **Tailwind `@apply`** — Component styles use `@apply` with `@reference` for Tailwind v4 compatibility
+5. **Class inheritance** — All components accept `class` prop for overrides via `useAttrs()`
+6. **TypeScript** — Full type safety with `<script setup lang="ts">`
+7. **Tree-shakeable** — Export as ESM + CJS via Vite library mode

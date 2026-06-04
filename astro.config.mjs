@@ -63,6 +63,7 @@ export default defineConfig({
           label: "Components",
           items: [
             { label: "Button", slug: "components/button" },
+            { label: "Card", slug: "components/card" },
             { label: "Tag", slug: "components/tag" },
           ],
         },
