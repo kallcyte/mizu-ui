@@ -50,6 +50,7 @@ export default defineConfig({
           label: "Getting Started",
           items: [
             { label: "Introduction", slug: "getting-started/introduction" },
+            { label: "Changelog", slug: "getting-started/changelog" },
           ],
         },
         {
