@@ -12,6 +12,7 @@ disable-model-invocation: false
 4. After finalizing a new component, update the component documentation under `src/content/docs/components/{name}.mdx` to follow the structure below and add the component card to homepage.
 5. Component documentation under `src/content/docs/components/{name}.mdx` MUST follow the structure below.
 6. Create a new changelog entry before doing commit.
+7. **Always rebuild `@mizu/vue` after adding or modifying components** — run `pnpm --filter @mizu/vue build`. Astro SSR resolves `@mizu/vue` to the built `dist/` files (not the source `src/` files), so stale dist means new components render as `undefined` and pages crash with "Unable to render ... because it contains an undefined Component!"
 
 ## Don'ts
 

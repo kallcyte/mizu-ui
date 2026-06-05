@@ -1,15 +1,6 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import { MizuInput } from "@mizu/vue";
-import {
-    Search,
-    Mail,
-    Lock,
-    User,
-    AlertCircle,
-    CheckCircle,
-} from "@lucide/vue";
-import "@mizu/vue/style.css";
 
 const searchValue = ref("");
 const emailValue = ref("");

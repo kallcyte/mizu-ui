@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { ref } from "vue";
-import { MizuButton, MizuTag } from "@mizu/vue";
-import "@mizu/vue/style.css";
+import { MizuTag } from "@mizu/vue";
 import { Plus } from "@lucide/vue";
 
 const initialTags = ["Design", "Engineering", "Production", "Beta", "Deprecated"];

@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { MizuAvatar } from "@mizu/vue";
-import "@mizu/vue/style.css";
 
 const user = {
     name: "Mariko Tanaka",
@@ -59,7 +58,7 @@ const team = [
                 <MizuAvatar name="Small" size="sm" />
                 <MizuAvatar name="Medium" size="md" />
                 <MizuAvatar name="Large" size="lg" />
-                <MizuAvatar name="Extra Large" size="xl" />
+                <MizuAvatar name="Xtra Large" size="xl" />
             </div>
         </div>
 
@@ -82,7 +81,7 @@ const team = [
                     src="https://i.pravatar.cc/96?img=12"
                 />
                 <MizuAvatar
-                    name="Extra Large"
+                    name="Eli Lin"
                     size="xl"
                     src="https://i.pravatar.cc/96?img=12"
                 />

@@ -1,0 +1,142 @@
+---
+title: Switch
+description: A toggle switch that represents boolean state with a sliding thumb.
+---
+
+import SwitchDemo from '../../../components/docs/SwitchDemo.vue';
+
+A switch is a binary input control that toggles between checked and unchecked states. Use it for settings, preferences, and other boolean options.
+
+## Demo
+
+<SwitchDemo client:load />
+
+## Anatomy
+
+A switch consists of two parts:
+
+| Part | Required | Description |
+|------|----------|-------------|
+| Track | Yes | The background pill that contains the thumb |
+| Thumb | Yes | The circular handle that slides between on/off positions |
+
+## Variants
+
+| Variant | Track (Off) | Track (On) | Use Case |
+|---------|-------------|------------|----------|
+| enabled | `foreground-tertiary` | `brand-primary` | Interactive toggle |
+| disabled | `surface-muted` | `foreground-tertiary` | Non-interactive state |
+
+## Size Specifications
+
+| Size | Track Width | Track Height | Thumb Size | Match |
+|------|-------------|--------------|------------|-------|
+| SM | 36px | 20px | 16px | Button SM |
+| MD | 44px | 24px | 20px | Button MD |
+| LG | 52px | 28px | 24px | Button LG |
+
+## Color Specifications
+
+| State | Element | Token | Light | Dark |
+|-------|---------|-------|-------|------|
+| Off | Track | `foreground-tertiary` | #9CA3AF | #4B5563 |
+| On | Track | `brand-primary` | #001C44 | #001C44 |
+| On:hover | Track | `brand-primary-hover` | #001536 | #001536 |
+| Disabled off | Track | `surface-muted` | #F3F4F6 | #1E2030 |
+| Disabled on | Track | `foreground-tertiary` | #9CA3AF | #4B5563 |
+| All | Thumb | `foreground-inverse` | #FFFFFF | #FFFFFF |
+| All | Label | `foreground-primary` | #1B1B1D | #F9FAFB |
+
+## Transitions
+
+| Property | Duration | Easing |
+|----------|----------|--------|
+| Track background | 200ms | ease-in-out |
+| Thumb transform | 200ms | ease-in-out |
+
+## Accessibility
+
+### Requirements
+
+| Criterion | Implementation |
+|-----------|----------------|
+| Role | Native `button` role via Reka UI SwitchRoot |
+| Label | Associated `<label>` element via `for`/`id` |
+| Keyboard | Toggle via Space or Enter |
+| Focus | Visible focus ring via `focus-visible` |
+| Disabled | `aria-disabled` attribute |
+
+### ARIA Attributes
+
+```html
+<button role="switch" aria-checked="true" aria-disabled="false">
+  <span class="bp-switch__thumb"></span>
+</button>
+```
+
+## Token Mapping
+
+### CSS Custom Properties
+
+| Token | Value | Usage |
+|-------|-------|-------|
+| `--color-foreground-tertiary` | #9CA3AF / #4B5563 | Track off state |
+| `--color-brand-primary` | #001C44 | Track on state |
+| `--color-brand-primary-hover` | #001536 | Track on hover |
+| `--color-surface-muted` | #F3F4F6 / #1E2030 | Track disabled off |
+| `--color-foreground-inverse` | #FFFFFF | Thumb color |
+| `--color-foreground-primary` | #1B1B1D / #F9FAFB | Label color |
+| `--color-brand-accent` | #007FFF | Focus ring |
+
+## Vue Component API
+
+### Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `modelValue` | `boolean` | `false` | v-model controlled state |
+| `disabled` | `boolean` | `false` | Disables the switch |
+| `required` | `boolean` | `false` | Required for form validation |
+| `name` | `string` | `undefined` | Form field name |
+| `value` | `string` | `undefined` | Form field value |
+| `label` | `string` | `undefined` | Visible label text |
+| `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | Controls track and thumb dimensions |
+| `trueValue` | `boolean \| string \| number` | `true` | Value emitted when checked |
+| `falseValue` | `boolean \| string \| number` | `false` | Value emitted when unchecked |
+
+### Events
+
+| Event | Payload | Description |
+|-------|---------|-------------|
+| `update:modelValue` | `boolean \| string \| number` | Emitted on toggle with resolved value |
+
+### Example Usage
+
+```vue
+<template>
+  <!-- Basic -->
+  <MizuSwitch v-model="notifications" />
+
+  <!-- With label -->
+  <MizuSwitch v-model="darkMode" label="Dark mode" />
+
+  <!-- Sizes -->
+  <MizuSwitch v-model="setting" size="sm" />
+  <MizuSwitch v-model="setting" size="md" />
+  <MizuSwitch v-model="setting" size="lg" />
+
+  <!-- Custom values -->
+  <MizuSwitch v-model="custom" true-value="yes" false-value="no" label="Custom" />
+
+  <!-- Disabled -->
+  <MizuSwitch v-model="setting" disabled label="Disabled" />
+</template>
+```
+
+## Implementation Notes
+
+1. **Reka UI** -- Uses `SwitchRoot` and `SwitchThumb` from Reka UI for accessible toggle behavior.
+2. **Slider thumb** -- The thumb translates using `transform: translateX()` with a 2px gutter from each edge.
+3. **Track sizing** -- Track width = `thumb + gutters`, keeping the thumb a consistent distance from edges.
+4. **Class inheritance** -- Accepts `class` prop via `useAttrs()` for Tailwind overrides.
+5. **Tree-shakeable** -- Exported as ESM + CJS via Vite library mode.

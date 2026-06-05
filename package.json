@@ -10,14 +10,14 @@
     "preview": "astro preview"
   },
   "dependencies": {
-    "@astrojs/starlight": "^0.39.2",
+    "@astrojs/starlight": "^0.39.3",
     "@astrojs/vue": "^6.0.1",
-    "@mizu/tokens": "workspace:*",
-    "@mizu/vue": "workspace:*",
     "@fontsource/dm-sans": "^5.2.8",
     "@fontsource/jetbrains-mono": "^5.2.8",
     "@lucide/vue": "^1.17.0",
-    "astro": "^6.3.8",
+    "@mizu/tokens": "workspace:*",
+    "@mizu/vue": "workspace:*",
+    "astro": "^6.4.4",
     "reka-ui": "^2.9.8",
     "vue": "^3.5.35"
   },

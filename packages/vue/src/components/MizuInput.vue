@@ -165,6 +165,8 @@ function handleBlur(event: FocusEvent) {
 /* Base input */
 .bp-input {
   @apply w-full font-[inherit] outline-none;
+  box-sizing: border-box;
+  line-height: 1;
   border: 1px solid var(--color-surface-muted);
   background-color: var(--color-surface-base);
   color: var(--color-foreground-primary);
@@ -183,16 +185,19 @@ function handleBlur(event: FocusEvent) {
   @apply h-[28px] text-[12px];
   padding: 0 8px;
   border-radius: 4px;
+  line-height: 1;
 }
 .bp-input--md {
   @apply h-[36px] text-[12px];
   padding: 0 10px;
   border-radius: 6px;
+  line-height: 1;
 }
 .bp-input--lg {
   @apply h-[40px] text-[14px];
   padding: 0 10px;
   border-radius: 6px;
+  line-height: 1;
 }
 
 /* Icon padding */

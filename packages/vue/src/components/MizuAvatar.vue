@@ -42,6 +42,17 @@ watch(
 
 const showImage = computed(() => !!props.src && !imageFailed.value);
 
+function handleImageError() {
+  imageFailed.value = true;
+}
+
+function handleImageLoad(event: Event) {
+  const img = event.target as HTMLImageElement;
+  if (img.naturalWidth === 0 || img.naturalHeight === 0) {
+    imageFailed.value = true;
+  }
+}
+
 const initials = computed(() => {
   if (!props.name) return "";
   const words = props.name.trim().split(/\s+/).filter(Boolean);
@@ -77,10 +88,6 @@ const imageAlt = computed(() => {
   if (props.name) return `${props.name}'s avatar`;
   return "Avatar";
 });
-
-function handleImageError() {
-  imageFailed.value = true;
-}
 </script>
 
 <template>
@@ -96,6 +103,7 @@ function handleImageError() {
       :alt="imageAlt"
       class="bp-avatar__image"
       @error="handleImageError"
+      @load="handleImageLoad"
     />
     <span v-else-if="showInitials" class="bp-avatar__initials" aria-hidden="true">
       {{ initials }}

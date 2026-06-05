@@ -16,6 +16,43 @@ This project follows **semantic versioning** (SemVer) during pre-1.0 development
 Changes that require a minor bump: adding a new component, renaming tokens, changing component APIs, adding new packages (e.g. React).
 Changes that keep the patch version: renames, copy edits, styling tweaks, build config changes, favicon updates.
 
+## 0.7.0 (2026-06-05)
+
+### Added
+
+- **`MizuDivider`** — horizontal rule with optional `label`, `labelPosition` (`start` / `center` / `end`), and 4 color variants (`default` / `muted` / `strong` / `accent`). Implemented as a `<div>` with `flex` + `::before`/`::after` pseudo-elements (a labeled `<hr>` is impossible because `<hr>` is a void element). Token-driven spacing, color, and typography.
+- **`MizuProgress`** — determinate and indeterminate progress bar. Props: `value` (0–100, `-1` for indeterminate), `max`, `size` (sm/md/lg), `color` (default/success/warning/error), and an optional `label` slot. Indeterminate variant animates an `inset` block; determinate variant uses `transform: translateX(...)` for smooth 60fps fills.
+- **`MizuQuote`** — semantic `<figure>`/`<blockquote>`/`<figcaption>` with `cite` URL, `author`, `source` (e.g. "Mizu Design Docs"), and `align` (`start` / `center`). 4px accent left-border in 3 colors (`neutral` / `primary` / `accent`), inheriting body typography. No keyboard interactions, fully static.
+- **`MizuSwitch`** — boolean toggle with `label`, `helperText`, `disabled`, `required`, 3 sizes (sm/md/lg), and custom `trueValue` / `falseValue` for non-boolean bindings. Built on Reka UI `SwitchRoot` for accessibility (keyboard, screen reader announcements). State wired through `v-model`.
+- **`MizuTextarea`** — multi-line text input with `label`, `helperText`, `error`, 3 sizes (sm/md/lg), `disabled`, `required`, `rows`, `placeholder`, and `autosize` (auto-grow via `scrollHeight`). Native `<textarea>` for full form integration; aria-invalid and aria-describedby wired to error/helper text.
+- **`MizuRadio`** — radio group with inline label, `helperText`, `error`, horizontal/vertical `orientation`, and Reka UI primitive accessibility. Items emit `update:modelValue` with a string value; handler casts via `String(value)`.
+- **`MizuSelect`** — native `<select>` with `label`, `helperText`, `error`, 3 sizes, `disabled`, `required`, `placeholder`, `options` array (`{ value, label, disabled? }`), and a custom SVG chevron icon. `appearance: none` + `box-sizing: border-box; line-height: 1` to ensure consistent 28/36/40px heights.
+- **`MizuDashList`** — semantic `<dl>`/`<dt>`/`<dd>` for key-value pairs with `items` array (`{ term, description }`), `orientation` (`vertical` / `horizontal`), and `termWidth` (px/em/rem string for the term column when horizontal). Inherits body typography.
+- **`MizuMetric`** — display component for stats: `label`, `value`, optional `previous` value with auto-computed `trend` (`up` / `down` / `neutral`) and `trendValue` (percentage delta), and 6 color variants (`default` / `primary` / `accent` / `success` / `warning` / `error`). Subdued label, prominent value, optional trend pill.
+
+### Fixed
+
+- **MDX tables** — root cause: Astro v6 changed `markdown.gfm` from `.default(true)` to `.optional()`; Starlight's `updateConfig` doesn't set `gfm`, so `@astrojs/mdx` sees `undefined` and skips `remarkGfm`. Fix: added `markdown: { gfm: true }` to `astro.config.mjs`. Tables in all component docs now render correctly.
+- **Sidebar summary visibility in light mode** — `<summary>` text in the left sidebar was using Starlight's default `var(--sl-color-white)`, which is invisible on the white page background. Added `summary .large { color: var(--sl-color-accent-high) !important; }` in `starlight.css`.
+- **Page h1 visibility in light mode** — `h1#_top` (Starlight's constant page title ID) was also white-on-white. Added `h1#_top { color: var(--sl-color-text) !important; }` in `starlight.css`. Old rules targeting the dead `.astro-n5dwoyeh`/`.astro-vv6wmhbp` classes (from Astro 4) were removed; Starlight 0.39.3 uses `data-astro-cid-*` attribute scoping instead.
+- **`MizuCheckbox` custom values** — removed redundant `internalValue` ref layer; pass `modelValue`, `trueValue`, `falseValue` directly to Reka UI `CheckboxRoot`. Root cause: Reka UI's `isChecked` only compared against its default boolean `trueValue`, so custom values like `"yes"` were never recognized as checked. Custom-value bindings now work.
+- **`MizuSwitch` toggle** — fixed wrong Reka UI prop/event names. Changed `:checked` → `:model-value` and `@update:checked` → `@update:model-value`; also removed redundant `internalValue` ref. Switch now toggles correctly.
+- **`MizuSelect` / `MizuInput` height** — added `box-sizing: border-box` and `line-height: 1` to ensure native `<select>`/`<input>` user-agent styles don't push height beyond the spec'd 28/36/40px.
+- **`MizuAvatar` broken image** — improved error detection by adding `handleImageLoad` that checks `img.naturalWidth === 0 || img.naturalHeight === 0` in addition to the existing `@error` handler. Some broken images don't fire `error` but report 0×0 dimensions; the new check catches them and falls through to the initials fallback.
+- **`MizuAvatar` "EL" demo** — changed `name="Extra Large"` to `name="Eli Lin"` in both the "Sizes" and "Sizes With Image" sections of `AvatarDemo.vue` (initials "EL", keeps `size="xl"`). Now demonstrates the XL size with realistic 2-character initials.
+
+### Changed
+
+- **Component CSS loaded globally** — `@mizu/vue/style.css` is now imported once via Starlight's `customCss: ["@mizu/vue/style.css"]` config. No more per-demo manual imports; component styles are guaranteed to be on the page in both SSR and client.
+- **`@mizu/vue` exports 16 components** (up from 9) — full alphabetized list: `MizuAlert`, `MizuAvatar`, `MizuButton`, `MizuCard`, `MizuCardContent`, `MizuCardDescription`, `MizuCardFooter`, `MizuCardHeader`, `MizuCardImage`, `MizuCardTitle`, `MizuCheckbox`, `MizuDashList`, `MizuDivider`, `MizuInput`, `MizuMetric`, `MizuProgress`, `MizuQuote`, `MizuRadio`, `MizuSelect`, `MizuSwitch`, `MizuTag`, `MizuTextarea`.
+- **Sidebar** updated with 7 new component entries (alphabetical): DashList, Divider, Metric, Progress, Quote, Radio, Select, Switch, Textarea.
+
+### Documentation
+
+- 9 new MDX pages following the skill-spec skeleton: `dashlist.mdx`, `divider.mdx`, `metric.mdx`, `progress.mdx`, `quote.mdx`, `radio.mdx`, `select.mdx`, `switch.mdx`, `textarea.mdx` — each with anatomy, variants, color/state maps, token mapping, Vue component API, and implementation notes.
+- 9 new demo files: `src/components/docs/{DashList,Divider,Metric,Progress,Quote,Radio,Select,Switch,Textarea}Demo.vue`.
+- `.agents/skills/mizu-skill/SKILL.md` updated with rule 7: "Always rebuild `@mizu/vue` after adding or modifying components" (Astro SSR resolves to built `dist/` files).
+
 ## 0.6.0 (2026-06-05)
 
 ### Added

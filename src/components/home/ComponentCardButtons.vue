@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { MizuButton } from "@mizu/vue";
 import { ArrowRight, Plus } from "@lucide/vue";
-import "@mizu/vue/style.css";
 </script>
 
 <template>

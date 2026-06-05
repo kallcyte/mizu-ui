@@ -6,6 +6,10 @@ import vue from "@astrojs/vue";
 import starlight from "@astrojs/starlight";
 
 export default defineConfig({
+  markdown: {
+    gfm: true,
+  },
+
   vite: {
     plugins: [tailwindcss()],
     resolve: {
@@ -22,6 +26,7 @@ export default defineConfig({
       customCss: [
         "./src/styles/tokens.css",
         "./src/styles/starlight.css",
+        "@mizu/vue/style.css",
       ],
       head: [
         {
@@ -70,8 +75,17 @@ export default defineConfig({
             { label: "Button", slug: "components/button" },
             { label: "Card", slug: "components/card" },
             { label: "Checkbox", slug: "components/checkbox" },
+            { label: "DashList", slug: "components/dashlist" },
+            { label: "Divider", slug: "components/divider" },
             { label: "Input", slug: "components/input" },
+            { label: "Metric", slug: "components/metric" },
+            { label: "Progress", slug: "components/progress" },
+            { label: "Quote", slug: "components/quote" },
+            { label: "Radio", slug: "components/radio" },
+            { label: "Select", slug: "components/select" },
+            { label: "Switch", slug: "components/switch" },
             { label: "Tag", slug: "components/tag" },
+            { label: "Textarea", slug: "components/textarea" },
           ],
         },
       ],

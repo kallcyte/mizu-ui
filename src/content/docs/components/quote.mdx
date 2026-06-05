@@ -1,0 +1,152 @@
+---
+title: Quote
+description: A block quotation for displaying cited or highlighted text.
+---
+
+import QuoteDemo from '../../../components/docs/QuoteDemo.vue';
+
+A quote is a styled `<blockquote>` element for displaying cited passages, testimonials, or highlighted text. Use it to visually distinguish quoted content from the surrounding body copy.
+
+## Demo
+
+<QuoteDemo client:load />
+
+## Anatomy
+
+A quote consists of two parts:
+
+| Part | Required | Description |
+|------|----------|-------------|
+| Content | Yes | The quoted text (default slot) |
+| Citation | No | The source attribution footer |
+
+## Variants
+
+| Variant | Left Border | Background | Use Case |
+|---------|-------------|------------|----------|
+| Default | `surface-muted` | transparent | Neutral block quotes, editorial content |
+| Accent | `brand-accent` | `brand-accent-subtle` | Highlighted testimonials, callouts |
+
+### Default
+
+A subtle left border with no background. Fits naturally into body copy without drawing attention.
+
+### Accent
+
+A brand-accent left border with a light accent-tinted background. Used for highlighted quotes, testimonials, or content that needs emphasis.
+
+## Typography
+
+| Element | Font Size | Weight | Line Height | Style |
+|---------|-----------|--------|-------------|-------|
+| Content | 14px (body) | normal | 1.5 | normal |
+| Citation | 12px (caption) | normal | 1.4 | italic |
+
+## Shape
+
+| Element | Value |
+|---------|-------|
+| Left border width | 3px |
+| Border radius | 0 |
+
+## Color Specifications
+
+| Element | Variant | Token | Light | Dark |
+|---------|---------|-------|-------|------|
+| Left border | default | `surface-muted` | #F3F4F6 | #1E2030 |
+| Left border | accent | `brand-accent` | #007FFF | #93C5FD |
+| Background | accent | `brand-accent-subtle` | #E0F2FE | #1E3A5F |
+| Content text | -- | `foreground-primary` | #1B1B1D | #F1F5F9 |
+| Citation text | -- | `foreground-tertiary` | #9CA3AF | #6B7280 |
+
+## Spacing Details
+
+| Element | Value |
+|---------|-------|
+| Padding | 12px top/bottom, 16px left/right |
+| Content-to-citation gap | 8px |
+
+## Accessibility
+
+### Requirements
+
+| Criterion | Implementation |
+|-----------|----------------|
+| Semantic element | Native `<blockquote>` element |
+| Citation | `<cite>` element inside `<footer>` for machine-readable source attribution |
+
+### ARIA Attributes
+
+```html
+<blockquote class="bp-quote">
+  <div class="bp-quote__content">
+    Quoted text goes here.
+  </div>
+  <footer class="bp-quote__cite">
+    <cite>Source Name</cite>
+  </footer>
+</blockquote>
+```
+
+## Token Mapping
+
+### CSS Custom Properties
+
+| Token | Value | Usage |
+|-------|-------|-------|
+| `--color-surface-muted` | #F3F4F6 / #1E2030 | Default left border color |
+| `--color-brand-accent` | #007FFF / #93C5FD | Accent left border color |
+| `--color-brand-accent-subtle` | #E0F2FE / #1E3A5F | Accent background |
+| `--color-foreground-primary` | #1B1B1D / #F1F5F9 | Content text color |
+| `--color-foreground-tertiary` | #9CA3AF / #6B7280 | Citation text color |
+
+## Vue Component API
+
+### Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `cite` | `string` | `undefined` | Source attribution text shown in the footer |
+| `accent` | `boolean` | `false` | Enables the accent variant (colored left border + tinted background) |
+
+### Slots
+
+| Slot | Description |
+|------|-------------|
+| default | The quoted content |
+
+### Example Usage
+
+```vue
+<template>
+  <!-- Basic -->
+  <MizuQuote>
+    Design is not just what it looks like and feels like.
+  </MizuQuote>
+
+  <!-- With citation -->
+  <MizuQuote cite="Steve Jobs">
+    Innovation distinguishes between a leader and a follower.
+  </MizuQuote>
+
+  <!-- Accent variant -->
+  <MizuQuote accent cite="Albert Einstein">
+    Imagination is more important than knowledge.
+  </MizuQuote>
+
+  <!-- Multi-paragraph -->
+  <MizuQuote accent cite="APA Style">
+    <p>First paragraph of the block quote.</p>
+    <p>Second paragraph continues here.</p>
+  </MizuQuote>
+</template>
+```
+
+## Implementation Notes
+
+1. **Native element** -- uses `<blockquote>` for semantic correctness; no Reka UI primitive needed.
+2. **Citation** -- uses `<footer>` and `<cite>` elements for proper semantic markup and machine-readable source attribution.
+3. **Accent variant** -- toggled via `accent` boolean prop; applies a `brand-accent` left border and `brand-accent-subtle` background.
+4. **Class inheritance** -- accepts `class` prop via `useAttrs()` for Tailwind overrides.
+5. **Token-based colors** -- uses Mizu color tokens for automatic light/dark theme support.
+6. **Tree-shakeable** -- exported as ESM + CJS via Vite library mode.

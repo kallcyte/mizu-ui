@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { ref } from "vue";
-import { MizuAlert, MizuButton } from "@mizu/vue";
-import "@mizu/vue/style.css";
+import { MizuAlert } from "@mizu/vue";
 
 const closableVisible = ref(true);
 const successVisible = ref(true);

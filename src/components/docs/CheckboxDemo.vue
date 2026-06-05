@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { computed, ref } from "vue";
 import { MizuCheckbox, MizuButton } from "@mizu/vue";
-import "@mizu/vue/style.css";
 
 const basicUnchecked = ref(false);
 const basicChecked = ref(false);

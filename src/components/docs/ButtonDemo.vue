@@ -12,7 +12,6 @@ import {
     XCircle,
     Info,
 } from "@lucide/vue";
-import "@mizu/vue/style.css";
 
 const loading = ref(false);
 

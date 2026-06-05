@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { computed, ref, useAttrs, useId, watch } from "vue";
+import { computed, useAttrs, useId } from "vue";
 import { CheckboxIndicator, CheckboxRoot } from "reka-ui";
 
 export interface CheckboxProps {
-  modelValue?: boolean | "indeterminate" | null;
+  modelValue?: boolean | "indeterminate" | string | number | null;
   disabled?: boolean;
   required?: boolean;
   name?: string;
@@ -27,7 +27,7 @@ const props = withDefaults(defineProps<CheckboxProps>(), {
 });
 
 const emit = defineEmits<{
-  "update:modelValue": [value: boolean | "indeterminate" | null];
+  "update:modelValue": [value: boolean | "indeterminate" | string | number | null];
 }>();
 
 const attrs = useAttrs();
@@ -39,21 +39,11 @@ const checkboxId = computed(() => {
   return generatedId;
 });
 
-const internalValue = ref<boolean | "indeterminate" | null>(props.modelValue);
-
-watch(
-  () => props.modelValue,
-  (newVal) => {
-    if (newVal !== internalValue.value) {
-      internalValue.value = newVal;
-    }
-  },
-);
-
-const isIndeterminate = computed(() => internalValue.value === "indeterminate");
-const isChecked = computed(
-  () => internalValue.value === true || internalValue.value === props.trueValue,
-);
+const isIndeterminate = computed(() => props.modelValue === "indeterminate");
+const isChecked = computed(() => {
+  if (isIndeterminate.value) return false;
+  return props.modelValue === props.trueValue;
+});
 
 const checkboxClasses = computed(() => {
   const classes = ["bp-checkbox", `bp-checkbox--${props.size}`];
@@ -66,17 +56,6 @@ const checkboxClasses = computed(() => {
 
   return classes.join(" ");
 });
-
-function handleUpdate(value: boolean | "indeterminate") {
-  if (value === "indeterminate") {
-    internalValue.value = "indeterminate";
-    emit("update:modelValue", "indeterminate");
-    return;
-  }
-  const resolved = value ? props.trueValue : props.falseValue;
-  internalValue.value = resolved as boolean | "indeterminate" | null;
-  emit("update:modelValue", resolved as boolean | "indeterminate" | null);
-}
 </script>
 
 <template>
@@ -86,13 +65,15 @@ function handleUpdate(value: boolean | "indeterminate") {
   >
     <CheckboxRoot
       :id="checkboxId"
-      :model-value="internalValue"
+      :model-value="modelValue"
+      :true-value="trueValue"
+      :false-value="falseValue"
       :disabled="disabled"
       :required="required"
       :name="name"
       :value="value"
       :class="checkboxClasses"
-      @update:model-value="handleUpdate"
+      @update:model-value="(value) => emit('update:modelValue', value)"
     >
       <CheckboxIndicator class="bp-checkbox__indicator">
         <svg

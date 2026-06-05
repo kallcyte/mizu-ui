@@ -11,7 +11,6 @@ import {
     MizuButton,
     MizuTag,
 } from "@mizu/vue";
-import "@mizu/vue/style.css";
 </script>
 
 <template>

@@ -315,17 +315,13 @@ starlight-theme-select .caret {
  * the page background is white, so white text becomes invisible. Force
  * theme-aware colors for every text element that would otherwise be white. */
 
-/* Doc page title (e.g. <h1 class="astro-n5dwoyeh">Button</h1>) */
-h1.astro-n5dwoyeh {
-  color: var(--sl-color-text) !important;
-}
-
-/* Mobile menu hero h1 (in <MobileMenu>, same color rule) */
-h1.astro-vv6wmhbp {
+/* Doc page title — PageTitle.astro sets color: var(--sl-color-white) (invisible light mode) */
+h1#_top {
   color: var(--sl-color-text) !important;
 }
 
 /* Left sidebar large group labels ("Getting Started", "Tokens", "Components") */
+summary .large,
 .large.astro-vcxopfky {
   color: var(--sl-color-accent-high) !important;
 }
