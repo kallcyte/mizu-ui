@@ -1,6 +1,6 @@
 {
   "name": "@mizu/vue",
-  "version": "0.4.1",
+  "version": "0.5.0",
   "type": "module",
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
@@ -21,6 +21,7 @@
   },
   "dependencies": {
     "@mizu/tokens": "workspace:*",
+    "reka-ui": "^2.9.0",
     "vue": "^3.5.0"
   },
   "devDependencies": {

@@ -1,0 +1,282 @@
+---
+title: Alert
+description: Alerts communicate status messages, feedback, and important information to the user.
+---
+
+import AlertDemo from '../../../components/docs/AlertDemo.vue';
+
+Alerts communicate status messages, feedback, and important information to the user. They appear inline within a page to provide context about a result, error, or system state.
+
+## Demo
+
+<AlertDemo client:load />
+
+## Anatomy
+
+An alert consists of up to 4 parts:
+
+| Part | Required | Description |
+|------|----------|-------------|
+| Container | Yes | The alert's background and border |
+| Icon | No | A leading icon that reinforces the variant meaning |
+| Title | No | Bold heading text above the body |
+| Body | Yes | Main message content (default slot) |
+| Close Button | No | Dismissible trigger (shown when `closable` is true) |
+
+## Variants
+
+Mizu alerts support 4 visual variants aligned with the feedback color system:
+
+| Variant | Use Case |
+|---------|----------|
+| **Success** | Confirmation of completed actions, positive status |
+| **Error** | Critical issues, validation errors, failed operations |
+| **Warning** | Caution states, pending actions, attention required |
+| **Info** | Neutral information, tips, system messages |
+
+### Success Alert
+```
+Container: bg-feedback-success-subtle
+Border:    1px solid feedback-success-base (25% opacity)
+Text:      text-feedback-success-base
+Icon:      text-feedback-success-base
+```
+
+### Error Alert
+```
+Container: bg-feedback-error-subtle
+Border:    1px solid feedback-error-base (25% opacity)
+Text:      text-feedback-error-base
+Icon:      text-feedback-error-base
+```
+
+### Warning Alert
+```
+Container: bg-feedback-warning-subtle
+Border:    1px solid feedback-warning-base (25% opacity)
+Text:      text-feedback-warning-base
+Icon:      text-feedback-warning-base
+```
+
+### Info Alert
+```
+Container: bg-feedback-info-subtle
+Border:    1px solid feedback-info-base (25% opacity)
+Text:      text-feedback-info-base
+Icon:      text-feedback-info-base
+```
+
+## Size Specifications
+
+### Dimensions
+
+| Property | Value |
+|----------|-------|
+| Padding | 10px 12px |
+| Border Radius | 6px |
+| Border Width | 1px |
+| Icon Size | 16px x 16px |
+| Close Button Size | 14px x 14px |
+| Icon to Content Gap | 10px |
+| Title to Body Gap | 2px |
+
+### Touch Target
+
+The close button maintains a minimum touch target of **44px x 44px** via the `aria-label="Close alert"` and visible focus ring (WCAG 2.5.8).
+
+## Typography
+
+| Part | Font Size | Font Weight | Line Height |
+|------|-----------|-------------|-------------|
+| Title | 13px | 600 (semibold) | 1.3 |
+| Body | 12px | 400 (regular) | 1.45 |
+
+## Shape
+
+| Property | Value |
+|----------|-------|
+| Border Radius | 6px |
+| Border Width | 1px |
+| Corner Style | rounded (subtle, not pill) |
+
+## Color Specifications
+
+### State Map
+
+| Variant | Background | Border | Text / Icon |
+|---------|-----------|--------|-------------|
+| **Success** | `feedback-success-subtle` (#DCFCE7) | `feedback-success-base` (25%) | `feedback-success-base` (#15803D) |
+| **Error** | `feedback-error-subtle` (#FEF2F2) | `feedback-error-base` (25%) | `feedback-error-base` (#DC2626) |
+| **Warning** | `feedback-warning-subtle` (#FFFBEB) | `feedback-warning-base` (25%) | `feedback-warning-base` (#D97706) |
+| **Info** | `feedback-info-subtle` (#F0F9FF) | `feedback-info-base` (25%) | `feedback-info-base` (#0284C7) |
+
+### Default Icons
+
+Each variant ships with a built-in default icon (16x16, 1.5px stroke):
+
+| Variant | Icon |
+|---------|------|
+| **Success** | Circle with checkmark |
+| **Error** | Circle with dot and line |
+| **Warning** | Triangle with exclamation |
+| **Info** | Circle with letter "i" |
+
+Set `default-icon="false"` to hide, or use the `icon` slot to provide a custom one.
+
+## Spacing Details
+
+### Alert Content Layout
+
+```
+┌──────────────────────────────────────────────┐
+│←pad→┌────┐←gap→┌──────────────┐←gap→┌────┐←pad→│
+│     │Icon│     │ Title        │     │    │     │
+│     │    │     │ Body text... │     │  X │     │
+│     └────┘     └──────────────┘     └────┘     │
+└──────────────────────────────────────────────┘
+```
+
+| Property | Value |
+|----------|-------|
+| Container Padding | 10px 12px |
+| Icon to Content Gap | 10px |
+| Content to Close Gap | 10px |
+| Title to Body Gap | 2px |
+
+## Transitions
+
+| Property | Duration | Easing |
+|----------|----------|--------|
+| Opacity (close hover) | 150ms | ease-in-out |
+
+## Close Button
+
+| Property | Value |
+|----------|-------|
+| Size | 14px x 14px |
+| Default Opacity | 70% |
+| Hover Opacity | 100% |
+| Transition | 150ms ease-in-out |
+| Color | Inherits from alert text |
+| Accessible Label | "Close alert" |
+
+## Accessibility
+
+### Requirements
+
+| Criterion | Implementation |
+|-----------|----------------|
+| Screen Reader | `role="alert"` for errors, `role="status"` for others |
+| Live Region | `aria-live="assertive"` for errors, `aria-live="polite"` for others |
+| Focus Indicator | Visible focus ring on close button |
+| Color Contrast | 4.5:1 for text (variants meet WCAG AA on their subtle backgrounds) |
+| Close Button | Descriptive `aria-label="Close alert"` |
+| Icon | Decorative only, not announced separately |
+
+### ARIA Attributes
+
+```html
+<!-- Error alert (assertive) -->
+<div
+  role="alert"
+  aria-live="assertive"
+>
+  <span aria-hidden="true">icon</span>
+  <div>
+    <div>Title</div>
+    <div>Body content</div>
+  </div>
+  <button aria-label="Close alert">×</button>
+</div>
+
+<!-- Success / Warning / Info (polite) -->
+<div
+  role="status"
+  aria-live="polite"
+>
+  ...
+</div>
+```
+
+## Token Mapping
+
+### CSS Custom Properties
+
+| Token | Value | Usage |
+|-------|-------|-------|
+| `--color-feedback-success-subtle` | #DCFCE7 | Success bg |
+| `--color-feedback-success-base` | #15803D | Success text, icon, border |
+| `--color-feedback-error-subtle` | #FEF2F2 | Error bg |
+| `--color-feedback-error-base` | #DC2626 | Error text, icon, border |
+| `--color-feedback-warning-subtle` | #FFFBEB | Warning bg |
+| `--color-feedback-warning-base` | #D97706 | Warning text, icon, border |
+| `--color-feedback-info-subtle` | #F0F9FF | Info bg |
+| `--color-feedback-info-base` | #0284C7 | Info text, icon, border |
+| `--radius-default` | 8px | Border radius |
+| `--font-weight-semibold` | 600 | Title weight |
+
+## Vue Component API
+
+### Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `variant` | `'success' \| 'error' \| 'warning' \| 'info'` | `'info'` | Visual variant |
+| `title` | `string` | `undefined` | Bold title text |
+| `closable` | `boolean` | `false` | Show close button |
+| `defaultIcon` | `boolean` | `true` | Show built-in variant icon |
+
+### Slots
+
+| Slot | Description |
+|------|-------------|
+| `default` | Alert body text (required) |
+| `icon` | Custom icon (overrides default icon) |
+
+### Events
+
+| Event | Payload | Description |
+|-------|---------|-------------|
+| `close` | `void` | Emitted when close button is clicked |
+
+### Example Usage
+
+```vue
+<template>
+  <MizuAlert variant="success" title="Payment received">
+    Your invoice #1234 has been paid in full.
+  </MizuAlert>
+
+  <MizuAlert variant="error" closable>
+    We were unable to process your request.
+  </MizuAlert>
+
+  <MizuAlert variant="warning" title="Storage almost full">
+    You have used 95% of your storage quota.
+  </MizuAlert>
+
+  <MizuAlert variant="info" :default-icon="false">
+    A compact alert with no icon.
+  </MizuAlert>
+
+  <MizuAlert variant="success">
+    <template #icon>
+      <StarIcon />
+    </template>
+    Featured highlight with a custom icon.
+  </MizuAlert>
+</template>
+```
+
+## Implementation Notes
+
+1. **Native `<div>` element** - No Reka UI primitive needed; uses native HTML with proper ARIA roles
+2. **Tailwind `@apply`** - Component styles use `@apply` with `@reference` for Tailwind v4 compatibility
+3. **CSS Custom Properties** - Colors are resolved via CSS variables from `@mizu/tokens`, with border using `color-mix` for 25% opacity
+4. **Self-contained CSS** - Tailwind utilities are bundled into `dist/index.css` via `@tailwindcss/vite`; consumers do not need Tailwind installed
+5. **Class inheritance** - Accept `class` prop for overrides via `useAttrs()`
+6. **TypeScript** - Full type safety with `<script setup lang="ts">`
+7. **Tree-shakeable** - Export as ESM + CJS via Vite library mode
+8. **Accessibility roles** - `role="alert"` + `aria-live="assertive"` for errors (interrupts screen reader), `role="status"` + `aria-live="polite"` for others (waits for pause)
+9. **Decorative icons** - Default icons are visual only; screen readers announce the title and body text
+10. **Body slot reset** - `bp-alert__body > *` rule resets child margins so inline content sits cleanly

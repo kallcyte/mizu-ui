@@ -1,0 +1,361 @@
+---
+title: Checkbox
+description: Checkboxes allow users to select one or more options from a set, or toggle a single boolean setting.
+---
+
+import CheckboxDemo from '../../../components/docs/CheckboxDemo.vue';
+
+Checkboxes allow users to select one or more options from a set, or toggle a single boolean setting. They support indeterminate state for partial selections (e.g. "select all" with some items checked).
+
+## Demo
+
+<CheckboxDemo client:load />
+
+## Anatomy
+
+A checkbox consists of 2 parts:
+
+| Part | Required | Description |
+|------|----------|-------------|
+| Box | Yes | The visual control (square with check or indeterminate icon) |
+| Label | No | Inline text label (via `label` prop) |
+
+The checkbox is wrapped in a native `<label>` element so clicking the text toggles the control — no manual `for`/`id` wiring required.
+
+## States
+
+| State | Description | Use Case |
+|-------|-------------|----------|
+| **Unchecked** | Empty box, neutral border | Default state, no selection |
+| **Checked** | Box with check icon, brand color | User has selected the option |
+| **Indeterminate** | Box with dash icon, brand color | Mixed/partial selection (e.g. parent of a checklist) |
+| **Disabled** | Reduced opacity, no pointer | Option unavailable |
+| **Focus** | 2px brand-accent ring | Keyboard navigation |
+| **Hover** | Border darkens to brand color | Mouse hover feedback |
+
+### Indeterminate State
+
+Set `modelValue="indeterminate"` to display the indeterminate icon (horizontal dash). This is typically used for "select all" parents in a list where some — but not all — children are checked.
+
+```vue
+<MizuCheckbox
+  v-model="parentState"
+  label="Select all"
+/>
+<!-- parentState is "indeterminate" | true | false -->
+```
+
+## Sizes
+
+Mizu checkboxes support 3 sizes, aligned with the MizuButton height system for visual consistency in form rows.
+
+| Size | Box Dimensions | Use Case |
+|------|---------------|----------|
+| **sm** | 16px x 16px | Compact tables, dense lists |
+| **md** | 18px x 18px | Default — most form layouts |
+| **lg** | 20px x 20px | Prominent choices, marketing pages |
+
+```
+SM:  16x16   12px label
+MD:  18x18   13px label  (default)
+LG:  20x20   14px label
+```
+
+## Size Specifications
+
+| Property | sm | md | lg |
+|----------|----|----|----|
+| Box Width | 16px | 18px | 20px |
+| Box Height | 16px | 18px | 20px |
+| Border Radius | 4px | 4px | 4px |
+| Border Width | 1px | 1px | 1px |
+| Box to Label Gap | 8px | 8px | 8px |
+| Label Font Size | 12px | 13px | 14px |
+| Icon Size | 12px | 13.5px | 15px |
+
+## Shape
+
+| Property | Value |
+|----------|-------|
+| Border Radius | 4px (subtle rounding) |
+| Border Width | 1px |
+| Corner Style | rounded (not square, not pill) |
+
+## Color Specifications
+
+### State Map
+
+| State | Background | Border | Icon Color |
+|-------|-----------|--------|------------|
+| **Unchecked** | `surface-base` | `foreground-tertiary` | — |
+| **Hover (Unchecked)** | `surface-base` | `brand-primary` | — |
+| **Checked** | `brand-primary` | `brand-primary` | `foreground-inverse` |
+| **Hover (Checked)** | `brand-primary-hover` | `brand-primary-hover` | `foreground-inverse` |
+| **Indeterminate** | `brand-primary` | `brand-primary` | `foreground-inverse` |
+| **Disabled** | `surface-muted` | `surface-muted` | `foreground-tertiary` |
+| **Focus Ring** | — | 2px solid `brand-accent` | — |
+
+## Default Icon
+
+The checked icon is a custom checkmark (75% of box size) for crisp rendering at all sizes. The indeterminate icon is a horizontal minus bar, balanced to match the visual weight of the checkmark. Both are drawn with 2-2.25px stroke at `currentColor`.
+
+## Typography
+
+| Size | Label Font Size | Label Font Weight | Line Height |
+|------|----------------|-------------------|-------------|
+| **sm** | 12px | 400 (regular) | 1.3 |
+| **md** | 13px | 400 (regular) | 1.3 |
+| **lg** | 14px | 400 (regular) | 1.3 |
+
+Disabled labels use `foreground-tertiary` for clear contrast.
+
+## Spacing Details
+
+### Wrapper Layout
+
+```
+┌─────────────────────────────┐
+│←gap→┌────┐←gap→┌──────────┐│
+│     │ ✓  │     │  Label   ││
+│     └────┘     └──────────┘│
+└─────────────────────────────┘
+   8px gap    8px gap
+```
+
+| Property | Value |
+|----------|-------|
+| Wrapper to Box Gap | 8px |
+| Box to Label Gap | 8px |
+| Vertical Alignment | center |
+
+## Transitions
+
+| Property | Duration | Easing |
+|----------|----------|--------|
+| Border color | 200ms | ease-in-out |
+| Background color | 200ms | ease-in-out |
+
+## Custom Values
+
+Checkboxes support custom true/false values for non-boolean bindings:
+
+```vue
+<!-- String values -->
+<MizuCheckbox
+  v-model="acceptTerms"
+  true-value="yes"
+  false-value="no"
+  label="Accept terms"
+/>
+
+<!-- Number values -->
+<MizuCheckbox
+  v-model="permission"
+  :true-value="1"
+  :false-value="0"
+  label="Grant permission"
+/>
+```
+
+This is useful for:
+- Form state stored as strings (`"yes"` / `"no"`)
+- Numeric permissions (`0` / `1`)
+- Enum-like state where `true`/`false` isn't appropriate
+
+## Select All with Children
+
+The most common use case for indeterminate: a parent checkbox that reflects the state of a group of children. The parent shows **checked** when all children are selected, **unchecked** when none are, and **indeterminate** when some — but not all — are selected.
+
+Use a computed `v-model` for the parent and individual `ref`s for each child. The parent's setter writes to all children, and the getter derives state from the children's current values:
+
+```vue
+<script setup>
+import { computed, ref } from 'vue'
+import { MizuCheckbox } from '@mizu/vue'
+
+const emailEnabled = ref(true)
+const smsEnabled = ref(false)
+const pushEnabled = ref(true)
+const channelRefs = [emailEnabled, smsEnabled, pushEnabled]
+
+const selectedCount = computed(
+  () => channelRefs.filter((c) => c.value === true).length,
+)
+const allSelected = computed(
+  () => selectedCount.value === channelRefs.length,
+)
+const someSelected = computed(() => selectedCount.value > 0)
+
+const parentState = computed({
+  get() {
+    if (allSelected.value) return true
+    if (someSelected.value) return 'indeterminate'
+    return false
+  },
+  set(value) {
+    const next = value === true
+    for (const c of channelRefs) c.value = next
+  },
+})
+</script>
+
+<template>
+  <MizuCheckbox v-model="parentState" label="Notification preferences" />
+  <fieldset class="checkbox-children">
+    <MizuCheckbox v-model="emailEnabled" label="EMAIL" />
+    <MizuCheckbox v-model="smsEnabled" label="SMS" />
+    <MizuCheckbox v-model="pushEnabled" label="PUSH" />
+  </fieldset>
+</template>
+```
+
+Behavior:
+- **0 selected** → parent unchecked
+- **Some selected** → parent indeterminate (minus icon)
+- **All selected** → parent checked
+- **Clicking parent** when indeterminate → selects all
+- **Clicking parent** when all selected → deselects all
+- **Toggling any child** automatically updates parent state via the computed
+
+This pattern is the standard for email clients (select all messages), permission dialogs (toggle all channels), and filter sidebars.
+
+## Checkbox Groups
+
+For groups of checkboxes (e.g. a list of permissions), use a plain Vue `v-for` over `MizuCheckbox` components with individual `ref`s. The design system does not ship a dedicated group component — keep it composable.
+
+```vue
+<script setup>
+import { ref } from 'vue'
+import { MizuCheckbox } from '@mizu/vue'
+
+const emailEnabled = ref(true)
+const smsEnabled = ref(false)
+const pushEnabled = ref(true)
+</script>
+
+<template>
+  <fieldset>
+    <legend>Notification preferences</legend>
+    <MizuCheckbox v-model="emailEnabled" label="Email" />
+    <MizuCheckbox v-model="smsEnabled" label="SMS" />
+    <MizuCheckbox v-model="pushEnabled" label="Push" />
+  </fieldset>
+</template>
+```
+
+> **Note:** If you need array-based v-model (`v-model="selected"` where `selected` is an array), import Reka UI's `CheckboxGroupRoot` and `CheckboxRoot` from `reka-ui` directly — MizuCheckbox's wrapper does not integrate with the group context.
+
+## Accessibility
+
+### Requirements
+
+| Criterion | Implementation |
+|-----------|----------------|
+| Tri-state pattern | `aria-checked="mixed"` when indeterminate (Reka UI handles) |
+| Keyboard | `Space` toggles the checkbox |
+| Focus Indicator | 2px brand-accent ring on `:focus-visible` |
+| Label Association | Wrapped in `<label>` for native click target |
+| Disabled | `aria-disabled="true"` + `disabled` attribute (Reka UI handles) |
+| Required | `aria-required="true"` + `required` attribute (Reka UI handles) |
+| Form Integration | Hidden `<input type="checkbox">` auto-renders inside forms |
+
+### Keyboard Interactions
+
+| Key | Description |
+|-----|-------------|
+| `Space` | Toggles the checkbox between checked and unchecked |
+| `Tab` | Moves focus to / from the checkbox |
+
+### Hidden Input
+
+When used inside a `<form>`, Reka UI automatically renders a hidden `<input type="checkbox">` to ensure form submission and event propagation work correctly. The visible box is a presentational `<button>` element.
+
+## Token Mapping
+
+### CSS Custom Properties
+
+| Token | Value | Usage |
+|-------|-------|-------|
+| `--color-surface-base` | white / dark | Unchecked background |
+| `--color-surface-muted` | gray-100 | Disabled background |
+| `--color-foreground-tertiary` | gray-400 | Unchecked border |
+| `--color-foreground-inverse` | white | Check icon |
+| `--color-brand-primary` | brand color | Checked bg + border |
+| `--color-brand-primary-hover` | brand hover | Checked hover |
+| `--color-brand-accent` | accent color | Focus ring |
+| `--radius-default` | 8px | Border radius (4px used) |
+
+## Vue Component API
+
+### Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `modelValue` | `boolean \| 'indeterminate' \| null` | `false` | Checked state (v-model) |
+| `disabled` | `boolean` | `false` | Disable interaction |
+| `required` | `boolean` | `false` | Mark as required (form validation) |
+| `name` | `string` | `undefined` | Form field name |
+| `value` | `string` | `undefined` | Form field value (for groups) |
+| `label` | `string` | `undefined` | Inline label text |
+| `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | Visual size |
+| `trueValue` | `boolean \| string \| number` | `true` | Value when checked |
+| `falseValue` | `boolean \| string \| number` | `false` | Value when unchecked |
+
+### Events
+
+| Event | Payload | Description |
+|-------|---------|-------------|
+| `update:modelValue` | `boolean \| 'indeterminate' \| null` | Emitted on toggle (for v-model) |
+
+### Example Usage
+
+```vue
+<template>
+  <!-- Basic checkbox with label -->
+  <MizuCheckbox v-model="agreed" label="I accept the terms" />
+
+  <!-- Different sizes -->
+  <MizuCheckbox size="sm" label="Small" />
+  <MizuCheckbox size="md" label="Medium (default)" />
+  <MizuCheckbox size="lg" label="Large" />
+
+  <!-- Disabled state -->
+  <MizuCheckbox disabled label="Unavailable option" />
+  <MizuCheckbox disabled default-value label="Locked in" />
+
+  <!-- Indeterminate state -->
+  <MizuCheckbox
+    v-model="parentState"
+    label="Select all"
+  />
+
+  <!-- Custom true/false values -->
+  <MizuCheckbox
+    v-model="newsletter"
+    true-value="subscribed"
+    false-value="unsubscribed"
+    label="Subscribe to newsletter"
+  />
+
+  <!-- Required checkbox in a form -->
+  <form @submit.prevent="onSubmit">
+    <MizuCheckbox v-model="agreed" required label="I accept the terms" />
+    <button type="submit">Continue</button>
+  </form>
+</template>
+```
+
+## Implementation Notes
+
+1. **Reka UI Checkbox primitive** - Built on Reka UI's `CheckboxRoot` + `CheckboxIndicator` for tri-state support, keyboard nav, and form integration
+2. **Tailwind `@apply`** - Component styles use `@apply` with `@reference` for Tailwind v4 compatibility
+3. **CSS Custom Properties** - Colors are resolved via CSS variables from `@mizu/tokens`
+4. **Self-contained CSS** - Tailwind utilities are bundled into `dist/index.css` via `@tailwindcss/vite`; consumers do not need Tailwind installed
+5. **Class inheritance** - Accept `class` prop for overrides via `useAttrs()`
+6. **TypeScript** - Full type safety with `<script setup lang="ts">`
+7. **Tree-shakeable** - Export as ESM + CJS via Vite library mode
+8. **Native label** - Wrapped in `<label>` for native click + screen reader association; no manual `for`/`id` needed
+9. **Hidden form input** - Reka UI auto-renders a hidden `<input type="checkbox">` inside `<form>` for proper form submission
+10. **Indeterminate handling** - Pass the raw `modelValue` (not a boolean) to Reka UI so `data-state="indeterminate"` is set correctly; the indicator (wrapped in `<Presence>`) only renders for `checked` or `indeterminate` states
+11. **Indeterminate by parent** - Component doesn't auto-derive indeterminate; use a computed `v-model` that returns `'indeterminate'` when some (but not all) children are selected (see Select All pattern)
+12. **No group component** - Use a `v-for` over individual `MizuCheckbox` components with their own `v-model`; for array-based group v-model, use Reka UI's `CheckboxGroupRoot` + `CheckboxRoot` directly

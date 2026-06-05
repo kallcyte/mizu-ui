@@ -6,6 +6,20 @@
 
 @import "@mizu/tokens/starlight.css";
 
+/* Restore list markers (Tailwind v4 preflight in @mizu/vue/style.css resets them) */
+.sl-markdown-content ol {
+  list-style: decimal;
+  padding-left: 1.5rem;
+}
+.sl-markdown-content ul {
+  list-style: disc;
+  padding-left: 1.5rem;
+}
+.sl-markdown-content ol li,
+.sl-markdown-content ul li {
+  margin-top: 0.25rem;
+}
+
 /* Base styles */
 html,
 body,

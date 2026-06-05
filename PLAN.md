@@ -174,6 +174,17 @@ Mizu product pages that exercise the full component set and demonstrate ERP UI p
 
 Each page lives in `src/pages/samples/` and imports components from `@mizu/vue` (or directly from `src/components/ui/` when the Vue package isn't ready).
 
+### Form Validation (Future)
+
+Validation will be demonstrated through the sample pages rather than baked into `MizuInput`. The component stays a controlled primitive (`v-model` + `error` + `helperText` props) and consumers plug in their own validation layer.
+
+Candidate approaches to evaluate when implementing the Login page:
+- Hand-rolled composables using `ref` + `computed` (no dependency)
+- VeeValidate + `@vee-validate/zod` (popular Vue form library with schema support)
+- Zod schemas wrapped in a thin `useMizuField` composable
+
+A "Validation patterns" section may also be added to the Input demo showing required / email format / min length / password match examples without a library.
+
 ## Build & Dev
 
 ```bash

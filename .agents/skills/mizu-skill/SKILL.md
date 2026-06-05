@@ -9,7 +9,9 @@ disable-model-invocation: false
 1. This project follows semantic versioning (SemVer) during pre-1.0 development.
 2. Only commit, push, and release to the repo if requested explicitly.
 3. This skill can be updated in the future. Any suggestions for this skill may be considered.
-4. Component documentation under `src/content/docs/components/{name}.mdx` MUST follow the structure below.
+4. After finalizing a new component, update the component documentation under `src/content/docs/components/{name}.mdx` to follow the structure below and add the component card to homepage.
+5. Component documentation under `src/content/docs/components/{name}.mdx` MUST follow the structure below.
+6. Create a new changelog entry for the new component.
 
 ## Don'ts
 

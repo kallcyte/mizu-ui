@@ -140,7 +140,7 @@ function handleClick(event: MouseEvent) {
 
 /* Sizes */
 .bp-button--sm {
-  @apply h-[22px] px-[6px] py-[6px] text-[10px] leading-none gap-[4px] rounded-[4px];
+  @apply h-[28px] px-[8px] py-[8px] text-[12px] leading-none gap-[4px] rounded-[4px];
 }
 .bp-button--md {
   @apply h-[36px] px-[10px] py-[10px] text-[12px] leading-none gap-[6px] rounded-[6px];

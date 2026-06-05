@@ -118,6 +118,7 @@ import "@mizu/vue/style.css";
 
 <style scoped>
 .card-demo {
+    all: revert;
     display: flex;
     flex-direction: column;
     gap: 24px;

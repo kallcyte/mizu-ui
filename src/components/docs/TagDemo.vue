@@ -100,12 +100,17 @@ const resetTags = () => {
 
 <style scoped>
 .tag-demo {
+    all: revert;
     display: flex;
     flex-direction: column;
     gap: 24px;
     padding: 24px;
     background: var(--sl-color-gray-2);
     border-radius: 8px;
+}
+
+.tag-demo :deep(*) {
+    margin: 0;
 }
 
 .demo-section {

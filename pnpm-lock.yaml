@@ -63,6 +63,9 @@ importers:
       '@mizu/tokens':
         specifier: workspace:*
         version: link:../tokens
+      reka-ui:
+        specifier: ^2.9.0
+        version: 2.9.8(vue@3.5.35(typescript@5.9.3))
       vue:
         specifier: ^3.5.0
         version: 3.5.35(typescript@5.9.3)
