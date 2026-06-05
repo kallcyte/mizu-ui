@@ -16,6 +16,27 @@ This project follows **semantic versioning** (SemVer) during pre-1.0 development
 Changes that require a minor bump: adding a new component, renaming tokens, changing component APIs, adding new packages (e.g. React).
 Changes that keep the patch version: renames, copy edits, styling tweaks, build config changes, favicon updates.
 
+## 0.5.0 (2026-06-05)
+
+### Added
+
+- **`MizuInput`** — text input with `label`, `helperText`, `error` state, `prefix` / `suffix` slots, 3 sizes (sm/md/lg), disabled, required, and `type` support (text, email, password, number, tel, url, search). Uses native `<input>` for full form integration; aria-invalid and aria-describedby wired to error/helper text.
+- **`MizuAlert`** — feedback messaging with 4 variants (`success`, `error`, `warning`, `info`), optional `title`, default and `compact` density, and `dismissible` mode (rendered with a `lucide-vue` `X` icon). No buttons or actions — messaging only.
+- **`MizuCheckbox`** — tri-state checkbox with checked / unchecked / `indeterminate`, `disabled`, `required`, optional inline `label`, custom `trueValue` / `falseValue` for non-boolean bindings, and unique id via `useId()`. Built on Reka UI `CheckboxRoot` + `CheckboxIndicator` for accessibility.
+- **`reka-ui@^2.9.0`** added as a peer-style dependency of `@mizu/vue` for primitive accessibility.
+- Component cards for **Alert**, **Checkbox**, and **Input** added to the homepage Components section.
+
+### Fixed
+
+- **`MizuButton` sm size** corrected to match the design system spec (22px → 28px height). Other sizes were already correct.
+- **Starlight list markers** in `.sl-markdown-content` ordered/unordered lists were inheriting `none` from Starlight defaults; added explicit `list-style` rules in `starlight.css`.
+
+### Documentation
+
+- New MDX pages: `alert.mdx`, `checkbox.mdx`, `input.mdx` — each following the skill-spec skeleton (anatomy, variants, color/state map, token mapping, Vue component API, implementation notes).
+- `button.mdx` size-specification table updated to reflect the corrected sm height.
+- `PLAN.md` §"Form Validation (Future)" added — documents that validation lives in the consumer layer and lists three candidate approaches (hand-rolled composable, VeeValidate + Zod, thin `useMizuField` wrapper).
+
 ## 0.4.1 (2026-06-05)
 
 ### Added
