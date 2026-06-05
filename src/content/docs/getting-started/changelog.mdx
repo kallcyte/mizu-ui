@@ -16,6 +16,24 @@ This project follows **semantic versioning** (SemVer) during pre-1.0 development
 Changes that require a minor bump: adding a new component, renaming tokens, changing component APIs, adding new packages (e.g. React).
 Changes that keep the patch version: renames, copy edits, styling tweaks, build config changes, favicon updates.
 
+## 0.6.0 (2026-06-05)
+
+### Added
+
+- **`MizuAvatar`** — user/entity avatar with `src` (image), `name` (initials fallback), `alt` (decorative), 4 sizes (sm/md/lg/xl: 24/32/40/56px), 2 shapes (`circle` / `square` with size-scaled radius), 4 color variants (`muted` / `primary` / `accent` / `neutral`), and an `icon` slot for custom fallback content. Built-in source priority: `src` (image) → `name` (initials) → `icon` slot → default person silhouette SVG. Uses native `<div role="img">` with possessive `aria-label` (e.g. "Mariko Tanaka's avatar").
+- **Component card for Avatar** added to the homepage Components section.
+- **MizuAvatar demo** with 11 sections: Basic, With Image, Sizes, Sizes With Image, Shapes, Color Variants, Anonymous, Custom Icon Slot, Team List, Comment Thread, Profile Header.
+
+### Fixed
+
+- **Dark mode backgrounds in AvatarDemo** — `.team-list`, `.team-row`, `.comment`, and `.profile` now switch to `var(--sl-color-black)` background and `var(--sl-color-gray-5)` border when `<html data-theme="dark">` is active. Selector pattern updated to use `:global(html[data-theme="dark"] .class)` so the class selector survives Vue scoped CSS compilation.
+- **Muted text contrast in dark mode** — secondary text (`.team-meta`, `.comment-time`, `.profile-role`) now uses `--sl-color-text-light` (resolves to `--color-foreground-secondary`: #94A3B8 in dark mode) instead of `--sl-color-gray-5` (#3B3F52, too dark for text on black).
+
+### Documentation
+
+- New MDX page: `avatar.mdx` — full skill-spec structure (anatomy, variants, color/size specs, typography, shape, source priority, spacing, accessibility, token mapping, Vue API, implementation notes).
+- Sidebar Components list updated to include Avatar (alphabetical order).
+
 ## 0.5.0 (2026-06-05)
 
 ### Added

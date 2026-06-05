@@ -20,3 +20,5 @@ export { default as MizuAlert } from "./components/MizuAlert.vue";
 export type { AlertProps } from "./components/MizuAlert.vue";
 export { default as MizuCheckbox } from "./components/MizuCheckbox.vue";
 export type { CheckboxProps } from "./components/MizuCheckbox.vue";
+export { default as MizuAvatar } from "./components/MizuAvatar.vue";
+export type { AvatarProps } from "./components/MizuAvatar.vue";

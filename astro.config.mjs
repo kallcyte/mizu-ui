@@ -66,6 +66,7 @@ export default defineConfig({
           label: "Components",
           items: [
             { label: "Alert", slug: "components/alert" },
+            { label: "Avatar", slug: "components/avatar" },
             { label: "Button", slug: "components/button" },
             { label: "Card", slug: "components/card" },
             { label: "Checkbox", slug: "components/checkbox" },
