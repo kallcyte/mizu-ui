@@ -11,7 +11,7 @@ disable-model-invocation: false
 3. This skill can be updated in the future. Any suggestions for this skill may be considered.
 4. After finalizing a new component, update the component documentation under `src/content/docs/components/{name}.mdx` to follow the structure below and add the component card to homepage.
 5. Component documentation under `src/content/docs/components/{name}.mdx` MUST follow the structure below.
-6. Create a new changelog entry for the new component.
+6. Create a new changelog entry before doing commit.
 
 ## Don'ts
 
