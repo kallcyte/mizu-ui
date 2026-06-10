@@ -103,7 +103,7 @@ body,
 
 /* Version badge */
 .site-title::after {
-  content: "v0.2.0";
+  content: "v0.12.0";
   font-size: 0.6875rem;
   font-weight: 600;
   padding: 0.125rem 0.5rem;
@@ -141,6 +141,23 @@ h1.title {
   text-transform: uppercase;
   font-size: 0.6875rem;
   letter-spacing: 0.05em;
+}
+
+/* Prevent Starlight margin-top bleed into demo sections */
+.sl-markdown-content [class*="-demo"] {
+  margin-top: 0 !important;
+}
+
+.sl-markdown-content [class*="-demo"] > * {
+  margin-top: 0 !important;
+}
+
+.sl-markdown-content [class*="-demo"] .demo-section {
+  margin-top: 0 !important;
+}
+
+.sl-markdown-content [class*="-demo"] .demo-section > * {
+  margin-top: 0 !important;
 }
 
 /* Ensure all text is visible */

@@ -137,6 +137,10 @@ import {
     gap: 12px;
 }
 
+.demo-section > * {
+    margin-top: 0;
+}
+
 .demo-section h3 {
     font-size: 14px;
     font-weight: 600;

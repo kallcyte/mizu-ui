@@ -13,11 +13,15 @@ disable-model-invocation: false
 5. Component documentation under `src/content/docs/components/{name}.mdx` MUST follow the structure below.
 6. Create a new changelog entry before doing commit.
 7. **Always rebuild `@mizu/vue` after adding or modifying components** — run `pnpm --filter @mizu/vue build`. Astro SSR resolves `@mizu/vue` to the built `dist/` files (not the source `src/` files), so stale dist means new components render as `undefined` and pages crash with "Unable to render ... because it contains an undefined Component!"
+8. Always update version number on homepage, navigation bar, and starlight navigation bar.
+9. **Demo components must prevent Starlight CSS bleed** — add `all: revert` on the root element AND add `margin-top: 0` to `.demo-section` and `.demo-section > *` in scoped styles. This prevents the Starlight rule `.sl-markdown-content :not(...) + :not(...) { margin-top: var(--sl-content-gap-y) }` from adding unwanted spacing inside demos.
 
 ## Don'ts
 
 1. Don't assume to push updates or changes to repo automatically
 2. Don't add components to `src/components/home/` (legacy) — put new component demos under `src/components/docs/{Name}Demo.vue`
+3. Don't let Starlight CSS bleed into demo sections — the rule `.sl-markdown-content :not(a, strong, em, del, span, input, code, br) + :not(a, strong, em, del, span, input, code, br, :where(.not-content *))` adds unwanted `margin-top` to elements inside demos. Demo components must reset this.
+4. Don't create a new component without my command. A new component should only be created when I specifically request it.
 
 ## Component Documentation Structure
 

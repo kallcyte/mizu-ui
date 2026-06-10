@@ -104,6 +104,9 @@ function handleSubmit() {
   margin-bottom: 0;
   margin-top: 0;
 }
+.demo-section > div {
+  margin-top: 0;
+}
 
 .textarea-stack {
   display: flex;

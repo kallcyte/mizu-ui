@@ -158,6 +158,9 @@ function reset() {
   color: var(--sl-color-text);
   margin-bottom: 0;
 }
+.demo-section > div {
+  margin-top: 0;
+}
 
 .checklist {
   display: flex;

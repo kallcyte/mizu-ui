@@ -106,7 +106,7 @@ Each component:
 - Fully typed with `<script setup lang="ts">`
 - Published as ESM + CJS, tree-shakeable
 
-### Batch 1 components
+### Batch 1 components (complete)
 
 | Component | Reka primitive | Key props |
 |---|---|---|
@@ -126,6 +126,247 @@ Each component:
 | `MizuQuote` | native blockquote | `cite`, `accent` |
 | `MizuDashList` | native ul | `items: string[]` |
 | `MizuMetric` | native div | `value`, `label`, `color` |
+
+### Batch 2a — Core ERP Components (planned)
+
+**Version**: `@mizu/vue` → `0.8.0`
+
+**New dependencies**:
+- `@tanstack/vue-table` — DataTable logic (sorting, filtering, pagination, row selection)
+- `@internationalized/date` — DatePicker (required by Reka UI DatePicker)
+- `@internationalized/number` — NumberField locale formatting
+
+```bash
+pnpm --filter @mizu/vue add @tanstack/vue-table @internationalized/date @internationalized/number
+```
+
+**Implementation order**: Breadcrumb → Pagination → DataTable → Tooltip → Dialog → AlertDialog → Toast → DropdownMenu → Tabs → Combobox → NumberField → DatePicker
+
+| # | Component | Reka primitive | Key props |
+|---|-----------|---------------|-----------|
+| 1 | `MizuBreadcrumb` | native HTML | `items: BreadcrumbItem[]`, `separator` (/ > ·), `size` (sm/md/lg) |
+| 2 | `MizuPagination` | Pagination | `page` (v-model), `total`, `siblingCount`, `showEdges`, `size` |
+| 3 | `MizuDataTable` | @tanstack/vue-table | `columns: ColumnDef[]`, `data`, `sortable`, `selectable`, `loading`, `pageSize`. Supports both props-only and slot-based cell rendering. |
+| 4 | `MizuTooltip` | Tooltip | `content`, `side`, `delayDuration`, `sideOffset` |
+| 5 | `MizuDialog` | Dialog | `open` (v-model), `title`, `description`, `size`. Slots: #trigger, #default, #close |
+| 6 | `MizuAlertDialog` | AlertDialog | `open` (v-model), `title`, `description`, `confirmText`, `cancelText`, `variant` (danger/warning/info) |
+| 7 | `MizuToast` | Toast | `variant`, `title`, `description`, `duration`, `action`. Both composable (`useToast()`) and component API. Requires `<ToastProvider>` + `<ToastViewport>` in app root. |
+| 8 | `MizuDropdownMenu` | DropdownMenu | `items: DropdownMenuItem[]`. Supports #trigger slot. |
+| 9 | `MizuTabs` | Tabs | `tabs: Tab[]`, `modelValue`, `defaultValue`, `orientation`, `size` |
+| 10 | `MizuCombobox` | Combobox | `modelValue`, `options`, `placeholder`, `disabled`, `error`, `multiple`, `size` |
+| 11 | `MizuNumberField` | NumberField | `modelValue`, `min`, `max`, `step`, `formatOptions`, `size` |
+| 12 | `MizuDatePicker` | DatePicker (Alpha) | `modelValue`, `placeholder`, `disabled`, `error`, `size`, `granularity` (day/month/year) |
+
+#### MizuBreadcrumb
+
+```typescript
+interface BreadcrumbItem {
+  label: string;
+  href?: string;       // if omitted, renders as current page (aria-current="page")
+  icon?: Component;
+}
+
+interface BreadcrumbProps {
+  items: BreadcrumbItem[];
+  separator?: "/" | ">" | "·" | Component;
+  size?: "sm" | "md" | "lg";
+}
+```
+
+#### MizuDataTable
+
+```typescript
+import type { ColumnDef, SortingState, VisibilityState } from "@tanstack/vue-table";
+
+interface DataTableProps<T> {
+  columns: ColumnDef<T, unknown>[];
+  data: T[];
+  sortable?: boolean;
+  selectable?: boolean;
+  loading?: boolean;
+  emptyText?: string;
+  pageSize?: number;
+  page?: number;            // v-model:page
+  totalRows?: number;
+}
+
+// Slots: #cell-{accessorKey}, #empty, #loading, #header
+// Events: update:page, sortingChange, rowSelect
+```
+
+#### MizuCombobox
+
+```typescript
+interface ComboboxOption {
+  value: string;
+  label: string;
+  disabled?: boolean;
+  icon?: Component;
+}
+
+interface ComboboxProps {
+  modelValue?: string | string[];
+  options: ComboboxOption[];
+  placeholder?: string;
+  disabled?: boolean;
+  error?: boolean;
+  multiple?: boolean;
+  size?: "sm" | "md" | "lg";
+  label?: string;
+  helperText?: string;
+  searchable?: boolean;     // default true
+}
+```
+
+#### MizuNumberField
+
+```typescript
+interface NumberFieldProps {
+  modelValue?: number;
+  min?: number;
+  max?: number;
+  step?: number;
+  formatOptions?: Intl.NumberFormatOptions;
+  disabled?: boolean;
+  error?: boolean;
+  size?: "sm" | "md" | "lg";
+  label?: string;
+  helperText?: string;
+  placeholder?: string;
+}
+```
+
+#### MizuDatePicker
+
+```typescript
+import type { DateValue } from "@internationalized/date";
+
+interface DatePickerProps {
+  modelValue?: DateValue;
+  placeholder?: string;
+  disabled?: boolean;
+  error?: boolean;
+  size?: "sm" | "md" | "lg";
+  label?: string;
+  helperText?: string;
+  granularity?: "day" | "month" | "year";
+}
+```
+
+#### MizuDialog
+
+```typescript
+interface DialogProps {
+  open?: boolean;          // v-model:open
+  title?: string;
+  description?: string;
+  size?: "sm" | "md" | "lg";
+}
+// Slots: #trigger, #default (content), #close
+```
+
+#### MizuAlertDialog
+
+```typescript
+interface AlertDialogProps {
+  open?: boolean;          // v-model:open
+  title?: string;
+  description?: string;
+  confirmText?: string;
+  cancelText?: string;
+  variant?: "danger" | "warning" | "info";
+}
+// Events: confirm, cancel
+```
+
+#### MizuToast
+
+```typescript
+// Provider wraps app, ToastProvider + ToastViewport
+interface ToastProps {
+  variant?: "success" | "error" | "warning" | "info";
+  title?: string;
+  description?: string;
+  duration?: number;       // auto-close ms
+  action?: { label: string; onClick: () => void };
+}
+// Composable: useToast() — toast.success("msg"), toast.error("msg")
+```
+
+#### MizuTabs
+
+```typescript
+interface Tab {
+  value: string;
+  label: string;
+  icon?: Component;
+  disabled?: boolean;
+}
+
+interface TabsProps {
+  tabs: Tab[];
+  modelValue?: string;     // v-model:activeTab
+  defaultValue?: string;
+  orientation?: "horizontal" | "vertical";
+  size?: "sm" | "md" | "lg";
+}
+// Slots: #tab-{value} for each tab's content
+```
+
+#### MizuDropdownMenu
+
+```typescript
+interface DropdownMenuItem {
+  label: string;
+  icon?: Component;
+  shortcut?: string;
+  disabled?: boolean;
+  danger?: boolean;
+}
+
+interface DropdownMenuProps {
+  trigger?: string;        // trigger label or use #trigger slot
+  items: DropdownMenuItem[];
+}
+// Events: select(item)
+```
+
+#### MizuTooltip
+
+```typescript
+interface TooltipProps {
+  content: string;
+  side?: "top" | "bottom" | "left" | "right";
+  delayDuration?: number;
+  sideOffset?: number;
+}
+// Default slot: the trigger element
+```
+
+#### MizuPagination
+
+```typescript
+interface PaginationProps {
+  page: number;            // v-model:page
+  total: number;           // total pages
+  siblingCount?: number;   // default 1
+  showEdges?: boolean;     // default false
+  size?: "sm" | "md" | "lg";
+}
+```
+
+### Batch 2b — Supporting Components (deferred)
+
+| # | Component | Reka primitive | Key props |
+|---|-----------|---------------|-----------|
+| 13 | `MizuAccordion` | Accordion | `items`, `type` (single/multiple), `collapsible` |
+| 14 | `MizuPopover` | Popover | `open` (v-model), `side`, `sideOffset`, `align` |
+| 15 | `MizuCollapsible` | Collapsible | `open` (v-model), `disabled` |
+| 16 | `MizuTagsInput` | TagsInput | `modelValue`, `placeholder`, `max`, `delimiter`, `size` |
+| 17 | `MizuSlider` | Slider | `modelValue`, `min`, `max`, `step`, `orientation`, `size` |
+| 18 | `MizuToggleGroup` | ToggleGroup | `modelValue`, `options`, `type` (single/multiple), `size` |
+| 19 | `MizuScrollArea` | ScrollArea | `orientation`, `maxHeight`, `maxWidth` |
+| 20 | `MizuNavigationMenu` | NavigationMenu | `items`, `orientation`, `size` |
 
 ## Phase 3: @mizu/react (packages/react/) — future
 
@@ -160,7 +401,11 @@ CSS variable mapping (one-way adapter):
 - **Docs site**: Astro 5, uses Mizu's own Tailwind classes (not shadcn semantic classes)
 - **Single token source**: `@mizu/tokens` is consumed by every package and the docs site — no duplicate hardcoded values anywhere
 - **Token naming**: canonical CSS vars are `--color-{group}-{variant}` with full kebab-case path. Feedback colors keep the `feedback` segment (e.g. `--color-feedback-success-base`); previously the docs used the short form `--color-success-base`, now removed
-- **`@mizu/tokens` 0.4.0** is a breaking change: Vue components drop the `--bp-color-*` prefix in favor of canonical `--color-*`; the `--bp-card-*` / `--bp-btn-*` / `--bp-tag-*` component-local vars are preserved
+- **`@mizu/tokens` 0.7.0** aligns with root version; `@mizu/vue` 0.7.0 (Batch 1), 0.8.0 (Batch 2a)
+- **DataTable**: Uses `@tanstack/vue-table` for sorting, filtering, pagination, row selection. Supports both props-only and slot-based cell rendering.
+- **Toast**: Dual API — composable (`useToast()`) for programmatic triggers, and component (`<MizuToast>`) for template use. Requires `<ToastProvider>` + `<ToastViewport>` at app root.
+- **DatePicker**: Uses Reka UI's DatePicker primitive (Alpha status). Accepts API stability risk.
+- **Batch 2b deferred** — supporting components (Accordion, Popover, Collapsible, TagsInput, Slider, ToggleGroup, ScrollArea, NavigationMenu) planned for later
 - **No showcase page yet** — deferred to a later phase
 
 ## Sample Pages (Future)
@@ -170,7 +415,9 @@ Mizu product pages that exercise the full component set and demonstrate ERP UI p
 | Page | Primary UX pattern | Components exercised |
 |---|---|---|
 | Login | Auth form | Input, Button, Checkbox, Alert, Card |
-| Dashboard | Data overview | Metric, Tag, Avatar, Progress, DashList |
+| Dashboard | Data overview | Metric, Tag, Avatar, Progress, DashList, Tabs, DataTable |
+| Customer List | CRUD table | DataTable, Pagination, DropdownMenu, Breadcrumb, Dialog, Toast |
+| Order Form | Complex form | Input, NumberField, DatePicker, Combobox, Select, Button, AlertDialog |
 
 Each page lives in `src/pages/samples/` and imports components from `@mizu/vue` (or directly from `src/components/ui/` when the Vue package isn't ready).
 

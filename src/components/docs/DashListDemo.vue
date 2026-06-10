@@ -85,6 +85,9 @@ const productSpecs = [
   margin-bottom: 0;
   margin-top: 0;
 }
+.demo-section > div {
+  margin-top: 0;
+}
 
 .demo-section h4 {
   font-size: 12px;

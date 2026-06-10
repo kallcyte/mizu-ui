@@ -46,7 +46,6 @@ const team = [
                     src="https://i.pravatar.cc/96?img=49"
                 />
                 <MizuAvatar
-                    src="https://broken-link.example.com/missing.jpg"
                     name="Broken Image"
                 />
             </div>
@@ -255,6 +254,9 @@ const team = [
     color: var(--sl-color-text);
     margin-bottom: 0;
     margin-top: 0;
+}
+.demo-section > div {
+  margin-top: 0;
 }
 
 .avatar-row {
