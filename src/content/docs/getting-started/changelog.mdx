@@ -16,6 +16,40 @@ This project follows **semantic versioning** (SemVer) during pre-1.0 development
 Changes that require a minor bump: adding a new component, renaming tokens, changing component APIs, adding new packages (e.g. React).
 Changes that keep the patch version: renames, copy edits, styling tweaks, build config changes, favicon updates.
 
+## 0.12.0 (2026-06-09)
+
+Batch 2a — all compound components added in a single release.
+
+### Added
+
+- **`MizuAlertDialog`** -- compound component for modal confirmation dialogs with `role="alertdialog"`. Built on Reka UI `AlertDialogRoot`. 9 sub-components: Root, Portal, Overlay, Content, Title, Description, Action, Cancel, Trigger.
+- **`MizuBreadcrumb`** -- navigation component that shows the current page location within a hierarchy. Props: `items` (array of `{ label, href?, icon? }`), `separator` (`/` / `>` / `·` or custom component), `size` (sm/md/lg). Uses `<nav>` with `aria-label="Breadcrumb"`, `<ol>` for list semantics, and `aria-current="page"` on the current item.
+- **`MizuCombobox`** -- compound component for searchable list input. 16 sub-components with single/multi selection, custom filtering, grouped items, lazy loading, and `MizuTag` for multi-select chips.
+- **`MizuDataTable`** -- table component for displaying structured data with sorting, pagination, and row selection. Built on `@tanstack/vue-table`. Props: `columns` (ColumnDef[]), `data`, `sortable`, `selectable`, `loading`, `emptyText`, `pageSize`, `page` (v-model), `totalRows`.
+- **`MizuDatePicker`** (Alpha) -- compound component for calendar-based date selection. Marked as Alpha — API may change.
+- **`MizuDialog`** -- compound component for modal dialogs. Built on Reka UI `DialogRoot`. 11 sub-components: Root, Portal, Overlay, Content, Title, Description, Close, Trigger, Header, Body, Footer.
+- **`MizuDropdownMenu`** -- compound component for contextual menus triggered by a button. 17 sub-components including `MizuDropdownMenuShortcut` for keyboard hints. Supports items with leading Lucide icons, checkbox toggles, radio groups, nested submenus with chevron icon, and destructive actions.
+- **`MizuNumberField`** -- compound component for numeric input with stepper controls. Supports `Intl.NumberFormatOptions` for decimal, currency, and percentage formatting.
+- **`MizuPagination`** -- pagination navigation for paging through data. Built on Reka UI `PaginationRoot`. Props: `page` (v-model), `total`, `siblingCount`, `showEdges`, `size` (sm/md/lg).
+- **`MizuTabs`** -- compound component for tabbed content panels. `variant` prop (`"underline"` | `"button"`) for button-group / segmented-control style. `size` prop (`"sm"` | `"md"` | `"lg"`) for all variants.
+- **`MizuToast`** -- compound component for auto-dismissible notifications. `position` prop (6 positions) on `MizuToastProvider`. `showTimer` option for visible countdown timer. Gradient variant styling with solid left border and colored Lucide icon.
+- **`MizuTooltip`** -- compound component for contextual popups on hover or focus. Built on Reka UI `TooltipProvider`. Props: `side`, `sideOffset`, `align`, `showArrow`, `delayDuration`. Direction-aware slide-and-fade animations.
+
+### Changed
+
+- **`MizuDropdownMenuItem`** -- added `variant` prop (`"default"` | `"destructive"`) for danger actions using `--color-feedback-error-base`.
+- **`MizuDropdownMenuSubTrigger`** -- now includes a built-in chevron-right SVG icon.
+- **`MizuDropdownMenuCheckboxItem`** -- supports both `modelValue` and `checked` props, emitting both `update:modelValue` and `update:checked` events.
+- **`MizuTabsTrigger`** -- disabled state now uses `--color-foreground-tertiary` + `opacity: 0.5` (was using non-existent `--color-foreground-disabled`). Hover state excluded from disabled tabs.
+- **`MizuToastRoot`** -- variant styles changed from solid background colors to gradient backgrounds with left border.
+- **`@tanstack/vue-table`** added as dependency for DataTable.
+- **`@mizu/vue`** bumped to `0.12.0`.
+
+### Documentation
+
+- New MDX pages: `alert-dialog.mdx`, `breadcrumb.mdx`, `combobox.mdx`, `data-table.mdx`, `dialog.mdx`, `dropdown-menu.mdx`, `number-field.mdx`, `pagination.mdx`, `tabs.mdx`, `toast.mdx`, `tooltip.mdx`.
+- New demo files: `AlertDialogDemo.vue`, `BreadcrumbDemo.vue`, `ComboboxDemo.vue`, `DataTableDemo.vue`, `DialogDemo.vue`, `DropdownMenuDemo.vue`, `NumberFieldDemo.vue`, `PaginationDemo.vue`, `TabsDemo.vue`, `ToastDemo.vue`, `TooltipDemo.vue`.
+
 ## 0.7.0 (2026-06-05)
 
 ### Added

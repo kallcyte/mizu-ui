@@ -93,6 +93,9 @@ const customYes = ref("yes");
   margin-bottom: 0;
   margin-top: 0;
 }
+.demo-section > div {
+  margin-top: 0;
+}
 
 .switch-stack {
   display: flex;

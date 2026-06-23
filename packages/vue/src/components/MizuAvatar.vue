@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, ref, useAttrs, useId, watch } from "vue";
+import { computed, ref, useAttrs, useId, useTemplateRef, watch, onMounted } from "vue";
 
 export interface AvatarProps {
   src?: string;
@@ -26,6 +26,8 @@ const slots = defineSlots<{
   icon?: () => unknown;
 }>();
 
+const avatarRef = useTemplateRef<HTMLElement>("avatarRef");
+
 const avatarId = computed(() => {
   if (attrs.id) return attrs.id as string;
   return generatedId;
@@ -39,6 +41,15 @@ watch(
     imageFailed.value = false;
   },
 );
+
+onMounted(() => {
+  if (props.src && avatarRef.value) {
+    const img = avatarRef.value.querySelector("img");
+    if (img && img.complete && (img.naturalWidth === 0 || img.naturalHeight === 0)) {
+      imageFailed.value = true;
+    }
+  }
+});
 
 const showImage = computed(() => !!props.src && !imageFailed.value);
 
@@ -92,6 +103,7 @@ const imageAlt = computed(() => {
 
 <template>
   <div
+    ref="avatarRef"
     :id="avatarId"
     :class="avatarClasses"
     role="img"

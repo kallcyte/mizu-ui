@@ -124,6 +124,9 @@ const resetTags = () => {
     color: var(--sl-color-text);
     margin: 0;
 }
+.demo-section > div {
+  margin-top: 0;
+}
 
 .demo-hint {
     font-size: 12px;

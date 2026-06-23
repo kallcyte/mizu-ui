@@ -241,6 +241,9 @@ const handleClick = () => {
     margin-bottom: 0;
     margin-top: 0;
 }
+.demo-section > div {
+  margin-top: 0;
+}
 
 .button-row {
     display: flex;

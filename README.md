@@ -1,6 +1,6 @@
 # Mizu[水] Design System
 
-[![version](https://img.shields.io/badge/version-0.7.0-blue)](https://github.com/kallcyte/mizu-ui/releases/tag/v0.7.0) [![license](https://img.shields.io/badge/license-MIT-green)](./LICENSE)
+[![version](https://img.shields.io/badge/version-0.12.0-blue)](https://github.com/kallcyte/mizu-ui/releases/tag/v0.12.0) [![license](https://img.shields.io/badge/license-MIT-green)](./LICENSE)
 
 Constraint-based design tokens and multi-framework UI components for building coherent interfaces.
 

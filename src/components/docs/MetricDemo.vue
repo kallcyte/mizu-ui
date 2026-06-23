@@ -91,6 +91,9 @@ import { MizuMetric } from "@mizu/vue";
   margin-bottom: 0;
   margin-top: 0;
 }
+.demo-section > div {
+  margin-top: 0;
+}
 
 .metric-grid {
   display: flex;

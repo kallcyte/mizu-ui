@@ -178,6 +178,9 @@ const successValue = ref("user@example.com");
     margin-bottom: 0;
     margin-top: 0;
 }
+.demo-section > div {
+  margin-top: 0;
+}
 
 .input-row {
     display: flex;

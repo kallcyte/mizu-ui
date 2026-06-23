@@ -60,10 +60,13 @@ import { MizuQuote } from "@mizu/vue";
   flex-direction: column;
   gap: 12px;
 }
+.demo-section > * {
+  margin-top: 0;
+}
 .demo-section h3 {
   font-size: 14px;
   font-weight: 600;
   color: var(--sl-color-text);
-  margin-bottom: 0;
+  margin: 0;
 }
 </style>

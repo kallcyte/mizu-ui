@@ -4,20 +4,91 @@ description: A skill for assisting the development of Mizu Design System that ba
 disable-model-invocation: false
 ---
 
-## Do's
+## Development
 
 1. This project follows semantic versioning (SemVer) during pre-1.0 development.
-2. Only commit, push, and release to the repo if requested explicitly.
-3. This skill can be updated in the future. Any suggestions for this skill may be considered.
-4. After finalizing a new component, update the component documentation under `src/content/docs/components/{name}.mdx` to follow the structure below and add the component card to homepage.
-5. Component documentation under `src/content/docs/components/{name}.mdx` MUST follow the structure below.
-6. Create a new changelog entry before doing commit.
-7. **Always rebuild `@mizu/vue` after adding or modifying components** — run `pnpm --filter @mizu/vue build`. Astro SSR resolves `@mizu/vue` to the built `dist/` files (not the source `src/` files), so stale dist means new components render as `undefined` and pages crash with "Unable to render ... because it contains an undefined Component!"
+2. **Always rebuild `@mizu/vue` after adding or modifying components** — run `pnpm --filter @mizu/vue build`. If the dist is stale, new components render as `undefined` and pages crash.
+3. **Demo components must prevent Starlight CSS bleed** — every demo component must include this `<style scoped>` block (adapting the outer wrapper class name as needed):
+
+```vue
+<style scoped>
+.your-demo { all: revert; }
+
+.your-demo .demo-section {
+  margin-top: 0;
+}
+
+.your-demo .demo-section > * {
+  margin-top: 0;
+}
+
+.your-demo .demo-section h3 {
+  all: revert;
+}
+</style>
+```
+
+This resets Starlight's `.sl-markdown-content :not(...) + :not(...)` rule which adds unwanted `margin-top` to elements inside demos.
+
+4. When you find gaps or missing conventions in this skill, flag them at the end of the session.
+
+## Documentation
+
+5. After finalizing a new component:
+   - Create component documentation at `src/content/docs/components/{name}.mdx` following the structure below.
+   - Add a component card to `src/components/home/ComponentsSection.astro` inside `<div class="comp-grid">`. Use this template:
+
+```html
+<a href="/components/{slug}" class="block p-6 rounded-xl border transition-all duration-200 card-hover border-surface-muted bg-surface-base no-underline group hover:border-brand-accent/30 hover:shadow-[0_0_0_1px_var(--color-brand-accent)]">
+  <h4 class="text-[16px] font-semibold mb-1 group-hover:text-brand-accent transition-colors">{DisplayName}</h4>
+  <p class="text-sm text-foreground-secondary">{One-line description}.</p>
+</a>
+```
+
+   - Add the component to the Starlight sidebar under the "Components" group in `astro.config.mjs`.
+   - Verify all three stay in sync: sidebar entries, homepage cards, and docs pages. Compare the sidebar component list in `astro.config.mjs` against `src/components/home/ComponentsSection.astro` and `src/content/docs/components/` after every batch.
+6. Before documenting a new component, check `packages/vue/src/index.ts` exports — every exported component should have a corresponding sidebar entry, docs page, and homepage card.
+7. Create a new changelog entry in `src/content/docs/getting-started/changelog.mdx` before committing.
+8. After a version bump, update the version number in:
+   - `packages/vue/package.json` (the canonical source of truth)
+   - `package.json` (root, keep in sync)
+   - `src/components/home/Hero.astro` — search for `Design System · v0.`
+   - `src/components/home/Typography.astro` — search for `Design System · v0.`
+   - `src/layouts/BaseLayout.astro` — search for `inline-block px-2.5` (nav badge)
+
+   Use grep to find the exact version strings rather than relying on line numbers.
+
+## Release
+
+9. Only commit, push, and release to the repo if requested explicitly.
+10. The release workflow at `.github/workflows/release.yml` triggers on push to `master` and auto-creates a GitHub Release via `gh release create ... --generate-notes`. Since `--generate-notes` only lists commit titles, **always create the release manually with detailed notes:**
+
+```bash
+gh auth login  # if not already authenticated
+gh release delete v{VERSION} --yes || true  # remove auto-generated release; no-op if it doesn't exist
+gh release create v{VERSION} \
+  --title "v{VERSION} — {Release Title}" \
+  --notes-file /tmp/release-notes.md
+```
+
+**Release notes must include:**
+1. One-line summary of the release
+2. Table or list of new components with sub-component count and description
+3. Enhanced/changed components with specific prop/API changes
+4. Documentation changes (new MDX pages, demo sections)
+5. Stats (files changed, insertions, package version)
+
+**Changelog entry before release:**
+- All changes go into a single version entry in `src/content/docs/getting-started/changelog.mdx`
+- Do NOT create phantom version entries (e.g. 0.8.0, 0.9.0) for work that was committed together — consolidate into the actual released version
+- Verify the changelog includes ALL components in the release (check `packages/vue/src/index.ts` exports)
 
 ## Don'ts
 
-1. Don't assume to push updates or changes to repo automatically
-2. Don't add components to `src/components/home/` (legacy) — put new component demos under `src/components/docs/{Name}Demo.vue`
+1. Don't assume to push updates or changes to repo automatically.
+2. Don't create a new component without my command. A new component should only be created when I specifically request it.
+3. Don't add components to `src/components/home/` (legacy) — put new component demos under `src/components/docs/{Name}Demo.vue`.
+4. Don't edit `packages/vue/src/index.ts` directly — it's auto-generated by the build. Components are registered by adding them to `packages/vue/src/components/` and running the build.
 
 ## Component Documentation Structure
 
