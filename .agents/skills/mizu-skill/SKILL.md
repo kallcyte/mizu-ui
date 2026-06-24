@@ -8,7 +8,8 @@ disable-model-invocation: false
 
 1. This project follows semantic versioning (SemVer) during pre-1.0 development.
 2. **Always rebuild `@mizu/vue` after adding or modifying components** — run `pnpm --filter @mizu/vue build`. If the dist is stale, new components render as `undefined` and pages crash.
-3. **Demo components must prevent Starlight CSS bleed** — every demo component must include this `<style scoped>` block (adapting the outer wrapper class name as needed):
+3. **The `packages/vue/src/index.ts` is auto-generated** by `packages/vue/scripts/generate-index.mjs`. It runs automatically before `vite build` in the `@mizu/vue` build pipeline. Just add `.vue` files to `packages/vue/src/components/` and run `pnpm --filter @mizu/vue build` — the exports are generated for you.
+4. **Demo components must prevent Starlight CSS bleed** — every demo component must include this `<style scoped>` block (adapting the outer wrapper class name as needed):
 
 ```vue
 <style scoped>
@@ -30,11 +31,11 @@ disable-model-invocation: false
 
 This resets Starlight's `.sl-markdown-content :not(...) + :not(...)` rule which adds unwanted `margin-top` to elements inside demos.
 
-4. When you find gaps or missing conventions in this skill, flag them at the end of the session.
+5. When you find gaps or missing conventions in this skill, flag them at the end of the session.
 
 ## Documentation
 
-5. After finalizing a new component:
+6. After finalizing a new component:
    - Create component documentation at `src/content/docs/components/{name}.mdx` following the structure below.
    - Add a component card to `src/components/home/ComponentsSection.astro` inside `<div class="comp-grid">`. Use this template:
 
@@ -47,21 +48,24 @@ This resets Starlight's `.sl-markdown-content :not(...) + :not(...)` rule which 
 
    - Add the component to the Starlight sidebar under the "Components" group in `astro.config.mjs`.
    - Verify all three stay in sync: sidebar entries, homepage cards, and docs pages. Compare the sidebar component list in `astro.config.mjs` against `src/components/home/ComponentsSection.astro` and `src/content/docs/components/` after every batch.
-6. Before documenting a new component, check `packages/vue/src/index.ts` exports — every exported component should have a corresponding sidebar entry, docs page, and homepage card.
-7. Create a new changelog entry in `src/content/docs/getting-started/changelog.mdx` before committing.
-8. After a version bump, update the version number in:
-   - `packages/vue/package.json` (the canonical source of truth)
-   - `package.json` (root, keep in sync)
-   - `src/components/home/Hero.astro` — search for `Design System · v0.`
-   - `src/components/home/Typography.astro` — search for `Design System · v0.`
-   - `src/layouts/BaseLayout.astro` — search for `inline-block px-2.5` (nav badge)
+7. Before documenting a new component, run `pnpm --filter @mizu/vue build` to regenerate `packages/vue/src/index.ts`, then verify every exported component has a corresponding sidebar entry, docs page, and homepage card.
+8. Create a new changelog entry in `src/content/docs/getting-started/changelog.mdx` before committing.
+9. **Bump the patch version** (e.g., `0.12.0` → `0.12.1`) in `packages/vue/package.json` and `package.json` (root) after adding a new component.
+10. After a version bump, update the version number in:
+    - `packages/vue/package.json` (the canonical source of truth)
+    - `package.json` (root, keep in sync)
+    - `src/components/home/Hero.astro` — search for `Design System · v0.`
+    - `src/components/home/Typography.astro` — search for `Design System · v0.`
+    - `src/layouts/BaseLayout.astro` — search for `inline-block px-2.5` (nav badge)
+    - `src/styles/starlight.css` — search for `content: "v0.` (Starlight nav badge)
+    - `README.md` — search for `version-` (shields.io badge)
 
-   Use grep to find the exact version strings rather than relying on line numbers.
+    Use grep to find the exact version strings rather than relying on line numbers.
 
 ## Release
 
-9. Only commit, push, and release to the repo if requested explicitly.
-10. The release workflow at `.github/workflows/release.yml` triggers on push to `master` and auto-creates a GitHub Release via `gh release create ... --generate-notes`. Since `--generate-notes` only lists commit titles, **always create the release manually with detailed notes:**
+11. Only commit, push, and release to the repo if requested explicitly.
+12. The release workflow at `.github/workflows/release.yml` triggers on push to `master` and auto-creates a GitHub Release via `gh release create ... --generate-notes`. Since `--generate-notes` only lists commit titles, **always create the release manually with detailed notes:**
 
 ```bash
 gh auth login  # if not already authenticated
@@ -88,7 +92,7 @@ gh release create v{VERSION} \
 1. Don't assume to push updates or changes to repo automatically.
 2. Don't create a new component without my command. A new component should only be created when I specifically request it.
 3. Don't add components to `src/components/home/` (legacy) — put new component demos under `src/components/docs/{Name}Demo.vue`.
-4. Don't edit `packages/vue/src/index.ts` directly — it's auto-generated by the build. Components are registered by adding them to `packages/vue/src/components/` and running the build.
+4. Don't edit `packages/vue/src/index.ts` directly — it's auto-generated by `packages/vue/scripts/generate-index.mjs`. Add new `.vue` files to `packages/vue/src/components/` and run `pnpm --filter @mizu/vue build`.
 
 ## Component Documentation Structure
 

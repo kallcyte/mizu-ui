@@ -67,6 +67,7 @@ export default defineConfig({
         {
           label: "Components",
           items: [
+            { label: "Accordion", slug: "components/accordion" },
             { label: "Alert", slug: "components/alert" },
             { label: "AlertDialog", slug: "components/alert-dialog" },
             { label: "Avatar", slug: "components/avatar" },

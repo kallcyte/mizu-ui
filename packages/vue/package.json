@@ -1,6 +1,6 @@
 {
   "name": "@mizu/vue",
-  "version": "0.12.0",
+  "version": "0.12.1",
   "type": "module",
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
@@ -20,7 +20,7 @@
     "dist"
   ],
   "scripts": {
-    "build": "vite build && vue-tsc --emitDeclarationOnly",
+    "build": "node scripts/generate-index.mjs && vite build && vue-tsc --emitDeclarationOnly",
     "dev": "vite build --watch",
     "typecheck": "vue-tsc --noEmit"
   },
