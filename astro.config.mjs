@@ -6,10 +6,7 @@ import vue from "@astrojs/vue";
 import starlight from "@astrojs/starlight";
 
 export default defineConfig({
-  markdown: {
-    gfm: true,
-  },
-
+  site: "https://mizu.kall.dev",
   vite: {
     plugins: [tailwindcss()],
     resolve: {
