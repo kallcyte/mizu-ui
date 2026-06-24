@@ -4,7 +4,7 @@
   "version": "0.12.0",
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build",
+    "build": "pnpm build:tokens && pnpm build:vue && astro build",
     "build:tokens": "pnpm --filter @mizu/tokens build",
     "build:vue": "pnpm --filter @mizu/vue build",
     "preview": "astro preview"
