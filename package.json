@@ -10,15 +10,15 @@
     "preview": "astro preview"
   },
   "dependencies": {
-    "@astrojs/starlight": "^0.39.3",
-    "@astrojs/vue": "^6.0.1",
+    "@astrojs/starlight": "^0.40.0",
+    "@astrojs/vue": "^7.0.0",
     "@fontsource/dm-sans": "^5.2.8",
     "@fontsource/jetbrains-mono": "^5.2.8",
     "@internationalized/date": "^3.12.2",
     "@lucide/vue": "^1.17.0",
     "@mizu/tokens": "workspace:*",
     "@mizu/vue": "workspace:*",
-    "astro": "^6.4.4",
+    "astro": "^7.0.0",
     "better-sqlite3": "^12.10.0",
     "reka-ui": "^2.9.8",
     "vue": "^3.5.35"
