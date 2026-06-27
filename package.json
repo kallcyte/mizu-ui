@@ -10,21 +10,21 @@
     "preview": "astro preview"
   },
   "dependencies": {
-    "@astrojs/starlight": "^0.40.0",
+    "@astrojs/starlight": "^0.41.1",
     "@astrojs/vue": "^7.0.0",
     "@fontsource/dm-sans": "^5.2.8",
     "@fontsource/jetbrains-mono": "^5.2.8",
     "@internationalized/date": "^3.12.2",
-    "@lucide/vue": "^1.17.0",
+    "@lucide/vue": "^1.21.0",
     "@mizu/tokens": "workspace:*",
     "@mizu/vue": "workspace:*",
-    "astro": "^7.0.0",
+    "astro": "^7.0.3",
     "better-sqlite3": "^12.10.0",
-    "reka-ui": "^2.9.8",
-    "vue": "^3.5.35"
+    "reka-ui": "^2.10.1",
+    "vue": "^3.5.39"
   },
   "devDependencies": {
-    "@tailwindcss/vite": "^4.3.0",
-    "tailwindcss": "^4.3.0"
+    "@tailwindcss/vite": "^4.3.1",
+    "tailwindcss": "^4.3.1"
   }
 }
