@@ -35,7 +35,7 @@ This resets Starlight's `.sl-markdown-content :not(...) + :not(...)` rule which 
 
 ## Documentation
 
-6. After finalizing a new component:
+6. After finalizing a new component, **always** complete all three of these documentation steps in the same batch — no exceptions:
    - Create component documentation at `src/content/docs/components/{name}.mdx` following the structure below.
    - Add a component card to `src/components/home/ComponentsSection.astro` inside `<div class="comp-grid">`. Use this template:
 
@@ -48,7 +48,7 @@ This resets Starlight's `.sl-markdown-content :not(...) + :not(...)` rule which 
 
    - Add the component to the Starlight sidebar under the "Components" group in `astro.config.mjs`.
    - Verify all three stay in sync: sidebar entries, homepage cards, and docs pages. Compare the sidebar component list in `astro.config.mjs` against `src/components/home/ComponentsSection.astro` and `src/content/docs/components/` after every batch.
-7. Before documenting a new component, run `pnpm --filter @mizu/vue build` to regenerate `packages/vue/src/index.ts`, then verify every exported component has a corresponding sidebar entry, docs page, and homepage card.
+7. Before documenting a new component, run `pnpm --filter @mizu/vue build` to regenerate `packages/vue/src/index.ts`, then verify every exported component has a corresponding sidebar entry (`astro.config.mjs`), docs page (`src/content/docs/components/`), and homepage card (`src/components/home/ComponentsSection.astro`). The three must always be in sync — a missing homepage card is a documentation bug.
 8. Create a new changelog entry in `src/content/docs/getting-started/changelog.mdx` before committing.
 9. **Bump the patch version** (e.g., `0.12.0` → `0.12.1`) in `packages/vue/package.json` and `package.json` (root) after adding a new component.
 10. After a version bump, update the version number in:

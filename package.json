@@ -1,7 +1,7 @@
 {
   "name": "mizu-design-system",
   "type": "module",
-  "version": "0.12.1",
+  "version": "0.12.2",
   "scripts": {
     "dev": "astro dev",
     "build": "pnpm build:tokens && pnpm build:vue && astro build",

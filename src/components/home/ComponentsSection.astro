@@ -12,18 +12,6 @@ import ComponentCardButtons from "./ComponentCardButtons.vue";
         <h4 class="text-[16px] font-semibold mb-1 group-hover:text-brand-accent transition-colors">Accordion</h4>
         <p class="text-sm text-foreground-secondary">Expandable content panels with single and multi-item selection.</p>
       </a>
-      <a href="/components/button" class="block p-6 rounded-xl border transition-all duration-200 card-hover border-surface-muted bg-surface-base no-underline group hover:border-brand-accent/30 hover:shadow-[0_0_0_1px_var(--color-brand-accent)]">
-        <h4 class="text-[16px] font-semibold mb-1 group-hover:text-brand-accent transition-colors">Button</h4>
-        <p class="text-sm mb-4 text-foreground-secondary">Multi-variant button with primary, accent, ghost, outline, and feedback states.</p>
-      </a>
-      <a href="/components/card" class="block p-6 rounded-xl border transition-all duration-200 card-hover border-surface-muted bg-surface-base no-underline group hover:border-brand-accent/30 hover:shadow-[0_0_0_1px_var(--color-brand-accent)]">
-        <h4 class="text-[16px] font-semibold mb-1 group-hover:text-brand-accent transition-colors">Card</h4>
-        <p class="text-sm text-foreground-secondary">Composable card with header, content, footer, image, and spacing variants.</p>
-      </a>
-      <a href="/components/tag" class="block p-6 rounded-xl border transition-all duration-200 card-hover border-surface-muted bg-surface-base no-underline group hover:border-brand-accent/30 hover:shadow-[0_0_0_1px_var(--color-brand-accent)]">
-        <h4 class="text-[16px] font-semibold mb-1 group-hover:text-brand-accent transition-colors">Tag</h4>
-        <p class="text-sm text-foreground-secondary">Status and category tag with 6 variants and optional close button.</p>
-      </a>
       <a href="/components/alert" class="block p-6 rounded-xl border transition-all duration-200 card-hover border-surface-muted bg-surface-base no-underline group hover:border-brand-accent/30 hover:shadow-[0_0_0_1px_var(--color-brand-accent)]">
         <h4 class="text-[16px] font-semibold mb-1 group-hover:text-brand-accent transition-colors">Alert</h4>
         <p class="text-sm text-foreground-secondary">Feedback messaging for success, error, warning, and info states.</p>
@@ -36,6 +24,18 @@ import ComponentCardButtons from "./ComponentCardButtons.vue";
         <h4 class="text-[16px] font-semibold mb-1 group-hover:text-brand-accent transition-colors">Avatar</h4>
         <p class="text-sm text-foreground-secondary">User identity with image, initials, or icon in 4 sizes.</p>
       </a>
+      <a href="/components/breadcrumb" class="block p-6 rounded-xl border transition-all duration-200 card-hover border-surface-muted bg-surface-base no-underline group hover:border-brand-accent/30 hover:shadow-[0_0_0_1px_var(--color-brand-accent)]">
+        <h4 class="text-[16px] font-semibold mb-1 group-hover:text-brand-accent transition-colors">Breadcrumb</h4>
+        <p class="text-sm text-foreground-secondary">Navigation component that shows the current page location within a hierarchy.</p>
+      </a>
+      <a href="/components/button" class="block p-6 rounded-xl border transition-all duration-200 card-hover border-surface-muted bg-surface-base no-underline group hover:border-brand-accent/30 hover:shadow-[0_0_0_1px_var(--color-brand-accent)]">
+        <h4 class="text-[16px] font-semibold mb-1 group-hover:text-brand-accent transition-colors">Button</h4>
+        <p class="text-sm text-foreground-secondary">Multi-variant button with primary, accent, ghost, outline, and feedback states.</p>
+      </a>
+      <a href="/components/card" class="block p-6 rounded-xl border transition-all duration-200 card-hover border-surface-muted bg-surface-base no-underline group hover:border-brand-accent/30 hover:shadow-[0_0_0_1px_var(--color-brand-accent)]">
+        <h4 class="text-[16px] font-semibold mb-1 group-hover:text-brand-accent transition-colors">Card</h4>
+        <p class="text-sm text-foreground-secondary">Composable card with header, content, footer, image, and spacing variants.</p>
+      </a>
       <a href="/components/checkbox" class="block p-6 rounded-xl border transition-all duration-200 card-hover border-surface-muted bg-surface-base no-underline group hover:border-brand-accent/30 hover:shadow-[0_0_0_1px_var(--color-brand-accent)]">
         <h4 class="text-[16px] font-semibold mb-1 group-hover:text-brand-accent transition-colors">Checkbox</h4>
         <p class="text-sm text-foreground-secondary">Tri-state checkbox with indeterminate, disabled, and form integration.</p>
@@ -44,15 +44,47 @@ import ComponentCardButtons from "./ComponentCardButtons.vue";
         <h4 class="text-[16px] font-semibold mb-1 group-hover:text-brand-accent transition-colors">Combobox</h4>
         <p class="text-sm text-foreground-secondary">Searchable list input with text filtering, groups, and single or multi selection.</p>
       </a>
+      <a href="/components/dashlist" class="block p-6 rounded-xl border transition-all duration-200 card-hover border-surface-muted bg-surface-base no-underline group hover:border-brand-accent/30 hover:shadow-[0_0_0_1px_var(--color-brand-accent)]">
+        <h4 class="text-[16px] font-semibold mb-1 group-hover:text-brand-accent transition-colors">DashList</h4>
+        <p class="text-sm text-foreground-secondary">Definition list component for label-value pairs.</p>
+      </a>
+      <a href="/components/data-table" class="block p-6 rounded-xl border transition-all duration-200 card-hover border-surface-muted bg-surface-base no-underline group hover:border-brand-accent/30 hover:shadow-[0_0_0_1px_var(--color-brand-accent)]">
+        <h4 class="text-[16px] font-semibold mb-1 group-hover:text-brand-accent transition-colors">DataTable</h4>
+        <p class="text-sm text-foreground-secondary">Table component for displaying and interacting with structured data.</p>
+      </a>
+      <a href="/components/dialog" class="block p-6 rounded-xl border transition-all duration-200 card-hover border-surface-muted bg-surface-base no-underline group hover:border-brand-accent/30 hover:shadow-[0_0_0_1px_var(--color-brand-accent)]">
+        <h4 class="text-[16px] font-semibold mb-1 group-hover:text-brand-accent transition-colors">Dialog</h4>
+        <p class="text-sm text-foreground-secondary">Modal overlay for confirmations, forms, and detailed content.</p>
+      </a>
       <a href="/components/divider" class="block p-6 rounded-xl border transition-all duration-200 card-hover border-surface-muted bg-surface-base no-underline group hover:border-brand-accent/30 hover:shadow-[0_0_0_1px_var(--color-brand-accent)]">
         <h4 class="text-[16px] font-semibold mb-1 group-hover:text-brand-accent transition-colors">Divider</h4>
         <p class="text-sm text-foreground-secondary">Visual separator with horizontal, vertical, and labeled variants.</p>
+      </a>
+      <a href="/components/dropdown-menu" class="block p-6 rounded-xl border transition-all duration-200 card-hover border-surface-muted bg-surface-base no-underline group hover:border-brand-accent/30 hover:shadow-[0_0_0_1px_var(--color-brand-accent)]">
+        <h4 class="text-[16px] font-semibold mb-1 group-hover:text-brand-accent transition-colors">DropdownMenu</h4>
+        <p class="text-sm text-foreground-secondary">Contextual menu triggered by a button or element.</p>
       </a>
       <a href="/components/input" class="block p-6 rounded-xl border transition-all duration-200 card-hover border-surface-muted bg-surface-base no-underline group hover:border-brand-accent/30 hover:shadow-[0_0_0_1px_var(--color-brand-accent)]">
         <h4 class="text-[16px] font-semibold mb-1 group-hover:text-brand-accent transition-colors">Input</h4>
         <p class="text-sm text-foreground-secondary">Text input with label, helper text, error state, and 3 sizes.</p>
       </a>
-      <a href="/components/progress" class="block p-6 rounded-xl border transition-all duration-200 card-hover border-surface-muted bg-surface-base no-underline group hover:border-brand-accent/30 hover:shadow-[0_0_0_1px_var(--color-brand-accent)]">
+      <a href="/components/metric" class="block p-6 rounded-xl border transition-all duration-200 card-hover border-surface-muted bg-surface-base no-underline group hover:border-brand-accent/30 hover:shadow-[0_0_0_1px_var(--color-brand-accent)]">
+        <h4 class="text-[16px] font-semibold mb-1 group-hover:text-brand-accent transition-colors">Metric</h4>
+        <p class="text-sm text-foreground-secondary">Display component for showing statistics and KPIs.</p>
+      </a>
+      <a href="/components/number-field" class="block p-6 rounded-xl border transition-all duration-200 card-hover border-surface-muted bg-surface-base no-underline group hover:border-brand-accent/30 hover:shadow-[0_0_0_1px_var(--color-brand-accent)]">
+        <h4 class="text-[16px] font-semibold mb-1 group-hover:text-brand-accent transition-colors">NumberField</h4>
+        <p class="text-sm text-foreground-secondary">Numeric input with stepper buttons and formatting for decimals, currencies, and percentages.</p>
+      </a>
+      <a href="/components/pagination" class="block p-6 rounded-xl border transition-all duration-200 card-hover border-surface-muted bg-surface-base no-underline group hover:border-brand-accent/30 hover:shadow-[0_0_0_1px_var(--color-brand-accent)]">
+              <h4 class="text-[16px] font-semibold mb-1 group-hover:text-brand-accent transition-colors">Pagination</h4>
+              <p class="text-sm text-foreground-secondary">Navigation component for navigating between pages of data.</p>
+            </a>
+            <a href="/components/popover" class="block p-6 rounded-xl border transition-all duration-200 card-hover border-surface-muted bg-surface-base no-underline group hover:border-brand-accent/30 hover:shadow-[0_0_0_1px_var(--color-brand-accent)]">
+              <h4 class="text-[16px] font-semibold mb-1 group-hover:text-brand-accent transition-colors">Popover</h4>
+              <p class="text-sm text-foreground-secondary">Floating popup for rich content, forms, and contextual actions.</p>
+            </a>
+            <a href="/components/progress" class="block p-6 rounded-xl border transition-all duration-200 card-hover border-surface-muted bg-surface-base no-underline group hover:border-brand-accent/30 hover:shadow-[0_0_0_1px_var(--color-brand-accent)]">
         <h4 class="text-[16px] font-semibold mb-1 group-hover:text-brand-accent transition-colors">Progress</h4>
         <p class="text-sm text-foreground-secondary">Linear progress bar with determinate, indeterminate, and complete states.</p>
       </a>
@@ -60,17 +92,29 @@ import ComponentCardButtons from "./ComponentCardButtons.vue";
         <h4 class="text-[16px] font-semibold mb-1 group-hover:text-brand-accent transition-colors">Quote</h4>
         <p class="text-sm text-foreground-secondary">Block quotation with default and accent variants.</p>
       </a>
-      <a href="/components/dialog" class="block p-6 rounded-xl border transition-all duration-200 card-hover border-surface-muted bg-surface-base no-underline group hover:border-brand-accent/30 hover:shadow-[0_0_0_1px_var(--color-brand-accent)]">
-        <h4 class="text-[16px] font-semibold mb-1 group-hover:text-brand-accent transition-colors">Dialog</h4>
-        <p class="text-sm text-foreground-secondary">Modal overlay for confirmations, forms, and detailed content.</p>
+      <a href="/components/radio" class="block p-6 rounded-xl border transition-all duration-200 card-hover border-surface-muted bg-surface-base no-underline group hover:border-brand-accent/30 hover:shadow-[0_0_0_1px_var(--color-brand-accent)]">
+        <h4 class="text-[16px] font-semibold mb-1 group-hover:text-brand-accent transition-colors">Radio</h4>
+        <p class="text-sm text-foreground-secondary">Radio group for selecting one option from a set.</p>
       </a>
-      <a href="/components/number-field" class="block p-6 rounded-xl border transition-all duration-200 card-hover border-surface-muted bg-surface-base no-underline group hover:border-brand-accent/30 hover:shadow-[0_0_0_1px_var(--color-brand-accent)]">
-        <h4 class="text-[16px] font-semibold mb-1 group-hover:text-brand-accent transition-colors">NumberField</h4>
-        <p class="text-sm text-foreground-secondary">Numeric input with stepper buttons and formatting for decimals, currencies, and percentages.</p>
+      <a href="/components/select" class="block p-6 rounded-xl border transition-all duration-200 card-hover border-surface-muted bg-surface-base no-underline group hover:border-brand-accent/30 hover:shadow-[0_0_0_1px_var(--color-brand-accent)]">
+        <h4 class="text-[16px] font-semibold mb-1 group-hover:text-brand-accent transition-colors">Select</h4>
+        <p class="text-sm text-foreground-secondary">Dropdown select for choosing one option from a list.</p>
+      </a>
+      <a href="/components/switch" class="block p-6 rounded-xl border transition-all duration-200 card-hover border-surface-muted bg-surface-base no-underline group hover:border-brand-accent/30 hover:shadow-[0_0_0_1px_var(--color-brand-accent)]">
+        <h4 class="text-[16px] font-semibold mb-1 group-hover:text-brand-accent transition-colors">Switch</h4>
+        <p class="text-sm text-foreground-secondary">Toggle switch that represents boolean state with a sliding thumb.</p>
       </a>
       <a href="/components/tabs" class="block p-6 rounded-xl border transition-all duration-200 card-hover border-surface-muted bg-surface-base no-underline group hover:border-brand-accent/30 hover:shadow-[0_0_0_1px_var(--color-brand-accent)]">
         <h4 class="text-[16px] font-semibold mb-1 group-hover:text-brand-accent transition-colors">Tabs</h4>
         <p class="text-sm text-foreground-secondary">Layered sections of content displayed one at a time with horizontal and vertical layouts.</p>
+      </a>
+      <a href="/components/tag" class="block p-6 rounded-xl border transition-all duration-200 card-hover border-surface-muted bg-surface-base no-underline group hover:border-brand-accent/30 hover:shadow-[0_0_0_1px_var(--color-brand-accent)]">
+        <h4 class="text-[16px] font-semibold mb-1 group-hover:text-brand-accent transition-colors">Tag</h4>
+        <p class="text-sm text-foreground-secondary">Status and category tag with 6 variants and optional close button.</p>
+      </a>
+      <a href="/components/textarea" class="block p-6 rounded-xl border transition-all duration-200 card-hover border-surface-muted bg-surface-base no-underline group hover:border-brand-accent/30 hover:shadow-[0_0_0_1px_var(--color-brand-accent)]">
+        <h4 class="text-[16px] font-semibold mb-1 group-hover:text-brand-accent transition-colors">Textarea</h4>
+        <p class="text-sm text-foreground-secondary">Multi-line text input for longer-form content.</p>
       </a>
       <a href="/components/toast" class="block p-6 rounded-xl border transition-all duration-200 card-hover border-surface-muted bg-surface-base no-underline group hover:border-brand-accent/30 hover:shadow-[0_0_0_1px_var(--color-brand-accent)]">
         <h4 class="text-[16px] font-semibold mb-1 group-hover:text-brand-accent transition-colors">Toast</h4>
