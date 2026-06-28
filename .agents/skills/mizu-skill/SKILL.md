@@ -87,6 +87,8 @@ gh release create v{VERSION} \
 - Do NOT create phantom version entries (e.g. 0.8.0, 0.9.0) for work that was committed together — consolidate into the actual released version
 - Verify the changelog includes ALL components in the release (check `packages/vue/src/index.ts` exports)
 
+13. **Every GitHub Release must have detailed release notes** — the release notes must mirror the changelog entry in `src/content/docs/getting-started/changelog.mdx`. Never create a release with only auto-generated commit titles. If a changelog entry exists for the version, the GitHub Release must include at minimum: one-line summary, new components list, changes list, and documentation changes. Verify the release notes match the changelog before finalizing.
+
 ## Don'ts
 
 1. Don't assume to push updates or changes to repo automatically.
