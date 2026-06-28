@@ -70,15 +70,15 @@ const contentStyle = computed(() => {
 <style>
 .bp-tooltip__content--light {
   --tooltip-bg: #fff;
-  --tooltip-color: var(--color-foreground-primary);
+  --tooltip-color: #1b1b1d;
   --tooltip-arrow-fill: #fff;
   --tooltip-shadow: 0 4px 8px -2px rgba(0, 0, 0, 0.12), 0 2px 4px -2px rgba(0, 0, 0, 0.08);
 }
 
 .bp-tooltip__content--dark {
-  --tooltip-bg: var(--color-foreground-primary);
-  --tooltip-color: var(--color-foreground-inverse);
-  --tooltip-arrow-fill: var(--color-foreground-primary);
+  --tooltip-bg: #1b1b1d;
+  --tooltip-color: #f1f5f9;
+  --tooltip-arrow-fill: #1b1b1d;
   --tooltip-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
 }
 

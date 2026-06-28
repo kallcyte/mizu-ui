@@ -9,6 +9,19 @@ Accordion displays expandable content panels. Use it to organize related informa
 
 <AccordionDemo client:load />
 
+## Accordion vs Collapsible
+
+| | Accordion | Collapsible |
+|---|---|---|
+| **Structure** | Multiple sections stacked | Single expandable section |
+| **Sub-components** | Root, Item, Header, Trigger, Content | Root, Trigger, Content |
+| **Multiple open?** | By default only one item open (`type="single"`) | Yes — each is independent |
+| **Item management** | Built-in item tracking (Root manages open items by `value`) | Manual (controlled via `open` prop) |
+| **Wrapping** | Designed for multi-section UI out of the box | You would manually wrap multiple collapsibles for multi-section UI |
+| **Use case** | Group of related sections (e.g., settings page, product details, FAQs) | Single expand/collapse region (e.g., a filter panel, FAQ item) |
+
+Use **Accordion** when you have multiple related expandable sections that should coordinate with each other. Use **Collapsible** when you need a single toggle region.
+
 ## Anatomy
 
 A MizuAccordion consists of 5 parts:

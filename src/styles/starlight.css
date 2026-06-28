@@ -103,7 +103,7 @@ body,
 
 /* Version badge */
 .site-title::after {
-  content: "v0.12.2";
+  content: "v0.12.3";
   font-size: 0.6875rem;
   font-weight: 600;
   padding: 0.125rem 0.5rem;
