@@ -16,6 +16,19 @@ This project follows **semantic versioning** (SemVer) during pre-1.0 development
 Changes that require a minor bump: adding a new component, renaming tokens, changing component APIs, adding new packages (e.g. React).
 Changes that keep the patch version: renames, copy edits, styling tweaks, build config changes, favicon updates.
 
+## 0.12.4 (2026-06-29)
+
+Batch 2c — standalone inputs: MizuTagsInput added.
+
+### Added
+
+- **`MizuTagsInput`** -- multi-value text input that lets users build and remove a list of tag chips. Single SFC, no Reka UI primitive. The container reuses `MizuInput`'s `.bp-input` styling; chips are rendered with `MizuTag` and their color scheme is controlled by the `tagVariant` prop. Props: `modelValue` (string[]), `defaultValue`, `placeholder`, `disabled`, `readOnly`, `required`, `error`, `size` (`sm`/`md`/`lg`), `tagVariant` (`primary`/`accent`/`success`/`warning`/`error`/`info`), `separator` (array of `Enter`/`Comma`/`Semicolon`/`Tab`), `maxTags`, `allowDuplicates`, `validate` (`(value: string) => boolean | string`), `name`, `label`, `helperText`, `id`. Events: `update:modelValue` (string[]), `add`, `remove`, `focus`, `blur`, `invalid-tag` (with reason `'duplicate' | 'max' | 'validation'`). Features: native `<input>` trailing the chips, Backspace removes last tag when input empty, paste splits on every configured separator, blur commits pending text, chips animate in with a 150ms pop and rejected commits flash a 200ms shake.
+
+### Documentation
+
+- New MDX page: `tags-input.mdx`.
+- New demo file: `TagsInputDemo.vue` (10 sections: Basic, With Label & Helper, Max Tags, Variants, Sizes, Separators, Custom Validation, Error State, Disabled, Read-Only).
+
 ## 0.12.3 (2026-06-28)
 
 Batch 2b — supporting components: MizuCollapsible added.

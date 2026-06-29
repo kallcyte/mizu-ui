@@ -228,6 +228,8 @@ export { default as MizuTabsTrigger } from "./components/MizuTabsTrigger.vue";
 export type { TabsTriggerProps } from "./components/MizuTabsTrigger.vue";
 export { default as MizuTag } from "./components/MizuTag.vue";
 export type { TagProps } from "./components/MizuTag.vue";
+export { default as MizuTagsInput } from "./components/MizuTagsInput.vue";
+export type { TagsInputProps } from "./components/MizuTagsInput.vue";
 export { default as MizuTextarea } from "./components/MizuTextarea.vue";
 export type { TextareaProps } from "./components/MizuTextarea.vue";
 export { default as MizuToastAction } from "./components/MizuToastAction.vue";
