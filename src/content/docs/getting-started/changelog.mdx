@@ -16,6 +16,20 @@ This project follows **semantic versioning** (SemVer) during pre-1.0 development
 Changes that require a minor bump: adding a new component, renaming tokens, changing component APIs, adding new packages (e.g. React).
 Changes that keep the patch version: renames, copy edits, styling tweaks, build config changes, favicon updates.
 
+## 0.12.6 (2026-06-29)
+
+New component: MizuBadge.
+
+### Added
+
+- **`MizuBadge`** -- compact count or status indicator for notifications, statuses, and inline labels. Single SFC, no Reka UI primitive. Supports 6 color variants (primary, accent, success, warning, error, info), 2 sizes (sm/md), dot mode for presence indicators, count with max overflow formatting (e.g. 99+), showZero toggle, and absolute positioning relative to a parent element. Props: `variant` (`primary`/`accent`/`success`/`warning`/`error`/`info`), `size` (`sm`/`md`), `dot`, `count`, `max`, `showZero`, `position` (`inline`/`top-right`/`top-left`/`bottom-right`/`bottom-left`). Features: solid fill backgrounds with inverse text for high contrast, tabular-nums for consistent digit width, 8px/10px dot mode, transform-based positioning.
+
+### Documentation
+
+- New MDX page: `badge.mdx`.
+- New demo file: `BadgeDemo.vue` (7 sections: Variants, Sizes, Dot Indicator, Count Overflow, Show Zero, Positioned on Avatar, Text Content).
+
+
 ## 0.12.5 (2026-06-29)
 
 Batch 2b — compound inputs: MizuSlider added. Toast fixes: hydration, animations, z-index, overflow.

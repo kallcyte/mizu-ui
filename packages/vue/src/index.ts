@@ -32,6 +32,8 @@ export { default as MizuAlertDialogTrigger } from "./components/MizuAlertDialogT
 export type { AlertDialogTriggerProps } from "./components/MizuAlertDialogTrigger.vue";
 export { default as MizuAvatar } from "./components/MizuAvatar.vue";
 export type { AvatarProps } from "./components/MizuAvatar.vue";
+export { default as MizuBadge } from "./components/MizuBadge.vue";
+export type { BadgeProps } from "./components/MizuBadge.vue";
 export { default as MizuBreadcrumb } from "./components/MizuBreadcrumb.vue";
 export type { BreadcrumbItem, BreadcrumbProps } from "./components/MizuBreadcrumb.vue";
 export { default as MizuButton } from "./components/MizuButton.vue";

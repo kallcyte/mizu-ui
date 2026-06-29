@@ -72,6 +72,7 @@ export default defineConfig({
             { label: "AlertDialog", slug: "components/alert-dialog" },
             { label: "Avatar", slug: "components/avatar" },
             { label: "Breadcrumb", slug: "components/breadcrumb" },
+            { label: "Badge", slug: "components/badge" },
             { label: "Button", slug: "components/button" },
             { label: "Card", slug: "components/card" },
             { label: "Checkbox", slug: "components/checkbox" },
