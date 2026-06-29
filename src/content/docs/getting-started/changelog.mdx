@@ -16,6 +16,30 @@ This project follows **semantic versioning** (SemVer) during pre-1.0 development
 Changes that require a minor bump: adding a new component, renaming tokens, changing component APIs, adding new packages (e.g. React).
 Changes that keep the patch version: renames, copy edits, styling tweaks, build config changes, favicon updates.
 
+## 0.12.5 (2026-06-29)
+
+Batch 2b — compound inputs: MizuSlider added. Toast fixes: hydration, animations, z-index, overflow.
+
+### Added
+
+- **`MizuSlider`** — numeric range input for selecting a value or range within a bounded interval. Compound component with 4 sub-components: `MizuSliderRoot`, `MizuSliderTrack`, `MizuSliderRange`, `MizuSliderThumb`. Wraps Reka UI `SliderRoot`/`SliderTrack`/`SliderRange`/`SliderThumb` primitives. Props: `modelValue` (`number | number[]`), `defaultValue`, `min`, `max`, `step`, `orientation`, `disabled`, `size` (`sm`/`md`/`lg`), `inverted`, `dir`. Events: `update:modelValue` (`number | number[]`). Features: single-thumb and range (two-thumb) modes depending on whether `modelValue` is a number or two-element array, three sizes controlling track height (4/6/8px) and thumb diameter (14/18/22px), horizontal and vertical orientations, step-based increments, disabled state with 50% opacity.
+
+### Fixed
+
+- **`MizuToast` hydration mismatch** — removed `<Teleport to="body">` and re-added with `v-if="mounted"` using an `onMounted` ref instead of a module-level `const`, preventing SSR Teleport markers from conflicting with client hydration.
+- **`MizuToast` z-index** — bumped viewport `z-index` from `9999` to `2147483647` to ensure toasts always render on the topmost layer.
+- **`MizuToast` overflow** — changed viewport `overflow-y: auto` to `overflow: hidden` to prevent horizontal scrollbar during slide-in animation.
+
+### Changed
+
+- **`MizuToast` animations** — slide direction now adapts to the toast position: right-side positions slide from right, left-side from left, top-center from top, bottom-center from bottom. Uses CSS custom properties `--toast-slide-from-x` / `--toast-slide-from-y` computed from the `position` prop.
+
+### Documentation
+
+- New MDX page: `slider.mdx`.
+- New demo file: `SliderDemo.vue` (6 sections: Basic, Range, Steps, Sizes, Vertical, Disabled).
+
+
 ## 0.12.4 (2026-06-29)
 
 Batch 2c — standalone inputs: MizuTagsInput added.

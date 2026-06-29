@@ -9,6 +9,7 @@ export interface ToastRootProps {
   duration?: number;
   forceMount?: boolean;
   variant?: "info" | "success" | "warning" | "error";
+  position?: "top-right" | "top-left" | "top-center" | "bottom-right" | "bottom-left" | "bottom-center";
 }
 
 const props = withDefaults(defineProps<ToastRootProps>(), {
@@ -17,6 +18,7 @@ const props = withDefaults(defineProps<ToastRootProps>(), {
   type: "foreground",
   forceMount: undefined,
   variant: "info",
+  position: "top-right",
 });
 
 const emit = defineEmits<{
@@ -37,16 +39,29 @@ const rootClasses = computed(() => {
   if (attrs.class) classes.push(attrs.class as string);
   return classes.join(" ");
 });
+
+const slideFromX = computed(() => {
+  if (props.position === "top-left" || props.position === "bottom-left") return "-100%";
+  if (props.position === "top-center" || props.position === "bottom-center") return "0";
+  return "100%";
+});
+
+const slideFromY = computed(() => {
+  if (props.position === "top-center") return "-100%";
+  if (props.position === "bottom-center") return "100%";
+  return "0";
+});
 </script>
 
 <template>
   <ToastRoot
-    :class="rootClasses"
-    :open="open"
-    :default-open="defaultOpen"
-    :type="type"
-    :duration="duration"
-    :force-mount="forceMount"
+      :class="rootClasses"
+      :style="{ '--toast-slide-from-x': slideFromX, '--toast-slide-from-y': slideFromY }"
+      :open="open"
+      :default-open="defaultOpen"
+      :type="type"
+      :duration="duration"
+      :force-mount="forceMount"
     @update:open="(v: boolean) => emit('update:open', v)"
     @pause="emit('pause')"
     @resume="emit('resume')"
@@ -124,7 +139,7 @@ const rootClasses = computed(() => {
 @keyframes toastSlideIn {
   from {
     opacity: 0;
-    translate: 100% 0;
+    translate: var(--toast-slide-from-x, 100%) var(--toast-slide-from-y, 0);
   }
   to {
     opacity: 1;
@@ -139,7 +154,7 @@ const rootClasses = computed(() => {
   }
   to {
     opacity: 0;
-    translate: 100% 0;
+    translate: var(--toast-slide-from-x, 100%) var(--toast-slide-from-y, 0);
   }
 }
 </style>

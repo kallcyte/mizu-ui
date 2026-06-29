@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { provide, ref, reactive, computed, useAttrs, type Ref } from "vue";
+import { provide, ref, reactive, computed, useAttrs, onMounted, type Ref } from "vue";
 import { ToastProvider } from "reka-ui";
 import { TOAST_CONTEXT_KEY } from "../composables/useToast";
 import MizuToastViewport from "./MizuToastViewport.vue";
@@ -9,6 +9,13 @@ import MizuToastDescription from "./MizuToastDescription.vue";
 import MizuToastAction from "./MizuToastAction.vue";
 import MizuButton from "./MizuButton.vue";
 import { CheckCircle, AlertTriangle, XCircle, Info } from "@lucide/vue";
+
+const mounted = ref(false);
+
+onMounted(() => {
+  mounted.value = true;
+});
+
 
 export interface ToastProviderProps {
   label?: string;
@@ -175,44 +182,45 @@ provide(TOAST_CONTEXT_KEY, { addToast, dismissToast });
     :swipe-threshold="swipeThreshold"
   >
     <slot />
-    <Teleport to="body">
+    <Teleport to="body" v-if="mounted">
       <MizuToastViewport :position="position">
-      <template v-for="toast in toasts" :key="toast.id">
-        <slot name="toast" :toast="toast">
-          <MizuToastRoot
-            :open="toast.open"
-            :variant="toast.variant"
-            @update:open="(v: boolean) => onToastUpdate(toast, v)"
-            @mouseenter="pauseTimer(toast.id)"
-            @mouseleave="resumeTimer(toast)"
-          >
-            <div class="bp-toast__inner">
-              <component
-                :is="toast.variant === 'success' ? CheckCircle : toast.variant === 'warning' ? AlertTriangle : toast.variant === 'error' ? XCircle : Info"
-                :size="18"
-                :class="['bp-toast__icon', `bp-toast__icon--${toast.variant}`]"
-              />
-              <div class="bp-toast__content">
-                <MizuToastTitle v-if="toast.title">{{ toast.title }}</MizuToastTitle>
-                <MizuToastDescription v-if="toast.description">
-                  {{ toast.description }}
-                </MizuToastDescription>
+        <template v-for="toast in toasts" :key="toast.id">
+          <slot name="toast" :toast="toast">
+            <MizuToastRoot
+                :open="toast.open"
+                :variant="toast.variant"
+                :position="position"
+                @update:open="(v: boolean) => onToastUpdate(toast, v)"
+              @mouseenter="pauseTimer(toast.id)"
+              @mouseleave="resumeTimer(toast)"
+            >
+              <div class="bp-toast__inner">
+                <component
+                  :is="toast.variant === 'success' ? CheckCircle : toast.variant === 'warning' ? AlertTriangle : toast.variant === 'error' ? XCircle : Info"
+                  :size="18"
+                  :class="['bp-toast__icon', `bp-toast__icon--${toast.variant}`]"
+                />
+                <div class="bp-toast__content">
+                  <MizuToastTitle v-if="toast.title">{{ toast.title }}</MizuToastTitle>
+                  <MizuToastDescription v-if="toast.description">
+                    {{ toast.description }}
+                  </MizuToastDescription>
+                </div>
+                <MizuToastAction
+                  v-if="toast.action"
+                  :alt-text="toast.action.altText"
+                  as-child
+                  @click="handleActionClick(toast)"
+                >
+                  <MizuButton variant="outline" size="md" class="w-max">{{ toast.action.label }}</MizuButton>
+                </MizuToastAction>
+                <span v-if="toast.showTimer" class="bp-toast__timer">
+                  {{ (((toast.duration ?? 3000) - (toast.timerElapsed ?? 0)) / 1000).toFixed(2) }}s
+                </span>
               </div>
-              <MizuToastAction
-                v-if="toast.action"
-                :alt-text="toast.action.altText"
-                as-child
-                @click="handleActionClick(toast)"
-              >
-                <MizuButton variant="outline" size="md" class="w-max">{{ toast.action.label }}</MizuButton>
-              </MizuToastAction>
-              <span v-if="toast.showTimer" class="bp-toast__timer">
-                {{ (((toast.duration ?? 3000) - (toast.timerElapsed ?? 0)) / 1000).toFixed(2) }}s
-              </span>
-            </div>
-          </MizuToastRoot>
-        </slot>
-      </template>
+            </MizuToastRoot>
+          </slot>
+        </template>
       </MizuToastViewport>
     </Teleport>
   </ToastProvider>

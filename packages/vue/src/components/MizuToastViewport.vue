@@ -37,7 +37,7 @@ const viewportClasses = computed(() => {
 .bp-toast__viewport {
   all: revert;
   position: fixed;
-  z-index: 9999;
+  z-index: 2147483647;
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -45,7 +45,7 @@ const viewportClasses = computed(() => {
   max-width: 420px;
   width: 100%;
   max-height: 100vh;
-  overflow-y: auto;
+  overflow: hidden;
   margin: 0;
   list-style: none;
   outline: none;
