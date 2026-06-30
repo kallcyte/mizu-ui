@@ -432,6 +432,34 @@ Candidate approaches to evaluate when implementing the Login page:
 
 A "Validation patterns" section may also be added to the Input demo showing required / email format / min length / password match examples without a library.
 
+## Deferred
+
+### MizuSkeleton (removed — planned for future)
+
+Loading placeholder component that wraps content and shows skeleton shapes while data loads.
+
+**Why deferred**: The current implementation doesn't meet the visual bar for a loading indicator. Revisit when a more polished shimmer/pulse animation pipeline is established.
+
+**Design retained for future implementation**:
+
+| Prop | Type | Purpose |
+|------|------|---------|
+| `loading` | boolean | `true` → show skeleton, `false` → render `<slot>` content |
+| `variant` | `"text" \| "circle" \| "rect"` | Placeholder shape |
+| `lines` | number | Multi-line text stack (last line 60% width) |
+| `animation` | `"shimmer" \| "pulse" \| "none"` | Loading animation style |
+| `baseColor` / `highlightColor` | string | Themeable skeleton colors |
+| `animationDuration` / `animationDirection` | number / string | Animation tuning |
+
+**Provider**: `MizuSkeletonTheme` — sets defaults for all child skeletons via `provide`/`inject`.
+
+**Package files** (deactivated, kept for reference):
+- `packages/vue/src/components/MizuSkeleton.vue`
+- `packages/vue/src/components/MizuSkeletonTheme.vue`
+- `packages/vue/src/components/skeleton-types.ts`
+- `src/components/docs/SkeletonDemo.vue`
+- `src/content/docs/components/skeleton.mdx`
+
 ## Build & Dev
 
 ```bash

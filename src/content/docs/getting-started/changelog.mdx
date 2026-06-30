@@ -16,6 +16,33 @@ This project follows **semantic versioning** (SemVer) during pre-1.0 development
 Changes that require a minor bump: adding a new component, renaming tokens, changing component APIs, adding new packages (e.g. React).
 Changes that keep the patch version: renames, copy edits, styling tweaks, build config changes, favicon updates.
 
+## 0.12.8 (2026-06-30)
+
+MizuSkeleton rewritten with vue3-skeleton-inspired features, then deferred for future polish.
+
+### Changed
+
+- **`MizuSkeleton`** — fully rewritten with a content-wrapping `loading` prop (skeleton shows when loading, `<slot>` content reveals when ready), `::after` pseudo-element shimmer animation (`translateX`-based sweep), CSS custom property theming (`baseColor`, `highlightColor`, `animationDuration`, `animationDirection`, `customHighlightBackground`), and a new `MizuSkeletonTheme` provider for global defaults via `provide`/`inject`. Animation hardening: pulse uses locally-defined `@keyframes` instead of the Tailwind `animate-pulse` utility (which silently dropped its keyframes from the bundle); shimmer replaced `background-position` animation with a `::after` sliding gradient.
+
+### Removed
+
+- **`MizuSkeleton` deferred** — removed from the Starlight docs sidebar and active component list. The current shimmer/pulse animation pipeline doesn't yet meet the visual bar for a loading indicator. Component files, demo, types, and docs page are kept in the repo for future reference. See `.agents/plans/PLAN.md` — Deferred section for the retained API design.
+
+
+## 0.12.7 (2026-06-29)
+
+New component: MizuSkeleton with visible shimmer and pulse loading animations.
+
+### Added
+
+- **`MizuSkeleton`** -- loading placeholder for text, avatars, cards, and lists. Single SFC, no Reka UI primitive. Props: `variant` (`text`/`circle`/`rect`), `width` (string|number), `height` (string|number), `radius` (string|number), `animation` (`shimmer`/`pulse`/`none`), `lines` (number for multi-line text). Features: text variant uses `height: 0.85em` to track surrounding font size, `lines > 1` renders a stack with last line at 60% width (mimics natural prose), shimmer animation sweeps a gradient highlight via `background-position` (1500ms, `ease-in-out`), pulse animation fades opacity 1 → 0.5 → 1 (2000ms, matching shadcn's `animate-pulse`), explicit gradient colors make shimmer visible in both light and dark modes, honors `prefers-reduced-motion`, hidden from assistive tech via `aria-hidden="true"`.
+
+### Documentation
+
+- New MDX page: `skeleton.mdx`.
+- New demo file: `SkeletonDemo.vue` (9 sections: Variants, Sizes, Custom Dimensions, Animation, In Card Placeholder, Multi-line Text, Conditional Loading with interactive toggle, List Placeholders).
+
+
 ## 0.12.6 (2026-06-29)
 
 New component: MizuBadge.

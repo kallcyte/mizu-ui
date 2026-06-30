@@ -92,6 +92,7 @@ export default defineConfig({
             { label: "Quote", slug: "components/quote" },
             { label: "Radio", slug: "components/radio" },
             { label: "Select", slug: "components/select" },
+
             { label: "Slider", slug: "components/slider" },
             { label: "Switch", slug: "components/switch" },
             { label: "Tabs", slug: "components/tabs" },

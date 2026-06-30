@@ -1,10 +1,10 @@
 {
   "name": "mizu-design-system",
   "type": "module",
-  "version": "0.12.6",
+  "version": "0.12.8",
   "scripts": {
-    "dev": "astro dev",
-    "build": "pnpm build:tokens && pnpm build:vue && astro build",
+    "dev": "node -e \"fs.rmSync('.astro',{recursive:true,force:true})\" && astro dev",
+    "build": "node -e \"fs.rmSync('.astro',{recursive:true,force:true})\" && pnpm build:tokens && pnpm build:vue && astro build",
     "build:tokens": "pnpm --filter @mizu/tokens build",
     "build:vue": "pnpm --filter @mizu/vue build",
     "preview": "astro preview"

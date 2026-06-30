@@ -1,26 +1,41 @@
-## v0.12.3 — Collapsible & Popover
+## v0.12.6 — MizuBadge
 
-Batch 2b supporting components: MizuCollapsible and MizuPopover added.
+### Summary
+
+New component: MizuBadge — a compact count or status indicator for notifications, statuses, and inline labels.
 
 ### New Components
 
 | Component | Sub-components | Description |
-|-----------|---------------|-------------|
-| **MizuCollapsible** | Root, Trigger, Content | Toggleable content panel with chevron rotation animation. Supports `open` (v-model:open), `defaultOpen`, `disabled`. |
-| **MizuPopover** | Root, Trigger, Portal, Content, Arrow, Close, Anchor | Floating popup anchored to a trigger element. Supports `open` (v-model:open), `defaultOpen`, `modal`, `side`, `align`, `sideOffset`, `alignOffset`, `avoidCollisions`, and direction-aware animations. |
+|-----------|----------------|-------------|
+| **MizuBadge** | 1 (standalone) | Compact indicator for notification counts, dot status, and text labels. Supports 6 color variants, 2 sizes, dot mode for presence indicators, count with max overflow formatting (e.g. 99+), showZero toggle, and absolute positioning relative to a parent element. |
 
-### Fixes
+### Component Details
 
-- **MizuTooltip** — fixed dark/light mode visibility. Tooltip variants now use fixed hex colors (`#1B1B1D` / `#F1F5F9`) instead of theme tokens so text is always readable regardless of page theme.
+**MizuBadge** — single SFC, no Reka UI primitive needed.
+
+- Props: `variant`, `size`, `dot`, `count`, `max`, `showZero`, `position`
+- Variants: primary, accent, success, warning, error, info (solid fill, inverse text)
+- Sizes: sm (16px), md (20px)
+- Dot mode: renders as a small circle (8px/10px)
+- Count overflow: shows `{max}+` when count exceeds max (default 99)
+- Positioning: top-right, top-left, bottom-right, bottom-left (absolute with transform centering)
+- Accessibility: `role="status"`, `tabular-nums` for consistent digit width
 
 ### Documentation
 
-- New MDX pages: `collapsible.mdx`, `popover.mdx`
-- New demo files: `CollapsibleDemo.vue`, `PopoverDemo.vue`
-- Added **Collapsible vs Accordion** comparison tables to both `collapsible.mdx` and `accordion.mdx`
-- Changelog entries for v0.12.2 and v0.12.3
+- New MDX page: `src/content/docs/components/badge.mdx`
+- New demo file: `src/components/docs/BadgeDemo.vue` (7 sections: Variants, Sizes, Dot Indicator, Count Overflow, Show Zero, Positioned on Avatar, Text Content)
+- Added sidebar entry in `astro.config.mjs`
+- Added homepage card in `src/components/home/ComponentsSection.astro`
+
+### Changed
+
+- Version bumped to 0.12.6 across all package.json files, Hero.astro, Typography.astro, BaseLayout.astro, starlight.css, and README.md
 
 ### Stats
 
-- 29 files changed, +3285 / -423 lines
-- 133 components exported from `@mizu/vue`
+- Files changed: 14 (3 new + 11 modified)
+- Insertions: 682
+- Package version: 0.12.5 → 0.12.6
+- Component count: 139 exports
