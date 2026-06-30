@@ -7,6 +7,7 @@ import {
   MizuNavigationMenuTrigger,
   MizuNavigationMenuContent,
   MizuNavigationMenuLink,
+  MizuNavigationMenuViewport,
 } from "@mizu/vue";
 import { ChevronDown, File, Settings, Users, BarChart3 } from "@lucide/vue";
 
@@ -71,6 +72,7 @@ const active = ref("home");
             <MizuNavigationMenuLink href="#" :active="active === 'contact'" @click.prevent="active = 'contact'">Contact</MizuNavigationMenuLink>
           </MizuNavigationMenuItem>
         </MizuNavigationMenuList>
+        <MizuNavigationMenuViewport />
       </MizuNavigationMenuRoot>
     </div>
       <div class="demo-section">
@@ -106,6 +108,7 @@ const active = ref("home");
             </MizuNavigationMenuContent>
           </MizuNavigationMenuItem>
         </MizuNavigationMenuList>
+        <MizuNavigationMenuViewport />
       </MizuNavigationMenuRoot>
     </div>
 
@@ -124,6 +127,7 @@ const active = ref("home");
             <MizuNavigationMenuLink href="#"><Settings :size="16" /> Settings</MizuNavigationMenuLink>
           </MizuNavigationMenuItem>
         </MizuNavigationMenuList>
+        <MizuNavigationMenuViewport />
       </MizuNavigationMenuRoot>
     </div>
   </div>
