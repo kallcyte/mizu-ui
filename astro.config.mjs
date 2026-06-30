@@ -85,6 +85,7 @@ export default defineConfig({
             { label: "DropdownMenu", slug: "components/dropdown-menu" },
             { label: "Input", slug: "components/input" },
             { label: "Metric", slug: "components/metric" },
+            { label: "NavigationMenu", slug: "components/navigation-menu" },
             { label: "NumberField", slug: "components/number-field" },
             { label: "Pagination", slug: "components/pagination" },
                         { label: "Popover", slug: "components/popover" },

@@ -21,7 +21,7 @@ const tags = [
     <div class="demo-section">
       <h3>Vertical Scroll</h3>
       <p class="demo-note">Hover to reveal the scrollbar. Content taller than <code>max-height</code> becomes scrollable.</p>
-      <MizuScrollAreaRoot :max-height="200" class="sa-card">
+      <MizuScrollAreaRoot :max-height="50" class="sa-card">
         <MizuScrollAreaViewport class="sa-pad">
           <div class="tag-cloud">
             <span v-for="t in tags" :key="t" class="tag-chip">{{ t }}</span>

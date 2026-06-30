@@ -1,0 +1,164 @@
+---
+title: NavigationMenu
+description: Horizontal or vertical navigation bar with dropdown content panels for site navigation.
+---
+
+import NavigationMenuDemo from '../../../components/docs/NavigationMenuDemo.vue';
+
+A navigation menu is a hierarchical nav bar where triggers open dropdown content panels — useful for site headers, mega-menus, and app sidebar navigation.
+
+## Demo
+
+<NavigationMenuDemo client:load />
+
+## Anatomy
+
+A navigation menu consists of up to 9 parts:
+
+| Part | Required | Description |
+|------|----------|-------------|
+| NavigationMenuRoot | Yes | Container managing open state, orientation, and hover/click delays |
+| NavigationMenuList | Yes | Horizontal or vertical list of menu items |
+| NavigationMenuItem | Yes | Associates a trigger with its content panel |
+| NavigationMenuTrigger | Yes* | Button that opens the content panel |
+| NavigationMenuContent | Yes* | Dropdown panel shown when the trigger is active |
+| NavigationMenuLink | No | Navigational link with active state |
+| NavigationMenuIndicator | No | Arrow pointing from content to trigger |
+| NavigationMenuViewport | No | Animated container that resizes between content panels |
+| NavigationMenuSub | No | Nested sub-menu with its own trigger/content pair |
+
+*Either a Trigger+Content pair or a Link is required per item.
+
+## Composition
+
+```
+MizuNavigationMenuRoot (orientation, modelValue)
+  MizuNavigationMenuList
+    MizuNavigationMenuItem (value)
+      MizuNavigationMenuTrigger
+      MizuNavigationMenuContent
+        MizuNavigationMenuLink
+    MizuNavigationMenuItem
+      MizuNavigationMenuLink (active)
+```
+
+## Orientation
+
+| Orientation | Layout | Use Case |
+|-------------|--------|----------|
+| `horizontal` | Row of triggers, content drops below | Site headers, top nav bars |
+## Size Specifications
+
+| Element | Padding | Font Size | Border Radius |
+|---------|---------|-----------|---------------|
+| Trigger | 8px 14px | 14px | 6px |
+| Link | 8px 14px | 14px | 6px |
+| Content panel | 16px | — | 8px |
+| Viewport | — | — | 8px |
+
+## Color Specifications
+
+| State | Background | Text |
+|-------|-----------|------|
+| Trigger idle | transparent | `foreground-secondary` (#696D7D) |
+| Trigger hover/open | `surface-subtle` (#F8F9FA) | `foreground-primary` (#001C44) |
+| Link idle | transparent | `foreground-secondary` (#696D7D) |
+| Link hover | `surface-subtle` (#F8F9FA) | `foreground-primary` (#001C44) |
+| Link active | `brand-accent-subtle` | `brand-primary` (#001C44) |
+| Content panel | `surface-base` (#FFFFFF) | `foreground-primary` (#001C44) |
+| Content border | `surface-muted` (#F3F4F6) | — |
+
+| Element | Token | Light | Dark |
+|---------|-------|-------|------|
+| Trigger hover bg | `surface-subtle` | #F8F9FA | #141626 |
+| Content panel bg | `surface-base` | #FFFFFF | #1B1B1D |
+| Content border | `surface-muted` | #F3F4F6 | #1E2030 |
+| Active link bg | `brand-accent-subtle` | #E8F0FF | #1A2440 |
+| Active link text | `brand-primary` | #001C44 | #5C7BFF |
+| Focus ring | `brand-accent` | #305EF0 | #5C7BFF |
+
+## Transitions
+
+| Property | Duration | Easing |
+|----------|----------|--------|
+| trigger color | 150ms | ease |
+| trigger background-color | 150ms | ease |
+| link color | 150ms | ease |
+| link background-color | 150ms | ease |
+| content enter | 200ms | ease (opacity + translateY) |
+| viewport size | 250ms | ease |
+
+## Accessibility
+
+| Criterion | Implementation |
+|-----------|---------------|
+| Keyboard navigation | Arrow keys move between triggers; Enter/Space opens content; Escape closes |
+| Focus management | `focus-visible` ring on triggers and links |
+| ARIA roles | `navigation` on root, `menubar` on list, `menuitem` on items |
+| Screen reader | Open state announced via `data-state` on triggers; content region is labelled |
+
+## Vue Component API
+
+### MizuNavigationMenuRoot Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `modelValue` | `string` | — | Controlled active item value (v-model). |
+| `defaultValue` | `string` | — | Initial active item when uncontrolled. |
+| `orientation` | `"horizontal" \| "vertical"` | `"horizontal"` | Layout direction. |
+| `delayDuration` | `number` | `200` | ms before content opens on hover. |
+| `skipDelayDuration` | `number` | `300` | ms grace period between trigger hovers. |
+| `disableClickTrigger` | `boolean` | `false` | Prevent opening via click. |
+| `disableHoverTrigger` | `boolean` | `false` | Prevent opening via hover. |
+
+### MizuNavigationMenuTrigger Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `disabled` | `boolean` | `false` | Disables the trigger. |
+
+### MizuNavigationMenuLink Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `active` | `boolean` | — | Highlights the link as the current page. |
+
+### Example Usage
+
+```vue
+<script setup>
+import {
+  MizuNavigationMenuRoot, MizuNavigationMenuList,
+  MizuNavigationMenuItem, MizuNavigationMenuTrigger,
+  MizuNavigationMenuContent, MizuNavigationMenuLink,
+} from "@mizu/vue";
+</script>
+
+<template>
+  <MizuNavigationMenuRoot orientation="horizontal">
+    <MizuNavigationMenuList>
+      <MizuNavigationMenuItem value="home">
+        <MizuNavigationMenuTrigger>Home</MizuNavigationMenuTrigger>
+        <MizuNavigationMenuContent>
+          <MizuNavigationMenuLink href="/overview">Overview</MizuNavigationMenuLink>
+          <MizuNavigationMenuLink href="/faq">FAQ</MizuNavigationMenuLink>
+        </MizuNavigationMenuContent>
+      </MizuNavigationMenuItem>
+      <MizuNavigationMenuItem>
+        <MizuNavigationMenuLink href="/about" active>About</MizuNavigationMenuLink>
+      </MizuNavigationMenuItem>
+    </MizuNavigationMenuList>
+  </MizuNavigationMenuRoot>
+</template>
+```
+
+## Implementation Notes
+
+1. **Reka UI NavigationMenu primitive** — wraps `NavigationMenuRoot` + `List` + `Item` + `Trigger` + `Content` + `Link` + `Indicator` + `Viewport` + `Sub` for accessible keyboard navigation, ARIA roles, and focus management.
+2. **Hover + click triggers** — content opens on hover after `delayDuration` (200ms) or on click; `disableHoverTrigger` / `disableClickTrigger` toggle each mode.
+3. **Orientation via `data-orientation`** — set on the root and cascaded to the list via CSS descendant selector.
+4. **Content panel animation** — `opacity + translateY` enter animation (200ms), respects `prefers-reduced-motion`.
+5. **Active link styling** — `active` prop adds `brand-accent-subtle` background + `brand-primary` text color.
+6. **Class inheritance** — all sub-components accept `class` via `useAttrs()` for consumer overrides.
+
+| `vertical` | Column of links, content opens to the side | Sidebar navigation, app shells |
