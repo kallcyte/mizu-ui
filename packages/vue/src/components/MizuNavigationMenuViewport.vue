@@ -43,7 +43,13 @@ const viewportClasses = computed(() => {
 }
 
 .bp-nav-menu--horizontal .bp-nav-menu__viewport {
+  position: absolute;
+  top: 100%;
+  left: 0;
   margin-top: 6px;
+  width: max-content;
+  min-width: 200px;
+  max-width: 500px;
 }
 
 .bp-nav-menu--vertical .bp-nav-menu__viewport {
