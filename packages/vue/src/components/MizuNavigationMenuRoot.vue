@@ -27,7 +27,7 @@ const props = withDefaults(defineProps<NavigationMenuRootProps>(), {
   disableClickTrigger: false,
   disableHoverTrigger: false,
   disablePointerLeaveClose: false,
-  unmountOnHide: true,
+  unmountOnHide: false,
   asChild: undefined,
   as: undefined,
 });

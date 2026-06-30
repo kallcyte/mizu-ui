@@ -44,7 +44,19 @@ const contentClasses = computed(() => {
   border-radius: 8px;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08), 0 1px 4px rgba(0, 0, 0, 0.06);
   padding: 16px;
-  animation: bp-nav-menu-content-in 200ms ease;
+  z-index: 50;
+
+  /* Enter/exit transitions driven by data-state */
+  opacity: 0;
+  transform: translateY(-4px) scale(0.98);
+  transition: opacity 200ms ease, transform 200ms ease;
+  pointer-events: none;
+}
+
+.bp-nav-menu__content[data-state="open"] {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
 }
 
 /* Horizontal: content drops below the trigger */
@@ -77,20 +89,9 @@ const contentClasses = computed(() => {
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3), 0 1px 4px rgba(0, 0, 0, 0.2);
 }
 
-@keyframes bp-nav-menu-content-in {
-  from {
-    opacity: 0;
-    transform: translateY(-4px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
 @media (prefers-reduced-motion: reduce) {
   .bp-nav-menu__content {
-    animation: none;
+    transition: none;
   }
 }
 </style>
