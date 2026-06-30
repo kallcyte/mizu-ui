@@ -91,6 +91,7 @@ export default defineConfig({
                         { label: "Progress", slug: "components/progress" },
             { label: "Quote", slug: "components/quote" },
             { label: "Radio", slug: "components/radio" },
+            { label: "ScrollArea", slug: "components/scroll-area" },
             { label: "Select", slug: "components/select" },
 
             { label: "Slider", slug: "components/slider" },

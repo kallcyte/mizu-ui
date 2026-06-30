@@ -1,0 +1,139 @@
+---
+title: ScrollArea
+description: Custom-styled scroll container with native-feeling scrollbars for vertical and horizontal overflow.
+---
+
+import ScrollAreaDemo from '../../../components/docs/ScrollAreaDemo.vue';
+
+A scroll area is a custom-styled scrollable container that replaces native browser scrollbars with themed, consistent scrollbars that work across all browsers and platforms.
+
+## Demo
+
+<ScrollAreaDemo client:load />
+
+## Anatomy
+
+A scroll area consists of up to 5 parts:
+
+| Part | Required | Description |
+|------|----------|-------------|
+| ScrollAreaRoot | Yes | Container that manages overflow and scrollbar visibility |
+| ScrollAreaViewport | Yes | The scrollable content region |
+| ScrollAreaScrollbar | Yes* | Track for a vertical or horizontal scrollbar |
+| ScrollAreaThumb | Yes* | Draggable thumb inside the scrollbar |
+| ScrollAreaCorner | No | Fills the corner when both scrollbars are present |
+
+*One Scrollbar + Thumb is required per scrollable direction.
+
+## Composition
+
+```
+MizuScrollAreaRoot (maxHeight, maxWidth, type)
+  MizuScrollAreaViewport
+    (content)
+  MizuScrollAreaScrollbar (orientation="vertical")
+    MizuScrollAreaThumb
+  MizuScrollAreaScrollbar (orientation="horizontal")
+    MizuScrollAreaThumb
+  MizuScrollAreaCorner
+```
+
+## Scrollbar Visibility
+
+| Type | Behavior |
+|------|----------|
+| `auto` | Scrollbars visible when content overflows |
+| `always` | Scrollbars always visible regardless of overflow |
+| `scroll` | Scrollbars visible only while scrolling |
+| `hover` | Scrollbars visible while scrolling or hovering (default) |
+| `glimpse` | Briefly shows on enter, hides until interaction |
+
+## Size Specifications
+
+| Element | Dimension | Value |
+
+## Color Specifications
+
+| Element | Token | Light | Dark |
+|---------|-------|-------|------|
+| Scrollbar track (visible) | `surface-muted` | #F3F4F6 | #1E2030 |
+| Scrollbar track (hover) | `surface-subtle` | #F8F9FA | #141626 |
+| Thumb idle | `foreground-tertiary` | #696D7D | #9DA0AD |
+| Thumb hover | `foreground-secondary` | #4B5563 | #696D7D |
+| Corner | `surface-muted` | #F3F4F6 | #1E2030 |
+
+## Transitions
+
+| Property | Duration | Easing |
+|----------|----------|--------|
+| scrollbar background-color | 200ms | ease |
+| thumb background-color | 150ms | ease |
+
+## Accessibility
+
+| Criterion | Implementation |
+|-----------|---------------|
+| Keyboard scroll | Content is keyboard-scrollable via focus within the viewport |
+| Touch target | Thumb `::before` expands hit area to 44 × 44px (WCAG 2.5.8) |
+| Drag interaction | Reka UI handles pointer drag with `touch-action: none` |
+| Screen reader | Content inside viewport is fully accessible; scrollbars are decorative |
+
+## Vue Component API
+
+### MizuScrollAreaRoot Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `type` | `"auto" \| "always" \| "scroll" \| "hover" \| "glimpse"` | `"hover"` | Scrollbar visibility behavior. |
+| `scrollHideDelay` | `number` | `600` | ms before scrollbars hide. |
+| `maxHeight` | `string \| number` | — | Constrains height; numbers convert to px. |
+| `maxWidth` | `string \| number` | — | Constrains width; numbers convert to px. |
+
+### MizuScrollAreaScrollbar Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `orientation` | `"vertical" \| "horizontal"` | `"vertical"` | Which axis this scrollbar controls. |
+
+### Example Usage
+
+```vue
+<script setup>
+import {
+  MizuScrollAreaRoot, MizuScrollAreaViewport,
+  MizuScrollAreaScrollbar, MizuScrollAreaThumb,
+  MizuScrollAreaCorner,
+} from "@mizu/vue";
+</script>
+
+<template>
+  <MizuScrollAreaRoot :max-height="240" :max-width="400">
+    <MizuScrollAreaViewport>
+      <p>Long content goes here...</p>
+    </MizuScrollAreaViewport>
+    <MizuScrollAreaScrollbar orientation="vertical">
+      <MizuScrollAreaThumb />
+    </MizuScrollAreaScrollbar>
+    <MizuScrollAreaScrollbar orientation="horizontal">
+      <MizuScrollAreaThumb />
+    </MizuScrollAreaScrollbar>
+    <MizuScrollAreaCorner />
+  </MizuScrollAreaRoot>
+</template>
+```
+
+## Implementation Notes
+
+1. **Reka UI ScrollArea primitive** — wraps `ScrollAreaRoot` + `ScrollAreaViewport` + `ScrollAreaScrollbar` + `ScrollAreaThumb` + `ScrollAreaCorner` for cross-browser scrollbar rendering, pointer drag, and keyboard scroll.
+2. **Custom scrollbar aesthetic** — 10px track with 6px thumb (`foreground-tertiary`), expanding to `foreground-secondary` on hover.
+3. **Touch target via `::before`** — thumb's `::before` pseudo creates a 44 × 44px hit area without changing visual size (WCAG 2.5.8).
+4. **`maxHeight` / `maxWidth` props** — applied as inline styles; numbers convert to px, strings pass through.
+5. **`type` controls visibility** — `hover` (default) mimics macOS; `always` for always-overflowing lists.
+6. **Class inheritance** — all sub-components accept `class` via `useAttrs()`.
+|---------|-----------|-------|
+| Vertical scrollbar | Width | 10px |
+| Horizontal scrollbar | Height | 10px |
+| Vertical thumb | Width | 6px |
+| Horizontal thumb | Height | 6px |
+| Thumb min length | Both | 24px |
+| Thumb touch target | Both | 44 × 44px (via `::before`) |

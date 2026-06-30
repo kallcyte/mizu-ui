@@ -16,6 +16,20 @@ This project follows **semantic versioning** (SemVer) during pre-1.0 development
 Changes that require a minor bump: adding a new component, renaming tokens, changing component APIs, adding new packages (e.g. React).
 Changes that keep the patch version: renames, copy edits, styling tweaks, build config changes, favicon updates.
 
+## 0.12.10 (2026-06-30)
+
+New component: MizuScrollArea — custom-styled scroll container with themed scrollbars.
+
+### Added
+
+- **`MizuScrollArea`** — compound component with 5 sub-components: `MizuScrollAreaRoot`, `MizuScrollAreaViewport`, `MizuScrollAreaScrollbar`, `MizuScrollAreaThumb`, `MizuScrollAreaCorner`. Wraps Reka UI ScrollArea primitives for cross-browser scrollbar rendering, pointer drag, and keyboard scroll. Props: `type` (`auto`/`always`/`scroll`/`hover`/`glimpse`), `scrollHideDelay` (ms), `maxHeight` (string|number), `maxWidth` (string|number), `orientation` on Scrollbar (`vertical`/`horizontal`). Features: 5 scrollbar visibility modes, 10px track with 6px themed thumb (`foreground-tertiary` → `foreground-secondary` on hover), 44 × 44px touch target via `::before` pseudo-element (WCAG 2.5.8), vertical/horizontal/both-directions support with corner piece, track picks up `surface-muted` when visible.
+
+### Documentation
+
+- New MDX page: `scroll-area.mdx`.
+- New demo file: `ScrollAreaDemo.vue` (4 sections: Vertical Scroll, Horizontal Scroll, Both Directions, Always Visible).
+
+
 ## 0.12.9 (2026-06-30)
 
 New component: MizuToggleGroup — segmented control for single and multiple selection.
