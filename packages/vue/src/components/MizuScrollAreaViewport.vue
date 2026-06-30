@@ -28,7 +28,8 @@ const attrs = useAttrs();
 .bp-scroll-area__viewport {
   all: revert;
   width: 100%;
-  height: 100%;
+  max-height: inherit;
+  max-width: inherit;
   border-radius: inherit;
   font-family: inherit;
 }

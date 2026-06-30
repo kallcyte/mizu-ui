@@ -1,32 +1,33 @@
-## v0.12.9 — New component: MizuToggleGroup
+## v0.12.10 — New component: MizuScrollArea
 
-Segmented control for single and multiple selection, built on Reka UI ToggleGroup.
+Custom-styled scroll container with themed scrollbars, built on Reka UI ScrollArea.
 
 ### Added
 
-**`MizuToggleGroup`** — compound component with 2 sub-components:
-- **`MizuToggleGroupRoot`** — container managing active state and selection mode
-- **`MizuToggleGroupItem`** — individual toggle button with on/off state
+**`MizuScrollArea`** — compound component with 5 sub-components:
+- **`MizuScrollAreaRoot`** — container managing overflow and scrollbar visibility
+- **`MizuScrollAreaViewport`** — the scrollable content region
+- **`MizuScrollAreaScrollbar`** — track for vertical or horizontal scrollbar
+- **`MizuScrollAreaThumb`** — draggable thumb inside the scrollbar
+- **`MizuScrollAreaCorner`** — fills the corner when both scrollbars are present
 
 | Feature | Details |
 |---------|--------|
-| Selection modes | `single` (radio-style) and `multiple` (checkbox-style) |
-| Sizes | `sm` / `md` / `lg` via `data-size` attribute |
-| Visual style | Segmented control with `surface-muted` container, elevated active items |
-| Accessibility | Keyboard navigation, `focus-visible` ring, `aria-pressed` |
+| Visibility modes | `auto` / `always` / `scroll` / `hover` / `glimpse` |
+| Direction | vertical, horizontal, or both (with corner) |
+| Sizing | `maxHeight` and `maxWidth` props (string or number) |
+| Thumb | 6px themed (`foreground-tertiary` → `foreground-secondary` on hover) |
+| Touch target | 44 × 44px via `::before` pseudo-element (WCAG 2.5.8) |
+| Track | 10px, picks up `surface-muted` when visible |
 
 ### Documentation
 
-- New MDX page: `toggle-group.mdx`
-- New demo: `ToggleGroupDemo.vue` (5 sections: Single, Multiple, Sizes, Disabled)
-
-### Changes
-
-- Removed Skeleton from homepage card grid (deferred in v0.12.8)
+- New MDX page: `scroll-area.mdx`
+- New demo: `ScrollAreaDemo.vue` (4 sections: Vertical, Horizontal, Both Directions, Always Visible)
 
 ### Stats
 
-- Files changed: 16
-- Insertions: +452
-- Deletions: -44
-- Package: `@mizu/vue@0.12.9`
+- Files changed: 18
+- Insertions: +544
+- Deletions: -7
+- Package: `@mizu/vue@0.12.10`
