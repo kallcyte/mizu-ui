@@ -28,12 +28,13 @@ const attrs = useAttrs();
 .NavigationMenuIndicator {
   all: revert;
   display: flex;
-  justify-content: center;
   align-items: flex-end;
+  justify-content: center;
   height: 10px;
   top: 100%;
   overflow: hidden;
   z-index: 1;
+  font-family: inherit;
   transition: width, transform, 250ms ease;
 }
 
@@ -42,7 +43,7 @@ const attrs = useAttrs();
   display: block;
   width: 12px;
   height: 12px;
-  background: white;
+  background: var(--color-surface-base, white);
   border-radius: 2px;
   border-top-left-radius: 0;
   transform: translateY(70%) rotate(45deg);

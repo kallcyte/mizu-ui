@@ -73,6 +73,7 @@ const rootClasses = computed(() => {
   justify-content: center;
   align-items: center;
   font-family: inherit;
+  z-index: 1;
 }
 
 .NavigationMenuRoot[data-orientation="vertical"] {

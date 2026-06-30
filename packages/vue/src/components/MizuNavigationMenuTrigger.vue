@@ -40,35 +40,38 @@ const triggerClasses = computed(() => {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 8px 12px;
+  gap: 4px;
+  padding: 8px 14px;
   font-family: inherit;
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 500;
-  line-height: 1;
-  background: white;
-  color: #5f6b7c;
-  border: 1px solid #e0e0e0;
+  line-height: 1.4;
+  color: var(--color-foreground-secondary, #5f6b7c);
+  background: transparent;
+  border: none;
   border-radius: 6px;
   cursor: pointer;
   white-space: nowrap;
   user-select: none;
   outline: none;
+  transition: color 150ms ease, background-color 150ms ease;
 }
 
-.NavigationMenuTrigger:hover {
-  background: #f8f8f8;
+.NavigationMenuTrigger:hover,
+.NavigationMenuTrigger[data-state="open"] {
+  color: var(--color-foreground-primary, #1a1a2e);
+  background-color: var(--color-surface-subtle, #f8f8f8);
 }
 
 .NavigationMenuTrigger:focus-visible {
-  box-shadow: 0 0 0 2px #6366f1;
-}
-
-.NavigationMenuTrigger[data-state="open"] {
-  background: #f8f8f8;
+  outline: 2px solid var(--color-brand-accent, #6366f1);
+  outline-offset: 2px;
 }
 
 .NavigationMenuTrigger[data-disabled] {
+  color: var(--color-foreground-tertiary, #9ca3af);
   opacity: 0.5;
   cursor: not-allowed;
+  pointer-events: none;
 }
 </style>

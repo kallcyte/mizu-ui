@@ -39,27 +39,34 @@ const linkClasses = computed(() => {
   all: revert;
   display: inline-flex;
   align-items: center;
-  padding: 8px 12px;
+  gap: 6px;
+  padding: 8px 14px;
   font-family: inherit;
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 500;
-  line-height: 1;
-  color: #5f6b7c;
+  line-height: 1.4;
+  color: var(--color-foreground-secondary, #5f6b7c);
   text-decoration: none;
   border-radius: 6px;
+  cursor: pointer;
+  white-space: nowrap;
+  user-select: none;
   outline: none;
+  transition: color 150ms ease, background-color 150ms ease;
 }
 
 .NavigationMenuLink:hover {
-  background: #f8f8f8;
+  color: var(--color-foreground-primary, #1a1a2e);
+  background-color: var(--color-surface-subtle, #f8f8f8);
 }
 
 .NavigationMenuLink:focus-visible {
-  box-shadow: 0 0 0 2px #6366f1;
+  outline: 2px solid var(--color-brand-accent, #6366f1);
+  outline-offset: 2px;
 }
 
 .NavigationMenuLink[data-active] {
-  color: #1a1a2e;
-  background: #f0f0f5;
+  color: var(--color-brand-primary, #001c44);
+  background-color: var(--color-brand-accent-subtle, #e8f0ff);
 }
 </style>

@@ -41,6 +41,7 @@ const contentClasses = computed(() => {
   top: 0;
   left: 0;
   width: 100%;
+  font-family: inherit;
   padding: 16px;
   animation-duration: 250ms;
   animation-timing-function: ease;
@@ -80,5 +81,11 @@ const contentClasses = computed(() => {
 @keyframes exitToLeft {
   from { opacity: 1; transform: translateX(0); }
   to { opacity: 0; transform: translateX(-200px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .NavigationMenuContent {
+    animation: none;
+  }
 }
 </style>
