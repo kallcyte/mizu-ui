@@ -13,7 +13,7 @@ defineProps<NavigationMenuItemProps>();
 const attrs = useAttrs();
 
 const itemClasses = computed(() => {
-  const c = ["bp-nav-menu__item"];
+  const c = ["NavigationMenuItem"];
   if (attrs.class) c.push(attrs.class as string);
   return c.join(" ");
 });
@@ -26,8 +26,7 @@ const itemClasses = computed(() => {
 </template>
 
 <style>
-.bp-nav-menu__item {
-  all: revert;
+.NavigationMenuItem {
   font-family: inherit;
 }
 </style>

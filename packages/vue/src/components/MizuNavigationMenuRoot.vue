@@ -39,7 +39,7 @@ const emit = defineEmits<{
 const attrs = useAttrs();
 
 const rootClasses = computed(() => {
-  const c = ["bp-nav-menu", `bp-nav-menu--${props.orientation}`];
+  const c = ["NavigationMenuRoot"];
   if (attrs.class) c.push(attrs.class as string);
   return c.join(" ");
 });
@@ -67,16 +67,14 @@ const rootClasses = computed(() => {
 </template>
 
 <style>
-.bp-nav-menu {
-  all: revert;
+.NavigationMenuRoot {
   display: flex;
   justify-content: center;
   align-items: center;
   font-family: inherit;
-  z-index: 1;
 }
 
-.bp-nav-menu--vertical {
+.NavigationMenuRoot[data-orientation="vertical"] {
   flex-direction: column;
   align-items: flex-start;
 }

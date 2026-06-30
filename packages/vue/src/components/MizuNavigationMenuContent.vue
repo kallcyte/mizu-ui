@@ -17,7 +17,7 @@ const props = withDefaults(defineProps<NavigationMenuContentProps>(), {
 const attrs = useAttrs();
 
 const contentClasses = computed(() => {
-  const c = ["bp-nav-menu__content"];
+  const c = ["NavigationMenuContent"];
   if (attrs.class) c.push(attrs.class as string);
   return c.join(" ");
 });
@@ -35,59 +35,49 @@ const contentClasses = computed(() => {
 </template>
 
 <style>
-.bp-nav-menu__content {
-  all: revert;
+.NavigationMenuContent {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
-  font-family: inherit;
   padding: 16px;
-}
-
-.bp-nav-menu__content[data-motion="from-start"] {
-  animation-name: bp-nav-menu-enter-from-left;
-}
-.bp-nav-menu__content[data-motion="from-end"] {
-  animation-name: bp-nav-menu-enter-from-right;
-}
-.bp-nav-menu__content[data-motion="to-start"] {
-  animation-name: bp-nav-menu-exit-to-left;
-}
-.bp-nav-menu__content[data-motion="to-end"] {
-  animation-name: bp-nav-menu-exit-to-right;
-}
-
-.bp-nav-menu__content[data-state="open"],
-.bp-nav-menu__content[data-state="closed"] {
   animation-duration: 250ms;
   animation-timing-function: ease;
 }
 
-@keyframes bp-nav-menu-enter-from-right {
+.NavigationMenuContent[data-motion="from-start"] {
+  animation-name: enterFromLeft;
+}
+
+.NavigationMenuContent[data-motion="from-end"] {
+  animation-name: enterFromRight;
+}
+
+.NavigationMenuContent[data-motion="to-start"] {
+  animation-name: exitToLeft;
+}
+
+.NavigationMenuContent[data-motion="to-end"] {
+  animation-name: exitToRight;
+}
+
+@keyframes enterFromRight {
   from { opacity: 0; transform: translateX(200px); }
   to { opacity: 1; transform: translateX(0); }
 }
 
-@keyframes bp-nav-menu-enter-from-left {
+@keyframes enterFromLeft {
   from { opacity: 0; transform: translateX(-200px); }
   to { opacity: 1; transform: translateX(0); }
 }
 
-@keyframes bp-nav-menu-exit-to-right {
+@keyframes exitToRight {
   from { opacity: 1; transform: translateX(0); }
   to { opacity: 0; transform: translateX(200px); }
 }
 
-@keyframes bp-nav-menu-exit-to-left {
+@keyframes exitToLeft {
   from { opacity: 1; transform: translateX(0); }
   to { opacity: 0; transform: translateX(-200px); }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .bp-nav-menu__content[data-state="open"],
-  .bp-nav-menu__content[data-state="closed"] {
-    animation: none;
-  }
 }
 </style>

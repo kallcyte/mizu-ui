@@ -25,7 +25,7 @@ const emit = defineEmits<{
 const attrs = useAttrs();
 
 const subClasses = computed(() => {
-  const c = ["bp-nav-menu__sub", `bp-nav-menu__sub--${props.orientation}`];
+  const c = ["NavigationMenuSub"];
   if (attrs.class) c.push(attrs.class as string);
   return c.join(" ");
 });
@@ -46,18 +46,10 @@ const subClasses = computed(() => {
 </template>
 
 <style>
-.bp-nav-menu__sub {
-  all: revert;
-  position: relative;
+.NavigationMenuSub {
   display: flex;
-  font-family: inherit;
-}
-
-.bp-nav-menu__sub--horizontal {
-  flex-direction: row;
-}
-
-.bp-nav-menu__sub--vertical {
   flex-direction: column;
+  align-items: flex-start;
+  font-family: inherit;
 }
 </style>

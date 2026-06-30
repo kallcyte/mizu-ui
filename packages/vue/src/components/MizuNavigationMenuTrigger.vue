@@ -17,7 +17,7 @@ const props = withDefaults(defineProps<NavigationMenuTriggerProps>(), {
 const attrs = useAttrs();
 
 const triggerClasses = computed(() => {
-  const c = ["bp-nav-menu__trigger"];
+  const c = ["NavigationMenuTrigger"];
   if (attrs.class) c.push(attrs.class as string);
   return c.join(" ");
 });
@@ -35,47 +35,39 @@ const triggerClasses = computed(() => {
 </template>
 
 <style>
-.bp-nav-menu__trigger {
-  all: revert;
+.NavigationMenuTrigger {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 4px;
-  padding: 8px 14px;
+  padding: 8px 12px;
   font-family: inherit;
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 500;
-  line-height: 1.4;
-  color: var(--color-foreground-secondary);
-  background: transparent;
-  border: none;
+  line-height: 1;
+  background: white;
+  color: #5f6b7c;
+  border: 1px solid #e0e0e0;
   border-radius: 6px;
   cursor: pointer;
   white-space: nowrap;
   user-select: none;
   outline: none;
-  transition: color 150ms ease, background-color 150ms ease;
 }
 
-.bp-nav-menu__trigger:hover {
-  color: var(--color-foreground-primary);
-  background-color: var(--color-surface-subtle);
+.NavigationMenuTrigger:hover {
+  background: #f8f8f8;
 }
 
-.bp-nav-menu__trigger[data-state="open"] {
-  color: var(--color-foreground-primary);
-  background-color: var(--color-surface-subtle);
+.NavigationMenuTrigger:focus-visible {
+  box-shadow: 0 0 0 2px #6366f1;
 }
 
-.bp-nav-menu__trigger:focus-visible {
-  outline: 2px solid var(--color-brand-accent);
-  outline-offset: 2px;
+.NavigationMenuTrigger[data-state="open"] {
+  background: #f8f8f8;
 }
 
-.bp-nav-menu__trigger[data-disabled] {
-  color: var(--color-foreground-tertiary);
+.NavigationMenuTrigger[data-disabled] {
   opacity: 0.5;
   cursor: not-allowed;
-  pointer-events: none;
 }
 </style>

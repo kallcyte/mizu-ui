@@ -12,7 +12,7 @@ defineProps<NavigationMenuListProps>();
 const attrs = useAttrs();
 
 const listClasses = computed(() => {
-  const c = ["bp-nav-menu__list"];
+  const c = ["NavigationMenuList"];
   if (attrs.class) c.push(attrs.class as string);
   return c.join(" ");
 });
@@ -25,24 +25,18 @@ const listClasses = computed(() => {
 </template>
 
 <style>
-.bp-nav-menu .bp-nav-menu__list {
-  all: revert;
+.NavigationMenuList {
   display: flex;
-  font-family: inherit;
-  list-style: none !important;
-  margin: 0 !important;
-  padding: 0 !important;
-}
-
-.bp-nav-menu--horizontal .bp-nav-menu__list {
-  flex-direction: row;
   align-items: center;
-  gap: 2px;
+  justify-content: center;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-family: inherit;
 }
 
-.bp-nav-menu--vertical .bp-nav-menu__list {
+.NavigationMenuList[data-orientation="vertical"] {
   flex-direction: column;
   align-items: stretch;
-  gap: 2px;
 }
 </style>

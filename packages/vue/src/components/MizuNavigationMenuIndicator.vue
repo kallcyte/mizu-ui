@@ -15,7 +15,7 @@ const attrs = useAttrs();
 
 <template>
   <NavigationMenuIndicator
-    :class="['bp-nav-menu__indicator', attrs.class]"
+    :class="['NavigationMenuIndicator', attrs.class]"
     :force-mount="forceMount"
     :as-child="asChild"
     :as="as"
@@ -25,23 +25,35 @@ const attrs = useAttrs();
 </template>
 
 <style>
-.bp-nav-menu__indicator {
-  all: revert;
+.NavigationMenuIndicator {
   display: flex;
   justify-content: center;
   align-items: flex-end;
-  font-family: inherit;
+  height: 10px;
+  top: 100%;
+  overflow: hidden;
   z-index: 1;
-  transition: transform 200ms ease;
+  transition: width, transform, 250ms ease;
 }
 
-.bp-nav-menu__indicator::after {
+.NavigationMenuIndicator::after {
   content: "";
-  width: 10px;
-  height: 10px;
-  background-color: var(--color-surface-base);
-  border-left: 1px solid var(--color-surface-muted);
-  border-bottom: 1px solid var(--color-surface-muted);
-  transform: rotate(45deg) translateY(2px);
+  display: block;
+  width: 12px;
+  height: 12px;
+  background: white;
+  border-radius: 2px;
+  border-top-left-radius: 0;
+  transform: translateY(70%) rotate(45deg);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.NavigationMenuIndicator[data-state="hidden"] {
+  opacity: 0;
+  transition: opacity 200ms ease;
+}
+
+.NavigationMenuIndicator[data-state="visible"] {
+  opacity: 1;
 }
 </style>
