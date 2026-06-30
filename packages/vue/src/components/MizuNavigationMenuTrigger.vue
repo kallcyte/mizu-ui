@@ -36,6 +36,7 @@ const triggerClasses = computed(() => {
 
 <style>
 .NavigationMenuTrigger {
+  all: revert;
   display: inline-flex;
   align-items: center;
   justify-content: center;

@@ -30,6 +30,7 @@ const viewportClasses = computed(() => {
 
 <style>
 .NavigationMenuViewport {
+  all: revert;
   position: relative;
   width: var(--reka-navigation-menu-viewport-width);
   height: var(--reka-navigation-menu-viewport-height);

@@ -26,6 +26,7 @@ const attrs = useAttrs();
 
 <style>
 .NavigationMenuIndicator {
+  all: revert;
   display: flex;
   justify-content: center;
   align-items: flex-end;

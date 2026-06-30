@@ -26,6 +26,7 @@ const listClasses = computed(() => {
 
 <style>
 .NavigationMenuList {
+  all: revert;
   display: flex;
   align-items: center;
   justify-content: center;

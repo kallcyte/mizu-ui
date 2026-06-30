@@ -68,6 +68,7 @@ const rootClasses = computed(() => {
 
 <style>
 .NavigationMenuRoot {
+  all: revert;
   display: flex;
   justify-content: center;
   align-items: center;

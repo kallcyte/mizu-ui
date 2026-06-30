@@ -27,6 +27,7 @@ const itemClasses = computed(() => {
 
 <style>
 .NavigationMenuItem {
+  all: revert;
   font-family: inherit;
 }
 </style>

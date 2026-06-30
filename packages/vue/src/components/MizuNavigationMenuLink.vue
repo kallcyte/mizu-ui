@@ -36,6 +36,7 @@ const linkClasses = computed(() => {
 
 <style>
 .NavigationMenuLink {
+  all: revert;
   display: inline-flex;
   align-items: center;
   padding: 8px 12px;

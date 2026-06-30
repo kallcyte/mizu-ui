@@ -36,6 +36,7 @@ const contentClasses = computed(() => {
 
 <style>
 .NavigationMenuContent {
+  all: revert;
   position: absolute;
   top: 0;
   left: 0;
