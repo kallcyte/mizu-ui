@@ -100,6 +100,7 @@ export default defineConfig({
                                     { label: "TagsInput", slug: "components/tags-input" },
                         { label: "Textarea", slug: "components/textarea" },
             { label: "Toast", slug: "components/toast" },
+            { label: "ToggleGroup", slug: "components/toggle-group" },
             { label: "Tooltip", slug: "components/tooltip" },
           ],
         },

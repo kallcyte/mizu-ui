@@ -16,6 +16,20 @@ This project follows **semantic versioning** (SemVer) during pre-1.0 development
 Changes that require a minor bump: adding a new component, renaming tokens, changing component APIs, adding new packages (e.g. React).
 Changes that keep the patch version: renames, copy edits, styling tweaks, build config changes, favicon updates.
 
+## 0.12.9 (2026-06-30)
+
+New component: MizuToggleGroup — segmented control for single and multiple selection.
+
+### Added
+
+- **`MizuToggleGroup`** — compound component with 2 sub-components: `MizuToggleGroupRoot` and `MizuToggleGroupItem`. Wraps Reka UI `ToggleGroupRoot` + `ToggleGroupItem`. Props: `type` (`single`/`multiple`), `modelValue` (`string | string[]`), `size` (`sm`/`md`/`lg`), `disabled`. Events: `update:modelValue`. Features: single selection (radio-style, one active at a time), multiple selection (checkbox-style, independent toggling), 3 sizes with cascading `data-size` attribute, hover/active/disabled states, focus-visible ring, segmented control aesthetic with `surface-muted` container background and elevated active items.
+
+### Documentation
+
+- New MDX page: `toggle-group.mdx`.
+- New demo file: `ToggleGroupDemo.vue` (5 sections: Single Selection, Multiple Selection, Sizes, Disabled).
+
+
 ## 0.12.8 (2026-06-30)
 
 MizuSkeleton rewritten with vue3-skeleton-inspired features, then deferred for future polish.

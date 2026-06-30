@@ -1,41 +1,24 @@
-## v0.12.6 — MizuBadge
+## v0.12.8 — MizuSkeleton rewrite + deferred
 
-### Summary
-
-New component: MizuBadge — a compact count or status indicator for notifications, statuses, and inline labels.
-
-### New Components
-
-| Component | Sub-components | Description |
-|-----------|----------------|-------------|
-| **MizuBadge** | 1 (standalone) | Compact indicator for notification counts, dot status, and text labels. Supports 6 color variants, 2 sizes, dot mode for presence indicators, count with max overflow formatting (e.g. 99+), showZero toggle, and absolute positioning relative to a parent element. |
-
-### Component Details
-
-**MizuBadge** — single SFC, no Reka UI primitive needed.
-
-- Props: `variant`, `size`, `dot`, `count`, `max`, `showZero`, `position`
-- Variants: primary, accent, success, warning, error, info (solid fill, inverse text)
-- Sizes: sm (16px), md (20px)
-- Dot mode: renders as a small circle (8px/10px)
-- Count overflow: shows `{max}+` when count exceeds max (default 99)
-- Positioning: top-right, top-left, bottom-right, bottom-left (absolute with transform centering)
-- Accessibility: `role="status"`, `tabular-nums` for consistent digit width
-
-### Documentation
-
-- New MDX page: `src/content/docs/components/badge.mdx`
-- New demo file: `src/components/docs/BadgeDemo.vue` (7 sections: Variants, Sizes, Dot Indicator, Count Overflow, Show Zero, Positioned on Avatar, Text Content)
-- Added sidebar entry in `astro.config.mjs`
-- Added homepage card in `src/components/home/ComponentsSection.astro`
+MizuSkeleton received a major overhaul inspired by vue3-skeleton, then was deferred from the active component list while the animation pipeline matures.
 
 ### Changed
 
-- Version bumped to 0.12.6 across all package.json files, Hero.astro, Typography.astro, BaseLayout.astro, starlight.css, and README.md
+**`MizuSkeleton`** — fully rewritten:
+- **Content-wrapping `loading` prop**: skeleton wraps content. `loading=true` → show placeholder, `loading=false` → reveal `<slot>` content, `undefined` → auto-detect from slot children
+- **`::after` pseudo-element shimmer**: replaced `background-position` animation with cleaner `translateX`-based sliding gradient band (vue3-skeleton pattern)
+- **CSS custom property theming**: all colors and animation params via CSS variables — `--bp-skeleton-base`, `--bp-skeleton-highlight`, `--bp-animation-duration`, `--bp-animation-direction`, `--bp-skeleton-custom-gradient`
+- **New props**: `baseColor`, `highlightColor`, `animationDuration`, `animationDirection`, `enableAnimation`, `customHighlightBackground`
+- **`MizuSkeletonTheme`** provider: sets defaults for all child skeletons via `provide`/`inject`
+- **Pulse fix**: local `@keyframes bp-skeleton-pulse` instead of broken `@apply animate-pulse` (Tailwind dropped keyframes from bundle); duplicate `@keyframes bp-skeleton-shimmer` removed
+
+### Removed
+
+**`MizuSkeleton` deferred** — removed from Starlight docs sidebar and active component list. Component files, demo, types, and docs page kept in repo for future reference.
 
 ### Stats
 
-- Files changed: 14 (3 new + 11 modified)
-- Insertions: 682
-- Package version: 0.12.5 → 0.12.6
-- Component count: 139 exports
+- Files changed: 18
+- Insertions: +805
+- Deletions: −22
+- Package: `@mizu/vue@0.12.8`

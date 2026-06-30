@@ -1,0 +1,132 @@
+---
+title: ToggleGroup
+description: A set of toggleable buttons where one or multiple can be active at once.
+---
+
+import ToggleGroupDemo from '../../../components/docs/ToggleGroupDemo.vue';
+
+A toggle group is a segmented control that lets users choose from a set of mutually exclusive (single) or independent (multiple) options.
+
+## Demo
+
+<ToggleGroupDemo client:load />
+
+## Anatomy
+
+A toggle group consists of 2 parts:
+
+| Part | Required | Description |
+|------|----------|-------------|
+| ToggleGroupRoot | Yes | Container that manages the active state and selection mode |
+| ToggleGroupItem | Yes | Individual toggle button with on/off state |
+
+## Composition
+
+```
+MizuToggleGroupRoot (type, modelValue, size)
+  MizuToggleGroupItem (value)
+  MizuToggleGroupItem (value, disabled)
+```
+
+## Type
+
+| Type | Behavior |
+|------|----------|
+| `single` | At most one item can be active. Selecting a new item deselects the previous one. `modelValue` is a `string`. |
+| `multiple` | Any number of items can be active simultaneously. Items toggle independently. `modelValue` is a `string[]`. |
+
+## Size Specifications
+
+| Size | Container Padding | Item Padding | Font Size | Item Gap |
+|------|------------------|-------------|-----------|----------|
+| sm | 2px | 2px 8px | 12px | 4px |
+| md | 3px | 4px 10px | 13px | 6px |
+| lg | 4px | 6px 14px | 14px | 8px |
+
+## Color Specifications
+
+| State | Background | Text |
+|-------|-----------|------|
+| Idle | transparent | `foreground-muted` (#9DA0AD) |
+| Hover | `surface-subtle` (#F8F9FA) | `foreground-primary` (#001C44) |
+| Active (on) | `surface-base` (#FFFFFF) | `foreground-primary` (#001C44) |
+| Disabled | transparent | `foreground-tertiary` (#696D7D) + 50% opacity |
+
+Active items pick up a subtle shadow (`0 1px 3px 0 rgba(0,0,0,0.08)`). The container background is `surface-muted` (#F3F4F6).
+
+| Element | Token | Light | Dark |
+|---------|-------|-------|------|
+| Container bg | `surface-muted` | #F3F4F6 | #1E2030 |
+| Item hover bg | `surface-subtle` | #F8F9FA | #141626 |
+| Item active bg | `surface-base` | #FFFFFF | #1B1B1D |
+| Item active text | `foreground-primary` | #001C44 | #EDEDED |
+| Focus ring | `brand-accent` | #305EF0 | #5C7BFF |
+
+## Transitions
+
+| Property | Duration | Easing |
+|----------|----------|--------|
+| color | 150ms | ease |
+| background-color | 150ms | ease |
+
+## Accessibility
+
+| Criterion | Implementation |
+|-----------|---------------|
+| Keyboard navigation | Arrow keys navigate between items; Home/End jump to first/last |
+| Focus management | `focus-visible` ring on focused items |
+| Screen reader | Active state announced via `aria-pressed` on each item |
+
+## Vue Component API
+
+### MizuToggleGroupRoot Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `modelValue` | `string \| string[]` | — | The active value(s). |
+| `type` | `"single" \| "multiple"` | `"single"` | Selection mode. |
+| `size` | `"sm" \| "md" \| "lg"` | `"md"` | Size variant. |
+| `disabled` | `boolean` | `false` | Disables the entire group. |
+
+### MizuToggleGroupItem Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `value` | `string` | — | The value this item represents. |
+| `disabled` | `boolean` | `false` | Disables just this item. |
+
+### Events
+
+| Event | Payload | Description |
+|-------|---------|-------------|
+| `update:modelValue` | `string \| string[]` | Emitted when active value(s) change. |
+
+### Example Usage
+
+```vue
+<script setup>
+import { ref } from "vue";
+import { MizuToggleGroupRoot, MizuToggleGroupItem } from "@mizu/vue";
+import { Bold, Italic, Underline } from "lucide-vue";
+const format = ref("");
+</script>
+
+<template>
+  <MizuToggleGroupRoot v-model="format" type="single" size="md">
+    <MizuToggleGroupItem value="bold"><Bold :size="14" /> Bold</MizuToggleGroupItem>
+    <MizuToggleGroupItem value="italic"><Italic :size="14" /> Italic</MizuToggleGroupItem>
+    <MizuToggleGroupItem value="underline" disabled>
+      <Underline :size="14" /> Underline
+    </MizuToggleGroupItem>
+  </MizuToggleGroupRoot>
+</template>
+```
+
+## Implementation Notes
+
+1. **Reka UI ToggleGroup primitive** — wraps `ToggleGroupRoot` + `ToggleGroupItem` for accessible keyboard navigation, ARIA roles, and focus management.
+2. **Segmented control pattern** — container has `surface-muted` background with items that pick up `surface-base` + shadow when active.
+3. **Size via `data-size`** — set on the root and cascaded to items via CSS descendant selector.
+4. **Tailwind `@apply`** with `@reference` for Tailwind v4 compatibility.
+5. **Self-contained CSS** — bundled into `dist/index.css` via `@tailwindcss/vite`.
+6. **Class inheritance** — both Root and Item accept `class` via `useAttrs()`.
