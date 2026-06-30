@@ -25,13 +25,13 @@ const listClasses = computed(() => {
 </template>
 
 <style>
-.bp-nav-menu__list {
+.bp-nav-menu .bp-nav-menu__list {
   all: revert;
   display: flex;
   font-family: inherit;
-  list-style: none;
-  margin: 0;
-  padding: 0;
+  list-style: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
 }
 
 .bp-nav-menu--horizontal .bp-nav-menu__list {

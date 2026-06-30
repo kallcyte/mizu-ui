@@ -1,33 +1,36 @@
-## v0.12.10 — New component: MizuScrollArea
+## v0.12.11 — New component: MizuNavigationMenu
 
-Custom-styled scroll container with themed scrollbars, built on Reka UI ScrollArea.
+Horizontal/vertical navigation bar with dropdown content panels, built on Reka UI NavigationMenu.
 
 ### Added
 
-**`MizuScrollArea`** — compound component with 5 sub-components:
-- **`MizuScrollAreaRoot`** — container managing overflow and scrollbar visibility
-- **`MizuScrollAreaViewport`** — the scrollable content region
-- **`MizuScrollAreaScrollbar`** — track for vertical or horizontal scrollbar
-- **`MizuScrollAreaThumb`** — draggable thumb inside the scrollbar
-- **`MizuScrollAreaCorner`** — fills the corner when both scrollbars are present
+**`MizuNavigationMenu`** — compound component with 9 sub-components:
+- **`MizuNavigationMenuRoot`** — container managing open state, orientation, hover/click delays
+- **`MizuNavigationMenuList`** — horizontal or vertical list of items
+- **`MizuNavigationMenuItem`** — associates a trigger with its content panel
+- **`MizuNavigationMenuTrigger`** — button that opens the content panel
+- **`MizuNavigationMenuContent`** — dropdown panel with enter animation
+- **`MizuNavigationMenuLink`** — navigational link with active state
+- **`MizuNavigationMenuIndicator`** — arrow pointing from content to trigger
+- **`MizuNavigationMenuViewport`** — animated container that resizes between panels
+- **`MizuNavigationMenuSub`** — nested sub-menu
 
 | Feature | Details |
 |---------|--------|
-| Visibility modes | `auto` / `always` / `scroll` / `hover` / `glimpse` |
-| Direction | vertical, horizontal, or both (with corner) |
-| Sizing | `maxHeight` and `maxWidth` props (string or number) |
-| Thumb | 6px themed (`foreground-tertiary` → `foreground-secondary` on hover) |
-| Touch target | 44 × 44px via `::before` pseudo-element (WCAG 2.5.8) |
-| Track | 10px, picks up `surface-muted` when visible |
+| Orientation | `horizontal` (top nav) and `vertical` (sidebar) |
+| Trigger modes | Hover (200ms delay) and click, independently toggleable |
+| Active link | `active` prop highlights current page (`brand-accent-subtle` bg) |
+| Animation | Content enter: opacity + translateY (200ms, respects reduced-motion) |
+| Accessibility | Keyboard nav, ARIA roles, focus-visible ring |
 
 ### Documentation
 
-- New MDX page: `scroll-area.mdx`
-- New demo: `ScrollAreaDemo.vue` (4 sections: Vertical, Horizontal, Both Directions, Always Visible)
+- New MDX page: `navigation-menu.mdx`
+- New demo: `NavigationMenuDemo.vue` (4 sections: Basic Navigation, Active Link, Icon Triggers, Vertical Orientation)
 
 ### Stats
 
-- Files changed: 18
-- Insertions: +544
-- Deletions: -7
-- Package: `@mizu/vue@0.12.10`
+- Files changed: 23
+- Insertions: +909
+- Deletions: -8
+- Package: `@mizu/vue@0.12.11`
