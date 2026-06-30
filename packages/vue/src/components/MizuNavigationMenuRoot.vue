@@ -69,19 +69,15 @@ const rootClasses = computed(() => {
 <style>
 .bp-nav-menu {
   all: revert;
-  position: relative;
   display: flex;
+  justify-content: center;
+  align-items: center;
   font-family: inherit;
-  z-index: 50;
-}
-
-.bp-nav-menu--horizontal {
-  flex-direction: column;
-  align-items: flex-start;
+  z-index: 1;
 }
 
 .bp-nav-menu--vertical {
-  flex-direction: row;
+  flex-direction: column;
   align-items: flex-start;
 }
 </style>

@@ -36,23 +36,58 @@ const contentClasses = computed(() => {
 
 <style>
 .bp-nav-menu__content {
+  all: revert;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
   font-family: inherit;
   padding: 16px;
-
-  /* Enter/exit transitions driven by data-state */
-  opacity: 0;
-  transform: translateY(-4px) scale(0.98);
-  transition: opacity 200ms ease, transform 200ms ease;
 }
 
-.bp-nav-menu__content[data-state="open"] {
-  opacity: 1;
-  transform: translateY(0) scale(1);
+.bp-nav-menu__content[data-motion="from-start"] {
+  animation-name: bp-nav-menu-enter-from-left;
+}
+.bp-nav-menu__content[data-motion="from-end"] {
+  animation-name: bp-nav-menu-enter-from-right;
+}
+.bp-nav-menu__content[data-motion="to-start"] {
+  animation-name: bp-nav-menu-exit-to-left;
+}
+.bp-nav-menu__content[data-motion="to-end"] {
+  animation-name: bp-nav-menu-exit-to-right;
+}
+
+.bp-nav-menu__content[data-state="open"],
+.bp-nav-menu__content[data-state="closed"] {
+  animation-duration: 250ms;
+  animation-timing-function: ease;
+}
+
+@keyframes bp-nav-menu-enter-from-right {
+  from { opacity: 0; transform: translateX(200px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes bp-nav-menu-enter-from-left {
+  from { opacity: 0; transform: translateX(-200px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes bp-nav-menu-exit-to-right {
+  from { opacity: 1; transform: translateX(0); }
+  to { opacity: 0; transform: translateX(200px); }
+}
+
+@keyframes bp-nav-menu-exit-to-left {
+  from { opacity: 1; transform: translateX(0); }
+  to { opacity: 0; transform: translateX(-200px); }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .bp-nav-menu__content {
-    transition: none;
+  .bp-nav-menu__content[data-state="open"],
+  .bp-nav-menu__content[data-state="closed"] {
+    animation: none;
   }
 }
 </style>
