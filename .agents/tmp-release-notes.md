@@ -1,24 +1,32 @@
-## v0.12.8 — MizuSkeleton rewrite + deferred
+## v0.12.9 — New component: MizuToggleGroup
 
-MizuSkeleton received a major overhaul inspired by vue3-skeleton, then was deferred from the active component list while the animation pipeline matures.
+Segmented control for single and multiple selection, built on Reka UI ToggleGroup.
 
-### Changed
+### Added
 
-**`MizuSkeleton`** — fully rewritten:
-- **Content-wrapping `loading` prop**: skeleton wraps content. `loading=true` → show placeholder, `loading=false` → reveal `<slot>` content, `undefined` → auto-detect from slot children
-- **`::after` pseudo-element shimmer**: replaced `background-position` animation with cleaner `translateX`-based sliding gradient band (vue3-skeleton pattern)
-- **CSS custom property theming**: all colors and animation params via CSS variables — `--bp-skeleton-base`, `--bp-skeleton-highlight`, `--bp-animation-duration`, `--bp-animation-direction`, `--bp-skeleton-custom-gradient`
-- **New props**: `baseColor`, `highlightColor`, `animationDuration`, `animationDirection`, `enableAnimation`, `customHighlightBackground`
-- **`MizuSkeletonTheme`** provider: sets defaults for all child skeletons via `provide`/`inject`
-- **Pulse fix**: local `@keyframes bp-skeleton-pulse` instead of broken `@apply animate-pulse` (Tailwind dropped keyframes from bundle); duplicate `@keyframes bp-skeleton-shimmer` removed
+**`MizuToggleGroup`** — compound component with 2 sub-components:
+- **`MizuToggleGroupRoot`** — container managing active state and selection mode
+- **`MizuToggleGroupItem`** — individual toggle button with on/off state
 
-### Removed
+| Feature | Details |
+|---------|--------|
+| Selection modes | `single` (radio-style) and `multiple` (checkbox-style) |
+| Sizes | `sm` / `md` / `lg` via `data-size` attribute |
+| Visual style | Segmented control with `surface-muted` container, elevated active items |
+| Accessibility | Keyboard navigation, `focus-visible` ring, `aria-pressed` |
 
-**`MizuSkeleton` deferred** — removed from Starlight docs sidebar and active component list. Component files, demo, types, and docs page kept in repo for future reference.
+### Documentation
+
+- New MDX page: `toggle-group.mdx`
+- New demo: `ToggleGroupDemo.vue` (5 sections: Single, Multiple, Sizes, Disabled)
+
+### Changes
+
+- Removed Skeleton from homepage card grid (deferred in v0.12.8)
 
 ### Stats
 
-- Files changed: 18
-- Insertions: +805
-- Deletions: −22
-- Package: `@mizu/vue@0.12.8`
+- Files changed: 16
+- Insertions: +452
+- Deletions: -44
+- Package: `@mizu/vue@0.12.9`

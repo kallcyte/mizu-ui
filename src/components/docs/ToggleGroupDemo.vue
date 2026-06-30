@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import { MizuToggleGroupRoot, MizuToggleGroupItem } from "@mizu/vue";
-import { Bold, Italic, Underline, AlignLeft, AlignCenter, AlignRight } from "lucide-vue";
+import { Bold, Italic, Underline, AlignLeft, AlignCenter, AlignRight } from "@lucide/vue";
 
 const textFormat = ref("bold");
 const multiFormat = ref<string[]>([]);

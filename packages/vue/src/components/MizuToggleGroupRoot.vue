@@ -52,8 +52,6 @@ const rootClasses = computed(() => {
 </template>
 
 <style>
-@reference "../index.css";
-
 .bp-toggle-group {
   display: inline-flex;
   align-items: center;

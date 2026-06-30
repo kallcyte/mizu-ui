@@ -37,8 +37,6 @@ const itemClasses = computed(() => {
 </template>
 
 <style>
-@reference "../index.css";
-
 .bp-toggle-group__item {
   all: revert;
   display: inline-flex;
