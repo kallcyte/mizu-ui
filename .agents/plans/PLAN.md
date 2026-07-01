@@ -127,20 +127,20 @@ Each component:
 | `MizuDashList` | native ul | `items: string[]` |
 | `MizuMetric` | native div | `value`, `label`, `color` |
 
-### Batch 2a — Core ERP Components (planned)
+### Batch 2a ✅ Core ERP Components
 
-**Version**: `@mizu/vue` → `0.8.0`
+**Version**: `@mizu/vue` → `0.13.1`
 
-**New dependencies**:
+**Dependencies** (already installed):
 - `@tanstack/vue-table` — DataTable logic (sorting, filtering, pagination, row selection)
 - `@internationalized/date` — DatePicker (required by Reka UI DatePicker)
 - `@internationalized/number` — NumberField locale formatting
 
 ```bash
-pnpm --filter @mizu/vue add @tanstack/vue-table @internationalized/date @internationalized/number
+# already installed
 ```
 
-**Implementation order**: Breadcrumb → Pagination → DataTable → Tooltip → Dialog → AlertDialog → Toast → DropdownMenu → Tabs → Combobox → NumberField → DatePicker
+**Implementation order** (all done): Breadcrumb → Pagination → DataTable → Tooltip → Dialog → AlertDialog → Toast → DropdownMenu → Tabs → Combobox → NumberField → DatePicker
 
 | # | Component | Reka primitive | Key props |
 |---|-----------|---------------|-----------|
@@ -355,7 +355,7 @@ interface PaginationProps {
 }
 ```
 
-### Batch 2b — Supporting Components (deferred)
+### Batch 2b ✅ Supporting Components
 
 | # | Component | Reka primitive | Key props |
 |---|-----------|---------------|-----------|
@@ -400,22 +400,176 @@ CSS variable mapping (one-way adapter):
 - **Docs site**: Astro 5, uses Mizu's own Tailwind classes (not shadcn semantic classes)
 - **Single token source**: `@mizu/tokens` is consumed by every package and the docs site — no duplicate hardcoded values anywhere
 - **Token naming**: canonical CSS vars are `--color-{group}-{variant}` with full kebab-case path. Feedback colors keep the `feedback` segment (e.g. `--color-feedback-success-base`); previously the docs used the short form `--color-success-base`, now removed
-- **`@mizu/tokens` 0.7.0** aligns with root version; `@mizu/vue` 0.7.0 (Batch 1), 0.8.0 (Batch 2a)
+- **`@mizu/vue` current version `0.13.1`** (shared with root and `@mizu/tokens`); all three original batches (1, 2a, 2b) are complete
 - **DataTable**: Uses `@tanstack/vue-table` for sorting, filtering, pagination, row selection. Supports both props-only and slot-based cell rendering.
 - **Toast**: Dual API — composable (`useToast()`) for programmatic triggers, and component (`<MizuToast>`) for template use. Requires `<ToastProvider>` + `<ToastViewport>` at app root.
-- **DatePicker**: Uses Reka UI's DatePicker primitive (Alpha status). Accepts API stability risk.
-- **Batch 2b deferred** — supporting components (Accordion, Popover, Collapsible, TagsInput, Slider, ToggleGroup, ScrollArea) planned for later; NavigationMenu archived to `.agents/archive/navigation-menu/` for future re-introduction
+- **DatePicker**: Uses Reka UI's DatePicker primitive (Alpha status). Accepts API stability risk. Components built but no demo page yet.
+- **Batch 2b components** (Accordion, Popover, Collapsible, TagsInput, Slider, ToggleGroup, ScrollArea) are complete; NavigationMenu archived to `.agents/archive/navigation-menu/` for future re-introduction
 - **Login sample page** — Live at `/samples/login/` in the Starlight docs — demonstrates form validation with Zod + `useForm`
 
+## Unit Testing [TODO]
+
+### Status
+
+No testing infrastructure exists yet. Zero test files, no vitest/jest configs, no test runner dependencies.
+
+### Motivation
+
+- **Catch regressions** — the `MizuInput.helperText` rendering bug (fixed 2026-07-02) would have been caught immediately by a component test asserting DOM presence of the helper span
+- **Composable correctness** — `useForm` (useMizuField) has non-trivial validation logic (field-level parsing, touched tracking, handleSubmit flow) that benefits from unit coverage
+
+### Framework Choice: Vitest + @vue/test-utils + jsdom
+
+| Tool | Purpose |
+|---|---|
+| **Vitest** | Test runner — native Vite integration, shares the same transform pipeline (TypeScript, Vue SFC, TailwindCSS via `@tailwindcss/vite`) |
+| **@vue/test-utils** | Mount Vue components, assert props/slots/emits/DOM structure |
+| **jsdom** | Lightweight DOM environment — faster than headless browser, sufficient for component unit tests |
+
+**Why not Jest**: Jest requires its own transform pipeline and doesn't understand Vite's resolve aliases. Vitest uses the project's existing `vite.config.ts`.
+
+**Why not Playwright/Cypress**: Overkill for unit tests. Reserve E2E for sample page smoke tests later.
+
+### Dependencies
+
+```bash
+pnpm --filter @mizu/vue add -D vitest @vue/test-utils jsdom
+```
+
+### Configuration
+
+Create `packages/vue/vitest.config.ts`:
+
+```ts
+import { defineConfig, mergeConfig } from "vitest/config";
+import viteConfig from "./vite.config";
+
+export default mergeConfig(viteConfig, defineConfig({
+  test: {
+    environment: "jsdom",
+    globals: true,
+    include: ["src/**/*.test.ts", "src/**/*.spec.ts"],
+  },
+}));
+```
+
+Add scripts to `packages/vue/package.json`:
+
+```json
+"test": "vitest run",
+"test:watch": "vitest",
+"test:coverage": "vitest run --coverage"
+```
+
+### Test file structure
+
+```
+packages/vue/src/__tests__/
+├── composables/
+│   ├── useMizuField.test.ts       ← P0
+│   └── useToast.test.ts           ← P1
+└── components/
+    ├── MizuInput.test.ts          ← P0: the bug we just fixed
+    ├── MizuSelect.test.ts         ← P1
+    ├── MizuTextarea.test.ts       ← P1
+    ├── MizuCheckbox.test.ts       ← P1
+    ├── MizuRadio.test.ts          ← P2
+    ├── MizuSwitch.test.ts         ← P2
+    ├── MizuButton.test.ts         ← P2
+    ├── MizuAlert.test.ts          ← P2
+    ├── MizuBadge.test.ts          ← P2
+    ├── MizuCard.test.ts           ← P2
+    ├── MizuTag.test.ts            ← P2
+    ├── MizuProgress.test.ts       ← P2
+    ├── MizuAvatar.test.ts         ← P2
+    ├── MizuDivider.test.ts        ← P2
+    ├── MizuQuote.test.ts          ← P2
+    ├── MizuDashList.test.ts       ← P2
+    ├── MizuMetric.test.ts         ← P2
+    ├── MizuDataTable.test.ts      ← P2
+    ├── MizuPagination.test.ts     ← P2
+    ├── MizuTabs.test.ts           ← P3
+    ├── MizuBreadcrumb.test.ts     ← P3
+    ├── MizuToast.test.ts          ← P3
+    ├── MizuSkeleton.test.ts       ← P3
+    ├── MizuAccordion.test.ts      ← P3
+    ├── MizuCollapsible.test.ts    ← P3
+    ├── MizuSlider.test.ts         ← P3
+    ├── MizuToggleGroup.test.ts    ← P3
+    └── MizuTagsInput.test.ts      ← P3
+```
+
+### Prioritized rollout
+
+| Phase | Scope | Why first |
+|---|---|---|
+| **1** | `useMizuField` + `MizuInput` | Core form validation + component we just fixed. Highest regression risk. |
+| **2** | Form components: Select, Textarea, Checkbox, Radio, Switch | Same `helperText`/`error` pattern — ensure parity |
+| **3** | Display components + `useToast`: Button, Alert, Badge, Card, Tag, Progress, Avatar, Divider, Quote, DashList, Metric | Simple assertions, quick coverage wins |
+| **4** | Complex components: DataTable, Pagination, Tabs, Breadcrumb, Toast, Skeleton | Higher complexity, TanStack/Vue interactions |
+| **5** | Reka UI wrappers: Accordion, Collapsible, Slider, ToggleGroup, TagsInput, Dialog/AlertDialog/DropdownMenu/Combobox | Focus on Mizu props, not Reka internals |
+| **6** | CI integration + coverage thresholds | GitHub Actions, `vitest --coverage`, fail under 70% |
+
+### Key testing patterns
+
+
+**Composable test (useMizuField)**:
+```ts
+import { useForm } from "../composables/useMizuField";
+import { z } from "zod";
+
+const schema = z.object({ email: z.email("Invalid email") });
+
+test("field.error returns error after blur with invalid input", () => {
+  const form = useForm(schema);
+  form.fields.email.onChange("not-an-email");
+  expect(form.fields.email.error.value).toBeUndefined(); // not touched yet
+  form.fields.email.onBlur();
+  expect(form.fields.email.error.value).toBe("Invalid email");
+});
+```
+
+**Component test (MizuInput helperText — the bug we fixed)**:
+```ts
+import { mount } from "@vue/test-utils";
+import MizuInput from "../components/MizuInput.vue";
+
+test("renders helper text below the input", () => {
+  const wrapper = mount(MizuInput, {
+    props: { helperText: "Please enter a valid email", error: true }
+  });
+  const helper = wrapper.find(".mizu-input-helper");
+  expect(helper.exists()).toBe(true);
+  expect(helper.text()).toBe("Please enter a valid email");
+  expect(helper.classes()).toContain("mizu-input-helper--error");
+});
+
+test("does not render helper span when helperText is empty", () => {
+  const wrapper = mount(MizuInput, { props: { helperText: "" } });
+  expect(wrapper.find(".mizu-input-helper").exists()).toBe(false);
+});
+```
+
+**Tailwind class assertions**: Since `@tailwindcss/vite` resolves utility classes at build time, tests run in jsdom without the CSS cascade. Assert class **presence** (e.g., `wrapper.classes("mizu-input--error")`), not computed styles. Visual regression testing is out of scope for unit tests.
+
+**Reka UI wrappers**: Components wrapping Reka primitives (Checkbox, Switch, Accordion, Dialog, etc.) should focus on: (1) props pass through correctly, (2) slots render in the right Reka sub-component, (3) Mizu-specific CSS classes are applied. Do **not** test Reka UI's internal behavior.
+
+
 ## Sample Pages
+
 
 Mizu product pages that exercise the full component set and demonstrate ERP UI patterns:
 
 | Page | Primary UX pattern | Components exercised |
 |---|---|---|
 | Login ✅ | Auth form | Input, Button, Checkbox, Alert, Card, useForm, Zod |
-| Dashboard | Data overview | Metric, Tag, Avatar, Progress, DashList, Tabs, DataTable |
-| Customer List | CRUD table | DataTable, Pagination, DropdownMenu, Breadcrumb, Dialog, Toast |
+| Dashboard (components ready) | Data overview | Metric, Tag, Avatar, Progress, DashList, Tabs, DataTable |
+| Customer List (components ready) | CRUD table | DataTable, Pagination, DropdownMenu, Breadcrumb, Dialog, Toast |
+| Order Form (components ready, no DatePicker demo) | Complex form | Input, NumberField, DatePicker, Combobox, Select, Button, AlertDialog |
+
+
+
+
 | Order Form | Complex form | Input, NumberField, DatePicker, Combobox, Select, Button, AlertDialog |
 
 Pages live in `src/content/docs/samples/` as Starlight content, importing components from `@mizu/vue`.
