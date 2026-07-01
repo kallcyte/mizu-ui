@@ -366,7 +366,6 @@ interface PaginationProps {
 | 17 | `MizuSlider` | Slider | `modelValue`, `min`, `max`, `step`, `orientation`, `size` |
 | 18 | `MizuToggleGroup` | ToggleGroup | `modelValue`, `options`, `type` (single/multiple), `size` |
 | 19 | `MizuScrollArea` | ScrollArea | `orientation`, `maxHeight`, `maxWidth` |
-| 20 | `MizuNavigationMenu` | NavigationMenu | `items`, `orientation`, `size` |
 
 ## Phase 3: @mizu/react (packages/react/) — future
 
@@ -405,7 +404,7 @@ CSS variable mapping (one-way adapter):
 - **DataTable**: Uses `@tanstack/vue-table` for sorting, filtering, pagination, row selection. Supports both props-only and slot-based cell rendering.
 - **Toast**: Dual API — composable (`useToast()`) for programmatic triggers, and component (`<MizuToast>`) for template use. Requires `<ToastProvider>` + `<ToastViewport>` at app root.
 - **DatePicker**: Uses Reka UI's DatePicker primitive (Alpha status). Accepts API stability risk.
-- **Batch 2b deferred** — supporting components (Accordion, Popover, Collapsible, TagsInput, Slider, ToggleGroup, ScrollArea, NavigationMenu) planned for later
+- **Batch 2b deferred** — supporting components (Accordion, Popover, Collapsible, TagsInput, Slider, ToggleGroup, ScrollArea) planned for later; NavigationMenu archived to `.agents/archive/navigation-menu/` for future re-introduction
 - **No showcase page yet** — deferred to a later phase
 
 ## Sample Pages (Future)

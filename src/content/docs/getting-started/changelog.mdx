@@ -16,18 +16,17 @@ This project follows **semantic versioning** (SemVer) during pre-1.0 development
 Changes that require a minor bump: adding a new component, renaming tokens, changing component APIs, adding new packages (e.g. React).
 Changes that keep the patch version: renames, copy edits, styling tweaks, build config changes, favicon updates.
 
-## 0.12.11 (2026-06-30)
+## 0.12.12 (2026-07-01)
 
-New component: MizuNavigationMenu — horizontal/vertical navigation bar with dropdown content panels.
+MizuNavigationMenu removed and archived for future re-introduction.
 
-### Added
+### Removed
 
-- **`MizuNavigationMenu`** — compound component with 9 sub-components: `MizuNavigationMenuRoot`, `MizuNavigationMenuList`, `MizuNavigationMenuItem`, `MizuNavigationMenuTrigger`, `MizuNavigationMenuContent`, `MizuNavigationMenuLink`, `MizuNavigationMenuIndicator`, `MizuNavigationMenuViewport`, `MizuNavigationMenuSub`. Wraps Reka UI NavigationMenu primitives for accessible keyboard navigation, ARIA roles, and focus management. Props: `orientation` (`horizontal`/`vertical`), `modelValue` (v-model active item), `delayDuration` (ms hover delay, default 200), `skipDelayDuration` (default 300), `disableClickTrigger`, `disableHoverTrigger`, `disablePointerLeaveClose`. Features: hover and click trigger modes, content panel enter animation (opacity + translateY, 200ms, respects prefers-reduced-motion), active link highlighting (`brand-accent-subtle` bg + `brand-primary` text), focus-visible ring, indicator arrow pointing from content to trigger, viewport with smooth size transitions, nested sub-menus.
+- **`MizuNavigationMenu`** — compound component with 9 sub-components (`MizuNavigationMenuRoot`, `MizuNavigationMenuList`, `MizuNavigationMenuItem`, `MizuNavigationMenuTrigger`, `MizuNavigationMenuContent`, `MizuNavigationMenuLink`, `MizuNavigationMenuIndicator`, `MizuNavigationMenuViewport`, `MizuNavigationMenuSub`) archived to `.agents/archive/navigation-menu/`. Source preserved in `.agents/archive/navigation-menu/` with restore instructions.
 
-### Documentation
+### Changed
 
-- New MDX page: `navigation-menu.mdx`.
-- New demo file: `NavigationMenuDemo.vue` (4 sections: Basic Navigation, With Active Link, Icon Triggers, Vertical Orientation).
+- `@mizu/vue` bumped to `0.12.12`.
 
 
 ## 0.12.10 (2026-06-30)
