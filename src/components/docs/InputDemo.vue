@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import { MizuInput } from "@mizu/vue";
+import { Search, Mail, Lock, User, AlertCircle, CheckCircle } from "@lucide/vue";
 
 const searchValue = ref("");
 const emailValue = ref("");
@@ -9,6 +10,7 @@ const nameValue = ref("");
 const disabledValue = ref("locked-user");
 const errorValue = ref("invalid-email");
 const successValue = ref("user@example.com");
+const passwordDemoValue = ref("");
 </script>
 
 <template>
@@ -109,6 +111,14 @@ const successValue = ref("user@example.com");
             <div class="input-row">
                 <MizuInput label="Email" type="email" required placeholder="you@example.com" />
                 <MizuInput label="Password" type="password" required placeholder="Enter password" />
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h3>Show Password</h3>
+            <div class="input-row">
+                <MizuInput v-model="passwordDemoValue" label="Password" type="password" show-password placeholder="Enter password" />
+                <MizuInput v-model="passwordDemoValue" label="New Password" type="password" show-password placeholder="Create password" helper-text="Click the eye icon to toggle" />
             </div>
         </div>
 

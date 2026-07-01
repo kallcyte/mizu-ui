@@ -103,6 +103,13 @@ export default defineConfig({
             { label: "Toast", slug: "components/toast" },
             { label: "ToggleGroup", slug: "components/toggle-group" },
             { label: "Tooltip", slug: "components/tooltip" },
+            { label: "Validation Patterns", slug: "components/validation-patterns" },
+          ],
+        },
+        {
+          label: "Samples",
+          items: [
+            { label: "Login", slug: "samples/login" },
           ],
         },
       ],

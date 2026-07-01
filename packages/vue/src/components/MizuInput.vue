@@ -1,5 +1,5 @@
-<script setup lang="ts">
-import { computed, useAttrs } from "vue";
+﻿<script setup lang="ts">
+import { computed, ref, useAttrs } from "vue";
 
 export interface InputProps {
   modelValue?: string;
@@ -12,6 +12,7 @@ export interface InputProps {
   required?: boolean;
   label?: string;
   helperText?: string;
+  showPassword?: boolean;
 }
 
 const props = withDefaults(defineProps<InputProps>(), {
@@ -25,6 +26,7 @@ const props = withDefaults(defineProps<InputProps>(), {
   required: false,
   label: undefined,
   helperText: undefined,
+  showPassword: false,
 });
 
 const emit = defineEmits<{
@@ -40,8 +42,16 @@ const slots = defineSlots<{
   "trailing-icon": () => unknown;
 }>();
 
+const passwordVisible = ref(false);
+
 const hasLeadingIcon = computed(() => !!slots["leading-icon"]);
 const hasTrailingIcon = computed(() => !!slots["trailing-icon"]);
+const hasPasswordToggle = computed(() => props.showPassword && props.type === "password");
+
+const inputType = computed(() => {
+  if (props.type === "password" && passwordVisible.value) return "text";
+  return props.type;
+});
 
 const inputId = computed(() => {
   if (attrs.id) return attrs.id as string;
@@ -53,14 +63,14 @@ const helperId = computed(() => `${inputId}-helper`);
 
 const inputClasses = computed(() => {
   const classes = [
-    "bp-input",
-    `bp-input--${props.size}`,
+    "mizu-input",
+    `mizu-input--${props.size}`,
   ];
 
-  if (props.error) classes.push("bp-input--error");
-  if (props.disabled) classes.push("bp-input--disabled");
-  if (hasLeadingIcon.value) classes.push("bp-input--has-leading");
-  if (hasTrailingIcon.value) classes.push("bp-input--has-trailing");
+  if (props.error) classes.push("mizu-input--error");
+  if (props.disabled) classes.push("mizu-input--disabled");
+  if (hasLeadingIcon.value) classes.push("mizu-input--has-leading");
+  if (hasTrailingIcon.value || hasPasswordToggle.value) classes.push("mizu-input--has-trailing");
 
   if (attrs.class) classes.push(attrs.class as string);
 
@@ -93,25 +103,29 @@ function handleFocus(event: FocusEvent) {
 function handleBlur(event: FocusEvent) {
   emit("blur", event);
 }
+
+function togglePassword() {
+  passwordVisible.value = !passwordVisible.value;
+}
 </script>
 
 <template>
-  <div :class="['bp-input-wrapper', `bp-input-wrapper--${size}`]">
+  <div :class="['mizu-input-wrapper', `mizu-input-wrapper--${size}`]">
     <label
       v-if="label"
       :for="inputId"
-      :class="['bp-input-label', `bp-input-label--${size}`]"
+      :class="['mizu-input-label', `mizu-input-label--${size}`]"
     >
       {{ label }}
-      <span v-if="required" class="bp-input-label__required" aria-hidden="true">*</span>
+      <span v-if="required" class="mizu-input-label__required" aria-hidden="true">*</span>
     </label>
-    <div class="bp-input-container">
-      <span v-if="hasLeadingIcon" class="bp-input-icon bp-input-icon--leading">
+    <div class="mizu-input-container">
+      <span v-if="hasLeadingIcon" class="mizu-input-icon mizu-input-icon--leading">
         <slot name="leading-icon" />
       </span>
       <input
         :id="inputId"
-        :type="type"
+        :type="inputType"
         :value="modelValue"
         :placeholder="placeholder"
         :disabled="disabled"
@@ -123,47 +137,41 @@ function handleBlur(event: FocusEvent) {
         @focus="handleFocus"
         @blur="handleBlur"
       />
-      <span v-if="hasTrailingIcon" class="bp-input-icon bp-input-icon--trailing">
+      <span v-if="hasTrailingIcon" class="mizu-input-icon mizu-input-icon--trailing">
         <slot name="trailing-icon" />
       </span>
+      <button
+        v-if="hasPasswordToggle"
+        type="button"
+        class="mizu-input-password-toggle"
+        :aria-label="passwordVisible ? 'Hide password' : 'Show password'"
+        @click="togglePassword"
+      >
+        <svg v-if="!passwordVisible" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mizu-input-password-icon">
+          <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+          <circle cx="12" cy="12" r="3"></circle>
+        </svg>
+        <svg v-else viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mizu-input-password-icon">
+          <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19M14.12 14.12a3 3 0 1 1-4.24-4.24M1 1l22 22"></path>
+        </svg>
+      </button>
     </div>
-    <span
-      v-if="helperText"
-      :id="helperId"
-      :class="['bp-input-helper', { 'bp-input-helper--error': error }]"
-    >
-      {{ helperText }}
-    </span>
   </div>
 </template>
 
 <style>
 @reference "../index.css";
 
-/* Wrapper */
-.bp-input-wrapper {
-  @apply flex flex-col;
-  gap: 6px;
-}
+.mizu-input-wrapper { @apply flex flex-col; gap: 6px; }
+.mizu-input-label { @apply font-medium text-[var(--color-foreground-primary)]; }
+.mizu-input-label--sm { @apply text-[12px]; }
+.mizu-input-label--md { @apply text-[12px]; }
+.mizu-input-label--lg { @apply text-[14px]; }
+.mizu-input-label__required { @apply ml-[2px] text-[var(--color-feedback-error-base)]; }
 
-/* Label */
-.bp-input-label {
-  @apply font-medium text-[var(--color-foreground-primary)];
-}
-.bp-input-label--sm { @apply text-[12px]; }
-.bp-input-label--md { @apply text-[12px]; }
-.bp-input-label--lg { @apply text-[14px]; }
-.bp-input-label__required {
-  @apply ml-[2px] text-[var(--color-feedback-error-base)];
-}
+.mizu-input-container { @apply relative flex items-center; }
 
-/* Container */
-.bp-input-container {
-  @apply relative flex items-center;
-}
-
-/* Base input */
-.bp-input {
+.mizu-input {
   @apply w-full font-[inherit] outline-none;
   box-sizing: border-box;
   line-height: 1;
@@ -172,79 +180,49 @@ function handleBlur(event: FocusEvent) {
   color: var(--color-foreground-primary);
   transition: border-color 200ms ease-in-out, box-shadow 200ms ease-in-out;
 }
-.bp-input::placeholder {
-  @apply text-[var(--color-foreground-tertiary)];
-}
-.bp-input:focus-visible {
+.mizu-input::placeholder { @apply text-[var(--color-foreground-tertiary)]; }
+.mizu-input:focus-visible {
   border-color: var(--color-brand-accent);
   box-shadow: 0 0 0 1px var(--color-brand-accent);
 }
 
-/* Sizes */
-.bp-input--sm {
-  @apply h-[28px] text-[12px];
-  padding: 0 8px;
-  border-radius: 4px;
-  line-height: 1;
-}
-.bp-input--md {
-  @apply h-[36px] text-[12px];
-  padding: 0 10px;
-  border-radius: 6px;
-  line-height: 1;
-}
-.bp-input--lg {
-  @apply h-[40px] text-[14px];
-  padding: 0 10px;
-  border-radius: 6px;
-  line-height: 1;
-}
+.mizu-input--sm { @apply h-[28px] text-[12px]; padding: 0 8px; border-radius: 4px; line-height: 1; }
+.mizu-input--md { @apply h-[36px] text-[12px]; padding: 0 10px; border-radius: 6px; line-height: 1; }
+.mizu-input--lg { @apply h-[40px] text-[14px]; padding: 0 10px; border-radius: 6px; line-height: 1; }
 
-/* Icon padding */
-.bp-input--has-leading.bp-input--sm { @apply pl-[28px]; }
-.bp-input--has-leading.bp-input--md { @apply pl-[34px]; }
-.bp-input--has-leading.bp-input--lg { @apply pl-[36px]; }
-.bp-input--has-trailing.bp-input--sm { @apply pr-[28px]; }
-.bp-input--has-trailing.bp-input--md { @apply pr-[34px]; }
-.bp-input--has-trailing.bp-input--lg { @apply pr-[36px]; }
+.mizu-input--has-leading.mizu-input--sm { @apply pl-[28px]; }
+.mizu-input--has-leading.mizu-input--md { @apply pl-[34px]; }
+.mizu-input--has-leading.mizu-input--lg { @apply pl-[36px]; }
+.mizu-input--has-trailing.mizu-input--sm { @apply pr-[28px]; }
+.mizu-input--has-trailing.mizu-input--md { @apply pr-[34px]; }
+.mizu-input--has-trailing.mizu-input--lg { @apply pr-[36px]; }
 
-/* Icons */
-.bp-input-icon {
-  @apply absolute flex items-center justify-center pointer-events-none;
+.mizu-input-icon { @apply absolute flex items-center justify-center pointer-events-none; color: var(--color-foreground-tertiary); }
+.mizu-input-icon--leading { @apply left-0; }
+.mizu-input-icon--trailing { @apply right-0; }
+.mizu-input-wrapper--sm .mizu-input-icon { @apply w-[28px] h-[28px]; }
+.mizu-input-wrapper--md .mizu-input-icon { @apply w-[34px] h-[36px]; }
+.mizu-input-wrapper--lg .mizu-input-icon { @apply w-[36px] h-[40px]; }
+.mizu-input-icon svg { @apply w-[14px] h-[14px]; }
+
+.mizu-input-password-toggle {
+  @apply absolute right-0 flex items-center justify-center cursor-pointer border-none bg-transparent p-0;
   color: var(--color-foreground-tertiary);
 }
-.bp-input-icon--leading {
-  @apply left-0;
-}
-.bp-input-icon--trailing {
-  @apply right-0;
-}
-.bp-input-wrapper--sm .bp-input-icon { @apply w-[28px] h-[28px]; }
-.bp-input-wrapper--md .bp-input-icon { @apply w-[34px] h-[36px]; }
-.bp-input-wrapper--lg .bp-input-icon { @apply w-[36px] h-[40px]; }
-.bp-input-icon svg {
-  @apply w-[14px] h-[14px];
-}
+.mizu-input-password-toggle:hover { color: var(--color-foreground-secondary); }
+.mizu-input-wrapper--sm .mizu-input-password-toggle { @apply w-[28px] h-[28px]; }
+.mizu-input-wrapper--md .mizu-input-password-toggle { @apply w-[34px] h-[36px]; }
+.mizu-input-wrapper--lg .mizu-input-password-toggle { @apply w-[36px] h-[40px]; }
+.mizu-input-password-icon { @apply w-[14px] h-[14px]; }
 
-/* Error state */
-.bp-input--error {
-  border-color: var(--color-feedback-error-base);
-}
-.bp-input--error:focus-visible {
+.mizu-input--error { border-color: var(--color-feedback-error-base); }
+.mizu-input--error:focus-visible {
   border-color: var(--color-feedback-error-base);
   box-shadow: 0 0 0 1px var(--color-feedback-error-base);
 }
+.mizu-input--disabled { @apply bg-[var(--color-surface-muted)] text-[var(--color-foreground-tertiary)] cursor-not-allowed; }
 
-/* Disabled */
-.bp-input--disabled {
-  @apply bg-[var(--color-surface-muted)] text-[var(--color-foreground-tertiary)] cursor-not-allowed;
-}
-
-/* Helper text */
-.bp-input-helper {
-  @apply text-[12px] text-[var(--color-foreground-secondary)];
-}
-.bp-input-helper--error {
-  @apply text-[var(--color-feedback-error-base)];
-}
+.mizu-input-helper { @apply text-[12px] text-[var(--color-foreground-secondary)]; }
+.mizu-input-helper--error { @apply text-[var(--color-feedback-error-base)]; }
 </style>
+

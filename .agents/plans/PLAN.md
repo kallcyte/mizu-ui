@@ -405,31 +405,39 @@ CSS variable mapping (one-way adapter):
 - **Toast**: Dual API — composable (`useToast()`) for programmatic triggers, and component (`<MizuToast>`) for template use. Requires `<ToastProvider>` + `<ToastViewport>` at app root.
 - **DatePicker**: Uses Reka UI's DatePicker primitive (Alpha status). Accepts API stability risk.
 - **Batch 2b deferred** — supporting components (Accordion, Popover, Collapsible, TagsInput, Slider, ToggleGroup, ScrollArea) planned for later; NavigationMenu archived to `.agents/archive/navigation-menu/` for future re-introduction
-- **No showcase page yet** — deferred to a later phase
+- **Login sample page** — Live at `/samples/login/` in the Starlight docs — demonstrates form validation with Zod + `useForm`
 
-## Sample Pages (Future)
+## Sample Pages
 
 Mizu product pages that exercise the full component set and demonstrate ERP UI patterns:
 
 | Page | Primary UX pattern | Components exercised |
 |---|---|---|
-| Login | Auth form | Input, Button, Checkbox, Alert, Card |
+| Login ✅ | Auth form | Input, Button, Checkbox, Alert, Card, useForm, Zod |
 | Dashboard | Data overview | Metric, Tag, Avatar, Progress, DashList, Tabs, DataTable |
 | Customer List | CRUD table | DataTable, Pagination, DropdownMenu, Breadcrumb, Dialog, Toast |
 | Order Form | Complex form | Input, NumberField, DatePicker, Combobox, Select, Button, AlertDialog |
 
-Each page lives in `src/pages/samples/` and imports components from `@mizu/vue` (or directly from `src/components/ui/` when the Vue package isn't ready).
+Pages live in `src/content/docs/samples/` as Starlight content, importing components from `@mizu/vue`.
 
-### Form Validation (Future)
+### Form Validation [DONE]
 
-Validation will be demonstrated through the sample pages rather than baked into `MizuInput`. The component stays a controlled primitive (`v-model` + `error` + `helperText` props) and consumers plug in their own validation layer.
+Validation was implemented using **Zod + `useForm` composable** (the "Zod schemas wrapped in a thin composable" approach from the original options).
 
-Candidate approaches to evaluate when implementing the Login page:
-- Hand-rolled composables using `ref` + `computed` (no dependency)
-- VeeValidate + `@vee-validate/zod` (popular Vue form library with schema support)
-- Zod schemas wrapped in a thin `useMizuField` composable
+**What was built:**
+- **`packages/vue/src/composables/useMizuField.ts`** -- exports `useForm(schema)` function and `FieldState`/`MizuFormResult` types
+- **`src/content/docs/components/validation-patterns.mdx`** -- documentation page with API reference and pattern examples
+- **`src/content/docs/samples/login.mdx`** -- Login sample page demonstrating the composable
+- **`src/components/docs/LoginDemo.vue`** -- reusable Login form demo component
+- Added `zod` dependency to @mizu/vue (v4.x)
+- Updated Starlight sidebar with Validation Patterns under Components and Login under Samples
 
-A "Validation patterns" section may also be added to the Input demo showing required / email format / min length / password match examples without a library.
+**Key facts:**
+- `useForm(schema)` returns fields, values, errors, hasErrors, isSubmitting, submitCount, validate, handleSubmit, reset, setFieldValue, setFieldError
+- `handleSubmit(fn)` wraps submit function with full validation -- only calls fn when all fields pass
+- Field-level errors bind directly to MizuInput.error + MizuInput.helperText
+- Server-side errors use setFieldError(field, message) after API calls
+- Cross-field validation uses Zod .refine()
 
 ## Deferred
 

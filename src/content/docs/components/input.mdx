@@ -1,4 +1,4 @@
----
+﻿---
 title: Input
 description: Inputs let users enter and edit text in a form.
 ---
@@ -122,11 +122,11 @@ When the `required` prop is `true`, a red asterisk (`*`) is rendered next to the
 ### Input Content Layout
 
 ```
-┌──────────────────────────────────────────────────┐
-│←pad→┌────┐←gap→┌──────────────────┐←gap→┌────┐←pad→│
-│     │Icon│     │      Input       │     │Icon│     │
-│     └────┘     └──────────────────┘     └────┘     │
-└──────────────────────────────────────────────────┘
+â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
+â”‚â†padâ†’â”Œâ”€â”€â”€â”€â”â†gapâ†’â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”â†gapâ†’â”Œâ”€â”€â”€â”€â”â†padâ†’â”‚
+â”‚     â”‚Iconâ”‚     â”‚      Input       â”‚     â”‚Iconâ”‚     â”‚
+â”‚     â””â”€â”€â”€â”€â”˜     â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜     â””â”€â”€â”€â”€â”˜     â”‚
+â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
 ```
 
 | Property | SM | MD | LG |
@@ -216,6 +216,7 @@ When the `required` prop is `true`, a red asterisk (`*`) is rendered next to the
 | `required` | `boolean` | `false` | Required state |
 | `label` | `string` | `undefined` | Label text |
 | `helperText` | `string` | `undefined` | Helper text below input |
+| `showPassword` | `boolean` | `false` | Show password toggle button (only when type=`"password`") |
 
 ### Slots
 
@@ -257,8 +258,8 @@ When the `required` prop is `true`, a red asterisk (`*`) is rendered next to the
     v-model="password"
     label="Password"
     type="password"
-    error
-    helper-text="Password must be at least 8 characters"
+    show-password
+    placeholder="Enter password"
   >
     <template #leading-icon>
       <LockIcon />
@@ -274,15 +275,30 @@ When the `required` prop is `true`, a red asterisk (`*`) is rendered next to the
 </template>
 ```
 
+## Show Password
+
+When `showPassword` is set on a `type="password"` input, an eye toggle button appears at the trailing edge. Click it to switch between masked (`type="password"`) and visible (`type="text"`).
+
+```vue
+<MizuInput
+  v-model="pwd"
+  label="Password"
+  type="password"
+  show-password
+  placeholder="Enter password"
+/>
+```
+
 ## Implementation Notes
 
-1. **Native `<input>` element** -- No Reka UI primitive needed; use native HTML input for maximum accessibility
-2. **Tailwind `@apply`** -- Component styles use `@apply` with `@reference` for Tailwind v4 compatibility
-3. **CSS Custom Properties** -- Colors are resolved via CSS variables from `@mizu/tokens`
-4. **Self-contained CSS** -- Tailwind utilities are bundled into `dist/index.css` via `@tailwindcss/vite`; consumers do not need Tailwind installed
-5. **Class inheritance** -- Accept `class` prop for overrides via `useAttrs()`
-6. **TypeScript** -- Full type safety with `<script setup lang="ts">`
-7. **Tree-shakeable** -- Export as ESM + CJS via Vite library mode
-8. **v-model support** -- Uses `modelValue`/`update:modelValue` pattern for two-way binding
-9. **Label association** -- Label is linked to input via `for`/`id` for screen reader accessibility
-10. **Helper text** -- Connected via `aria-describedby` for screen reader announcements
+1. **Native `<input>` element** — No Reka UI primitive needed; use native HTML input for maximum accessibility
+2. **Tailwind `@apply`** — Component styles use `@apply` with `@reference` for Tailwind v4 compatibility
+3. **CSS Custom Properties** — Colors are resolved via CSS variables from `@mizu/tokens`
+4. **Self-contained CSS** — Tailwind utilities are bundled into `dist/index.css` via `@tailwindcss/vite`; consumers do not need Tailwind installed
+5. **Class inheritance** — Accept `class` prop for overrides via `useAttrs()`
+6. **TypeScript** — Full type safety with `<script setup lang="ts">`
+7. **Tree-shakeable** — Export as ESM + CJS via Vite library mode
+8. **v-model support** — Uses `modelValue`/`update:modelValue` pattern for two-way binding
+9. **Label association** — Label is linked to input via `for`/`id` for screen reader accessibility
+10. **Helper text** — Connected via `aria-describedby` for screen reader announcements
+11. **Password toggle** — Built-in eye icon toggle when `showPassword` is enabled on password inputs

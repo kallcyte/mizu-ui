@@ -16,6 +16,28 @@ This project follows **semantic versioning** (SemVer) during pre-1.0 development
 Changes that require a minor bump: adding a new component, renaming tokens, changing component APIs, adding new packages (e.g. React).
 Changes that keep the patch version: renames, copy edits, styling tweaks, build config changes, favicon updates.
 
+
+## 0.13.0 (2026-07-01)
+
+Form validation composable (useForm + Zod) and password visibility toggle (showPassword prop on MizuInput).
+
+### Added
+
+- **`useForm` composable** — new `packages/vue/src/composables/useMizuField.ts` exports `useForm(schema)` for Zod-based form validation. Returns `{ fields, values, errors, hasErrors, isSubmitting, submitCount, validate, handleSubmit, reset, setFieldValue, setFieldError }`. `handleSubmit(fn)` wraps submit handlers with full schema validation. Field errors bind directly to `MizuInput.error` + `MizuInput.helperText`. Server-side errors via `setFieldError(field, message)`.
+- **`showPassword` prop on MizuInput** — when set on a `type="password"` input, a built-in eye toggle button appears at the trailing edge. Click to switch between masked and visible. Uses inline SVG icons (no extra dependency).
+- **`zod` dependency** — added to both root and `@mizu/vue` (v4.4.3) for schema-based validation.
+- **Validation Patterns docs page** — `src/content/docs/components/validation-patterns.mdx` with API reference, pattern examples (required, email, min/max length, password confirmation, server errors), and login demo.
+- **Login sample page** — `src/content/docs/samples/login.mdx` demonstrating form validation with useForm + Zod.
+- **LoginDemo component** — `src/components/docs/LoginDemo.vue` with email/password/remember-me form, lucide Mail & Lock icons, loading state, error/success alerts, and `showPassword` toggle.
+
+### Changed
+
+- **MizuInput** — added `showPassword?: boolean` prop (default `false`). When `type="password"` and `showPassword` is `true`, an inline SVG eye icon toggle appears with `.mizu-input-password-toggle` styles. Input `type` switches between `password` and `text` on click.
+- **InputDemo** — added icon imports (Search, Mail, Lock, User, AlertCircle, CheckCircle from `@lucide/vue`), new "Show Password" demo section.
+- **input.mdx** — added `showPassword` to Props table, new "Show Password" section, updated Example Usage with password toggle, added "Password toggle" to Implementation Notes.
+- **Sidebar** — added "Validation Patterns" (under Components) and "Login" (under new Samples group).
+- **`@mizu/vue` bumped to `0.13.0`**.
+
 ## 0.12.12 (2026-07-01)
 
 MizuNavigationMenu removed and archived for future re-introduction.
@@ -128,7 +150,7 @@ Batch 2c — standalone inputs: MizuTagsInput added.
 
 ### Added
 
-- **`MizuTagsInput`** -- multi-value text input that lets users build and remove a list of tag chips. Single SFC, no Reka UI primitive. The container reuses `MizuInput`'s `.bp-input` styling; chips are rendered with `MizuTag` and their color scheme is controlled by the `tagVariant` prop. Props: `modelValue` (string[]), `defaultValue`, `placeholder`, `disabled`, `readOnly`, `required`, `error`, `size` (`sm`/`md`/`lg`), `tagVariant` (`primary`/`accent`/`success`/`warning`/`error`/`info`), `separator` (array of `Enter`/`Comma`/`Semicolon`/`Tab`), `maxTags`, `allowDuplicates`, `validate` (`(value: string) => boolean | string`), `name`, `label`, `helperText`, `id`. Events: `update:modelValue` (string[]), `add`, `remove`, `focus`, `blur`, `invalid-tag` (with reason `'duplicate' | 'max' | 'validation'`). Features: native `<input>` trailing the chips, Backspace removes last tag when input empty, paste splits on every configured separator, blur commits pending text, chips animate in with a 150ms pop and rejected commits flash a 200ms shake.
+- **`MizuTagsInput`** -- multi-value text input that lets users build and remove a list of tag chips. Single SFC, no Reka UI primitive. The container reuses `MizuInput`'s `.mizu-input` styling; chips are rendered with `MizuTag` and their color scheme is controlled by the `tagVariant` prop. Props: `modelValue` (string[]), `defaultValue`, `placeholder`, `disabled`, `readOnly`, `required`, `error`, `size` (`sm`/`md`/`lg`), `tagVariant` (`primary`/`accent`/`success`/`warning`/`error`/`info`), `separator` (array of `Enter`/`Comma`/`Semicolon`/`Tab`), `maxTags`, `allowDuplicates`, `validate` (`(value: string) => boolean | string`), `name`, `label`, `helperText`, `id`. Events: `update:modelValue` (string[]), `add`, `remove`, `focus`, `blur`, `invalid-tag` (with reason `'duplicate' | 'max' | 'validation'`). Features: native `<input>` trailing the chips, Backspace removes last tag when input empty, paste splits on every configured separator, blur commits pending text, chips animate in with a 150ms pop and rejected commits flash a 200ms shake.
 
 ### Documentation
 
@@ -281,7 +303,7 @@ Batch 2a — all compound components added in a single release.
 
 ### Changed
 
-- **Breaking: token naming** — all color/typography/spacing tokens now use canonical `--color-*`, `--font-size-*`, `--line-height-*`, `--letter-spacing-*` etc. (the legacy `--bp-color-*` prefix on token references is removed across all Vue SFCs).
+- **Breaking: token naming** — all color/typography/spacing tokens now use canonical `--color-*`, `--font-size-*`, `--line-height-*`, `--letter-spacing-*` etc. (the legacy `--mizu-color-*` prefix on token references is removed across all Vue SFCs).
 - **`tokens.css` aggregate removed** — consumers now import the four specialized subpaths (`@mizu/tokens/light.css`, `@mizu/tokens/dark.css`, `@mizu/tokens/tailwind.css`, `@mizu/tokens/starlight.css`) instead of a single bundled aggregate.
 - **Homepage sections** — removed `Manifesto` and `AntiPatterns` sections from the homepage.
 - **Starlight dropdown + select theming** — search button, theme select, and mobile-TOC dropdown all use `--sl-color-bg-nav` for background and explicit `var(--sl-color-gray-2)` for dropdown text. Theme-select `<option>` elements use hardcoded `#ffffff` / `#1B1B1D` (light) and `#1B1B1D` / `#F1F5F9` (dark) to avoid white-on-white.
@@ -318,8 +340,8 @@ Batch 2a — all compound components added in a single release.
 ### Fixed
 
 - Card typography now uses `!important` to override Starlight global heading/paragraph styles
-- Missing `--bp-color-surface-base` token added to Vue package (light: #FFFFFF, dark: #0F1117)
-- Missing `--bp-letter-spacing-*` tokens added to Vue package
+- Missing `--mizu-color-surface-base` token added to Vue package (light: #FFFFFF, dark: #0F1117)
+- Missing `--mizu-letter-spacing-*` tokens added to Vue package
 - Font size values in Vue package aligned with homepage tokens (`h3: 16px`, `body: 14px`, `caption: 12px`, `label: 10px`)
 
 ## 0.2.2 (2026-06-04)

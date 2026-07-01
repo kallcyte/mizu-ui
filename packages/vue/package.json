@@ -1,6 +1,6 @@
 {
   "name": "@mizu/vue",
-  "version": "0.12.12",
+  "version": "0.13.0",
   "type": "module",
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
@@ -29,7 +29,8 @@
     "@mizu/tokens": "workspace:*",
     "@tanstack/vue-table": "^8.21.3",
     "reka-ui": "^2.9.0",
-    "vue": "^3.5.0"
+    "vue": "^3.5.0",
+    "zod": "^4.4.3"
   },
   "devDependencies": {
     "@tailwindcss/vite": "^4.3.0",

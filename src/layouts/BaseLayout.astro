@@ -14,7 +14,7 @@ import "../styles/global.css";
   <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
   <script is:inline>
     (function() {
-      const saved = localStorage.getItem('bp-theme');
+      const saved = localStorage.getItem('mizu-theme');
       const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
       if (saved === 'dark' || (!saved && prefersDark)) {
         document.documentElement.setAttribute('data-theme', 'dark');
@@ -44,7 +44,7 @@ import "../styles/global.css";
             <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/>
           </svg>
         </button>
-        <span class="inline-block px-2.5 py-0.5 rounded-full text-xs font-semibold bg-brand-accent-subtle text-brand-accent">v0.12.12</span>
+        <span class="inline-block px-2.5 py-0.5 rounded-full text-xs font-semibold bg-brand-accent-subtle text-brand-accent">v0.13.0</span>
       </div>
     </div>
   </nav>
@@ -72,10 +72,10 @@ import "../styles/global.css";
         const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
         if (isDark) {
           document.documentElement.removeAttribute('data-theme');
-          localStorage.setItem('bp-theme', 'light');
+          localStorage.setItem('mizu-theme', 'light');
         } else {
           document.documentElement.setAttribute('data-theme', 'dark');
-          localStorage.setItem('bp-theme', 'dark');
+          localStorage.setItem('mizu-theme', 'dark');
         }
         updateIcons();
       });
