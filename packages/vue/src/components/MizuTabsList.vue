@@ -21,7 +21,7 @@ const props = withDefaults(defineProps<TabsListProps>(), {
 const attrs = useAttrs();
 
 const listClasses = computed(() => {
-  const classes = ["bp-tabs__list"];
+  const classes = ["mizu-tabs__list"];
   if (attrs.class) classes.push(attrs.class as string);
   return classes.join(" ");
 });
@@ -41,7 +41,7 @@ const listClasses = computed(() => {
 </template>
 
 <style>
-.bp-tabs__list {
+.mizu-tabs__list {
   all: revert;
   display: flex;
   gap: 2px;
@@ -49,7 +49,7 @@ const listClasses = computed(() => {
   font-family: inherit;
 }
 
-.bp-tabs__list[data-variant="button"] {
+.mizu-tabs__list[data-variant="button"] {
   gap: 8px;
   border-bottom: none;
   background-color: var(--color-surface-muted);
@@ -57,25 +57,25 @@ const listClasses = computed(() => {
   padding: 8px;
 }
 
-.bp-tabs__list[data-variant="button"][data-size="sm"] {
+.mizu-tabs__list[data-variant="button"][data-size="sm"] {
   gap: 4px;
   border-radius: 6px;
   padding: 4px;
 }
 
-.bp-tabs__list[data-variant="button"][data-size="lg"] {
+.mizu-tabs__list[data-variant="button"][data-size="lg"] {
   gap: 8px;
   border-radius: 8px;
   padding: 8px;
 }
 
-.bp-tabs__list[data-orientation="vertical"] {
+.mizu-tabs__list[data-orientation="vertical"] {
   flex-direction: column;
   border-bottom: none;
   border-right: 1px solid var(--color-surface-muted);
 }
 
-.bp-tabs__list[data-orientation="vertical"][data-variant="button"] {
+.mizu-tabs__list[data-orientation="vertical"][data-variant="button"] {
   border-right: none;
   align-items: stretch;
 }

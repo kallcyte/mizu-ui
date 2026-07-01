@@ -15,7 +15,7 @@ const attrs = useAttrs();
 
 <template>
   <ScrollAreaViewport
-    :class="['bp-scroll-area__viewport', attrs.class]"
+    :class="['mizu-scroll-area__viewport', attrs.class]"
     :nonce="nonce"
     :as-child="asChild"
     :as="as"
@@ -25,7 +25,7 @@ const attrs = useAttrs();
 </template>
 
 <style>
-.bp-scroll-area__viewport {
+.mizu-scroll-area__viewport {
   all: revert;
   width: 100%;
   max-height: inherit;
@@ -34,7 +34,7 @@ const attrs = useAttrs();
   font-family: inherit;
 }
 
-.bp-scroll-area__viewport > div {
+.mizu-scroll-area__viewport > div {
   width: 100%;
 }
 </style>

@@ -4,7 +4,7 @@ import { computed, useAttrs } from "vue";
 const attrs = useAttrs();
 
 const classes = computed(() => {
-  const result = ["bp-card-description"];
+  const result = ["mizu-card-description"];
   if (attrs.class) result.push(attrs.class as string);
   return result.join(" ");
 });
@@ -19,7 +19,7 @@ const classes = computed(() => {
 <style>
 @reference "../index.css";
 
-.bp-card .bp-card-description {
+.mizu-card .mizu-card-description {
   @apply font-normal m-0;
   font-size: var(--font-size-caption) !important;
   line-height: var(--line-height-caption) !important;

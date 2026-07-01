@@ -14,7 +14,7 @@ const attrs = useAttrs();
 
 <template>
   <ScrollAreaThumb
-    :class="['bp-scroll-area__thumb', attrs.class]"
+    :class="['mizu-scroll-area__thumb', attrs.class]"
     :as-child="asChild"
     :as="as"
   >
@@ -23,7 +23,7 @@ const attrs = useAttrs();
 </template>
 
 <style>
-.bp-scroll-area__thumb {
+.mizu-scroll-area__thumb {
   all: revert;
   flex: 1;
   background-color: var(--color-foreground-tertiary);
@@ -33,7 +33,7 @@ const attrs = useAttrs();
   transition: background-color 150ms ease;
 }
 
-.bp-scroll-area__thumb::before {
+.mizu-scroll-area__thumb::before {
   content: "";
   position: absolute;
   top: 50%;
@@ -45,16 +45,16 @@ const attrs = useAttrs();
   min-height: 44px;
 }
 
-.bp-scroll-area__thumb:hover {
+.mizu-scroll-area__thumb:hover {
   background-color: var(--color-foreground-secondary);
 }
 
-.bp-scroll-area__scrollbar--vertical .bp-scroll-area__thumb {
+.mizu-scroll-area__scrollbar--vertical .mizu-scroll-area__thumb {
   width: 6px;
   min-height: 24px;
 }
 
-.bp-scroll-area__scrollbar--horizontal .bp-scroll-area__thumb {
+.mizu-scroll-area__scrollbar--horizontal .mizu-scroll-area__thumb {
   height: 6px;
   min-width: 24px;
 }

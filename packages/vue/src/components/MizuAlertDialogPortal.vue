@@ -17,7 +17,7 @@ const props = withDefaults(defineProps<AlertDialogPortalProps>(), {
 const attrs = useAttrs();
 
 const portalClasses = computed(() => {
-  const classes = ["bp-alert-dialog-portal"];
+  const classes = ["mizu-alert-dialog-portal"];
   if (attrs.class) classes.push(attrs.class as string);
   return classes.join(" ");
 });

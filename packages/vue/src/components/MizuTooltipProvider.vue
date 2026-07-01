@@ -19,7 +19,7 @@ const props = withDefaults(defineProps<TooltipProviderProps>(), {
 const attrs = useAttrs();
 
 const providerClasses = computed(() => {
-  const classes = ["bp-tooltip-provider"];
+  const classes = ["mizu-tooltip-provider"];
   if (attrs.class) classes.push(attrs.class as string);
   return classes.join(" ");
 });

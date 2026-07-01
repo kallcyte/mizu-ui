@@ -15,7 +15,7 @@ const props = withDefaults(defineProps<DatePickerCloseProps>(), {
 const attrs = useAttrs();
 
 const closeClasses = computed(() => {
-  const classes = ["bp-date-picker__close"];
+  const classes = ["mizu-date-picker__close"];
   if (attrs.class) classes.push(attrs.class as string);
   return classes.join(" ");
 });
@@ -32,7 +32,7 @@ const closeClasses = computed(() => {
 </template>
 
 <style>
-.bp-date-picker__close {
+.mizu-date-picker__close {
   all: revert;
   display: inline-flex;
   align-items: center;
@@ -48,7 +48,7 @@ const closeClasses = computed(() => {
   right: 8px;
 }
 
-.bp-date-picker__close:hover {
+.mizu-date-picker__close:hover {
   color: var(--color-foreground-primary);
 }
 </style>

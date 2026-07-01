@@ -15,7 +15,7 @@ const props = withDefaults(defineProps<ComboboxPortalProps>(), {
 const attrs = useAttrs();
 
 const portalClasses = computed(() => {
-  const classes = ["bp-combobox-portal"];
+  const classes = ["mizu-combobox-portal"];
   if (attrs.class) classes.push(attrs.class as string);
   return classes.join(" ");
 });

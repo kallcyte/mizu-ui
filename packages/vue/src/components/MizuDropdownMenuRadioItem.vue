@@ -18,7 +18,7 @@ const props = withDefaults(defineProps<DropdownMenuRadioItemProps>(), {
 const attrs = useAttrs();
 
 const radioItemClasses = computed(() => {
-  const classes = ["bp-dropdown-menu__radio-item"];
+  const classes = ["mizu-dropdown-menu__radio-item"];
   if (attrs.class) classes.push(attrs.class as string);
   return classes.join(" ");
 });
@@ -37,7 +37,7 @@ const radioItemClasses = computed(() => {
 </template>
 
 <style>
-.bp-dropdown-menu__radio-item {
+.mizu-dropdown-menu__radio-item {
   all: revert;
   display: flex;
   align-items: center;
@@ -58,11 +58,11 @@ const radioItemClasses = computed(() => {
   position: relative;
 }
 
-.bp-dropdown-menu__radio-item[data-highlighted] {
+.mizu-dropdown-menu__radio-item[data-highlighted] {
   background-color: var(--color-surface-hover);
 }
 
-.bp-dropdown-menu__radio-item[data-disabled] {
+.mizu-dropdown-menu__radio-item[data-disabled] {
   color: var(--color-foreground-disabled);
   cursor: not-allowed;
   pointer-events: none;

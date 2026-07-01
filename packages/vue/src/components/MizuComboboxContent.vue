@@ -48,7 +48,7 @@ const emit = defineEmits<{
 const attrs = useAttrs();
 
 const contentClasses = computed(() => {
-  const classes = ["bp-combobox__content"];
+  const classes = ["mizu-combobox__content"];
   if (attrs.class) classes.push(attrs.class as string);
   return classes.join(" ");
 });
@@ -88,7 +88,7 @@ const contentStyle = computed(() => {
 </template>
 
 <style>
-.bp-combobox__content {
+.mizu-combobox__content {
   all: revert;
   z-index: 50;
   min-width: 200px;
@@ -102,11 +102,11 @@ const contentStyle = computed(() => {
   margin-top: 0;
 }
 
-.bp-combobox__content[data-state="open"] {
+.mizu-combobox__content[data-state="open"] {
   animation: comboboxContentIn 150ms ease-out;
 }
 
-.bp-combobox__content[data-state="closed"] {
+.mizu-combobox__content[data-state="closed"] {
   animation: comboboxContentOut 100ms ease-in;
 }
 

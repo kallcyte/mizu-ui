@@ -15,7 +15,7 @@ const props = withDefaults(defineProps<AccordionTriggerProps>(), {
 const attrs = useAttrs();
 
 const triggerClasses = computed(() => {
-  const classes = ["bp-accordion__trigger"];
+  const classes = ["mizu-accordion__trigger"];
   if (attrs.class) classes.push(attrs.class as string);
   return classes.join(" ");
 });
@@ -27,11 +27,11 @@ const triggerClasses = computed(() => {
     :as-child="asChild"
     :as="as"
   >
-    <span class="bp-accordion__trigger-content">
+    <span class="mizu-accordion__trigger-content">
       <slot />
     </span>
     <svg
-      class="bp-accordion__chevron"
+      class="mizu-accordion__chevron"
       width="16"
       height="16"
       viewBox="0 0 16 16"
@@ -51,7 +51,7 @@ const triggerClasses = computed(() => {
 </template>
 
 <style>
-.bp-accordion__trigger {
+.mizu-accordion__trigger {
   all: revert;
   display: flex;
   align-items: center;
@@ -73,34 +73,34 @@ const triggerClasses = computed(() => {
   position: relative;
 }
 
-.bp-accordion__trigger:hover {
+.mizu-accordion__trigger:hover {
   background-color: var(--color-surface-subtle);
 }
 
-.bp-accordion__trigger:focus-visible {
+.mizu-accordion__trigger:focus-visible {
   outline: 2px solid var(--color-brand-accent);
   outline-offset: -2px;
 }
 
-.bp-accordion__trigger[data-disabled] {
+.mizu-accordion__trigger[data-disabled] {
   color: var(--color-foreground-tertiary);
   opacity: 0.5;
   cursor: not-allowed;
   pointer-events: none;
 }
 
-.bp-accordion__trigger-content {
+.mizu-accordion__trigger-content {
   flex: 1;
   min-width: 0;
 }
 
-.bp-accordion__chevron {
+.mizu-accordion__chevron {
   flex-shrink: 0;
   color: var(--color-foreground-secondary);
   transition: transform 200ms ease;
 }
 
-.bp-accordion__trigger[data-state="open"] .bp-accordion__chevron {
+.mizu-accordion__trigger[data-state="open"] .mizu-accordion__chevron {
   transform: rotate(180deg);
 }
 </style>

@@ -24,7 +24,7 @@ const emit = defineEmits<{
 const attrs = useAttrs();
 
 const checkboxItemClasses = computed(() => {
-  const classes = ["bp-dropdown-menu__checkbox-item"];
+  const classes = ["mizu-dropdown-menu__checkbox-item"];
   if (attrs.class) classes.push(attrs.class as string);
   return classes.join(" ");
 });
@@ -55,7 +55,7 @@ function handleUpdate(value: boolean) {
 </template>
 
 <style>
-.bp-dropdown-menu__checkbox-item {
+.mizu-dropdown-menu__checkbox-item {
   all: revert;
   display: flex;
   align-items: center;
@@ -76,11 +76,11 @@ function handleUpdate(value: boolean) {
   position: relative;
 }
 
-.bp-dropdown-menu__checkbox-item[data-highlighted] {
+.mizu-dropdown-menu__checkbox-item[data-highlighted] {
   background-color: var(--color-surface-hover);
 }
 
-.bp-dropdown-menu__checkbox-item[data-disabled] {
+.mizu-dropdown-menu__checkbox-item[data-disabled] {
   color: var(--color-foreground-disabled);
   cursor: not-allowed;
   pointer-events: none;

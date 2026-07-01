@@ -15,7 +15,7 @@ const props = withDefaults(defineProps<ComboboxCancelProps>(), {
 const attrs = useAttrs();
 
 const cancelClasses = computed(() => {
-  const classes = ["bp-combobox__cancel"];
+  const classes = ["mizu-combobox__cancel"];
   if (attrs.class) classes.push(attrs.class as string);
   return classes.join(" ");
 });
@@ -32,7 +32,7 @@ const cancelClasses = computed(() => {
 </template>
 
 <style>
-.bp-combobox__cancel {
+.mizu-combobox__cancel {
   all: revert;
   display: inline-flex;
   align-items: center;
@@ -45,7 +45,7 @@ const cancelClasses = computed(() => {
   outline: none;
 }
 
-.bp-combobox__cancel:hover {
+.mizu-combobox__cancel:hover {
   color: var(--color-foreground-primary);
 }
 </style>

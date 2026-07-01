@@ -14,7 +14,7 @@ const attrs = useAttrs();
 
 <template>
   <SliderTrack
-    :class="['bp-slider__track', attrs.class]"
+    :class="['mizu-slider__track', attrs.class]"
     :as-child="asChild"
     :as="as"
   >
@@ -23,7 +23,7 @@ const attrs = useAttrs();
 </template>
 
 <style>
-.bp-slider__track {
+.mizu-slider__track {
   all: revert;
   position: relative;
   flex-grow: 1;
@@ -32,23 +32,23 @@ const attrs = useAttrs();
   font-family: inherit;
 }
 
-.bp-slider--horizontal .bp-slider__track {
+.mizu-slider--horizontal .mizu-slider__track {
   width: 100%;
 }
 
-.bp-slider--vertical .bp-slider__track {
+.mizu-slider--vertical .mizu-slider__track {
   width: 100%;
 }
 
-.bp-slider--sm .bp-slider__track {
+.mizu-slider--sm .mizu-slider__track {
   height: 4px;
 }
 
-.bp-slider--md .bp-slider__track {
+.mizu-slider--md .mizu-slider__track {
   height: 6px;
 }
 
-.bp-slider--lg .bp-slider__track {
+.mizu-slider--lg .mizu-slider__track {
   height: 8px;
 }
 </style>

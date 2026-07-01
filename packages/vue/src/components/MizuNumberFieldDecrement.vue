@@ -15,7 +15,7 @@ const props = withDefaults(defineProps<NumberFieldDecrementProps>(), {
 const attrs = useAttrs();
 
 const decClasses = computed(() => {
-  const classes = ["bp-number-field__decrement"];
+  const classes = ["mizu-number-field__decrement"];
   if (attrs.class) classes.push(attrs.class as string);
   return classes.join(" ");
 });
@@ -32,7 +32,7 @@ const decClasses = computed(() => {
 </template>
 
 <style>
-.bp-number-field__decrement {
+.mizu-number-field__decrement {
   all: revert;
   display: inline-flex;
   align-items: center;
@@ -48,12 +48,12 @@ const decClasses = computed(() => {
   user-select: none;
 }
 
-.bp-number-field__decrement:hover {
+.mizu-number-field__decrement:hover {
   color: var(--color-foreground-primary);
   background-color: var(--color-surface-hover);
 }
 
-.bp-number-field__decrement[data-disabled] {
+.mizu-number-field__decrement[data-disabled] {
   color: var(--color-foreground-disabled);
   cursor: not-allowed;
   pointer-events: none;

@@ -15,7 +15,7 @@ const props = withDefaults(defineProps<NumberFieldInputProps>(), {
 const attrs = useAttrs();
 
 const inputClasses = computed(() => {
-  const classes = ["bp-number-field__input"];
+  const classes = ["mizu-number-field__input"];
   if (attrs.class) classes.push(attrs.class as string);
   return classes.join(" ");
 });
@@ -37,7 +37,7 @@ const inputStyle = computed(() => {
 </template>
 
 <style>
-.bp-number-field__input {
+.mizu-number-field__input {
   all: revert;
   width: 100%;
   padding: 8px 12px;
@@ -52,7 +52,7 @@ const inputStyle = computed(() => {
   margin: 0;
 }
 
-.bp-number-field__input[data-disabled] {
+.mizu-number-field__input[data-disabled] {
   color: var(--color-foreground-disabled);
 }
 </style>

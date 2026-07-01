@@ -22,7 +22,7 @@ const props = withDefaults(defineProps<DashListProps>(), {
 const attrs = useAttrs();
 
 const listClasses = computed(() => {
-  const classes = ["bp-dashlist", `bp-dashlist--${props.size}`, `bp-dashlist--${props.orientation}`];
+  const classes = ["mizu-dashlist", `mizu-dashlist--${props.size}`, `mizu-dashlist--${props.orientation}`];
 
   if (attrs.class) classes.push(attrs.class as string);
 
@@ -35,10 +35,10 @@ const listClasses = computed(() => {
     <div
       v-for="(item, index) in items"
       :key="index"
-      :class="['bp-dashlist__row', { 'bp-dashlist__row--highlighted': item.highlighted }]"
+      :class="['mizu-dashlist__row', { 'mizu-dashlist__row--highlighted': item.highlighted }]"
     >
-      <dt class="bp-dashlist__label">{{ item.label }}</dt>
-      <dd class="bp-dashlist__value">{{ item.value }}</dd>
+      <dt class="mizu-dashlist__label">{{ item.label }}</dt>
+      <dd class="mizu-dashlist__value">{{ item.value }}</dd>
     </div>
   </dl>
 </template>
@@ -46,63 +46,63 @@ const listClasses = computed(() => {
 <style>
 @reference "../index.css";
 
-.bp-dashlist {
+.mizu-dashlist {
   @apply m-0 p-0;
   list-style: none;
 }
 
-.bp-dashlist--vertical {
+.mizu-dashlist--vertical {
   @apply flex flex-col;
 }
 
-.bp-dashlist--horizontal {
+.mizu-dashlist--horizontal {
   @apply flex flex-row flex-wrap;
 }
 
-.bp-dashlist__row {
+.mizu-dashlist__row {
   @apply flex items-baseline;
 }
 
-.bp-dashlist--vertical .bp-dashlist__row {
+.mizu-dashlist--vertical .mizu-dashlist__row {
   @apply flex-col;
   gap: 2px;
   padding: 8px 0;
 }
 
-.bp-dashlist--vertical .bp-dashlist__row + .bp-dashlist__row {
+.mizu-dashlist--vertical .mizu-dashlist__row + .mizu-dashlist__row {
   border-top: 1px solid var(--color-surface-muted);
 }
 
-.bp-dashlist--horizontal .bp-dashlist__row {
+.mizu-dashlist--horizontal .mizu-dashlist__row {
   @apply flex-row items-center;
   gap: 8px;
   padding: 4px 16px 4px 0;
 }
 
-.bp-dashlist__label {
+.mizu-dashlist__label {
   @apply font-medium m-0;
   color: var(--color-foreground-secondary);
 }
 
-.bp-dashlist__value {
+.mizu-dashlist__value {
   @apply m-0;
   color: var(--color-foreground-primary);
 }
 
-.bp-dashlist--sm .bp-dashlist__label { @apply text-[11px]; }
-.bp-dashlist--sm .bp-dashlist__value { @apply text-[12px]; }
+.mizu-dashlist--sm .mizu-dashlist__label { @apply text-[11px]; }
+.mizu-dashlist--sm .mizu-dashlist__value { @apply text-[12px]; }
 
-.bp-dashlist--md .bp-dashlist__label { @apply text-[12px]; }
-.bp-dashlist--md .bp-dashlist__value { @apply text-[13px]; }
+.mizu-dashlist--md .mizu-dashlist__label { @apply text-[12px]; }
+.mizu-dashlist--md .mizu-dashlist__value { @apply text-[13px]; }
 
-.bp-dashlist--lg .bp-dashlist__label { @apply text-[13px]; }
-.bp-dashlist--lg .bp-dashlist__value { @apply text-[15px]; }
+.mizu-dashlist--lg .mizu-dashlist__label { @apply text-[13px]; }
+.mizu-dashlist--lg .mizu-dashlist__value { @apply text-[15px]; }
 
-.bp-dashlist__row--highlighted .bp-dashlist__value {
+.mizu-dashlist__row--highlighted .mizu-dashlist__value {
   color: var(--color-brand-primary);
   font-weight: 600;
 }
 
-.bp-dashlist--vertical.bp-dashlist--sm .bp-dashlist__row { padding: 6px 0; }
-.bp-dashlist--vertical.bp-dashlist--lg .bp-dashlist__row { padding: 10px 0; }
+.mizu-dashlist--vertical.mizu-dashlist--sm .mizu-dashlist__row { padding: 6px 0; }
+.mizu-dashlist--vertical.mizu-dashlist--lg .mizu-dashlist__row { padding: 10px 0; }
 </style>

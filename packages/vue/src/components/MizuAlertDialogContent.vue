@@ -28,7 +28,7 @@ const emit = defineEmits<{
 const attrs = useAttrs();
 
 const contentClasses = computed(() => {
-  const classes = ["bp-alert-dialog__content"];
+  const classes = ["mizu-alert-dialog__content"];
   if (attrs.class) classes.push(attrs.class as string);
   return classes.join(" ");
 });
@@ -58,7 +58,7 @@ const contentStyle = computed(() => {
 </template>
 
 <style>
-.bp-alert-dialog__content {
+.mizu-alert-dialog__content {
   all: revert;
   position: fixed;
   left: 50%;
@@ -78,15 +78,15 @@ const contentStyle = computed(() => {
   margin-top: 0;
 }
 
-.bp-alert-dialog__content:focus {
+.mizu-alert-dialog__content:focus {
   outline: none;
 }
 
-.bp-alert-dialog__content[data-state="open"] {
+.mizu-alert-dialog__content[data-state="open"] {
   animation: alertDialogContentIn 200ms ease-out;
 }
 
-.bp-alert-dialog__content[data-state="closed"] {
+.mizu-alert-dialog__content[data-state="closed"] {
   animation: alertDialogContentOut 150ms ease-in;
 }
 

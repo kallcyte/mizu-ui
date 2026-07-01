@@ -87,7 +87,7 @@ const showDefaultIcon = computed(
 );
 
 const avatarClasses = computed(() => {
-  const classes = ["bp-avatar", `bp-avatar--${props.size}`, `bp-avatar--${props.shape}`, `bp-avatar--${props.color}`];
+  const classes = ["mizu-avatar", `mizu-avatar--${props.size}`, `mizu-avatar--${props.shape}`, `mizu-avatar--${props.color}`];
 
   if (attrs.class) classes.push(attrs.class as string);
 
@@ -113,19 +113,19 @@ const imageAlt = computed(() => {
       v-if="showImage"
       :src="src"
       :alt="imageAlt"
-      class="bp-avatar__image"
+      class="mizu-avatar__image"
       @error="handleImageError"
       @load="handleImageLoad"
     />
-    <span v-else-if="showInitials" class="bp-avatar__initials" aria-hidden="true">
+    <span v-else-if="showInitials" class="mizu-avatar__initials" aria-hidden="true">
       {{ initials }}
     </span>
-    <span v-else-if="showIcon" class="bp-avatar__icon" aria-hidden="true">
+    <span v-else-if="showIcon" class="mizu-avatar__icon" aria-hidden="true">
       <slot name="icon" />
     </span>
     <svg
       v-else-if="showDefaultIcon"
-      class="bp-avatar__icon"
+      class="mizu-avatar__icon"
       viewBox="0 0 24 24"
       fill="none"
       aria-hidden="true"
@@ -144,69 +144,69 @@ const imageAlt = computed(() => {
 <style>
 @reference "../index.css";
 
-.bp-avatar {
+.mizu-avatar {
   @apply relative inline-flex items-center justify-center overflow-hidden shrink-0 align-middle;
   border: 1px solid transparent;
 }
 
 /* Sizes */
-.bp-avatar--sm {
+.mizu-avatar--sm {
   width: 24px;
   height: 24px;
   font-size: 10px;
 }
-.bp-avatar--md {
+.mizu-avatar--md {
   width: 32px;
   height: 32px;
   font-size: 12px;
 }
-.bp-avatar--lg {
+.mizu-avatar--lg {
   width: 40px;
   height: 40px;
   font-size: 14px;
 }
-.bp-avatar--xl {
+.mizu-avatar--xl {
   width: 56px;
   height: 56px;
   font-size: 18px;
 }
 
 /* Shapes */
-.bp-avatar--circle {
+.mizu-avatar--circle {
   border-radius: var(--radius-full, 9999px);
 }
-.bp-avatar--square {
+.mizu-avatar--square {
   border-radius: var(--radius-default, 8px);
 }
-.bp-avatar--square.bp-avatar--sm { border-radius: 4px; }
-.bp-avatar--square.bp-avatar--md { border-radius: 6px; }
-.bp-avatar--square.bp-avatar--lg { border-radius: 8px; }
-.bp-avatar--square.bp-avatar--xl { border-radius: 10px; }
+.mizu-avatar--square.mizu-avatar--sm { border-radius: 4px; }
+.mizu-avatar--square.mizu-avatar--md { border-radius: 6px; }
+.mizu-avatar--square.mizu-avatar--lg { border-radius: 8px; }
+.mizu-avatar--square.mizu-avatar--xl { border-radius: 10px; }
 
 /* Color variants */
-.bp-avatar--muted {
+.mizu-avatar--muted {
   background-color: var(--color-surface-muted);
   color: var(--color-foreground-secondary);
   border-color: var(--color-surface-muted);
 }
-.bp-avatar--primary {
+.mizu-avatar--primary {
   background-color: var(--color-brand-primary);
   color: var(--color-foreground-inverse);
   border-color: var(--color-brand-primary);
 }
-.bp-avatar--accent {
+.mizu-avatar--accent {
   background-color: var(--color-brand-accent-subtle);
   color: var(--color-brand-accent);
   border-color: var(--color-brand-accent-subtle);
 }
-.bp-avatar--neutral {
+.mizu-avatar--neutral {
   background-color: var(--color-brand-neutral);
   color: var(--color-foreground-inverse);
   border-color: var(--color-brand-neutral);
 }
 
 /* Image */
-.bp-avatar__image {
+.mizu-avatar__image {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -214,20 +214,20 @@ const imageAlt = computed(() => {
 }
 
 /* Initials */
-.bp-avatar__initials {
+.mizu-avatar__initials {
   @apply font-semibold select-none leading-none;
   letter-spacing: var(--tracking-snug, -0.02em);
   text-transform: uppercase;
 }
 
 /* Icon */
-.bp-avatar__icon {
+.mizu-avatar__icon {
   @apply flex items-center justify-center;
 }
-.bp-avatar__icon svg {
+.mizu-avatar__icon svg {
   width: 60%;
   height: 60%;
 }
-.bp-avatar--sm .bp-avatar__icon svg { width: 70%; height: 70%; }
-.bp-avatar--xl .bp-avatar__icon svg { width: 50%; height: 50%; }
+.mizu-avatar--sm .mizu-avatar__icon svg { width: 70%; height: 70%; }
+.mizu-avatar--xl .mizu-avatar__icon svg { width: 50%; height: 50%; }
 </style>

@@ -22,7 +22,7 @@ withDefaults(defineProps<PopoverTriggerProps>(), {
 </template>
 
 <style>
-.bp-popover-trigger {
+.mizu-popover-trigger {
   margin: 0;
   border: none;
   background: none;

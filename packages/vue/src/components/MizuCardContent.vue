@@ -4,7 +4,7 @@ import { computed, useAttrs } from "vue";
 const attrs = useAttrs();
 
 const classes = computed(() => {
-  const result = ["bp-card-content"];
+  const result = ["mizu-card-content"];
   if (attrs.class) result.push(attrs.class as string);
   return result.join(" ");
 });
@@ -19,12 +19,12 @@ const classes = computed(() => {
 <style>
 @reference "../index.css";
 
-.bp-card-content {
-  padding: var(--bp-card-py) var(--bp-card-px);
+.mizu-card-content {
+  padding: var(--mizu-card-py) var(--mizu-card-px);
   background-color: var(--color-surface-base);
 }
 
-.bp-card .bp-card-content > * {
+.mizu-card .mizu-card-content > * {
   @apply font-normal;
   font-size: var(--font-size-body) !important;
   line-height: var(--line-height-body) !important;

@@ -35,7 +35,7 @@ const emit = defineEmits<{
 const attrs = useAttrs();
 
 const rootClasses = computed(() => {
-  const classes = ["bp-toast", `bp-toast--${props.variant}`];
+  const classes = ["mizu-toast", `mizu-toast--${props.variant}`];
   if (attrs.class) classes.push(attrs.class as string);
   return classes.join(" ");
 });
@@ -76,7 +76,7 @@ const slideFromY = computed(() => {
 </template>
 
 <style>
-.bp-toast {
+.mizu-toast {
   all: revert;
   display: flex;
   align-items: flex-start;
@@ -91,47 +91,47 @@ const slideFromY = computed(() => {
   border: none;
 }
 
-.bp-toast[data-state="open"] {
+.mizu-toast[data-state="open"] {
   animation: toastSlideIn 200ms ease-out;
 }
 
-.bp-toast[data-state="closed"] {
+.mizu-toast[data-state="closed"] {
   animation: toastSlideOut 150ms ease-in;
 }
 
-.bp-toast[data-swipe="start"] {
+.mizu-toast[data-swipe="start"] {
   animation: none;
 }
 
-.bp-toast[data-swipe="move"] {
+.mizu-toast[data-swipe="move"] {
   translate: var(--reka-toast-swipe-move-x) var(--reka-toast-swipe-move-y);
 }
 
-.bp-toast[data-swipe="cancel"] {
+.mizu-toast[data-swipe="cancel"] {
   translate: 0 0;
   transition: translate 200ms ease-out;
 }
 
-.bp-toast[data-swipe="end"] {
+.mizu-toast[data-swipe="end"] {
   animation: toastSlideOut 150ms ease-in;
 }
 
-.bp-toast--success {
+.mizu-toast--success {
   background: linear-gradient(to right, var(--color-feedback-success-subtle, #f0fdf4), var(--color-surface-base));
   border-left: 3px solid var(--color-feedback-success-base);
 }
 
-.bp-toast--warning {
+.mizu-toast--warning {
   background: linear-gradient(to right, var(--color-feedback-warning-subtle, #fffbeb), var(--color-surface-base));
   border-left: 3px solid var(--color-feedback-warning-base);
 }
 
-.bp-toast--error {
+.mizu-toast--error {
   background: linear-gradient(to right, var(--color-feedback-error-subtle, #fef2f2), var(--color-surface-base));
   border-left: 3px solid var(--color-feedback-error-base);
 }
 
-.bp-toast--info {
+.mizu-toast--info {
   background: linear-gradient(to right, var(--color-feedback-info-subtle, #eff6ff), var(--color-surface-base));
   border-left: 3px solid var(--color-feedback-info-base);
 }

@@ -41,7 +41,7 @@ const displayText = computed(() => {
 });
 
 const progressClasses = computed(() => {
-  const classes = ["bp-progress", `bp-progress--${props.size}`, `bp-progress--${props.variant}`];
+  const classes = ["mizu-progress", `mizu-progress--${props.size}`, `mizu-progress--${props.variant}`];
 
   if (attrs.class) classes.push(attrs.class as string);
 
@@ -55,7 +55,7 @@ const indicatorStyle = computed(() => {
 </script>
 
 <template>
-  <div :class="['bp-progress-wrapper', `bp-progress-wrapper--${size}`]">
+  <div :class="['mizu-progress-wrapper', `mizu-progress-wrapper--${size}`]">
     <ProgressRoot
       :model-value="modelValue"
       :max="max"
@@ -64,66 +64,66 @@ const indicatorStyle = computed(() => {
       @update:model-value="(value) => emit('update:modelValue', (value ?? null) as number | null)"
     >
       <ProgressIndicator
-        class="bp-progress__indicator"
+        class="mizu-progress__indicator"
         :style="indicatorStyle"
       />
     </ProgressRoot>
-    <span v-if="showLabel" class="bp-progress__label">{{ displayText }}</span>
+    <span v-if="showLabel" class="mizu-progress__label">{{ displayText }}</span>
   </div>
 </template>
 
 <style>
 @reference "../index.css";
 
-.bp-progress-wrapper {
+.mizu-progress-wrapper {
   @apply inline-flex items-center w-full;
   gap: 8px;
 }
 
-.bp-progress {
+.mizu-progress {
   @apply relative w-full overflow-hidden rounded-full;
   background-color: var(--color-surface-muted);
 }
 
-.bp-progress--sm { height: 4px; }
-.bp-progress--md { height: 8px; }
-.bp-progress--lg { height: 12px; }
+.mizu-progress--sm { height: 4px; }
+.mizu-progress--md { height: 8px; }
+.mizu-progress--lg { height: 12px; }
 
-.bp-progress__indicator {
+.mizu-progress__indicator {
   @apply h-full w-full;
   background-color: var(--color-brand-primary);
   transition: transform var(--duration-normal, 300ms) ease-in-out;
   will-change: transform;
 }
 
-.bp-progress--accent .bp-progress__indicator {
+.mizu-progress--accent .mizu-progress__indicator {
   background-color: var(--color-brand-accent);
 }
-.bp-progress--success .bp-progress__indicator {
+.mizu-progress--success .mizu-progress__indicator {
   background-color: var(--color-feedback-success-base);
 }
-.bp-progress--warning .bp-progress__indicator {
+.mizu-progress--warning .mizu-progress__indicator {
   background-color: var(--color-feedback-warning-base);
 }
-.bp-progress--error .bp-progress__indicator {
+.mizu-progress--error .mizu-progress__indicator {
   background-color: var(--color-feedback-error-base);
 }
-.bp-progress--info .bp-progress__indicator {
+.mizu-progress--info .mizu-progress__indicator {
   background-color: var(--color-feedback-info-base);
 }
 
-.bp-progress[data-state="indeterminate"] .bp-progress__indicator {
+.mizu-progress[data-state="indeterminate"] .mizu-progress__indicator {
   width: 30%;
   @apply absolute top-0 left-0;
-  animation: bp-progress-indeterminate 1.4s ease-in-out infinite;
+  animation: mizu-progress-indeterminate 1.4s ease-in-out infinite;
   transition: none;
 }
 
-.bp-progress[data-state="complete"] .bp-progress__indicator {
+.mizu-progress[data-state="complete"] .mizu-progress__indicator {
   background-color: var(--color-feedback-success-base);
 }
 
-@keyframes bp-progress-indeterminate {
+@keyframes mizu-progress-indeterminate {
   0% {
     left: -30%;
   }
@@ -132,7 +132,7 @@ const indicatorStyle = computed(() => {
   }
 }
 
-.bp-progress__label {
+.mizu-progress__label {
   @apply font-medium shrink-0;
   color: var(--color-foreground-secondary);
   font-variant-numeric: tabular-nums;
@@ -140,7 +140,7 @@ const indicatorStyle = computed(() => {
   text-align: right;
 }
 
-.bp-progress-wrapper--sm .bp-progress__label { font-size: 10px; min-width: 28px; }
-.bp-progress-wrapper--md .bp-progress__label { font-size: 12px; min-width: 32px; }
-.bp-progress-wrapper--lg .bp-progress__label { font-size: 13px; min-width: 36px; }
+.mizu-progress-wrapper--sm .mizu-progress__label { font-size: 10px; min-width: 28px; }
+.mizu-progress-wrapper--md .mizu-progress__label { font-size: 12px; min-width: 32px; }
+.mizu-progress-wrapper--lg .mizu-progress__label { font-size: 13px; min-width: 36px; }
 </style>

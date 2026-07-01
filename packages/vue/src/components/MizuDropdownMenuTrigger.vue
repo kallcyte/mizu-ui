@@ -15,7 +15,7 @@ const props = withDefaults(defineProps<DropdownMenuTriggerProps>(), {
 const attrs = useAttrs();
 
 const triggerClasses = computed(() => {
-  const classes = ["bp-dropdown-menu__trigger"];
+  const classes = ["mizu-dropdown-menu__trigger"];
   if (attrs.class) classes.push(attrs.class as string);
   return classes.join(" ");
 });

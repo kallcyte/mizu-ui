@@ -33,8 +33,8 @@ const emit = defineEmits<{
 const attrs = useAttrs();
 
 const rootClasses = computed(() => {
-  const classes = ["bp-accordion"];
-  if (props.orientation === "horizontal") classes.push("bp-accordion--horizontal");
+  const classes = ["mizu-accordion"];
+  if (props.orientation === "horizontal") classes.push("mizu-accordion--horizontal");
   if (attrs.class) classes.push(attrs.class as string);
   return classes.join(" ");
 });
@@ -59,7 +59,7 @@ const rootClasses = computed(() => {
 </template>
 
 <style>
-.bp-accordion {
+.mizu-accordion {
   all: revert;
   display: flex;
   flex-direction: column;
@@ -68,11 +68,11 @@ const rootClasses = computed(() => {
   font-family: inherit;
 }
 
-.bp-accordion--horizontal {
+.mizu-accordion--horizontal {
   flex-direction: row;
 }
 
-.bp-accordion[data-orientation="vertical"] > :not(:last-child) {
+.mizu-accordion[data-orientation="vertical"] > :not(:last-child) {
   border-bottom: 1px solid var(--color-surface-muted);
 }
 </style>

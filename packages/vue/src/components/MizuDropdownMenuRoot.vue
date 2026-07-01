@@ -21,7 +21,7 @@ const emit = defineEmits<{
 const attrs = useAttrs();
 
 const rootClasses = computed(() => {
-  const classes = ["bp-dropdown-menu"];
+  const classes = ["mizu-dropdown-menu"];
   if (attrs.class) classes.push(attrs.class as string);
   return classes.join(" ");
 });

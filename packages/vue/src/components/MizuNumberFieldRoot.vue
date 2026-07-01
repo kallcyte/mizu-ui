@@ -37,7 +37,7 @@ const emit = defineEmits<{
 const attrs = useAttrs();
 
 const rootClasses = computed(() => {
-  const classes = ["bp-number-field"];
+  const classes = ["mizu-number-field"];
   if (attrs.class) classes.push(attrs.class as string);
   return classes.join(" ");
 });

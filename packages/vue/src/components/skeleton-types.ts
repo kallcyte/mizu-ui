@@ -13,7 +13,7 @@ export interface SkeletonThemeProps {
 }
 
 export const SKELETON_THEME_KEY: InjectionKey<SkeletonThemeProps> =
-  Symbol("bp-skeleton-theme");
+  Symbol("mizu-skeleton-theme");
 
 export interface SkeletonProps extends SkeletonThemeProps {
   variant?: "text" | "circle" | "rect";

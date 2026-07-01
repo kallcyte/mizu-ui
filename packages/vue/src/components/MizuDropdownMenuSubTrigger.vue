@@ -17,7 +17,7 @@ const props = withDefaults(defineProps<DropdownMenuSubTriggerProps>(), {
 const attrs = useAttrs();
 
 const subTriggerClasses = computed(() => {
-  const classes = ["bp-dropdown-menu__sub-trigger"];
+  const classes = ["mizu-dropdown-menu__sub-trigger"];
   if (attrs.class) classes.push(attrs.class as string);
   return classes.join(" ");
 });
@@ -32,7 +32,7 @@ const subTriggerClasses = computed(() => {
   >
     <slot />
     <svg
-      class="bp-dropdown-menu__sub-trigger-chevron"
+      class="mizu-dropdown-menu__sub-trigger-chevron"
       width="12"
       height="12"
       viewBox="0 0 24 24"
@@ -48,7 +48,7 @@ const subTriggerClasses = computed(() => {
 </template>
 
 <style>
-.bp-dropdown-menu__sub-trigger {
+.mizu-dropdown-menu__sub-trigger {
   all: revert;
   display: flex;
   align-items: center;
@@ -68,17 +68,17 @@ const subTriggerClasses = computed(() => {
   box-sizing: border-box;
 }
 
-.bp-dropdown-menu__sub-trigger-chevron {
+.mizu-dropdown-menu__sub-trigger-chevron {
   flex-shrink: 0;
   opacity: 0.6;
   pointer-events: none;
 }
 
-.bp-dropdown-menu__sub-trigger[data-highlighted] {
+.mizu-dropdown-menu__sub-trigger[data-highlighted] {
   background-color: var(--color-surface-hover);
 }
 
-.bp-dropdown-menu__sub-trigger[data-disabled] {
+.mizu-dropdown-menu__sub-trigger[data-disabled] {
   color: var(--color-foreground-disabled);
   cursor: not-allowed;
   pointer-events: none;

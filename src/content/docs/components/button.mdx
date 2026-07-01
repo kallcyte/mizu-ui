@@ -295,7 +295,7 @@ All button sizes maintain a minimum touch target of **44px × 44px** for accessi
 
 1. **Native `<button>` element** — No Reka UI primitive needed; use native HTML button for maximum accessibility
 2. **Tailwind `@apply`** — Component styles use `@apply` with `@reference` for Tailwind v4 compatibility
-3. **CSS Custom Properties** — Colors are resolved at runtime via inline `:style` binding (`--bp-btn-bg`, `--bp-btn-text`, `--bp-btn-border`)
+3. **CSS Custom Properties** — Colors are resolved at runtime via inline `:style` binding (`--mizu-btn-bg`, `--mizu-btn-text`, `--mizu-btn-border`)
 4. **Self-contained CSS** — Tailwind utilities are bundled into `dist/index.css` via `@tailwindcss/vite`; consumers do not need Tailwind installed
 5. **Class inheritance** — Accept `class` prop for overrides via `useAttrs()`
 6. **TypeScript** — Full type safety with `<script setup lang="ts">`

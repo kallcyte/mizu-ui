@@ -15,7 +15,7 @@ const props = withDefaults(defineProps<DialogTitleProps>(), {
 const attrs = useAttrs();
 
 const titleClasses = computed(() => {
-  const classes = ["bp-dialog__title"];
+  const classes = ["mizu-dialog__title"];
   if (attrs.class) classes.push(attrs.class as string);
   return classes.join(" ");
 });
@@ -32,7 +32,7 @@ const titleClasses = computed(() => {
 </template>
 
 <style>
-.bp-dialog__title {
+.mizu-dialog__title {
   all: revert;
   margin: 0;
   font-size: 18px;

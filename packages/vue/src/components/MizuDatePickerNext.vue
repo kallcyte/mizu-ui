@@ -15,7 +15,7 @@ const props = withDefaults(defineProps<DatePickerNextProps>(), {
 const attrs = useAttrs();
 
 const nextClasses = computed(() => {
-  const classes = ["bp-date-picker__next"];
+  const classes = ["mizu-date-picker__next"];
   if (attrs.class) classes.push(attrs.class as string);
   return classes.join(" ");
 });
@@ -32,7 +32,7 @@ const nextClasses = computed(() => {
 </template>
 
 <style>
-.bp-date-picker__next {
+.mizu-date-picker__next {
   all: revert;
   display: inline-flex;
   align-items: center;
@@ -48,12 +48,12 @@ const nextClasses = computed(() => {
   outline: none;
 }
 
-.bp-date-picker__next:hover {
+.mizu-date-picker__next:hover {
   background-color: var(--color-surface-hover);
   color: var(--color-foreground-primary);
 }
 
-.bp-date-picker__next[data-disabled] {
+.mizu-date-picker__next[data-disabled] {
   color: var(--color-foreground-disabled);
   cursor: not-allowed;
   pointer-events: none;

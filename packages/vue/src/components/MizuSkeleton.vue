@@ -6,7 +6,7 @@ export interface SkeletonThemeProps{
   animationDuration?:number;animationDirection?:"normal"|"reverse"
   enableAnimation?:boolean;customHighlightBackground?:string
 }
-export const SKELETON_THEME_KEY:InjectionKey<SkeletonThemeProps>=Symbol("bp-skeleton-theme")
+export const SKELETON_THEME_KEY:InjectionKey<SkeletonThemeProps>=Symbol("mizu-skeleton-theme")
 export interface SkeletonProps extends SkeletonThemeProps{
   variant?:"text"|"circle"|"rect"
   animation?:"shimmer"|"pulse"|"none"
@@ -43,23 +43,23 @@ const cvStyle=computed(():Record<string,string>=>{
   const w=r("width");if(w!=null)s.width=px(w)!
   const h=r("height");if(h!=null)s.height=px(h)!
   const rd=r("radius");if(rd!=null)s.borderRadius=px(rd)!
-  const bc=r("baseColor");if(bc)s["--bp-skeleton-base"]=bc
-  const hc=r("highlightColor");if(hc)s["--bp-skeleton-highlight"]=hc
-  const dur=r("animationDuration");if(dur!=null)s["--bp-animation-duration"]=dur+"s"
-  const dir=r("animationDirection");if(dir)s["--bp-animation-direction"]=dir
-  const ea=r("enableAnimation");if(ea===false)s["--bp-animation-display"]="none"
-  const cbg=r("customHighlightBackground");if(cbg)s["--bp-skeleton-custom-gradient"]=cbg
+  const bc=r("baseColor");if(bc)s["--mizu-skeleton-base"]=bc
+  const hc=r("highlightColor");if(hc)s["--mizu-skeleton-highlight"]=hc
+  const dur=r("animationDuration");if(dur!=null)s["--mizu-animation-duration"]=dur+"s"
+  const dir=r("animationDirection");if(dir)s["--mizu-animation-direction"]=dir
+  const ea=r("enableAnimation");if(ea===false)s["--mizu-animation-display"]="none"
+  const cbg=r("customHighlightBackground");if(cbg)s["--mizu-skeleton-custom-gradient"]=cbg
   if(props.radius!=null)s.borderRadius=px(props.radius)!
   return s
 })
 const skCls=computed(()=>{
-  const c=["bp-skeleton","bp-skeleton--"+props.variant]
-  if(props.animation!=="none")c.push("bp-skeleton--"+props.animation)
+  const c=["mizu-skeleton","mizu-skeleton--"+props.variant]
+  if(props.animation!=="none")c.push("mizu-skeleton--"+props.animation)
   if(attrs.class)c.push(attrs.class as string)
   return c.join(" ")
 })
 const wrCls=computed(()=>{
-  const c=["bp-skeleton-stack"];if(attrs.class)c.push(attrs.class as string);return c.join(" ")
+  const c=["mizu-skeleton-stack"];if(attrs.class)c.push(attrs.class as string);return c.join(" ")
 })
 function stkSty(i:number,t:number):Record<string,string>{
   return{...cvStyle.value,width:i<t-1
@@ -77,41 +77,41 @@ function stkSty(i:number,t:number):Record<string,string>{
 
 <style>
 @reference "../index.css";
-.bp-skeleton{display:block;background-color:var(--bp-skeleton-base,#e5e7eb);border-radius:var(--radius-default,6px)}
-[data-theme="dark"] .bp-skeleton{background-color:var(--bp-skeleton-base,#1f2937)}
-.bp-skeleton--text{height:.85em;max-width:100%;border-radius:var(--radius-default,6px)}
-.bp-skeleton--circle{aspect-ratio:1;border-radius:9999px}
-.bp-skeleton--rect{border-radius:var(--radius-default,6px)}
-.bp-skeleton--shimmer{position:relative;overflow:hidden}
-.bp-skeleton--shimmer::after{
-  content:"";display:var(--bp-animation-display,block);
+.mizu-skeleton{display:block;background-color:var(--mizu-skeleton-base,#e5e7eb);border-radius:var(--radius-default,6px)}
+[data-theme="dark"] .mizu-skeleton{background-color:var(--mizu-skeleton-base,#1f2937)}
+.mizu-skeleton--text{height:.85em;max-width:100%;border-radius:var(--radius-default,6px)}
+.mizu-skeleton--circle{aspect-ratio:1;border-radius:9999px}
+.mizu-skeleton--rect{border-radius:var(--radius-default,6px)}
+.mizu-skeleton--shimmer{position:relative;overflow:hidden}
+.mizu-skeleton--shimmer::after{
+  content:"";display:var(--mizu-animation-display,block);
   position:absolute;inset:0;height:100%;
-  background-image:var(--bp-skeleton-custom-gradient,
+  background-image:var(--mizu-skeleton-custom-gradient,
     linear-gradient(90deg,
-      var(--bp-skeleton-base,#e5e7eb) 0%,
-      var(--bp-skeleton-highlight,#f9fafb) 50%,
-      var(--bp-skeleton-base,#e5e7eb) 100%
+      var(--mizu-skeleton-base,#e5e7eb) 0%,
+      var(--mizu-skeleton-highlight,#f9fafb) 50%,
+      var(--mizu-skeleton-base,#e5e7eb) 100%
     ));
   background-repeat:no-repeat;transform:translateX(-100%);
-  animation:bp-skeleton-shimmer var(--bp-animation-duration,1.5s) ease-in-out infinite;
-  animation-direction:var(--bp-animation-direction,normal);
+  animation:mizu-skeleton-shimmer var(--mizu-animation-duration,1.5s) ease-in-out infinite;
+  animation-direction:var(--mizu-animation-direction,normal);
 }
-[data-theme="dark"] .bp-skeleton--shimmer::after{
-  background-image:var(--bp-skeleton-custom-gradient,
+[data-theme="dark"] .mizu-skeleton--shimmer::after{
+  background-image:var(--mizu-skeleton-custom-gradient,
     linear-gradient(90deg,
-      var(--bp-skeleton-base,#1f2937) 0%,
-      var(--bp-skeleton-highlight,#374151) 50%,
-      var(--bp-skeleton-base,#1f2937) 100%
+      var(--mizu-skeleton-base,#1f2937) 0%,
+      var(--mizu-skeleton-highlight,#374151) 50%,
+      var(--mizu-skeleton-base,#1f2937) 100%
     ));
 }
-@keyframes bp-skeleton-shimmer{100%{transform:translateX(100%)}}
-.bp-skeleton--pulse{animation:bp-skeleton-pulse 2s cubic-bezier(.4,0,.6,1) infinite}
-@keyframes bp-skeleton-pulse{0%,100%{opacity:1}50%{opacity:.5}}
-.bp-skeleton-stack{@apply flex flex-col;gap:.5em}
-.bp-skeleton-stack>.bp-skeleton--text{@apply max-w-full}
+@keyframes mizu-skeleton-shimmer{100%{transform:translateX(100%)}}
+.mizu-skeleton--pulse{animation:mizu-skeleton-pulse 2s cubic-bezier(.4,0,.6,1) infinite}
+@keyframes mizu-skeleton-pulse{0%,100%{opacity:1}50%{opacity:.5}}
+.mizu-skeleton-stack{@apply flex flex-col;gap:.5em}
+.mizu-skeleton-stack>.mizu-skeleton--text{@apply max-w-full}
 @media(prefers-reduced-motion:reduce){
-  .bp-skeleton--shimmer::after,.bp-skeleton--pulse{animation:none}
-  .bp-skeleton--shimmer::after{display:none}
-  .bp-skeleton--shimmer,.bp-skeleton--pulse{opacity:.7}
+  .mizu-skeleton--shimmer::after,.mizu-skeleton--pulse{animation:none}
+  .mizu-skeleton--shimmer::after{display:none}
+  .mizu-skeleton--shimmer,.mizu-skeleton--pulse{opacity:.7}
 }
 </style>

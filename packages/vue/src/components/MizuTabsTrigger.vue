@@ -18,7 +18,7 @@ const props = withDefaults(defineProps<TabsTriggerProps>(), {
 const attrs = useAttrs();
 
 const triggerClasses = computed(() => {
-  const classes = ["bp-tabs__trigger"];
+  const classes = ["mizu-tabs__trigger"];
   if (attrs.class) classes.push(attrs.class as string);
   return classes.join(" ");
 });
@@ -37,7 +37,7 @@ const triggerClasses = computed(() => {
 </template>
 
 <style>
-.bp-tabs__trigger {
+.mizu-tabs__trigger {
   all: revert;
   display: inline-flex;
   align-items: center;
@@ -58,11 +58,11 @@ const triggerClasses = computed(() => {
   margin-top: 0;
 }
 
-.bp-tabs__trigger[data-state="active"] {
+.mizu-tabs__trigger[data-state="active"] {
   color: var(--color-foreground-primary);
 }
 
-.bp-tabs__trigger[data-state="active"]::after {
+.mizu-tabs__trigger[data-state="active"]::after {
   content: "";
   position: absolute;
   bottom: -1px;
@@ -72,7 +72,7 @@ const triggerClasses = computed(() => {
   background-color: var(--color-brand-accent);
 }
 
-.bp-tabs__list[data-orientation="vertical"] .bp-tabs__trigger[data-state="active"]::after {
+.mizu-tabs__list[data-orientation="vertical"] .mizu-tabs__trigger[data-state="active"]::after {
   bottom: 0;
   top: 0;
   left: -1px;
@@ -81,63 +81,63 @@ const triggerClasses = computed(() => {
   height: auto;
 }
 
-.bp-tabs__trigger:not([data-disabled]):hover {
+.mizu-tabs__trigger:not([data-disabled]):hover {
   color: var(--color-foreground-primary);
 }
 
-.bp-tabs__trigger[data-disabled] {
+.mizu-tabs__trigger[data-disabled] {
   color: var(--color-foreground-tertiary);
   opacity: 0.5;
   cursor: not-allowed;
   pointer-events: none;
 }
 
-.bp-tabs__list[data-size="sm"] .bp-tabs__trigger {
+.mizu-tabs__list[data-size="sm"] .mizu-tabs__trigger {
   padding: 6px 12px;
   font-size: 13px;
 }
 
-.bp-tabs__list[data-size="lg"] .bp-tabs__trigger {
+.mizu-tabs__list[data-size="lg"] .mizu-tabs__trigger {
   padding: 10px 20px;
   font-size: 15px;
 }
 
-.bp-tabs__list[data-variant="button"] .bp-tabs__trigger {
+.mizu-tabs__list[data-variant="button"] .mizu-tabs__trigger {
   flex: 1;
   border-radius: 6px;
   padding: 6px 12px;
   border: 1px solid transparent;
 }
 
-.bp-tabs__list[data-variant="button"][data-size="sm"] .bp-tabs__trigger {
+.mizu-tabs__list[data-variant="button"][data-size="sm"] .mizu-tabs__trigger {
   padding: 4px 10px;
   font-size: 13px;
   border-radius: 4px;
 }
 
-.bp-tabs__list[data-variant="button"][data-size="lg"] .bp-tabs__trigger {
+.mizu-tabs__list[data-variant="button"][data-size="lg"] .mizu-tabs__trigger {
   padding: 8px 16px;
   font-size: 15px;
   border-radius: 6px;
 }
 
-.bp-tabs__list[data-variant="button"] .bp-tabs__trigger[data-state="active"] {
+.mizu-tabs__list[data-variant="button"] .mizu-tabs__trigger[data-state="active"] {
   color: var(--color-foreground-inverse);
   background-color: var(--color-brand-accent);
   border-color: transparent;
   box-shadow: none;
 }
 
-.bp-tabs__list[data-variant="button"] .bp-tabs__trigger[data-state="active"]::after {
+.mizu-tabs__list[data-variant="button"] .mizu-tabs__trigger[data-state="active"]::after {
   display: none;
 }
 
-.bp-tabs__list[data-variant="button"] .bp-tabs__trigger:not([data-state="active"]):hover {
+.mizu-tabs__list[data-variant="button"] .mizu-tabs__trigger:not([data-state="active"]):hover {
   color: var(--color-foreground-primary);
   background-color: var(--color-surface-base);
 }
 
-.bp-tabs__list[data-orientation="vertical"][data-variant="button"] .bp-tabs__trigger {
+.mizu-tabs__list[data-orientation="vertical"][data-variant="button"] .mizu-tabs__trigger {
   flex: none;
 }
 </style>

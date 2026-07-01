@@ -15,7 +15,7 @@ const props = withDefaults(defineProps<DialogCloseProps>(), {
 const attrs = useAttrs();
 
 const closeClasses = computed(() => {
-  const classes = ["bp-dialog__close"];
+  const classes = ["mizu-dialog__close"];
   if (attrs.class) classes.push(attrs.class as string);
   return classes.join(" ");
 });
@@ -37,7 +37,7 @@ const closeClasses = computed(() => {
 </template>
 
 <style>
-.bp-dialog__close {
+.mizu-dialog__close {
   all: revert;
   position: absolute;
   top: 16px;
@@ -58,7 +58,7 @@ const closeClasses = computed(() => {
   transition: background 150ms, color 150ms;
 }
 
-.bp-dialog__close:hover {
+.mizu-dialog__close:hover {
   background: var(--color-surface-subtle);
   color: var(--color-foreground-primary);
 }

@@ -4,7 +4,7 @@ import { computed, useAttrs } from "vue";
 const attrs = useAttrs();
 
 const classes = computed(() => {
-  const result = ["bp-dialog__header"];
+  const result = ["mizu-dialog__header"];
   if (attrs.class) result.push(attrs.class as string);
   return result.join(" ");
 });
@@ -17,7 +17,7 @@ const classes = computed(() => {
 </template>
 
 <style>
-.bp-dialog__header {
+.mizu-dialog__header {
   display: flex;
   flex-direction: column;
   gap: 0;

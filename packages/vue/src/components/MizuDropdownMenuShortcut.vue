@@ -14,7 +14,7 @@ const props = withDefaults(defineProps<DropdownMenuShortcutProps>(), {
 const attrs = useAttrs();
 
 const shortcutClasses = computed(() => {
-  const classes = ["bp-dropdown-menu__shortcut"];
+  const classes = ["mizu-dropdown-menu__shortcut"];
   if (attrs.class) classes.push(attrs.class as string);
   return classes.join(" ");
 });
@@ -27,7 +27,7 @@ const shortcutClasses = computed(() => {
 </template>
 
 <style>
-.bp-dropdown-menu__shortcut {
+.mizu-dropdown-menu__shortcut {
   all: revert;
   display: flex;
   margin-left: auto;

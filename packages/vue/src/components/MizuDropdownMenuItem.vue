@@ -23,8 +23,8 @@ const emit = defineEmits<{
 const attrs = useAttrs();
 
 const itemClasses = computed(() => {
-  const classes = ["bp-dropdown-menu__item"];
-  if (props.variant === "destructive") classes.push("bp-dropdown-menu__item--destructive");
+  const classes = ["mizu-dropdown-menu__item"];
+  if (props.variant === "destructive") classes.push("mizu-dropdown-menu__item--destructive");
   if (attrs.class) classes.push(attrs.class as string);
   return classes.join(" ");
 });
@@ -43,7 +43,7 @@ const itemClasses = computed(() => {
 </template>
 
 <style>
-.bp-dropdown-menu__item {
+.mizu-dropdown-menu__item {
   all: revert;
   display: flex;
   align-items: center;
@@ -62,20 +62,20 @@ const itemClasses = computed(() => {
   box-sizing: border-box;
 }
 
-.bp-dropdown-menu__item[data-highlighted] {
+.mizu-dropdown-menu__item[data-highlighted] {
   background-color: var(--color-surface-hover);
 }
 
-.bp-dropdown-menu__item--destructive {
+.mizu-dropdown-menu__item--destructive {
   color: var(--color-feedback-error-base);
 }
 
-.bp-dropdown-menu__item--destructive[data-highlighted] {
+.mizu-dropdown-menu__item--destructive[data-highlighted] {
   background-color: var(--color-feedback-error-subtle);
   color: var(--color-feedback-error-base);
 }
 
-.bp-dropdown-menu__item[data-disabled] {
+.mizu-dropdown-menu__item[data-disabled] {
   color: var(--color-foreground-disabled);
   cursor: not-allowed;
   pointer-events: none;

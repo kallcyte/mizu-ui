@@ -16,7 +16,7 @@ A TagsInput consists of up to 5 parts:
 | Part | Required | Description |
 |------|----------|-------------|
 | Wrapper | Yes | Layout shell with vertical label → control → helper text stack (same as `MizuInput`) |
-| Container | Yes | The chip-and-input "well" reusing `MizuInput`'s `.bp-input` styling |
+| Container | Yes | The chip-and-input "well" reusing `MizuInput`'s `.mizu-input` styling |
 | `MizuTag` Chip | No | A closable `MizuTag` pill for each committed value |
 | Native Input | Yes | The trailing transparent text field where new values are typed |
 | Helper Text | No | Optional hint shown below the control (or an error message) |
@@ -90,7 +90,7 @@ Chip labels use weight 500 (medium), line-height 1, font-size 12px, as defined i
 
 ### Chip Colors (delegated to `MizuTag`)
 
-Chips are rendered with `MizuTag` and inherit the exact color palette defined in that component. Colors are bound via the `--bp-tag-bg`, `--bp-tag-text`, and `--bp-tag-border` CSS custom properties on each chip.
+Chips are rendered with `MizuTag` and inherit the exact color palette defined in that component. Colors are bound via the `--mizu-tag-bg`, `--mizu-tag-text`, and `--mizu-tag-border` CSS custom properties on each chip.
 
 | Variant | Chip Background | Chip Label | Border |
 |---------|------------------|------------|--------|
@@ -178,11 +178,11 @@ The chip-level remove button is 12×12px (visual) but the surrounding chip area 
 
 ```html
 <div role="group" aria-describedby="mizu-input-name-helper" aria-disabled="false">
-  <span class="bp-tag bp-tag--primary">
+  <span class="mizu-tag mizu-tag--primary">
     Vue
     <button aria-label="Remove Vue">×</button>
   </span>
-  <span class="bp-tag bp-tag--primary">
+  <span class="mizu-tag mizu-tag--primary">
     TypeScript
     <button aria-label="Remove TypeScript">×</button>
   </span>
@@ -204,7 +204,7 @@ The chip-level remove button is 12×12px (visual) but the surrounding chip area 
 | `--color-brand-accent` | #007FFF | Focus border on container |
 | `--color-feedback-error-base` | #DC2626 | Error border + error helper text |
 
-Chip colors are consumed from the same tokens as `MizuTag` (`--bp-tag-bg`, `--bp-tag-text`, `--bp-tag-border`).
+Chip colors are consumed from the same tokens as `MizuTag` (`--mizu-tag-bg`, `--mizu-tag-text`, `--mizu-tag-border`).
 
 ## Vue Component API
 
@@ -274,7 +274,7 @@ function isKebab(value: string) {
 
 ## Implementation Notes
 
-1. **Composition** — the container reuses `MizuInput`'s `.bp-input` class, so focus, error, and disabled states are visually identical to the standalone input. Chips are rendered with the existing `MizuTag` component, so the color palette, close button, and accessibility are inherited rather than duplicated.
+1. **Composition** — the container reuses `MizuInput`'s `.mizu-input` class, so focus, error, and disabled states are visually identical to the standalone input. Chips are rendered with the existing `MizuTag` component, so the color palette, close button, and accessibility are inherited rather than duplicated.
 2. **Tag variant option** — the `tagVariant` prop maps directly to `MizuTag`'s `variant` prop, allowing consumers to choose the chip color scheme independently from the input size.
 3. **Controlled / uncontrolled** — when `modelValue` is `undefined`, TagsInput holds its own internal `ref` and only emits on change; passing `v-model` makes it fully controlled.
 4. **Multi-separator support** — the `separator` prop is a list of keys / characters; any of them commit a tag, and pasted strings are split on every configured separator at paste time.
@@ -285,4 +285,4 @@ function isKebab(value: string) {
 9. **Blur commits** — leaving the field while text is still in the input commits the pending value (trimmed).
 10. **Inline animations** — chips animate in via a 150ms `scale(0.85) → scale(1)` pop; rejected commits trigger a 200ms `translateX` shake on the most recent chip.
 11. **Tailwind `@apply`** — uses `@apply` + `@reference "../index.css"` for Tailwind v4 compatibility; the `MizuTag` component already handles its own token binding.
-12. **Class inheritance** — accepts `class` from `useAttrs()` to allow consumers to override container-level styling without losing the `bp-input` hooks.
+12. **Class inheritance** — accepts `class` from `useAttrs()` to allow consumers to override container-level styling without losing the `mizu-input` hooks.

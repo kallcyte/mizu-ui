@@ -15,7 +15,7 @@ const props = withDefaults(defineProps<ComboboxLabelProps>(), {
 const attrs = useAttrs();
 
 const labelClasses = computed(() => {
-  const classes = ["bp-combobox__label"];
+  const classes = ["mizu-combobox__label"];
   if (attrs.class) classes.push(attrs.class as string);
   return classes.join(" ");
 });
@@ -32,7 +32,7 @@ const labelClasses = computed(() => {
 </template>
 
 <style>
-.bp-combobox__label {
+.mizu-combobox__label {
   all: revert;
   display: flex;
   align-items: center;

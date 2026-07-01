@@ -36,7 +36,7 @@ const props = withDefaults(defineProps<ToastProviderProps>(), {
 const attrs = useAttrs();
 
 const providerClasses = computed(() => {
-  const classes = ["bp-toast-provider"];
+  const classes = ["mizu-toast-provider"];
   if (attrs.class) classes.push(attrs.class as string);
   return classes.join(" ");
 });
@@ -194,13 +194,13 @@ provide(TOAST_CONTEXT_KEY, { addToast, dismissToast });
               @mouseenter="pauseTimer(toast.id)"
               @mouseleave="resumeTimer(toast)"
             >
-              <div class="bp-toast__inner">
+              <div class="mizu-toast__inner">
                 <component
                   :is="toast.variant === 'success' ? CheckCircle : toast.variant === 'warning' ? AlertTriangle : toast.variant === 'error' ? XCircle : Info"
                   :size="18"
-                  :class="['bp-toast__icon', `bp-toast__icon--${toast.variant}`]"
+                  :class="['mizu-toast__icon', `mizu-toast__icon--${toast.variant}`]"
                 />
-                <div class="bp-toast__content">
+                <div class="mizu-toast__content">
                   <MizuToastTitle v-if="toast.title">{{ toast.title }}</MizuToastTitle>
                   <MizuToastDescription v-if="toast.description">
                     {{ toast.description }}
@@ -214,7 +214,7 @@ provide(TOAST_CONTEXT_KEY, { addToast, dismissToast });
                 >
                   <MizuButton variant="outline" size="md" class="w-max">{{ toast.action.label }}</MizuButton>
                 </MizuToastAction>
-                <span v-if="toast.showTimer" class="bp-toast__timer">
+                <span v-if="toast.showTimer" class="mizu-toast__timer">
                   {{ (((toast.duration ?? 3000) - (toast.timerElapsed ?? 0)) / 1000).toFixed(2) }}s
                 </span>
               </div>
@@ -227,7 +227,7 @@ provide(TOAST_CONTEXT_KEY, { addToast, dismissToast });
 </template>
 
 <style>
-.bp-toast__inner {
+.mizu-toast__inner {
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
@@ -235,33 +235,33 @@ provide(TOAST_CONTEXT_KEY, { addToast, dismissToast });
   width: 100%;
 }
 
-.bp-toast__icon {
+.mizu-toast__icon {
   flex-shrink: 0;
   margin-top: 2px;
 }
 
-.bp-toast__icon--success {
+.mizu-toast__icon--success {
   color: var(--color-feedback-success-base);
 }
 
-.bp-toast__icon--warning {
+.mizu-toast__icon--warning {
   color: var(--color-feedback-warning-base);
 }
 
-.bp-toast__icon--error {
+.mizu-toast__icon--error {
   color: var(--color-feedback-error-base);
 }
 
-.bp-toast__icon--info {
+.mizu-toast__icon--info {
   color: var(--color-feedback-info-base);
 }
 
-.bp-toast__content {
+.mizu-toast__content {
   flex: 1;
   min-width: 0;
 }
 
-.bp-toast__timer {
+.mizu-toast__timer {
   flex-shrink: 0;
   font-size: 12px;
   font-weight: 500;

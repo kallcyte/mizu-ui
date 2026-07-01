@@ -22,7 +22,7 @@ const props = withDefaults(defineProps<MetricProps>(), {
 const attrs = useAttrs();
 
 const metricClasses = computed(() => {
-  const classes = ["bp-metric", `bp-metric--${props.size}`, `bp-metric--${props.variant}`];
+  const classes = ["mizu-metric", `mizu-metric--${props.size}`, `mizu-metric--${props.variant}`];
 
   if (attrs.class) classes.push(attrs.class as string);
 
@@ -38,12 +38,12 @@ const trendColor = computed(() => {
 
 <template>
   <div :class="metricClasses">
-    <span v-if="label" class="bp-metric__label">{{ label }}</span>
-    <span v-if="value != null" class="bp-metric__value">{{ value }}</span>
-    <div v-if="trend || trendValue" class="bp-metric__trend-row">
+    <span v-if="label" class="mizu-metric__label">{{ label }}</span>
+    <span v-if="value != null" class="mizu-metric__value">{{ value }}</span>
+    <div v-if="trend || trendValue" class="mizu-metric__trend-row">
       <svg
         v-if="trend && trend !== 'neutral'"
-        class="bp-metric__trend-icon"
+        class="mizu-metric__trend-icon"
         viewBox="0 0 16 16"
         fill="none"
         aria-hidden="true"
@@ -61,7 +61,7 @@ const trendColor = computed(() => {
       </svg>
       <span
         v-if="trendValue"
-        class="bp-metric__trend-value"
+        class="mizu-metric__trend-value"
         :style="{ color: trendColor }"
       >
         {{ trendValue }}
@@ -73,62 +73,62 @@ const trendColor = computed(() => {
 <style>
 @reference "../index.css";
 
-.bp-metric {
+.mizu-metric {
   @apply inline-flex flex-col;
 }
 
-.bp-metric__label {
+.mizu-metric__label {
   @apply font-medium;
   color: var(--color-foreground-secondary);
 }
 
-.bp-metric__value {
+.mizu-metric__value {
   @apply font-bold;
   color: var(--color-foreground-primary);
   letter-spacing: var(--letter-spacing-tight, -0.03em);
   line-height: 1.1;
 }
 
-.bp-metric__trend-row {
+.mizu-metric__trend-row {
   @apply inline-flex items-center;
   gap: 4px;
 }
 
-.bp-metric__trend-icon {
+.mizu-metric__trend-icon {
   @apply shrink-0;
   width: 14px;
   height: 14px;
 }
 
-.bp-metric__trend-value {
+.mizu-metric__trend-value {
   @apply font-medium;
 }
 
-.bp-metric--sm .bp-metric__label { @apply text-[11px]; }
-.bp-metric--sm .bp-metric__value { @apply text-[18px]; }
-.bp-metric--sm .bp-metric__trend-value { @apply text-[11px]; }
+.mizu-metric--sm .mizu-metric__label { @apply text-[11px]; }
+.mizu-metric--sm .mizu-metric__value { @apply text-[18px]; }
+.mizu-metric--sm .mizu-metric__trend-value { @apply text-[11px]; }
 
-.bp-metric--md .bp-metric__label { @apply text-[12px]; }
-.bp-metric--md .bp-metric__value { @apply text-[24px]; }
-.bp-metric--md .bp-metric__trend-value { @apply text-[12px]; }
+.mizu-metric--md .mizu-metric__label { @apply text-[12px]; }
+.mizu-metric--md .mizu-metric__value { @apply text-[24px]; }
+.mizu-metric--md .mizu-metric__trend-value { @apply text-[12px]; }
 
-.bp-metric--lg .bp-metric__label { @apply text-[13px]; }
-.bp-metric--lg .bp-metric__value { @apply text-[36px]; }
-.bp-metric--lg .bp-metric__trend-value { @apply text-[13px]; }
+.mizu-metric--lg .mizu-metric__label { @apply text-[13px]; }
+.mizu-metric--lg .mizu-metric__value { @apply text-[36px]; }
+.mizu-metric--lg .mizu-metric__trend-value { @apply text-[13px]; }
 
-.bp-metric--primary .bp-metric__value {
+.mizu-metric--primary .mizu-metric__value {
   color: var(--color-brand-primary);
 }
-.bp-metric--accent .bp-metric__value {
+.mizu-metric--accent .mizu-metric__value {
   color: var(--color-brand-accent);
 }
-.bp-metric--success .bp-metric__value {
+.mizu-metric--success .mizu-metric__value {
   color: var(--color-feedback-success-base);
 }
-.bp-metric--warning .bp-metric__value {
+.mizu-metric--warning .mizu-metric__value {
   color: var(--color-feedback-warning-base);
 }
-.bp-metric--error .bp-metric__value {
+.mizu-metric--error .mizu-metric__value {
   color: var(--color-feedback-error-base);
 }
 </style>

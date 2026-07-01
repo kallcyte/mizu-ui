@@ -46,11 +46,11 @@ const isChecked = computed(() => {
 });
 
 const checkboxClasses = computed(() => {
-  const classes = ["bp-checkbox", `bp-checkbox--${props.size}`];
+  const classes = ["mizu-checkbox", `mizu-checkbox--${props.size}`];
 
-  if (props.disabled) classes.push("bp-checkbox--disabled");
-  if (isChecked.value) classes.push("bp-checkbox--checked");
-  if (isIndeterminate.value) classes.push("bp-checkbox--indeterminate");
+  if (props.disabled) classes.push("mizu-checkbox--disabled");
+  if (isChecked.value) classes.push("mizu-checkbox--checked");
+  if (isIndeterminate.value) classes.push("mizu-checkbox--indeterminate");
 
   if (attrs.class) classes.push(attrs.class as string);
 
@@ -61,7 +61,7 @@ const checkboxClasses = computed(() => {
 <template>
   <label
     :for="checkboxId"
-    :class="['bp-checkbox-wrapper', `bp-checkbox-wrapper--${size}`, { 'bp-checkbox-wrapper--disabled': disabled, 'bp-checkbox-wrapper--no-label': !label }]"
+    :class="['mizu-checkbox-wrapper', `mizu-checkbox-wrapper--${size}`, { 'mizu-checkbox-wrapper--disabled': disabled, 'mizu-checkbox-wrapper--no-label': !label }]"
   >
     <CheckboxRoot
       :id="checkboxId"
@@ -75,11 +75,11 @@ const checkboxClasses = computed(() => {
       :class="checkboxClasses"
       @update:model-value="(value) => emit('update:modelValue', value)"
     >
-      <CheckboxIndicator class="bp-checkbox__indicator">
+      <CheckboxIndicator class="mizu-checkbox__indicator">
         <svg
           v-if="isIndeterminate"
           viewBox="0 0 14 14"
-          class="bp-checkbox__icon"
+          class="mizu-checkbox__icon"
         >
           <rect
             x="3"
@@ -94,7 +94,7 @@ const checkboxClasses = computed(() => {
           v-else
           viewBox="0 0 14 14"
           fill="none"
-          class="bp-checkbox__icon"
+          class="mizu-checkbox__icon"
         >
           <path
             d="M2.5 7.5L5.5 10.5L11.5 4.5"
@@ -106,80 +106,80 @@ const checkboxClasses = computed(() => {
         </svg>
       </CheckboxIndicator>
     </CheckboxRoot>
-    <span v-if="label" class="bp-checkbox__label">{{ label }}</span>
+    <span v-if="label" class="mizu-checkbox__label">{{ label }}</span>
   </label>
 </template>
 
 <style>
 @reference "../index.css";
 
-.bp-checkbox-wrapper {
+.mizu-checkbox-wrapper {
   @apply inline-flex items-center gap-[8px] cursor-pointer select-none;
 }
 
-.bp-checkbox-wrapper--disabled {
+.mizu-checkbox-wrapper--disabled {
   @apply cursor-not-allowed;
 }
 
-.bp-checkbox {
+.mizu-checkbox {
   @apply shrink-0 inline-flex items-center justify-center border rounded-[4px] transition-colors duration-200 ease-in-out outline-none;
   background-color: var(--color-surface-base);
   border-color: var(--color-foreground-tertiary);
   color: var(--color-foreground-inverse);
 }
 
-.bp-checkbox--sm { @apply w-[16px] h-[16px]; }
-.bp-checkbox--md { @apply w-[18px] h-[18px]; }
-.bp-checkbox--lg { @apply w-[20px] h-[20px]; }
+.mizu-checkbox--sm { @apply w-[16px] h-[16px]; }
+.mizu-checkbox--md { @apply w-[18px] h-[18px]; }
+.mizu-checkbox--lg { @apply w-[20px] h-[20px]; }
 
-.bp-checkbox:hover:not(.bp-checkbox--disabled) {
+.mizu-checkbox:hover:not(.mizu-checkbox--disabled) {
   border-color: var(--color-brand-primary);
 }
 
-.bp-checkbox:focus-visible {
+.mizu-checkbox:focus-visible {
   box-shadow: 0 0 0 2px var(--color-brand-accent);
 }
 
-.bp-checkbox--checked,
-.bp-checkbox--indeterminate {
+.mizu-checkbox--checked,
+.mizu-checkbox--indeterminate {
   background-color: var(--color-brand-primary);
   border-color: var(--color-brand-primary);
 }
 
-.bp-checkbox--checked:hover:not(.bp-checkbox--disabled),
-.bp-checkbox--indeterminate:hover:not(.bp-checkbox--disabled) {
+.mizu-checkbox--checked:hover:not(.mizu-checkbox--disabled),
+.mizu-checkbox--indeterminate:hover:not(.mizu-checkbox--disabled) {
   background-color: var(--color-brand-primary-hover);
   border-color: var(--color-brand-primary-hover);
 }
 
-.bp-checkbox--disabled {
+.mizu-checkbox--disabled {
   @apply cursor-not-allowed;
   background-color: var(--color-surface-muted);
   border-color: var(--color-surface-muted);
   color: var(--color-foreground-tertiary);
 }
 
-.bp-checkbox__indicator {
+.mizu-checkbox__indicator {
   @apply inline-flex items-center justify-center;
   width: 100%;
   height: 100%;
 }
 
-.bp-checkbox__icon {
+.mizu-checkbox__icon {
   width: 75%;
   height: 75%;
 }
 
-.bp-checkbox__label {
+.mizu-checkbox__label {
   @apply font-normal text-[var(--color-foreground-primary)];
   line-height: 1.3;
 }
 
-.bp-checkbox-wrapper--sm .bp-checkbox__label { @apply text-[12px]; }
-.bp-checkbox-wrapper--md .bp-checkbox__label { @apply text-[13px]; }
-.bp-checkbox-wrapper--lg .bp-checkbox__label { @apply text-[14px]; }
+.mizu-checkbox-wrapper--sm .mizu-checkbox__label { @apply text-[12px]; }
+.mizu-checkbox-wrapper--md .mizu-checkbox__label { @apply text-[13px]; }
+.mizu-checkbox-wrapper--lg .mizu-checkbox__label { @apply text-[14px]; }
 
-.bp-checkbox-wrapper--disabled .bp-checkbox__label {
+.mizu-checkbox-wrapper--disabled .mizu-checkbox__label {
   @apply text-[var(--color-foreground-tertiary)];
 }
 </style>

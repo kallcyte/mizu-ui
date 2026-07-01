@@ -33,9 +33,11 @@ This resets Starlight's `.sl-markdown-content :not(...) + :not(...)` rule which 
 
 5. When you find gaps or missing conventions in this skill, flag them at the end of the session.
 
+6. **Prioritize Tailwind CSS v4 utility classes first** when writing styles. If a custom class is needed, use `@apply <tailwindcss_utility_classes>` inside `<style>` blocks. Only write raw CSS directives (`property: value`) when Tailwind does not provide an equivalent utility class.
+
 ## Documentation
 
-6. After finalizing a new component, **always** complete all three of these documentation steps in the same batch — no exceptions:
+7. After finalizing a new component, **always** complete all three of these documentation steps in the same batch — no exceptions:
    - Create component documentation at `src/content/docs/components/{name}.mdx` following the structure below.
    - Add a component card to `src/components/home/ComponentsSection.astro` inside `<div class="comp-grid">`. Use this template:
 
@@ -48,10 +50,10 @@ This resets Starlight's `.sl-markdown-content :not(...) + :not(...)` rule which 
 
    - Add the component to the Starlight sidebar under the "Components" group in `astro.config.mjs`.
    - Verify all three stay in sync: sidebar entries, homepage cards, and docs pages. Compare the sidebar component list in `astro.config.mjs` against `src/components/home/ComponentsSection.astro` and `src/content/docs/components/` after every batch.
-7. Before documenting a new component, run `pnpm --filter @mizu/vue build` to regenerate `packages/vue/src/index.ts`, then verify every exported component has a corresponding sidebar entry (`astro.config.mjs`), docs page (`src/content/docs/components/`), and homepage card (`src/components/home/ComponentsSection.astro`). The three must always be in sync — a missing homepage card is a documentation bug.
-8. Create a new changelog entry in `src/content/docs/getting-started/changelog.mdx` before committing.
-9. **Bump the patch version** (e.g., `0.12.0` → `0.12.1`) in `packages/vue/package.json` and `package.json` (root) after adding a new component.
-10. After a version bump, update the version number in:
+8. Before documenting a new component, run `pnpm --filter @mizu/vue build` to regenerate `packages/vue/src/index.ts`, then verify every exported component has a corresponding sidebar entry (`astro.config.mjs`), docs page (`src/content/docs/components/`), and homepage card (`src/components/home/ComponentsSection.astro`). The three must always be in sync — a missing homepage card is a documentation bug.
+9. Create a new changelog entry in `src/content/docs/getting-started/changelog.mdx` before committing.
+10. **Bump the patch version** (e.g., `0.12.0` → `0.12.1`) in `packages/vue/package.json` and `package.json` (root) after adding a new component.
+11. After a version bump, update the version number in:
     - `packages/vue/package.json` (the canonical source of truth)
     - `package.json` (root, keep in sync)
     - `src/components/home/Hero.astro` — search for `Design System · v0.`
@@ -64,8 +66,8 @@ This resets Starlight's `.sl-markdown-content :not(...) + :not(...)` rule which 
 
 ## Release
 
-11. Only commit, push, and release to the repo if requested explicitly.
-12. The release workflow at `.github/workflows/release.yml` triggers on push to `master` and auto-creates a GitHub Release via `gh release create ... --generate-notes`. Since `--generate-notes` only lists commit titles, **always create the release manually with detailed notes:**
+12. Only commit, push, and release to the repo if requested explicitly.
+13. The release workflow at `.github/workflows/release.yml` triggers on push to `master` and auto-creates a GitHub Release via `gh release create ... --generate-notes`. Since `--generate-notes` only lists commit titles, **always create the release manually with detailed notes:**
 
 ```bash
 gh auth login  # if not already authenticated
@@ -87,7 +89,7 @@ gh release create v{VERSION} \
 - Do NOT create phantom version entries (e.g. 0.8.0, 0.9.0) for work that was committed together — consolidate into the actual released version
 - Verify the changelog includes ALL components in the release (check `packages/vue/src/index.ts` exports)
 
-13. **Every GitHub Release must have detailed release notes** — the release notes must mirror the changelog entry in `src/content/docs/getting-started/changelog.mdx`. Never create a release with only auto-generated commit titles. If a changelog entry exists for the version, the GitHub Release must include at minimum: one-line summary, new components list, changes list, and documentation changes. Verify the release notes match the changelog before finalizing.
+14. **Every GitHub Release must have detailed release notes** — the release notes must mirror the changelog entry in `src/content/docs/getting-started/changelog.mdx`. Never create a release with only auto-generated commit titles. If a changelog entry exists for the version, the GitHub Release must include at minimum: one-line summary, new components list, changes list, and documentation changes. Verify the release notes match the changelog before finalizing.
 
 ## Don'ts
 
@@ -190,7 +192,7 @@ Insert any of these between Transitions and Accessibility when relevant:
 ### Conventions
 
 - **Section heading levels**: `##` for top-level sections (drives Starlight's auto-generated right-sidebar TOC). `###` for per-variant / per-state subsections. Never use `h1` (the page title comes from frontmatter).
-- **Token references**: use the kebab-case token path with `--color-` / `--font-` / `--spacing-` / `--radius-` / `--duration-` prefix (the canonical name, not the legacy `--bp-*` prefix). When showing the resolved value, put the hex in parentheses: `brand-primary` (#001C44).
+use the kebab-case token path with `--color-` / `--font-` / `--spacing-` / `--radius-` / `--duration-` prefix (the canonical name). When showing the resolved value, put the hex in parentheses: `brand-primary` (#001C44).
 - **Tables** for any tabular data (variants, sizes, state maps, props, slots, events, tokens). Avoid prose lists.
 - **No emojis** in tables, headings, or code blocks.
 - **Example blocks** fence with ` ```vue ` for component examples and ` ```html ` for raw ARIA/HTML snippets.

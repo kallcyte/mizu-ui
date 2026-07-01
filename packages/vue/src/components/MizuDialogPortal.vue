@@ -17,7 +17,7 @@ const props = withDefaults(defineProps<DialogPortalProps>(), {
 const attrs = useAttrs();
 
 const portalClasses = computed(() => {
-  const classes = ["bp-dialog-portal"];
+  const classes = ["mizu-dialog-portal"];
   if (attrs.class) classes.push(attrs.class as string);
   return classes.join(" ");
 });

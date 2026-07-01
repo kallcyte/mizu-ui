@@ -1,7 +1,7 @@
 {
   "name": "mizu-design-system",
   "type": "module",
-  "version": "0.13.0",
+  "version": "0.13.1",
   "scripts": {
     "dev": "node -e \"fs.rmSync('.astro',{recursive:true,force:true})\" && astro dev",
     "build": "node -e \"fs.rmSync('.astro',{recursive:true,force:true})\" && pnpm build:tokens && pnpm build:vue && astro build",

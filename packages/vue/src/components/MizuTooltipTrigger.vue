@@ -22,7 +22,7 @@ const props = withDefaults(defineProps<TooltipTriggerProps>(), {
 </template>
 
 <style>
-.bp-tooltip-trigger {
+.mizu-tooltip-trigger {
   margin: 0;
   border: none;
   background: none;

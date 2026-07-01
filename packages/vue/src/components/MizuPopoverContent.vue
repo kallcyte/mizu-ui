@@ -46,7 +46,7 @@ const emit = defineEmits<{
 const attrs = useAttrs();
 
 const contentClasses = computed(() => {
-  const classes = ["bp-popover__content"];
+  const classes = ["mizu-popover__content"];
   if (attrs.class) classes.push(attrs.class as string);
   return classes.join(" ");
 });
@@ -84,7 +84,7 @@ const contentStyle = computed(() => {
 </template>
 
 <style>
-.bp-popover__content {
+.mizu-popover__content {
   all: revert;
   z-index: 50;
   min-width: 200px;
@@ -103,31 +103,31 @@ const contentStyle = computed(() => {
   outline: none;
 }
 
-.bp-popover__content:focus {
+.mizu-popover__content:focus {
   outline: none;
 }
 
-.bp-popover__content[data-state="open"] {
+.mizu-popover__content[data-state="open"] {
   animation: popoverContentIn 200ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.bp-popover__content[data-state="closed"] {
+.mizu-popover__content[data-state="closed"] {
   animation: popoverContentOut 150ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.bp-popover__content[data-side="top"] {
+.mizu-popover__content[data-side="top"] {
   animation-name: popoverSlideInFromTop;
 }
 
-.bp-popover__content[data-side="bottom"] {
+.mizu-popover__content[data-side="bottom"] {
   animation-name: popoverSlideInFromBottom;
 }
 
-.bp-popover__content[data-side="left"] {
+.mizu-popover__content[data-side="left"] {
   animation-name: popoverSlideInFromLeft;
 }
 
-.bp-popover__content[data-side="right"] {
+.mizu-popover__content[data-side="right"] {
   animation-name: popoverSlideInFromRight;
 }
 

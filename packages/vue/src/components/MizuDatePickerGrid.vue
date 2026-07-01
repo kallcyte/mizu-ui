@@ -15,7 +15,7 @@ const props = withDefaults(defineProps<DatePickerGridProps>(), {
 const attrs = useAttrs();
 
 const gridClasses = computed(() => {
-  const classes = ["bp-date-picker__grid"];
+  const classes = ["mizu-date-picker__grid"];
   if (attrs.class) classes.push(attrs.class as string);
   return classes.join(" ");
 });

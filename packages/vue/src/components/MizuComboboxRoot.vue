@@ -35,7 +35,7 @@ const emit = defineEmits<{
 const attrs = useAttrs();
 
 const rootClasses = computed(() => {
-  const classes = ["bp-combobox"];
+  const classes = ["mizu-combobox"];
   if (attrs.class) classes.push(attrs.class as string);
   return classes.join(" ");
 });

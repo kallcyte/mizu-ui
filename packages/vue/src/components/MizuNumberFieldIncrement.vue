@@ -15,7 +15,7 @@ const props = withDefaults(defineProps<NumberFieldIncrementProps>(), {
 const attrs = useAttrs();
 
 const incClasses = computed(() => {
-  const classes = ["bp-number-field__increment"];
+  const classes = ["mizu-number-field__increment"];
   if (attrs.class) classes.push(attrs.class as string);
   return classes.join(" ");
 });
@@ -32,7 +32,7 @@ const incClasses = computed(() => {
 </template>
 
 <style>
-.bp-number-field__increment {
+.mizu-number-field__increment {
   all: revert;
   display: inline-flex;
   align-items: center;
@@ -48,12 +48,12 @@ const incClasses = computed(() => {
   user-select: none;
 }
 
-.bp-number-field__increment:hover {
+.mizu-number-field__increment:hover {
   color: var(--color-foreground-primary);
   background-color: var(--color-surface-hover);
 }
 
-.bp-number-field__increment[data-disabled] {
+.mizu-number-field__increment[data-disabled] {
   color: var(--color-foreground-disabled);
   cursor: not-allowed;
   pointer-events: none;

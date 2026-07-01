@@ -15,7 +15,7 @@ const props = withDefaults(defineProps<DatePickerArrowProps>(), {
 const attrs = useAttrs();
 
 const arrowClasses = computed(() => {
-  const classes = ["bp-date-picker__arrow"];
+  const classes = ["mizu-date-picker__arrow"];
   if (attrs.class) classes.push(attrs.class as string);
   return classes.join(" ");
 });

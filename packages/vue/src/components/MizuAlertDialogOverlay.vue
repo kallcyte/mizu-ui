@@ -13,7 +13,7 @@ const props = withDefaults(defineProps<AlertDialogOverlayProps>(), {
 const attrs = useAttrs();
 
 const overlayClasses = computed(() => {
-  const classes = ["bp-alert-dialog__overlay"];
+  const classes = ["mizu-alert-dialog__overlay"];
   if (attrs.class) classes.push(attrs.class as string);
   return classes.join(" ");
 });
@@ -29,7 +29,7 @@ const overlayClasses = computed(() => {
 </template>
 
 <style>
-.bp-alert-dialog__overlay {
+.mizu-alert-dialog__overlay {
   all: revert;
   position: fixed;
   inset: 0;
@@ -37,11 +37,11 @@ const overlayClasses = computed(() => {
   background: rgba(0, 0, 0, 0.5);
 }
 
-.bp-alert-dialog__overlay[data-state="open"] {
+.mizu-alert-dialog__overlay[data-state="open"] {
   animation: alertDialogOverlayIn 200ms ease-out;
 }
 
-.bp-alert-dialog__overlay[data-state="closed"] {
+.mizu-alert-dialog__overlay[data-state="closed"] {
   animation: alertDialogOverlayOut 150ms ease-in;
 }
 

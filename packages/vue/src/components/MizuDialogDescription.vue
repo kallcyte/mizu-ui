@@ -15,7 +15,7 @@ const props = withDefaults(defineProps<DialogDescriptionProps>(), {
 const attrs = useAttrs();
 
 const descriptionClasses = computed(() => {
-  const classes = ["bp-dialog__description"];
+  const classes = ["mizu-dialog__description"];
   if (attrs.class) classes.push(attrs.class as string);
   return classes.join(" ");
 });
@@ -32,7 +32,7 @@ const descriptionClasses = computed(() => {
 </template>
 
 <style>
-.bp-dialog__description {
+.mizu-dialog__description {
   all: revert;
   margin: 0;
   font-size: 14px;

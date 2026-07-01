@@ -176,7 +176,7 @@ Tags use a single fixed size.
 ### ARIA Attributes
 
 ```html
-<span class="bp-tag bp-tag--primary">
+<span class="mizu-tag mizu-tag--primary">
   Design
   <button aria-label="Remove tag">
     <svg>...</svg>
@@ -247,7 +247,7 @@ Tags use a single fixed size.
 3. **Pill shape** — Fully rounded (`border-radius: 9999px`) for a soft, modern feel
 4. **Semi-transparent border** — All variants use a subtle background with a 1px border at 25% opacity matching the label color
 5. **Tailwind `@apply`** — Component styles use `@apply` with `@reference` for Tailwind v4 compatibility
-6. **CSS Custom Properties** — Colors are resolved at runtime via inline `:style` binding (`--bp-tag-bg`, `--bp-tag-text`, `--bp-tag-border`)
+6. **CSS Custom Properties** — Colors are resolved at runtime via inline `:style` binding (`--mizu-tag-bg`, `--mizu-tag-text`, `--mizu-tag-border`)
 7. **Self-contained CSS** — Tailwind utilities are bundled into `dist/index.css` via `@tailwindcss/vite`; consumers do not need Tailwind installed
 8. **Class inheritance** — Accept `class` prop for overrides via `useAttrs()`
 9. **TypeScript** — Full type safety with `<script setup lang="ts">`

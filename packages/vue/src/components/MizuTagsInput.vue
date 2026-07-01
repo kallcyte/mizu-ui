@@ -81,23 +81,23 @@ const isAtMax = computed(() => {
 });
 
 const wrapperClasses = computed(() => {
-  const classes = ["bp-input-wrapper", `bp-input-wrapper--${props.size}`];
+  const classes = ["mizu-input-wrapper", `mizu-input-wrapper--${props.size}`];
   if (attrs.class) classes.push(attrs.class as string);
   return classes.join(" ");
 });
 
 const containerClasses = computed(() => {
-  const classes = ["bp-input", "bp-tags-input", `bp-input--${props.size}`];
-  if (props.error) classes.push("bp-input--error");
-  if (props.disabled) classes.push("bp-input--disabled");
-  if (isFocused.value) classes.push("bp-tags-input--focused");
-  if (isAtMax.value) classes.push("bp-tags-input--max");
+  const classes = ["mizu-input", "mizu-tags-input", `mizu-input--${props.size}`];
+  if (props.error) classes.push("mizu-input--error");
+  if (props.disabled) classes.push("mizu-input--disabled");
+  if (isFocused.value) classes.push("mizu-tags-input--focused");
+  if (isAtMax.value) classes.push("mizu-tags-input--max");
   return classes.join(" ");
 });
 
 const inputClasses = computed(() => {
-  const classes = ["bp-tags-input__field", `bp-tags-input__field--${props.size}`];
-  if (isAtMax.value) classes.push("bp-tags-input__field--disabled");
+  const classes = ["mizu-tags-input__field", `mizu-tags-input__field--${props.size}`];
+  if (isAtMax.value) classes.push("mizu-tags-input__field--disabled");
   return classes.join(" ");
 });
 
@@ -254,10 +254,10 @@ function handleContainerClick(event: MouseEvent) {
     <label
       v-if="label"
       :for="inputId"
-      :class="['bp-input-label', `bp-input-label--${size}`]"
+      :class="['mizu-input-label', `mizu-input-label--${size}`]"
     >
       {{ label }}
-      <span v-if="required" class="bp-input-label__required" aria-hidden="true">*</span>
+      <span v-if="required" class="mizu-input-label__required" aria-hidden="true">*</span>
     </label>
     <div
       :id="inputId"
@@ -270,7 +270,7 @@ function handleContainerClick(event: MouseEvent) {
         :key="`${tag}-${index}`"
         :variant="tagVariant"
         :closable="!disabled && !readOnly"
-        :class="['bp-tags-input__tag', { 'bp-tags-input__tag--flash': showErrorFlash }]"
+        :class="['mizu-tags-input__tag', { 'mizu-tags-input__tag--flash': showErrorFlash }]"
         @close="removeTag(tag)"
       >
         {{ tag }}
@@ -295,7 +295,7 @@ function handleContainerClick(event: MouseEvent) {
     <span
       v-if="helperText"
       :id="helperId"
-      :class="['bp-input-helper', { 'bp-input-helper--error': error }]"
+      :class="['mizu-input-helper', { 'mizu-input-helper--error': error }]"
     >
       {{ helperText }}
     </span>
@@ -305,7 +305,7 @@ function handleContainerClick(event: MouseEvent) {
 <style>
 @reference "../index.css";
 
-.bp-tags-input {
+.mizu-tags-input {
   @apply flex flex-wrap items-center w-full;
   font-family: inherit;
   gap: 4px;
@@ -314,41 +314,41 @@ function handleContainerClick(event: MouseEvent) {
   cursor: text;
 }
 
-.bp-tags-input.bp-input--sm {
+.mizu-tags-input.mizu-input--sm {
   min-height: 28px;
   padding: 2px 8px;
 }
-.bp-tags-input.bp-input--md {
+.mizu-tags-input.mizu-input--md {
   min-height: 36px;
   padding: 6px 10px;
 }
-.bp-tags-input.bp-input--lg {
+.mizu-tags-input.mizu-input--lg {
   min-height: 40px;
   padding: 8px 10px;
 }
 
-.bp-tags-input.bp-input--disabled {
+.mizu-tags-input.mizu-input--disabled {
   cursor: not-allowed;
 }
 
-.bp-tags-input.bp-tags-input--focused {
+.mizu-tags-input.mizu-tags-input--focused {
   border-color: var(--color-brand-accent);
   box-shadow: 0 0 0 1px var(--color-brand-accent);
 }
 
-.bp-tags-input.bp-input--error.bp-tags-input--focused {
+.mizu-tags-input.mizu-input--error.mizu-tags-input--focused {
   border-color: var(--color-feedback-error-base);
   box-shadow: 0 0 0 1px var(--color-feedback-error-base);
 }
 
-.bp-tags-input__tag {
-  animation: bp-tags-input-pop 150ms ease-out;
+.mizu-tags-input__tag {
+  animation: mizu-tags-input-pop 150ms ease-out;
 }
-.bp-tags-input__tag.bp-tags-input__tag--flash {
-  animation: bp-tags-input-shake 200ms ease-in-out;
+.mizu-tags-input__tag.mizu-tags-input__tag--flash {
+  animation: mizu-tags-input-shake 200ms ease-in-out;
 }
 
-.bp-tags-input__field {
+.mizu-tags-input__field {
   @apply font-[inherit] outline-none;
   all: revert;
   flex: 1;
@@ -363,27 +363,27 @@ function handleContainerClick(event: MouseEvent) {
   box-sizing: border-box;
   font-family: inherit;
 }
-.bp-tags-input__field::placeholder {
+.mizu-tags-input__field::placeholder {
   color: var(--color-foreground-tertiary);
 }
-.bp-tags-input__field:disabled {
+.mizu-tags-input__field:disabled {
   cursor: not-allowed;
   background: transparent;
 }
 
-.bp-tags-input__field--sm { font-size: 12px; }
-.bp-tags-input__field--md { font-size: 12px; }
-.bp-tags-input__field--lg { font-size: 14px; }
+.mizu-tags-input__field--sm { font-size: 12px; }
+.mizu-tags-input__field--md { font-size: 12px; }
+.mizu-tags-input__field--lg { font-size: 14px; }
 
-.bp-tags-input__field--disabled {
+.mizu-tags-input__field--disabled {
   cursor: not-allowed;
 }
 
-.bp-tags-input--max .bp-tags-input__field:not(:disabled) {
+.mizu-tags-input--max .mizu-tags-input__field:not(:disabled) {
   cursor: not-allowed;
 }
 
-@keyframes bp-tags-input-pop {
+@keyframes mizu-tags-input-pop {
   from {
     opacity: 0;
     transform: scale(0.85);
@@ -394,7 +394,7 @@ function handleContainerClick(event: MouseEvent) {
   }
 }
 
-@keyframes bp-tags-input-shake {
+@keyframes mizu-tags-input-shake {
   0%, 100% { transform: translateX(0); }
   25% { transform: translateX(-3px); }
   75% { transform: translateX(3px); }

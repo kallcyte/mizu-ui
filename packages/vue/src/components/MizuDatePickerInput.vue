@@ -17,7 +17,7 @@ const props = withDefaults(defineProps<DatePickerInputProps>(), {
 const attrs = useAttrs();
 
 const inputClasses = computed(() => {
-  const classes = ["bp-date-picker__input"];
+  const classes = ["mizu-date-picker__input"];
   if (attrs.class) classes.push(attrs.class as string);
   return classes.join(" ");
 });

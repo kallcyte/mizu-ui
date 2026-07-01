@@ -15,7 +15,7 @@ const props = withDefaults(defineProps<ComboboxArrowProps>(), {
 const attrs = useAttrs();
 
 const arrowClasses = computed(() => {
-  const classes = ["bp-combobox__arrow"];
+  const classes = ["mizu-combobox__arrow"];
   if (attrs.class) classes.push(attrs.class as string);
   return classes.join(" ");
 });

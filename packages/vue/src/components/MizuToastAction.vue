@@ -16,7 +16,7 @@ const props = withDefaults(defineProps<ToastActionProps>(), {
 const attrs = useAttrs();
 
 const actionClasses = computed(() => {
-  const classes = ["bp-toast__action"];
+  const classes = ["mizu-toast__action"];
   if (attrs.class) classes.push(attrs.class as string);
   return classes.join(" ");
 });

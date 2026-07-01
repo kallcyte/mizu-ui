@@ -25,7 +25,7 @@ const emit = defineEmits<{
 const attrs = useAttrs();
 
 const rootClasses = computed(() => {
-  const classes = ["bp-collapsible"];
+  const classes = ["mizu-collapsible"];
   if (attrs.class) classes.push(attrs.class as string);
   return classes.join(" ");
 });
@@ -46,7 +46,7 @@ const rootClasses = computed(() => {
 </template>
 
 <style>
-.bp-collapsible {
+.mizu-collapsible {
   all: revert;
   display: flex;
   flex-direction: column;

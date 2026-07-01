@@ -15,7 +15,7 @@ const props = withDefaults(defineProps<TabsIndicatorProps>(), {
 const attrs = useAttrs();
 
 const indicatorClasses = computed(() => {
-  const classes = ["bp-tabs__indicator"];
+  const classes = ["mizu-tabs__indicator"];
   if (attrs.class) classes.push(attrs.class as string);
   return classes.join(" ");
 });
@@ -32,7 +32,7 @@ const indicatorClasses = computed(() => {
 </template>
 
 <style>
-.bp-tabs__indicator {
+.mizu-tabs__indicator {
   all: revert;
   position: absolute;
   bottom: -1px;
@@ -41,7 +41,7 @@ const indicatorClasses = computed(() => {
   transition: left 200ms ease, width 200ms ease;
 }
 
-.bp-tabs__list[data-orientation="vertical"] .bp-tabs__indicator {
+.mizu-tabs__list[data-orientation="vertical"] .mizu-tabs__indicator {
   bottom: 0;
   top: 0;
   left: -1px;

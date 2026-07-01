@@ -46,7 +46,7 @@ const emit = defineEmits<{
 const attrs = useAttrs();
 
 const contentClasses = computed(() => {
-  const classes = ["bp-dropdown-menu__content"];
+  const classes = ["mizu-dropdown-menu__content"];
   if (attrs.class) classes.push(attrs.class as string);
   return classes.join(" ");
 });
@@ -85,7 +85,7 @@ const contentStyle = computed(() => {
 </template>
 
 <style>
-.bp-dropdown-menu__content {
+.mizu-dropdown-menu__content {
   all: revert;
   z-index: 50;
   min-width: 180px;
@@ -99,19 +99,19 @@ const contentStyle = computed(() => {
   margin-top: 0;
 }
 
-.bp-dropdown-menu__content[data-state="open"] {
+.mizu-dropdown-menu__content[data-state="open"] {
   animation: dropdownContentIn 150ms ease-out;
 }
 
-.bp-dropdown-menu__content[data-state="closed"] {
+.mizu-dropdown-menu__content[data-state="closed"] {
   animation: dropdownContentOut 100ms ease-in;
 }
 
-.bp-dropdown-menu__content[data-side="top"] {
+.mizu-dropdown-menu__content[data-side="top"] {
   animation-name: dropdownContentSlideInFromTop;
 }
 
-.bp-dropdown-menu__content[data-side="bottom"] {
+.mizu-dropdown-menu__content[data-side="bottom"] {
   animation-name: dropdownContentSlideInFromBottom;
 }
 

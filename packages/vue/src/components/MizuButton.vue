@@ -54,18 +54,18 @@ const hasBorder = computed(() => {
   return props.variant === "outline" || props.variant.startsWith("outline-");
 });
 
-const spinnerSizeClass = computed(() => `bp-spinner--${props.size}`);
+const spinnerSizeClass = computed(() => `mizu-spinner--${props.size}`);
 
 const buttonClasses = computed(() => {
   const classes = [
-    "bp-button",
-    `bp-button--${props.size}`,
-    `bp-${props.variant}`,
+    "mizu-button",
+    `mizu-button--${props.size}`,
+    `mizu-${props.variant}`,
   ];
 
-  if (props.disabled) classes.push("bp-button--disabled");
-  if (props.loading) classes.push("bp-button--loading");
-  if (hasBorder.value) classes.push("bp-button--bordered");
+  if (props.disabled) classes.push("mizu-button--disabled");
+  if (props.loading) classes.push("mizu-button--loading");
+  if (hasBorder.value) classes.push("mizu-button--bordered");
 
   if (attrs.class) classes.push(attrs.class as string);
 
@@ -87,15 +87,15 @@ function handleClick(event: MouseEvent) {
     :aria-busy="loading"
     :class="buttonClasses"
     :style="{
-      '--bp-btn-bg': variantColor.bg,
-      '--bp-btn-text': variantColor.text,
-      '--bp-btn-border': variantColor.border,
+      '--mizu-btn-bg': variantColor.bg,
+      '--mizu-btn-text': variantColor.text,
+      '--mizu-btn-border': variantColor.border,
     }"
     @click="handleClick"
   >
     <template v-if="loading">
       <svg
-        :class="['bp-spinner', spinnerSizeClass]"
+        :class="['mizu-spinner', spinnerSizeClass]"
         viewBox="0 0 24 24"
         fill="none"
       >
@@ -104,13 +104,13 @@ function handleClick(event: MouseEvent) {
       </svg>
     </template>
     <template v-else>
-      <span v-if="hasLeadingIcon" class="bp-icon-wrapper">
+      <span v-if="hasLeadingIcon" class="mizu-icon-wrapper">
         <slot name="leading-icon" />
       </span>
-      <span v-if="hasDefaultSlot" class="bp-button__label">
+      <span v-if="hasDefaultSlot" class="mizu-button__label">
         <slot />
       </span>
-      <span v-if="hasTrailingIcon" class="bp-icon-wrapper">
+      <span v-if="hasTrailingIcon" class="mizu-icon-wrapper">
         <slot name="trailing-icon" />
       </span>
     </template>
@@ -121,86 +121,86 @@ function handleClick(event: MouseEvent) {
 @reference "../index.css";
 
 /* Base button */
-.bp-button {
+.mizu-button {
   @apply inline-flex items-center justify-center font-medium transition-all duration-200 ease-in-out cursor-pointer select-none border-none m-0 font-[inherit] focus:outline-none shrink-0;
-  background-color: var(--bp-btn-bg);
-  color: var(--bp-btn-text);
+  background-color: var(--mizu-btn-bg);
+  color: var(--mizu-btn-text);
 }
-.bp-button:focus-visible {
+.mizu-button:focus-visible {
   @apply outline outline-1 outline-[var(--color-brand-accent)] outline-offset-2;
 }
-.bp-button:active:not(:disabled) {
+.mizu-button:active:not(:disabled) {
   @apply scale-[0.98];
 }
-.bp-button--bordered {
+.mizu-button--bordered {
   border-style: solid;
   border-width: 1px;
-  border-color: var(--bp-btn-border);
+  border-color: var(--mizu-btn-border);
 }
 
 /* Sizes */
-.bp-button--sm {
+.mizu-button--sm {
   @apply h-[28px] px-[8px] py-[8px] text-[12px] leading-none gap-[4px] rounded-[4px];
 }
-.bp-button--md {
+.mizu-button--md {
   @apply h-[36px] px-[10px] py-[10px] text-[12px] leading-none gap-[6px] rounded-[6px];
 }
-.bp-button--lg {
+.mizu-button--lg {
   @apply h-[40px] px-[10px] py-[10px] text-[14px] leading-none gap-[8px] rounded-[6px];
 }
 
 /* Icon wrapper */
-.bp-icon-wrapper {
+.mizu-icon-wrapper {
   @apply inline-flex items-center justify-center shrink-0 w-[1.25em] h-[1.25em];
 }
 
 /* Spinner */
-.bp-spinner {
+.mizu-spinner {
   @apply shrink-0;
-  animation: bp-spin 1s linear infinite;
+  animation: mizu-spin 1s linear infinite;
 }
-.bp-button--sm .bp-spinner { @apply w-[10px] h-[10px]; }
-.bp-button--md .bp-spinner { @apply w-[16px] h-[16px]; }
-.bp-button--lg .bp-spinner { @apply w-[20px] h-[20px]; }
+.mizu-button--sm .mizu-spinner { @apply w-[10px] h-[10px]; }
+.mizu-button--md .mizu-spinner { @apply w-[16px] h-[16px]; }
+.mizu-button--lg .mizu-spinner { @apply w-[20px] h-[20px]; }
 
-@keyframes bp-spin {
+@keyframes mizu-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
 
 /* Hover states */
-.bp-primary:hover:not(:disabled) { @apply bg-[var(--color-brand-primary-hover)]; }
-.bp-accent:hover:not(:disabled) { @apply bg-[var(--color-brand-accent-hover)]; }
-.bp-ghost:hover:not(:disabled) { @apply text-[var(--color-brand-primary-hover)]; }
-.bp-outline:hover:not(:disabled) { @apply bg-[var(--color-surface-subtle)]; }
-.bp-success:hover:not(:disabled) { @apply bg-[var(--color-feedback-success-hover)]; }
-.bp-warning:hover:not(:disabled) { @apply bg-[var(--color-feedback-warning-hover)]; }
-.bp-error:hover:not(:disabled) { @apply bg-[var(--color-feedback-error-hover)]; }
-.bp-info:hover:not(:disabled) { @apply bg-[var(--color-feedback-info-hover)]; }
-.bp-outline-success:hover:not(:disabled) { @apply bg-[var(--color-feedback-success-subtle)]; }
-.bp-outline-warning:hover:not(:disabled) { @apply bg-[var(--color-feedback-warning-subtle)]; }
-.bp-outline-error:hover:not(:disabled) { @apply bg-[var(--color-feedback-error-subtle)]; }
-.bp-outline-info:hover:not(:disabled) { @apply bg-[var(--color-feedback-info-subtle)]; }
+.mizu-primary:hover:not(:disabled) { @apply bg-[var(--color-brand-primary-hover)]; }
+.mizu-accent:hover:not(:disabled) { @apply bg-[var(--color-brand-accent-hover)]; }
+.mizu-ghost:hover:not(:disabled) { @apply text-[var(--color-brand-primary-hover)]; }
+.mizu-outline:hover:not(:disabled) { @apply bg-[var(--color-surface-subtle)]; }
+.mizu-success:hover:not(:disabled) { @apply bg-[var(--color-feedback-success-hover)]; }
+.mizu-warning:hover:not(:disabled) { @apply bg-[var(--color-feedback-warning-hover)]; }
+.mizu-error:hover:not(:disabled) { @apply bg-[var(--color-feedback-error-hover)]; }
+.mizu-info:hover:not(:disabled) { @apply bg-[var(--color-feedback-info-hover)]; }
+.mizu-outline-success:hover:not(:disabled) { @apply bg-[var(--color-feedback-success-subtle)]; }
+.mizu-outline-warning:hover:not(:disabled) { @apply bg-[var(--color-feedback-warning-subtle)]; }
+.mizu-outline-error:hover:not(:disabled) { @apply bg-[var(--color-feedback-error-subtle)]; }
+.mizu-outline-info:hover:not(:disabled) { @apply bg-[var(--color-feedback-info-subtle)]; }
 
 /* Outline press inset shadow */
-.bp-outline:active:not(:disabled),
-[class*="bp-outline-"]:active:not(:disabled) {
+.mizu-outline:active:not(:disabled),
+[class*="mizu-outline-"]:active:not(:disabled) {
   box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 /* Loading state */
-.bp-button--loading {
+.mizu-button--loading {
   @apply pointer-events-none opacity-80;
 }
-.bp-button--loading:active {
+.mizu-button--loading:active {
   @apply scale-100;
 }
 
 /* Disabled state */
-.bp-button--disabled {
+.mizu-button--disabled {
   @apply bg-[var(--color-surface-muted)] text-[var(--color-foreground-tertiary)] border-transparent cursor-not-allowed;
 }
-.bp-button--disabled:hover {
+.mizu-button--disabled:hover {
   @apply bg-[var(--color-surface-muted)];
 }
 </style>

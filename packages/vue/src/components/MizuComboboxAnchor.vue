@@ -15,7 +15,7 @@ const props = withDefaults(defineProps<ComboboxAnchorProps>(), {
 const attrs = useAttrs();
 
 const anchorClasses = computed(() => {
-  const classes = ["bp-combobox__anchor"];
+  const classes = ["mizu-combobox__anchor"];
   if (attrs.class) classes.push(attrs.class as string);
   return classes.join(" ");
 });

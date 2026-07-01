@@ -14,7 +14,7 @@ const attrs = useAttrs();
 
 <template>
   <SliderThumb
-    :class="['bp-slider__thumb', attrs.class]"
+    :class="['mizu-slider__thumb', attrs.class]"
     :as-child="asChild"
     :as="as"
   >
@@ -23,7 +23,7 @@ const attrs = useAttrs();
 </template>
 
 <style>
-.bp-slider__thumb {
+.mizu-slider__thumb {
   all: revert;
   display: block;
   border-radius: 9999px;
@@ -35,30 +35,30 @@ const attrs = useAttrs();
   font-family: inherit;
 }
 
-.bp-slider--sm .bp-slider__thumb {
+.mizu-slider--sm .mizu-slider__thumb {
   width: 14px;
   height: 14px;
 }
 
-.bp-slider--md .bp-slider__thumb {
+.mizu-slider--md .mizu-slider__thumb {
   width: 18px;
   height: 18px;
 }
 
-.bp-slider--lg .bp-slider__thumb {
+.mizu-slider--lg .mizu-slider__thumb {
   width: 22px;
   height: 22px;
 }
 
-.bp-slider__thumb:hover {
+.mizu-slider__thumb:hover {
   box-shadow: 0 0 0 4px color-mix(in srgb, var(--color-brand-accent) 25%, transparent);
 }
 
-.bp-slider__thumb:focus-visible {
+.mizu-slider__thumb:focus-visible {
   box-shadow: 0 0 0 4px color-mix(in srgb, var(--color-brand-accent) 25%, transparent);
 }
 
-.bp-slider__thumb[data-disabled] {
+.mizu-slider__thumb[data-disabled] {
   background-color: var(--color-foreground-tertiary);
   cursor: not-allowed;
   box-shadow: none;

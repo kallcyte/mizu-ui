@@ -15,7 +15,7 @@ const props = withDefaults(defineProps<ComboboxSeparatorProps>(), {
 const attrs = useAttrs();
 
 const separatorClasses = computed(() => {
-  const classes = ["bp-combobox__separator"];
+  const classes = ["mizu-combobox__separator"];
   if (attrs.class) classes.push(attrs.class as string);
   return classes.join(" ");
 });
@@ -30,7 +30,7 @@ const separatorClasses = computed(() => {
 </template>
 
 <style>
-.bp-combobox__separator {
+.mizu-combobox__separator {
   all: revert;
   height: 1px;
   margin: 4px 8px;

@@ -15,7 +15,7 @@ const props = withDefaults(defineProps<ComboboxTriggerProps>(), {
 const attrs = useAttrs();
 
 const triggerClasses = computed(() => {
-  const classes = ["bp-combobox__trigger"];
+  const classes = ["mizu-combobox__trigger"];
   if (attrs.class) classes.push(attrs.class as string);
   return classes.join(" ");
 });
@@ -32,7 +32,7 @@ const triggerClasses = computed(() => {
 </template>
 
 <style>
-.bp-combobox__trigger {
+.mizu-combobox__trigger {
   all: revert;
   display: inline-flex;
   align-items: center;
@@ -45,11 +45,11 @@ const triggerClasses = computed(() => {
   outline: none;
 }
 
-.bp-combobox__trigger:hover {
+.mizu-combobox__trigger:hover {
   color: var(--color-foreground-primary);
 }
 
-.bp-combobox__trigger[data-state="open"] {
+.mizu-combobox__trigger[data-state="open"] {
   color: var(--color-foreground-primary);
 }
 </style>

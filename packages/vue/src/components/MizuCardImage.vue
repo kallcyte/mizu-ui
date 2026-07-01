@@ -13,7 +13,7 @@ const props = withDefaults(defineProps<CardImageProps>(), {
 const attrs = useAttrs();
 
 const classes = computed(() => {
-  const result = ["bp-card-image"];
+  const result = ["mizu-card-image"];
   if (attrs.class) result.push(attrs.class as string);
   return result.join(" ");
 });
@@ -28,12 +28,12 @@ const classes = computed(() => {
 <style>
 @reference "../index.css";
 
-.bp-card-image {
+.mizu-card-image {
   @apply overflow-hidden;
   line-height: 0;
 }
 
-.bp-card-image img {
+.mizu-card-image img {
   @apply w-full object-cover;
   display: block;
   aspect-ratio: 2 / 1;

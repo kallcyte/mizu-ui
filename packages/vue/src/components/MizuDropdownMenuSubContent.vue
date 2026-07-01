@@ -42,7 +42,7 @@ const emit = defineEmits<{
 const attrs = useAttrs();
 
 const subContentClasses = computed(() => {
-  const classes = ["bp-dropdown-menu__sub-content"];
+  const classes = ["mizu-dropdown-menu__sub-content"];
   if (attrs.class) classes.push(attrs.class as string);
   return classes.join(" ");
 });
@@ -79,7 +79,7 @@ const subContentStyle = computed(() => {
 </template>
 
 <style>
-.bp-dropdown-menu__sub-content {
+.mizu-dropdown-menu__sub-content {
   all: revert;
   z-index: 51;
   min-width: 180px;
@@ -93,11 +93,11 @@ const subContentStyle = computed(() => {
   margin-top: 0;
 }
 
-.bp-dropdown-menu__sub-content[data-state="open"] {
+.mizu-dropdown-menu__sub-content[data-state="open"] {
   animation: dropdownSubContentIn 150ms ease-out;
 }
 
-.bp-dropdown-menu__sub-content[data-state="closed"] {
+.mizu-dropdown-menu__sub-content[data-state="closed"] {
   animation: dropdownSubContentOut 100ms ease-in;
 }
 

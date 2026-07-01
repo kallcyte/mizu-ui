@@ -23,7 +23,7 @@ const emit = defineEmits<{
 const attrs = useAttrs();
 
 const itemClasses = computed(() => {
-  const classes = ["bp-combobox__item"];
+  const classes = ["mizu-combobox__item"];
   if (attrs.class) classes.push(attrs.class as string);
   return classes.join(" ");
 });
@@ -43,7 +43,7 @@ const itemClasses = computed(() => {
 </template>
 
 <style>
-.bp-combobox__item {
+.mizu-combobox__item {
   all: revert;
   display: flex;
   align-items: center;
@@ -63,17 +63,17 @@ const itemClasses = computed(() => {
   box-sizing: border-box;
 }
 
-.bp-combobox__item[data-highlighted] {
+.mizu-combobox__item[data-highlighted] {
   background-color: var(--color-surface-hover);
 }
 
-.bp-combobox__item[data-disabled] {
+.mizu-combobox__item[data-disabled] {
   color: var(--color-foreground-disabled);
   cursor: not-allowed;
   pointer-events: none;
 }
 
-.bp-combobox__item[data-state="checked"] {
+.mizu-combobox__item[data-state="checked"] {
   padding-left: 8px;
 }
 </style>

@@ -15,7 +15,7 @@ const props = withDefaults(defineProps<ToastCloseProps>(), {
 const attrs = useAttrs();
 
 const closeClasses = computed(() => {
-  const classes = ["bp-toast__close"];
+  const classes = ["mizu-toast__close"];
   if (attrs.class) classes.push(attrs.class as string);
   return classes.join(" ");
 });
@@ -37,7 +37,7 @@ const closeClasses = computed(() => {
 </template>
 
 <style>
-.bp-toast__close {
+.mizu-toast__close {
   all: revert;
   display: inline-flex;
   align-items: center;
@@ -56,7 +56,7 @@ const closeClasses = computed(() => {
   transition: background 150ms, color 150ms;
 }
 
-.bp-toast__close:hover {
+.mizu-toast__close:hover {
   background: var(--color-surface-subtle);
   color: var(--color-foreground-primary);
 }

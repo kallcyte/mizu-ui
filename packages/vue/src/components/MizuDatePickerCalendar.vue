@@ -15,7 +15,7 @@ const props = withDefaults(defineProps<DatePickerCalendarProps>(), {
 const attrs = useAttrs();
 
 const calendarClasses = computed(() => {
-  const classes = ["bp-date-picker__calendar"];
+  const classes = ["mizu-date-picker__calendar"];
   if (attrs.class) classes.push(attrs.class as string);
   return classes.join(" ");
 });
@@ -32,7 +32,7 @@ const calendarClasses = computed(() => {
 </template>
 
 <style>
-.bp-date-picker__calendar {
+.mizu-date-picker__calendar {
   all: revert;
   font-family: inherit;
 }

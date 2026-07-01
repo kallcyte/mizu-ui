@@ -25,7 +25,7 @@ const emit = defineEmits<{
 const attrs = useAttrs();
 
 const inputClasses = computed(() => {
-  const classes = ["bp-combobox__input"];
+  const classes = ["mizu-combobox__input"];
   if (attrs.class) classes.push(attrs.class as string);
   return classes.join(" ");
 });
@@ -51,7 +51,7 @@ const inputStyle = computed(() => {
 </template>
 
 <style>
-.bp-combobox__input {
+.mizu-combobox__input {
   all: revert;
   width: 100%;
   padding: 8px 12px;
@@ -65,7 +65,7 @@ const inputStyle = computed(() => {
   margin: 0;
 }
 
-.bp-combobox__input::placeholder {
+.mizu-combobox__input::placeholder {
   color: var(--color-foreground-muted);
 }
 </style>

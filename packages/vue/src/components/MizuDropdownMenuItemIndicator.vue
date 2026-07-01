@@ -15,7 +15,7 @@ const props = withDefaults(defineProps<DropdownMenuItemIndicatorProps>(), {
 const attrs = useAttrs();
 
 const indicatorClasses = computed(() => {
-  const classes = ["bp-dropdown-menu__item-indicator"];
+  const classes = ["mizu-dropdown-menu__item-indicator"];
   if (attrs.class) classes.push(attrs.class as string);
   return classes.join(" ");
 });
@@ -32,7 +32,7 @@ const indicatorClasses = computed(() => {
 </template>
 
 <style>
-.bp-dropdown-menu__item-indicator {
+.mizu-dropdown-menu__item-indicator {
   all: revert;
   position: absolute;
   left: 10px;

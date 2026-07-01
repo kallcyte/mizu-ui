@@ -29,7 +29,7 @@ const emit = defineEmits<{
 const attrs = useAttrs();
 
 const rootClasses = computed(() => {
-  const classes = ["bp-tooltip"];
+  const classes = ["mizu-tooltip"];
   if (attrs.class) classes.push(attrs.class as string);
   return classes.join(" ");
 });

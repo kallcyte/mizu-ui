@@ -84,7 +84,7 @@ const twoItems = [
   border-radius: 8px;
 }
 .breadcrumb-demo :deep(*) { margin: 0; }
-.breadcrumb-demo :deep(.bp-breadcrumb__separator) { margin: 0 6px; }
+.breadcrumb-demo :deep(.mizu-breadcrumb__separator) { margin: 0 6px; }
 
 .demo-section {
   display: flex;

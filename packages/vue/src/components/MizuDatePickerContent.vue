@@ -46,7 +46,7 @@ const emit = defineEmits<{
 const attrs = useAttrs();
 
 const contentClasses = computed(() => {
-  const classes = ["bp-date-picker__content"];
+  const classes = ["mizu-date-picker__content"];
   if (attrs.class) classes.push(attrs.class as string);
   return classes.join(" ");
 });
@@ -85,7 +85,7 @@ const contentStyle = computed(() => {
 </template>
 
 <style>
-.bp-date-picker__content {
+.mizu-date-picker__content {
   all: revert;
   z-index: 50;
   border-radius: 8px;
@@ -97,11 +97,11 @@ const contentStyle = computed(() => {
   margin-top: 0;
 }
 
-.bp-date-picker__content[data-state="open"] {
+.mizu-date-picker__content[data-state="open"] {
   animation: datePickerContentIn 150ms ease-out;
 }
 
-.bp-date-picker__content[data-state="closed"] {
+.mizu-date-picker__content[data-state="closed"] {
   animation: datePickerContentOut 100ms ease-in;
 }
 

@@ -18,7 +18,7 @@ const props = withDefaults(defineProps<TabsContentProps>(), {
 const attrs = useAttrs();
 
 const contentClasses = computed(() => {
-  const classes = ["bp-tabs__content"];
+  const classes = ["mizu-tabs__content"];
   if (attrs.class) classes.push(attrs.class as string);
   return classes.join(" ");
 });
@@ -42,14 +42,14 @@ const contentStyle = computed(() => {
 </template>
 
 <style>
-.bp-tabs__content {
+.mizu-tabs__content {
   all: revert;
   padding: 16px 0;
   font-family: inherit;
   margin-top: 0;
 }
 
-.bp-tabs__content[data-state="active"] {
+.mizu-tabs__content[data-state="active"] {
   animation: tabsContentIn 200ms ease-out;
 }
 

@@ -76,7 +76,7 @@ On `:focus-visible`, the thumb displays a `0 0 0 4px color-mix(in srgb, var(--co
 
 ## Touch Target
 
-The container (`bp-slider`) has a 20px height/width to meet WCAG 2.5.8 minimum interactive area (44x44 CSS px) when combined with the thumb's size.
+The container (`mizu-slider`) has a 20px height/width to meet WCAG 2.5.8 minimum interactive area (44x44 CSS px) when combined with the thumb's size.
 
 ## Accessibility
 
@@ -238,11 +238,11 @@ const priceRange = ref([20, 80]);
 ## Implementation Notes
 
 1. Each `MizuSlider*` component is a thin wrapper around the corresponding Reka UI `Slider*` primitive.
-2. CSS follows the Mizu convention of `bp-slider__*` BEM classes applied via computed property.
+2. CSS follows the Mizu convention of `mizu-slider__*` BEM classes applied via computed property.
 3. The `modelValue` prop accepts `number | number[]` for user convenience and converts to/from Reka UI's `number[]` representation internally. A single number is treated as a single-thumb slider; a two-element array is treated as a range slider.
-4. Size variations are driven by `bp-slider--sm` / `bp-slider--md` / `bp-slider--lg` classes on the Root, with descendant selectors targeting `bp-slider__track` and `bp-slider__thumb`.
-5. Orientation is driven by `bp-slider--horizontal` / `bp-slider--vertical` classes on the Root, with descendant selectors adjusting track direction and container dimensions.
-6. The container (`bp-slider`) is a flex row in horizontal mode and flex column in vertical mode with `touch-action: none` to prevent scroll interference.
+4. Size variations are driven by `mizu-slider--sm` / `mizu-slider--md` / `mizu-slider--lg` classes on the Root, with descendant selectors targeting `mizu-slider__track` and `mizu-slider__thumb`.
+5. Orientation is driven by `mizu-slider--horizontal` / `mizu-slider--vertical` classes on the Root, with descendant selectors adjusting track direction and container dimensions.
+6. The container (`mizu-slider`) is a flex row in horizontal mode and flex column in vertical mode with `touch-action: none` to prevent scroll interference.
 7. Thumb hover and focus-visible share the same 4px box-shadow ring using `color-mix(in srgb, var(--color-brand-accent) 25%, transparent)`.
 8. Disabled state applies `opacity: 0.5`, `cursor: not-allowed`, and `pointer-events: none` to the Root, with the thumb fill switching to `--color-foreground-tertiary`.
 9. All sub-component props (`SliderRangeProps`, `SliderTrackProps`, `SliderThumbProps`) are exported and tree-shakeable.

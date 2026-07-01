@@ -19,7 +19,7 @@ const props = withDefaults(defineProps<PopoverArrowProps>(), {
 const attrs = useAttrs();
 
 const arrowClasses = computed(() => {
-  const classes = ["bp-popover__arrow"];
+  const classes = ["mizu-popover__arrow"];
   if (attrs.class) classes.push(attrs.class as string);
   return classes.join(" ");
 });
@@ -36,7 +36,7 @@ const arrowClasses = computed(() => {
 </template>
 
 <style>
-.bp-popover__arrow {
+.mizu-popover__arrow {
   fill: var(--color-surface-base);
   stroke: var(--color-surface-muted);
   stroke-width: 1px;

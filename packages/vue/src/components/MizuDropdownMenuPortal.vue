@@ -17,7 +17,7 @@ const props = withDefaults(defineProps<DropdownMenuPortalProps>(), {
 const attrs = useAttrs();
 
 const portalClasses = computed(() => {
-  const classes = ["bp-dropdown-menu-portal"];
+  const classes = ["mizu-dropdown-menu-portal"];
   if (attrs.class) classes.push(attrs.class as string);
   return classes.join(" ");
 });

@@ -15,7 +15,7 @@ const props = withDefaults(defineProps<DropdownMenuSeparatorProps>(), {
 const attrs = useAttrs();
 
 const separatorClasses = computed(() => {
-  const classes = ["bp-dropdown-menu__separator"];
+  const classes = ["mizu-dropdown-menu__separator"];
   if (attrs.class) classes.push(attrs.class as string);
   return classes.join(" ");
 });
@@ -30,7 +30,7 @@ const separatorClasses = computed(() => {
 </template>
 
 <style>
-.bp-dropdown-menu__separator {
+.mizu-dropdown-menu__separator {
   all: revert;
   height: 1px;
   margin: 4px 8px;

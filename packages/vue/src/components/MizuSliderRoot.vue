@@ -53,11 +53,11 @@ const rekaDefaultValue = computed(() => toArray(props.defaultValue));
 
 const rootClasses = computed(() => {
   const classes = [
-    "bp-slider",
-    `bp-slider--${props.size}`,
-    `bp-slider--${props.orientation}`,
+    "mizu-slider",
+    `mizu-slider--${props.size}`,
+    `mizu-slider--${props.orientation}`,
   ];
-  if (props.disabled) classes.push("bp-slider--disabled");
+  if (props.disabled) classes.push("mizu-slider--disabled");
   if (attrs.class) classes.push(attrs.class as string);
   return classes.join(" ");
 });
@@ -88,7 +88,7 @@ function handleUpdate(v: number[] | undefined) {
 </template>
 
 <style>
-.bp-slider {
+.mizu-slider {
   all: revert;
   position: relative;
   display: flex;
@@ -98,19 +98,19 @@ function handleUpdate(v: number[] | undefined) {
   font-family: inherit;
 }
 
-.bp-slider--horizontal {
+.mizu-slider--horizontal {
   width: 100%;
   height: 20px;
 }
 
-.bp-slider--vertical {
+.mizu-slider--vertical {
   flex-direction: column;
   width: 20px;
   height: 100%;
   min-height: 200px;
 }
 
-.bp-slider--disabled {
+.mizu-slider--disabled {
   opacity: 0.5;
   cursor: not-allowed;
   pointer-events: none;

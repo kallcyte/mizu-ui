@@ -13,7 +13,7 @@ const props = withDefaults(defineProps<DialogOverlayProps>(), {
 const attrs = useAttrs();
 
 const overlayClasses = computed(() => {
-  const classes = ["bp-dialog__overlay"];
+  const classes = ["mizu-dialog__overlay"];
   if (attrs.class) classes.push(attrs.class as string);
   return classes.join(" ");
 });
@@ -29,7 +29,7 @@ const overlayClasses = computed(() => {
 </template>
 
 <style>
-.bp-dialog__overlay {
+.mizu-dialog__overlay {
   all: revert;
   position: fixed;
   inset: 0;
@@ -37,11 +37,11 @@ const overlayClasses = computed(() => {
   background: rgba(0, 0, 0, 0.5);
 }
 
-.bp-dialog__overlay[data-state="open"] {
+.mizu-dialog__overlay[data-state="open"] {
   animation: dialogOverlayIn 200ms ease-out;
 }
 
-.bp-dialog__overlay[data-state="closed"] {
+.mizu-dialog__overlay[data-state="closed"] {
   animation: dialogOverlayOut 150ms ease-in;
 }
 

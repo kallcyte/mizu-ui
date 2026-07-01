@@ -15,7 +15,7 @@ const props = withDefaults(defineProps<DropdownMenuLabelProps>(), {
 const attrs = useAttrs();
 
 const labelClasses = computed(() => {
-  const classes = ["bp-dropdown-menu__label"];
+  const classes = ["mizu-dropdown-menu__label"];
   if (attrs.class) classes.push(attrs.class as string);
   return classes.join(" ");
 });
@@ -32,7 +32,7 @@ const labelClasses = computed(() => {
 </template>
 
 <style>
-.bp-dropdown-menu__label {
+.mizu-dropdown-menu__label {
   all: revert;
   display: flex;
   align-items: center;

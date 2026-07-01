@@ -24,7 +24,7 @@ provide("popoverModal", props.modal);
 const attrs = useAttrs();
 
 const rootClasses = computed(() => {
-  const classes = ["bp-popover"];
+  const classes = ["mizu-popover"];
   if (attrs.class) classes.push(attrs.class as string);
   return classes.join(" ");
 });

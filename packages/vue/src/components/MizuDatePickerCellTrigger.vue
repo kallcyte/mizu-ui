@@ -17,7 +17,7 @@ const props = withDefaults(defineProps<DatePickerCellTriggerProps>(), {
 const attrs = useAttrs();
 
 const cellTriggerClasses = computed(() => {
-  const classes = ["bp-date-picker__cell-trigger"];
+  const classes = ["mizu-date-picker__cell-trigger"];
   if (attrs.class) classes.push(attrs.class as string);
   return classes.join(" ");
 });
@@ -36,7 +36,7 @@ const cellTriggerClasses = computed(() => {
 </template>
 
 <style>
-.bp-date-picker__cell-trigger {
+.mizu-date-picker__cell-trigger {
   all: revert;
   width: 32px;
   height: 32px;
@@ -53,21 +53,21 @@ const cellTriggerClasses = computed(() => {
   outline: none;
 }
 
-.bp-date-picker__cell-trigger:hover {
+.mizu-date-picker__cell-trigger:hover {
   background-color: var(--color-surface-hover);
 }
 
-.bp-date-picker__cell-trigger[data-today] {
+.mizu-date-picker__cell-trigger[data-today] {
   font-weight: 600;
   border: 1px solid var(--color-brand-accent);
 }
 
-.bp-date-picker__cell-trigger[data-selected] {
+.mizu-date-picker__cell-trigger[data-selected] {
   background-color: var(--color-brand-accent);
   color: #fff;
 }
 
-.bp-date-picker__cell-trigger[data-disabled] {
+.mizu-date-picker__cell-trigger[data-disabled] {
   color: var(--color-foreground-disabled);
   cursor: not-allowed;
   pointer-events: none;

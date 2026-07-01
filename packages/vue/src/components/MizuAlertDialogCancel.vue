@@ -15,7 +15,7 @@ const props = withDefaults(defineProps<AlertDialogCancelProps>(), {
 const attrs = useAttrs();
 
 const cancelClasses = computed(() => {
-  const classes = ["bp-alert-dialog__cancel"];
+  const classes = ["mizu-alert-dialog__cancel"];
   if (attrs.class) classes.push(attrs.class as string);
   return classes.join(" ");
 });

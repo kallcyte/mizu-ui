@@ -15,7 +15,7 @@ const props = withDefaults(defineProps<ComboboxEmptyProps>(), {
 const attrs = useAttrs();
 
 const emptyClasses = computed(() => {
-  const classes = ["bp-combobox__empty"];
+  const classes = ["mizu-combobox__empty"];
   if (attrs.class) classes.push(attrs.class as string);
   return classes.join(" ");
 });
@@ -32,7 +32,7 @@ const emptyClasses = computed(() => {
 </template>
 
 <style>
-.bp-combobox__empty {
+.mizu-combobox__empty {
   all: revert;
   padding: 8px 12px;
   font-size: 14px;

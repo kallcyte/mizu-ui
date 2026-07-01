@@ -14,14 +14,14 @@ const attrs = useAttrs();
 
 <template>
   <SliderRange
-    :class="['bp-slider__range', attrs.class]"
+    :class="['mizu-slider__range', attrs.class]"
     :as-child="asChild"
     :as="as"
   />
 </template>
 
 <style>
-.bp-slider__range {
+.mizu-slider__range {
   all: revert;
   position: absolute;
   height: 100%;

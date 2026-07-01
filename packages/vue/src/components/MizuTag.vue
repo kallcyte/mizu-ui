@@ -32,10 +32,10 @@ const variantColors: Record<string, { bg: string; text: string; border: string }
 
 const tagClasses = computed(() => {
   const classes = [
-    "bp-tag",
-    `bp-tag--${props.variant}`,
+    "mizu-tag",
+    `mizu-tag--${props.variant}`,
   ];
-  if (props.closable) classes.push("bp-tag--closable");
+  if (props.closable) classes.push("mizu-tag--closable");
   if (attrs.class) classes.push(attrs.class as string);
   return classes.join(" ");
 });
@@ -43,9 +43,9 @@ const tagClasses = computed(() => {
 const styleVars = computed(() => {
   const c = variantColors[props.variant];
   return {
-    "--bp-tag-bg": c.bg,
-    "--bp-tag-text": c.text,
-    "--bp-tag-border": c.border,
+    "--mizu-tag-bg": c.bg,
+    "--mizu-tag-text": c.text,
+    "--mizu-tag-border": c.border,
   };
 });
 </script>
@@ -56,7 +56,7 @@ const styleVars = computed(() => {
     <button
       v-if="closable"
       type="button"
-      class="bp-tag__close"
+      class="mizu-tag__close"
       @click="handleClose"
       aria-label="Remove tag"
     >
@@ -70,11 +70,11 @@ const styleVars = computed(() => {
 <style>
 @reference "../index.css";
 
-.bp-tag {
+.mizu-tag {
   @apply inline-flex items-center font-medium leading-none whitespace-nowrap border;
-  background-color: var(--bp-tag-bg);
-  color: var(--bp-tag-text);
-  border-color: var(--bp-tag-border);
+  background-color: var(--mizu-tag-bg);
+  color: var(--mizu-tag-text);
+  border-color: var(--mizu-tag-border);
   height: 24px;
   padding: 0 10px;
   font-size: 12px;
@@ -83,7 +83,7 @@ const styleVars = computed(() => {
   border-width: 1px;
 }
 
-.bp-tag__close {
+.mizu-tag__close {
   @apply inline-flex items-center justify-center p-0 border-none bg-transparent cursor-pointer opacity-60 hover:opacity-100 transition-opacity duration-150;
   color: inherit;
   width: 12px;

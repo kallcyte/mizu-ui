@@ -15,7 +15,7 @@ const props = withDefaults(defineProps<ToastTitleProps>(), {
 const attrs = useAttrs();
 
 const titleClasses = computed(() => {
-  const classes = ["bp-toast__title"];
+  const classes = ["mizu-toast__title"];
   if (attrs.class) classes.push(attrs.class as string);
   return classes.join(" ");
 });
@@ -32,7 +32,7 @@ const titleClasses = computed(() => {
 </template>
 
 <style>
-.bp-toast__title {
+.mizu-toast__title {
   all: revert;
   margin: 0;
   font-size: 14px;

@@ -15,7 +15,7 @@ const props = withDefaults(defineProps<ComboboxItemIndicatorProps>(), {
 const attrs = useAttrs();
 
 const indicatorClasses = computed(() => {
-  const classes = ["bp-combobox__item-indicator"];
+  const classes = ["mizu-combobox__item-indicator"];
   if (attrs.class) classes.push(attrs.class as string);
   return classes.join(" ");
 });

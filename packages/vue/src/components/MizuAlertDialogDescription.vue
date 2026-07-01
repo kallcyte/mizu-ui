@@ -15,7 +15,7 @@ const props = withDefaults(defineProps<AlertDialogDescriptionProps>(), {
 const attrs = useAttrs();
 
 const descriptionClasses = computed(() => {
-  const classes = ["bp-alert-dialog__description"];
+  const classes = ["mizu-alert-dialog__description"];
   if (attrs.class) classes.push(attrs.class as string);
   return classes.join(" ");
 });
@@ -32,7 +32,7 @@ const descriptionClasses = computed(() => {
 </template>
 
 <style>
-.bp-alert-dialog__description {
+.mizu-alert-dialog__description {
   all: revert;
   margin: 0;
   font-size: 14px;

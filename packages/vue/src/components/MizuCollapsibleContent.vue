@@ -17,7 +17,7 @@ const props = withDefaults(defineProps<CollapsibleContentProps>(), {
 const attrs = useAttrs();
 
 const contentClasses = computed(() => {
-  const classes = ["bp-collapsible__content"];
+  const classes = ["mizu-collapsible__content"];
   if (attrs.class) classes.push(attrs.class as string);
   return classes.join(" ");
 });
@@ -30,28 +30,28 @@ const contentClasses = computed(() => {
     :as-child="asChild"
     :as="as"
   >
-    <div class="bp-collapsible__content-inner">
+    <div class="mizu-collapsible__content-inner">
       <slot />
     </div>
   </CollapsibleContent>
 </template>
 
 <style>
-.bp-collapsible__content {
+.mizu-collapsible__content {
   all: revert;
   overflow: hidden;
   font-family: inherit;
 }
 
-.bp-collapsible__content[data-state="closed"] {
+.mizu-collapsible__content[data-state="closed"] {
   animation: collapsibleSlideUp 200ms ease-out;
 }
 
-.bp-collapsible__content[data-state="open"] {
+.mizu-collapsible__content[data-state="open"] {
   animation: collapsibleSlideDown 200ms ease-out;
 }
 
-.bp-collapsible__content-inner {
+.mizu-collapsible__content-inner {
   padding: 0 16px 16px;
   font-size: 14px;
   line-height: 1.6;

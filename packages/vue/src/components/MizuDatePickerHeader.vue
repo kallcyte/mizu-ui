@@ -15,7 +15,7 @@ const props = withDefaults(defineProps<DatePickerHeaderProps>(), {
 const attrs = useAttrs();
 
 const headerClasses = computed(() => {
-  const classes = ["bp-date-picker__header"];
+  const classes = ["mizu-date-picker__header"];
   if (attrs.class) classes.push(attrs.class as string);
   return classes.join(" ");
 });
@@ -32,7 +32,7 @@ const headerClasses = computed(() => {
 </template>
 
 <style>
-.bp-date-picker__header {
+.mizu-date-picker__header {
   all: revert;
   display: flex;
   align-items: center;

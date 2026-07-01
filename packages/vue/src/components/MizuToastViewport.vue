@@ -17,7 +17,7 @@ const props = withDefaults(defineProps<ToastViewportProps>(), {
 const attrs = useAttrs();
 
 const viewportClasses = computed(() => {
-  const classes = ["bp-toast__viewport", `bp-toast__viewport--${props.position}`];
+  const classes = ["mizu-toast__viewport", `mizu-toast__viewport--${props.position}`];
   if (attrs.class) classes.push(attrs.class as string);
   return classes.join(" ");
 });
@@ -34,7 +34,7 @@ const viewportClasses = computed(() => {
 </template>
 
 <style>
-.bp-toast__viewport {
+.mizu-toast__viewport {
   all: revert;
   position: fixed;
   z-index: 2147483647;
@@ -51,33 +51,33 @@ const viewportClasses = computed(() => {
   outline: none;
 }
 
-.bp-toast__viewport--top-right {
+.mizu-toast__viewport--top-right {
   top: 0;
   right: 0;
 }
 
-.bp-toast__viewport--top-left {
+.mizu-toast__viewport--top-left {
   top: 0;
   left: 0;
 }
 
-.bp-toast__viewport--top-center {
+.mizu-toast__viewport--top-center {
   top: 0;
   left: 50%;
   transform: translateX(-50%);
 }
 
-.bp-toast__viewport--bottom-right {
+.mizu-toast__viewport--bottom-right {
   bottom: 0;
   right: 0;
 }
 
-.bp-toast__viewport--bottom-left {
+.mizu-toast__viewport--bottom-left {
   bottom: 0;
   left: 0;
 }
 
-.bp-toast__viewport--bottom-center {
+.mizu-toast__viewport--bottom-center {
   bottom: 0;
   left: 50%;
   transform: translateX(-50%);

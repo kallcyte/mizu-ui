@@ -15,7 +15,7 @@ const props = withDefaults(defineProps<DatePickerHeadingProps>(), {
 const attrs = useAttrs();
 
 const headingClasses = computed(() => {
-  const classes = ["bp-date-picker__heading"];
+  const classes = ["mizu-date-picker__heading"];
   if (attrs.class) classes.push(attrs.class as string);
   return classes.join(" ");
 });
@@ -32,7 +32,7 @@ const headingClasses = computed(() => {
 </template>
 
 <style>
-.bp-date-picker__heading {
+.mizu-date-picker__heading {
   all: revert;
   font-size: 14px;
   font-weight: 600;

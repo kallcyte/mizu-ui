@@ -48,7 +48,7 @@ const emit = defineEmits<{
 const attrs = useAttrs();
 
 const rootClasses = computed(() => {
-  const classes = ["bp-date-picker"];
+  const classes = ["mizu-date-picker"];
   if (attrs.class) classes.push(attrs.class as string);
   return classes.join(" ");
 });

@@ -29,7 +29,7 @@ const emit = defineEmits<{
 const attrs = useAttrs();
 
 const rootClasses = computed(() => {
-  const c = ["bp-toggle-group"];
+  const c = ["mizu-toggle-group"];
   if (attrs.class) c.push(attrs.class as string);
   return c.join(" ");
 });
@@ -52,7 +52,7 @@ const rootClasses = computed(() => {
 </template>
 
 <style>
-.bp-toggle-group {
+.mizu-toggle-group {
   display: inline-flex;
   align-items: center;
   gap: 1px;
@@ -62,12 +62,12 @@ const rootClasses = computed(() => {
   font-family: inherit;
 }
 
-.bp-toggle-group[data-size="sm"] {
+.mizu-toggle-group[data-size="sm"] {
   padding: 2px;
   border-radius: 4px;
 }
 
-.bp-toggle-group[data-size="lg"] {
+.mizu-toggle-group[data-size="lg"] {
   padding: 4px;
   border-radius: 8px;
 }

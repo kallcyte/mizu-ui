@@ -15,7 +15,7 @@ const props = withDefaults(defineProps<AlertDialogTriggerProps>(), {
 const attrs = useAttrs();
 
 const triggerClasses = computed(() => {
-  const classes = ["bp-alert-dialog__trigger"];
+  const classes = ["mizu-alert-dialog__trigger"];
   if (attrs.class) classes.push(attrs.class as string);
   return classes.join(" ");
 });

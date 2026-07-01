@@ -15,7 +15,7 @@ const props = withDefaults(defineProps<DatePickerFieldProps>(), {
 const attrs = useAttrs();
 
 const fieldClasses = computed(() => {
-  const classes = ["bp-date-picker__field"];
+  const classes = ["mizu-date-picker__field"];
   if (attrs.class) classes.push(attrs.class as string);
   return classes.join(" ");
 });
@@ -32,7 +32,7 @@ const fieldClasses = computed(() => {
 </template>
 
 <style>
-.bp-date-picker__field {
+.mizu-date-picker__field {
   all: revert;
   display: inline-flex;
   align-items: center;

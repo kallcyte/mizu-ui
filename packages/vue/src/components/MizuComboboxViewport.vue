@@ -15,7 +15,7 @@ const props = withDefaults(defineProps<ComboboxViewportProps>(), {
 const attrs = useAttrs();
 
 const viewportClasses = computed(() => {
-  const classes = ["bp-combobox__viewport"];
+  const classes = ["mizu-combobox__viewport"];
   if (attrs.class) classes.push(attrs.class as string);
   return classes.join(" ");
 });
@@ -32,7 +32,7 @@ const viewportClasses = computed(() => {
 </template>
 
 <style>
-.bp-combobox__viewport {
+.mizu-combobox__viewport {
   all: revert;
   max-height: 300px;
   overflow-y: auto;

@@ -16,7 +16,7 @@ const props = withDefaults(defineProps<DatePickerCellProps>(), {
 const attrs = useAttrs();
 
 const cellClasses = computed(() => {
-  const classes = ["bp-date-picker__cell"];
+  const classes = ["mizu-date-picker__cell"];
   if (attrs.class) classes.push(attrs.class as string);
   return classes.join(" ");
 });
@@ -34,7 +34,7 @@ const cellClasses = computed(() => {
 </template>
 
 <style>
-.bp-date-picker__cell {
+.mizu-date-picker__cell {
   all: revert;
   width: 36px;
   height: 36px;
@@ -44,7 +44,7 @@ const cellClasses = computed(() => {
   font-family: inherit;
 }
 
-.bp-date-picker__cell[data-disabled] {
+.mizu-date-picker__cell[data-disabled] {
   opacity: 0.4;
 }
 </style>

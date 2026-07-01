@@ -156,6 +156,13 @@ function togglePassword() {
         </svg>
       </button>
     </div>
+    <span
+      v-if="helperText"
+      :id="helperId"
+      :class="['mizu-input-helper', { 'mizu-input-helper--error': error }]"
+    >
+      {{ helperText }}
+    </span>
   </div>
 </template>
 

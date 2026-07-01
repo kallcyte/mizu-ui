@@ -30,7 +30,7 @@ function sizeValue(value: string | number | undefined): string | undefined {
 }
 
 const rootClasses = computed(() => {
-  const c = ["bp-scroll-area"];
+  const c = ["mizu-scroll-area"];
   if (attrs.class) c.push(attrs.class as string);
   return c.join(" ");
 });
@@ -58,7 +58,7 @@ const rootStyle = computed(() => {
 </template>
 
 <style>
-.bp-scroll-area {
+.mizu-scroll-area {
   all: revert;
   position: relative;
   overflow: hidden;

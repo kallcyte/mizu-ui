@@ -338,7 +338,7 @@ const format = ref("json");
 ## Implementation Notes
 
 1. Each `MizuDropdownMenu*` component is a thin wrapper around the corresponding Reka UI `DropdownMenu*` primitive.
-2. CSS follows the Mizu convention of `bp-dropdown-menu__*` BEM classes applied via computed property, appending user `class` from `useAttrs()`.
+2. CSS follows the Mizu convention of `mizu-dropdown-menu__*` BEM classes applied via computed property, appending user `class` from `useAttrs()`.
 3. Components with positioning (Content, SubContent) accept `side`, `sideOffset`, `align`, `alignOffset`, `avoidCollisions`, `collisionPadding`, and `sticky` props.
 4. `MizuDropdownMenuContent` includes open/close animations driven by `data-state` and `data-side` attributes.
 5. `MizuDropdownMenuPortal` teleports content to `body` by default. Wrap Content in Portal to escape parent stacking contexts.

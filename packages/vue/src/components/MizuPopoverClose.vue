@@ -22,7 +22,7 @@ withDefaults(defineProps<PopoverCloseProps>(), {
 </template>
 
 <style>
-.bp-popover-close {
+.mizu-popover-close {
   margin: 0;
   border: none;
   background: none;

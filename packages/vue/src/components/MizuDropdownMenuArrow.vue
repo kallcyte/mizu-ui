@@ -15,7 +15,7 @@ const props = withDefaults(defineProps<DropdownMenuArrowProps>(), {
 const attrs = useAttrs();
 
 const arrowClasses = computed(() => {
-  const classes = ["bp-dropdown-menu__arrow"];
+  const classes = ["mizu-dropdown-menu__arrow"];
   if (attrs.class) classes.push(attrs.class as string);
   return classes.join(" ");
 });

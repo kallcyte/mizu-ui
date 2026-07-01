@@ -15,7 +15,7 @@ const props = withDefaults(defineProps<DatePickerTriggerProps>(), {
 const attrs = useAttrs();
 
 const triggerClasses = computed(() => {
-  const classes = ["bp-date-picker__trigger"];
+  const classes = ["mizu-date-picker__trigger"];
   if (attrs.class) classes.push(attrs.class as string);
   return classes.join(" ");
 });
@@ -32,7 +32,7 @@ const triggerClasses = computed(() => {
 </template>
 
 <style>
-.bp-date-picker__trigger {
+.mizu-date-picker__trigger {
   all: revert;
   display: inline-flex;
   align-items: center;
@@ -45,7 +45,7 @@ const triggerClasses = computed(() => {
   outline: none;
 }
 
-.bp-date-picker__trigger:hover {
+.mizu-date-picker__trigger:hover {
   color: var(--color-foreground-primary);
 }
 </style>

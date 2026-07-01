@@ -19,7 +19,7 @@ const props = withDefaults(defineProps<ScrollAreaScrollbarProps>(), {
 const attrs = useAttrs();
 
 const scrollbarClasses = computed(() => {
-  const c = ["bp-scroll-area__scrollbar", `bp-scroll-area__scrollbar--${props.orientation}`];
+  const c = ["mizu-scroll-area__scrollbar", `mizu-scroll-area__scrollbar--${props.orientation}`];
   if (attrs.class) c.push(attrs.class as string);
   return c.join(" ");
 });
@@ -38,7 +38,7 @@ const scrollbarClasses = computed(() => {
 </template>
 
 <style>
-.bp-scroll-area__scrollbar {
+.mizu-scroll-area__scrollbar {
   all: revert;
   display: flex;
   user-select: none;
@@ -49,21 +49,21 @@ const scrollbarClasses = computed(() => {
   font-family: inherit;
 }
 
-.bp-scroll-area__scrollbar[data-state="visible"] {
+.mizu-scroll-area__scrollbar[data-state="visible"] {
   background-color: var(--color-surface-muted);
 }
 
-.bp-scroll-area__scrollbar--vertical {
+.mizu-scroll-area__scrollbar--vertical {
   width: 10px;
   flex-direction: column;
 }
 
-.bp-scroll-area__scrollbar--horizontal {
+.mizu-scroll-area__scrollbar--horizontal {
   height: 10px;
   flex-direction: row;
 }
 
-.bp-scroll-area__scrollbar:hover {
+.mizu-scroll-area__scrollbar:hover {
   background-color: var(--color-surface-subtle);
 }
 </style>

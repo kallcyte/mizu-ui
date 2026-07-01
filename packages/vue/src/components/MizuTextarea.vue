@@ -45,12 +45,12 @@ const helperId = computed(() => `${textareaId.value}-helper`);
 
 const textareaClasses = computed(() => {
   const classes = [
-    "bp-textarea",
-    `bp-textarea--${props.size}`,
+    "mizu-textarea",
+    `mizu-textarea--${props.size}`,
   ];
 
-  if (props.error) classes.push("bp-textarea--error");
-  if (props.disabled) classes.push("bp-textarea--disabled");
+  if (props.error) classes.push("mizu-textarea--error");
+  if (props.disabled) classes.push("mizu-textarea--disabled");
 
   if (attrs.class) classes.push(attrs.class as string);
 
@@ -86,14 +86,14 @@ function handleBlur(event: FocusEvent) {
 </script>
 
 <template>
-  <div :class="['bp-textarea-wrapper', `bp-textarea-wrapper--${size}`]">
+  <div :class="['mizu-textarea-wrapper', `mizu-textarea-wrapper--${size}`]">
     <label
       v-if="label"
       :for="textareaId"
-      :class="['bp-textarea-label', `bp-textarea-label--${size}`]"
+      :class="['mizu-textarea-label', `mizu-textarea-label--${size}`]"
     >
       {{ label }}
-      <span v-if="required" class="bp-textarea-label__required" aria-hidden="true">*</span>
+      <span v-if="required" class="mizu-textarea-label__required" aria-hidden="true">*</span>
     </label>
     <textarea
       :id="textareaId"
@@ -112,7 +112,7 @@ function handleBlur(event: FocusEvent) {
     <span
       v-if="helperText"
       :id="helperId"
-      :class="['bp-textarea-helper', { 'bp-textarea-helper--error': error }]"
+      :class="['mizu-textarea-helper', { 'mizu-textarea-helper--error': error }]"
     >
       {{ helperText }}
     </span>
@@ -122,68 +122,68 @@ function handleBlur(event: FocusEvent) {
 <style>
 @reference "../index.css";
 
-.bp-textarea-wrapper {
+.mizu-textarea-wrapper {
   @apply flex flex-col;
   gap: 6px;
 }
 
-.bp-textarea-label {
+.mizu-textarea-label {
   @apply font-medium text-[var(--color-foreground-primary)];
 }
-.bp-textarea-label--sm { @apply text-[12px]; }
-.bp-textarea-label--md { @apply text-[12px]; }
-.bp-textarea-label--lg { @apply text-[14px]; }
-.bp-textarea-label__required {
+.mizu-textarea-label--sm { @apply text-[12px]; }
+.mizu-textarea-label--md { @apply text-[12px]; }
+.mizu-textarea-label--lg { @apply text-[14px]; }
+.mizu-textarea-label__required {
   @apply ml-[2px] text-[var(--color-feedback-error-base)];
 }
 
-.bp-textarea {
+.mizu-textarea {
   @apply w-full font-[inherit] outline-none resize-y;
   border: 1px solid var(--color-surface-muted);
   background-color: var(--color-surface-base);
   color: var(--color-foreground-primary);
   transition: border-color 200ms ease-in-out, box-shadow 200ms ease-in-out;
 }
-.bp-textarea::placeholder {
+.mizu-textarea::placeholder {
   @apply text-[var(--color-foreground-tertiary)];
 }
-.bp-textarea:focus-visible {
+.mizu-textarea:focus-visible {
   border-color: var(--color-brand-accent);
   box-shadow: 0 0 0 1px var(--color-brand-accent);
 }
 
-.bp-textarea--sm {
+.mizu-textarea--sm {
   @apply text-[12px];
   padding: 6px 8px;
   border-radius: 4px;
 }
-.bp-textarea--md {
+.mizu-textarea--md {
   @apply text-[12px];
   padding: 8px 10px;
   border-radius: 6px;
 }
-.bp-textarea--lg {
+.mizu-textarea--lg {
   @apply text-[14px];
   padding: 10px 12px;
   border-radius: 6px;
 }
 
-.bp-textarea--error {
+.mizu-textarea--error {
   border-color: var(--color-feedback-error-base);
 }
-.bp-textarea--error:focus-visible {
+.mizu-textarea--error:focus-visible {
   border-color: var(--color-feedback-error-base);
   box-shadow: 0 0 0 1px var(--color-feedback-error-base);
 }
 
-.bp-textarea--disabled {
+.mizu-textarea--disabled {
   @apply bg-[var(--color-surface-muted)] text-[var(--color-foreground-tertiary)] cursor-not-allowed;
 }
 
-.bp-textarea-helper {
+.mizu-textarea-helper {
   @apply text-[12px] text-[var(--color-foreground-secondary)];
 }
-.bp-textarea-helper--error {
+.mizu-textarea-helper--error {
   @apply text-[var(--color-feedback-error-base)];
 }
 </style>

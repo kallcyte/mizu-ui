@@ -149,8 +149,8 @@ import {
 }
 
 .card-text {
-    font-size: var(--bp-font-size-body);
-    color: var(--bp-color-foreground-primary);
+    font-size: var(--mizu-font-size-body);
+    color: var(--mizu-color-foreground-primary);
     margin: 0;
 }
 </style>

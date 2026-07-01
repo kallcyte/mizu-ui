@@ -37,9 +37,9 @@ const emit = defineEmits<{
 const attrs = useAttrs();
 
 const radioGroupClasses = computed(() => {
-  const classes = ["bp-radio-group", `bp-radio-group--${props.size}`, `bp-radio-group--${props.orientation}`];
+  const classes = ["mizu-radio-group", `mizu-radio-group--${props.size}`, `mizu-radio-group--${props.orientation}`];
 
-  if (props.disabled) classes.push("bp-radio-group--disabled");
+  if (props.disabled) classes.push("mizu-radio-group--disabled");
 
   if (attrs.class) classes.push(attrs.class as string);
 
@@ -52,13 +52,13 @@ function handleValueChange(value: unknown) {
 </script>
 
 <template>
-  <div :class="['bp-radio-wrapper', `bp-radio-wrapper--${size}`]">
+  <div :class="['mizu-radio-wrapper', `mizu-radio-wrapper--${size}`]">
     <label
       v-if="label"
-      class="bp-radio-group-label"
+      class="mizu-radio-group-label"
     >
       {{ label }}
-      <span v-if="required" class="bp-radio-group-label__required" aria-hidden="true">*</span>
+      <span v-if="required" class="mizu-radio-group-label__required" aria-hidden="true">*</span>
     </label>
     <RadioGroupRoot
       :model-value="modelValue"
@@ -71,20 +71,20 @@ function handleValueChange(value: unknown) {
       <div
         v-for="item in items"
         :key="item.value"
-        :class="['bp-radio-item', `bp-radio-item--${size}`, { 'bp-radio-item--disabled': item.disabled || disabled }]"
+        :class="['mizu-radio-item', `mizu-radio-item--${size}`, { 'mizu-radio-item--disabled': item.disabled || disabled }]"
       >
         <RadioGroupItem
           :value="item.value"
           :disabled="item.disabled || disabled"
           :id="`${name || 'mizu-radio'}-${item.value}`"
-          class="bp-radio"
+          class="mizu-radio"
         >
-          <RadioGroupIndicator class="bp-radio__indicator" />
+          <RadioGroupIndicator class="mizu-radio__indicator" />
         </RadioGroupItem>
         <label
           v-if="item.label"
           :for="`${name || 'mizu-radio'}-${item.value}`"
-          class="bp-radio__item-label"
+          class="mizu-radio__item-label"
         >
           {{ item.label }}
         </label>
@@ -96,76 +96,76 @@ function handleValueChange(value: unknown) {
 <style>
 @reference "../index.css";
 
-.bp-radio-wrapper {
+.mizu-radio-wrapper {
   @apply flex flex-col;
   gap: 6px;
 }
 
-.bp-radio-group-label {
+.mizu-radio-group-label {
   @apply font-medium text-[var(--color-foreground-primary)];
 }
-.bp-radio-wrapper--sm .bp-radio-group-label { @apply text-[12px]; }
-.bp-radio-wrapper--md .bp-radio-group-label { @apply text-[12px]; }
-.bp-radio-wrapper--lg .bp-radio-group-label { @apply text-[14px]; }
-.bp-radio-group-label__required {
+.mizu-radio-wrapper--sm .mizu-radio-group-label { @apply text-[12px]; }
+.mizu-radio-wrapper--md .mizu-radio-group-label { @apply text-[12px]; }
+.mizu-radio-wrapper--lg .mizu-radio-group-label { @apply text-[14px]; }
+.mizu-radio-group-label__required {
   @apply ml-[2px] text-[var(--color-feedback-error-base)];
 }
 
-.bp-radio-group {
+.mizu-radio-group {
   @apply flex;
 }
 
-.bp-radio-group--vertical {
+.mizu-radio-group--vertical {
   @apply flex-col;
   gap: 10px;
 }
 
-.bp-radio-group--horizontal {
+.mizu-radio-group--horizontal {
   @apply flex-row flex-wrap;
   gap: 16px;
 }
 
-.bp-radio-item {
+.mizu-radio-item {
   @apply flex items-center gap-[8px];
 }
 
-.bp-radio-item--disabled {
+.mizu-radio-item--disabled {
   @apply cursor-not-allowed;
 }
 
-.bp-radio {
+.mizu-radio {
   @apply shrink-0 w-[18px] h-[18px] rounded-full border transition-colors duration-200 ease-in-out outline-none inline-flex items-center justify-center;
   background-color: var(--color-surface-base);
   border-color: var(--color-foreground-tertiary);
 }
 
-.bp-radio-item--sm .bp-radio { @apply w-[16px] h-[16px]; }
-.bp-radio-item--md .bp-radio { @apply w-[18px] h-[18px]; }
-.bp-radio-item--lg .bp-radio { @apply w-[20px] h-[20px]; }
+.mizu-radio-item--sm .mizu-radio { @apply w-[16px] h-[16px]; }
+.mizu-radio-item--md .mizu-radio { @apply w-[18px] h-[18px]; }
+.mizu-radio-item--lg .mizu-radio { @apply w-[20px] h-[20px]; }
 
-.bp-radio:hover:not(.bp-radio-item--disabled .bp-radio) {
+.mizu-radio:hover:not(.mizu-radio-item--disabled .mizu-radio) {
   border-color: var(--color-brand-primary);
 }
 
-.bp-radio:focus-visible {
+.mizu-radio:focus-visible {
   box-shadow: 0 0 0 2px var(--color-brand-accent);
 }
 
-.bp-radio[data-state="checked"] {
+.mizu-radio[data-state="checked"] {
   background-color: var(--color-brand-primary);
   border-color: var(--color-brand-primary);
 }
 
-.bp-radio[data-state="checked"]:hover {
+.mizu-radio[data-state="checked"]:hover {
   background-color: var(--color-brand-primary-hover);
   border-color: var(--color-brand-primary-hover);
 }
 
-.bp-radio__indicator {
+.mizu-radio__indicator {
   @apply flex items-center justify-center w-full h-full;
 }
 
-.bp-radio__indicator::after {
+.mizu-radio__indicator::after {
   content: "";
   @apply block rounded-full;
   width: 8px;
@@ -173,35 +173,35 @@ function handleValueChange(value: unknown) {
   background-color: var(--color-foreground-inverse);
 }
 
-.bp-radio-item--sm .bp-radio__indicator::after {
+.mizu-radio-item--sm .mizu-radio__indicator::after {
   width: 6px;
   height: 6px;
 }
 
-.bp-radio-item--lg .bp-radio__indicator::after {
+.mizu-radio-item--lg .mizu-radio__indicator::after {
   width: 10px;
   height: 10px;
 }
 
-.bp-radio__item-label {
+.mizu-radio__item-label {
   @apply font-normal text-[var(--color-foreground-primary)] cursor-pointer;
   line-height: 1.3;
 }
 
-.bp-radio-item--sm .bp-radio__item-label { @apply text-[12px]; }
-.bp-radio-item--md .bp-radio__item-label { @apply text-[13px]; }
-.bp-radio-item--lg .bp-radio__item-label { @apply text-[14px]; }
+.mizu-radio-item--sm .mizu-radio__item-label { @apply text-[12px]; }
+.mizu-radio-item--md .mizu-radio__item-label { @apply text-[13px]; }
+.mizu-radio-item--lg .mizu-radio__item-label { @apply text-[14px]; }
 
-.bp-radio-item--disabled .bp-radio__item-label {
+.mizu-radio-item--disabled .mizu-radio__item-label {
   @apply text-[var(--color-foreground-tertiary)] cursor-not-allowed;
 }
 
-.bp-radio-item--disabled .bp-radio {
+.mizu-radio-item--disabled .mizu-radio {
   background-color: var(--color-surface-muted);
   border-color: var(--color-surface-muted);
 }
 
-.bp-radio-item--disabled .bp-radio[data-state="checked"] {
+.mizu-radio-item--disabled .mizu-radio[data-state="checked"] {
   background-color: var(--color-foreground-tertiary);
   border-color: var(--color-foreground-tertiary);
 }

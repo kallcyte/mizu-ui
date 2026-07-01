@@ -15,7 +15,7 @@ const props = withDefaults(defineProps<DatePickerAnchorProps>(), {
 const attrs = useAttrs();
 
 const anchorClasses = computed(() => {
-  const classes = ["bp-date-picker__anchor"];
+  const classes = ["mizu-date-picker__anchor"];
   if (attrs.class) classes.push(attrs.class as string);
   return classes.join(" ");
 });

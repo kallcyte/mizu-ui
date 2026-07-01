@@ -14,14 +14,14 @@ const attrs = useAttrs();
 
 <template>
   <ScrollAreaCorner
-    :class="['bp-scroll-area__corner', attrs.class]"
+    :class="['mizu-scroll-area__corner', attrs.class]"
     :as-child="asChild"
     :as="as"
   />
 </template>
 
 <style>
-.bp-scroll-area__corner {
+.mizu-scroll-area__corner {
   all: revert;
   background-color: var(--color-surface-muted);
   font-family: inherit;
