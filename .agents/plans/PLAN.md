@@ -570,7 +570,8 @@ Mizu product pages that exercise the full component set and demonstrate ERP UI p
 
 
 
-| Order Form | Complex form | Input, NumberField, DatePicker, Combobox, Select, Button, AlertDialog |
+
+
 
 Pages live in `src/content/docs/samples/` as Starlight content, importing components from `@mizu/vue`.
 
