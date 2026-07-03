@@ -202,12 +202,12 @@ All button sizes maintain a minimum touch target of **44px × 44px** for accessi
 
 | Token | Value | Usage |
 |-------|-------|-------|
-| `--color-brand-primary` | #001C44 | Primary button bg |
-| `--color-brand-primary-hover` | #001536 | Primary hover bg |
-| `--color-brand-primary-focus` | #000F28 | Primary focus/pressed bg |
-| `--color-brand-accent` | #007FFF | Accent button bg, focus ring |
-| `--color-brand-accent-hover` | #0066CC | Accent hover bg |
-| `--color-brand-accent-focus` | #004C99 | Accent focus/pressed bg |
+| `--color-brand-primary` | #0070F2 | Primary button bg |
+| `--color-brand-primary-hover` | #005AC2 | Primary hover bg |
+| `--color-brand-primary-focus` | #338DF5 | Primary focus/pressed bg |
+| `--color-brand-accent` | #001C44 | Accent button bg, focus ring |
+| `--color-brand-accent-hover` | #001636 | Accent hover bg |
+| `--color-brand-accent-focus` | #334969 | Accent focus/pressed bg |
 | `--color-foreground-inverse` | #FFFFFF | Primary/Accent label color |
 | `--color-foreground-primary` | #1B1B1D | Ghost/Outline label color |
 | `--color-foreground-tertiary` | #9CA3AF | Disabled label color |

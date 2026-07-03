@@ -7,14 +7,14 @@ export interface Token {
   description?: string;
 }
 
-/** Strongest brand presence for hero emphasis and dark branded surfaces. */
-export const COLOR_BRAND_PRIMARY = "#001C44" as const;
-/** Darker hover state for primary-filled buttons and nav items. */
-export const COLOR_BRAND_PRIMARY_HOVER = "#001536" as const;
-/** Deepest primary for focus-visible emphasis and pressed states. */
-export const COLOR_BRAND_PRIMARY_FOCUS = "#000F28" as const;
-/** Light-tinted primary surface for quiet branded backgrounds. */
-export const COLOR_BRAND_PRIMARY_SUBTLE = "#D6E4FF" as const;
+/** Primary brand blue for buttons, links, and key interactive elements. */
+export const COLOR_BRAND_PRIMARY = "#0070F2" as const;
+/** Darker hover state for primary-filled buttons and interactive elements. */
+export const COLOR_BRAND_PRIMARY_HOVER = "#005AC2" as const;
+/** Focus ring and outline state for primary interactive elements. */
+export const COLOR_BRAND_PRIMARY_FOCUS = "#338DF5" as const;
+/** Light primary-tinted background for selected states and highlights. */
+export const COLOR_BRAND_PRIMARY_SUBTLE = "#CCE2FC" as const;
 /** Supporting brand blue for charts and secondary emphasis. */
 export const COLOR_BRAND_SECONDARY = "#1524A9" as const;
 /** Darker hover state for secondary brand fills. */
@@ -23,18 +23,26 @@ export const COLOR_BRAND_SECONDARY_HOVER = "#101C82" as const;
 export const COLOR_BRAND_SECONDARY_FOCUS = "#0C1561" as const;
 /** Light surface counterpart for secondary branded backgrounds. */
 export const COLOR_BRAND_SECONDARY_SUBTLE = "#E1E7FF" as const;
-/** Interactive accent for links, focus states, and highlighted controls. */
-export const COLOR_BRAND_ACCENT = "#007FFF" as const;
-/** Darker hover state for accent-filled buttons and links. */
-export const COLOR_BRAND_ACCENT_HOVER = "#0066CC" as const;
-/** Deep accent for focus-visible emphasis and active-selected states. */
-export const COLOR_BRAND_ACCENT_FOCUS = "#004C99" as const;
-/** Light accent-tinted background for info callouts and highlights. */
-export const COLOR_BRAND_ACCENT_SUBTLE = "#E0F2FE" as const;
+/** Deep navy accent for emphasis, dark branded surfaces, and hero sections. */
+export const COLOR_BRAND_ACCENT = "#001C44" as const;
+/** Darker hover state for accent-filled elements. */
+export const COLOR_BRAND_ACCENT_HOVER = "#001636" as const;
+/** Focus ring and outline state for accent elements. */
+export const COLOR_BRAND_ACCENT_FOCUS = "#334969" as const;
+/** Light accent-tinted background for subdued emphasis. */
+export const COLOR_BRAND_ACCENT_SUBTLE = "#CCD2DA" as const;
 /** Soft brand-tinted surface for subtle highlights and selected rows. */
 export const COLOR_BRAND_MUTED = "#EDF0FF" as const;
 /** Deep neutral for high-contrast text and key borders. */
 export const COLOR_BRAND_NEUTRAL = "#1B1B1D" as const;
+/** Nexus purple for premium features, special emphasis, and distinctive UI elements. */
+export const COLOR_BRAND_NEXUS = "#4521D8" as const;
+/** Darker hover state for nexus-filled elements. */
+export const COLOR_BRAND_NEXUS_HOVER = "#371AAD" as const;
+/** Focus ring and outline state for nexus elements. */
+export const COLOR_BRAND_NEXUS_FOCUS = "#6A4DE0" as const;
+/** Light nexus-tinted background for subtle highlights. */
+export const COLOR_BRAND_NEXUS_SUBTLE = "#DAD3F7" as const;
 /** Default page and card background. Highest-contrast surface. */
 export const COLOR_SURFACE_BASE = "#FFFFFF" as const;
 /** Secondary surface for grouped sections and side panels. */
@@ -81,32 +89,6 @@ export const COLOR_FEEDBACK_INFO_HOVER = "#0369A1" as const;
 export const COLOR_FEEDBACK_INFO_FOCUS = "#075985" as const;
 /** Light sky background for info banners. */
 export const COLOR_FEEDBACK_INFO_SUBTLE = "#F0F9FF" as const;
-/** Dark mode primary — lighter for dark backgrounds. */
-export const COLOR_DARK_BRAND_PRIMARY = "#D6E4FF" as const;
-/** Dark mode primary hover. */
-export const COLOR_DARK_BRAND_PRIMARY_HOVER = "#E8F0FF" as const;
-/** Dark mode primary focus. */
-export const COLOR_DARK_BRAND_PRIMARY_FOCUS = "#BFDBFE" as const;
-/** Dark mode subtle primary — dark navy tint for branded backgrounds. */
-export const COLOR_DARK_BRAND_PRIMARY_SUBTLE = "#1E2A45" as const;
-/** Dark mode supporting brand blue. */
-export const COLOR_DARK_BRAND_SECONDARY = "#93C5FD" as const;
-/** Dark mode secondary hover. */
-export const COLOR_DARK_BRAND_SECONDARY_HOVER = "#BFDBFE" as const;
-/** Dark mode secondary focus. */
-export const COLOR_DARK_BRAND_SECONDARY_FOCUS = "#DBEAFE" as const;
-/** Dark mode secondary subtle. */
-export const COLOR_DARK_BRAND_SECONDARY_SUBTLE = "#1E2A3A" as const;
-/** Dark mode accent — lighter blue for links. */
-export const COLOR_DARK_BRAND_ACCENT = "#60A5FA" as const;
-/** Dark mode accent hover. */
-export const COLOR_DARK_BRAND_ACCENT_HOVER = "#93C5FD" as const;
-/** Dark mode subtle accent — dark blue tint for highlighted backgrounds. */
-export const COLOR_DARK_BRAND_ACCENT_SUBTLE = "#172554" as const;
-/** Dark mode muted — subtle brand tint on dark. */
-export const COLOR_DARK_BRAND_MUTED = "#1E2A3A" as const;
-/** Dark mode deep neutral for high-contrast text. */
-export const COLOR_DARK_BRAND_NEUTRAL = "#F1F5F9" as const;
 /** Dark mode page background. */
 export const COLOR_DARK_SURFACE_BASE = "#0F1117" as const;
 /** Dark mode secondary surface. */
@@ -288,6 +270,10 @@ export const tokens: Record<string, Token> = {
   "color/brand/accent-subtle": { value: COLOR_BRAND_ACCENT_SUBTLE, type: "color" },
   "color/brand/muted": { value: COLOR_BRAND_MUTED, type: "color" },
   "color/brand/neutral": { value: COLOR_BRAND_NEUTRAL, type: "color" },
+  "color/brand/nexus": { value: COLOR_BRAND_NEXUS, type: "color" },
+  "color/brand/nexus-hover": { value: COLOR_BRAND_NEXUS_HOVER, type: "color" },
+  "color/brand/nexus-focus": { value: COLOR_BRAND_NEXUS_FOCUS, type: "color" },
+  "color/brand/nexus-subtle": { value: COLOR_BRAND_NEXUS_SUBTLE, type: "color" },
   "color/surface/base": { value: COLOR_SURFACE_BASE, type: "color" },
   "color/surface/subtle": { value: COLOR_SURFACE_SUBTLE, type: "color" },
   "color/surface/muted": { value: COLOR_SURFACE_MUTED, type: "color" },
@@ -311,19 +297,6 @@ export const tokens: Record<string, Token> = {
   "color/feedback/info/hover": { value: COLOR_FEEDBACK_INFO_HOVER, type: "color" },
   "color/feedback/info/focus": { value: COLOR_FEEDBACK_INFO_FOCUS, type: "color" },
   "color/feedback/info/subtle": { value: COLOR_FEEDBACK_INFO_SUBTLE, type: "color" },
-  "color/dark/brand/primary": { value: COLOR_DARK_BRAND_PRIMARY, type: "color" },
-  "color/dark/brand/primary-hover": { value: COLOR_DARK_BRAND_PRIMARY_HOVER, type: "color" },
-  "color/dark/brand/primary-focus": { value: COLOR_DARK_BRAND_PRIMARY_FOCUS, type: "color" },
-  "color/dark/brand/primary-subtle": { value: COLOR_DARK_BRAND_PRIMARY_SUBTLE, type: "color" },
-  "color/dark/brand/secondary": { value: COLOR_DARK_BRAND_SECONDARY, type: "color" },
-  "color/dark/brand/secondary-hover": { value: COLOR_DARK_BRAND_SECONDARY_HOVER, type: "color" },
-  "color/dark/brand/secondary-focus": { value: COLOR_DARK_BRAND_SECONDARY_FOCUS, type: "color" },
-  "color/dark/brand/secondary-subtle": { value: COLOR_DARK_BRAND_SECONDARY_SUBTLE, type: "color" },
-  "color/dark/brand/accent": { value: COLOR_DARK_BRAND_ACCENT, type: "color" },
-  "color/dark/brand/accent-hover": { value: COLOR_DARK_BRAND_ACCENT_HOVER, type: "color" },
-  "color/dark/brand/accent-subtle": { value: COLOR_DARK_BRAND_ACCENT_SUBTLE, type: "color" },
-  "color/dark/brand/muted": { value: COLOR_DARK_BRAND_MUTED, type: "color" },
-  "color/dark/brand/neutral": { value: COLOR_DARK_BRAND_NEUTRAL, type: "color" },
   "color/dark/surface/base": { value: COLOR_DARK_SURFACE_BASE, type: "color" },
   "color/dark/surface/subtle": { value: COLOR_DARK_SURFACE_SUBTLE, type: "color" },
   "color/dark/surface/muted": { value: COLOR_DARK_SURFACE_MUTED, type: "color" },
@@ -424,6 +397,10 @@ export const cssVariables: Record<string, string | number | readonly string[]> =
   "--color-brand-accent-subtle": COLOR_BRAND_ACCENT_SUBTLE,
   "--color-brand-muted": COLOR_BRAND_MUTED,
   "--color-brand-neutral": COLOR_BRAND_NEUTRAL,
+  "--color-brand-nexus": COLOR_BRAND_NEXUS,
+  "--color-brand-nexus-hover": COLOR_BRAND_NEXUS_HOVER,
+  "--color-brand-nexus-focus": COLOR_BRAND_NEXUS_FOCUS,
+  "--color-brand-nexus-subtle": COLOR_BRAND_NEXUS_SUBTLE,
   "--color-surface-base": COLOR_SURFACE_BASE,
   "--color-surface-subtle": COLOR_SURFACE_SUBTLE,
   "--color-surface-muted": COLOR_SURFACE_MUTED,

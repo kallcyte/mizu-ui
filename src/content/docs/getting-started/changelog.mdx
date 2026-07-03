@@ -17,6 +17,26 @@ Changes that require a minor bump: adding a new component, renaming tokens, chan
 Changes that keep the patch version: renames, copy edits, styling tweaks, build config changes, favicon updates.
 
 
+## 0.14.0 (2026-07-03)
+
+Color token revision: swapped primary/accent roles, refined color values, and added new nexus brand palette.
+
+### Changed
+
+- **Brand primary palette** — new blue values: `#0070F2` (base), `#005AC2` (hover), `#338DF5` (focus), `#CCE2FC` (subtle). The previous primary navy (`#001C44`) is now the accent palette.
+- **Brand accent palette** — new deep navy values: `#001C44` (base), `#001636` (hover), `#334969` (focus), `#CCD2DA` (subtle). The previous accent blue (`#007FFF`) is now the primary palette.
+- **Brand colors now identical in dark mode** — removed `color.dark.brand.*` overrides; primary, accent, secondary, and nexus share the same hex values across light and dark themes.
+- **Focus tokens redefined** — focus colors are now lighter ring/outline shades instead of darker pressed states (e.g., `primary-focus` went from `#000F28` to `#338DF5`).
+
+### Added
+
+- **`brand-nexus` palette** — new purple brand color group: `#4521D8` (base), `#371AAD` (hover), `#6A4DE0` (focus), `#DAD3F7` (subtle). Use for premium features, special emphasis, and distinctive UI elements.
+- **Package version bumps** — `@mizu/tokens` to `0.8.0`, `@mizu/vue` to `0.14.0`, root to `0.14.0`.
+
+### Fixed
+
+- **Documentation** — all component docs updated with new hex values; `overview.mdx` brand color table expanded with secondary and nexus rows.
+
 ## 0.13.1 (2026-07-02)
 
 Renamed all legacy `bp-` prefixed CSS classes to `mizu-`.
