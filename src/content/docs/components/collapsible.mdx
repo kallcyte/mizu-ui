@@ -48,7 +48,7 @@ The root container that manages the open/close state. Wraps Reka UI's `Collapsib
 
 ### CollapsibleTrigger
 
-The toggle button. Renders a flex row with the slot content on the left and a chevron icon on the right. The chevron rotates 180 degrees when open. Wraps Reka UI's `CollapsibleTrigger`.
+A thin wrapper around Reka UI's `CollapsibleTrigger`. Use `as-child` to slot in a `MizuButton` (or any element) as the toggle. Wraps Reka UI's `CollapsibleTrigger`.
 
 ### CollapsibleContent
 
@@ -58,21 +58,21 @@ The collapsible panel. Uses CSS `overflow: hidden` and height animation driven b
 
 ### State Map
 
-| State | Trigger BG | Trigger Text | Chevron | Content BG |
-|-------|-----------|-------------|---------|-----------|
-| Enabled | transparent | `foreground-primary` | `foreground-secondary` | transparent |
-| Hovered | `surface-subtle` | `foreground-primary` | `foreground-secondary` | transparent |
-| Focused | ring: 2px `brand-accent` | `foreground-primary` | `foreground-secondary` | transparent |
-| Disabled | transparent | `foreground-tertiary` (50% opacity) | `foreground-tertiary` | transparent |
+| State | Content BG | Content Text |
+|-------|-----------|-------------|
+| Enabled | transparent | `foreground-secondary` |
+| Hovered | transparent | `foreground-secondary` |
+| Focused | transparent | `foreground-secondary` |
+| Disabled | transparent | `foreground-tertiary` |
 
 ## Transitions
 
 | Property | Duration | Easing |
 |----------|----------|--------|
-| Chevron rotation | 200ms | ease |
+
 | Content height | 200ms | ease-out |
 | Content opacity | 200ms | ease-out |
-| Trigger background | default | default |
+
 
 ## Accessibility
 
@@ -102,11 +102,13 @@ The collapsible panel. Uses CSS `overflow: hidden` and height animation driven b
 
 | Token | Value | Usage |
 |-------|-------|-------|
-| `--color-foreground-primary` | #1B1B1D | Trigger text color |
-| `--color-foreground-secondary` | #4B5563 | Chevron icon color |
-| `--color-foreground-tertiary` | #9CA3AF | Disabled state text |
-| `--color-surface-subtle` | #F9FAFB | Trigger hover background |
-| `--color-brand-accent` | #007FFF | Focus ring color |
+
+| `--color-foreground-secondary` | #4B5563 | Content text color |
+
+
+
+
+
 
 ## Vue Component API
 
@@ -160,7 +162,7 @@ All three sub-components expose a `default` slot.
 
 1. **Reka UI primitive** — wraps `CollapsibleRoot`, `CollapsibleTrigger`, and `CollapsibleContent` from `reka-ui`
 2. **CSS var animation** — content height animation uses `--reka-collapsible-content-height` set by Reka UI at runtime
-3. **Chevron rotation** — the trigger includes a built-in chevron SVG that rotates 180deg via `[data-state="open"]`
+3. **Thin trigger wrapper** — `MizuCollapsibleTrigger` is a minimal passthrough around Reka UI's `CollapsibleTrigger`. Use `as-child` with `MizuButton` for styled triggers.
 4. **Class inheritance** — accepts `class` prop via `useAttrs()` for Tailwind overrides
 5. **Self-contained CSS** — styles are bundled into `dist/index.css` via `@tailwindcss/vite`; consumers do not need Tailwind installed
 6. **Tree-shakeable** — exported as ESM + CJS via Vite library mode

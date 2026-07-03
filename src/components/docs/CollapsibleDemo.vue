@@ -4,6 +4,7 @@ import {
   MizuCollapsibleRoot,
   MizuCollapsibleTrigger,
   MizuCollapsibleContent,
+  MizuButton,
 } from "@mizu/vue";
 
 const isOpen = ref(false);
@@ -15,7 +16,9 @@ const isOpen = ref(false);
     <div class="demo-section">
       <h3>Basic</h3>
       <MizuCollapsibleRoot>
-        <MizuCollapsibleTrigger>Toggle content</MizuCollapsibleTrigger>
+        <MizuCollapsibleTrigger as-child>
+          <MizuButton variant="ghost">Show more</MizuButton>
+        </MizuCollapsibleTrigger>
         <MizuCollapsibleContent>
           This content can be collapsed and expanded. Click the trigger above to toggle visibility.
         </MizuCollapsibleContent>
@@ -27,7 +30,9 @@ const isOpen = ref(false);
       <h3>Controlled (v-model)</h3>
       <p class="demo-hint">Currently open: {{ isOpen }}</p>
       <MizuCollapsibleRoot v-model:open="isOpen">
-        <MizuCollapsibleTrigger>Controlled toggle</MizuCollapsibleTrigger>
+        <MizuCollapsibleTrigger as-child>
+          <MizuButton variant="ghost">Toggle details</MizuButton>
+        </MizuCollapsibleTrigger>
         <MizuCollapsibleContent>
           This collapsible is controlled via v-model. The state is reflected above.
         </MizuCollapsibleContent>
@@ -38,7 +43,9 @@ const isOpen = ref(false);
     <div class="demo-section">
       <h3>Default open</h3>
       <MizuCollapsibleRoot :default-open="true">
-        <MizuCollapsibleTrigger>Initially expanded</MizuCollapsibleTrigger>
+        <MizuCollapsibleTrigger as-child>
+          <MizuButton variant="ghost">Initially expanded</MizuButton>
+        </MizuCollapsibleTrigger>
         <MizuCollapsibleContent>
           This collapsible starts in the open state using the defaultOpen prop.
         </MizuCollapsibleContent>
@@ -49,18 +56,47 @@ const isOpen = ref(false);
     <div class="demo-section">
       <h3>Disabled</h3>
       <MizuCollapsibleRoot disabled>
-        <MizuCollapsibleTrigger>Disabled collapsible</MizuCollapsibleTrigger>
+        <MizuCollapsibleTrigger as-child>
+          <MizuButton variant="ghost">Disabled collapsible</MizuButton>
+        </MizuCollapsibleTrigger>
         <MizuCollapsibleContent>
           This content cannot be shown because the collapsible is disabled.
         </MizuCollapsibleContent>
       </MizuCollapsibleRoot>
     </div>
 
+    <!-- Button variants -->
+    <div class="demo-section">
+      <h3>Button variants</h3>
+      <div class="button-variants-row">
+        <MizuCollapsibleRoot>
+          <MizuCollapsibleTrigger as-child>
+            <MizuButton variant="ghost">Ghost</MizuButton>
+          </MizuCollapsibleTrigger>
+          <MizuCollapsibleContent>Using ghost variant button.</MizuCollapsibleContent>
+        </MizuCollapsibleRoot>
+        <MizuCollapsibleRoot>
+          <MizuCollapsibleTrigger as-child>
+            <MizuButton variant="outline">Outline</MizuButton>
+          </MizuCollapsibleTrigger>
+          <MizuCollapsibleContent>Using outline variant button.</MizuCollapsibleContent>
+        </MizuCollapsibleRoot>
+        <MizuCollapsibleRoot>
+          <MizuCollapsibleTrigger as-child>
+            <MizuButton variant="primary">Primary</MizuButton>
+          </MizuCollapsibleTrigger>
+          <MizuCollapsibleContent>Using primary variant button.</MizuCollapsibleContent>
+        </MizuCollapsibleRoot>
+      </div>
+    </div>
+
     <!-- Nested content -->
     <div class="demo-section">
       <h3>Rich content</h3>
       <MizuCollapsibleRoot>
-        <MizuCollapsibleTrigger>Show details</MizuCollapsibleTrigger>
+        <MizuCollapsibleTrigger as-child>
+          <MizuButton variant="ghost">Show details</MizuButton>
+        </MizuCollapsibleTrigger>
         <MizuCollapsibleContent>
           <p style="margin: 0 0 8px 0;">Collapsibles can contain any content:</p>
           <ul style="margin: 0; padding-left: 20px;">
@@ -110,4 +146,11 @@ const isOpen = ref(false);
   color: var(--color-foreground-muted);
   margin: 0;
 }
+
+.collapsible-demo .button-variants-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
 </style>
