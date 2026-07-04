@@ -89,7 +89,6 @@ const comfortableCode = `<MizuCard spacing="comfortable">
     <p>More breathing room for content.</p>
   </MizuCardContent>
 </MizuCard>`;
-import DemoTabs from "./DemoTabs.vue";
 </script>
 
 <template>
