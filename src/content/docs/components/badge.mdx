@@ -125,7 +125,7 @@ Badges do not have interactive states (hover, focus, pressed) as they are non-in
 
 ### Positioned Badge Layout
 
-When using `position`, the badge is absolutely positioned relative to its parent container. The parent must have `position: relative`.
+When `position` is set to a corner and a slot is provided, the badge wraps the slot in a `.mizu-badge-wrapper` (`position: relative`) and overlays itself automatically. When no slot is provided, the parent must have `position: relative`.
 
 ```
 ┌─────────────────────────┐
@@ -200,6 +200,7 @@ When the `count` prop exceeds the `max` value (default: 99), the badge displays 
 | `variant` | `'primary' \| 'accent' \| 'success' \| 'warning' \| 'error' \| 'info'` | `'error'` | Visual variant |
 | `size` | `'sm' \| 'md'` | `'md'` | Badge size |
 | `dot` | `boolean` | `false` | Render as a dot indicator (ignores content) |
+| `value` | `string \| number` | `undefined` | Simple display text (takes priority over `count`). Replaces the need for `MizuChip`. |
 | `count` | `number` | `undefined` | Numeric count to display |
 | `max` | `number` | `99` | Maximum count before overflow (`{max}+`) |
 | `showZero` | `boolean` | `false` | Show badge when count is 0 |
@@ -209,7 +210,7 @@ When the `count` prop exceeds the `max` value (default: 99), the badge displays 
 
 | Slot | Description |
 |------|-------------|
-| `default` | Custom text content (ignored when `dot` or `count` is set) |
+| `default` | Custom content (text label when `position="inline"`, parent element when position is a corner) |
 
 ### Example Usage
 
@@ -220,14 +221,13 @@ When the `count` prop exceeds the `max` value (default: 99), the badge displays 
 <!-- Dot indicator -->
 <MizuBadge dot variant="success" />
 
-<!-- Positioned on avatar -->
-<div style="position: relative; display: inline-flex;">
+<!-- Positioned on avatar (auto-wraps in relative container) -->
+<MizuBadge :count="3" variant="error" position="top-right">
   <MizuAvatar name="Jane Doe" size="lg" />
-  <MizuBadge :count="3" variant="error" position="top-right" />
-</div>
+</MizuBadge>
 
-<!-- Text content -->
-<MizuBadge variant="accent">New</MizuBadge>
+<!-- Simple value display (replaces Chip use case) -->
+<MizuBadge value="New" variant="accent" />
 
 <!-- Custom max overflow -->
 <MizuBadge :count="1500" :max="999" />  <!-- 999+ -->
@@ -243,14 +243,15 @@ When the `count` prop exceeds the `max` value (default: 99), the badge displays 
 
 1. **Native `<span>` element** — No Reka UI primitive needed; the badge is a lightweight inline indicator
 2. **Solid fill** — Unlike Tag (which uses subtle backgrounds), Badge uses solid backgrounds with inverse text for maximum contrast at small sizes
-3. **Positioning** — The `position` prop applies `position: absolute` with `transform` for centering; the parent container must have `position: relative`
+3. **Positioning** — The `position` prop applies `position: absolute` with `transform` for centering. When a slot is provided, the badge auto-wraps in `.mizu-badge-wrapper` (relative). Without a slot, the parent must have `position: relative`.
 4. **Count formatting** — When `count` exceeds `max`, displays `{max}+`; when `count` is 0 and `showZero` is false, the badge is hidden entirely
 5. **Dot mode** — Renders as a small circle (8px sm, 10px md) with no content; useful for presence/status indicators
-6. **Slot fallback** — When neither `dot` nor `count` is provided, the default slot is rendered for custom text content
-7. **Tabular nums** — Uses `font-variant-numeric: tabular-nums` for consistent digit width in counts
-8. **Tailwind `@apply`** — Component styles use `@apply` with `@reference` for Tailwind v4 compatibility
-9. **CSS Custom Properties** — Colors are resolved at runtime via CSS custom properties
-10. **Self-contained CSS** — Tailwind utilities are bundled into `dist/index.css` via `@tailwindcss/vite`; consumers do not need Tailwind installed
-11. **Class inheritance** — Accept `class` prop for overrides via `useAttrs()`
-12. **TypeScript** — Full type safety with `<script setup lang="ts">`
-13. **Tree-shakeable** — Export as ESM + CJS via Vite library mode
+6. **Slot fallback** — When `position="inline"` and neither `dot`, `value`, nor `count` is provided, the default slot is rendered as text content. When position is a corner, the slot becomes the element the badge overlays.
+7. **Value mode** — The `value` prop provides a simple text display (like Chip) without count formatting. When set, it takes priority over `count`.
+8. **Tabular nums** — Uses `font-variant-numeric: tabular-nums` for consistent digit width in counts
+9. **Tailwind `@apply`** — Component styles use `@apply` with `@reference` for Tailwind v4 compatibility
+10. **CSS Custom Properties** — Colors are resolved at runtime via CSS custom properties
+11. **Self-contained CSS** — Tailwind utilities are bundled into `dist/index.css` via `@tailwindcss/vite`; consumers do not need Tailwind installed
+12. **Class inheritance** — Accept `class` prop for overrides via `useAttrs()`
+13. **TypeScript** — Full type safety with `<script setup lang="ts">`
+14. **Tree-shakeable** — Export as ESM + CJS via Vite library mode

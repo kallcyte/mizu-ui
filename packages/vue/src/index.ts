@@ -54,8 +54,6 @@ export { default as MizuCheckbox } from "./components/MizuCheckbox.vue";
 export type { CheckboxProps } from "./components/MizuCheckbox.vue";
 export { default as MizuCheckboxGroup } from "./components/MizuCheckboxGroup.vue";
 export type { CheckboxGroupOption, CheckboxGroupProps } from "./components/MizuCheckboxGroup.vue";
-export { default as MizuChip } from "./components/MizuChip.vue";
-export type { ChipProps } from "./components/MizuChip.vue";
 export { default as MizuCollapsibleContent } from "./components/MizuCollapsibleContent.vue";
 export type { CollapsibleContentProps } from "./components/MizuCollapsibleContent.vue";
 export { default as MizuCollapsibleRoot } from "./components/MizuCollapsibleRoot.vue";

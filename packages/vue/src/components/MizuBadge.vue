@@ -5,6 +5,8 @@ export interface BadgeProps {
   variant?: "primary" | "accent" | "success" | "warning" | "error" | "info";
   size?: "sm" | "md";
   dot?: boolean;
+  /** Simple display value (string or number, no max truncation). Takes priority over `count`. */
+  value?: string | number;
   count?: number;
   max?: number;
   showZero?: boolean;
@@ -15,6 +17,7 @@ const props = withDefaults(defineProps<BadgeProps>(), {
   variant: "error",
   size: "md",
   dot: false,
+  value: undefined,
   count: undefined,
   max: 99,
   showZero: false,
@@ -29,6 +32,7 @@ const slots = defineSlots<{
 
 const displayText = computed(() => {
   if (props.dot) return "";
+  if (props.value != null) return String(props.value);
   if (props.count != null) {
     if (props.count === 0 && !props.showZero) return null;
     if (props.count > props.max) return `${props.max}+`;
@@ -41,14 +45,12 @@ const hasSlotContent = computed(() => !!slots.default);
 
 const visible = computed(() => {
   if (props.dot) return true;
+  if (props.value != null) return true;
   if (props.count != null) return !(props.count === 0 && !props.showZero);
   return hasSlotContent.value;
 });
 
-const content = computed(() => {
-  if (displayText.value != null) return displayText.value;
-  return null;
-});
+const isOverlay = computed(() => props.position !== "inline" && hasSlotContent.value);
 
 const badgeClasses = computed(() => {
   const classes = [
@@ -58,7 +60,8 @@ const badgeClasses = computed(() => {
   ];
 
   if (props.dot) classes.push("mizu-badge--dot");
-  if (props.position !== "inline") classes.push("mizu-badge--positioned", `mizu-badge--${props.position}`);
+  if (isOverlay.value || (props.position !== "inline" && !hasSlotContent.value))
+    classes.push("mizu-badge--positioned", `mizu-badge--${props.position}`);
 
   if (attrs.class) classes.push(attrs.class as string);
 
@@ -67,19 +70,33 @@ const badgeClasses = computed(() => {
 </script>
 
 <template>
+  <!-- Overlay mode: wrap slot content + badge in a relative container -->
+  <span v-if="isOverlay" class="mizu-badge-wrapper">
+    <slot />
+    <span v-if="visible" :class="badgeClasses" role="status">
+      <template v-if="dot" />
+      <template v-else-if="displayText != null">{{ displayText }}</template>
+    </span>
+  </span>
+  <!-- Standalone / inline mode -->
   <span
-    v-if="visible"
+    v-else-if="visible"
     :class="badgeClasses"
     role="status"
   >
     <template v-if="dot" />
-    <template v-else-if="content != null">{{ content }}</template>
+    <template v-else-if="displayText != null">{{ displayText }}</template>
     <slot v-else />
   </span>
 </template>
 
 <style>
 @reference "../index.css";
+
+/* Wrapper for overlay mode — provides relative positioning context */
+.mizu-badge-wrapper {
+  @apply relative inline-flex;
+}
 
 /* Base */
 .mizu-badge {

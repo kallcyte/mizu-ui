@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, computed } from "vue";
+import { ref, computed, watch } from "vue";
 import { ChevronDown, X, Check, LoaderCircle } from "@lucide/vue";
 import {
   MizuComboboxRoot,
@@ -17,6 +17,7 @@ import {
   MizuComboboxLabel,
   MizuComboboxSeparator,
   MizuTag,
+  MizuButton,
 } from "@mizu/vue";
 import DemoTabs from "./DemoTabs.vue";
 
@@ -132,6 +133,20 @@ function setupSentinel(el: Element | null) {
   observer.observe(el);
 }
 
+const validationSelected = ref<any>(undefined);
+const validationSearch = ref("");
+const validationError = ref(false);
+
+function submitValidation() {
+  if (!validationSelected.value) {
+    validationError.value = true;
+  }
+}
+
+watch(validationSelected, (val) => {
+  if (val) validationError.value = false;
+});
+
 const basicCode = `<MizuComboboxRoot v-model="selected" ignore-filter>
   <MizuComboboxAnchor>
     <MizuComboboxInput
@@ -236,6 +251,53 @@ const lazyCode = `<MizuComboboxRoot v-model="selected" ignore-filter>
     </MizuComboboxContent>
   </MizuComboboxPortal>
 </MizuComboboxRoot>`;
+
+const validationCode = `<script setup>
+import { ref, watch } from 'vue';
+
+const selected = ref();
+const error = ref(false);
+
+function submit() {
+  if (!selected.value) error.value = true;
+}
+
+watch(selected, (val) => {
+  if (val) error.value = false;
+});
+<\/script>
+
+<template>
+  <MizuComboboxRoot v-model="selected" ignore-filter>
+    <MizuComboboxAnchor
+      :error="error"
+      :helper-text="error ? 'Please select a team member.' : undefined"
+    >
+      <MizuComboboxInput
+        :display-value="(v) => v?.name ?? ''"
+        placeholder="Select a person..."
+      />
+      <MizuComboboxTrigger><ChevronDown :size="16" /></MizuComboboxTrigger>
+      <MizuComboboxCancel v-if="selected" @click="selected = undefined">
+        <X :size="16" />
+      </MizuComboboxCancel>
+    </MizuComboboxAnchor>
+    <MizuComboboxPortal>
+      <MizuComboboxContent position="popper" :side-offset="4">
+        <MizuComboboxViewport>
+          <MizuComboboxEmpty>No results found.</MizuComboboxEmpty>
+          <MizuComboboxItem v-for="p in people" :key="p.id" :value="p">
+            <MizuComboboxItemIndicator><Check :size="16" /></MizuComboboxItemIndicator>
+            {{ p.name }}
+          </MizuComboboxItem>
+        </MizuComboboxViewport>
+      </MizuComboboxContent>
+    </MizuComboboxPortal>
+  </MizuComboboxRoot>
+  <MizuButton size="sm" variant="primary" @click="submit">
+    Submit
+  </MizuButton>
+<\/template>`;
 </script>
 
 <template>
@@ -250,10 +312,10 @@ const lazyCode = `<MizuComboboxRoot v-model="selected" ignore-filter>
               :display-value="(v: any) => v?.name ?? ''"
               placeholder="Select a person..."
             />
-            <MizuComboboxTrigger v-if="basicShowChevron" class="combobox-trigger-btn">
+            <MizuComboboxTrigger v-if="basicShowChevron">
               <ChevronDown :size="16" />
             </MizuComboboxTrigger>
-            <MizuComboboxCancel v-if="basicSelected" class="combobox-cancel-btn" @click="basicSelected = undefined">
+            <MizuComboboxCancel v-if="basicSelected" @click="basicSelected = undefined">
               <X :size="16" />
             </MizuComboboxCancel>
           </MizuComboboxAnchor>
@@ -295,10 +357,10 @@ const lazyCode = `<MizuComboboxRoot v-model="selected" ignore-filter>
               :display-value="(v: any) => v?.name ?? ''"
               placeholder="Search people..."
             />
-            <MizuComboboxTrigger class="combobox-trigger-btn">
+            <MizuComboboxTrigger>
               <ChevronDown :size="16" />
             </MizuComboboxTrigger>
-            <MizuComboboxCancel v-if="searchSelected" class="combobox-cancel-btn" @click="searchSelected = undefined">
+            <MizuComboboxCancel v-if="searchSelected" @click="searchSelected = undefined">
               <X :size="16" />
             </MizuComboboxCancel>
           </MizuComboboxAnchor>
@@ -336,10 +398,10 @@ const lazyCode = `<MizuComboboxRoot v-model="selected" ignore-filter>
               :display-value="(v: any) => v?.name ?? ''"
               placeholder="Select a person..."
             />
-            <MizuComboboxTrigger class="combobox-trigger-btn">
+            <MizuComboboxTrigger>
               <ChevronDown :size="16" />
             </MizuComboboxTrigger>
-            <MizuComboboxCancel v-if="groupSelected" class="combobox-cancel-btn" @click="groupSelected = undefined">
+            <MizuComboboxCancel v-if="groupSelected" @click="groupSelected = undefined">
               <X :size="16" />
             </MizuComboboxCancel>
           </MizuComboboxAnchor>
@@ -398,10 +460,10 @@ const lazyCode = `<MizuComboboxRoot v-model="selected" ignore-filter>
               placeholder="Select people..."
               class="multi-input"
             />
-            <MizuComboboxTrigger class="combobox-trigger-btn">
+            <MizuComboboxTrigger>
               <ChevronDown :size="16" />
             </MizuComboboxTrigger>
-            <MizuComboboxCancel v-if="multipleSelected.length" class="combobox-cancel-btn" @click="multipleSelected = []">
+            <MizuComboboxCancel v-if="multipleSelected.length" @click="multipleSelected = []">
               <X :size="16" />
             </MizuComboboxCancel>
           </MizuComboboxAnchor>
@@ -439,10 +501,10 @@ const lazyCode = `<MizuComboboxRoot v-model="selected" ignore-filter>
               :display-value="(v: any) => v?.name ?? ''"
               placeholder="Type to search 100 people..."
             />
-            <MizuComboboxTrigger class="combobox-trigger-btn">
+            <MizuComboboxTrigger>
               <ChevronDown :size="16" />
             </MizuComboboxTrigger>
-            <MizuComboboxCancel v-if="lazySelected" class="combobox-cancel-btn" @click="lazySelected = undefined">
+            <MizuComboboxCancel v-if="lazySelected" @click="lazySelected = undefined">
               <X :size="16" />
             </MizuComboboxCancel>
           </MizuComboboxAnchor>
@@ -474,6 +536,59 @@ const lazyCode = `<MizuComboboxRoot v-model="selected" ignore-filter>
         </MizuComboboxRoot>
         <div class="demo-footer">
           <p class="demo-hint">Selected: {{ lazySelected?.name ?? "None" }}</p>
+        </div>
+      </div>
+    </DemoTabs>
+
+    <DemoTabs :code="validationCode">
+      <div class="demo-section">
+        <h3>Validation</h3>
+        <MizuComboboxRoot v-model="validationSelected" ignore-filter>
+          <MizuComboboxAnchor
+            class="combobox-anchor"
+            :error="validationError"
+            :helper-text="validationError ? 'Please select a team member.' : undefined"
+          >
+            <MizuComboboxInput
+              v-model="validationSearch"
+              :display-value="(v: any) => v?.name ?? ''"
+              placeholder="Select a person..."
+            />
+            <MizuComboboxTrigger>
+              <ChevronDown :size="16" />
+            </MizuComboboxTrigger>
+            <MizuComboboxCancel v-if="validationSelected" @click="validationSelected = undefined">
+              <X :size="16" />
+            </MizuComboboxCancel>
+          </MizuComboboxAnchor>
+          <MizuComboboxPortal>
+            <MizuComboboxContent position="popper" :side-offset="4">
+              <MizuComboboxViewport>
+                <MizuComboboxEmpty>No results found.</MizuComboboxEmpty>
+                <MizuComboboxItem
+                  v-for="person in people"
+                  :key="person.id"
+                  :value="person"
+                >
+                  <MizuComboboxItemIndicator>
+                    <Check :size="16" />
+                  </MizuComboboxItemIndicator>
+                  {{ person.name }}
+                </MizuComboboxItem>
+              </MizuComboboxViewport>
+            </MizuComboboxContent>
+          </MizuComboboxPortal>
+        </MizuComboboxRoot>
+        <div class="demo-footer">
+          <p class="demo-hint">Selected: {{ validationSelected?.name ?? "None" }}</p>
+          <div class="demo-validation-actions">
+            <MizuButton size="sm" variant="primary" @click="submitValidation">
+              Submit
+            </MizuButton>
+            <MizuButton size="sm" variant="ghost" @click="validationSelected = undefined; validationError = false">
+              Reset
+            </MizuButton>
+          </div>
         </div>
       </div>
     </DemoTabs>
@@ -552,15 +667,14 @@ const lazyCode = `<MizuComboboxRoot v-model="selected" ignore-filter>
   gap: 4px;
 }
 
-.combobox-anchor {
+.demo-validation-actions {
   all: revert;
   display: flex;
-  align-items: center;
-  gap: 2px;
-  border: 1px solid var(--color-surface-border);
-  border-radius: 8px;
-  background: var(--color-surface-base);
-  overflow: hidden;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.combobox-anchor {
   width: 300px;
 }
 
@@ -575,40 +689,6 @@ const lazyCode = `<MizuComboboxRoot v-model="selected" ignore-filter>
 .multi-input {
   flex: 1;
   min-width: 80px;
-}
-
-.combobox-trigger-btn {
-  all: revert;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 4px 6px;
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  color: var(--color-foreground-muted);
-  outline: none;
-}
-
-.combobox-trigger-btn:hover {
-  color: var(--color-foreground-primary);
-}
-
-.combobox-cancel-btn {
-  all: revert;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 4px 6px;
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  color: var(--color-foreground-muted);
-  outline: none;
-}
-
-.combobox-cancel-btn:hover {
-  color: var(--color-foreground-primary);
 }
 
 .lazy-sentinel {

@@ -12,7 +12,7 @@ const isOpen = ref(false);
 
 const basicCode = `<MizuCollapsibleRoot>
   <MizuCollapsibleTrigger as-child>
-    <MizuButton variant="ghost">Show more</MizuButton>
+    <MizuButton variant="primary">Show more</MizuButton>
   </MizuCollapsibleTrigger>
   <MizuCollapsibleContent>
     This content can be collapsed and expanded.
@@ -21,7 +21,7 @@ const basicCode = `<MizuCollapsibleRoot>
 
 const controlledCode = `<MizuCollapsibleRoot v-model:open="isOpen">
   <MizuCollapsibleTrigger as-child>
-    <MizuButton variant="ghost">Toggle details</MizuButton>
+    <MizuButton variant="primary">Toggle details</MizuButton>
   </MizuCollapsibleTrigger>
   <MizuCollapsibleContent>
     This collapsible is controlled via v-model.
@@ -30,7 +30,7 @@ const controlledCode = `<MizuCollapsibleRoot v-model:open="isOpen">
 
 const defaultOpenCode = `<MizuCollapsibleRoot :default-open="true">
   <MizuCollapsibleTrigger as-child>
-    <MizuButton variant="ghost">Initially expanded</MizuButton>
+    <MizuButton variant="primary">Initially expanded</MizuButton>
   </MizuCollapsibleTrigger>
   <MizuCollapsibleContent>
     This collapsible starts in the open state.
@@ -39,7 +39,7 @@ const defaultOpenCode = `<MizuCollapsibleRoot :default-open="true">
 
 const disabledCode = `<MizuCollapsibleRoot disabled>
   <MizuCollapsibleTrigger as-child>
-    <MizuButton variant="ghost">Disabled collapsible</MizuButton>
+    <MizuButton variant="primary">Disabled collapsible</MizuButton>
   </MizuCollapsibleTrigger>
   <MizuCollapsibleContent>
     This content cannot be shown.
@@ -47,6 +47,12 @@ const disabledCode = `<MizuCollapsibleRoot disabled>
 </MizuCollapsibleRoot>`;
 
 const buttonVariantsCode = `<MizuCollapsibleRoot>
+  <MizuCollapsibleTrigger as-child>
+    <MizuButton variant="primary">Primary</MizuButton>
+  </MizuCollapsibleTrigger>
+  <MizuCollapsibleContent>Using primary variant button.</MizuCollapsibleContent>
+</MizuCollapsibleRoot>
+<MizuCollapsibleRoot>
   <MizuCollapsibleTrigger as-child>
     <MizuButton variant="ghost">Ghost</MizuButton>
   </MizuCollapsibleTrigger>
@@ -61,7 +67,7 @@ const buttonVariantsCode = `<MizuCollapsibleRoot>
 
 const richContentCode = `<MizuCollapsibleRoot>
   <MizuCollapsibleTrigger as-child>
-    <MizuButton variant="ghost">Show details</MizuButton>
+    <MizuButton variant="primary">Show details</MizuButton>
   </MizuCollapsibleTrigger>
   <MizuCollapsibleContent>
     <p>Collapsibles can contain any content:</p>
@@ -83,7 +89,7 @@ const richContentCode = `<MizuCollapsibleRoot>
       <DemoTabs :code="basicCode">
       <MizuCollapsibleRoot>
         <MizuCollapsibleTrigger as-child>
-          <MizuButton variant="ghost">Show more</MizuButton>
+          <MizuButton variant="primary">Show more</MizuButton>
         </MizuCollapsibleTrigger>
         <MizuCollapsibleContent>
           This content can be collapsed and expanded. Click the trigger above to toggle visibility.
@@ -99,7 +105,7 @@ const richContentCode = `<MizuCollapsibleRoot>
       <DemoTabs :code="controlledCode">
       <MizuCollapsibleRoot v-model:open="isOpen">
         <MizuCollapsibleTrigger as-child>
-          <MizuButton variant="ghost">Toggle details</MizuButton>
+          <MizuButton variant="primary">Toggle details</MizuButton>
         </MizuCollapsibleTrigger>
         <MizuCollapsibleContent>
           This collapsible is controlled via v-model. The state is reflected above.
@@ -114,7 +120,7 @@ const richContentCode = `<MizuCollapsibleRoot>
       <DemoTabs :code="defaultOpenCode">
       <MizuCollapsibleRoot :default-open="true">
         <MizuCollapsibleTrigger as-child>
-          <MizuButton variant="ghost">Initially expanded</MizuButton>
+          <MizuButton variant="primary">Initially expanded</MizuButton>
         </MizuCollapsibleTrigger>
         <MizuCollapsibleContent>
           This collapsible starts in the open state using the defaultOpen prop.
@@ -129,7 +135,7 @@ const richContentCode = `<MizuCollapsibleRoot>
       <DemoTabs :code="disabledCode">
       <MizuCollapsibleRoot disabled>
         <MizuCollapsibleTrigger as-child>
-          <MizuButton variant="ghost">Disabled collapsible</MizuButton>
+          <MizuButton variant="primary">Disabled collapsible</MizuButton>
         </MizuCollapsibleTrigger>
         <MizuCollapsibleContent>
           This content cannot be shown because the collapsible is disabled.
@@ -145,6 +151,12 @@ const richContentCode = `<MizuCollapsibleRoot>
       <div class="button-variants-row">
         <MizuCollapsibleRoot>
           <MizuCollapsibleTrigger as-child>
+            <MizuButton variant="primary">Primary</MizuButton>
+          </MizuCollapsibleTrigger>
+          <MizuCollapsibleContent>Using primary variant button.</MizuCollapsibleContent>
+        </MizuCollapsibleRoot>
+        <MizuCollapsibleRoot>
+          <MizuCollapsibleTrigger as-child>
             <MizuButton variant="ghost">Ghost</MizuButton>
           </MizuCollapsibleTrigger>
           <MizuCollapsibleContent>Using ghost variant button.</MizuCollapsibleContent>
@@ -154,12 +166,6 @@ const richContentCode = `<MizuCollapsibleRoot>
             <MizuButton variant="outline">Outline</MizuButton>
           </MizuCollapsibleTrigger>
           <MizuCollapsibleContent>Using outline variant button.</MizuCollapsibleContent>
-        </MizuCollapsibleRoot>
-        <MizuCollapsibleRoot>
-          <MizuCollapsibleTrigger as-child>
-            <MizuButton variant="primary">Primary</MizuButton>
-          </MizuCollapsibleTrigger>
-          <MizuCollapsibleContent>Using primary variant button.</MizuCollapsibleContent>
         </MizuCollapsibleRoot>
       </div>
       </DemoTabs>
@@ -171,7 +177,7 @@ const richContentCode = `<MizuCollapsibleRoot>
       <DemoTabs :code="richContentCode">
       <MizuCollapsibleRoot>
         <MizuCollapsibleTrigger as-child>
-          <MizuButton variant="ghost">Show details</MizuButton>
+          <MizuButton variant="primary">Show details</MizuButton>
         </MizuCollapsibleTrigger>
         <MizuCollapsibleContent>
           <p style="margin: 0 0 8px 0;">Collapsibles can contain any content:</p>

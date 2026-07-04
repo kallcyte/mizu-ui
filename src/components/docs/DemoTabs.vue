@@ -15,14 +15,14 @@ const highlighter = shallowRef<Awaited<ReturnType<typeof createHighlighter>>>();
 const highlightedCode = computed(() => {
   if (!highlighter.value) return "";
   return highlighter.value.codeToHtml(props.code.trim(), {
-    lang: "vue",
+    lang: "javascript",
     theme: "github-dark",
   });
 });
 
 createHighlighter({
   themes: ["github-dark"],
-  langs: ["vue"],
+  langs: ["javascript", "vue"],
 }).then((h) => {
   highlighter.value = h;
 });

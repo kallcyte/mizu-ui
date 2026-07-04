@@ -122,7 +122,7 @@ const checkboxClasses = computed(() => {
 }
 
 .mizu-checkbox {
-  @apply shrink-0 inline-flex items-center justify-center border rounded-[4px] transition-colors duration-200 ease-in-out outline-none;
+  @apply shrink-0 inline-flex items-center justify-center border rounded-[4px] transition-colors duration-200 ease-in-out outline-none p-0;
   background-color: var(--color-surface-base);
   border-color: var(--color-foreground-tertiary);
   color: #fff;

@@ -58,8 +58,10 @@ MizuComboboxRoot
 | Token | Value | Usage |
 |-------|-------|-------|
 | `--color-surface-base` | #FFFFFF (light) / #0F1117 (dark) | Anchor background |
-| `--color-surface-border` | #E1E2E6 (light) / #2D2F3A (dark) | Anchor border |
+| `--color-surface-muted` | #F3F4F6 (light) / #1E2030 (dark) | Anchor border |
 | `--color-foreground-primary` | #001C44 (light) / #EDEDED (dark) | Input text |
+| `--color-foreground-tertiary` | #9CA3AF (light) / #6B7280 (dark) | Placeholder text |
+| `--color-feedback-error-base` | #DC2626 (light) / #EF4444 (dark) | Error state border |
 
 ### Content & Items
 
@@ -69,7 +71,9 @@ Same color scheme as DropdownMenu content and items.
 
 | Property | Value |
 |----------|-------|
-| Anchor border-radius | `8px` |
+| Anchor border-radius (sm) | `4px` |
+| Anchor border-radius (md) | `6px` |
+| Anchor border-radius (lg) | `6px` |
 | Content border-radius | `8px` |
 | Item border-radius | `6px` |
 
@@ -103,9 +107,19 @@ Same color scheme as DropdownMenu content and items.
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
+| `size` | `"sm" \| "md" \| "lg"` | `"md"` | Input font-size and padding (matches Input sizing) |
 | `displayValue` | `(item: unknown) => string` | `undefined` | Maps value to display text |
 | `placeholder` | `string` | `undefined` | Input placeholder |
 | `modelValue` | `string` | `undefined` | Search term |
+
+### ComboboxAnchor Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `size` | `"sm" \| "md" \| "lg"` | `"md"` | Anchor height and border-radius (matches Input sizing) |
+| `error` | `boolean` | `false` | Show error state (red border and focus ring) |
+| `disabled` | `boolean` | `false` | Disabled state (muted background) |
+| `helperText` | `string` | `undefined` | Helper text displayed below the anchor |
 
 ### ComboboxItem Props
 
@@ -161,14 +175,19 @@ const filtered = computed(() =>
 
 <template>
   <MizuComboboxRoot v-model="selected">
-    <MizuComboboxAnchor class="combobox-anchor">
+    <MizuComboboxAnchor size="md">
       <MizuComboboxInput
         v-model="search"
         :display-value="(v) => v?.name ?? ''"
         placeholder="Select..."
       />
-      <MizuComboboxTrigger>▼</MizuComboboxTrigger>
+      <MizuComboboxTrigger>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M6 9l6 6 6-6" />
+        </svg>
+      </MizuComboboxTrigger>
     </MizuComboboxAnchor>
+    <!-- Use `error` and `helperText` props on MizuComboboxAnchor for validation UI -->
     <MizuComboboxPortal>
       <MizuComboboxContent position="popper" :side-offset="4">
         <MizuComboboxViewport>
@@ -182,16 +201,6 @@ const filtered = computed(() =>
     </MizuComboboxPortal>
   </MizuComboboxRoot>
 </template>
-
-<style>
-.combobox-anchor {
-  display: flex;
-  align-items: center;
-  border: 1px solid var(--color-surface-border);
-  border-radius: 8px;
-  background: var(--color-surface-base);
-}
-</style>
 ```
 
 ## Implementation Notes
@@ -204,3 +213,4 @@ const filtered = computed(() =>
 6. The `MizuComboboxEmpty` component is shown when no items match the current filter.
 7. Groups use `MizuComboboxGroup` + `MizuComboboxLabel` for accessible section headings.
 8. Use `@select.prevent` on `MizuComboboxItem` to prevent selection and closure.
+9. **Anchor styling** — `MizuComboboxAnchor` provides its own border, background, focus ring, and error/disabled states matching `MizuInput`. No consumer CSS is needed for the anchor wrapper.

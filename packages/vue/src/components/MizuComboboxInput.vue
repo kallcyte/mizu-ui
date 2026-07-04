@@ -6,6 +6,7 @@ export interface ComboboxInputProps {
   modelValue?: string;
   displayValue?: ((item: unknown) => string) | undefined;
   placeholder?: string;
+  size?: "sm" | "md" | "lg";
   asChild?: boolean;
   as?: string;
 }
@@ -14,6 +15,7 @@ const props = withDefaults(defineProps<ComboboxInputProps>(), {
   modelValue: undefined,
   displayValue: undefined,
   placeholder: undefined,
+  size: "md",
   asChild: undefined,
   as: undefined,
 });
@@ -25,7 +27,7 @@ const emit = defineEmits<{
 const attrs = useAttrs();
 
 const inputClasses = computed(() => {
-  const classes = ["mizu-combobox__input"];
+  const classes = ["mizu-combobox__input", `mizu-combobox__input--${props.size}`];
   if (attrs.class) classes.push(attrs.class as string);
   return classes.join(" ");
 });
@@ -51,21 +53,24 @@ const inputStyle = computed(() => {
 </template>
 
 <style>
+@reference "../index.css";
+
 .mizu-combobox__input {
-  all: revert;
-  width: 100%;
-  padding: 8px 12px;
-  font-size: 14px;
-  font-family: inherit;
-  line-height: 1.4;
+  @apply w-full font-[inherit] outline-none;
+  box-sizing: border-box;
+  height: 100%;
+  line-height: 1;
   color: var(--color-foreground-primary);
   background: transparent;
   border: none;
-  outline: none;
   margin: 0;
 }
 
 .mizu-combobox__input::placeholder {
-  color: var(--color-foreground-muted);
+  color: var(--color-foreground-tertiary);
 }
+
+.mizu-combobox__input--sm { @apply text-[12px]; padding: 0 8px; }
+.mizu-combobox__input--md { @apply text-[12px]; padding: 0 10px; }
+.mizu-combobox__input--lg { @apply text-[14px]; padding: 0 10px; }
 </style>

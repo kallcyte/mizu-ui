@@ -32,12 +32,11 @@ const cancelClasses = computed(() => {
 </template>
 
 <style>
+@reference "../index.css";
+
 .mizu-combobox__cancel {
   all: revert;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 4px;
+  @apply inline-flex items-center justify-center p-[6px];
   background: transparent;
   border: none;
   cursor: pointer;

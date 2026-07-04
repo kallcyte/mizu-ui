@@ -17,6 +17,30 @@ Changes that require a minor bump: adding a new component, renaming tokens, chan
 Changes that keep the patch version: renames, copy edits, styling tweaks, build config changes, favicon updates.
 
 
+## 0.15.2 (2026-07-05)
+
+Combobox style alignment, Badge/Chip consolidation, and miscellaneous fixes.
+
+### Added
+
+- **`MizuBadge` `value` prop** — numeric/text badge overlay on the parent element. The default slot now renders the parent element when the badge is positioned, enabling `<MizuBadge value="5"><MizuButton>...</MizuButton></MizuBadge>`.
+- **`MizuComboboxAnchor` new props** — `size` (`sm`/`md`/`lg`), `error`, `disabled`, `helperText`. Focus ring, border, and sizing now match `MizuInput`.
+- **`MizuComboboxInput` new prop** — `size` (`sm`/`md`/`lg`) for consistent sizing with the anchor.
+- **Combobox validation demo** — real-time form validation with watch that clears errors on input, no checkbox toggle needed.
+- **Combobox helper text** — `helperText` prop on anchor for guidance/error messages below the input.
+
+### Removed
+
+- **`MizuChip`** — absorbed into `MizuBadge`. Badge now covers standalone counts, dots, labels, and positioned overlay modes.
+
+### Changed
+
+- **`MizuCheckbox`** — fixed check sign clipping by resetting button padding (`p-0`).
+- **Combobox styling** — trigger/Cancel padding, chevron placement, focus ring, and border states all align with `MizuInput`.
+- **`CollapsibleDemo`** — MizuButton examples now use `variant="primary"` (default) instead of `variant="ghost"`.
+- **Documentation** — `badge.mdx` and `combobox.mdx` updated with new props, shape/color tables, and examples. `chip.mdx` removed. Sidebar and homepage cards synced.
+- **Version bumps** — `@mizu/vue` to `0.15.2`, root to `0.15.2`. Synced all visual version references: `Hero.astro`, `Typography.astro`, `BaseLayout.astro`, `starlight.css`, `README.md`.
+
 ## 0.15.1 (2026-07-04)
 
 Documentation overhaul — Preview/Code tabs on all demos, new Drawer component docs, and CSS bleed hardening.

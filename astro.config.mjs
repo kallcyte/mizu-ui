@@ -78,7 +78,7 @@ export default defineConfig({
             { label: "Card", slug: "components/card" },
             { label: "Checkbox", slug: "components/checkbox" },
             { label: "CheckboxGroup", slug: "components/checkbox-group" },
-            { label: "Chip", slug: "components/chip" },
+
                         { label: "Collapsible", slug: "components/collapsible" },
                         { label: "Combobox", slug: "components/combobox" },
             { label: "DashList", slug: "components/dashlist" },
