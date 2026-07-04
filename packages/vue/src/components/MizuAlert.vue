@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, useAttrs } from "vue";
+import { computed, useAttrs, ref, onUnmounted } from "vue";
 
 export interface AlertProps {
   variant?: "success" | "error" | "warning" | "info";
@@ -25,6 +25,9 @@ const slots = defineSlots<{
   default: () => unknown;
   icon: () => unknown;
 }>();
+
+const closing = ref(false);
+let closeTimer: ReturnType<typeof setTimeout> | null = null;
 
 const hasDefaultIcon = computed(() => props.defaultIcon && !slots.icon);
 const hasCustomIcon = computed(() => !!slots.icon);
@@ -69,6 +72,7 @@ const alertClasses = computed(() => {
     `mizu-alert--${props.variant}`,
   ];
 
+  if (closing.value) classes.push("mizu-alert--closing");
   if (attrs.class) classes.push(attrs.class as string);
 
   return classes.join(" ");
@@ -86,8 +90,16 @@ const role = computed(() => (props.variant === "error" ? "alert" : "status"));
 const ariaLive = computed(() => (props.variant === "error" ? "assertive" : "polite"));
 
 function handleClose() {
-  emit("close");
+  if (closing.value) return;
+  closing.value = true;
+  closeTimer = setTimeout(() => {
+    emit("close");
+  }, 200);
 }
+
+onUnmounted(() => {
+  if (closeTimer) clearTimeout(closeTimer);
+});
 </script>
 
 <template>
@@ -137,6 +149,7 @@ function handleClose() {
       type="button"
       class="mizu-alert__close"
       aria-label="Close alert"
+      :disabled="closing"
       @click="handleClose"
     >
       <svg viewBox="0 0 10 10" width="10" height="10" fill="none">
@@ -157,6 +170,15 @@ function handleClose() {
   padding: 10px 12px;
   font-size: 12px;
   line-height: 1.45;
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 200ms ease-out, transform 200ms ease-out;
+}
+
+.mizu-alert--closing {
+  opacity: 0;
+  transform: translateY(-8px);
+  pointer-events: none;
 }
 
 .mizu-alert__icon {

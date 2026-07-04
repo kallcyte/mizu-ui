@@ -1,9 +1,44 @@
 <script setup lang="ts">
 import { MizuBadge, MizuAvatar } from "@mizu/vue";
+import DemoTabs from "./DemoTabs.vue";
+
+const variantsCode = `<MizuBadge variant="primary" :count="1" />
+<MizuBadge variant="accent" :count="2" />
+<MizuBadge variant="success" :count="3" />
+<MizuBadge variant="warning" :count="4" />
+<MizuBadge variant="error" :count="5" />
+<MizuBadge variant="info" :count="6" />`;
+
+const sizesCode = `<MizuBadge size="sm" :count="5" />
+<MizuBadge size="md" :count="5" />`;
+
+const dotIndicatorCode = `<MizuBadge dot variant="success" size="sm" />
+<MizuBadge dot variant="warning" size="sm" />
+<MizuBadge dot variant="error" size="sm" />`;
+
+const countOverflowCode = `<MizuBadge :count="5" />
+<MizuBadge :count="42" />
+<MizuBadge :count="99" />
+<MizuBadge :count="150" />
+<MizuBadge :count="1000" :max="999" />`;
+
+const showZeroCode = `<MizuBadge :count="0" />
+<MizuBadge :count="0" show-zero />`;
+
+const positionedOnAvatarCode = `<div class="relative">
+  <MizuAvatar name="Jane Doe" size="lg" />
+  <MizuBadge dot variant="success" position="bottom-right" />
+</div>`;
+
+const textContentCode = `<MizuBadge variant="accent">New</MizuBadge>
+<MizuBadge variant="success">Beta</MizuBadge>
+<MizuBadge variant="error">Hot</MizuBadge>
+<MizuBadge variant="info" size="sm">v2</MizuBadge>`;
 </script>
 
 <template>
-    <div class="badge-demo">
+    <div class="badge-demo not-content">
+        <DemoTabs :code="variantsCode">
         <div class="demo-section">
             <h3>Variants</h3>
             <div class="badge-row">
@@ -33,7 +68,9 @@ import { MizuBadge, MizuAvatar } from "@mizu/vue";
                 </div>
             </div>
         </div>
+        </DemoTabs>
 
+        <DemoTabs :code="sizesCode">
         <div class="demo-section">
             <h3>Sizes</h3>
             <div class="badge-row">
@@ -47,7 +84,9 @@ import { MizuBadge, MizuAvatar } from "@mizu/vue";
                 </div>
             </div>
         </div>
+        </DemoTabs>
 
+        <DemoTabs :code="dotIndicatorCode">
         <div class="demo-section">
             <h3>Dot Indicator</h3>
             <div class="badge-row">
@@ -69,7 +108,9 @@ import { MizuBadge, MizuAvatar } from "@mizu/vue";
                 </div>
             </div>
         </div>
+        </DemoTabs>
 
+        <DemoTabs :code="countOverflowCode">
         <div class="demo-section">
             <h3>Count Overflow</h3>
             <div class="badge-row">
@@ -95,7 +136,9 @@ import { MizuBadge, MizuAvatar } from "@mizu/vue";
                 </div>
             </div>
         </div>
+        </DemoTabs>
 
+        <DemoTabs :code="showZeroCode">
         <div class="demo-section">
             <h3>Show Zero</h3>
             <div class="badge-row">
@@ -109,7 +152,9 @@ import { MizuBadge, MizuAvatar } from "@mizu/vue";
                 </div>
             </div>
         </div>
+        </DemoTabs>
 
+        <DemoTabs :code="positionedOnAvatarCode">
         <div class="demo-section">
             <h3>Positioned on Avatar</h3>
             <p class="demo-hint">Wrap the target element and badge in a relative container.</p>
@@ -128,7 +173,9 @@ import { MizuBadge, MizuAvatar } from "@mizu/vue";
                 </div>
             </div>
         </div>
+        </DemoTabs>
 
+        <DemoTabs :code="textContentCode">
         <div class="demo-section">
             <h3>Text Content</h3>
             <div class="badge-row">
@@ -150,6 +197,7 @@ import { MizuBadge, MizuAvatar } from "@mizu/vue";
                 </div>
             </div>
         </div>
+        </DemoTabs>
     </div>
 </template>
 
@@ -160,7 +208,9 @@ import { MizuBadge, MizuAvatar } from "@mizu/vue";
     flex-direction: column;
     gap: 24px;
     padding: 24px;
-    background: var(--sl-color-gray-2);
+    background: transparent;
+
+    border: 1px solid var(--color-surface-muted);
     border-radius: 8px;
 }
 

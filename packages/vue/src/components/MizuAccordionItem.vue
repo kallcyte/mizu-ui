@@ -24,8 +24,28 @@ const attrs = useAttrs();
     :disabled="disabled"
     :as-child="asChild"
     :as="as"
-    :class="attrs.class"
+    :class="['mizu-accordion__item', attrs.class].filter(Boolean).join(' ')"
   >
     <slot />
   </AccordionItem>
 </template>
+
+<style>
+.mizu-accordion__item {
+  all: revert;
+  border-bottom: 1px solid var(--color-surface-muted);
+}
+
+.mizu-accordion__item:last-child {
+  border-bottom: none;
+}
+
+.mizu-accordion--horizontal .mizu-accordion__item {
+  border-bottom: none;
+  border-right: 1px solid var(--color-surface-muted);
+}
+
+.mizu-accordion--horizontal .mizu-accordion__item:last-child {
+  border-right: none;
+}
+</style>

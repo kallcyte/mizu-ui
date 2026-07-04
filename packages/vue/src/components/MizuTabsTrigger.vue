@@ -69,7 +69,7 @@ const triggerClasses = computed(() => {
   left: 0;
   right: 0;
   height: 2px;
-  background-color: var(--color-brand-accent);
+  background-color: var(--mizu-tabs-color, var(--color-brand-primary));
 }
 
 .mizu-tabs__list[data-orientation="vertical"] .mizu-tabs__trigger[data-state="active"]::after {
@@ -122,8 +122,8 @@ const triggerClasses = computed(() => {
 }
 
 .mizu-tabs__list[data-variant="button"] .mizu-tabs__trigger[data-state="active"] {
-  color: var(--color-foreground-inverse);
-  background-color: var(--color-brand-accent);
+  color: #fff;
+  background-color: var(--mizu-tabs-color, var(--color-brand-primary));
   border-color: transparent;
   box-shadow: none;
 }

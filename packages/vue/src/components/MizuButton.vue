@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, useAttrs } from "vue";
+import { computed, ref, useAttrs } from "vue";
 
 export interface ButtonProps {
   variant?: "primary" | "accent" | "ghost" | "outline" | "success" | "warning" | "error" | "info" | "outline-success" | "outline-warning" | "outline-error" | "outline-info";
@@ -7,6 +7,12 @@ export interface ButtonProps {
   disabled?: boolean;
   loading?: boolean;
   type?: "button" | "submit" | "reset";
+  /** Render button full width */
+  block?: boolean;
+  /** Equal padding on all sides (icon-only mode) */
+  square?: boolean;
+  /** Auto-set loading=true while @click handler's returned promise is pending */
+  loadingAuto?: boolean;
 }
 
 const props = withDefaults(defineProps<ButtonProps>(), {
@@ -15,6 +21,9 @@ const props = withDefaults(defineProps<ButtonProps>(), {
   disabled: false,
   loading: false,
   type: "button",
+  block: false,
+  square: false,
+  loadingAuto: false,
 });
 
 const emit = defineEmits<{
@@ -34,8 +43,8 @@ const hasTrailingIcon = computed(() => !!slots["trailing-icon"]);
 const hasDefaultSlot = computed(() => !!slots.default);
 
 const variantColors: Record<string, { bg: string; text: string; border: string }> = {
-  primary: { bg: "var(--color-brand-primary)", text: "var(--color-foreground-inverse)", border: "transparent" },
-  accent: { bg: "var(--color-brand-accent)", text: "var(--color-foreground-inverse)", border: "transparent" },
+  primary: { bg: "var(--color-brand-primary)", text: "#fff", border: "transparent" },
+  accent: { bg: "var(--color-brand-accent)", text: "#fff", border: "transparent" },
   success: { bg: "var(--color-feedback-success-base)", text: "var(--color-foreground-inverse)", border: "transparent" },
   warning: { bg: "var(--color-feedback-warning-base)", text: "var(--color-foreground-inverse)", border: "transparent" },
   error: { bg: "var(--color-feedback-error-base)", text: "var(--color-foreground-inverse)", border: "transparent" },
@@ -56,6 +65,9 @@ const hasBorder = computed(() => {
 
 const spinnerSizeClass = computed(() => `mizu-spinner--${props.size}`);
 
+const autoLoading = ref(false);
+const isLoading = computed(() => props.loading || autoLoading.value);
+
 const buttonClasses = computed(() => {
   const classes = [
     "mizu-button",
@@ -64,17 +76,27 @@ const buttonClasses = computed(() => {
   ];
 
   if (props.disabled) classes.push("mizu-button--disabled");
-  if (props.loading) classes.push("mizu-button--loading");
+  if (isLoading.value) classes.push("mizu-button--loading");
   if (hasBorder.value) classes.push("mizu-button--bordered");
+  if (props.block) classes.push("mizu-button--block");
+  if (props.square) classes.push("mizu-button--square");
 
   if (attrs.class) classes.push(attrs.class as string);
 
   return classes.join(" ");
 });
 
-function handleClick(event: MouseEvent) {
-  if (!props.disabled && !props.loading) {
-    emit("click", event);
+async function handleClick(event: MouseEvent) {
+  if (!props.disabled && !isLoading.value) {
+    const result = emit("click", event);
+    if (props.loadingAuto && (result as unknown) instanceof Promise) {
+      autoLoading.value = true;
+      try {
+        await result;
+      } finally {
+        autoLoading.value = false;
+      }
+    }
   }
 }
 </script>
@@ -82,9 +104,9 @@ function handleClick(event: MouseEvent) {
 <template>
   <button
     :type="type"
-    :disabled="disabled || loading"
+    :disabled="disabled || isLoading"
     :aria-disabled="disabled"
-    :aria-busy="loading"
+    :aria-busy="isLoading"
     :class="buttonClasses"
     :style="{
       '--mizu-btn-bg': variantColor.bg,
@@ -93,7 +115,7 @@ function handleClick(event: MouseEvent) {
     }"
     @click="handleClick"
   >
-    <template v-if="loading">
+    <template v-if="isLoading">
       <svg
         :class="['mizu-spinner', spinnerSizeClass]"
         viewBox="0 0 24 24"
@@ -186,6 +208,22 @@ function handleClick(event: MouseEvent) {
 .mizu-outline:active:not(:disabled),
 [class*="mizu-outline-"]:active:not(:disabled) {
   box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Block (full width) */
+.mizu-button--block {
+  @apply w-full;
+}
+
+/* Square (equal padding, icon-only mode) */
+.mizu-button--square.mizu-button--sm {
+  @apply p-[8px];
+}
+.mizu-button--square.mizu-button--md {
+  @apply p-[10px];
+}
+.mizu-button--square.mizu-button--lg {
+  @apply p-[10px];
 }
 
 /* Loading state */

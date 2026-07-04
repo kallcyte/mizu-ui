@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import { MizuButton } from "@mizu/vue";
+import DemoTabs from "./DemoTabs.vue";
 import {
     Plus,
     ArrowRight,
@@ -21,22 +22,93 @@ const handleClick = () => {
         loading.value = false;
     }, 2000);
 };
+
+const variantsCode = `<div class="button-row">
+  <MizuButton variant="primary">Primary</MizuButton>
+  <MizuButton variant="accent">Accent</MizuButton>
+  <MizuButton variant="ghost">Ghost</MizuButton>
+  <MizuButton variant="outline">Outline</MizuButton>
+</div>`;
+
+const sizesCode = `<div class="button-row">
+  <MizuButton variant="primary" size="sm">Small</MizuButton>
+  <MizuButton variant="primary" size="md">Medium</MizuButton>
+  <MizuButton variant="primary" size="lg">Large</MizuButton>
+</div>`;
+
+const statesCode = `<div class="button-row">
+  <MizuButton variant="primary" disabled>Disabled</MizuButton>
+  <MizuButton
+    variant="primary"
+    :loading="loading"
+    @click="handleClick"
+  >
+    {{ loading ? "Loading..." : "Click me" }}
+  </MizuButton>
+</div>`;
+
+const iconsCode = `<MizuButton variant="primary">
+  <template #leading-icon>
+    <Plus />
+  </template>
+  Add Item
+</MizuButton>
+<MizuButton variant="accent">
+  Save
+  <template #trailing-icon>
+    <ArrowRight />
+  </template>
+</MizuButton>`;
+
+const feedbackCode = `<MizuButton variant="success">
+  <template #leading-icon><CheckCircle /></template>
+  Success
+</MizuButton>
+<MizuButton variant="warning">
+  <template #leading-icon><AlertTriangle /></template>
+  Warning
+</MizuButton>
+<MizuButton variant="outline-error">
+  <template #leading-icon><XCircle /></template>
+  Error
+</MizuButton>`;
+
+const combinationsCode = `<!-- Form Actions -->
+<MizuButton variant="ghost">
+  <template #leading-icon><X /></template>
+  Cancel
+</MizuButton>
+<MizuButton variant="primary">
+  <template #leading-icon><Check /></template>
+  Submit
+</MizuButton>
+
+<!-- Icon Only -->
+<MizuButton variant="ghost" size="sm">
+  <template #leading-icon><Plus /></template>
+</MizuButton>
+<MizuButton variant="primary" size="lg">
+  <template #leading-icon><Plus /></template>
+</MizuButton>`;
 </script>
 
 <template>
-    <div class="button-demo">
+    <div class="button-demo not-content">
         <div class="demo-section">
             <h3>Variants</h3>
+            <DemoTabs :code="variantsCode">
             <div class="button-row">
                 <MizuButton variant="primary">Primary</MizuButton>
                 <MizuButton variant="accent">Accent</MizuButton>
                 <MizuButton variant="ghost">Ghost</MizuButton>
                 <MizuButton variant="outline">Outline</MizuButton>
             </div>
+            </DemoTabs>
         </div>
 
         <div class="demo-section">
             <h3>Sizes</h3>
+            <DemoTabs :code="sizesCode">
             <div class="button-row">
                 <MizuButton variant="primary" size="sm"
                     >Small</MizuButton
@@ -48,10 +120,12 @@ const handleClick = () => {
                     >Large</MizuButton
                 >
             </div>
+            </DemoTabs>
         </div>
 
         <div class="demo-section">
             <h3>States</h3>
+            <DemoTabs :code="statesCode">
             <div class="button-row">
                 <MizuButton variant="primary" disabled
                     >Disabled</MizuButton
@@ -64,10 +138,12 @@ const handleClick = () => {
                     {{ loading ? "Loading..." : "Click me" }}
                 </MizuButton>
             </div>
+            </DemoTabs>
         </div>
 
         <div class="demo-section">
             <h3>With Icons</h3>
+            <DemoTabs :code="iconsCode">
             <div class="button-row">
                 <MizuButton variant="primary">
                     <template #leading-icon>
@@ -82,10 +158,12 @@ const handleClick = () => {
                     </template>
                 </MizuButton>
             </div>
+            </DemoTabs>
         </div>
 
         <div class="demo-section">
             <h3>Feedback</h3>
+            <DemoTabs :code="feedbackCode">
             <div class="button-row">
                 <MizuButton variant="success">
                     <template #leading-icon>
@@ -138,10 +216,12 @@ const handleClick = () => {
                     Info
                 </MizuButton>
             </div>
+            </DemoTabs>
         </div>
 
         <div class="demo-section">
             <h3>Combinations</h3>
+            <DemoTabs :code="combinationsCode">
 
             <div class="combo-group">
                 <span class="combo-label">Form Actions</span>
@@ -209,6 +289,7 @@ const handleClick = () => {
                     </MizuButton>
                 </div>
             </div>
+            </DemoTabs>
         </div>
     </div>
 </template>
@@ -219,9 +300,8 @@ const handleClick = () => {
     display: flex;
     flex-direction: column;
     gap: 24px;
-    padding: 24px;
-    background: var(--sl-color-gray-2);
-    border-radius: 8px;
+    padding: 0;
+    background: transparent;
 }
 
 .button-demo :deep(*) {

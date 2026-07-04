@@ -2,12 +2,15 @@
 import { computed, useAttrs } from "vue";
 import { TabsList } from "reka-ui";
 
+export type TabsColor = "primary" | "accent" | "error" | "success" | "warning" | "info" | "neutral";
+
 export interface TabsListProps {
   loop?: boolean;
   asChild?: boolean;
   as?: string;
   variant?: "underline" | "button";
   size?: "sm" | "md" | "lg";
+  color?: TabsColor;
 }
 
 const props = withDefaults(defineProps<TabsListProps>(), {
@@ -16,6 +19,7 @@ const props = withDefaults(defineProps<TabsListProps>(), {
   as: undefined,
   variant: "underline",
   size: "md",
+  color: "primary",
 });
 
 const attrs = useAttrs();
@@ -32,6 +36,7 @@ const listClasses = computed(() => {
     :class="listClasses"
     :data-variant="variant"
     :data-size="size"
+    :data-color="color"
     :loop="loop"
     :as-child="asChild"
     :as="as"
@@ -79,4 +84,13 @@ const listClasses = computed(() => {
   border-right: none;
   align-items: stretch;
 }
+
+/* Color variants */
+.mizu-tabs__list[data-color="primary"] { --mizu-tabs-color: var(--color-brand-primary); }
+.mizu-tabs__list[data-color="accent"] { --mizu-tabs-color: var(--color-brand-accent); }
+.mizu-tabs__list[data-color="error"] { --mizu-tabs-color: var(--color-feedback-error-base); }
+.mizu-tabs__list[data-color="success"] { --mizu-tabs-color: var(--color-feedback-success-base); }
+.mizu-tabs__list[data-color="warning"] { --mizu-tabs-color: var(--color-feedback-warning-base); }
+.mizu-tabs__list[data-color="info"] { --mizu-tabs-color: var(--color-feedback-info-base); }
+.mizu-tabs__list[data-color="neutral"] { --mizu-tabs-color: var(--color-brand-neutral); }
 </style>

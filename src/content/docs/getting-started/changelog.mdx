@@ -17,6 +17,44 @@ Changes that require a minor bump: adding a new component, renaming tokens, chan
 Changes that keep the patch version: renames, copy edits, styling tweaks, build config changes, favicon updates.
 
 
+## 0.15.1 (2026-07-04)
+
+Documentation overhaul — Preview/Code tabs on all demos, new Drawer component docs, and CSS bleed hardening.
+
+### Added
+
+- **`MizuDrawer`** — new compound component (11 sub-components). Edge-mounted slide-in panel for navigation, filters, and bottom sheets. Supports 4 sides (`left`/`right`/`top`/`bottom`), 5 sizes (`sm`/`md`/`lg`/`xl`/`full`), non-dismissible mode (`dismissible` prop), and per-side slide animations. Built on Reka UI Dialog.
+- **`DemoTabs`** — reusable demo wrapper providing Preview/Code tabs with Shiki syntax highlighting and a copy button. Applied to all 43 demo components for consistent in-page code visibility.
+- **Documentation** — new `drawer.mdx` docs page with full anatomy, composition tree, size specs, transitions, accessibility, and API reference for all 11 sub-components.
+
+### Changed
+
+- **Accordion separator** — switched from `:not(:last-child)` to inline `border-bottom` on the item with `:last-child` override, avoiding interference from `all: revert`.
+- **Starlight CSS bleed prevention** — added `not-content` class to `DemoTabs` code wrapper, all demo root elements, and `AlertDialogDemo`. Added explicit `<code>` CSS reset in DemoTabs to prevent `.sl-markdown-content code` bleed into Shiki-highlighted output.
+- **DemoTabs tab size** — changed `MizuTabsList` size from `sm` to `md` for better visual balance.
+- **SKILL.md** — added `not-content` class convention for MDX-level bleed prevention, Reka UI `all: revert` warning for content elements.
+- **Version bumps** — `@mizu/vue` to `0.15.1`, root to `0.15.1`. Synced all visual version references: `Hero.astro`, `Typography.astro`, `BaseLayout.astro`, `starlight.css`, `README.md`.
+
+## 0.15.0 (2026-07-04)
+
+Nuxt UI v4 feature adoption — Iteration A (Button + Dialog enhancements) and Iteration B (5 new simple components).
+
+### Added
+
+- **`MizuButton` new props** — `block` (full width), `square` (equal padding for icon-only mode), `loadingAuto` (auto-detect async click handlers and show spinner while promise is pending). Inspired by Nuxt UI `UButton`.
+- **`MizuDialogContent` new props** — `fullscreen` (full viewport dialog), `dismissible` (prevent close on outside-click/Escape, auto-hides close button via provide/inject), `scrollable` (90vh overflow-y auto), `transition` (disable animations), `size` (sm/md/lg/xl width variants). Inspired by Nuxt UI `UModal`.
+- **`MizuDialogOverlay` new prop** — `transition` (disable fade animation).
+- **`MizuChip`** — new component. Compact status indicator for counts, dots, or labels. Supports standalone and positioned overlay modes. 6 color variants, 2 sizes.
+- **`MizuKbd`** — new component. Displays keyboard shortcuts (`⌘K`, `Ctrl+S`) as styled `<kbd>` elements with automatic `+` separators for multi-key combos.
+- **`MizuAvatarGroup`** — new component. Stacked avatar layout with configurable overlap and `+N` overflow indicator. Accepts `items` array with `max` prop.
+- **`MizuEmpty`** — new component. Empty state placeholder for data displays with icon, title, description, and action slots.
+- **`MizuCheckboxGroup`** — new component. Fieldset-based checkbox group with shared `v-model` array state, horizontal/vertical orientation, legend, and per-option disabled support.
+- **Documentation** — 5 new MDX pages (`chip.mdx`, `kbd.mdx`, `avatar-group.mdx`, `empty.mdx`, `checkbox-group.mdx`) with anatomy, props tables, examples, and size specs. 5 new demo components.
+
+### Changed
+
+- **Version bumps** — `@mizu/vue` to `0.15.0`, root to `0.15.0`.
+
 ## 0.14.0 (2026-07-03)
 
 Color token revision: swapped primary/accent roles, refined color values, and added new nexus brand palette.

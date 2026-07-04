@@ -1,6 +1,58 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import { MizuRadio } from "@mizu/vue";
+import DemoTabs from "./DemoTabs.vue";
+
+const basicCode = `<MizuRadio
+  v-model="selected"
+  :items="[
+    { value: 'option-1', label: 'First option' },
+    { value: 'option-2', label: 'Second option' },
+    { value: 'option-3', label: 'Third option' },
+  ]"
+  name="basic"
+/>`;
+
+const sizesCode = `<MizuRadio
+  v-model="selected"
+  :items="sizeOptions"
+  size="md"
+  label="Select size"
+  name="sizes"
+/>`;
+
+const labelCode = `<MizuRadio
+  v-model="selected"
+  :items="colorOptions"
+  label="Favorite color"
+  name="color"
+/>`;
+
+const disabledCode = `<MizuRadio
+  v-model="selected"
+  :items="[
+    { value: 'normal', label: 'Normal option' },
+    { value: 'disabled-item', label: 'Disabled option', disabled: true },
+    { value: 'another', label: 'Another option' },
+  ]"
+  label="Choose an option"
+  name="disabled"
+/>`;
+
+const horizontalCode = `<MizuRadio
+  v-model="selected"
+  :items="basicOptions"
+  orientation="horizontal"
+  name="horizontal"
+/>`;
+
+const formCode = `<MizuRadio
+  v-model="selected"
+  :items="fruitOptions"
+  label="Select a fruit"
+  name="fruit"
+  required
+/>`;
 
 const sizeOptions = [
   { value: "sm", label: "Small" },
@@ -41,19 +93,22 @@ const horizontalSelected = ref("option-1");
 </script>
 
 <template>
-  <div class="radio-demo">
+  <div class="radio-demo not-content">
     <div class="demo-section">
       <h3>Basic</h3>
+      <DemoTabs :code="basicCode">
       <MizuRadio
         v-model="basicSelected"
         :items="basicOptions"
         name="basic"
       />
       <p class="demo-text">Selected: <code>{{ basicSelected }}</code></p>
+      </DemoTabs>
     </div>
 
     <div class="demo-section">
       <h3>Sizes</h3>
+      <DemoTabs :code="sizesCode">
       <MizuRadio
         v-model="sizeSelected"
         :items="sizeOptions"
@@ -61,30 +116,36 @@ const horizontalSelected = ref("option-1");
         label="Select size"
         name="sizes"
       />
+      </DemoTabs>
     </div>
 
     <div class="demo-section">
       <h3>With Label</h3>
+      <DemoTabs :code="labelCode">
       <MizuRadio
         v-model="colorSelected"
         :items="colorOptions"
         label="Favorite color"
         name="color"
       />
+      </DemoTabs>
     </div>
 
     <div class="demo-section">
       <h3>Disabled Item</h3>
+      <DemoTabs :code="disabledCode">
       <MizuRadio
         v-model="disabledSelected"
         :items="disabledOptions"
         label="Choose an option"
         name="disabled-test"
       />
+      </DemoTabs>
     </div>
 
     <div class="demo-section">
       <h3>Horizontal Orientation</h3>
+      <DemoTabs :code="horizontalCode">
       <MizuRadio
         v-model="horizontalSelected"
         :items="basicOptions"
@@ -92,10 +153,12 @@ const horizontalSelected = ref("option-1");
         name="horizontal"
       />
       <p class="demo-text">Selected: <code>{{ horizontalSelected }}</code></p>
+      </DemoTabs>
     </div>
 
     <div class="demo-section">
       <h3>Form Example</h3>
+      <DemoTabs :code="formCode">
       <MizuRadio
         v-model="fruitSelected"
         :items="fruitOptions"
@@ -104,6 +167,7 @@ const horizontalSelected = ref("option-1");
         required
       />
       <p class="demo-text">Selected: <code>{{ fruitSelected }}</code></p>
+      </DemoTabs>
     </div>
   </div>
 </template>
@@ -115,7 +179,8 @@ const horizontalSelected = ref("option-1");
   flex-direction: column;
   gap: 24px;
   padding: 24px;
-  background: var(--sl-color-gray-2);
+  background: transparent;
+  border: 1px solid var(--color-surface-muted);
   border-radius: 8px;
 }
 

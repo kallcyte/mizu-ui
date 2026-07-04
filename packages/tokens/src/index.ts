@@ -50,7 +50,7 @@ export const COLOR_SURFACE_SUBTLE = "#F9FAFB" as const;
 /** Tertiary surface for table rows and disabled zones. */
 export const COLOR_SURFACE_MUTED = "#F3F4F6" as const;
 /** Default high-emphasis text for titles and body copy. */
-export const COLOR_FOREGROUND_PRIMARY = "#1B1B1D" as const;
+export const COLOR_FOREGROUND_PRIMARY = "#001C44" as const;
 /** Supporting text for descriptions and metadata. */
 export const COLOR_FOREGROUND_SECONDARY = "#4B5563" as const;
 /** Low-emphasis text for placeholders and disabled content. */

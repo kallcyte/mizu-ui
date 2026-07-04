@@ -135,7 +135,7 @@ const switchClasses = computed(() => {
 .mizu-switch--lg .mizu-switch__thumb { @apply w-[24px] h-[24px]; }
 
 .mizu-switch--checked .mizu-switch__thumb {
-  background-color: var(--color-foreground-inverse);
+  background-color: #fff;
 }
 
 .mizu-switch__label {

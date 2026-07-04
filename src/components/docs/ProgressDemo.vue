@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import { MizuProgress } from "@mizu/vue";
+import DemoTabs from "./DemoTabs.vue";
 
 const fileUpload = ref(67);
 const storageQuota = ref(42);
@@ -16,27 +17,86 @@ function reset() {
     if (live.value >= 100) clearInterval(tick);
   }, 200);
 }
+
+const basicCode = `<MizuProgress :model-value="50" />`;
+
+const withLabelCode = `<MizuProgress :model-value="67" show-label />`;
+
+const sizesCode = `<MizuProgress :model-value="40" size="sm" />
+<MizuProgress :model-value="40" size="md" />
+<MizuProgress :model-value="40" size="lg" />`;
+
+const variantsCode = `<MizuProgress :model-value="60" variant="primary" />
+<MizuProgress :model-value="60" variant="accent" />
+<MizuProgress :model-value="60" variant="success" />
+<MizuProgress :model-value="60" variant="warning" />
+<MizuProgress :model-value="60" variant="error" />
+<MizuProgress :model-value="60" variant="info" />`;
+
+const completeStateCode = `<MizuProgress :model-value="100" variant="primary" show-label />
+<MizuProgress :model-value="100" variant="success" show-label />`;
+
+const indeterminateCode = `<MizuProgress :model-value="null" />
+<MizuProgress :model-value="null" variant="accent" />`;
+
+const storageQuotaCode = `<MizuProgress
+  :model-value="42"
+  :max="100"
+  variant="primary"
+  size="lg"
+  show-label
+  :label="\`42 GB of 100 GB used\`"
+/>`;
+
+const fileDownloadCode = `<MizuProgress
+  :model-value="85"
+  :max="100"
+  variant="info"
+  show-label
+/>`;
+
+const serverLoadCode = `<MizuProgress
+  :model-value="30"
+  :max="100"
+  variant="warning"
+  show-label
+/>`;
+
+const skillProgressCode = `<MizuProgress :model-value="35" variant="primary" show-label />`;
+
+const customMaxCode = `<MizuProgress :model-value="7" :max="10" variant="success" show-label />`;
+
+const skillChecklistCode = `<MizuProgress :model-value="100" size="sm" variant="success" />
+<MizuProgress :model-value="80" size="sm" variant="primary" />
+<MizuProgress :model-value="65" size="sm" variant="primary" />`;
 </script>
 
 <template>
-  <div class="progress-demo">
+  <div class="progress-demo not-content">
+    <DemoTabs :code="basicCode">
     <div class="demo-section">
       <h3>Basic</h3>
       <MizuProgress :model-value="50" />
     </div>
+    </DemoTabs>
 
+    <DemoTabs :code="withLabelCode">
     <div class="demo-section">
       <h3>With Label</h3>
       <MizuProgress :model-value="fileUpload" show-label />
     </div>
+    </DemoTabs>
 
+    <DemoTabs :code="sizesCode">
     <div class="demo-section">
       <h3>Sizes</h3>
       <MizuProgress :model-value="40" size="sm" />
       <MizuProgress :model-value="40" size="md" />
       <MizuProgress :model-value="40" size="lg" />
     </div>
+    </DemoTabs>
 
+    <DemoTabs :code="variantsCode">
     <div class="demo-section">
       <h3>Variants</h3>
       <MizuProgress :model-value="60" variant="primary" />
@@ -46,19 +106,25 @@ function reset() {
       <MizuProgress :model-value="60" variant="error" />
       <MizuProgress :model-value="60" variant="info" />
     </div>
+    </DemoTabs>
 
+    <DemoTabs :code="completeStateCode">
     <div class="demo-section">
       <h3>Complete State</h3>
       <MizuProgress :model-value="taskComplete" variant="primary" show-label />
       <MizuProgress :model-value="taskComplete" variant="success" show-label />
     </div>
+    </DemoTabs>
 
+    <DemoTabs :code="indeterminateCode">
     <div class="demo-section">
       <h3>Indeterminate</h3>
       <MizuProgress :model-value="null" />
       <MizuProgress :model-value="null" variant="accent" />
     </div>
+    </DemoTabs>
 
+    <DemoTabs :code="storageQuotaCode">
     <div class="demo-section">
       <h3>Storage Quota</h3>
       <MizuProgress
@@ -70,7 +136,9 @@ function reset() {
         :label="`${storageQuota} GB of 100 GB used`"
       />
     </div>
+    </DemoTabs>
 
+    <DemoTabs :code="fileDownloadCode">
     <div class="demo-section">
       <h3>File Download</h3>
       <MizuProgress
@@ -80,7 +148,9 @@ function reset() {
         show-label
       />
     </div>
+    </DemoTabs>
 
+    <DemoTabs :code="serverLoadCode">
     <div class="demo-section">
       <h3>Server Load (Live)</h3>
       <MizuProgress
@@ -93,18 +163,24 @@ function reset() {
       <button class="reset-button" @click="serverLoad = 75">Set 75%</button>
       <button class="reset-button" @click="serverLoad = 95">Set 95%</button>
     </div>
+    </DemoTabs>
 
+    <DemoTabs :code="skillProgressCode">
     <div class="demo-section">
       <h3>Skill Progress (Animated)</h3>
       <MizuProgress :model-value="live" variant="primary" show-label />
       <button class="reset-button" @click="reset">Replay</button>
     </div>
+    </DemoTabs>
 
+    <DemoTabs :code="customMaxCode">
     <div class="demo-section">
       <h3>With Custom max</h3>
       <MizuProgress :model-value="7" :max="10" variant="success" show-label />
     </div>
+    </DemoTabs>
 
+    <DemoTabs :code="skillChecklistCode">
     <div class="demo-section">
       <h3>Skill Checklist</h3>
       <div class="checklist">
@@ -130,6 +206,7 @@ function reset() {
         </div>
       </div>
     </div>
+    </DemoTabs>
   </div>
 </template>
 
@@ -141,7 +218,9 @@ function reset() {
   flex-direction: column;
   gap: 24px;
   padding: 16px;
-  background: var(--sl-color-gray-2);
+  background: transparent;
+
+  border: 1px solid var(--color-surface-muted);
   border-radius: 8px;
 }
 .progress-demo :deep(*) { margin: 0; }

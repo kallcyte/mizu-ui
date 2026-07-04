@@ -1,15 +1,69 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import { MizuAlert } from "@mizu/vue";
+import DemoTabs from "./DemoTabs.vue";
 
 const closableVisible = ref(true);
 const successVisible = ref(true);
 const warningVisible = ref(true);
 const infoVisible = ref(true);
+
+const variantsCode = `<MizuAlert variant="success">
+  Your changes have been saved successfully.
+</MizuAlert>
+<MizuAlert variant="error">
+  We were unable to process your request. Please try again.
+</MizuAlert>
+<MizuAlert variant="warning">
+  Your subscription will expire in 3 days.
+</MizuAlert>
+<MizuAlert variant="info">
+  A new version of the application is available.
+</MizuAlert>`;
+
+const withTitleCode = `<MizuAlert variant="success" title="Payment received">
+  Your invoice #1234 has been paid in full.
+</MizuAlert>
+<MizuAlert variant="error" title="Connection lost">
+  Unable to reach the server.
+</MizuAlert>`;
+
+const closableCode = `<MizuAlert
+  variant="info"
+  title="New feature available"
+  closable
+  @close="closableVisible = false"
+>
+  Try our new dashboard layout.
+</MizuAlert>`;
+
+const withoutIconCode = `<MizuAlert variant="success" :default-icon="false">
+  Compact alert with no icon.
+</MizuAlert>`;
+
+const withCustomIconCode = `<MizuAlert variant="success">
+  <template #icon>
+    <svg viewBox="0 0 16 16" width="16" height="16" fill="none">
+      <path d="M8 1L10 6H15L11 9.5L12.5 15L8 11.5L3.5 15L5 9.5L1 6H6L8 1Z" fill="currentColor" />
+    </svg>
+  </template>
+  Featured highlight with a custom star icon.
+</MizuAlert>`;
+
+const closableAllVariantsCode = `<MizuAlert variant="success" closable @close="successVisible = false">
+  Success dismissible.
+</MizuAlert>
+<MizuAlert variant="warning" closable @close="warningVisible = false">
+  Warning dismissible.
+</MizuAlert>
+<MizuAlert variant="info" closable @close="infoVisible = false">
+  Info dismissible.
+</MizuAlert>`;
 </script>
 
 <template>
-    <div class="alert-demo">
+    <div class="alert-demo not-content">
+        <DemoTabs :code="variantsCode">
         <div class="demo-section">
             <h3>Variants</h3>
             <div class="alert-stack">
@@ -27,7 +81,9 @@ const infoVisible = ref(true);
                 </MizuAlert>
             </div>
         </div>
+        </DemoTabs>
 
+        <DemoTabs :code="withTitleCode">
         <div class="demo-section">
             <h3>With Title</h3>
             <div class="alert-stack">
@@ -45,7 +101,9 @@ const infoVisible = ref(true);
                 </MizuAlert>
             </div>
         </div>
+        </DemoTabs>
 
+        <DemoTabs :code="closableCode">
         <div class="demo-section">
             <h3>Closable</h3>
             <div class="alert-stack">
@@ -68,7 +126,9 @@ const infoVisible = ref(true);
                 </MizuButton>
             </div>
         </div>
+        </DemoTabs>
 
+        <DemoTabs :code="withoutIconCode">
         <div class="demo-section">
             <h3>Without Icon</h3>
             <div class="alert-stack">
@@ -80,7 +140,9 @@ const infoVisible = ref(true);
                 </MizuAlert>
             </div>
         </div>
+        </DemoTabs>
 
+        <DemoTabs :code="withCustomIconCode">
         <div class="demo-section">
             <h3>With Custom Icon</h3>
             <div class="alert-stack">
@@ -102,7 +164,9 @@ const infoVisible = ref(true);
                 </MizuAlert>
             </div>
         </div>
+        </DemoTabs>
 
+        <DemoTabs :code="closableAllVariantsCode">
         <div class="demo-section">
             <h3>Closable All Variants</h3>
             <div class="alert-stack">
@@ -140,6 +204,7 @@ const infoVisible = ref(true);
                 </MizuButton>
             </div>
         </div>
+        </DemoTabs>
     </div>
 </template>
 
@@ -150,7 +215,9 @@ const infoVisible = ref(true);
     flex-direction: column;
     gap: 24px;
     padding: 24px;
-    background: var(--sl-color-gray-2);
+    background: transparent;
+
+    border: 1px solid var(--color-surface-muted);
     border-radius: 8px;
 }
 

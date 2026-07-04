@@ -11,15 +11,240 @@ import {
   MizuInput,
   MizuAvatar,
 } from "@mizu/vue";
+import DemoTabs from "./DemoTabs.vue";
+
+const basicCode = `<MizuPopoverRoot>
+  <MizuPopoverTrigger>
+    <MizuButton variant="primary" size="sm">Open popover</MizuButton>
+  </MizuPopoverTrigger>
+  <MizuPopoverPortal>
+    <MizuPopoverContent>
+      <div class="popover-title">About this feature</div>
+      <div class="popover-body">Popovers are great for showing additional content.</div>
+    </MizuPopoverContent>
+  </MizuPopoverPortal>
+</MizuPopoverRoot>`;
+
+const arrowCode = `<MizuPopoverRoot>
+  <MizuPopoverTrigger>
+    <MizuButton variant="secondary" size="sm">Show details</MizuButton>
+  </MizuPopoverTrigger>
+  <MizuPopoverPortal>
+    <MizuPopoverContent side="bottom" :side-offset="10">
+      <div class="popover-title">Pro tip</div>
+      <div class="popover-body">Use the arrow to indicate which element the popover is anchored to.</div>
+      <MizuPopoverArrow />
+    </MizuPopoverContent>
+  </MizuPopoverPortal>
+</MizuPopoverRoot>`;
+
+const placementsCode = `<MizuPopoverRoot>
+  <MizuPopoverTrigger>
+    <MizuButton variant="secondary" size="sm">Top</MizuButton>
+  </MizuPopoverTrigger>
+  <MizuPopoverPortal>
+    <MizuPopoverContent side="top">
+      <div class="popover-body">Popover on top</div>
+      <MizuPopoverArrow />
+    </MizuPopoverContent>
+  </MizuPopoverPortal>
+</MizuPopoverRoot>
+
+<MizuPopoverRoot>
+  <MizuPopoverTrigger>
+    <MizuButton variant="secondary" size="sm">Right</MizuButton>
+  </MizuPopoverTrigger>
+  <MizuPopoverPortal>
+    <MizuPopoverContent side="right">
+      <div class="popover-body">Popover on right</div>
+      <MizuPopoverArrow />
+    </MizuPopoverContent>
+  </MizuPopoverPortal>
+</MizuPopoverRoot>`;
+
+const alignmentCode = `<MizuPopoverRoot>
+  <MizuPopoverTrigger>
+    <MizuButton variant="secondary" size="sm">Start</MizuButton>
+  </MizuPopoverTrigger>
+  <MizuPopoverPortal>
+    <MizuPopoverContent side="bottom" align="start">
+      <div class="popover-body">Aligned to start</div>
+      <MizuPopoverArrow />
+    </MizuPopoverContent>
+  </MizuPopoverPortal>
+</MizuPopoverRoot>
+
+<MizuPopoverRoot>
+  <MizuPopoverTrigger>
+    <MizuButton variant="secondary" size="sm">Center</MizuButton>
+  </MizuPopoverTrigger>
+  <MizuPopoverPortal>
+    <MizuPopoverContent side="bottom" align="center">
+      <div class="popover-body">Aligned to center</div>
+      <MizuPopoverArrow />
+    </MizuPopoverContent>
+  </MizuPopoverPortal>
+</MizuPopoverRoot>`;
+
+const formCode = `<MizuPopoverRoot>
+  <MizuPopoverTrigger>
+    <MizuButton variant="secondary" size="sm">Settings</MizuButton>
+  </MizuPopoverTrigger>
+  <MizuPopoverPortal>
+    <MizuPopoverContent side="bottom" align="start" :side-offset="6">
+      <div class="popover-title">Filter options</div>
+      <div class="form-stack">
+        <label class="form-field">
+          <span class="form-label">Search</span>
+          <MizuInput size="sm" placeholder="Type to search..." />
+        </label>
+        <label class="form-field">
+          <span class="form-label">Sort by</span>
+          <select class="form-select">
+            <option>Newest first</option>
+            <option>Oldest first</option>
+          </select>
+        </label>
+        <div class="form-actions">
+          <MizuPopoverClose>
+            <MizuButton variant="ghost" size="sm">Cancel</MizuButton>
+          </MizuPopoverClose>
+          <MizuPopoverClose>
+            <MizuButton variant="primary" size="sm">Apply</MizuButton>
+          </MizuPopoverClose>
+        </div>
+      </div>
+    </MizuPopoverContent>
+  </MizuPopoverPortal>
+</MizuPopoverRoot>`;
+
+const closeButtonCode = `<MizuPopoverRoot>
+  <MizuPopoverTrigger>
+    <MizuButton variant="secondary" size="sm">View announcement</MizuButton>
+  </MizuPopoverTrigger>
+  <MizuPopoverPortal>
+    <MizuPopoverContent side="bottom" :side-offset="10">
+      <div class="popover-header">
+        <div class="popover-title">New Feature Available</div>
+        <MizuPopoverClose aria-label="Close">
+          <!-- X icon -->
+        </MizuPopoverClose>
+      </div>
+      <div class="popover-body">We've just released batch updates.</div>
+      <MizuPopoverArrow />
+    </MizuPopoverContent>
+  </MizuPopoverPortal>
+</MizuPopoverRoot>`;
+
+const profileCode = `<MizuPopoverRoot>
+  <MizuPopoverTrigger>
+    <button class="avatar-trigger" aria-label="View profile">
+      <MizuAvatar name="Mariko Kobayashi" size="md" color="primary" />
+    </button>
+  </MizuPopoverTrigger>
+  <MizuPopoverPortal>
+    <MizuPopoverContent side="bottom" align="start" :side-offset="8">
+      <div class="profile-header">
+        <MizuAvatar name="Mariko Kobayashi" size="lg" color="primary" />
+        <div class="profile-info">
+          <div class="profile-name">Mariko Kobayashi</div>
+          <div class="profile-email">mariko@example.com</div>
+        </div>
+      </div>
+      <MizuPopoverArrow />
+    </MizuPopoverContent>
+  </MizuPopoverPortal>
+</MizuPopoverRoot>`;
+
+const controlledCode = `<MizuPopoverRoot v-model:open="open">
+  <MizuPopoverTrigger>
+    <MizuButton variant="secondary" size="sm">Toggle popover</MizuButton>
+  </MizuPopoverTrigger>
+  <MizuPopoverPortal>
+    <MizuPopoverContent>
+      <div class="popover-title">Controlled state</div>
+      <div class="popover-body">Current open state: <strong>{{ open }}</strong></div>
+      <div class="controlled-actions">
+        <MizuPopoverClose>
+          <MizuButton variant="primary" size="sm">Close</MizuButton>
+        </MizuPopoverClose>
+      </div>
+    </MizuPopoverContent>
+  </MizuPopoverPortal>
+</MizuPopoverRoot>`;
+
+const widthCode = `<MizuPopoverRoot>
+  <MizuPopoverTrigger>
+    <MizuButton variant="secondary" size="sm">Wide popover</MizuButton>
+  </MizuPopoverTrigger>
+  <MizuPopoverPortal>
+    <MizuPopoverContent side="bottom" :side-offset="8" :style="{ width: '420px' }">
+      <div class="popover-title">Wide layout</div>
+      <div class="popover-body">Custom width via inline styles.</div>
+    </MizuPopoverContent>
+  </MizuPopoverPortal>
+</MizuPopoverRoot>`;
+
+const colorPickerCode = `<MizuPopoverRoot>
+  <MizuPopoverTrigger>
+    <button class="color-swatch" aria-label="Pick color" />
+  </MizuPopoverTrigger>
+  <MizuPopoverPortal>
+    <MizuPopoverContent side="bottom" align="start" :side-offset="8">
+      <div class="popover-title">Brand color</div>
+      <div class="color-grid">
+        <button class="color-chip" style="background: #001C44;" aria-label="Primary" />
+        <button class="color-chip" style="background: #4F46E5;" aria-label="Indigo" />
+        <button class="color-chip" style="background: #0EA5E9;" aria-label="Sky" />
+      </div>
+      <MizuPopoverArrow />
+    </MizuPopoverContent>
+  </MizuPopoverPortal>
+</MizuPopoverRoot>`;
+
+const dateRangeCode = `<MizuPopoverRoot>
+  <MizuPopoverTrigger>
+    <button class="date-trigger">
+      <span>Select date range</span>
+    </button>
+  </MizuPopoverTrigger>
+  <MizuPopoverPortal>
+    <MizuPopoverContent side="bottom" align="start" :side-offset="8">
+      <div class="popover-title">Quick ranges</div>
+      <div class="date-list">
+        <button class="date-option">Today</button>
+        <button class="date-option">Yesterday</button>
+        <button class="date-option">Last 7 days</button>
+      </div>
+      <MizuPopoverArrow />
+    </MizuPopoverContent>
+  </MizuPopoverPortal>
+</MizuPopoverRoot>`;
+
+const modalCode = `<MizuPopoverRoot :modal="true">
+  <MizuPopoverTrigger>
+    <MizuButton variant="secondary" size="sm">Modal popover</MizuButton>
+  </MizuPopoverTrigger>
+  <MizuPopoverPortal>
+    <MizuPopoverContent>
+      <div class="popover-title">Modal mode</div>
+      <div class="popover-body">When modal is true, the rest of the page is inert.</div>
+      <MizuPopoverClose>
+        <MizuButton variant="primary" size="sm">Close</MizuButton>
+      </MizuPopoverClose>
+    </MizuPopoverContent>
+  </MizuPopoverPortal>
+</MizuPopoverRoot>`;
 
 const controlledOpen = ref(false);
 </script>
 
 <template>
-  <div class="popover-demo">
+  <div class="popover-demo not-content">
     <!-- Basic -->
     <div class="demo-section">
       <h3>Basic</h3>
+      <DemoTabs :code="basicCode">
       <MizuPopoverRoot>
         <MizuPopoverTrigger>
           <MizuButton class="w-max" variant="primary" size="sm">Open popover</MizuButton>
@@ -31,11 +256,13 @@ const controlledOpen = ref(false);
           </MizuPopoverContent>
         </MizuPopoverPortal>
       </MizuPopoverRoot>
+      </DemoTabs>
     </div>
 
     <!-- With Arrow -->
     <div class="demo-section">
       <h3>With Arrow</h3>
+      <DemoTabs :code="arrowCode">
       <MizuPopoverRoot>
         <MizuPopoverTrigger>
           <MizuButton class="w-max" variant="secondary" size="sm">Show details</MizuButton>
@@ -48,11 +275,13 @@ const controlledOpen = ref(false);
           </MizuPopoverContent>
         </MizuPopoverPortal>
       </MizuPopoverRoot>
+      </DemoTabs>
     </div>
 
     <!-- Placements -->
     <div class="demo-section">
       <h3>Placements</h3>
+      <DemoTabs :code="placementsCode">
       <div class="placement-grid">
         <MizuPopoverRoot>
           <MizuPopoverTrigger>
@@ -102,11 +331,13 @@ const controlledOpen = ref(false);
           </MizuPopoverPortal>
         </MizuPopoverRoot>
       </div>
+      </DemoTabs>
     </div>
 
     <!-- Alignment -->
     <div class="demo-section">
       <h3>Alignment</h3>
+      <DemoTabs :code="alignmentCode">
       <div class="placement-grid">
         <MizuPopoverRoot>
           <MizuPopoverTrigger>
@@ -144,11 +375,13 @@ const controlledOpen = ref(false);
           </MizuPopoverPortal>
         </MizuPopoverRoot>
       </div>
+      </DemoTabs>
     </div>
 
     <!-- With Form -->
     <div class="demo-section">
       <h3>With Form Controls</h3>
+      <DemoTabs :code="formCode">
       <MizuPopoverRoot>
         <MizuPopoverTrigger>
           <MizuButton class="w-max" variant="secondary" size="sm">Settings</MizuButton>
@@ -181,11 +414,13 @@ const controlledOpen = ref(false);
           </MizuPopoverContent>
         </MizuPopoverPortal>
       </MizuPopoverRoot>
+      </DemoTabs>
     </div>
 
     <!-- With Close Button -->
     <div class="demo-section">
       <h3>With Close Button</h3>
+      <DemoTabs :code="closeButtonCode">
       <MizuPopoverRoot>
         <MizuPopoverTrigger>
           <MizuButton class="w-max" variant="secondary" size="sm">View announcement</MizuButton>
@@ -206,11 +441,13 @@ const controlledOpen = ref(false);
           </MizuPopoverContent>
         </MizuPopoverPortal>
       </MizuPopoverRoot>
+      </DemoTabs>
     </div>
 
     <!-- User Profile Card -->
         <div class="demo-section">
           <h3>User Profile Card</h3>
+          <DemoTabs :code="profileCode">
           <MizuPopoverRoot>
             <MizuPopoverTrigger>
               <button class="avatar-trigger" aria-label="View profile">
@@ -234,11 +471,13 @@ const controlledOpen = ref(false);
               </MizuPopoverContent>
             </MizuPopoverPortal>
           </MizuPopoverRoot>
+          </DemoTabs>
         </div>
 
     <!-- Controlled (v-model) -->
     <div class="demo-section">
       <h3>Controlled (v-model:open)</h3>
+      <DemoTabs :code="controlledCode">
       <div class="controlled-row">
         <MizuPopoverRoot v-model:open="controlledOpen">
           <MizuPopoverTrigger>
@@ -258,11 +497,13 @@ const controlledOpen = ref(false);
         </MizuPopoverRoot>
         <span class="state-text">open = {{ controlledOpen }}</span>
       </div>
+      </DemoTabs>
     </div>
 
     <!-- Custom Width -->
     <div class="demo-section">
       <h3>Custom Width</h3>
+      <DemoTabs :code="widthCode">
       <MizuPopoverRoot>
         <MizuPopoverTrigger>
           <MizuButton class="w-max" variant="secondary" size="sm">Wide popover</MizuButton>
@@ -274,11 +515,13 @@ const controlledOpen = ref(false);
           </MizuPopoverContent>
         </MizuPopoverPortal>
       </MizuPopoverRoot>
+      </DemoTabs>
     </div>
 
     <!-- Color Picker Use Case -->
     <div class="demo-section">
       <h3>Color Picker</h3>
+      <DemoTabs :code="colorPickerCode">
       <MizuPopoverRoot>
         <MizuPopoverTrigger>
           <button class="color-swatch" aria-label="Pick color" />
@@ -300,11 +543,13 @@ const controlledOpen = ref(false);
           </MizuPopoverContent>
         </MizuPopoverPortal>
       </MizuPopoverRoot>
+      </DemoTabs>
     </div>
 
     <!-- Date Picker Use Case -->
     <div class="demo-section">
       <h3>Date Range</h3>
+      <DemoTabs :code="dateRangeCode">
       <MizuPopoverRoot>
         <MizuPopoverTrigger>
           <button class="date-trigger">
@@ -333,11 +578,13 @@ const controlledOpen = ref(false);
           </MizuPopoverContent>
         </MizuPopoverPortal>
       </MizuPopoverRoot>
+      </DemoTabs>
     </div>
 
     <!-- Modal Mode -->
     <div class="demo-section">
       <h3>Modal Mode</h3>
+      <DemoTabs :code="modalCode">
       <MizuPopoverRoot :modal="true">
         <MizuPopoverTrigger>
           <MizuButton class="w-max" variant="secondary" size="sm">Modal popover</MizuButton>
@@ -354,6 +601,7 @@ const controlledOpen = ref(false);
             </MizuPopoverContent>
         </MizuPopoverPortal>
       </MizuPopoverRoot>
+      </DemoTabs>
     </div>
   </div>
 </template>
@@ -365,7 +613,9 @@ const controlledOpen = ref(false);
   flex-direction: column;
   gap: 24px;
   padding: 16px;
-  background: var(--sl-color-gray-2);
+  background: transparent;
+
+  border: 1px solid var(--color-surface-muted);
   border-radius: 8px;
 }
 

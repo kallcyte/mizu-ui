@@ -1,6 +1,15 @@
-import { ref, computed, type Ref, type ComputedRef } from "vue";
+import { ref, computed, type Ref, type ComputedRef, type InjectionKey } from "vue";
 import { z } from "zod";
 import type { ZodError } from "zod";
+
+export interface FormContext {
+  errors: Ref<Record<string, string | undefined>>;
+  touched: Ref<Record<string, boolean>>;
+  isSubmitting: Ref<boolean>;
+  markTouched: (field: string) => void;
+}
+
+export const MIZU_FORM_KEY: InjectionKey<FormContext> = Symbol("MizuForm");
 
 export interface FieldState {
   modelValue: Ref<string | boolean | number>;

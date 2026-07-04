@@ -44,11 +44,11 @@ const contentClasses = computed(() => {
 }
 
 .mizu-accordion__content[data-state="closed"] {
-  animation: accordionSlideUp 200ms ease-out;
+  animation: accordionSlideUp 200ms cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 .mizu-accordion__content[data-state="open"] {
-  animation: accordionSlideDown 200ms ease-out;
+  animation: accordionSlideDown 200ms cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 .mizu-accordion__content-inner {

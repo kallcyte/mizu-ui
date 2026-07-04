@@ -42,7 +42,7 @@ MizuTabsRoot
 | Active | `--color-foreground-primary` | #001C44 (light) / #EDEDED (dark) | Active trigger text |
 | Disabled | `--color-foreground-tertiary` + `opacity: 0.5` | #696D7D (light) / #9DA0AD (dark) at 50% | Disabled trigger text |
 | Hover | `--color-foreground-primary` | #001C44 (light) / #EDEDED (dark) | Hover text color |
-| Active Indicator | `--color-brand-accent` | #001C44 (light) / #001C44 (dark) | Underline bar |
+| Active Indicator | `--mizu-tabs-color` (default: `--color-brand-primary`) | #001C44 (light) / #001C44 (dark) | Underline bar |
 | List Border | `--color-surface-muted` | #F3F4F6 (light) / #1E2030 (dark) | Bottom/right border |
 
 ### Button Variant
@@ -52,7 +52,7 @@ MizuTabsRoot
 | Container | `--color-surface-muted` | #F3F4F6 (light) / #1E2030 (dark) | Button group background |
 | Inactive | `--color-foreground-muted` | #696D7D (light) / #9DA0AD (dark) | Button text |
 | Hover | `--color-foreground-primary` + `--color-surface-base` | #001C44 + #FFFFFF | Hover text and background |
-| Active | `--color-brand-accent` + `--color-foreground-inverse` | #305EF0 + #FFFFFF | Active button fill |
+| Active | `--mizu-tabs-color` (default: `--color-brand-primary`) + `#fff` | #001C44 + #FFFFFF | Active button fill and text |
 | Disabled | `--color-foreground-tertiary` + `opacity: 0.5` | #696D7D at 50% | Disabled button text |
 
 ## Shape
@@ -125,6 +125,7 @@ MizuTabsRoot
 | `loop` | `boolean` | `true` | Loop focus from last to first |
 | `variant` | `"underline" \| "button"` | `"underline"` | Visual style — underline tabs or grouped buttons |
 | `size` | `"sm" \| "md" \| "lg"` | `"md"` | Controls trigger padding and font size |
+| `color` | `"primary" \| "accent" \| "error" \| "success" \| "warning" \| "info" \| "neutral"` | `"primary"` | Active indicator color |
 
 ### TabsTrigger Props
 
@@ -196,7 +197,7 @@ import {
 3. The active underline trigger renders a 2px accent underline via `::after` pseudo-element in horizontal orientation, and a 2px left border in vertical orientation.
 4. The optional `MizuTabsIndicator` component provides an animated sliding indicator alternative.
 5. `data-orientation` attribute drives layout differences between horizontal and vertical orientations.
-6. `data-variant="button"` on `MizuTabsList` applies button-group styles. The active tab gets `--color-brand-accent` background with `--color-foreground-inverse` text.
+6. `data-variant="button"` on `MizuTabsList` applies button-group styles. The active tab gets a filled background from the `color` prop (defaults to `--color-brand-primary`) with white text.
 7. `data-size` on `MizuTabsList` controls trigger padding, font size, and (for button variant) border-radius and container padding.
 8. Use `activationMode="manual"` to require click (not just focus) to activate a tab — useful for forms with unsaved changes.
 9. The vertical layout uses `display: flex` with `flex-direction: column` on the list and a `gap: 16px` row layout wrapping root + content.

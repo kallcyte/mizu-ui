@@ -6,6 +6,55 @@ import {
   MizuScrollAreaThumb,
   MizuScrollAreaCorner,
 } from "@mizu/vue";
+import DemoTabs from "./DemoTabs.vue";
+
+const verticalCode = `<MizuScrollAreaRoot :max-height="50" class="sa-card">
+  <MizuScrollAreaViewport class="sa-pad">
+    <div class="tag-cloud">
+      <span v-for="t in tags" :key="t" class="tag-chip">{{ t }}</span>
+    </div>
+  </MizuScrollAreaViewport>
+  <MizuScrollAreaScrollbar orientation="vertical">
+    <MizuScrollAreaThumb />
+  </MizuScrollAreaScrollbar>
+</MizuScrollAreaRoot>`;
+
+const horizontalCode = `<MizuScrollAreaRoot :max-width="360" class="sa-card">
+  <MizuScrollAreaViewport class="sa-pad">
+    <div class="h-scroll-row">
+      <span v-for="t in tags" :key="t" class="tag-chip">{{ t }}</span>
+    </div>
+  </MizuScrollAreaViewport>
+  <MizuScrollAreaScrollbar orientation="horizontal">
+    <MizuScrollAreaThumb />
+  </MizuScrollAreaScrollbar>
+</MizuScrollAreaRoot>`;
+
+const bothCode = `<MizuScrollAreaRoot :max-height="240" :max-width="420" class="sa-card">
+  <MizuScrollAreaViewport class="sa-pad">
+    <div class="grid-content">
+      <div v-for="i in 80" :key="i" class="grid-cell">Cell {{ i }}</div>
+    </div>
+  </MizuScrollAreaViewport>
+  <MizuScrollAreaScrollbar orientation="vertical">
+    <MizuScrollAreaThumb />
+  </MizuScrollAreaScrollbar>
+  <MizuScrollAreaScrollbar orientation="horizontal">
+    <MizuScrollAreaThumb />
+  </MizuScrollAreaScrollbar>
+  <MizuScrollAreaCorner />
+</MizuScrollAreaRoot>`;
+
+const alwaysCode = `<MizuScrollAreaRoot :max-height="160" type="always" class="sa-card">
+  <MizuScrollAreaViewport class="sa-pad">
+    <div class="tag-cloud">
+      <span v-for="t in tags" :key="t" class="tag-chip">{{ t }}</span>
+    </div>
+  </MizuScrollAreaViewport>
+  <MizuScrollAreaScrollbar orientation="vertical">
+    <MizuScrollAreaThumb />
+  </MizuScrollAreaScrollbar>
+</MizuScrollAreaRoot>`;
 
 const tags = [
   "v0.12.9", "ToggleGroup", "segmented-control", "single-selection",
@@ -17,10 +66,11 @@ const tags = [
 </script>
 
 <template>
-  <div class="scroll-area-demo">
+  <div class="scroll-area-demo not-content">
     <div class="demo-section">
       <h3>Vertical Scroll</h3>
       <p class="demo-note">Hover to reveal the scrollbar. Content taller than <code>max-height</code> becomes scrollable.</p>
+      <DemoTabs :code="verticalCode">
       <MizuScrollAreaRoot :max-height="50" class="sa-card">
         <MizuScrollAreaViewport class="sa-pad">
           <div class="tag-cloud">
@@ -31,11 +81,13 @@ const tags = [
           <MizuScrollAreaThumb />
         </MizuScrollAreaScrollbar>
       </MizuScrollAreaRoot>
+      </DemoTabs>
     </div>
 
     <div class="demo-section">
       <h3>Horizontal Scroll</h3>
       <p class="demo-note">Wide content constrained by <code>max-width</code> — horizontal scrollbar appears.</p>
+      <DemoTabs :code="horizontalCode">
       <MizuScrollAreaRoot :max-width="360" class="sa-card">
         <MizuScrollAreaViewport class="sa-pad">
           <div class="h-scroll-row">
@@ -46,11 +98,13 @@ const tags = [
           <MizuScrollAreaThumb />
         </MizuScrollAreaScrollbar>
       </MizuScrollAreaRoot>
+      </DemoTabs>
     </div>
 
     <div class="demo-section">
       <h3>Both Directions</h3>
       <p class="demo-note">A large grid constrained in both dimensions — vertical + horizontal scrollbars with a corner.</p>
+      <DemoTabs :code="bothCode">
       <MizuScrollAreaRoot :max-height="240" :max-width="420" class="sa-card">
         <MizuScrollAreaViewport class="sa-pad">
           <div class="grid-content">
@@ -65,11 +119,13 @@ const tags = [
         </MizuScrollAreaScrollbar>
         <MizuScrollAreaCorner />
       </MizuScrollAreaRoot>
+      </DemoTabs>
     </div>
 
     <div class="demo-section">
       <h3>Always Visible</h3>
-      <p class="demo-note"><code>type="always"</code> keeps scrollbars permanently shown regardless of overflow.</p>
+      <p class="demo-note"><code>type="always"</code> keeps the area open without a scrollbar — scrollbars appear permanently.</p>
+      <DemoTabs :code="alwaysCode">
       <MizuScrollAreaRoot :max-height="160" type="always" class="sa-card">
         <MizuScrollAreaViewport class="sa-pad">
           <div class="tag-cloud">
@@ -80,13 +136,15 @@ const tags = [
           <MizuScrollAreaThumb />
         </MizuScrollAreaScrollbar>
       </MizuScrollAreaRoot>
+      </DemoTabs>
     </div>
   </div>
 </template>
 
 <style scoped>
 .scroll-area-demo { all: revert; }
-.scroll-area-demo { display: flex; flex-direction: column; gap: 24px; padding: 24px; background: var(--sl-color-gray-2); border-radius: 8px; }
+.scroll-area-demo { display: flex; flex-direction: column; gap: 24px; padding: 24px; background: transparent;
+  border: 1px solid var(--color-surface-muted); border-radius: 8px; }
 .scroll-area-demo :deep(*) { margin: 0; }
 .demo-section { margin-top: 0; display: flex; flex-direction: column; gap: 12px; }
 .demo-section > * { margin-top: 0; }

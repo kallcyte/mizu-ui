@@ -4,16 +4,20 @@ import { DialogOverlay } from "reka-ui";
 
 export interface DialogOverlayProps {
   forceMount?: boolean;
+  /** Enable/disable fade animation */
+  transition?: boolean;
 }
 
 const props = withDefaults(defineProps<DialogOverlayProps>(), {
   forceMount: undefined,
+  transition: true,
 });
 
 const attrs = useAttrs();
 
 const overlayClasses = computed(() => {
   const classes = ["mizu-dialog__overlay"];
+  if (!props.transition) classes.push("mizu-dialog__overlay--no-transition");
   if (attrs.class) classes.push(attrs.class as string);
   return classes.join(" ");
 });
@@ -43,6 +47,11 @@ const overlayClasses = computed(() => {
 
 .mizu-dialog__overlay[data-state="closed"] {
   animation: dialogOverlayOut 150ms ease-in;
+}
+
+.mizu-dialog__overlay--no-transition[data-state="open"],
+.mizu-dialog__overlay--no-transition[data-state="closed"] {
+  animation: none;
 }
 
 @keyframes dialogOverlayIn {

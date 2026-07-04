@@ -6,6 +6,62 @@ import {
   MizuSliderRange,
   MizuSliderThumb,
 } from "@mizu/vue";
+import DemoTabs from "./DemoTabs.vue";
+
+const basicCode = `<MizuSliderRoot v-model="value" class="slider-root">
+  <MizuSliderTrack>
+    <MizuSliderRange />
+  </MizuSliderTrack>
+  <MizuSliderThumb />
+</MizuSliderRoot>`;
+
+const rangeCode = `<MizuSliderRoot v-model="value" class="slider-root">
+  <MizuSliderTrack>
+    <MizuSliderRange />
+  </MizuSliderTrack>
+  <MizuSliderThumb />
+  <MizuSliderThumb />
+</MizuSliderRoot>`;
+
+const stepsCode = `<MizuSliderRoot v-model="value" :min="0" :max="10" :step="2" class="slider-root">
+  <MizuSliderTrack>
+    <MizuSliderRange />
+  </MizuSliderTrack>
+  <MizuSliderThumb />
+</MizuSliderRoot>`;
+
+const sizesCode = `<MizuSliderRoot v-model="value" size="sm" class="slider-root">
+  <MizuSliderTrack>
+    <MizuSliderRange />
+  </MizuSliderTrack>
+  <MizuSliderThumb />
+</MizuSliderRoot>
+<MizuSliderRoot v-model="value" size="md" class="slider-root">
+  <MizuSliderTrack>
+    <MizuSliderRange />
+  </MizuSliderTrack>
+  <MizuSliderThumb />
+</MizuSliderRoot>
+<MizuSliderRoot v-model="value" size="lg" class="slider-root">
+  <MizuSliderTrack>
+    <MizuSliderRange />
+  </MizuSliderTrack>
+  <MizuSliderThumb />
+</MizuSliderRoot>`;
+
+const verticalCode = `<MizuSliderRoot v-model="value" orientation="vertical" class="slider-root-vertical">
+  <MizuSliderTrack>
+    <MizuSliderRange />
+  </MizuSliderTrack>
+  <MizuSliderThumb />
+</MizuSliderRoot>`;
+
+const disabledCode = `<MizuSliderRoot v-model="value" disabled class="slider-root">
+  <MizuSliderTrack>
+    <MizuSliderRange />
+  </MizuSliderTrack>
+  <MizuSliderThumb />
+</MizuSliderRoot>`;
 
 const basicValue = ref<number>(50);
 const rangeValue = ref<number[]>([20, 80]);
@@ -18,9 +74,10 @@ const disabledValue = ref<number>(50);
 </script>
 
 <template>
-  <div class="slider-demo">
+  <div class="slider-demo not-content">
     <div class="demo-section">
       <h3>Basic</h3>
+      <DemoTabs :code="basicCode">
       <MizuSliderRoot v-model="basicValue" class="slider-root">
         <MizuSliderTrack>
           <MizuSliderRange />
@@ -28,10 +85,12 @@ const disabledValue = ref<number>(50);
         <MizuSliderThumb />
       </MizuSliderRoot>
       <p class="demo-hint">Value: {{ basicValue }}</p>
+      </DemoTabs>
     </div>
 
     <div class="demo-section">
       <h3>Range</h3>
+      <DemoTabs :code="rangeCode">
       <MizuSliderRoot v-model="rangeValue" class="slider-root">
         <MizuSliderTrack>
           <MizuSliderRange />
@@ -40,10 +99,12 @@ const disabledValue = ref<number>(50);
         <MizuSliderThumb />
       </MizuSliderRoot>
       <p class="demo-hint">Value: {{ rangeValue[0] }} - {{ rangeValue[1] }}</p>
+      </DemoTabs>
     </div>
 
     <div class="demo-section">
       <h3>Steps</h3>
+      <DemoTabs :code="stepsCode">
       <MizuSliderRoot v-model="steppedValue" :min="0" :max="10" :step="2" class="slider-root">
         <MizuSliderTrack>
           <MizuSliderRange />
@@ -51,10 +112,12 @@ const disabledValue = ref<number>(50);
         <MizuSliderThumb />
       </MizuSliderRoot>
       <p class="demo-hint">Value: {{ steppedValue }} (step: 2)</p>
+      </DemoTabs>
     </div>
 
     <div class="demo-section">
       <h3>Sizes</h3>
+      <DemoTabs :code="sizesCode">
       <div class="slider-stack">
         <div class="slider-row">
           <span class="slider-label">sm</span>
@@ -87,10 +150,12 @@ const disabledValue = ref<number>(50);
           <span class="slider-value">{{ lgValue }}</span>
         </div>
       </div>
+      </DemoTabs>
     </div>
 
     <div class="demo-section">
       <h3>Vertical</h3>
+      <DemoTabs :code="verticalCode">
       <div class="vertical-container">
         <MizuSliderRoot v-model="verticalValue" orientation="vertical" class="slider-root-vertical">
           <MizuSliderTrack>
@@ -100,10 +165,12 @@ const disabledValue = ref<number>(50);
         </MizuSliderRoot>
         <p class="demo-hint">Value: {{ verticalValue }}</p>
       </div>
+      </DemoTabs>
     </div>
 
     <div class="demo-section">
       <h3>Disabled</h3>
+      <DemoTabs :code="disabledCode">
       <MizuSliderRoot v-model="disabledValue" disabled class="slider-root">
         <MizuSliderTrack>
           <MizuSliderRange />
@@ -111,6 +178,7 @@ const disabledValue = ref<number>(50);
         <MizuSliderThumb />
       </MizuSliderRoot>
       <p class="demo-hint">Value: {{ disabledValue }}</p>
+      </DemoTabs>
     </div>
   </div>
 </template>
@@ -122,7 +190,9 @@ const disabledValue = ref<number>(50);
   flex-direction: column;
   gap: 24px;
   padding: 24px;
-  background: var(--sl-color-gray-2);
+  background: transparent;
+
+  border: 1px solid var(--color-surface-muted);
   border-radius: 8px;
 }
 

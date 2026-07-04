@@ -43,10 +43,9 @@ const contentStyle = computed(() => {
 
 <style>
 .mizu-tabs__content {
-  all: revert;
   padding: 16px 0;
   font-family: inherit;
-  margin-top: 0;
+  margin: 0;
 }
 
 .mizu-tabs__content[data-state="active"] {

@@ -4,12 +4,17 @@ description: Buttons allow users to take actions and make choices with a single 
 ---
 
 import ButtonDemo from '../../../components/docs/ButtonDemo.vue';
+import ButtonNewFeaturesDemo from '../../../components/docs/ButtonNewFeaturesDemo.vue';
 
 Buttons allow users to take actions and make choices with a single tap. They communicate the action that will occur when the user touches them.
 
 ## Demo
 
 <ButtonDemo client:load />
+
+## New Features
+
+<ButtonNewFeaturesDemo client:load />
 
 ## Anatomy
 
@@ -26,7 +31,7 @@ A button consists of up to 4 parts:
 
 ## Variants
 
-Mizunagi buttons support 4 visual variants:
+Mizu buttons support 4 visual variants:
 
 | Variant | Container | Border | Use Case |
 |---------|-----------|--------|----------|
@@ -243,6 +248,9 @@ All button sizes maintain a minimum touch target of **44px × 44px** for accessi
 | `disabled` | `boolean` | `false` | Disabled state |
 | `loading` | `boolean` | `false` | Loading state with spinner |
 | `type` | `'button' \| 'submit' \| 'reset'` | `'button'` | Native button type |
+| `block` | `boolean` | `false` | Render button full width (`w-full`) |
+| `square` | `boolean` | `false` | Equal padding on all sides (icon-only mode) |
+| `loadingAuto` | `boolean` | `false` | Auto-set `loading=true` while `@click` handler's returned promise is pending |
 
 ### Slots
 
@@ -261,34 +269,34 @@ All button sizes maintain a minimum touch target of **44px × 44px** for accessi
 ### Example Usage
 
 ```vue
-<MizunagiButton variant="primary" size="md">
+<MizuButton variant="primary" size="md">
   Submit
-</MizunagiButton>
+</MizuButton>
 
-<MizunagiButton variant="accent" size="lg" :loading="isSubmitting">
+<MizuButton variant="accent" size="lg" :loading="isSubmitting">
   <template #leading-icon>
     <IconSave />
   </template>
   Save Changes
-</MizunagiButton>
+</MizuButton>
 
-<MizunagiButton variant="ghost" size="sm">
+<MizuButton variant="ghost" size="sm">
   Cancel
-</MizunagiButton>
+</MizuButton>
 
-<MizunagiButton variant="success">
+<MizuButton variant="success">
   <template #leading-icon>
     <IconCheck />
   </template>
   Approved
-</MizunagiButton>
+</MizuButton>
 
-<MizunagiButton variant="outline-error">
+<MizuButton variant="outline-error">
   <template #leading-icon>
     <IconX />
   </template>
   Delete
-</MizunagiButton>
+</MizuButton>
 ```
 
 ## Implementation Notes

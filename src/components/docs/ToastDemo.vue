@@ -5,30 +5,44 @@ import {
   MizuButton,
   useToast,
 } from "@mizu/vue";
+import DemoTabs from "./DemoTabs.vue";
 
 type Position = "top-right" | "top-left" | "top-center" | "bottom-right" | "bottom-left" | "bottom-center";
 
 const position = ref<Position>("top-right");
+
+const positionCode = `<MizuToastProvider :position="position">
+  <MizuButton
+    v-for="pos in positions"
+    :key="pos"
+    :variant="position === pos ? 'accent' : 'outline'"
+    @click="position = pos"
+  >
+    {{ pos }}
+  </MizuButton>
+</MizuToastProvider>`;
 </script>
 
 <template>
   <MizuToastProvider :position="position">
-    <div class="toast-demo">
-      <div class="demo-section">
-        <h3>Position</h3>
-        <div class="button-row">
-          <MizuButton
-            v-for="pos in (['top-left', 'top-center', 'top-right', 'bottom-left', 'bottom-center', 'bottom-right'] as Position[])"
-            :key="pos"
-            :variant="position === pos ? 'accent' : 'outline'"
-            size="md"
-            class="w-max"
-            @click="position = pos"
-          >
-            {{ pos }}
-          </MizuButton>
+    <div class="toast-demo not-content">
+      <DemoTabs :code="positionCode">
+        <div class="demo-section">
+          <h3>Position</h3>
+          <div class="button-row">
+            <MizuButton
+              v-for="pos in (['top-left', 'top-center', 'top-right', 'bottom-left', 'bottom-center', 'bottom-right'] as Position[])"
+              :key="pos"
+              :variant="position === pos ? 'accent' : 'outline'"
+              size="md"
+              class="w-max"
+              @click="position = pos"
+            >
+              {{ pos }}
+            </MizuButton>
+          </div>
         </div>
-      </div>
+      </DemoTabs>
       <ToastDemoInner />
     </div>
   </MizuToastProvider>
@@ -36,6 +50,7 @@ const position = ref<Position>("top-right");
 
 <script lang="ts">
 import { defineComponent, h } from "vue";
+import DemoTabsInner from "./DemoTabs.vue";
 
 const ToastDemoInner = defineComponent({
   setup() {
@@ -116,35 +131,78 @@ const ToastDemoInner = defineComponent({
       });
     }
 
+    const variantsCode = `addToast({
+  title: "Invoice saved",
+  description: "Invoice #INV-2026-0042 has been saved successfully.",
+  variant: "success",
+});
+addToast({
+  title: "Payment failed",
+  description: "Your payment could not be processed.",
+  variant: "error",
+});
+addToast({ title: "Storage almost full", variant: "warning" });
+addToast({ title: "New update available", variant: "info" });`;
+
+    const contentVariationsCode = `addToast({ title: "Changes saved successfully", variant: "success" });
+addToast({ description: "A new version is available. Refresh to update.", variant: "info" });`;
+
+    const actionCode = `addToast({
+  title: "Changes discarded",
+  description: "Your unsaved changes have been discarded.",
+  variant: "warning",
+  action: {
+    label: "Undo",
+    altText: "Undo discard changes",
+    onClick: () => addToast({ title: "Changes restored", variant: "success" }),
+  },
+});`;
+
+    const customDurationCode = `addToast({
+  title: "Long toast",
+  description: "This toast stays visible for 10 seconds.",
+  duration: 10000,
+  showTimer: true,
+  variant: "info",
+});`;
+
     return () => h("div", { style: "display: contents;" }, [
-      h("div", { class: "demo-section" }, [
-        h("h3", "Variants"),
-        h("div", { class: "button-row" }, [
-          h(MizuButton, { variant: "success", size: "md", class: "w-max", onClick: showSuccess }, { default: () => "Success" }),
-          h(MizuButton, { variant: "error", size: "md", class: "w-max", onClick: showError }, { default: () => "Error" }),
-          h(MizuButton, { variant: "warning", size: "md", class: "w-max", onClick: showWarning }, { default: () => "Warning" }),
-          h(MizuButton, { variant: "primary", size: "md", class: "w-max", onClick: showInfo }, { default: () => "Info" }),
+      h(DemoTabsInner, { code: variantsCode }, {
+        default: () => h("div", { class: "demo-section" }, [
+          h("h3", "Variants"),
+          h("div", { class: "button-row" }, [
+            h(MizuButton, { variant: "success", size: "md", class: "w-max", onClick: showSuccess }, { default: () => "Success" }),
+            h(MizuButton, { variant: "error", size: "md", class: "w-max", onClick: showError }, { default: () => "Error" }),
+            h(MizuButton, { variant: "warning", size: "md", class: "w-max", onClick: showWarning }, { default: () => "Warning" }),
+            h(MizuButton, { variant: "primary", size: "md", class: "w-max", onClick: showInfo }, { default: () => "Info" }),
+          ]),
         ]),
-      ]),
-      h("div", { class: "demo-section" }, [
-        h("h3", "Content Variations"),
-        h("div", { class: "button-row" }, [
-          h(MizuButton, { variant: "outline", size: "md", class: "w-max", onClick: showTitleOnly }, { default: () => "Title Only" }),
-          h(MizuButton, { variant: "outline", size: "md", class: "w-max", onClick: showDescriptionOnly }, { default: () => "Description Only" }),
+      }),
+      h(DemoTabsInner, { code: contentVariationsCode }, {
+        default: () => h("div", { class: "demo-section" }, [
+          h("h3", "Content Variations"),
+          h("div", { class: "button-row" }, [
+            h(MizuButton, { variant: "outline", size: "md", class: "w-max", onClick: showTitleOnly }, { default: () => "Title Only" }),
+            h(MizuButton, { variant: "outline", size: "md", class: "w-max", onClick: showDescriptionOnly }, { default: () => "Description Only" }),
+          ]),
         ]),
-      ]),
-      h("div", { class: "demo-section" }, [
-        h("h3", "With Action"),
-        h("div", { class: "button-row" }, [
-          h(MizuButton, { variant: "accent", size: "md", class: "w-max", onClick: showWithAction }, { default: () => "Discard with Undo" }),
+      }),
+      h(DemoTabsInner, { code: actionCode }, {
+        default: () => h("div", { class: "demo-section" }, [
+          h("h3", "With Action"),
+          h("div", { class: "button-row" }, [
+            h(MizuButton, { variant: "accent", size: "md", class: "w-max", onClick: showWithAction }, { default: () => "Discard with Undo" }),
+          ]),
         ]),
-      ]),
-      h("div", { class: "demo-section" }, [
-        h("h3", "Custom Duration"),
-        h("div", { class: "button-row" }, [
-          h(MizuButton, { variant: "ghost", size: "md", class: "w-max", onClick: showLongDuration }, { default: () => "10-second Toast" }),
+      }),
+      h(DemoTabsInner, { code: customDurationCode }, {
+        default: () => h("div", { class: "demo-section" }, [
+          h("h3", "Custom Duration"),
+          h("div", { class: "button-row" }, [
+            h(MizuButton, { variant: "ghost", size: "md", class: "w-max", onClick: showLongDuration }, { default: () => "10-second Toast" }),
+          ]),
         ]),
-      ]),
+      }),
     ]);
   },
 });
@@ -157,7 +215,9 @@ const ToastDemoInner = defineComponent({
   flex-direction: column;
   gap: 24px;
   padding: 16px;
-  background: var(--sl-color-gray-2);
+  background: transparent;
+
+  border: 1px solid var(--color-surface-muted);
   border-radius: 8px;
 }
 

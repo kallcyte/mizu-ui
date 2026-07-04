@@ -129,11 +129,11 @@ const badgeClasses = computed(() => {
 /* Variants — solid fill, inverse text */
 .mizu-badge--primary {
   background-color: var(--color-brand-primary);
-  color: var(--color-foreground-inverse);
+  color: #fff;
 }
 .mizu-badge--accent {
   background-color: var(--color-brand-accent);
-  color: var(--color-foreground-inverse);
+  color: #fff;
 }
 .mizu-badge--success {
   background-color: var(--color-feedback-success-base);

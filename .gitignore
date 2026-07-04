@@ -5,3 +5,5 @@ dist
 *.local
 .histoire
 dev-*.log
+.nx/
+

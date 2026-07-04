@@ -130,7 +130,7 @@ function handlePageChange(page: number) {
 
 .mizu-pagination__btn--page[data-selected="true"] {
   background: var(--color-brand-primary);
-  color: var(--color-foreground-inverse);
+  color: #fff;
   border-color: var(--color-brand-primary);
 }
 

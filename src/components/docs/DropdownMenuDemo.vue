@@ -34,6 +34,7 @@ import {
   MizuDropdownMenuShortcut,
   MizuButton,
 } from "@mizu/vue";
+import DemoTabs from "./DemoTabs.vue";
 
 const bookmarksChecked = ref(true);
 const urlsChecked = ref(false);
@@ -42,12 +43,206 @@ const notificationsChecked = ref(true);
 
 const fileFormat = ref("json");
 const paymentMethod = ref("card");
+
+const basicCode = `<MizuDropdownMenuRoot>
+  <MizuDropdownMenuTrigger as-child>
+    <MizuButton variant="outline" size="md">Open Menu</MizuButton>
+  </MizuDropdownMenuTrigger>
+  <MizuDropdownMenuPortal>
+    <MizuDropdownMenuContent>
+      <MizuDropdownMenuItem>
+        New Tab
+        <MizuDropdownMenuShortcut>⌘T</MizuDropdownMenuShortcut>
+      </MizuDropdownMenuItem>
+      <MizuDropdownMenuItem>
+        New Window
+        <MizuDropdownMenuShortcut>⌘N</MizuDropdownMenuShortcut>
+      </MizuDropdownMenuItem>
+      <MizuDropdownMenuItem disabled>
+        Print
+        <MizuDropdownMenuShortcut>⌘P</MizuDropdownMenuShortcut>
+      </MizuDropdownMenuItem>
+      <MizuDropdownMenuSeparator />
+      <MizuDropdownMenuItem>Downloads</MizuDropdownMenuItem>
+    </MizuDropdownMenuContent>
+  </MizuDropdownMenuPortal>
+</MizuDropdownMenuRoot>`;
+
+const iconsCode = `<MizuDropdownMenuRoot>
+  <MizuDropdownMenuTrigger as-child>
+    <MizuButton variant="outline" size="md">My Account</MizuButton>
+  </MizuDropdownMenuTrigger>
+  <MizuDropdownMenuPortal>
+    <MizuDropdownMenuContent>
+      <MizuDropdownMenuLabel>My Account</MizuDropdownMenuLabel>
+      <MizuDropdownMenuSeparator />
+      <MizuDropdownMenuGroup>
+        <MizuDropdownMenuItem>
+          <User :size="16" />
+          Profile
+          <MizuDropdownMenuShortcut>⇧⌘P</MizuDropdownMenuShortcut>
+        </MizuDropdownMenuItem>
+        <MizuDropdownMenuItem>
+          <CreditCard :size="16" />
+          Billing
+        </MizuDropdownMenuItem>
+        <MizuDropdownMenuItem>
+          <Settings :size="16" />
+          Settings
+        </MizuDropdownMenuItem>
+      </MizuDropdownMenuGroup>
+      <MizuDropdownMenuSeparator />
+      <MizuDropdownMenuItem>
+        <LogOut :size="16" />
+        Log out
+      </MizuDropdownMenuItem>
+    </MizuDropdownMenuContent>
+  </MizuDropdownMenuPortal>
+</MizuDropdownMenuRoot>`;
+
+const checkboxesCode = `<MizuDropdownMenuRoot>
+  <MizuDropdownMenuTrigger as-child>
+    <MizuButton variant="outline" size="md">Notifications</MizuButton>
+  </MizuDropdownMenuTrigger>
+  <MizuDropdownMenuPortal>
+    <MizuDropdownMenuContent>
+      <MizuDropdownMenuLabel>Appearance</MizuDropdownMenuLabel>
+      <MizuDropdownMenuSeparator />
+      <MizuDropdownMenuCheckboxItem v-model="bookmarksChecked">
+        <MizuDropdownMenuItemIndicator>
+          <Check :size="14" />
+        </MizuDropdownMenuItemIndicator>
+        Include Bookmarks
+      </MizuDropdownMenuCheckboxItem>
+      <MizuDropdownMenuCheckboxItem v-model="urlsChecked">
+        <MizuDropdownMenuItemIndicator>
+          <Check :size="14" />
+        </MizuDropdownMenuItemIndicator>
+        Include URLs
+      </MizuDropdownMenuCheckboxItem>
+    </MizuDropdownMenuContent>
+  </MizuDropdownMenuPortal>
+</MizuDropdownMenuRoot>`;
+
+const radioGroupCode = `<MizuDropdownMenuRoot>
+  <MizuDropdownMenuTrigger as-child>
+    <MizuButton variant="outline" size="md">File Options</MizuButton>
+  </MizuDropdownMenuTrigger>
+  <MizuDropdownMenuPortal>
+    <MizuDropdownMenuContent>
+      <MizuDropdownMenuLabel>File Format</MizuDropdownMenuLabel>
+      <MizuDropdownMenuRadioGroup v-model="fileFormat">
+        <MizuDropdownMenuRadioItem value="json">
+          <MizuDropdownMenuItemIndicator>
+            <Check :size="14" />
+          </MizuDropdownMenuItemIndicator>
+          JSON
+        </MizuDropdownMenuRadioItem>
+        <MizuDropdownMenuRadioItem value="csv">
+          <MizuDropdownMenuItemIndicator>
+            <Check :size="14" />
+          </MizuDropdownMenuItemIndicator>
+          CSV
+        </MizuDropdownMenuRadioItem>
+      </MizuDropdownMenuRadioGroup>
+      <MizuDropdownMenuSeparator />
+      <MizuDropdownMenuSub>
+        <MizuDropdownMenuSubTrigger>More Options</MizuDropdownMenuSubTrigger>
+        <MizuDropdownMenuPortal>
+          <MizuDropdownMenuSubContent>
+            <MizuDropdownMenuItem>Compress</MizuDropdownMenuItem>
+            <MizuDropdownMenuItem>Encrypt</MizuDropdownMenuItem>
+          </MizuDropdownMenuSubContent>
+        </MizuDropdownMenuPortal>
+      </MizuDropdownMenuSub>
+    </MizuDropdownMenuContent>
+  </MizuDropdownMenuPortal>
+</MizuDropdownMenuRoot>`;
+
+const destructiveCode = `<MizuDropdownMenuRoot>
+  <MizuDropdownMenuTrigger as-child>
+    <MizuButton variant="outline" size="md">Actions</MizuButton>
+  </MizuDropdownMenuTrigger>
+  <MizuDropdownMenuPortal>
+    <MizuDropdownMenuContent>
+      <MizuDropdownMenuItem>
+        <Pencil :size="16" />
+        Edit
+      </MizuDropdownMenuItem>
+      <MizuDropdownMenuItem>
+        <Copy :size="16" />
+        Duplicate
+      </MizuDropdownMenuItem>
+      <MizuDropdownMenuSeparator />
+      <MizuDropdownMenuItem>
+        <Share :size="16" />
+        Share
+      </MizuDropdownMenuItem>
+      <MizuDropdownMenuSeparator />
+      <MizuDropdownMenuItem variant="destructive">
+        <Trash2 :size="16" />
+        Delete
+        <MizuDropdownMenuShortcut>⌘⌫</MizuDropdownMenuShortcut>
+      </MizuDropdownMenuItem>
+    </MizuDropdownMenuContent>
+  </MizuDropdownMenuPortal>
+</MizuDropdownMenuRoot>`;
+
+const complexCode = `<MizuDropdownMenuRoot>
+  <MizuDropdownMenuTrigger as-child>
+    <MizuButton variant="outline" size="md">Complex Menu</MizuButton>
+  </MizuDropdownMenuTrigger>
+  <MizuDropdownMenuPortal>
+    <MizuDropdownMenuContent>
+      <MizuDropdownMenuLabel>My Account</MizuDropdownMenuLabel>
+      <MizuDropdownMenuSeparator />
+      <MizuDropdownMenuGroup>
+        <MizuDropdownMenuItem>
+          <User :size="16" />
+          Profile
+        </MizuDropdownMenuItem>
+        <MizuDropdownMenuItem>
+          <CreditCard :size="16" />
+          Billing
+        </MizuDropdownMenuItem>
+      </MizuDropdownMenuGroup>
+      <MizuDropdownMenuSeparator />
+      <MizuDropdownMenuGroup>
+        <MizuDropdownMenuLabel>Appearance</MizuDropdownMenuLabel>
+        <MizuDropdownMenuCheckboxItem v-model="bookmarksChecked">
+          <MizuDropdownMenuItemIndicator>
+            <Check :size="14" />
+          </MizuDropdownMenuItemIndicator>
+          Include Bookmarks
+        </MizuDropdownMenuCheckboxItem>
+      </MizuDropdownMenuGroup>
+      <MizuDropdownMenuSeparator />
+      <MizuDropdownMenuGroup>
+        <MizuDropdownMenuLabel>Payment Method</MizuDropdownMenuLabel>
+        <MizuDropdownMenuRadioGroup v-model="paymentMethod">
+          <MizuDropdownMenuRadioItem value="card">
+            <MizuDropdownMenuItemIndicator>
+              <Check :size="14" />
+            </MizuDropdownMenuItemIndicator>
+            Card
+          </MizuDropdownMenuRadioItem>
+        </MizuDropdownMenuRadioGroup>
+      </MizuDropdownMenuGroup>
+      <MizuDropdownMenuSeparator />
+      <MizuDropdownMenuItem>
+        <LogOut :size="16" />
+        Log out
+      </MizuDropdownMenuItem>
+    </MizuDropdownMenuContent>
+  </MizuDropdownMenuPortal>
+</MizuDropdownMenuRoot>`;
 </script>
 
 <template>
-  <div class="dropdown-menu-demo">
+  <div class="dropdown-menu-demo not-content">
     <div class="demo-section">
       <h3>Basic</h3>
+      <DemoTabs :code="basicCode">
       <MizuDropdownMenuRoot>
         <MizuDropdownMenuTrigger as-child>
           <MizuButton variant="outline" size="md" class="w-max">Open Menu</MizuButton>
@@ -71,10 +266,12 @@ const paymentMethod = ref("card");
           </MizuDropdownMenuContent>
         </MizuDropdownMenuPortal>
       </MizuDropdownMenuRoot>
+      </DemoTabs>
     </div>
 
     <div class="demo-section">
       <h3>With Icons</h3>
+      <DemoTabs :code="iconsCode">
       <MizuDropdownMenuRoot>
         <MizuDropdownMenuTrigger as-child>
           <MizuButton variant="outline" size="md" class="w-max">My Account</MizuButton>
@@ -113,10 +310,12 @@ const paymentMethod = ref("card");
           </MizuDropdownMenuContent>
         </MizuDropdownMenuPortal>
       </MizuDropdownMenuRoot>
+      </DemoTabs>
     </div>
 
     <div class="demo-section">
       <h3>Checkboxes</h3>
+      <DemoTabs :code="checkboxesCode">
       <MizuDropdownMenuRoot>
         <MizuDropdownMenuTrigger as-child>
           <MizuButton variant="outline" size="md" class="w-max">Notifications</MizuButton>
@@ -154,10 +353,12 @@ const paymentMethod = ref("card");
         </MizuDropdownMenuPortal>
       </MizuDropdownMenuRoot>
       <p class="demo-hint">Bookmarks: {{ bookmarksChecked }}, URLs: {{ urlsChecked }}, Full Name: {{ fullnameChecked }}, Notifications: {{ notificationsChecked }}</p>
+      </DemoTabs>
     </div>
 
     <div class="demo-section">
       <h3>Radio Group</h3>
+      <DemoTabs :code="radioGroupCode">
       <MizuDropdownMenuRoot>
         <MizuDropdownMenuTrigger as-child>
           <MizuButton variant="outline" size="md" class="w-max">File Options</MizuButton>
@@ -199,10 +400,12 @@ const paymentMethod = ref("card");
         </MizuDropdownMenuPortal>
       </MizuDropdownMenuRoot>
       <p class="demo-hint">Format: {{ fileFormat }}</p>
+      </DemoTabs>
     </div>
 
     <div class="demo-section">
       <h3>Destructive</h3>
+      <DemoTabs :code="destructiveCode">
       <MizuDropdownMenuRoot>
         <MizuDropdownMenuTrigger as-child>
           <MizuButton variant="outline" size="md" class="w-max">Actions</MizuButton>
@@ -241,10 +444,12 @@ const paymentMethod = ref("card");
           </MizuDropdownMenuContent>
         </MizuDropdownMenuPortal>
       </MizuDropdownMenuRoot>
+      </DemoTabs>
     </div>
 
     <div class="demo-section">
       <h3>Complex</h3>
+      <DemoTabs :code="complexCode">
       <MizuDropdownMenuRoot>
         <MizuDropdownMenuTrigger as-child>
           <MizuButton variant="outline" size="md" class="w-max">Complex Menu</MizuButton>
@@ -331,6 +536,7 @@ const paymentMethod = ref("card");
         </MizuDropdownMenuPortal>
       </MizuDropdownMenuRoot>
       <p class="demo-hint">Payment: {{ paymentMethod }}</p>
+      </DemoTabs>
     </div>
   </div>
 </template>
@@ -341,9 +547,8 @@ const paymentMethod = ref("card");
   display: flex;
   flex-direction: column;
   gap: 24px;
-  padding: 16px;
-  background: var(--sl-color-gray-2);
-  border-radius: 8px;
+  padding: 0;
+  background: transparent;
 }
 
 .demo-section {

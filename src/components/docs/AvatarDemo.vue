@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { MizuAvatar } from "@mizu/vue";
+import DemoTabs from "./DemoTabs.vue";
 
 const user = {
     name: "Mariko Tanaka",
@@ -15,10 +16,71 @@ const team = [
     { name: "Hina Yamamoto" },
     { name: "" },
 ];
+
+const basicCode = `<MizuAvatar name="Mariko Tanaka" />
+<MizuAvatar name="Daichi Suzuki" />
+<MizuAvatar name="Elena Rossi" />`;
+
+const withImageCode = `<MizuAvatar name="Aria Patel" src="https://i.pravatar.cc/96?img=32" />
+<MizuAvatar name="Daichi Suzuki" src="https://i.pravatar.cc/96?img=12" />`;
+
+const sizesCode = `<MizuAvatar name="Small" size="sm" />
+<MizuAvatar name="Medium" size="md" />
+<MizuAvatar name="Large" size="lg" />
+<MizuAvatar name="Xtra Large" size="xl" />`;
+
+const sizesWithImageCode = `<MizuAvatar name="Small" size="sm" src="https://i.pravatar.cc/96?img=12" />
+<MizuAvatar name="Medium" size="md" src="https://i.pravatar.cc/96?img=12" />
+<MizuAvatar name="Large" size="lg" src="https://i.pravatar.cc/96?img=12" />
+<MizuAvatar name="Xtra Large" size="xl" src="https://i.pravatar.cc/96?img=12" />`;
+
+const shapesCode = `<MizuAvatar name="Circle" shape="circle" />
+<MizuAvatar name="Square" shape="square" />`;
+
+const colorVariantsCode = `<MizuAvatar name="Muted" color="muted" />
+<MizuAvatar name="Primary" color="primary" />
+<MizuAvatar name="Accent" color="accent" />
+<MizuAvatar name="Neutral" color="neutral" />`;
+
+const anonymousCode = `<MizuAvatar size="sm" />
+<MizuAvatar size="md" />
+<MizuAvatar size="lg" />
+<MizuAvatar size="xl" />`;
+
+const customIconSlotCode = `<MizuAvatar size="md">
+  <template #icon>
+    <svg viewBox="0 0 24 24" fill="none">
+      <path d="M12 2L2 7L12 12L22 7L12 2Z" fill="currentColor" />
+      <path d="M2 17L12 22L22 17" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" />
+      <path d="M2 12L12 17L22 12" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" />
+    </svg>
+  </template>
+</MizuAvatar>`;
+
+const teamListCode = `<div v-for="member in team" :key="member.name">
+  <MizuAvatar :name="member.name" :src="member.src" size="md" />
+  <span>{{ member.name || "Anonymous User" }}</span>
+</div>`;
+
+const commentThreadCode = `<div class="comment">
+  <MizuAvatar name="Aria Patel" src="https://i.pravatar.cc/96?img=32" size="md" />
+  <div>
+    <span>Aria Patel</span>
+    <span>2 hours ago</span>
+    <p>Let me know if anything in the dashboard layout feels off.</p>
+  </div>
+</div>`;
+
+const profileHeaderCode = `<MizuAvatar :name="user.name" :src="user.src" size="xl" />
+<div>
+  <div>{{ user.name }}</div>
+  <div>{{ user.role }}</div>
+</div>`;
 </script>
 
 <template>
-    <div class="avatar-demo">
+    <div class="avatar-demo not-content">
+        <DemoTabs :code="basicCode">
         <div class="demo-section">
             <h3>Basic</h3>
             <div class="avatar-row">
@@ -29,7 +91,9 @@ const team = [
                 <MizuAvatar name="Hina Yamamoto" />
             </div>
         </div>
+        </DemoTabs>
 
+        <DemoTabs :code="withImageCode">
         <div class="demo-section">
             <h3>With Image</h3>
             <div class="avatar-row">
@@ -50,7 +114,9 @@ const team = [
                 />
             </div>
         </div>
+        </DemoTabs>
 
+        <DemoTabs :code="sizesCode">
         <div class="demo-section">
             <h3>Sizes</h3>
             <div class="avatar-row avatar-row--baseline">
@@ -60,7 +126,9 @@ const team = [
                 <MizuAvatar name="Xtra Large" size="xl" />
             </div>
         </div>
+        </DemoTabs>
 
+        <DemoTabs :code="sizesWithImageCode">
         <div class="demo-section">
             <h3>Sizes With Image</h3>
             <div class="avatar-row avatar-row--baseline">
@@ -86,7 +154,9 @@ const team = [
                 />
             </div>
         </div>
+        </DemoTabs>
 
+        <DemoTabs :code="shapesCode">
         <div class="demo-section">
             <h3>Shapes</h3>
             <div class="avatar-row avatar-row--baseline">
@@ -96,7 +166,9 @@ const team = [
                 <MizuAvatar name="Square" shape="square" size="lg" src="https://i.pravatar.cc/96?img=49" />
             </div>
         </div>
+        </DemoTabs>
 
+        <DemoTabs :code="colorVariantsCode">
         <div class="demo-section">
             <h3>Color Variants</h3>
             <div class="avatar-row avatar-row--baseline">
@@ -106,7 +178,9 @@ const team = [
                 <MizuAvatar name="Neutral" color="neutral" />
             </div>
         </div>
+        </DemoTabs>
 
+        <DemoTabs :code="anonymousCode">
         <div class="demo-section">
             <h3>Anonymous (Default Icon)</h3>
             <div class="avatar-row avatar-row--baseline">
@@ -116,7 +190,9 @@ const team = [
                 <MizuAvatar size="xl" />
             </div>
         </div>
+        </DemoTabs>
 
+        <DemoTabs :code="customIconSlotCode">
         <div class="demo-section">
             <h3>Custom Icon Slot</h3>
             <div class="avatar-row avatar-row--baseline">
@@ -168,7 +244,9 @@ const team = [
                 </MizuAvatar>
             </div>
         </div>
+        </DemoTabs>
 
+        <DemoTabs :code="teamListCode">
         <div class="demo-section">
             <h3>Team List (Real-world)</h3>
             <div class="team-list">
@@ -189,7 +267,9 @@ const team = [
                 </div>
             </div>
         </div>
+        </DemoTabs>
 
+        <DemoTabs :code="commentThreadCode">
         <div class="demo-section">
             <h3>Comment Thread</h3>
             <div class="comment">
@@ -209,7 +289,9 @@ const team = [
                 </div>
             </div>
         </div>
+        </DemoTabs>
 
+        <DemoTabs :code="profileHeaderCode">
         <div class="demo-section">
             <h3>Profile Header (Large)</h3>
             <div class="profile">
@@ -224,6 +306,7 @@ const team = [
                 </div>
             </div>
         </div>
+        </DemoTabs>
     </div>
 </template>
 
@@ -234,7 +317,9 @@ const team = [
     flex-direction: column;
     gap: 24px;
     padding: 24px;
-    background: var(--sl-color-gray-2);
+    background: transparent;
+
+    border: 1px solid var(--color-surface-muted);
     border-radius: 8px;
 }
 

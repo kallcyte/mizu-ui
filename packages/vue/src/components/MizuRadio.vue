@@ -170,7 +170,7 @@ function handleValueChange(value: unknown) {
   @apply block rounded-full;
   width: 8px;
   height: 8px;
-  background-color: var(--color-foreground-inverse);
+  background-color: #fff;
 }
 
 .mizu-radio-item--sm .mizu-radio__indicator::after {

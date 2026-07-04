@@ -18,6 +18,7 @@ import {
   MizuComboboxSeparator,
   MizuTag,
 } from "@mizu/vue";
+import DemoTabs from "./DemoTabs.vue";
 
 const firstNames = [
   "James", "Mary", "Robert", "Patricia", "Michael", "Jennifer", "David", "Linda",
@@ -130,115 +131,138 @@ function setupSentinel(el: Element | null) {
   );
   observer.observe(el);
 }
+
+const basicCode = `<MizuComboboxRoot v-model="selected" ignore-filter>
+  <MizuComboboxAnchor>
+    <MizuComboboxInput
+      v-model="search"
+      :display-value="(v) => v?.name ?? ''"
+      placeholder="Select a person..."
+    />
+    <MizuComboboxTrigger>
+      <ChevronDown :size="16" />
+    </MizuComboboxTrigger>
+    <MizuComboboxCancel v-if="selected" @click="selected = undefined">
+      <X :size="16" />
+    </MizuComboboxCancel>
+  </MizuComboboxAnchor>
+  <MizuComboboxPortal>
+    <MizuComboboxContent position="popper" :side-offset="4">
+      <MizuComboboxViewport>
+        <MizuComboboxItem
+          v-for="person in filteredPeople"
+          :key="person.id"
+          :value="person"
+        >
+          <MizuComboboxItemIndicator>
+            <Check :size="16" />
+          </MizuComboboxItemIndicator>
+          {{ person.name }}
+        </MizuComboboxItem>
+      </MizuComboboxViewport>
+    </MizuComboboxContent>
+  </MizuComboboxPortal>
+</MizuComboboxRoot>`;
+
+const groupsCode = `<MizuComboboxRoot v-model="selected" ignore-filter>
+  <MizuComboboxAnchor>
+    <MizuComboboxInput v-model="search" placeholder="Select..." />
+    <MizuComboboxTrigger><ChevronDown :size="16" /></MizuComboboxTrigger>
+  </MizuComboboxAnchor>
+  <MizuComboboxPortal>
+    <MizuComboboxContent position="popper" :side-offset="4">
+      <MizuComboboxViewport>
+        <MizuComboboxGroup>
+          <MizuComboboxLabel>Team A</MizuComboboxLabel>
+          <MizuComboboxItem v-for="p in groupA" :key="p.id" :value="p">
+            <MizuComboboxItemIndicator><Check :size="16" /></MizuComboboxItemIndicator>
+            {{ p.name }}
+          </MizuComboboxItem>
+        </MizuComboboxGroup>
+        <MizuComboboxSeparator />
+        <MizuComboboxGroup>
+          <MizuComboboxLabel>Team B</MizuComboboxLabel>
+          <MizuComboboxItem v-for="p in groupB" :key="p.id" :value="p">
+            {{ p.name }}
+          </MizuComboboxItem>
+        </MizuComboboxGroup>
+      </MizuComboboxViewport>
+    </MizuComboboxContent>
+  </MizuComboboxPortal>
+</MizuComboboxRoot>`;
+
+const multipleCode = `<MizuComboboxRoot v-model="selected" multiple ignore-filter>
+  <MizuComboboxAnchor class="multi">
+    <MizuTag
+      v-for="person in selected"
+      :key="person.id"
+      closable
+      @close="removePerson(person)"
+    >
+      {{ person.name }}
+    </MizuTag>
+    <MizuComboboxInput v-model="search" placeholder="Select people..." />
+    <MizuComboboxTrigger><ChevronDown :size="16" /></MizuComboboxTrigger>
+  </MizuComboboxAnchor>
+  <MizuComboboxPortal>
+    <MizuComboboxContent position="popper" :side-offset="4">
+      <MizuComboboxViewport>
+        <MizuComboboxItem v-for="p in filtered" :key="p.id" :value="p">
+          <MizuComboboxItemIndicator><Check :size="16" /></MizuComboboxItemIndicator>
+          {{ p.name }}
+        </MizuComboboxItem>
+      </MizuComboboxViewport>
+    </MizuComboboxContent>
+  </MizuComboboxPortal>
+</MizuComboboxRoot>`;
+
+const lazyCode = `<MizuComboboxRoot v-model="selected" ignore-filter>
+  <MizuComboboxAnchor>
+    <MizuComboboxInput v-model="search" placeholder="Type to search..." />
+    <MizuComboboxTrigger><ChevronDown :size="16" /></MizuComboboxTrigger>
+  </MizuComboboxAnchor>
+  <MizuComboboxPortal>
+    <MizuComboboxContent position="popper" :side-offset="4">
+      <MizuComboboxViewport>
+        <MizuComboboxItem v-for="p in visibleItems" :key="p.id" :value="p">
+          <MizuComboboxItemIndicator><Check :size="16" /></MizuComboboxItemIndicator>
+          {{ p.name }}
+        </MizuComboboxItem>
+        <div v-if="hasMore" ref="setupSentinel">
+          <LoaderCircle v-if="loading" class="spinner" />
+          <span v-else>{{ remaining }} more...</span>
+        </div>
+      </MizuComboboxViewport>
+    </MizuComboboxContent>
+  </MizuComboboxPortal>
+</MizuComboboxRoot>`;
 </script>
 
 <template>
-  <div class="combobox-demo">
-    <div class="demo-section">
-      <h3>Basic</h3>
-      <MizuComboboxRoot v-model="basicSelected" ignore-filter>
-        <MizuComboboxAnchor class="combobox-anchor">
-          <MizuComboboxInput
-            v-model="basicSearch"
-            :display-value="(v: any) => v?.name ?? ''"
-            placeholder="Select a person..."
-          />
-          <MizuComboboxTrigger v-if="basicShowChevron" class="combobox-trigger-btn">
-            <ChevronDown :size="16" />
-          </MizuComboboxTrigger>
-          <MizuComboboxCancel v-if="basicSelected" class="combobox-cancel-btn" @click="basicSelected = undefined">
-            <X :size="16" />
-          </MizuComboboxCancel>
-        </MizuComboboxAnchor>
-        <MizuComboboxPortal>
-          <MizuComboboxContent position="popper" :side-offset="4">
-            <MizuComboboxViewport>
-              <MizuComboboxEmpty>No results found.</MizuComboboxEmpty>
-              <MizuComboboxItem
-                v-for="person in filteredBasic"
-                :key="person.id"
-                :value="person"
-              >
-                <MizuComboboxItemIndicator>
-                  <Check :size="16" />
-                </MizuComboboxItemIndicator>
-                {{ person.name }}
-              </MizuComboboxItem>
-            </MizuComboboxViewport>
-          </MizuComboboxContent>
-        </MizuComboboxPortal>
-      </MizuComboboxRoot>
-      <div class="demo-footer">
-        <p class="demo-hint">Selected: {{ basicSelected?.name ?? "None" }}</p>
-        <label class="demo-toggle">
-          <input type="checkbox" v-model="basicShowChevron" />
-          <span>Show chevron</span>
-        </label>
-      </div>
-    </div>
-
-    <div class="demo-section">
-      <h3>With Search</h3>
-      <MizuComboboxRoot v-model="searchSelected" ignore-filter>
-        <MizuComboboxAnchor class="combobox-anchor">
-          <MizuComboboxInput
-            v-model="searchSearch"
-            :display-value="(v: any) => v?.name ?? ''"
-            placeholder="Search people..."
-          />
-          <MizuComboboxTrigger class="combobox-trigger-btn">
-            <ChevronDown :size="16" />
-          </MizuComboboxTrigger>
-          <MizuComboboxCancel v-if="searchSelected" class="combobox-cancel-btn" @click="searchSelected = undefined">
-            <X :size="16" />
-          </MizuComboboxCancel>
-        </MizuComboboxAnchor>
-        <MizuComboboxPortal>
-          <MizuComboboxContent position="popper" :side-offset="4">
-            <MizuComboboxViewport>
-              <MizuComboboxEmpty>No results found.</MizuComboboxEmpty>
-              <MizuComboboxItem
-                v-for="person in filteredSearch"
-                :key="person.id"
-                :value="person"
-              >
-                <MizuComboboxItemIndicator>
-                  <Check :size="16" />
-                </MizuComboboxItemIndicator>
-                {{ person.name }}
-              </MizuComboboxItem>
-            </MizuComboboxViewport>
-          </MizuComboboxContent>
-        </MizuComboboxPortal>
-      </MizuComboboxRoot>
-      <div class="demo-footer">
-        <p class="demo-hint">Selected: {{ searchSelected?.name ?? "None" }}</p>
-      </div>
-    </div>
-
-    <div class="demo-section">
-      <h3>With Groups</h3>
-      <MizuComboboxRoot v-model="groupSelected" ignore-filter>
-        <MizuComboboxAnchor class="combobox-anchor">
-          <MizuComboboxInput
-            v-model="groupSearch"
-            :display-value="(v: any) => v?.name ?? ''"
-            placeholder="Select a person..."
-          />
-          <MizuComboboxTrigger class="combobox-trigger-btn">
-            <ChevronDown :size="16" />
-          </MizuComboboxTrigger>
-          <MizuComboboxCancel v-if="groupSelected" class="combobox-cancel-btn" @click="groupSelected = undefined">
-            <X :size="16" />
-          </MizuComboboxCancel>
-        </MizuComboboxAnchor>
-        <MizuComboboxPortal>
-          <MizuComboboxContent position="popper" :side-offset="4">
-            <MizuComboboxViewport>
-              <MizuComboboxGroup>
-                <MizuComboboxLabel>Team A</MizuComboboxLabel>
+  <div class="combobox-demo not-content">
+    <DemoTabs :code="basicCode">
+      <div class="demo-section">
+        <h3>Basic</h3>
+        <MizuComboboxRoot v-model="basicSelected" ignore-filter>
+          <MizuComboboxAnchor class="combobox-anchor">
+            <MizuComboboxInput
+              v-model="basicSearch"
+              :display-value="(v: any) => v?.name ?? ''"
+              placeholder="Select a person..."
+            />
+            <MizuComboboxTrigger v-if="basicShowChevron" class="combobox-trigger-btn">
+              <ChevronDown :size="16" />
+            </MizuComboboxTrigger>
+            <MizuComboboxCancel v-if="basicSelected" class="combobox-cancel-btn" @click="basicSelected = undefined">
+              <X :size="16" />
+            </MizuComboboxCancel>
+          </MizuComboboxAnchor>
+          <MizuComboboxPortal>
+            <MizuComboboxContent position="popper" :side-offset="4">
+              <MizuComboboxViewport>
+                <MizuComboboxEmpty>No results found.</MizuComboboxEmpty>
                 <MizuComboboxItem
-                  v-for="person in filteredGroupA"
+                  v-for="person in filteredBasic"
                   :key="person.id"
                   :value="person"
                 >
@@ -247,12 +271,43 @@ function setupSentinel(el: Element | null) {
                   </MizuComboboxItemIndicator>
                   {{ person.name }}
                 </MizuComboboxItem>
-              </MizuComboboxGroup>
-              <MizuComboboxSeparator />
-              <MizuComboboxGroup>
-                <MizuComboboxLabel>Team B</MizuComboboxLabel>
+              </MizuComboboxViewport>
+            </MizuComboboxContent>
+          </MizuComboboxPortal>
+        </MizuComboboxRoot>
+        <div class="demo-footer">
+          <p class="demo-hint">Selected: {{ basicSelected?.name ?? "None" }}</p>
+          <label class="demo-toggle">
+            <input type="checkbox" v-model="basicShowChevron" />
+            <span>Show chevron</span>
+          </label>
+        </div>
+      </div>
+    </DemoTabs>
+
+    <DemoTabs :code="basicCode">
+      <div class="demo-section">
+        <h3>With Search</h3>
+        <MizuComboboxRoot v-model="searchSelected" ignore-filter>
+          <MizuComboboxAnchor class="combobox-anchor">
+            <MizuComboboxInput
+              v-model="searchSearch"
+              :display-value="(v: any) => v?.name ?? ''"
+              placeholder="Search people..."
+            />
+            <MizuComboboxTrigger class="combobox-trigger-btn">
+              <ChevronDown :size="16" />
+            </MizuComboboxTrigger>
+            <MizuComboboxCancel v-if="searchSelected" class="combobox-cancel-btn" @click="searchSelected = undefined">
+              <X :size="16" />
+            </MizuComboboxCancel>
+          </MizuComboboxAnchor>
+          <MizuComboboxPortal>
+            <MizuComboboxContent position="popper" :side-offset="4">
+              <MizuComboboxViewport>
+                <MizuComboboxEmpty>No results found.</MizuComboboxEmpty>
                 <MizuComboboxItem
-                  v-for="person in filteredGroupB"
+                  v-for="person in filteredSearch"
                   :key="person.id"
                   :value="person"
                 >
@@ -261,106 +316,167 @@ function setupSentinel(el: Element | null) {
                   </MizuComboboxItemIndicator>
                   {{ person.name }}
                 </MizuComboboxItem>
-              </MizuComboboxGroup>
-            </MizuComboboxViewport>
-          </MizuComboboxContent>
-        </MizuComboboxPortal>
-      </MizuComboboxRoot>
-      <div class="demo-footer">
-        <p class="demo-hint">Selected: {{ groupSelected?.name ?? "None" }}</p>
+              </MizuComboboxViewport>
+            </MizuComboboxContent>
+          </MizuComboboxPortal>
+        </MizuComboboxRoot>
+        <div class="demo-footer">
+          <p class="demo-hint">Selected: {{ searchSelected?.name ?? "None" }}</p>
+        </div>
       </div>
-    </div>
+    </DemoTabs>
 
-    <div class="demo-section">
-      <h3>Multiple Selection</h3>
-      <MizuComboboxRoot v-model="multipleSelected" multiple ignore-filter>
-        <MizuComboboxAnchor class="combobox-anchor multi">
-          <template v-for="person in multipleSelected" :key="person.id">
-            <MizuTag closable @close="removePerson(person)">
-              {{ person.name }}
-            </MizuTag>
-          </template>
-          <MizuComboboxInput
-            v-model="multipleSearch"
-            placeholder="Select people..."
-            class="multi-input"
-          />
-          <MizuComboboxTrigger class="combobox-trigger-btn">
-            <ChevronDown :size="16" />
-          </MizuComboboxTrigger>
-          <MizuComboboxCancel v-if="multipleSelected.length" class="combobox-cancel-btn" @click="multipleSelected = []">
-            <X :size="16" />
-          </MizuComboboxCancel>
-        </MizuComboboxAnchor>
-        <MizuComboboxPortal>
-          <MizuComboboxContent position="popper" :side-offset="4">
-            <MizuComboboxViewport>
-              <MizuComboboxEmpty>No results found.</MizuComboboxEmpty>
-              <MizuComboboxItem
-                v-for="person in filteredMultiple"
-                :key="person.id"
-                :value="person"
-              >
-                <MizuComboboxItemIndicator>
-                  <Check :size="16" />
-                </MizuComboboxItemIndicator>
-                {{ person.name }}
-              </MizuComboboxItem>
-            </MizuComboboxViewport>
-          </MizuComboboxContent>
-        </MizuComboboxPortal>
-      </MizuComboboxRoot>
-      <div class="demo-footer">
-        <p class="demo-hint">Selected: {{ multipleSelected.length ? multipleSelected.map((p: any) => p.name).join(", ") : "None" }}</p>
+    <DemoTabs :code="groupsCode">
+      <div class="demo-section">
+        <h3>With Groups</h3>
+        <MizuComboboxRoot v-model="groupSelected" ignore-filter>
+          <MizuComboboxAnchor class="combobox-anchor">
+            <MizuComboboxInput
+              v-model="groupSearch"
+              :display-value="(v: any) => v?.name ?? ''"
+              placeholder="Select a person..."
+            />
+            <MizuComboboxTrigger class="combobox-trigger-btn">
+              <ChevronDown :size="16" />
+            </MizuComboboxTrigger>
+            <MizuComboboxCancel v-if="groupSelected" class="combobox-cancel-btn" @click="groupSelected = undefined">
+              <X :size="16" />
+            </MizuComboboxCancel>
+          </MizuComboboxAnchor>
+          <MizuComboboxPortal>
+            <MizuComboboxContent position="popper" :side-offset="4">
+              <MizuComboboxViewport>
+                <MizuComboboxGroup>
+                  <MizuComboboxLabel>Team A</MizuComboboxLabel>
+                  <MizuComboboxItem
+                    v-for="person in filteredGroupA"
+                    :key="person.id"
+                    :value="person"
+                  >
+                    <MizuComboboxItemIndicator>
+                      <Check :size="16" />
+                    </MizuComboboxItemIndicator>
+                    {{ person.name }}
+                  </MizuComboboxItem>
+                </MizuComboboxGroup>
+                <MizuComboboxSeparator />
+                <MizuComboboxGroup>
+                  <MizuComboboxLabel>Team B</MizuComboboxLabel>
+                  <MizuComboboxItem
+                    v-for="person in filteredGroupB"
+                    :key="person.id"
+                    :value="person"
+                  >
+                    <MizuComboboxItemIndicator>
+                      <Check :size="16" />
+                    </MizuComboboxItemIndicator>
+                    {{ person.name }}
+                  </MizuComboboxItem>
+                </MizuComboboxGroup>
+              </MizuComboboxViewport>
+            </MizuComboboxContent>
+          </MizuComboboxPortal>
+        </MizuComboboxRoot>
+        <div class="demo-footer">
+          <p class="demo-hint">Selected: {{ groupSelected?.name ?? "None" }}</p>
+        </div>
       </div>
-    </div>
+    </DemoTabs>
 
-    <div class="demo-section">
-      <h3>Lazy Load (100 items)</h3>
-      <MizuComboboxRoot v-model="lazySelected" ignore-filter>
-        <MizuComboboxAnchor class="combobox-anchor">
-          <MizuComboboxInput
-            v-model="lazySearch"
-            :display-value="(v: any) => v?.name ?? ''"
-            placeholder="Type to search 100 people..."
-          />
-          <MizuComboboxTrigger class="combobox-trigger-btn">
-            <ChevronDown :size="16" />
-          </MizuComboboxTrigger>
-          <MizuComboboxCancel v-if="lazySelected" class="combobox-cancel-btn" @click="lazySelected = undefined">
-            <X :size="16" />
-          </MizuComboboxCancel>
-        </MizuComboboxAnchor>
-        <MizuComboboxPortal>
-          <MizuComboboxContent position="popper" :side-offset="4">
-            <MizuComboboxViewport>
-              <MizuComboboxEmpty>No results found.</MizuComboboxEmpty>
-              <MizuComboboxItem
-                v-for="person in visibleLazy"
-                :key="person.id"
-                :value="person"
-              >
-                <MizuComboboxItemIndicator>
-                  <Check :size="16" />
-                </MizuComboboxItemIndicator>
+    <DemoTabs :code="multipleCode">
+      <div class="demo-section">
+        <h3>Multiple Selection</h3>
+        <MizuComboboxRoot v-model="multipleSelected" multiple ignore-filter>
+          <MizuComboboxAnchor class="combobox-anchor multi">
+            <template v-for="person in multipleSelected" :key="person.id">
+              <MizuTag closable @close="removePerson(person)">
                 {{ person.name }}
-              </MizuComboboxItem>
-              <div
-                v-if="hasMoreLazy"
-                :ref="setupSentinel"
-                class="lazy-sentinel"
-              >
-                <LoaderCircle v-if="loadingMore" :size="14" class="lazy-spinner" />
-                <span v-else>{{ filteredLazy.length - visibleCount }} more...</span>
-              </div>
-            </MizuComboboxViewport>
-          </MizuComboboxContent>
-        </MizuComboboxPortal>
-      </MizuComboboxRoot>
-      <div class="demo-footer">
-        <p class="demo-hint">Selected: {{ lazySelected?.name ?? "None" }}</p>
+              </MizuTag>
+            </template>
+            <MizuComboboxInput
+              v-model="multipleSearch"
+              placeholder="Select people..."
+              class="multi-input"
+            />
+            <MizuComboboxTrigger class="combobox-trigger-btn">
+              <ChevronDown :size="16" />
+            </MizuComboboxTrigger>
+            <MizuComboboxCancel v-if="multipleSelected.length" class="combobox-cancel-btn" @click="multipleSelected = []">
+              <X :size="16" />
+            </MizuComboboxCancel>
+          </MizuComboboxAnchor>
+          <MizuComboboxPortal>
+            <MizuComboboxContent position="popper" :side-offset="4">
+              <MizuComboboxViewport>
+                <MizuComboboxEmpty>No results found.</MizuComboboxEmpty>
+                <MizuComboboxItem
+                  v-for="person in filteredMultiple"
+                  :key="person.id"
+                  :value="person"
+                >
+                  <MizuComboboxItemIndicator>
+                    <Check :size="16" />
+                  </MizuComboboxItemIndicator>
+                  {{ person.name }}
+                </MizuComboboxItem>
+              </MizuComboboxViewport>
+            </MizuComboboxContent>
+          </MizuComboboxPortal>
+        </MizuComboboxRoot>
+        <div class="demo-footer">
+          <p class="demo-hint">Selected: {{ multipleSelected.length ? multipleSelected.map((p: any) => p.name).join(", ") : "None" }}</p>
+        </div>
       </div>
-    </div>
+    </DemoTabs>
+
+    <DemoTabs :code="lazyCode">
+      <div class="demo-section">
+        <h3>Lazy Load (100 items)</h3>
+        <MizuComboboxRoot v-model="lazySelected" ignore-filter>
+          <MizuComboboxAnchor class="combobox-anchor">
+            <MizuComboboxInput
+              v-model="lazySearch"
+              :display-value="(v: any) => v?.name ?? ''"
+              placeholder="Type to search 100 people..."
+            />
+            <MizuComboboxTrigger class="combobox-trigger-btn">
+              <ChevronDown :size="16" />
+            </MizuComboboxTrigger>
+            <MizuComboboxCancel v-if="lazySelected" class="combobox-cancel-btn" @click="lazySelected = undefined">
+              <X :size="16" />
+            </MizuComboboxCancel>
+          </MizuComboboxAnchor>
+          <MizuComboboxPortal>
+            <MizuComboboxContent position="popper" :side-offset="4">
+              <MizuComboboxViewport>
+                <MizuComboboxEmpty>No results found.</MizuComboboxEmpty>
+                <MizuComboboxItem
+                  v-for="person in visibleLazy"
+                  :key="person.id"
+                  :value="person"
+                >
+                  <MizuComboboxItemIndicator>
+                    <Check :size="16" />
+                  </MizuComboboxItemIndicator>
+                  {{ person.name }}
+                </MizuComboboxItem>
+                <div
+                  v-if="hasMoreLazy"
+                  :ref="setupSentinel"
+                  class="lazy-sentinel"
+                >
+                  <LoaderCircle v-if="loadingMore" :size="14" class="lazy-spinner" />
+                  <span v-else>{{ filteredLazy.length - visibleCount }} more...</span>
+                </div>
+              </MizuComboboxViewport>
+            </MizuComboboxContent>
+          </MizuComboboxPortal>
+        </MizuComboboxRoot>
+        <div class="demo-footer">
+          <p class="demo-hint">Selected: {{ lazySelected?.name ?? "None" }}</p>
+        </div>
+      </div>
+    </DemoTabs>
   </div>
 </template>
 
@@ -371,7 +487,9 @@ function setupSentinel(el: Element | null) {
   flex-direction: column;
   gap: 24px;
   padding: 16px;
-  background: var(--sl-color-gray-2);
+  background: transparent;
+
+  border: 1px solid var(--color-surface-muted);
   border-radius: 8px;
 }
 

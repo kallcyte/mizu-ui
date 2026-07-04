@@ -1,6 +1,37 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import { MizuSelect, MizuButton } from "@mizu/vue";
+import DemoTabs from "./DemoTabs.vue";
+
+const basicCode = `<MizuSelect v-model="selected" :options="fruitOptions" />
+<MizuSelect v-model="selected" :options="fruitOptions" placeholder="Choose a fruit..." />
+<MizuSelect v-model="selected" :options="fruitOptions" label="Favorite fruit" />`;
+
+const sizesCode = `<MizuSelect v-model="selected" :options="sizeOptions" size="sm" label="Small" />
+<MizuSelect v-model="selected" :options="sizeOptions" size="md" label="Medium" />
+<MizuSelect v-model="selected" :options="sizeOptions" size="lg" label="Large" />`;
+
+const statesCode = `<MizuSelect v-model="selected" :options="fruitOptions" label="With Error" error helper-text="This field has an error" />
+<MizuSelect v-model="selected" :options="countryOptions" label="Disabled" disabled />`;
+
+const formCode = `<MizuSelect
+  v-model="country"
+  :options="countryOptions"
+  label="Country"
+  placeholder="Select your country..."
+  required
+/>
+<MizuSelect
+  v-model="category"
+  :options="[
+    { value: 'general', label: 'General' },
+    { value: 'support', label: 'Support' },
+    { value: 'billing', label: 'Billing' },
+  ]"
+  label="Category"
+  placeholder="Choose category..."
+/>
+<MizuButton size="sm" @click="handleSubmit">Submit</MizuButton>`;
 
 const fruitOptions = [
   { value: "apple", label: "Apple" },
@@ -44,35 +75,42 @@ function handleSubmit() {
 </script>
 
 <template>
-  <div class="select-demo">
+  <div class="select-demo not-content">
     <div class="demo-section">
       <h3>Basic</h3>
+      <DemoTabs :code="basicCode">
       <div class="select-stack">
         <MizuSelect v-model="basicSelected" :options="fruitOptions" />
         <MizuSelect v-model="withPlaceholder" :options="fruitOptions" placeholder="Choose a fruit..." />
         <MizuSelect v-model="withLabel" :options="fruitOptions" label="Favorite fruit" />
       </div>
+      </DemoTabs>
     </div>
 
     <div class="demo-section">
       <h3>Sizes</h3>
+      <DemoTabs :code="sizesCode">
       <div class="select-stack">
         <MizuSelect v-model="sizeSm" :options="sizeOptions" size="sm" label="Small" />
         <MizuSelect v-model="sizeMd" :options="sizeOptions" size="md" label="Medium" />
         <MizuSelect v-model="sizeLg" :options="sizeOptions" size="lg" label="Large" />
       </div>
+      </DemoTabs>
     </div>
 
     <div class="demo-section">
       <h3>States</h3>
+      <DemoTabs :code="statesCode">
       <div class="select-stack">
         <MizuSelect v-model="errorSelected" :options="fruitOptions" label="With Error" error helper-text="This field has an error" />
         <MizuSelect v-model="disabledSelected" :options="countryOptions" label="Disabled" disabled />
       </div>
+      </DemoTabs>
     </div>
 
     <div class="demo-section">
       <h3>Form Example</h3>
+      <DemoTabs :code="formCode">
       <div class="select-stack">
         <MizuSelect
           v-model="country"
@@ -95,6 +133,7 @@ function handleSubmit() {
           <MizuButton size="sm" @click="handleSubmit">Submit</MizuButton>
         </div>
       </div>
+      </DemoTabs>
     </div>
   </div>
 </template>
@@ -106,7 +145,9 @@ function handleSubmit() {
   flex-direction: column;
   gap: 24px;
   padding: 24px;
-  background: var(--sl-color-gray-2);
+  background: transparent;
+
+  border: 1px solid var(--color-surface-muted);
   border-radius: 8px;
 }
 

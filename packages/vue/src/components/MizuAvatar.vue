@@ -191,18 +191,18 @@ const imageAlt = computed(() => {
 }
 .mizu-avatar--primary {
   background-color: var(--color-brand-primary);
-  color: var(--color-foreground-inverse);
-  border-color: var(--color-brand-primary);
-}
-.mizu-avatar--accent {
+  color: #fff;
+    border-color: var(--color-brand-primary);
+  }
+  .mizu-avatar--accent {
   background-color: var(--color-brand-accent-subtle);
   color: var(--color-brand-accent);
   border-color: var(--color-brand-accent-subtle);
 }
 .mizu-avatar--neutral {
   background-color: var(--color-brand-neutral);
-  color: var(--color-foreground-inverse);
-  border-color: var(--color-brand-neutral);
+  color: #fff;
+    border-color: var(--color-brand-neutral);
 }
 
 /* Image */

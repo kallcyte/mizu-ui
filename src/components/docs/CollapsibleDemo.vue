@@ -6,15 +6,81 @@ import {
   MizuCollapsibleContent,
   MizuButton,
 } from "@mizu/vue";
+import DemoTabs from "./DemoTabs.vue";
 
 const isOpen = ref(false);
+
+const basicCode = `<MizuCollapsibleRoot>
+  <MizuCollapsibleTrigger as-child>
+    <MizuButton variant="ghost">Show more</MizuButton>
+  </MizuCollapsibleTrigger>
+  <MizuCollapsibleContent>
+    This content can be collapsed and expanded.
+  </MizuCollapsibleContent>
+</MizuCollapsibleRoot>`;
+
+const controlledCode = `<MizuCollapsibleRoot v-model:open="isOpen">
+  <MizuCollapsibleTrigger as-child>
+    <MizuButton variant="ghost">Toggle details</MizuButton>
+  </MizuCollapsibleTrigger>
+  <MizuCollapsibleContent>
+    This collapsible is controlled via v-model.
+  </MizuCollapsibleContent>
+</MizuCollapsibleRoot>`;
+
+const defaultOpenCode = `<MizuCollapsibleRoot :default-open="true">
+  <MizuCollapsibleTrigger as-child>
+    <MizuButton variant="ghost">Initially expanded</MizuButton>
+  </MizuCollapsibleTrigger>
+  <MizuCollapsibleContent>
+    This collapsible starts in the open state.
+  </MizuCollapsibleContent>
+</MizuCollapsibleRoot>`;
+
+const disabledCode = `<MizuCollapsibleRoot disabled>
+  <MizuCollapsibleTrigger as-child>
+    <MizuButton variant="ghost">Disabled collapsible</MizuButton>
+  </MizuCollapsibleTrigger>
+  <MizuCollapsibleContent>
+    This content cannot be shown.
+  </MizuCollapsibleContent>
+</MizuCollapsibleRoot>`;
+
+const buttonVariantsCode = `<MizuCollapsibleRoot>
+  <MizuCollapsibleTrigger as-child>
+    <MizuButton variant="ghost">Ghost</MizuButton>
+  </MizuCollapsibleTrigger>
+  <MizuCollapsibleContent>Using ghost variant button.</MizuCollapsibleContent>
+</MizuCollapsibleRoot>
+<MizuCollapsibleRoot>
+  <MizuCollapsibleTrigger as-child>
+    <MizuButton variant="outline">Outline</MizuButton>
+  </MizuCollapsibleTrigger>
+  <MizuCollapsibleContent>Using outline variant button.</MizuCollapsibleContent>
+</MizuCollapsibleRoot>`;
+
+const richContentCode = `<MizuCollapsibleRoot>
+  <MizuCollapsibleTrigger as-child>
+    <MizuButton variant="ghost">Show details</MizuButton>
+  </MizuCollapsibleTrigger>
+  <MizuCollapsibleContent>
+    <p>Collapsibles can contain any content:</p>
+    <ul>
+      <li>Text and paragraphs</li>
+      <li>Lists and tables</li>
+      <li>Forms and inputs</li>
+      <li>Other components</li>
+    </ul>
+  </MizuCollapsibleContent>
+</MizuCollapsibleRoot>`;
 </script>
 
 <template>
-  <div class="collapsible-demo">
+  <div class="collapsible-demo not-content">
     <!-- Basic collapsible -->
     <div class="demo-section">
       <h3>Basic</h3>
+      <DemoTabs :code="basicCode">
       <MizuCollapsibleRoot>
         <MizuCollapsibleTrigger as-child>
           <MizuButton variant="ghost">Show more</MizuButton>
@@ -23,12 +89,14 @@ const isOpen = ref(false);
           This content can be collapsed and expanded. Click the trigger above to toggle visibility.
         </MizuCollapsibleContent>
       </MizuCollapsibleRoot>
+      </DemoTabs>
     </div>
 
     <!-- Controlled with v-model -->
     <div class="demo-section">
       <h3>Controlled (v-model)</h3>
       <p class="demo-hint">Currently open: {{ isOpen }}</p>
+      <DemoTabs :code="controlledCode">
       <MizuCollapsibleRoot v-model:open="isOpen">
         <MizuCollapsibleTrigger as-child>
           <MizuButton variant="ghost">Toggle details</MizuButton>
@@ -37,11 +105,13 @@ const isOpen = ref(false);
           This collapsible is controlled via v-model. The state is reflected above.
         </MizuCollapsibleContent>
       </MizuCollapsibleRoot>
+      </DemoTabs>
     </div>
 
     <!-- Default open -->
     <div class="demo-section">
       <h3>Default open</h3>
+      <DemoTabs :code="defaultOpenCode">
       <MizuCollapsibleRoot :default-open="true">
         <MizuCollapsibleTrigger as-child>
           <MizuButton variant="ghost">Initially expanded</MizuButton>
@@ -50,11 +120,13 @@ const isOpen = ref(false);
           This collapsible starts in the open state using the defaultOpen prop.
         </MizuCollapsibleContent>
       </MizuCollapsibleRoot>
+      </DemoTabs>
     </div>
 
     <!-- Disabled -->
     <div class="demo-section">
       <h3>Disabled</h3>
+      <DemoTabs :code="disabledCode">
       <MizuCollapsibleRoot disabled>
         <MizuCollapsibleTrigger as-child>
           <MizuButton variant="ghost">Disabled collapsible</MizuButton>
@@ -63,11 +135,13 @@ const isOpen = ref(false);
           This content cannot be shown because the collapsible is disabled.
         </MizuCollapsibleContent>
       </MizuCollapsibleRoot>
+      </DemoTabs>
     </div>
 
     <!-- Button variants -->
     <div class="demo-section">
       <h3>Button variants</h3>
+      <DemoTabs :code="buttonVariantsCode">
       <div class="button-variants-row">
         <MizuCollapsibleRoot>
           <MizuCollapsibleTrigger as-child>
@@ -88,11 +162,13 @@ const isOpen = ref(false);
           <MizuCollapsibleContent>Using primary variant button.</MizuCollapsibleContent>
         </MizuCollapsibleRoot>
       </div>
+      </DemoTabs>
     </div>
 
     <!-- Nested content -->
     <div class="demo-section">
       <h3>Rich content</h3>
+      <DemoTabs :code="richContentCode">
       <MizuCollapsibleRoot>
         <MizuCollapsibleTrigger as-child>
           <MizuButton variant="ghost">Show details</MizuButton>
@@ -107,6 +183,7 @@ const isOpen = ref(false);
           </ul>
         </MizuCollapsibleContent>
       </MizuCollapsibleRoot>
+      </DemoTabs>
     </div>
   </div>
 </template>
@@ -118,9 +195,8 @@ const isOpen = ref(false);
   display: flex;
   flex-direction: column;
   gap: 24px;
-  padding: 16px;
-  background: var(--sl-color-gray-2);
-  border-radius: 8px;
+  padding: 0;
+  background: transparent;
 }
 
 .collapsible-demo .demo-section {

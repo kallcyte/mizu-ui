@@ -23,4 +23,9 @@ const classes = computed(() => {
   max-height: 60vh;
   padding: 16px;
 }
-</style>
+
+/* Fullscreen dialog — body fills available space without constraint */
+.mizu-dialog__content--fullscreen .mizu-dialog__body,
+.mizu-alert-dialog__content--fullscreen .mizu-dialog__body {
+  max-height: none;
+}</style>

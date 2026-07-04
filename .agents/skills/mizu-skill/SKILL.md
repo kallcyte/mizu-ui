@@ -31,13 +31,70 @@ disable-model-invocation: false
 
 This resets Starlight's `.sl-markdown-content :not(...) + :not(...)` rule which adds unwanted `margin-top` to elements inside demos.
 
+**For MDX-level bleed prevention**, wrap demo components in a `<div class="not-content">` when mounting them directly in MDX (without a scoped wrapper). Starlight's `.sl-markdown-content` cascade explicitly skips children of `.not-content`:
+
+```mdx
+<div class="not-content">
+  <YourDemo client:load />
+</div>
+```
+
+**For reusable demo wrappers** like `DemoTabs.vue`, the preview slot wrapper should carry the `not-content` class:
+
+```html
+<div class="demo-tabs__preview not-content">
+  <slot />
+</div>
+```
+
+Use `all: revert` in the Vue component's scoped `<style>` first. Add `not-content` as a second line of defense for slotted or MDX-mounted content. Do NOT use `all: revert` on `MizuTabsContent` or other Reka UI content elements — it overrides Reka's `display: none` on inactive panels.
+
 5. When you find gaps or missing conventions in this skill, flag them at the end of the session.
 
 6. **Prioritize Tailwind CSS v4 utility classes first** when writing styles. If a custom class is needed, use `@apply <tailwindcss_utility_classes>` inside `<style>` blocks. Only write raw CSS directives (`property: value`) when Tailwind does not provide an equivalent utility class.
 
+7. **Every component must have a matching Histoire story.** Stories live in `packages/vue/src/stories/{Name}.story.vue`. When adding a new component, create its story file. When modifying a component's API (props, slots, events, variants), update the existing story to reflect the changes. Use this skeleton:
+
+```vue
+<script setup lang="ts">
+import MizuComponent from "../components/MizuComponent.vue";
+</script>
+
+<template>
+  <Story
+    title="ComponentName"
+    :layout="{ type: 'single', width: 400 }"
+  >
+    <Variant title="Variants">
+      <div class="flex flex-wrap gap-3 items-center">
+        <MizuComponent variant="primary" />
+        <MizuComponent variant="secondary" />
+      </div>
+    </Variant>
+
+    <Variant title="Sizes">
+      <div class="flex flex-wrap gap-3 items-center">
+        <MizuComponent size="sm" />
+        <MizuComponent size="md" />
+        <MizuComponent size="lg" />
+      </div>
+    </Variant>
+
+    <Variant title="States">
+      <div class="flex flex-wrap gap-3 items-center">
+        <MizuComponent disabled />
+        <MizuComponent loading />
+      </div>
+    </Variant>
+  </Story>
+</template>
+```
+
+Run `pnpm --filter @mizu/vue story:dev` to preview stories locally. Use `pnpm --filter @mizu/vue story:build` to verify they compile. Every variant-group should cover the main prop dimensions (variants × sizes × states). Compound components should include one "Composition" variant showing the full hierarchy.
+
 ## Documentation
 
-7. After finalizing a new component, **always** complete all three of these documentation steps in the same batch — no exceptions:
+8. After finalizing a new component, **always** complete all three of these documentation steps in the same batch — no exceptions:
    - Create component documentation at `src/content/docs/components/{name}.mdx` following the structure below.
    - Add a component card to `src/components/home/ComponentsSection.astro` inside `<div class="comp-grid">`. Use this template:
 
@@ -50,8 +107,8 @@ This resets Starlight's `.sl-markdown-content :not(...) + :not(...)` rule which 
 
    - Add the component to the Starlight sidebar under the "Components" group in `astro.config.mjs`.
    - Verify all three stay in sync: sidebar entries, homepage cards, and docs pages. Compare the sidebar component list in `astro.config.mjs` against `src/components/home/ComponentsSection.astro` and `src/content/docs/components/` after every batch.
-8. Before documenting a new component, run `pnpm --filter @mizu/vue build` to regenerate `packages/vue/src/index.ts`, then verify every exported component has a corresponding sidebar entry (`astro.config.mjs`), docs page (`src/content/docs/components/`), and homepage card (`src/components/home/ComponentsSection.astro`). The three must always be in sync — a missing homepage card is a documentation bug.
-9. Create a new changelog entry in `src/content/docs/getting-started/changelog.mdx` before committing.
+9. Before documenting a new component, run `pnpm --filter @mizu/vue build` to regenerate `packages/vue/src/index.ts`, then verify every exported component has a corresponding sidebar entry (`astro.config.mjs`), docs page (`src/content/docs/components/`), and homepage card (`src/components/home/ComponentsSection.astro`). The three must always be in sync — a missing homepage card is a documentation bug.
+10. Create a new changelog entry in `src/content/docs/getting-started/changelog.mdx` before committing.
 10. **Bump the patch version** (e.g., `0.12.0` → `0.12.1`) in `packages/vue/package.json` and `package.json` (root) after adding a new component.
 11. After a version bump, update the version number in:
     - `packages/vue/package.json` (the canonical source of truth)
@@ -97,6 +154,7 @@ gh release create v{VERSION} \
 2. Don't create a new component without my command. A new component should only be created when I specifically request it.
 3. Don't add components to `src/components/home/` (legacy) — put new component demos under `src/components/docs/{Name}Demo.vue`.
 4. Don't edit `packages/vue/src/index.ts` directly — it's auto-generated by `packages/vue/scripts/generate-index.mjs`. Add new `.vue` files to `packages/vue/src/components/` and run `pnpm --filter @mizu/vue build`.
+5. **Don't let the Starlight sidebar and docs content collection get out of sync.** Every sidebar `slug` in `astro.config.mjs` must resolve to a matching `.mdx` file under `src/content/docs/`, and every `.mdx` file must appear somewhere in the sidebar. A mismatch triggers `AstroUserError: Update the Starlight config to reference a valid entry slug`. The slug format is the file path relative to `src/content/docs/`, minus the `.mdx` extension (e.g., `src/content/docs/components/button.mdx` → `"components/button"`). When adding, renaming, or deleting an `.mdx` file, always update the sidebar in the same commit.
 
 ## Component Documentation Structure
 
@@ -183,7 +241,7 @@ Insert any of these between Transitions and Accessibility when relevant:
 
 ### 16. Vue Component API
 
-`## Vue Component API` → tables for **Props** (one per root component; `### Card* Props` for compound components), **Slots**, **Events** (if any), then `### Example Usage` with a fenced ` ```vue ` block covering all variants/props. **Use `Mizu*` component names in examples** (not the legacy `Mizunagi*` prefix).
+`## Vue Component API` → tables for **Props** (one per root component; `### Card* Props` for compound components), **Slots**, **Events** (if any), then `### Example Usage` with a fenced ` ```vue ` block covering all variants/props. **Use `Mizu*` component names in examples** (not the legacy `Mizu*` prefix).
 
 ### 17. Implementation Notes
 

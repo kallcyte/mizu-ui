@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed, ref } from "vue";
 import { MizuCheckbox, MizuButton } from "@mizu/vue";
+import DemoTabs from "./DemoTabs.vue";
 
 const basicUnchecked = ref(false);
 const basicChecked = ref(false);
@@ -62,12 +63,85 @@ function toggleIndeterminate() {
     selectAllState.value =
         selectAllState.value === "indeterminate" ? false : "indeterminate";
 }
+
+const basicCode = `<MizuCheckbox v-model="checked" />
+<MizuCheckbox v-model="checked" label="Subscribe" />
+<MizuCheckbox v-model="checked" disabled label="Disabled unchecked" />
+<MizuCheckbox v-model="checked" disabled label="Disabled checked" />`;
+
+const sizesCode = `<MizuCheckbox v-model="checked" size="sm" label="Small (16px)" />
+<MizuCheckbox v-model="checked" size="md" label="Medium (18px)" />
+<MizuCheckbox v-model="checked" size="lg" label="Large (20px)" />`;
+
+const statesCode = `<MizuCheckbox v-model="checked" label="Unchecked" />
+<MizuCheckbox v-model="checked" label="Checked" />
+<MizuCheckbox v-model="value" label="Indeterminate" />
+<MizuCheckbox v-model="checked" disabled label="Disabled" />
+<MizuCheckbox v-model="checked" disabled label="Disabled & checked" />`;
+
+const formLabelsCode = `<MizuCheckbox
+  v-model="formTerms"
+  required
+  label="I accept the terms and conditions"
+/>
+<MizuCheckbox
+  v-model="formNewsletter"
+  required
+  label="Subscribe to the newsletter"
+/>
+<MizuCheckbox
+  v-model="formUpdates"
+  label="Receive product updates by email"
+/>`;
+
+const indeterminateCode = `<MizuCheckbox
+  v-model="selectAllState"
+  label="Select all items in this list"
+/>
+<!-- State: {{ selectAllState }} -->
+<MizuButton size="sm" variant="outline" @click="toggleIndeterminate">
+  Toggle Indeterminate
+</MizuButton>`;
+
+const selectAllCode = `<MizuCheckbox
+  v-model="channelsParentState"
+  label="Notification preferences"
+/>
+<div class="checkbox-children">
+  <MizuCheckbox v-model="emailEnabled" label="EMAIL" />
+  <MizuCheckbox v-model="smsEnabled" label="SMS" />
+  <MizuCheckbox v-model="pushEnabled" label="PUSH" />
+</div>`;
+
+const customValuesCode = `<MizuCheckbox
+  v-model="customString"
+  true-value="yes"
+  false-value="no"
+  label="Accept terms"
+/>
+<MizuCheckbox
+  v-model="customNumber"
+  :true-value="1"
+  :false-value="0"
+  label="Grant permission"
+/>`;
+
+const loginFormCode = `<MizuCheckbox
+  v-model="keepSignedIn"
+  label="Keep me signed in on this device"
+/>
+<MizuCheckbox
+  v-model="agreeToTerms"
+  required
+  label="I agree to the Terms of Service and Privacy Policy"
+/>`;
 </script>
 
 <template>
-    <div class="checkbox-demo">
+    <div class="checkbox-demo not-content">
         <div class="demo-section">
             <h3>Basic</h3>
+            <DemoTabs :code="basicCode">
             <div class="checkbox-stack">
                 <MizuCheckbox v-model="basicUnchecked" />
                 <MizuCheckbox v-model="basicChecked" label="Subscribe" />
@@ -75,19 +149,23 @@ function toggleIndeterminate() {
                 <MizuCheckbox v-model="disabledUnchecked" disabled label="Disabled unchecked" />
                 <MizuCheckbox v-model="disabledChecked" disabled label="Disabled checked" />
             </div>
+            </DemoTabs>
         </div>
 
         <div class="demo-section">
             <h3>Sizes</h3>
+            <DemoTabs :code="sizesCode">
             <div class="checkbox-stack">
                 <MizuCheckbox v-model="sizeSm" size="sm" label="Small (16px)" />
                 <MizuCheckbox v-model="sizeMd" size="md" label="Medium (18px)" />
                 <MizuCheckbox v-model="sizeLg" size="lg" label="Large (20px)" />
             </div>
+            </DemoTabs>
         </div>
 
         <div class="demo-section">
             <h3>States</h3>
+            <DemoTabs :code="statesCode">
             <div class="checkbox-stack">
                 <MizuCheckbox v-model="stateUnchecked" label="Unchecked" />
                 <MizuCheckbox v-model="stateChecked" label="Checked" />
@@ -95,10 +173,12 @@ function toggleIndeterminate() {
                 <MizuCheckbox v-model="stateDisabled" disabled label="Disabled" />
                 <MizuCheckbox v-model="stateDisabledChecked" disabled label="Disabled & checked" />
             </div>
+            </DemoTabs>
         </div>
 
         <div class="demo-section">
             <h3>With Form Labels</h3>
+            <DemoTabs :code="formLabelsCode">
             <div class="checkbox-stack">
                 <MizuCheckbox
                     v-model="formTerms"
@@ -115,10 +195,12 @@ function toggleIndeterminate() {
                     label="Receive product updates by email"
                 />
             </div>
+            </DemoTabs>
         </div>
 
         <div class="demo-section">
             <h3>Indeterminate</h3>
+            <DemoTabs :code="indeterminateCode">
             <div class="checkbox-stack">
                 <MizuCheckbox
                     v-model="selectAllState"
@@ -131,10 +213,12 @@ function toggleIndeterminate() {
                     Toggle Indeterminate
                 </MizuButton>
             </div>
+            </DemoTabs>
         </div>
 
         <div class="demo-section">
             <h3>Select All with Children</h3>
+            <DemoTabs :code="selectAllCode">
             <div class="checkbox-stack">
                 <MizuCheckbox
                     v-model="channelsParentState"
@@ -159,10 +243,12 @@ function toggleIndeterminate() {
                     <code>{{ channelRefs.length }}</code>
                 </p>
             </div>
+            </DemoTabs>
         </div>
 
         <div class="demo-section">
             <h3>Custom Values</h3>
+            <DemoTabs :code="customValuesCode">
             <div class="checkbox-stack">
                 <MizuCheckbox
                     v-model="customString"
@@ -183,10 +269,12 @@ function toggleIndeterminate() {
                     Value: <code>{{ customNumber }}</code>
                 </p>
             </div>
+            </DemoTabs>
         </div>
 
         <div class="demo-section">
             <h3>Login Form Example</h3>
+            <DemoTabs :code="loginFormCode">
             <div class="checkbox-stack">
                 <MizuCheckbox
                     v-model="keepSignedIn"
@@ -198,6 +286,7 @@ function toggleIndeterminate() {
                     label="I agree to the Terms of Service and Privacy Policy"
                 />
             </div>
+            </DemoTabs>
         </div>
     </div>
 </template>
@@ -208,9 +297,8 @@ function toggleIndeterminate() {
     display: flex;
     flex-direction: column;
     gap: 24px;
-    padding: 24px;
-    background: var(--sl-color-gray-2);
-    border-radius: 8px;
+    padding: 0;
+    background: transparent;
 }
 
 .checkbox-demo :deep(*) {

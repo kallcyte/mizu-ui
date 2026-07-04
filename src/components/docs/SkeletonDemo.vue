@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import { MizuSkeleton, MizuSkeletonTheme, MizuAvatar, MizuCard, MizuCardHeader, MizuCardContent } from "@mizu/vue";
+import DemoTabs from "./DemoTabs.vue";
 
 const loading = ref(true);
 const user = ref<{ name: string; role: string; bio: string } | null>(null);
@@ -24,147 +25,217 @@ function simulate() {
         };
     }, 1500);
 }
+
+const variantsCode = `<MizuSkeleton variant="text" />
+<MizuSkeleton variant="circle" :width="48" :height="48" />
+<MizuSkeleton variant="rect" :width="120" :height="64" />`;
+
+const sizesCode = `<MizuSkeleton variant="text" :lines="3" />
+<MizuSkeleton variant="text" :width="160" :lines="1" />`;
+
+const dimensionsCode = `<MizuSkeleton variant="rect" :width="200" :height="100" :radius="12" />
+<MizuSkeleton variant="circle" :width="80" :height="80" />
+<MizuSkeleton variant="rect" :width="280" :height="20" :radius="10" />`;
+
+const animationCode = `<MizuSkeleton variant="rect" :width="100" :height="20" animation="shimmer" />
+<MizuSkeleton variant="rect" :width="100" :height="20" animation="pulse" />
+<MizuSkeleton variant="rect" :width="100" :height="20" animation="none" />`;
+
+const cardPlaceholderCode = `<MizuCard>
+  <MizuCardHeader>
+    <MizuSkeleton variant="circle" :width="48" :height="48" />
+    <MizuSkeleton variant="text" :width="140" />
+    <MizuSkeleton variant="text" :width="100" />
+  </MizuCardHeader>
+  <MizuCardContent>
+    <MizuSkeleton variant="text" :lines="3" />
+  </MizuCardContent>
+</MizuCard>`;
+
+const multiLineCode = `<MizuSkeleton variant="text" :lines="5" />`;
+
+const loadingCode = `<MizuSkeleton :loading="loading" variant="circle" :width="48" :height="48">
+  <MizuAvatar name="Jane Doe" size="lg" />
+</MizuSkeleton>
+<MizuSkeleton :loading="loading" variant="text" :width="140">
+  <h4>{{ user?.name }}</h4>
+</MizuSkeleton>
+<MizuSkeleton :loading="loading" variant="text" :lines="3">
+  <p>{{ user?.bio }}</p>
+</MizuSkeleton>`;
+
+const themeCode = `<MizuSkeletonTheme base-color="#dbeafe" highlight-color="#93c5fd">
+  <MizuSkeleton variant="rect" :width="120" :height="64" :radius="12" />
+</MizuSkeletonTheme>
+<MizuSkeletonTheme base-color="#dcfce7" highlight-color="#86efac" animation-direction="reverse">
+  <MizuSkeleton variant="rect" :width="120" :height="64" :radius="12" />
+</MizuSkeletonTheme>
+<MizuSkeletonTheme base-color="#fef3c7" highlight-color="#fcd34d" :animation-duration="0.8">
+  <MizuSkeleton variant="rect" :width="120" :height="64" :radius="12" />
+</MizuSkeletonTheme>`;
+
+const listCode = `<div v-for="item in list" :key="item.id">
+  <MizuSkeleton variant="circle" :width="36" :height="36" />
+  <MizuSkeleton variant="text" :width="item.size + '%'" />
+</div>`;
 </script>
 
 <template>
-    <div class="skeleton-demo">
-        <div class="demo-section">
-            <h3>Variants</h3>
-            <div class="row">
-                <div class="col">
-                    <span class="demo-label">Text</span>
-                    <MizuSkeleton variant="text" />
-                </div>
-                <div class="col">
-                    <span class="demo-label">Circle</span>
-                    <MizuSkeleton variant="circle" :width="48" :height="48" />
-                </div>
-                <div class="col">
-                    <span class="demo-label">Rect</span>
-                    <MizuSkeleton variant="rect" :width="120" :height="64" />
-                </div>
-            </div>
-        </div>
-
-        <div class="demo-section">
-            <h3>Sizes</h3>
-            <div class="stack">
-                <MizuSkeleton variant="text" :lines="3" />
-                <MizuSkeleton variant="text" :width="160" :lines="1" />
-            </div>
-        </div>
-
-        <div class="demo-section">
-            <h3>Custom Dimensions</h3>
-            <div class="row gap-12 align-center">
-                <MizuSkeleton variant="rect" :width="200" :height="100" :radius="12" />
-                <MizuSkeleton variant="circle" :width="80" :height="80" />
-                <MizuSkeleton variant="rect" :width="280" :height="20" :radius="10" />
-            </div>
-        </div>
-
-        <div class="demo-section">
-
-<h3>Animation</h3>
-        <div class="row gap-12 align-center">
-            <div class="col">
-                <span class="demo-label">Shimmer</span>
-                <MizuSkeleton variant="rect" :width="100" :height="20" animation="shimmer" />
-            </div>
-            <div class="col">
-                <span class="demo-label">Pulse</span>
-                <MizuSkeleton variant="rect" :width="100" :height="20" animation="pulse" />
-            </div>
-            <div class="col">
-                <span class="demo-label">None</span>
-                <MizuSkeleton variant="rect" :width="100" :height="20" animation="none" />
-            </div>
-        </div>
-    </div>
-
-        <div class="demo-section">
-            <h3>In Card Placeholder</h3>
-            <MizuCard>
-                <MizuCardHeader>
-                    <div class="profile-row">
+    <div class="skeleton-demo not-content">
+        <DemoTabs :code="variantsCode">
+            <div class="demo-section">
+                <h3>Variants</h3>
+                <div class="row">
+                    <div class="col">
+                        <span class="demo-label">Text</span>
+                        <MizuSkeleton variant="text" />
+                    </div>
+                    <div class="col">
+                        <span class="demo-label">Circle</span>
                         <MizuSkeleton variant="circle" :width="48" :height="48" />
-                        <div class="profile-lines">
-                            <MizuSkeleton variant="text" :width="140" :lines="1" />
-                            <MizuSkeleton variant="text" :width="100" :lines="1" />
-                        </div>
                     </div>
-                </MizuCardHeader>
-                <MizuCardContent>
-                    <MizuSkeleton variant="text" :lines="3" />
-                </MizuCardContent>
-            </MizuCard>
-        </div>
-
-        <div class="demo-section">
-            <h3>Multi-line Text (lines prop)</h3>
-            <div class="stack">
-                <MizuSkeleton variant="text" :lines="5" />
-            </div>
-        </div>
-
-        <div class="demo-section">
-            <h3>Loading Wrapper</h3>
-            <p class="demo-note">Use <code>loading</code> prop — skeleton wraps content, shows placeholder while loading, reveals content when ready.</p>
-            <div class="row gap-12 align-center" style="margin-bottom: 12px;">
-                <button type="button" class="trigger-btn" @click="simulate">Reload</button>
-                <span class="demo-label">Click to simulate async load</span>
-            </div>
-            <MizuCard>
-                <MizuCardHeader>
-                    <div class="profile-row">
-                        <MizuSkeleton :loading="loading || !user" variant="circle" :width="48" :height="48">
-                            <MizuAvatar name="Jane Doe" size="lg" />
-                        </MizuSkeleton>
-                        <div class="profile-lines">
-                            <MizuSkeleton :loading="loading || !user" variant="text" :width="140" :lines="1">
-                                <h4>{{ user?.name }}</h4>
-                            </MizuSkeleton>
-                            <MizuSkeleton :loading="loading || !user" variant="text" :width="100" :lines="1">
-                                <p>{{ user?.role }}</p>
-                            </MizuSkeleton>
-                        </div>
-                    </div>
-                </MizuCardHeader>
-                <MizuCardContent>
-                    <MizuSkeleton :loading="loading || !user" variant="text" :lines="3">
-                        <p>{{ user?.bio }}</p>
-                    </MizuSkeleton>
-                </MizuCardContent>
-            </MizuCard>
-        </div>
-
-        <div class="demo-section">
-            <h3>Theme Provider</h3>
-            <p class="demo-note"><code>MizuSkeletonTheme</code> sets defaults — customize <code>baseColor</code>, <code>highlightColor</code>, <code>animationDuration</code>, etc. for all child skeletons.</p>
-            <div class="row gap-12 align-center">
-                <MizuSkeletonTheme base-color="#dbeafe" highlight-color="#93c5fd">
-                    <MizuSkeleton variant="rect" :width="120" :height="64" :radius="12" />
-                </MizuSkeletonTheme>
-                <MizuSkeletonTheme base-color="#dcfce7" highlight-color="#86efac" animation-direction="reverse">
-                    <MizuSkeleton variant="rect" :width="120" :height="64" :radius="12" />
-                </MizuSkeletonTheme>
-                <MizuSkeletonTheme base-color="#fef3c7" highlight-color="#fcd34d" :animation-duration="0.8">
-                    <MizuSkeleton variant="rect" :width="120" :height="64" :radius="12" />
-                </MizuSkeletonTheme>
-            </div>
-        </div>
-
-        <div class="demo-section">
-            <h3>List Placeholders</h3>
-            <div class="stack">
-                <div v-for="item in list" :key="item.id" class="list-item">
-                    <MizuSkeleton variant="circle" :width="36" :height="36" />
-                    <div class="profile-lines" style="flex: 1;">
-                        <MizuSkeleton variant="text" :width="`${item.size}%`" :lines="1" />
+                    <div class="col">
+                        <span class="demo-label">Rect</span>
+                        <MizuSkeleton variant="rect" :width="120" :height="64" />
                     </div>
                 </div>
             </div>
-        </div>
+        </DemoTabs>
+
+        <DemoTabs :code="sizesCode">
+            <div class="demo-section">
+                <h3>Sizes</h3>
+                <div class="stack">
+                    <MizuSkeleton variant="text" :lines="3" />
+                    <MizuSkeleton variant="text" :width="160" :lines="1" />
+                </div>
+            </div>
+        </DemoTabs>
+
+        <DemoTabs :code="dimensionsCode">
+            <div class="demo-section">
+                <h3>Custom Dimensions</h3>
+                <div class="row gap-12 align-center">
+                    <MizuSkeleton variant="rect" :width="200" :height="100" :radius="12" />
+                    <MizuSkeleton variant="circle" :width="80" :height="80" />
+                    <MizuSkeleton variant="rect" :width="280" :height="20" :radius="10" />
+                </div>
+            </div>
+        </DemoTabs>
+
+        <DemoTabs :code="animationCode">
+            <div class="demo-section">
+                <h3>Animation</h3>
+                <div class="row gap-12 align-center">
+                    <div class="col">
+                        <span class="demo-label">Shimmer</span>
+                        <MizuSkeleton variant="rect" :width="100" :height="20" animation="shimmer" />
+                    </div>
+                    <div class="col">
+                        <span class="demo-label">Pulse</span>
+                        <MizuSkeleton variant="rect" :width="100" :height="20" animation="pulse" />
+                    </div>
+                    <div class="col">
+                        <span class="demo-label">None</span>
+                        <MizuSkeleton variant="rect" :width="100" :height="20" animation="none" />
+                    </div>
+                </div>
+            </div>
+        </DemoTabs>
+
+        <DemoTabs :code="cardPlaceholderCode">
+            <div class="demo-section">
+                <h3>In Card Placeholder</h3>
+                <MizuCard>
+                    <MizuCardHeader>
+                        <div class="profile-row">
+                            <MizuSkeleton variant="circle" :width="48" :height="48" />
+                            <div class="profile-lines">
+                                <MizuSkeleton variant="text" :width="140" :lines="1" />
+                                <MizuSkeleton variant="text" :width="100" :lines="1" />
+                            </div>
+                        </div>
+                    </MizuCardHeader>
+                    <MizuCardContent>
+                        <MizuSkeleton variant="text" :lines="3" />
+                    </MizuCardContent>
+                </MizuCard>
+            </div>
+        </DemoTabs>
+
+        <DemoTabs :code="multiLineCode">
+            <div class="demo-section">
+                <h3>Multi-line Text (lines prop)</h3>
+                <div class="stack">
+                    <MizuSkeleton variant="text" :lines="5" />
+                </div>
+            </div>
+        </DemoTabs>
+
+        <DemoTabs :code="loadingCode">
+            <div class="demo-section">
+                <h3>Loading Wrapper</h3>
+                <p class="demo-note">Use <code>loading</code> prop — skeleton wraps content, shows placeholder while loading, reveals content when ready.</p>
+                <div class="row gap-12 align-center" style="margin-bottom: 12px;">
+                    <button type="button" class="trigger-btn" @click="simulate">Reload</button>
+                    <span class="demo-label">Click to simulate async load</span>
+                </div>
+                <MizuCard>
+                    <MizuCardHeader>
+                        <div class="profile-row">
+                            <MizuSkeleton :loading="loading || !user" variant="circle" :width="48" :height="48">
+                                <MizuAvatar name="Jane Doe" size="lg" />
+                            </MizuSkeleton>
+                            <div class="profile-lines">
+                                <MizuSkeleton :loading="loading || !user" variant="text" :width="140" :lines="1">
+                                    <h4>{{ user?.name }}</h4>
+                                </MizuSkeleton>
+                                <MizuSkeleton :loading="loading || !user" variant="text" :width="100" :lines="1">
+                                    <p>{{ user?.role }}</p>
+                                </MizuSkeleton>
+                            </div>
+                        </div>
+                    </MizuCardHeader>
+                    <MizuCardContent>
+                        <MizuSkeleton :loading="loading || !user" variant="text" :lines="3">
+                            <p>{{ user?.bio }}</p>
+                        </MizuSkeleton>
+                    </MizuCardContent>
+                </MizuCard>
+            </div>
+        </DemoTabs>
+
+        <DemoTabs :code="themeCode">
+            <div class="demo-section">
+                <h3>Theme Provider</h3>
+                <p class="demo-note"><code>MizuSkeletonTheme</code> sets defaults — customize <code>baseColor</code>, <code>highlightColor</code>, <code>animationDuration</code>, etc. for all child skeletons.</p>
+                <div class="row gap-12 align-center">
+                    <MizuSkeletonTheme base-color="#dbeafe" highlight-color="#93c5fd">
+                        <MizuSkeleton variant="rect" :width="120" :height="64" :radius="12" />
+                    </MizuSkeletonTheme>
+                    <MizuSkeletonTheme base-color="#dcfce7" highlight-color="#86efac" animation-direction="reverse">
+                        <MizuSkeleton variant="rect" :width="120" :height="64" :radius="12" />
+                    </MizuSkeletonTheme>
+                    <MizuSkeletonTheme base-color="#fef3c7" highlight-color="#fcd34d" :animation-duration="0.8">
+                        <MizuSkeleton variant="rect" :width="120" :height="64" :radius="12" />
+                    </MizuSkeletonTheme>
+                </div>
+            </div>
+        </DemoTabs>
+
+        <DemoTabs :code="listCode">
+            <div class="demo-section">
+                <h3>List Placeholders</h3>
+                <div class="stack">
+                    <div v-for="item in list" :key="item.id" class="list-item">
+                        <MizuSkeleton variant="circle" :width="36" :height="36" />
+                        <div class="profile-lines" style="flex: 1;">
+                            <MizuSkeleton variant="text" :width="`${item.size}%`" :lines="1" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </DemoTabs>
     </div>
 </template>
 
@@ -175,7 +246,9 @@ function simulate() {
     flex-direction: column;
     gap: 24px;
     padding: 24px;
-    background: var(--sl-color-gray-2);
+    background: transparent;
+
+    border: 1px solid var(--color-surface-muted);
     border-radius: 8px;
 }
 

@@ -1,0 +1,74 @@
+---
+title: Chip
+description: Small status indicators for counts, dots, or labels.
+---
+
+import ChipDemo from '../../../components/docs/ChipDemo.vue';
+
+A Chip is a compact element for displaying small counts, status dots, or short labels. It can be used standalone or positioned as an overlay badge on parent elements.
+
+<ChipDemo client:load />
+
+## Anatomy
+
+A chip consists of a container and optional content:
+
+| Part | Required | Description |
+|------|----------|-------------|
+| Container | Yes | The chip's background area |
+| Content | No | Text value or slot content |
+
+## Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `value` | `string \| number` | — | Display value |
+| `size` | `'sm' \| 'md'` | `'md'` | Size |
+| `color` | `'primary' \| 'accent' \| 'success' \| 'warning' \| 'error' \| 'info'` | `'accent'` | Color variant |
+| `dot` | `boolean` | `false` | Dot-only mode (no value) |
+| `position` | `'top-right' \| 'top-left' \| 'bottom-right' \| 'bottom-left'` | `'top-right'` | Position relative to parent |
+
+## Examples
+
+### Standalone Chip
+
+```vue
+<MizuChip value="5" color="primary" />
+<MizuChip value="New" color="success" />
+<MizuChip dot color="error" />
+```
+
+### Positioned Chip (Overlay)
+
+```vue
+<MizuChip :value="3" color="error" position="top-right">
+  <MizuButton variant="ghost">
+    <template #leading-icon><Bell /></template>
+    Notifications
+  </MizuButton>
+</MizuChip>
+```
+
+## Size Specifications
+
+| Size | Height | Min Width | Font Size | Padding | Border Radius |
+|------|--------|-----------|-----------|---------|---------------|
+| **SM** | 16px | 16px | 10px | 0 4px | 8px |
+| **MD** | 20px | 20px | 11px | 0 6px | 10px |
+
+## Color Specifications
+
+| Color | Background | Text |
+|-------|-----------|------|
+| **primary** | `brand-primary` | `foreground-inverse` |
+| **accent** | `brand-accent` | `foreground-inverse` |
+| **success** | `feedback-success-base` | `foreground-inverse` |
+| **warning** | `feedback-warning-base` | `foreground-inverse` |
+| **error** | `feedback-error-base` | `foreground-inverse` |
+| **info** | `feedback-info-base` | `foreground-inverse` |
+
+## Implementation Notes
+
+1. **Positioned mode** — When a chip wraps slot content, it automatically enters positioned mode, rendering as an overlay badge on the parent element.
+2. **Dot mode** — When `dot` is `true`, the chip renders as a small circle without any text content.
+3. **Visibility** — The chip is hidden when there's no `value`, no `dot`, and no slot content.

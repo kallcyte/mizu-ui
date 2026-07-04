@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { MizuBreadcrumb } from "@mizu/vue";
 import { Home } from "@lucide/vue";
+import DemoTabs from "./DemoTabs.vue";
 
 const simpleItems = [
   { label: "", href: "/", icon: Home },
@@ -19,25 +20,64 @@ const twoItems = [
   { label: "", href: "/", icon: Home },
   { label: "Settings" },
 ];
+
+const basicCode = `const items = [
+  { label: "", href: "/", icon: Home },
+  { label: "Settings" },
+];
+
+<MizuBreadcrumb :items="items" />`;
+
+const multiLevelCode = `const items = [
+  { label: "", href: "/", icon: Home },
+  { label: "Products", href: "/products" },
+  { label: "Laptop Stand" },
+];
+
+<MizuBreadcrumb :items="items" />`;
+
+const deepNestingCode = `const items = [
+  { label: "", href: "/", icon: Home },
+  { label: "Sales", href: "/sales" },
+  { label: "Orders", href: "/sales/orders" },
+  { label: "Invoice #1234" },
+];
+
+<MizuBreadcrumb :items="items" />`;
+
+const separatorsCode = `<MizuBreadcrumb :items="items" separator="/" />
+<MizuBreadcrumb :items="items" separator=">" />
+<MizuBreadcrumb :items="items" separator="·" />`;
+
+const sizesCode = `<MizuBreadcrumb :items="items" size="sm" />
+<MizuBreadcrumb :items="items" size="md" />
+<MizuBreadcrumb :items="items" size="lg" />`;
 </script>
 
 <template>
-  <div class="breadcrumb-demo">
+  <div class="breadcrumb-demo not-content">
+    <DemoTabs :code="basicCode">
     <div class="demo-section">
       <h3>Basic</h3>
       <MizuBreadcrumb :items="twoItems" />
     </div>
+    </DemoTabs>
 
+    <DemoTabs :code="multiLevelCode">
     <div class="demo-section">
       <h3>Multi-level</h3>
       <MizuBreadcrumb :items="simpleItems" />
     </div>
+    </DemoTabs>
 
+    <DemoTabs :code="deepNestingCode">
     <div class="demo-section">
       <h3>Deep Nesting</h3>
       <MizuBreadcrumb :items="deepItems" />
     </div>
+    </DemoTabs>
 
+    <DemoTabs :code="separatorsCode">
     <div class="demo-section">
       <h3>Separators</h3>
       <div class="separator-row">
@@ -53,7 +93,9 @@ const twoItems = [
         <MizuBreadcrumb :items="simpleItems" separator="·" />
       </div>
     </div>
+    </DemoTabs>
 
+    <DemoTabs :code="sizesCode">
     <div class="demo-section">
       <h3>Sizes</h3>
       <div class="size-row">
@@ -69,6 +111,7 @@ const twoItems = [
         <MizuBreadcrumb :items="simpleItems" size="lg" />
       </div>
     </div>
+    </DemoTabs>
   </div>
 </template>
 
@@ -80,7 +123,8 @@ const twoItems = [
   flex-direction: column;
   gap: 24px;
   padding: 16px;
-  background: var(--sl-color-gray-2);
+  background: transparent;
+  border: 1px solid var(--color-surface-muted);
   border-radius: 8px;
 }
 .breadcrumb-demo :deep(*) { margin: 0; }

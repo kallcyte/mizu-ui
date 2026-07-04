@@ -148,16 +148,24 @@ MizuAlertDialogRoot
 | `disableOutsidePointerEvents` | `boolean` | `undefined` | Disable pointer events outside |
 | `asChild` | `boolean` | `undefined` | Render as child element |
 | `as` | `string` | `undefined` | Custom root element |
+| `fullscreen` | `boolean` | `false` | Dialog fills entire viewport — no border, no shadow, inset 0 |
+| `dismissible` | `boolean` | `true` | When `false`, prevents close on click-outside / Escape (overrides Reka UI default for safety) |
+| `scrollable` | `boolean` | `false` | Content scrolls within the overlay (max-height: 90vh) |
+| `transition` | `boolean` | `true` | Enable/disable enter/leave animations |
+| `size` | `'sm' \| 'md' \| 'lg' \| 'xl'` | `'md'` | Dialog width (sm: 400px, md: 500px, lg: 700px, xl: 900px) |
 
 ### AlertDialogContent Events
 
 | Event | Payload | Description |
 |-------|---------|-------------|
 | `escapeKeyDown` | `KeyboardEvent` | Escape key pressed |
+| `pointerDownOutside` | `PointerEvent` | Click outside content — fires only when `dismissible` is `true` |
+| `focusOutside` | `FocusEvent` | Focus leaves content |
+| `interactOutside` | `Event` | Interaction outside content — fires only when `dismissible` is `true` |
 | `openAutoFocus` | `Event` | Auto-focus on open |
 | `closeAutoFocus` | `Event` | Auto-focus on close |
 
-Note: `pointerDownOutside` and `interactOutside` events are prevented by Reka UI AlertDialog and will not fire.
+When `dismissible` is `false`, `pointerDownOutside` and `interactOutside` events are prevented (same as Reka UI AlertDialog default behavior). When `dismissible` is `true`, these events fire and the dialog will close on click-outside.
 
 ### AlertDialogTitle Props
 
@@ -257,8 +265,12 @@ const open = ref(false);
 
 ## Implementation Notes
 
-1. **AlertDialog does not close on outside click** — `@pointer-down-outside.prevent` and `@interact-outside.prevent` are hardcoded in Reka UI AlertDialogContent. This is intentional for safety on destructive actions.
+1. **`dismissible` control** — Defaults to `true` (consistent with MizuDialogContent). Set `dismissible` to `false` to prevent Escape/click-outside dismiss. When `false`, `pointerDownOutside` and `escapeKeyDown` events are prevented.
 2. **Cancel receives initial focus** — Reka UI AlertDialogContent auto-focuses the cancel button on open as a safety measure, ensuring the user must actively move to the confirm action.
 3. **Always modal** — Unlike `MizuDialogRoot`, `MizuAlertDialogRoot` has no `modal` prop and is always modal.
 4. **Use `as-child` on Action and Cancel** — Both `MizuAlertDialogAction` and `MizuAlertDialogCancel` accept `as-child` for composition with `MizuButton`. Use `as-child` to apply MizuButton styling while keeping the Reka UI dialog-closing behavior.
 5. **Reuse Dialog layout components** — `MizuDialogHeader`, `MizuDialogBody`, and `MizuDialogFooter` work identically as structural wrappers for AlertDialog content.
+6. **`fullscreen` mode** — When `fullscreen` is `true`, the alert dialog fills the viewport with `inset: 0`, no border-radius, and no box-shadow.
+7. **`scrollable` mode** — When `scrollable` is `true`, the content area gets `overflow-y: auto` and `max-height: 90vh`.
+8. **`transition` toggle** — Set `transition` to `false` to disable enter/leave animations. Useful for reduced-motion preferences.
+9. **`size` prop** — Control dialog width via `size` (`sm`: 400px, `md`: 500px, `lg`: 700px, `xl`: 900px). Default is `md`.

@@ -1,18 +1,29 @@
-<script setup lang="ts">
-import { computed, useAttrs } from "vue";
-import { DialogClose } from "reka-ui";
+<script lang="ts">
+import { type Component } from "vue";
 
 export interface DialogCloseProps {
   asChild?: boolean;
   as?: string;
+  /** Custom icon component to replace the default X icon */
+  closeIcon?: Component;
 }
+</script>
+
+<script setup lang="ts">
+import { computed, useAttrs, inject } from "vue";
+import { DialogClose } from "reka-ui";
+import { MizuDialogDismissibleKey } from "./MizuDialogContent.vue";
 
 const props = withDefaults(defineProps<DialogCloseProps>(), {
   asChild: undefined,
   as: undefined,
+  closeIcon: undefined,
 });
 
 const attrs = useAttrs();
+
+// Inject dismissible from MizuDialogContent — if false, don't render
+const dismissible = inject(MizuDialogDismissibleKey, true);
 
 const closeClasses = computed(() => {
   const classes = ["mizu-dialog__close"];
@@ -23,12 +34,18 @@ const closeClasses = computed(() => {
 
 <template>
   <DialogClose
+    v-if="dismissible"
     :class="closeClasses"
     :as-child="asChild"
     :as="as"
   >
     <slot>
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <component
+        v-if="closeIcon"
+        :is="closeIcon"
+        :size="16"
+      />
+      <svg v-else width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <path d="M18 6 6 18" />
         <path d="m6 6 12 12" />
       </svg>

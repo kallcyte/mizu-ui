@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { MizuDashList } from "@mizu/vue";
+import DemoTabs from "./DemoTabs.vue";
 
 const userInfo = [
   { label: "Full Name", value: "Jane Doe" },
@@ -23,17 +24,28 @@ const productSpecs = [
   { label: "Color", value: "Space Gray" },
   { label: "Warranty", value: "2 years", highlighted: true },
 ];
+
+const verticalCode = `<MizuDashList :items="userInfo" size="md" />`;
+
+const sizesCode = `<MizuDashList :items="analyticsData" size="sm" />
+<MizuDashList :items="analyticsData" size="md" />
+<MizuDashList :items="analyticsData" size="lg" />`;
+
+const horizontalCode = `<MizuDashList :items="productSpecs" size="md" orientation="horizontal" />`;
 </script>
 
 <template>
-  <div class="dashlist-demo">
+  <div class="dashlist-demo not-content">
     <div class="demo-section">
       <h3>Vertical (Default)</h3>
+      <DemoTabs :code="verticalCode">
       <MizuDashList :items="userInfo" size="md" />
+      </DemoTabs>
     </div>
 
     <div class="demo-section">
       <h3>Sizes</h3>
+      <DemoTabs :code="sizesCode">
       <div class="dashlist-grid">
         <div>
           <h4>Small</h4>
@@ -48,11 +60,14 @@ const productSpecs = [
           <MizuDashList :items="analyticsData" size="lg" />
         </div>
       </div>
+      </DemoTabs>
     </div>
 
     <div class="demo-section">
       <h3>Horizontal</h3>
+      <DemoTabs :code="horizontalCode">
       <MizuDashList :items="productSpecs" size="md" orientation="horizontal" />
+      </DemoTabs>
     </div>
   </div>
 </template>
@@ -63,9 +78,8 @@ const productSpecs = [
   display: flex;
   flex-direction: column;
   gap: 24px;
-  padding: 24px;
-  background: var(--sl-color-gray-2);
-  border-radius: 8px;
+  padding: 0;
+  background: transparent;
 }
 
 .dashlist-demo :deep(*) {

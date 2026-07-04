@@ -1,4 +1,4 @@
-# Mizunagi Button — Specification
+# Mizu Button — Specification
 
 ## Overview
 
@@ -19,7 +19,7 @@ A button consists of up to 4 parts:
 
 ## Variants
 
-Mizunagi buttons support 4 visual variants:
+Mizu buttons support 4 visual variants:
 
 | Variant | Container | Border | Use Case |
 |---------|-----------|--------|----------|
@@ -247,26 +247,26 @@ All button sizes maintain a minimum touch target of **44px × 44px** for accessi
 ### Example Usage
 
 ```vue
-<MizunagiButton variant="primary" size="md">
+<MizuButton variant="primary" size="md">
   Submit
-</MizunagiButton>
+</MizuButton>
 
-<MizunagiButton variant="accent" size="lg" :loading="isSubmitting">
+<MizuButton variant="accent" size="lg" :loading="isSubmitting">
   <template #leading-icon>
     <IconSave />
   </template>
   Save Changes
-</MizunagiButton>
+</MizuButton>
 
-<MizunagiButton variant="ghost" size="sm">
+<MizuButton variant="ghost" size="sm">
   Cancel
-</MizunagiButton>
+</MizuButton>
 ```
 
 ## Implementation Notes
 
 1. **Native `<button>` element** — No Reka UI primitive needed; use native HTML button for maximum accessibility
-2. **Tailwind classes** — Use Mizunagi token classes directly (`bg-brand-primary`, `text-foreground-inverse`, etc.)
+2. **Tailwind classes** — Use Mizu token classes directly (`bg-brand-primary`, `text-foreground-inverse`, etc.)
 3. **Class inheritance** — Accept `class` prop for Tailwind overrides via `useAttrs()`
 4. **TypeScript** — Full type safety with `<script setup lang="ts">`
 5. **Tree-shakeable** — Export as ESM + CJS via Vite library mode

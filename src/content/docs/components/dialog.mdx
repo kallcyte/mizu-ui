@@ -4,10 +4,15 @@ description: Modal overlay for confirmations, forms, and detailed content.
 ---
 
 import DialogDemo from '../../../components/docs/DialogDemo.vue';
+import DialogNewFeaturesDemo from '../../../components/docs/DialogNewFeaturesDemo.vue';
 
 A Dialog presents content in a modal overlay that interrupts the current page, requiring user action before returning to the main flow.
 
 <DialogDemo client:load />
+
+## New Features
+
+<DialogNewFeaturesDemo client:load />
 
 ## Anatomy
 
@@ -173,12 +178,27 @@ Renders as a `<button>` by default. Sets `aria-haspopup="dialog"` and `aria-expa
 | `open` | `boolean` | `undefined` | Controlled open state (v-model) |
 | `defaultOpen` | `boolean` | `false` | Uncontrolled initial open state |
 | `modal` | `boolean` | `true` | When `true`, renders as modal with overlay and focus trap |
+| `title` | `string` | `undefined` | Dialog heading text — enables shorthand mode |
+| `description` | `string` | `undefined` | Subtitle below title in shorthand mode |
+| `overlay` | `boolean` | `true` | Show/hide backdrop overlay |
+| `close` | `boolean` | `true` | Show/hide close button; `false` hides it entirely |
+| `closeIcon` | `Component` | `undefined` | Custom icon component for the close button |
+| `unmountOnHide` | `boolean` | `true` | When `true`, unmounts dialog DOM when closed; `false` keeps it mounted |
+| `fullscreen` | `boolean` | `false` | Dialog fills the entire viewport |
+| `dismissible` | `boolean` | `true` | When `false`, prevents close on click-outside/Escape and hides close button |
+| `scrollable` | `boolean` | `false` | Content scrolls within the overlay (max-height: 90vh) |
+| `transition` | `boolean` | `true` | Enable/disable enter/leave animations |
+| `size` | `'sm' \| 'md' \| 'lg' \| 'xl'` | `'md'` | Dialog width (sm: 400px, md: 500px, lg: 700px, xl: 900px) |
+| `ui` | `object` | `undefined` | Slot-level CSS class overrides (see Shorthand API below) |
+
+Props `title` through `ui` enable the **shorthand API** — providing `title`, `description`, or any named slot (`#content`, `#header`, `#body`, `#footer`) activates shorthand mode, which renders internal sub-components automatically. When none of these are present, the component operates in compound mode (full slot passthrough) for backward compatibility.
 
 ### DialogRoot Events
 
 | Event | Payload | Description |
 |-------|---------|-------------|
 | `update:open` | `boolean` | Emitted when open state changes |
+| `close:prevent` | none | Fired when user attempts to close a non-dismissible dialog (Escape or outside click). The dialog stays open; use this to show a warning or take alternative action. |
 
 ### DialogPortal Props
 
@@ -193,12 +213,18 @@ Renders as a `<button>` by default. Sets `aria-haspopup="dialog"` and `aria-expa
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `forceMount` | `boolean` | `undefined` | Keep overlay mounted when closed |
+| `transition` | `boolean` | `true` | Enable/disable fade animation |
 
 ### DialogContent Props
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `forceMount` | `boolean` | `undefined` | Keep content mounted when closed |
+| `size` | `'sm' \| 'md' \| 'lg' \| 'xl'` | `'md'` | Dialog width size (sm: 400px, md: 500px, lg: 700px, xl: 900px) |
+| `fullscreen` | `boolean` | `false` | Dialog takes full viewport |
+| `dismissible` | `boolean` | `true` | When `false`, prevents close on click-outside / Escape and hides `MizuDialogClose` |
+| `scrollable` | `boolean` | `false` | Content scrolls within overlay (max-height: 90vh) |
+| `transition` | `boolean` | `true` | Enable/disable enter/leave animations |
 | `disableOutsidePointerEvents` | `boolean` | `undefined` | Disable pointer events outside |
 | `asChild` | `boolean` | `undefined` | Render as child element |
 | `as` | `string` | `undefined` | Custom root element |
@@ -234,6 +260,7 @@ Renders as a `<button>` by default. Sets `aria-haspopup="dialog"` and `aria-expa
 |------|------|---------|-------------|
 | `asChild` | `boolean` | `undefined` | Render as child element |
 | `as` | `string` | `undefined` | Custom root element (default `button`) |
+| `closeIcon` | `Component` | `undefined` | Custom icon component to replace the default X icon |
 
 ### DialogTrigger Props
 
@@ -242,63 +269,78 @@ Renders as a `<button>` by default. Sets `aria-haspopup="dialog"` and `aria-expa
 | `asChild` | `boolean` | `undefined` | Render as child element |
 | `as` | `string` | `undefined` | Custom root element (default `button`) |
 
-### Slots
+### Slots (Compound Mode)
 
 | Component | Slot | Description |
 |-----------|------|-------------|
 | All components | `default` | Child content |
 | `MizuDialogClose` | `default` | Close button content (default: X icon) |
 
-### Basic
+## Shorthand API
+
+When `title`, `description`, or any named slot is provided to `MizuDialogRoot`, the component switches to **shorthand mode** — less boilerplate, no sub-component imports needed. All layout sub-components (`MizuDialogPortal`, `MizuDialogContent`, `MizuDialogHeader`, `MizuDialogBody`, `MizuDialogFooter`, `MizuDialogTitle`, `MizuDialogDescription`, `MizuDialogClose`) are rendered internally.
+
+The default slot becomes the trigger button. Props `title` through `ui` on `MizuDialogRoot` are forwarded to the appropriate internal sub-components.
+
+### `ui` Prop
+
+The `ui` prop accepts an object that maps slot names to CSS class strings. Each class is applied to the corresponding internal element:
+
+| Key | Applied to |
+|-----|-----------|
+| `overlay` | `MizuDialogOverlay` |
+| `content` | `MizuDialogContent` |
+| `header` | `MizuDialogHeader` |
+| `body` | `MizuDialogBody` |
+| `footer` | `MizuDialogFooter` |
+| `title` | `MizuDialogTitle` |
+| `description` | `MizuDialogDescription` |
+| `close` | `MizuDialogClose` |
+
+### Slots (Shorthand Mode)
+
+All slots are **scoped** with `{ close: () => void }` (except `#close`):
+
+| Slot | Scope | Description |
+|------|-------|-------------|
+| `default` | `{ open?: boolean }` | Trigger button — the element that opens the dialog |
+| `#content` | `{ close }` | Full override of the dialog body. When present, header/body/footer are not rendered. |
+| `#header` | `{ close }` | Override the entire header section |
+| `#title` | none | Override title text (falls back to `title` prop) |
+| `#description` | none | Override description text (falls back to `description` prop) |
+| `#body` | `{ close }` | Override the body section |
+| `#footer` | `{ close }` | Override the footer section |
+| `#close` | `{ ui: { close: string } }` | Override the close button |
+
+### Shorthand Example
 
 ```vue
 <script setup lang="ts">
 import { ref } from "vue";
-import {
-  MizuDialogRoot,
-  MizuDialogPortal,
-  MizuDialogOverlay,
-  MizuDialogContent,
-  MizuDialogHeader,
-  MizuDialogBody,
-  MizuDialogFooter,
-  MizuDialogTitle,
-  MizuDialogDescription,
-  MizuDialogTrigger,
-  MizuButton,
-} from "@mizu/vue";
+import { MizuDialogRoot, MizuButton } from "@mizu/vue";
 
 const open = ref(false);
 </script>
 
 <template>
-  <MizuDialogRoot v-model:open="open">
-    <MizuDialogTrigger as-child>
-      <MizuButton variant="accent" size="md" class="w-max">Open Dialog</MizuButton>
-    </MizuDialogTrigger>
-    <MizuDialogPortal>
-      <MizuDialogOverlay />
-      <MizuDialogContent>
-        <MizuDialogHeader>
-          <MizuDialogTitle>Confirm Deletion</MizuDialogTitle>
-        </MizuDialogHeader>
-        <MizuDialogBody>
-          <MizuDialogDescription>
-            Are you sure you want to delete this invoice?
-          </MizuDialogDescription>
-          <p>This action cannot be undone. All associated data will be permanently removed.</p>
-        </MizuDialogBody>
-        <MizuDialogFooter>
-          <MizuButton variant="ghost" size="md" class="w-max" @click="open = false">Cancel</MizuButton>
-          <MizuButton variant="accent" size="md" class="w-max" @click="open = false">Delete</MizuButton>
-        </MizuDialogFooter>
-      </MizuDialogContent>
-    </MizuDialogPortal>
+  <MizuDialogRoot
+    v-model:open="open"
+    title="Confirm Deletion"
+    description="This action cannot be undone."
+  >
+    <MizuButton variant="accent" size="md" class="w-max">Delete Invoice</MizuButton>
+    <template #body>
+      <p>All associated data will be permanently removed.</p>
+    </template>
+    <template #footer="{ close }">
+      <MizuButton variant="ghost" size="md" class="w-max" @click="close">Cancel</MizuButton>
+      <MizuButton variant="accent" size="md" class="w-max" @click="close">Delete</MizuButton>
+    </template>
   </MizuDialogRoot>
 </template>
 ```
 
-### With Close Icon
+### With Close Icon (Compound Mode)
 
 ```vue
 <script setup lang="ts">
@@ -355,3 +397,13 @@ const open = ref(false);
 6. **Flex column layout** — `MizuDialogContent` uses `display: flex; flex-direction: column` so `MizuDialogBody` can fill available space while header and footer stay pinned.
 7. **Body scrolling** — `MizuDialogBody` has `overflow-y: auto` and a capped height. When content exceeds the available space, only the body scrolls while the header and footer remain visible.
 8. **`asChild` pattern** — All Reka-wrapping sub-components support `asChild` for composition. Use `MizuDialogTrigger as-child` with `MizuButton` to style the trigger as a button. Use `MizuDialogClose as-child` with `MizuButton` for a custom close button.
+9. **`fullscreen` mode** — When `fullscreen` is `true` on `MizuDialogContent`, the dialog fills the viewport with `inset: 0`, no border-radius, and no box-shadow. Useful for mobile or immersive flows.
+10. **`dismissible` control** — When `dismissible` is `false` on `MizuDialogContent`, click-outside and Escape no longer close the dialog. `MizuDialogClose` also hides itself via provide/inject. Useful for mandatory confirmation dialogs.
+11. **`scrollable` mode** — When `scrollable` is `true`, the dialog content gets `overflow-y: auto` and `max-height: 90vh`, allowing the entire content area to scroll instead of only `MizuDialogBody`.
+12. **`transition` toggle** — When `transition` is `false`, enter/leave animations are disabled on both `MizuDialogContent` and `MizuDialogOverlay`. Useful for reduced-motion preferences or SSR.
+13. **`size` prop** — `MizuDialogContent` accepts `size` (`sm`: 400px, `md`: 500px, `lg`: 700px, `xl`: 900px) to control dialog width. Default is `md` (500px), replacing the old hardcoded 450px.
+14. **Shorthand mode activation** — `MizuDialogRoot` auto-detects shorthand mode when `title`, `description`, or any named slot (`#content`, `#header`, `#body`, `#footer`) is provided. When none are present, the component falls back to compound mode (full slot passthrough), preserving backward compatibility.
+15. **`close:prevent` event** — When `dismissible` is `false`, pressing Escape or clicking outside fires `close:prevent` instead of closing the dialog. Use this to show a warning toast or take alternative action without dismissing.
+16. **`closeIcon` prop** — Both `MizuDialogRoot` (shorthand) and `MizuDialogClose` (compound) accept a `closeIcon` component prop to replace the default X SVG icon. The icon receives `:size="16"` automatically.
+17. **`ui` prop for slot-level styling** — In shorthand mode, pass a `ui` object with keys `overlay`, `content`, `header`, `body`, `footer`, `title`, `description`, `close` to add CSS classes to specific internal elements without needing to override slots.
+18. **`unmountOnHide` mount behavior** — When `false`, the dialog DOM stays mounted when closed (`forceMount` on portal, overlay, and content). When `true` (default), the dialog unmounts on close, which resets form state and animated elements.

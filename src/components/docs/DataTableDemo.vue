@@ -2,6 +2,7 @@
 import { ref, onMounted, onUnmounted, computed, h } from "vue";
 import { MizuDataTable, MizuTag } from "@mizu/vue";
 import type { ColumnDef } from "@tanstack/vue-table";
+import DemoTabs from "./DemoTabs.vue";
 
 interface Invoice {
   id: string;
@@ -146,78 +147,129 @@ onMounted(() => {
 onUnmounted(() => {
   observer?.disconnect();
 });
+
+const basicCode = `<MizuDataTable
+  :columns="columns"
+  :data="allInvoices"
+  v-model:page="page"
+  :page-size="5"
+/>`;
+
+const selectionCode = `<MizuDataTable
+  :columns="columns"
+  :data="allInvoices"
+  v-model:page="page"
+  :page-size="5"
+  :selectable="true"
+/>`;
+
+const infiniteCode = `<MizuDataTable
+  :columns="columns"
+  :data="infiniteData"
+  :paginated="false"
+/>`;
+
+const multiLineCellsCode = `<MizuDataTable
+  :columns="contactColumns"
+  :data="contacts"
+  :paginated="false"
+/>`;
+
+const loadingCode = `<MizuDataTable
+  :columns="columns"
+  :data="[]"
+  :loading="true"
+/>`;
+
+const emptyCode = `<MizuDataTable
+  :columns="columns"
+  :data="[]"
+  empty-text="No invoices found"
+/>`;
 </script>
 
 <template>
-  <div class="data-table-demo">
-    <div class="demo-section">
-      <h3>Basic</h3>
-      <MizuDataTable
-        :columns="columns"
-        :data="allInvoices"
-        v-model:page="page1"
-        :page-size="5"
-      />
-    </div>
-
-    <div class="demo-section">
-      <h3>With Selection</h3>
-      <MizuDataTable
-        :columns="columns"
-        :data="allInvoices"
-        v-model:page="page2"
-        :page-size="5"
-        :selectable="true"
-      />
-    </div>
-
-    <div class="demo-section">
-      <h3>Infinite Scroll</h3>
-      <div class="infinite-scroll-wrapper">
+  <div class="data-table-demo not-content">
+    <DemoTabs :code="basicCode">
+      <div class="demo-section">
+        <h3>Basic</h3>
         <MizuDataTable
           :columns="columns"
-          :data="infiniteData"
+          :data="allInvoices"
+          v-model:page="page1"
+          :page-size="5"
+        />
+      </div>
+    </DemoTabs>
+
+    <DemoTabs :code="selectionCode">
+      <div class="demo-section">
+        <h3>With Selection</h3>
+        <MizuDataTable
+          :columns="columns"
+          :data="allInvoices"
+          v-model:page="page2"
+          :page-size="5"
+          :selectable="true"
+        />
+      </div>
+    </DemoTabs>
+
+    <DemoTabs :code="infiniteCode">
+      <div class="demo-section">
+        <h3>Infinite Scroll</h3>
+        <div class="infinite-scroll-wrapper">
+          <MizuDataTable
+            :columns="columns"
+            :data="infiniteData"
+            :paginated="false"
+          />
+          <div ref="sentinel" class="infinite-scroll-sentinel">
+            <template v-if="infiniteLoading">
+              <div class="infinite-spinner"></div>
+              <span>Loading more...</span>
+            </template>
+            <template v-else-if="!hasMore">
+              <span>No more data</span>
+            </template>
+          </div>
+        </div>
+        <p class="scroll-hint">Scroll down to load more rows</p>
+      </div>
+    </DemoTabs>
+
+    <DemoTabs :code="multiLineCellsCode">
+      <div class="demo-section">
+        <h3>Multi-line Cells</h3>
+        <MizuDataTable
+          :columns="contactColumns"
+          :data="contacts"
           :paginated="false"
         />
-        <div ref="sentinel" class="infinite-scroll-sentinel">
-          <template v-if="infiniteLoading">
-            <div class="infinite-spinner"></div>
-            <span>Loading more...</span>
-          </template>
-          <template v-else-if="!hasMore">
-            <span>No more data</span>
-          </template>
-        </div>
       </div>
-      <p class="scroll-hint">Scroll down to load more rows</p>
-    </div>
+    </DemoTabs>
 
-    <div class="demo-section">
-      <h3>Multi-line Cells</h3>
-      <MizuDataTable
-        :columns="contactColumns"
-        :data="contacts"
-        :paginated="false"
-      />
-    </div>
+    <DemoTabs :code="loadingCode">
+      <div class="demo-section">
+        <h3>Loading</h3>
+        <MizuDataTable
+          :columns="columns"
+          :data="[]"
+          :loading="true"
+        />
+      </div>
+    </DemoTabs>
 
-    <div class="demo-section">
-      <h3>Loading</h3>
-      <MizuDataTable
-        :columns="columns"
-        :data="[]"
-        :loading="true"
-      />
-    </div>
-
-    <div class="demo-section">
-      <h3>Empty</h3>
-      <MizuDataTable
-        :columns="columns"
-        :data="[]"
-        empty-text="No invoices found"
-      />
-    </div>
+    <DemoTabs :code="emptyCode">
+      <div class="demo-section">
+        <h3>Empty</h3>
+        <MizuDataTable
+          :columns="columns"
+          :data="[]"
+          empty-text="No invoices found"
+        />
+      </div>
+    </DemoTabs>
   </div>
 </template>
 
@@ -229,7 +281,9 @@ onUnmounted(() => {
   flex-direction: column;
   gap: 24px;
   padding: 16px;
-  background: var(--sl-color-gray-2);
+  background: transparent;
+
+  border: 1px solid var(--color-surface-muted);
   border-radius: 8px;
 }
 

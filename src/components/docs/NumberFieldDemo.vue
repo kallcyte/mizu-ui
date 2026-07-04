@@ -6,6 +6,36 @@ import {
   MizuNumberFieldIncrement,
   MizuNumberFieldDecrement,
 } from "@mizu/vue";
+import DemoTabs from "./DemoTabs.vue";
+
+const basicCode = `<MizuNumberFieldRoot v-model="age" :min="0" :max="150">
+  <MizuNumberFieldDecrement>−</MizuNumberFieldDecrement>
+  <MizuNumberFieldInput />
+  <MizuNumberFieldIncrement>+</MizuNumberFieldIncrement>
+</MizuNumberFieldRoot>`;
+
+const currencyCode = `<MizuNumberFieldRoot
+  v-model="price"
+  :min="0"
+  :step="0.01"
+  :format-options="{ style: 'currency', currency: 'USD' }"
+>
+  <MizuNumberFieldDecrement>−</MizuNumberFieldDecrement>
+  <MizuNumberFieldInput />
+  <MizuNumberFieldIncrement>+</MizuNumberFieldIncrement>
+</MizuNumberFieldRoot>`;
+
+const percentCode = `<MizuNumberFieldRoot
+  v-model="percent"
+  :min="0"
+  :max="1"
+  :step="0.01"
+  :format-options="{ style: 'percent' }"
+>
+  <MizuNumberFieldDecrement>−</MizuNumberFieldDecrement>
+  <MizuNumberFieldInput />
+  <MizuNumberFieldIncrement>+</MizuNumberFieldIncrement>
+</MizuNumberFieldRoot>`;
 
 const age = ref(25);
 const price = ref(19.99);
@@ -13,9 +43,10 @@ const percent = ref(0.05);
 </script>
 
 <template>
-  <div class="number-field-demo">
+  <div class="number-field-demo not-content">
     <div class="demo-section">
       <h3>Basic</h3>
+      <DemoTabs :code="basicCode">
       <MizuNumberFieldRoot v-model="age" :min="0" :max="150">
         <div class="number-field-group">
           <MizuNumberFieldDecrement>−</MizuNumberFieldDecrement>
@@ -24,10 +55,12 @@ const percent = ref(0.05);
         </div>
       </MizuNumberFieldRoot>
       <p class="demo-hint">Value: {{ age }}</p>
+      </DemoTabs>
     </div>
 
     <div class="demo-section">
       <h3>Currency</h3>
+      <DemoTabs :code="currencyCode">
       <MizuNumberFieldRoot v-model="price" :min="0" :step="0.01" :format-options="{ style: 'currency', currency: 'USD' }">
         <div class="number-field-group">
           <MizuNumberFieldDecrement>−</MizuNumberFieldDecrement>
@@ -36,10 +69,12 @@ const percent = ref(0.05);
         </div>
       </MizuNumberFieldRoot>
       <p class="demo-hint">Value: {{ price }}</p>
+      </DemoTabs>
     </div>
 
     <div class="demo-section">
       <h3>Percentage</h3>
+      <DemoTabs :code="percentCode">
       <MizuNumberFieldRoot v-model="percent" :min="0" :max="1" :step="0.01" :format-options="{ style: 'percent' }">
         <div class="number-field-group">
           <MizuNumberFieldDecrement>−</MizuNumberFieldDecrement>
@@ -48,6 +83,7 @@ const percent = ref(0.05);
         </div>
       </MizuNumberFieldRoot>
       <p class="demo-hint">Value: {{ percent }}</p>
+      </DemoTabs>
     </div>
   </div>
 </template>
@@ -59,7 +95,9 @@ const percent = ref(0.05);
   flex-direction: column;
   gap: 24px;
   padding: 16px;
-  background: var(--sl-color-gray-2);
+  background: transparent;
+
+  border: 1px solid var(--color-surface-muted);
   border-radius: 8px;
 }
 
