@@ -55,15 +55,42 @@ const statusTooltipCode = `<MizuTooltipProvider>
       <span>Invoice paid on Jun 5, 2026</span>
     </MizuTooltipContent>
   </MizuTooltipRoot>
+</MizuTooltipProvider>
+
+<MizuTooltipProvider>
+  <MizuTooltipRoot>
+    <MizuTooltipTrigger as-child>
+      <MizuTag variant="warning" size="sm">Pending</MizuTag>
+    </MizuTooltipTrigger>
+    <MizuTooltipContent>
+      <span>Awaiting payment - due Jun 15, 2026</span>
+    </MizuTooltipContent>
+  </MizuTooltipRoot>
+</MizuTooltipProvider>
+
+<MizuTooltipProvider>
+  <MizuTooltipRoot>
+    <MizuTooltipTrigger as-child>
+      <MizuTag variant="error" size="sm">Overdue</MizuTag>
+    </MizuTooltipTrigger>
+    <MizuTooltipContent>
+      <span>Payment was due on May 30, 2026</span>
+    </MizuTooltipContent>
+  </MizuTooltipRoot>
 </MizuTooltipProvider>`;
 
 const kbdCode = `<MizuTooltipProvider>
   <MizuTooltipRoot>
     <MizuTooltipTrigger>
-      <MizuButton variant="secondary" size="sm">Edit</MizuButton>
+      <MizuButton class="w-max" variant="secondary" size="sm">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
+          <path d="M18.375 2.625a1 1 0 0 1 3 3l-9.013 9.014a2 2 0 0 1-.853.505l-2.873.84a.5.5 0 0 1-.62-.62l.84-2.873a2 2 0 0 1 .506-.852z"/>
+        </svg>
+      </MizuButton>
     </MizuTooltipTrigger>
     <MizuTooltipContent>
-      <span>Edit <kbd>Ctrl+E</kbd></span>
+      <span>Edit <kbd class="kbd">Ctrl+E</kbd></span>
     </MizuTooltipContent>
   </MizuTooltipRoot>
 </MizuTooltipProvider>`;
@@ -71,10 +98,16 @@ const kbdCode = `<MizuTooltipProvider>
 const infoLabelCode = `<MizuTooltipProvider>
   <MizuTooltipRoot>
     <MizuTooltipTrigger as-child>
-      <span class="info-icon">ⓘ</span>
+      <span class="info-icon">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"/>
+          <path d="M12 16v-4"/>
+          <path d="M12 8h.01"/>
+        </svg>
+      </span>
     </MizuTooltipTrigger>
     <MizuTooltipContent side="top">
-      <span>Net 30 means payment is due within 30 days</span>
+      <span>Net 30 means payment is due within 30 days of invoice date</span>
     </MizuTooltipContent>
   </MizuTooltipRoot>
 </MizuTooltipProvider>`;
@@ -97,6 +130,28 @@ const badgeCode = `<MizuTooltipProvider>
     </MizuTooltipTrigger>
     <MizuTooltipContent>
       <span>3 invoices pending review</span>
+    </MizuTooltipContent>
+  </MizuTooltipRoot>
+</MizuTooltipProvider>
+
+<MizuTooltipProvider>
+  <MizuTooltipRoot>
+    <MizuTooltipTrigger as-child>
+      <span class="badge badge--error">7</span>
+    </MizuTooltipTrigger>
+    <MizuTooltipContent>
+      <span>7 invoices overdue</span>
+    </MizuTooltipContent>
+  </MizuTooltipRoot>
+</MizuTooltipProvider>
+
+<MizuTooltipProvider>
+  <MizuTooltipRoot>
+    <MizuTooltipTrigger as-child>
+      <span class="badge badge--success">12</span>
+    </MizuTooltipTrigger>
+    <MizuTooltipContent>
+      <span>12 invoices paid this month</span>
     </MizuTooltipContent>
   </MizuTooltipRoot>
 </MizuTooltipProvider>`;
@@ -130,6 +185,39 @@ const placementsCode = `<MizuTooltipProvider>
     </MizuTooltipTrigger>
     <MizuTooltipContent side="top">
       <span>Tooltip on top</span>
+    </MizuTooltipContent>
+  </MizuTooltipRoot>
+</MizuTooltipProvider>
+
+<MizuTooltipProvider>
+  <MizuTooltipRoot>
+    <MizuTooltipTrigger>
+      <MizuButton variant="secondary" size="sm">Right</MizuButton>
+    </MizuTooltipTrigger>
+    <MizuTooltipContent side="right">
+      <span>Tooltip on right</span>
+    </MizuTooltipContent>
+  </MizuTooltipRoot>
+</MizuTooltipProvider>
+
+<MizuTooltipProvider>
+  <MizuTooltipRoot>
+    <MizuTooltipTrigger>
+      <MizuButton variant="secondary" size="sm">Bottom</MizuButton>
+    </MizuTooltipTrigger>
+    <MizuTooltipContent side="bottom">
+      <span>Tooltip on bottom</span>
+    </MizuTooltipContent>
+  </MizuTooltipRoot>
+</MizuTooltipProvider>
+
+<MizuTooltipProvider>
+  <MizuTooltipRoot>
+    <MizuTooltipTrigger>
+      <MizuButton variant="secondary" size="sm">Left</MizuButton>
+    </MizuTooltipTrigger>
+    <MizuTooltipContent side="left">
+      <span>Tooltip on left</span>
     </MizuTooltipContent>
   </MizuTooltipRoot>
 </MizuTooltipProvider>`;
@@ -192,16 +280,75 @@ const multiLineCode = `<MizuTooltipProvider>
   </MizuTooltipRoot>
 </MizuTooltipProvider>`;
 
-const coloredTooltipCode = `<MizuTooltipProvider>
-  <MizuTooltipRoot>
-    <MizuTooltipTrigger>
-      <MizuButton variant="secondary" size="sm">Info</MizuButton>
-    </MizuTooltipTrigger>
-    <MizuTooltipContent style="--color-foreground-primary: #2563eb;">
-      <span>This is an informational message</span>
-    </MizuTooltipContent>
-  </MizuTooltipRoot>
-</MizuTooltipProvider>`;
+const coloredTooltipCode = `<div style="display: flex; gap: 8px; flex-wrap: wrap;">
+  <MizuTooltipProvider>
+    <MizuTooltipRoot>
+      <MizuTooltipTrigger>
+        <MizuButton class="w-max" variant="secondary" size="sm">Info</MizuButton>
+      </MizuTooltipTrigger>
+      <MizuTooltipContent style="--color-foreground-primary: #2563eb;">
+        <span>This is an informational message</span>
+      </MizuTooltipContent>
+    </MizuTooltipRoot>
+  </MizuTooltipProvider>
+
+  <MizuTooltipProvider>
+    <MizuTooltipRoot>
+      <MizuTooltipTrigger>
+        <MizuButton class="w-max" variant="secondary" size="sm">Warning</MizuButton>
+      </MizuTooltipTrigger>
+      <MizuTooltipContent style="--color-foreground-primary: #92400e;">
+        <span>This is a warning message</span>
+      </MizuTooltipContent>
+    </MizuTooltipRoot>
+  </MizuTooltipProvider>
+
+  <MizuTooltipProvider>
+    <MizuTooltipRoot>
+      <MizuTooltipTrigger>
+        <MizuButton class="w-max" variant="secondary" size="sm">Error</MizuButton>
+      </MizuTooltipTrigger>
+      <MizuTooltipContent style="--color-foreground-primary: #dc2626;">
+        <span>This is an error message</span>
+      </MizuTooltipContent>
+    </MizuTooltipRoot>
+  </MizuTooltipProvider>
+</div>
+<div style="display: flex; gap: 8px; flex-wrap: wrap; margin-top: 12px;">
+  <span style="font-size: 12px; color: var(--sl-color-text); width: 100%;">Dark colored</span>
+  <MizuTooltipProvider>
+    <MizuTooltipRoot>
+      <MizuTooltipTrigger>
+        <MizuButton class="w-max" variant="secondary" size="sm">Info</MizuButton>
+      </MizuTooltipTrigger>
+      <MizuTooltipContent variant="dark" style="--color-foreground-primary: #2563eb;">
+        <span>This is an informational message</span>
+      </MizuTooltipContent>
+    </MizuTooltipRoot>
+  </MizuTooltipProvider>
+
+  <MizuTooltipProvider>
+    <MizuTooltipRoot>
+      <MizuTooltipTrigger>
+        <MizuButton class="w-max" variant="secondary" size="sm">Warning</MizuButton>
+      </MizuTooltipTrigger>
+      <MizuTooltipContent variant="dark" style="--color-foreground-primary: #d97706;">
+        <span>This is a warning message</span>
+      </MizuTooltipContent>
+    </MizuTooltipRoot>
+  </MizuTooltipProvider>
+
+  <MizuTooltipProvider>
+    <MizuTooltipRoot>
+      <MizuTooltipTrigger>
+        <MizuButton class="w-max" variant="secondary" size="sm">Error</MizuButton>
+      </MizuTooltipTrigger>
+      <MizuTooltipContent variant="dark" style="--color-foreground-primary: #dc2626;">
+        <span>This is an error message</span>
+      </MizuTooltipContent>
+    </MizuTooltipRoot>
+  </MizuTooltipProvider>
+</div>`;
 
 const iconInTooltipCode = `<MizuTooltipProvider>
   <MizuTooltipRoot>
@@ -220,10 +367,21 @@ const iconInTooltipCode = `<MizuTooltipProvider>
 const variantsCode = `<MizuTooltipProvider>
   <MizuTooltipRoot>
     <MizuTooltipTrigger>
-      <MizuButton variant="secondary" size="sm">Light</MizuButton>
+      <MizuButton class="w-max" variant="secondary" size="sm">Light</MizuButton>
     </MizuTooltipTrigger>
     <MizuTooltipContent variant="light">
       <span>Light variant tooltip</span>
+    </MizuTooltipContent>
+  </MizuTooltipRoot>
+</MizuTooltipProvider>
+
+<MizuTooltipProvider>
+  <MizuTooltipRoot>
+    <MizuTooltipTrigger>
+      <MizuButton class="w-max" variant="secondary" size="sm">Dark</MizuButton>
+    </MizuTooltipTrigger>
+    <MizuTooltipContent variant="dark">
+      <span>Dark variant tooltip</span>
     </MizuTooltipContent>
   </MizuTooltipRoot>
 </MizuTooltipProvider>`;

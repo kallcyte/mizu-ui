@@ -4,17 +4,13 @@ import { MizuRadio } from "@mizu/vue";
 import DemoTabs from "./DemoTabs.vue";
 
 const basicCode = `<MizuRadio
-  v-model="selected"
-  :items="[
-    { value: 'option-1', label: 'First option' },
-    { value: 'option-2', label: 'Second option' },
-    { value: 'option-3', label: 'Third option' },
-  ]"
+  v-model="basicSelected"
+  :items="basicOptions"
   name="basic"
 />`;
 
 const sizesCode = `<MizuRadio
-  v-model="selected"
+  v-model="sizeSelected"
   :items="sizeOptions"
   size="md"
   label="Select size"
@@ -22,32 +18,28 @@ const sizesCode = `<MizuRadio
 />`;
 
 const labelCode = `<MizuRadio
-  v-model="selected"
+  v-model="colorSelected"
   :items="colorOptions"
   label="Favorite color"
   name="color"
 />`;
 
 const disabledCode = `<MizuRadio
-  v-model="selected"
-  :items="[
-    { value: 'normal', label: 'Normal option' },
-    { value: 'disabled-item', label: 'Disabled option', disabled: true },
-    { value: 'another', label: 'Another option' },
-  ]"
+  v-model="disabledSelected"
+  :items="disabledOptions"
   label="Choose an option"
-  name="disabled"
+  name="disabled-test"
 />`;
 
 const horizontalCode = `<MizuRadio
-  v-model="selected"
+  v-model="horizontalSelected"
   :items="basicOptions"
   orientation="horizontal"
   name="horizontal"
 />`;
 
 const formCode = `<MizuRadio
-  v-model="selected"
+  v-model="fruitSelected"
   :items="fruitOptions"
   label="Select a fruit"
   name="fruit"

@@ -15,7 +15,7 @@ const basicCode = `<MizuCollapsibleRoot>
     <MizuButton variant="primary">Show more</MizuButton>
   </MizuCollapsibleTrigger>
   <MizuCollapsibleContent>
-    This content can be collapsed and expanded.
+    This content can be collapsed and expanded. Click the trigger above to toggle visibility.
   </MizuCollapsibleContent>
 </MizuCollapsibleRoot>`;
 
@@ -24,7 +24,7 @@ const controlledCode = `<MizuCollapsibleRoot v-model:open="isOpen">
     <MizuButton variant="primary">Toggle details</MizuButton>
   </MizuCollapsibleTrigger>
   <MizuCollapsibleContent>
-    This collapsible is controlled via v-model.
+    This collapsible is controlled via v-model. The state is reflected above.
   </MizuCollapsibleContent>
 </MizuCollapsibleRoot>`;
 
@@ -33,7 +33,7 @@ const defaultOpenCode = `<MizuCollapsibleRoot :default-open="true">
     <MizuButton variant="primary">Initially expanded</MizuButton>
   </MizuCollapsibleTrigger>
   <MizuCollapsibleContent>
-    This collapsible starts in the open state.
+    This collapsible starts in the open state using the defaultOpen prop.
   </MizuCollapsibleContent>
 </MizuCollapsibleRoot>`;
 
@@ -42,7 +42,7 @@ const disabledCode = `<MizuCollapsibleRoot disabled>
     <MizuButton variant="primary">Disabled collapsible</MizuButton>
   </MizuCollapsibleTrigger>
   <MizuCollapsibleContent>
-    This content cannot be shown.
+    This content cannot be shown because the collapsible is disabled.
   </MizuCollapsibleContent>
 </MizuCollapsibleRoot>`;
 
@@ -70,13 +70,35 @@ const richContentCode = `<MizuCollapsibleRoot>
     <MizuButton variant="primary">Show details</MizuButton>
   </MizuCollapsibleTrigger>
   <MizuCollapsibleContent>
-    <p>Collapsibles can contain any content:</p>
-    <ul>
+    <p style="margin: 0 0 8px 0;">Collapsibles can contain any content:</p>
+    <ul style="margin: 0; padding-left: 20px;">
       <li>Text and paragraphs</li>
       <li>Lists and tables</li>
       <li>Forms and inputs</li>
       <li>Other components</li>
     </ul>
+  </MizuCollapsibleContent>
+</MizuCollapsibleRoot>`;
+
+const backgroundCode = `<MizuCollapsibleRoot>
+  <MizuCollapsibleTrigger as-child>
+    <MizuButton variant="primary">Show details</MizuButton>
+  </MizuCollapsibleTrigger>
+  <MizuCollapsibleContent background="#FAFAFA">
+    This content panel has a visible background.
+  </MizuCollapsibleContent>
+</MizuCollapsibleRoot>`;
+
+const partialCollapseCode = `<MizuCollapsibleRoot>
+  <MizuCollapsibleTrigger as-child>
+    <MizuButton variant="primary">Show more</MizuButton>
+  </MizuCollapsibleTrigger>
+  <MizuCollapsibleContent collapsed-height="80px">
+    <p style="margin: 0 0 8px 0;">This content is partially visible when collapsed.</p>
+    <p style="margin: 0 0 8px 0;">The collapsedHeight prop keeps the panel at 80px tall</p>
+    <p style="margin: 0 0 8px 0;">so users can see a preview of the content.</p>
+    <p style="margin: 0 0 8px 0;">Click "Show more" to expand and read the full text.</p>
+    <p style="margin: 0;">This is useful for "show more/less" patterns.</p>
   </MizuCollapsibleContent>
 </MizuCollapsibleRoot>`;
 </script>
@@ -168,6 +190,40 @@ const richContentCode = `<MizuCollapsibleRoot>
           <MizuCollapsibleContent>Using outline variant button.</MizuCollapsibleContent>
         </MizuCollapsibleRoot>
       </div>
+      </DemoTabs>
+    </div>
+
+    <!-- Background -->
+    <div class="demo-section">
+      <h3>Background</h3>
+      <DemoTabs :code="backgroundCode">
+      <MizuCollapsibleRoot>
+        <MizuCollapsibleTrigger as-child>
+          <MizuButton variant="primary">Show details</MizuButton>
+        </MizuCollapsibleTrigger>
+        <MizuCollapsibleContent background="#FAFAFA">
+          This content panel has a visible background.
+        </MizuCollapsibleContent>
+      </MizuCollapsibleRoot>
+      </DemoTabs>
+    </div>
+
+    <!-- Partial collapse -->
+    <div class="demo-section">
+      <h3>Partial collapse</h3>
+      <DemoTabs :code="partialCollapseCode">
+      <MizuCollapsibleRoot>
+        <MizuCollapsibleTrigger as-child>
+          <MizuButton variant="primary">Show more</MizuButton>
+        </MizuCollapsibleTrigger>
+        <MizuCollapsibleContent collapsed-height="80px">
+          <p style="margin: 0 0 8px 0;">This content is partially visible when collapsed.</p>
+          <p style="margin: 0 0 8px 0;">The collapsedHeight prop keeps the panel at 80px tall</p>
+          <p style="margin: 0 0 8px 0;">so users can see a preview of the content.</p>
+          <p style="margin: 0 0 8px 0;">Click "Show more" to expand and read the full text.</p>
+          <p style="margin: 0;">This is useful for "show more/less" patterns.</p>
+        </MizuCollapsibleContent>
+      </MizuCollapsibleRoot>
       </DemoTabs>
     </div>
 

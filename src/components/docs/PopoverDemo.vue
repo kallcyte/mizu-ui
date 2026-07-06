@@ -15,19 +15,19 @@ import DemoTabs from "./DemoTabs.vue";
 
 const basicCode = `<MizuPopoverRoot>
   <MizuPopoverTrigger>
-    <MizuButton variant="primary" size="sm">Open popover</MizuButton>
+    <MizuButton class="w-max" variant="primary" size="sm">Open popover</MizuButton>
   </MizuPopoverTrigger>
   <MizuPopoverPortal>
     <MizuPopoverContent>
       <div class="popover-title">About this feature</div>
-      <div class="popover-body">Popovers are great for showing additional content.</div>
+      <div class="popover-body">Popovers are great for showing additional content or controls related to a trigger element.</div>
     </MizuPopoverContent>
   </MizuPopoverPortal>
 </MizuPopoverRoot>`;
 
 const arrowCode = `<MizuPopoverRoot>
   <MizuPopoverTrigger>
-    <MizuButton variant="secondary" size="sm">Show details</MizuButton>
+    <MizuButton class="w-max" variant="secondary" size="sm">Show details</MizuButton>
   </MizuPopoverTrigger>
   <MizuPopoverPortal>
     <MizuPopoverContent side="bottom" :side-offset="10">
@@ -60,11 +60,35 @@ const placementsCode = `<MizuPopoverRoot>
       <MizuPopoverArrow />
     </MizuPopoverContent>
   </MizuPopoverPortal>
+</MizuPopoverRoot>
+
+<MizuPopoverRoot>
+  <MizuPopoverTrigger>
+    <MizuButton variant="secondary" size="sm">Bottom</MizuButton>
+  </MizuPopoverTrigger>
+  <MizuPopoverPortal>
+    <MizuPopoverContent side="bottom">
+      <div class="popover-body">Popover on bottom</div>
+      <MizuPopoverArrow />
+    </MizuPopoverContent>
+  </MizuPopoverPortal>
+</MizuPopoverRoot>
+
+<MizuPopoverRoot>
+  <MizuPopoverTrigger>
+    <MizuButton variant="secondary" size="sm">Left</MizuButton>
+  </MizuPopoverTrigger>
+  <MizuPopoverPortal>
+    <MizuPopoverContent side="left">
+      <div class="popover-body">Popover on left</div>
+      <MizuPopoverArrow />
+    </MizuPopoverContent>
+  </MizuPopoverPortal>
 </MizuPopoverRoot>`;
 
 const alignmentCode = `<MizuPopoverRoot>
   <MizuPopoverTrigger>
-    <MizuButton variant="secondary" size="sm">Start</MizuButton>
+    <MizuButton class="w-max" variant="secondary" size="sm">Start</MizuButton>
   </MizuPopoverTrigger>
   <MizuPopoverPortal>
     <MizuPopoverContent side="bottom" align="start">
@@ -76,7 +100,7 @@ const alignmentCode = `<MizuPopoverRoot>
 
 <MizuPopoverRoot>
   <MizuPopoverTrigger>
-    <MizuButton variant="secondary" size="sm">Center</MizuButton>
+    <MizuButton class="w-max" variant="secondary" size="sm">Center</MizuButton>
   </MizuPopoverTrigger>
   <MizuPopoverPortal>
     <MizuPopoverContent side="bottom" align="center">
@@ -84,11 +108,23 @@ const alignmentCode = `<MizuPopoverRoot>
       <MizuPopoverArrow />
     </MizuPopoverContent>
   </MizuPopoverPortal>
+</MizuPopoverRoot>
+
+<MizuPopoverRoot>
+  <MizuPopoverTrigger>
+    <MizuButton class="w-max" variant="secondary" size="sm">End</MizuButton>
+  </MizuPopoverTrigger>
+  <MizuPopoverPortal>
+    <MizuPopoverContent side="bottom" align="end">
+      <div class="popover-body">Aligned to end</div>
+      <MizuPopoverArrow />
+    </MizuPopoverContent>
+  </MizuPopoverPortal>
 </MizuPopoverRoot>`;
 
 const formCode = `<MizuPopoverRoot>
   <MizuPopoverTrigger>
-    <MizuButton variant="secondary" size="sm">Settings</MizuButton>
+    <MizuButton class="w-max" variant="secondary" size="sm">Settings</MizuButton>
   </MizuPopoverTrigger>
   <MizuPopoverPortal>
     <MizuPopoverContent side="bottom" align="start" :side-offset="6">
@@ -103,6 +139,7 @@ const formCode = `<MizuPopoverRoot>
           <select class="form-select">
             <option>Newest first</option>
             <option>Oldest first</option>
+            <option>Alphabetical</option>
           </select>
         </label>
         <div class="form-actions">
@@ -120,17 +157,20 @@ const formCode = `<MizuPopoverRoot>
 
 const closeButtonCode = `<MizuPopoverRoot>
   <MizuPopoverTrigger>
-    <MizuButton variant="secondary" size="sm">View announcement</MizuButton>
+    <MizuButton class="w-max" variant="secondary" size="sm">View announcement</MizuButton>
   </MizuPopoverTrigger>
   <MizuPopoverPortal>
     <MizuPopoverContent side="bottom" :side-offset="10">
       <div class="popover-header">
         <div class="popover-title">New Feature Available</div>
-        <MizuPopoverClose aria-label="Close">
-          <!-- X icon -->
+        <MizuPopoverClose class="popover-close-btn" aria-label="Close">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 6 6 18" />
+            <path d="m6 6 12 12" />
+          </svg>
         </MizuPopoverClose>
       </div>
-      <div class="popover-body">We've just released batch updates.</div>
+      <div class="popover-body">We've just released batch updates. Check out the changelog for the full list of improvements and bug fixes.</div>
       <MizuPopoverArrow />
     </MizuPopoverContent>
   </MizuPopoverPortal>
@@ -151,6 +191,10 @@ const profileCode = `<MizuPopoverRoot>
           <div class="profile-email">mariko@example.com</div>
         </div>
       </div>
+      <div class="profile-meta">
+        <div class="meta-row"><span class="meta-label">Role</span><span class="meta-value">Administrator</span></div>
+        <div class="meta-row"><span class="meta-label">Status</span><span class="status-dot">Active</span></div>
+      </div>
       <MizuPopoverArrow />
     </MizuPopoverContent>
   </MizuPopoverPortal>
@@ -158,7 +202,7 @@ const profileCode = `<MizuPopoverRoot>
 
 const controlledCode = `<MizuPopoverRoot v-model:open="open">
   <MizuPopoverTrigger>
-    <MizuButton variant="secondary" size="sm">Toggle popover</MizuButton>
+    <MizuButton class="w-max" variant="secondary" size="sm">Toggle popover</MizuButton>
   </MizuPopoverTrigger>
   <MizuPopoverPortal>
     <MizuPopoverContent>
@@ -175,7 +219,7 @@ const controlledCode = `<MizuPopoverRoot v-model:open="open">
 
 const widthCode = `<MizuPopoverRoot>
   <MizuPopoverTrigger>
-    <MizuButton variant="secondary" size="sm">Wide popover</MizuButton>
+    <MizuButton class="w-max" variant="secondary" size="sm">Wide popover</MizuButton>
   </MizuPopoverTrigger>
   <MizuPopoverPortal>
     <MizuPopoverContent side="bottom" :side-offset="8" :style="{ width: '420px' }">
@@ -196,6 +240,11 @@ const colorPickerCode = `<MizuPopoverRoot>
         <button class="color-chip" style="background: #001C44;" aria-label="Primary" />
         <button class="color-chip" style="background: #4F46E5;" aria-label="Indigo" />
         <button class="color-chip" style="background: #0EA5E9;" aria-label="Sky" />
+        <button class="color-chip" style="background: #10B981;" aria-label="Emerald" />
+        <button class="color-chip" style="background: #F59E0B;" aria-label="Amber" />
+        <button class="color-chip" style="background: #EF4444;" aria-label="Red" />
+        <button class="color-chip" style="background: #EC4899;" aria-label="Pink" />
+        <button class="color-chip" style="background: #6B7280;" aria-label="Gray" />
       </div>
       <MizuPopoverArrow />
     </MizuPopoverContent>
@@ -205,6 +254,12 @@ const colorPickerCode = `<MizuPopoverRoot>
 const dateRangeCode = `<MizuPopoverRoot>
   <MizuPopoverTrigger>
     <button class="date-trigger">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect width="18" height="18" x="3" y="4" rx="2" />
+        <path d="M16 2v4" />
+        <path d="M8 2v4" />
+        <path d="M3 10h18" />
+      </svg>
       <span>Select date range</span>
     </button>
   </MizuPopoverTrigger>
@@ -215,6 +270,10 @@ const dateRangeCode = `<MizuPopoverRoot>
         <button class="date-option">Today</button>
         <button class="date-option">Yesterday</button>
         <button class="date-option">Last 7 days</button>
+        <button class="date-option">Last 30 days</button>
+        <button class="date-option">This month</button>
+        <button class="date-option">Last month</button>
+        <button class="date-option">Custom range...</button>
       </div>
       <MizuPopoverArrow />
     </MizuPopoverContent>
@@ -223,15 +282,17 @@ const dateRangeCode = `<MizuPopoverRoot>
 
 const modalCode = `<MizuPopoverRoot :modal="true">
   <MizuPopoverTrigger>
-    <MizuButton variant="secondary" size="sm">Modal popover</MizuButton>
+    <MizuButton class="w-max" variant="secondary" size="sm">Modal popover</MizuButton>
   </MizuPopoverTrigger>
   <MizuPopoverPortal>
     <MizuPopoverContent>
       <div class="popover-title">Modal mode</div>
-      <div class="popover-body">When modal is true, the rest of the page is inert.</div>
-      <MizuPopoverClose>
-        <MizuButton variant="primary" size="sm">Close</MizuButton>
-      </MizuPopoverClose>
+      <div class="popover-body">When modal is true, the rest of the page is inert while the popover is open. The background is not clickable.</div>
+      <div class="modal-actions">
+        <MizuPopoverClose>
+          <MizuButton variant="primary" size="sm">Close</MizuButton>
+        </MizuPopoverClose>
+      </div>
     </MizuPopoverContent>
   </MizuPopoverPortal>
 </MizuPopoverRoot>`;

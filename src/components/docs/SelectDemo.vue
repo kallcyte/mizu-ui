@@ -3,16 +3,16 @@ import { ref } from "vue";
 import { MizuSelect, MizuButton } from "@mizu/vue";
 import DemoTabs from "./DemoTabs.vue";
 
-const basicCode = `<MizuSelect v-model="selected" :options="fruitOptions" />
-<MizuSelect v-model="selected" :options="fruitOptions" placeholder="Choose a fruit..." />
-<MizuSelect v-model="selected" :options="fruitOptions" label="Favorite fruit" />`;
+const basicCode = `<MizuSelect v-model="basicSelected" :options="fruitOptions" />
+<MizuSelect v-model="withPlaceholder" :options="fruitOptions" placeholder="Choose a fruit..." />
+<MizuSelect v-model="withLabel" :options="fruitOptions" label="Favorite fruit" />`;
 
-const sizesCode = `<MizuSelect v-model="selected" :options="sizeOptions" size="sm" label="Small" />
-<MizuSelect v-model="selected" :options="sizeOptions" size="md" label="Medium" />
-<MizuSelect v-model="selected" :options="sizeOptions" size="lg" label="Large" />`;
+const sizesCode = `<MizuSelect v-model="sizeSm" :options="sizeOptions" size="sm" label="Small" />
+<MizuSelect v-model="sizeMd" :options="sizeOptions" size="md" label="Medium" />
+<MizuSelect v-model="sizeLg" :options="sizeOptions" size="lg" label="Large" />`;
 
-const statesCode = `<MizuSelect v-model="selected" :options="fruitOptions" label="With Error" error helper-text="This field has an error" />
-<MizuSelect v-model="selected" :options="countryOptions" label="Disabled" disabled />`;
+const statesCode = `<MizuSelect v-model="errorSelected" :options="fruitOptions" label="With Error" error helper-text="This field has an error" />
+<MizuSelect v-model="disabledSelected" :options="countryOptions" label="Disabled" disabled />`;
 
 const formCode = `<MizuSelect
   v-model="country"
@@ -31,7 +31,9 @@ const formCode = `<MizuSelect
   label="Category"
   placeholder="Choose category..."
 />
-<MizuButton size="sm" @click="handleSubmit">Submit</MizuButton>`;
+<div>
+  <MizuButton size="sm" @click="handleSubmit">Submit</MizuButton>
+</div>`;
 
 const fruitOptions = [
   { value: "apple", label: "Apple" },

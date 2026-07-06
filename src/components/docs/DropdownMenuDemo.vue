@@ -46,15 +46,15 @@ const paymentMethod = ref("card");
 
 const basicCode = `<MizuDropdownMenuRoot>
   <MizuDropdownMenuTrigger as-child>
-    <MizuButton variant="outline" size="md">Open Menu</MizuButton>
+    <MizuButton variant="outline" size="md" class="w-max">Open Menu</MizuButton>
   </MizuDropdownMenuTrigger>
   <MizuDropdownMenuPortal>
     <MizuDropdownMenuContent>
-      <MizuDropdownMenuItem>
+      <MizuDropdownMenuItem @select="() => console.log('New Tab')">
         New Tab
         <MizuDropdownMenuShortcut>⌘T</MizuDropdownMenuShortcut>
       </MizuDropdownMenuItem>
-      <MizuDropdownMenuItem>
+      <MizuDropdownMenuItem @select="() => console.log('New Window')">
         New Window
         <MizuDropdownMenuShortcut>⌘N</MizuDropdownMenuShortcut>
       </MizuDropdownMenuItem>
@@ -63,38 +63,45 @@ const basicCode = `<MizuDropdownMenuRoot>
         <MizuDropdownMenuShortcut>⌘P</MizuDropdownMenuShortcut>
       </MizuDropdownMenuItem>
       <MizuDropdownMenuSeparator />
-      <MizuDropdownMenuItem>Downloads</MizuDropdownMenuItem>
+      <MizuDropdownMenuItem @select="() => console.log('Downloads')">Downloads</MizuDropdownMenuItem>
     </MizuDropdownMenuContent>
   </MizuDropdownMenuPortal>
 </MizuDropdownMenuRoot>`;
 
 const iconsCode = `<MizuDropdownMenuRoot>
   <MizuDropdownMenuTrigger as-child>
-    <MizuButton variant="outline" size="md">My Account</MizuButton>
+    <MizuButton variant="outline" size="md" class="w-max">My Account</MizuButton>
   </MizuDropdownMenuTrigger>
   <MizuDropdownMenuPortal>
     <MizuDropdownMenuContent>
       <MizuDropdownMenuLabel>My Account</MizuDropdownMenuLabel>
       <MizuDropdownMenuSeparator />
       <MizuDropdownMenuGroup>
-        <MizuDropdownMenuItem>
+        <MizuDropdownMenuItem @select="() => console.log('Profile')">
           <User :size="16" />
           Profile
           <MizuDropdownMenuShortcut>⇧⌘P</MizuDropdownMenuShortcut>
         </MizuDropdownMenuItem>
-        <MizuDropdownMenuItem>
+        <MizuDropdownMenuItem @select="() => console.log('Billing')">
           <CreditCard :size="16" />
           Billing
+          <MizuDropdownMenuShortcut>⌘B</MizuDropdownMenuShortcut>
         </MizuDropdownMenuItem>
-        <MizuDropdownMenuItem>
+        <MizuDropdownMenuItem @select="() => console.log('Settings')">
           <Settings :size="16" />
           Settings
+          <MizuDropdownMenuShortcut>⌘,</MizuDropdownMenuShortcut>
+        </MizuDropdownMenuItem>
+        <MizuDropdownMenuItem @select="() => console.log('Keyboard shortcuts')">
+          <Keyboard :size="16" />
+          Keyboard shortcuts
         </MizuDropdownMenuItem>
       </MizuDropdownMenuGroup>
       <MizuDropdownMenuSeparator />
-      <MizuDropdownMenuItem>
+      <MizuDropdownMenuItem @select="() => console.log('Log out')">
         <LogOut :size="16" />
         Log out
+        <MizuDropdownMenuShortcut>⇧⌘Q</MizuDropdownMenuShortcut>
       </MizuDropdownMenuItem>
     </MizuDropdownMenuContent>
   </MizuDropdownMenuPortal>
@@ -102,7 +109,7 @@ const iconsCode = `<MizuDropdownMenuRoot>
 
 const checkboxesCode = `<MizuDropdownMenuRoot>
   <MizuDropdownMenuTrigger as-child>
-    <MizuButton variant="outline" size="md">Notifications</MizuButton>
+    <MizuButton variant="outline" size="md" class="w-max">Notifications</MizuButton>
   </MizuDropdownMenuTrigger>
   <MizuDropdownMenuPortal>
     <MizuDropdownMenuContent>
@@ -120,13 +127,26 @@ const checkboxesCode = `<MizuDropdownMenuRoot>
         </MizuDropdownMenuItemIndicator>
         Include URLs
       </MizuDropdownMenuCheckboxItem>
+      <MizuDropdownMenuCheckboxItem v-model="fullnameChecked">
+        <MizuDropdownMenuItemIndicator>
+          <Check :size="14" />
+        </MizuDropdownMenuItemIndicator>
+        Include Full Name
+      </MizuDropdownMenuCheckboxItem>
+      <MizuDropdownMenuSeparator />
+      <MizuDropdownMenuCheckboxItem v-model="notificationsChecked">
+        <MizuDropdownMenuItemIndicator>
+          <Check :size="14" />
+        </MizuDropdownMenuItemIndicator>
+        Notifications
+      </MizuDropdownMenuCheckboxItem>
     </MizuDropdownMenuContent>
   </MizuDropdownMenuPortal>
 </MizuDropdownMenuRoot>`;
 
 const radioGroupCode = `<MizuDropdownMenuRoot>
   <MizuDropdownMenuTrigger as-child>
-    <MizuButton variant="outline" size="md">File Options</MizuButton>
+    <MizuButton variant="outline" size="md" class="w-max">File Options</MizuButton>
   </MizuDropdownMenuTrigger>
   <MizuDropdownMenuPortal>
     <MizuDropdownMenuContent>
@@ -144,14 +164,20 @@ const radioGroupCode = `<MizuDropdownMenuRoot>
           </MizuDropdownMenuItemIndicator>
           CSV
         </MizuDropdownMenuRadioItem>
+        <MizuDropdownMenuRadioItem value="xml">
+          <MizuDropdownMenuItemIndicator>
+            <Check :size="14" />
+          </MizuDropdownMenuItemIndicator>
+          XML
+        </MizuDropdownMenuRadioItem>
       </MizuDropdownMenuRadioGroup>
       <MizuDropdownMenuSeparator />
       <MizuDropdownMenuSub>
         <MizuDropdownMenuSubTrigger>More Options</MizuDropdownMenuSubTrigger>
         <MizuDropdownMenuPortal>
           <MizuDropdownMenuSubContent>
-            <MizuDropdownMenuItem>Compress</MizuDropdownMenuItem>
-            <MizuDropdownMenuItem>Encrypt</MizuDropdownMenuItem>
+            <MizuDropdownMenuItem @select="() => console.log('Compress')">Compress</MizuDropdownMenuItem>
+            <MizuDropdownMenuItem @select="() => console.log('Encrypt')">Encrypt</MizuDropdownMenuItem>
           </MizuDropdownMenuSubContent>
         </MizuDropdownMenuPortal>
       </MizuDropdownMenuSub>
@@ -161,25 +187,35 @@ const radioGroupCode = `<MizuDropdownMenuRoot>
 
 const destructiveCode = `<MizuDropdownMenuRoot>
   <MizuDropdownMenuTrigger as-child>
-    <MizuButton variant="outline" size="md">Actions</MizuButton>
+    <MizuButton variant="outline" size="md" class="w-max">Actions</MizuButton>
   </MizuDropdownMenuTrigger>
   <MizuDropdownMenuPortal>
     <MizuDropdownMenuContent>
-      <MizuDropdownMenuItem>
+      <MizuDropdownMenuItem @select="() => console.log('Edit')">
         <Pencil :size="16" />
         Edit
       </MizuDropdownMenuItem>
-      <MizuDropdownMenuItem>
+      <MizuDropdownMenuItem @select="() => console.log('Duplicate')">
         <Copy :size="16" />
         Duplicate
       </MizuDropdownMenuItem>
       <MizuDropdownMenuSeparator />
-      <MizuDropdownMenuItem>
-        <Share :size="16" />
-        Share
+      <MizuDropdownMenuItem @select="() => console.log('Archive')">
+        <Undo2 :size="16" />
+        Archive
+      </MizuDropdownMenuItem>
+      <MizuDropdownMenuItem @select="() => console.log('More')">
+        <Redo2 :size="16" />
+        More
       </MizuDropdownMenuItem>
       <MizuDropdownMenuSeparator />
-      <MizuDropdownMenuItem variant="destructive">
+      <MizuDropdownMenuItem @select="() => console.log('Share')">
+        <Share :size="16" />
+        Share
+        <MizuDropdownMenuShortcut>⌘S</MizuDropdownMenuShortcut>
+      </MizuDropdownMenuItem>
+      <MizuDropdownMenuSeparator />
+      <MizuDropdownMenuItem @select="() => console.log('Delete')" variant="destructive">
         <Trash2 :size="16" />
         Delete
         <MizuDropdownMenuShortcut>⌘⌫</MizuDropdownMenuShortcut>
@@ -190,20 +226,24 @@ const destructiveCode = `<MizuDropdownMenuRoot>
 
 const complexCode = `<MizuDropdownMenuRoot>
   <MizuDropdownMenuTrigger as-child>
-    <MizuButton variant="outline" size="md">Complex Menu</MizuButton>
+    <MizuButton variant="outline" size="md" class="w-max">Complex Menu</MizuButton>
   </MizuDropdownMenuTrigger>
   <MizuDropdownMenuPortal>
     <MizuDropdownMenuContent>
       <MizuDropdownMenuLabel>My Account</MizuDropdownMenuLabel>
       <MizuDropdownMenuSeparator />
       <MizuDropdownMenuGroup>
-        <MizuDropdownMenuItem>
+        <MizuDropdownMenuItem @select="() => console.log('Profile')">
           <User :size="16" />
           Profile
         </MizuDropdownMenuItem>
-        <MizuDropdownMenuItem>
+        <MizuDropdownMenuItem @select="() => console.log('Billing')">
           <CreditCard :size="16" />
           Billing
+        </MizuDropdownMenuItem>
+        <MizuDropdownMenuItem @select="() => console.log('Settings')">
+          <Settings :size="16" />
+          Settings
         </MizuDropdownMenuItem>
       </MizuDropdownMenuGroup>
       <MizuDropdownMenuSeparator />
@@ -214,6 +254,12 @@ const complexCode = `<MizuDropdownMenuRoot>
             <Check :size="14" />
           </MizuDropdownMenuItemIndicator>
           Include Bookmarks
+        </MizuDropdownMenuCheckboxItem>
+        <MizuDropdownMenuCheckboxItem v-model="notificationsChecked">
+          <MizuDropdownMenuItemIndicator>
+            <Check :size="14" />
+          </MizuDropdownMenuItemIndicator>
+          Notifications
         </MizuDropdownMenuCheckboxItem>
       </MizuDropdownMenuGroup>
       <MizuDropdownMenuSeparator />
@@ -226,10 +272,37 @@ const complexCode = `<MizuDropdownMenuRoot>
             </MizuDropdownMenuItemIndicator>
             Card
           </MizuDropdownMenuRadioItem>
+          <MizuDropdownMenuRadioItem value="paypal">
+            <MizuDropdownMenuItemIndicator>
+              <Check :size="14" />
+            </MizuDropdownMenuItemIndicator>
+            PayPal
+          </MizuDropdownMenuRadioItem>
+          <MizuDropdownMenuRadioItem value="applepay">
+            <MizuDropdownMenuItemIndicator>
+              <Check :size="14" />
+            </MizuDropdownMenuItemIndicator>
+            Apple Pay
+          </MizuDropdownMenuRadioItem>
         </MizuDropdownMenuRadioGroup>
       </MizuDropdownMenuGroup>
       <MizuDropdownMenuSeparator />
-      <MizuDropdownMenuItem>
+      <MizuDropdownMenuSub>
+        <MizuDropdownMenuSubTrigger>More Options</MizuDropdownMenuSubTrigger>
+        <MizuDropdownMenuPortal>
+          <MizuDropdownMenuSubContent>
+            <MizuDropdownMenuItem @select="() => console.log('Compress')">
+              Compress
+              <MizuDropdownMenuShortcut>⌘C</MizuDropdownMenuShortcut>
+            </MizuDropdownMenuItem>
+            <MizuDropdownMenuItem @select="() => console.log('Encrypt')">
+              Encrypt
+            </MizuDropdownMenuItem>
+          </MizuDropdownMenuSubContent>
+        </MizuDropdownMenuPortal>
+      </MizuDropdownMenuSub>
+      <MizuDropdownMenuSeparator />
+      <MizuDropdownMenuItem @select="() => console.log('Log out')">
         <LogOut :size="16" />
         Log out
       </MizuDropdownMenuItem>

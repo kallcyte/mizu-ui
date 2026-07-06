@@ -1,20 +1,6 @@
-<script lang="ts">
-import type{InjectionKey}from"vue"
-export interface SkeletonThemeProps{
-  width?:string|number;height?:string|number;radius?:string|number
-  baseColor?:string;highlightColor?:string
-  animationDuration?:number;animationDirection?:"normal"|"reverse"
-  enableAnimation?:boolean;customHighlightBackground?:string
-}
-export const SKELETON_THEME_KEY:InjectionKey<SkeletonThemeProps>=Symbol("mizu-skeleton-theme")
-export interface SkeletonProps extends SkeletonThemeProps{
-  variant?:"text"|"circle"|"rect"
-  animation?:"shimmer"|"pulse"|"none"
-  lines?:number;loading?:boolean
-}
-</script>
 <script setup lang="ts">
 import{computed,useAttrs,inject}from"vue"
+import{SKELETON_THEME_KEY,type SkeletonThemeProps,type SkeletonProps}from"./skeleton-types"
 
 const props=withDefaults(defineProps<SkeletonProps>(),{
   variant:"text",animation:"shimmer",lines:1,
@@ -33,6 +19,11 @@ function px(v:string|number|undefined):string|undefined{return sv(v)}
 function r<K extends keyof SkeletonThemeProps>(k:K):SkeletonThemeProps[K]|undefined{
   if(props[k]!==undefined)return props[k];return(theme as any)[k]
 }
+function cssColor(v:string|undefined):string|undefined{
+  if(v==null)return undefined
+  if(/^[a-zA-Z0-9_-]+$/.test(v))return`var(--color-${v})`
+  return v
+}
 const showContent=computed(()=>{
   if(props.loading!==undefined)return!props.loading
   if(slots.default)return(slots.default()as any[]).some((v:any)=>typeof v?.children==="string"&&v.children.length>0)
@@ -43,8 +34,8 @@ const cvStyle=computed(():Record<string,string>=>{
   const w=r("width");if(w!=null)s.width=px(w)!
   const h=r("height");if(h!=null)s.height=px(h)!
   const rd=r("radius");if(rd!=null)s.borderRadius=px(rd)!
-  const bc=r("baseColor");if(bc)s["--mizu-skeleton-base"]=bc
-  const hc=r("highlightColor");if(hc)s["--mizu-skeleton-highlight"]=hc
+  const bc=cssColor(r("baseColor"));if(bc)s["--mizu-skeleton-base"]=bc
+  const hc=cssColor(r("highlightColor"));if(hc)s["--mizu-skeleton-highlight"]=hc
   const dur=r("animationDuration");if(dur!=null)s["--mizu-animation-duration"]=dur+"s"
   const dir=r("animationDirection");if(dir)s["--mizu-animation-direction"]=dir
   const ea=r("enableAnimation");if(ea===false)s["--mizu-animation-display"]="none"
@@ -69,10 +60,10 @@ function stkSty(i:number,t:number):Record<string,string>{
 
 <template>
   <slot v-if="showContent"/>
-  <div v-else-if="variant==='text'&&lines>1":class="wrCls"aria-hidden="true">
-    <span v-for="i in lines":key="i":class="skCls":style="stkSty(i-1,lines)"/>
-  </div>
-  <span v-else:class="skCls":style="cvStyle"aria-hidden="true"/>
+  <div v-else-if="variant==='text'&&lines>1" :class="wrCls" aria-hidden="true">
+      <span v-for="i in lines" :key="i" :class="skCls" :style="stkSty(i-1,lines)"/>
+    </div>
+    <span v-else :class="skCls" :style="cvStyle" aria-hidden="true"/>
 </template>
 
 <style>

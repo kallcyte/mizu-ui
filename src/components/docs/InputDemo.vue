@@ -32,7 +32,7 @@ const statesCode = `<MizuInput v-model="locked" label="Username" disabled helper
     <Lock />
   </template>
 </MizuInput>
-<MizuInput v-model="value" label="Email" error helper-text="Invalid email" />
+<MizuInput v-model="value" label="Email" error helper-text="Please enter a valid email address" />
 <MizuInput v-model="value" label="Email" helper-text="Email is available" />`;
 
 const helperCode = `<MizuInput v-model="name" label="Full Name" placeholder="John Doe" helper-text="Enter your first and last name" />

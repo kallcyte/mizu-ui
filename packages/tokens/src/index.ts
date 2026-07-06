@@ -245,6 +245,16 @@ export const ZINDEX_NAV = 100 as const;
 export const DURATION_FAST = "200ms" as const;
 /** Accordion and panel transitions. */
 export const DURATION_NORMAL = "300ms" as const;
+/** Standard decelerated entrance for overlays, dialogs, and panels. */
+export const EASE_DEFAULT = "ease-out" as const;
+/** Standard accelerated exit for overlays and notifications. */
+export const EASE_EXIT = "ease-in" as const;
+/** Smooth hover, focus, and form interaction transitions. */
+export const EASE_INTERACTION = "ease-in-out" as const;
+/** Expressive spring-like overshoot for accordion and playful entrances. */
+export const EASE_EMPHASIZED = "cubic-bezier(0.34, 1.56, 0.64, 1)" as const;
+/** Decelerated entrance for popover and tooltip reveals. */
+export const EASE_ENTRANCE = "cubic-bezier(0.16, 1, 0.3, 1)" as const;
 /** Small / tablet portrait. */
 export const BREAKPOINT_SM = "640px" as const;
 /** Medium / tablet landscape. */
@@ -375,6 +385,11 @@ export const tokens: Record<string, Token> = {
   "zIndex/nav": { value: ZINDEX_NAV, type: "number" },
   "duration/fast": { value: DURATION_FAST, type: "duration" },
   "duration/normal": { value: DURATION_NORMAL, type: "duration" },
+  "ease/default": { value: EASE_DEFAULT, type: "easing" },
+  "ease/exit": { value: EASE_EXIT, type: "easing" },
+  "ease/interaction": { value: EASE_INTERACTION, type: "easing" },
+  "ease/emphasized": { value: EASE_EMPHASIZED, type: "easing" },
+  "ease/entrance": { value: EASE_ENTRANCE, type: "easing" },
   "breakpoint/sm": { value: BREAKPOINT_SM, type: "dimension" },
   "breakpoint/md": { value: BREAKPOINT_MD, type: "dimension" },
   "breakpoint/lg": { value: BREAKPOINT_LG, type: "dimension" },
@@ -477,6 +492,11 @@ export const cssVariables: Record<string, string | number | readonly string[]> =
   "--z-index-nav": ZINDEX_NAV,
   "--duration-fast": DURATION_FAST,
   "--duration-normal": DURATION_NORMAL,
+  "--ease-default": EASE_DEFAULT,
+  "--ease-exit": EASE_EXIT,
+  "--ease-interaction": EASE_INTERACTION,
+  "--ease-emphasized": EASE_EMPHASIZED,
+  "--ease-entrance": EASE_ENTRANCE,
   "--breakpoint-sm": BREAKPOINT_SM,
   "--breakpoint-md": BREAKPOINT_MD,
   "--breakpoint-lg": BREAKPOINT_LG,

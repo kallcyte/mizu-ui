@@ -60,36 +60,93 @@ const iconsCode = `<MizuButton variant="primary">
   </template>
 </MizuButton>`;
 
-const feedbackCode = `<MizuButton variant="success">
-  <template #leading-icon><CheckCircle /></template>
-  Success
-</MizuButton>
-<MizuButton variant="warning">
-  <template #leading-icon><AlertTriangle /></template>
-  Warning
-</MizuButton>
-<MizuButton variant="outline-error">
-  <template #leading-icon><XCircle /></template>
-  Error
-</MizuButton>`;
+const feedbackCode = `<div class="button-row">
+  <MizuButton variant="success">
+    <template #leading-icon><CheckCircle /></template>
+    Success
+  </MizuButton>
+  <MizuButton variant="warning">
+    <template #leading-icon><AlertTriangle /></template>
+    Warning
+  </MizuButton>
+  <MizuButton variant="error">
+    <template #leading-icon><XCircle /></template>
+    Error
+  </MizuButton>
+  <MizuButton variant="info">
+    <template #leading-icon><Info /></template>
+    Info
+  </MizuButton>
+</div>
+<div class="button-row">
+  <MizuButton variant="outline-success">
+    <template #leading-icon><CheckCircle /></template>
+    Success
+  </MizuButton>
+  <MizuButton variant="outline-warning">
+    <template #leading-icon><AlertTriangle /></template>
+    Warning
+  </MizuButton>
+  <MizuButton variant="outline-error">
+    <template #leading-icon><XCircle /></template>
+    Error
+  </MizuButton>
+  <MizuButton variant="outline-info">
+    <template #leading-icon><Info /></template>
+    Info
+  </MizuButton>
+</div>`;
 
-const combinationsCode = `<!-- Form Actions -->
-<MizuButton variant="ghost">
-  <template #leading-icon><X /></template>
-  Cancel
-</MizuButton>
-<MizuButton variant="primary">
-  <template #leading-icon><Check /></template>
-  Submit
-</MizuButton>
+const combinationsCode = `<div class="combo-group">
+  <span class="combo-label">Form Actions</span>
+  <div class="button-row">
+    <MizuButton variant="ghost">
+      <template #leading-icon><X /></template>
+      Cancel
+    </MizuButton>
+    <MizuButton variant="primary">
+      <template #leading-icon><Check /></template>
+      Submit
+    </MizuButton>
+  </div>
+</div>
 
-<!-- Icon Only -->
-<MizuButton variant="ghost" size="sm">
-  <template #leading-icon><Plus /></template>
-</MizuButton>
-<MizuButton variant="primary" size="lg">
-  <template #leading-icon><Plus /></template>
-</MizuButton>`;
+<div class="combo-group">
+  <span class="combo-label">Dialog Actions</span>
+  <div class="button-row">
+    <MizuButton variant="outline">Cancel</MizuButton>
+    <MizuButton variant="primary">
+      <template #leading-icon><Save /></template>
+      Save Changes
+    </MizuButton>
+  </div>
+</div>
+
+<div class="combo-group">
+  <span class="combo-label">Destructive</span>
+  <div class="button-row">
+    <MizuButton variant="ghost">Keep Original</MizuButton>
+    <MizuButton variant="outline-error">
+      <template #leading-icon><X /></template>
+      Delete
+    </MizuButton>
+  </div>
+</div>
+
+<div class="combo-group">
+  <span class="combo-label">Icon Only</span>
+  <div class="button-row">
+    <MizuButton variant="ghost" size="sm">
+      <template #leading-icon><Plus /></template>
+    </MizuButton>
+    <MizuButton variant="outline" size="md">
+      <template #leading-icon><Plus /></template>
+    </MizuButton>
+    <MizuButton variant="primary" size="lg">
+      <template #leading-icon><Plus /></template>
+    </MizuButton>
+  </div>
+</div>`;
 </script>
 
 <template>

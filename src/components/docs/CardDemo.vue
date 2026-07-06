@@ -22,7 +22,7 @@ const compositionCode = `<MizuCard>
     </MizuCardAction>
   </MizuCardHeader>
   <MizuCardContent>
-    <p>This card demonstrates the full composition pattern.</p>
+    <p class="card-text">This card demonstrates the full composition pattern with header, content, and footer sections.</p>
   </MizuCardContent>
   <MizuCardFooter>
     <MizuButton variant="primary" size="md">View Details</MizuButton>
@@ -39,7 +39,7 @@ const headerOnlyCode = `<MizuCard>
 
 const contentOnlyCode = `<MizuCard>
   <MizuCardContent>
-    <p>A card with only content, no header or footer.</p>
+    <p class="card-text">A card with only content, no header or footer.</p>
   </MizuCardContent>
 </MizuCard>`;
 
@@ -52,7 +52,7 @@ const withActionCode = `<MizuCard>
     </MizuCardAction>
   </MizuCardHeader>
   <MizuCardContent>
-    <p>The action area is positioned in the top-right of the header.</p>
+    <p class="card-text">The action area is positioned in the top-right of the header.</p>
   </MizuCardContent>
 </MizuCard>`;
 
@@ -63,7 +63,7 @@ const withImageCode = `<MizuCard>
     <MizuCardDescription>A fluffy feline companion.</MizuCardDescription>
   </MizuCardHeader>
   <MizuCardContent>
-    <p>Cats are independent, curious, and make wonderful pets.</p>
+    <p class="card-text">Cats are independent, curious, and make wonderful pets. This card demonstrates an image at the top.</p>
   </MizuCardContent>
   <MizuCardFooter>
     <MizuButton variant="accent" size="md">Adopt Me</MizuButton>
@@ -76,7 +76,7 @@ const compactCode = `<MizuCard spacing="compact">
     <MizuCardDescription>Uses the compact spacing variant.</MizuCardDescription>
   </MizuCardHeader>
   <MizuCardContent>
-    <p>Tighter padding for dense layouts.</p>
+    <p class="card-text">Tighter padding for dense layouts.</p>
   </MizuCardContent>
 </MizuCard>`;
 
@@ -86,7 +86,7 @@ const comfortableCode = `<MizuCard spacing="comfortable">
     <MizuCardDescription>Uses the comfortable spacing variant.</MizuCardDescription>
   </MizuCardHeader>
   <MizuCardContent>
-    <p>More breathing room for content.</p>
+    <p class="card-text">More breathing room for content.</p>
   </MizuCardContent>
 </MizuCard>`;
 </script>

@@ -111,6 +111,8 @@ function toThemeVarName(path: string): string {
       return `--z-${rest}`;
     case "duration":
       return `--duration-${rest}`;
+    case "ease":
+      return `--ease-${rest}`;
     case "breakpoint":
       return `--breakpoint-${rest}`;
     default:

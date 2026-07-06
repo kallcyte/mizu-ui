@@ -20,7 +20,7 @@ function reset() {
 
 const basicCode = `<MizuProgress :model-value="50" />`;
 
-const withLabelCode = `<MizuProgress :model-value="67" show-label />`;
+const withLabelCode = `<MizuProgress :model-value="fileUpload" show-label />`;
 
 const sizesCode = `<MizuProgress :model-value="40" size="sm" />
 <MizuProgress :model-value="40" size="md" />
@@ -33,42 +33,65 @@ const variantsCode = `<MizuProgress :model-value="60" variant="primary" />
 <MizuProgress :model-value="60" variant="error" />
 <MizuProgress :model-value="60" variant="info" />`;
 
-const completeStateCode = `<MizuProgress :model-value="100" variant="primary" show-label />
-<MizuProgress :model-value="100" variant="success" show-label />`;
+const completeStateCode = `<MizuProgress :model-value="taskComplete" variant="primary" show-label />
+<MizuProgress :model-value="taskComplete" variant="success" show-label />`;
 
 const indeterminateCode = `<MizuProgress :model-value="null" />
 <MizuProgress :model-value="null" variant="accent" />`;
 
 const storageQuotaCode = `<MizuProgress
-  :model-value="42"
+  :model-value="storageQuota"
   :max="100"
   variant="primary"
   size="lg"
   show-label
-  :label="\`42 GB of 100 GB used\`"
+  :label="\`\${storageQuota} GB of 100 GB used\`"
 />`;
 
 const fileDownloadCode = `<MizuProgress
-  :model-value="85"
+  :model-value="download"
   :max="100"
   variant="info"
   show-label
 />`;
 
 const serverLoadCode = `<MizuProgress
-  :model-value="30"
+  :model-value="serverLoad"
   :max="100"
   variant="warning"
   show-label
-/>`;
+/>
+<button class="reset-button" @click="serverLoad = 30">Set 30%</button>
+<button class="reset-button" @click="serverLoad = 75">Set 75%</button>
+<button class="reset-button" @click="serverLoad = 95">Set 95%</button>`;
 
-const skillProgressCode = `<MizuProgress :model-value="35" variant="primary" show-label />`;
+const skillProgressCode = `<MizuProgress :model-value="live" variant="primary" show-label />
+<button class="reset-button" @click="reset">Replay</button>`;
 
 const customMaxCode = `<MizuProgress :model-value="7" :max="10" variant="success" show-label />`;
 
-const skillChecklistCode = `<MizuProgress :model-value="100" size="sm" variant="success" />
-<MizuProgress :model-value="80" size="sm" variant="primary" />
-<MizuProgress :model-value="65" size="sm" variant="primary" />`;
+const skillChecklistCode = `<div class="checklist">
+  <div class="checklist-item">
+    <span class="checklist-label">HTML &amp; CSS</span>
+    <MizuProgress :model-value="100" size="sm" variant="success" />
+  </div>
+  <div class="checklist-item">
+    <span class="checklist-label">JavaScript</span>
+    <MizuProgress :model-value="80" size="sm" variant="primary" />
+  </div>
+  <div class="checklist-item">
+    <span class="checklist-label">TypeScript</span>
+    <MizuProgress :model-value="65" size="sm" variant="primary" />
+  </div>
+  <div class="checklist-item">
+    <span class="checklist-label">Vue</span>
+    <MizuProgress :model-value="50" size="sm" variant="primary" />
+  </div>
+  <div class="checklist-item">
+    <span class="checklist-label">Design Systems</span>
+    <MizuProgress :model-value="25" size="sm" variant="primary" />
+  </div>
+</div>`;
 </script>
 
 <template>

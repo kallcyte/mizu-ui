@@ -63,16 +63,16 @@ const maxTagsCode = `<MizuTagsInput
   placeholder="Add a role..."
 />`;
 
-const variantsCode = `<MizuTagsInput v-model="tags" tag-variant="primary" label="Primary" />
-<MizuTagsInput v-model="tags" tag-variant="accent" label="Accent" />
-<MizuTagsInput v-model="tags" tag-variant="success" label="Success" />
-<MizuTagsInput v-model="tags" tag-variant="warning" label="Warning" />
-<MizuTagsInput v-model="tags" tag-variant="error" label="Error" />
-<MizuTagsInput v-model="tags" tag-variant="info" label="Info" />`;
+const variantsCode = `<MizuTagsInput v-model="categoriesTags" tag-variant="primary" label="Primary" placeholder="Primary variant..." />
+<MizuTagsInput v-model="categoriesTags" tag-variant="accent" label="Accent" placeholder="Accent variant..." />
+<MizuTagsInput v-model="categoriesTags" tag-variant="success" label="Success" placeholder="Success variant..." />
+<MizuTagsInput v-model="categoriesTags" tag-variant="warning" label="Warning" placeholder="Warning variant..." />
+<MizuTagsInput v-model="categoriesTags" tag-variant="error" label="Error" placeholder="Error variant..." />
+<MizuTagsInput v-model="categoriesTags" tag-variant="info" label="Info" placeholder="Info variant..." />`;
 
-const sizesCode = `<MizuTagsInput v-model="tags" size="sm" placeholder="Small..." />
-<MizuTagsInput v-model="tags" size="md" placeholder="Medium (default)..." />
-<MizuTagsInput v-model="tags" size="lg" placeholder="Large..." />`;
+const sizesCode = `<MizuTagsInput v-model="basicTags" size="sm" placeholder="Small..." />
+<MizuTagsInput v-model="basicTags" size="md" placeholder="Medium (default)..." />
+<MizuTagsInput v-model="basicTags" size="lg" placeholder="Large..." />`;
 
 const separatorsCode = `<MizuTagsInput
   v-model="separatorTags"
@@ -81,7 +81,7 @@ const separatorsCode = `<MizuTagsInput
 />`;
 
 const customValidationCode = `<MizuTagsInput
-  v-model="tags"
+  v-model="basicTags"
   :validate="customValidator"
   helper-text="Lowercase letters, numbers, and dashes only"
   placeholder="kebab-case-only..."
@@ -89,7 +89,7 @@ const customValidationCode = `<MizuTagsInput
 
 const errorStateCode = `<MizuTagsInput
   v-model="withError"
-  :error="true"
+  :error="!!withError.find((t) => t.toLowerCase() === 'spam')"
   label="Tags"
   helper-text="The 'Spam' tag is rejected"
 />`;

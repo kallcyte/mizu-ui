@@ -35,8 +35,27 @@ for (const file of files) {
   }
 }
 
+// Type exports from .ts type-definition files
+const tsFiles = readdirSync(componentsDir)
+  .filter((f) => f.endsWith(".ts"))
+  .sort();
+
+for (const file of tsFiles) {
+  const filePath = join(componentsDir, file);
+  const content = readFileSync(filePath, "utf-8");
+  const tsInterfaceRegex = /export interface (\w+)/g;
+  const tsTypeNames = [];
+  let tsMatch;
+  while ((tsMatch = tsInterfaceRegex.exec(content)) !== null) {
+    tsTypeNames.push(tsMatch[1]);
+  }
+  if (tsTypeNames.length > 0) {
+    lines.push(`export type { ${tsTypeNames.join(", ")} } from "./components/${file}";`);
+  }
+}
+
 // Non-component exports (composables) — appended at the end
-lines.push('export { useToast } from "./composables/useToast";');
+lines.push('export { useToast } from "./composables/useToast"');
 lines.push('export type { ToastItem, ToastContext } from "./composables/useToast";');
 lines.push('export { useForm } from "./composables/useMizuField";');
 lines.push('export type { FieldState, MizuFormResult } from "./composables/useMizuField";');

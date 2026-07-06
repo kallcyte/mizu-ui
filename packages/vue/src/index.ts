@@ -258,7 +258,6 @@ export type { ScrollAreaViewportProps } from "./components/MizuScrollAreaViewpor
 export { default as MizuSelect } from "./components/MizuSelect.vue";
 export type { SelectOption, SelectProps } from "./components/MizuSelect.vue";
 export { default as MizuSkeleton } from "./components/MizuSkeleton.vue";
-export type { SkeletonThemeProps, SkeletonProps } from "./components/MizuSkeleton.vue";
 export { default as MizuSkeletonTheme } from "./components/MizuSkeletonTheme.vue";
 export { default as MizuSliderRange } from "./components/MizuSliderRange.vue";
 export type { SliderRangeProps } from "./components/MizuSliderRange.vue";
@@ -312,7 +311,8 @@ export { default as MizuTooltipRoot } from "./components/MizuTooltipRoot.vue";
 export type { TooltipProps } from "./components/MizuTooltipRoot.vue";
 export { default as MizuTooltipTrigger } from "./components/MizuTooltipTrigger.vue";
 export type { TooltipTriggerProps } from "./components/MizuTooltipTrigger.vue";
-export { useToast } from "./composables/useToast";
+export type { SkeletonThemeProps, SkeletonProps } from "./components/skeleton-types.ts";
+export { useToast } from "./composables/useToast"
 export type { ToastItem, ToastContext } from "./composables/useToast";
 export { useForm } from "./composables/useMizuField";
 export type { FieldState, MizuFormResult } from "./composables/useMizuField";

@@ -22,7 +22,7 @@ const verticalCode = `<MizuScrollAreaRoot :max-height="50" class="sa-card">
 const horizontalCode = `<MizuScrollAreaRoot :max-width="360" class="sa-card">
   <MizuScrollAreaViewport class="sa-pad">
     <div class="h-scroll-row">
-      <span v-for="t in tags" :key="t" class="tag-chip">{{ t }}</span>
+      <span v-for="t in [...tags, ...tags]" :key="t + Math.random()" class="tag-chip">{{ t }}</span>
     </div>
   </MizuScrollAreaViewport>
   <MizuScrollAreaScrollbar orientation="horizontal">
@@ -48,7 +48,7 @@ const bothCode = `<MizuScrollAreaRoot :max-height="240" :max-width="420" class="
 const alwaysCode = `<MizuScrollAreaRoot :max-height="160" type="always" class="sa-card">
   <MizuScrollAreaViewport class="sa-pad">
     <div class="tag-cloud">
-      <span v-for="t in tags" :key="t" class="tag-chip">{{ t }}</span>
+      <span v-for="t in tags.slice(0, 8)" :key="t" class="tag-chip">{{ t }}</span>
     </div>
   </MizuScrollAreaViewport>
   <MizuScrollAreaScrollbar orientation="vertical">

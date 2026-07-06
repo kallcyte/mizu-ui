@@ -7,7 +7,7 @@ Mizu uses design tokens as the single source of truth for all visual design deci
 
 ## Token Categories
 
-Mizu includes 13 token categories:
+Mizu includes 14 token categories:
 
 | Category | Description | Examples |
 |----------|-------------|----------|
@@ -23,6 +23,7 @@ Mizu includes 13 token categories:
 | **sizing** | Component dimensions | `icon-inline`, `card-visual` |
 | **zIndex** | Stack order values | `nav` |
 | **duration** | Animation timing | `fast`, `normal` |
+| **ease** | Animation easing curves | `default`, `emphasized`, `entrance` |
 | **breakpoint** | Responsive breakpoints | `sm`, `md`, `lg`, `xl` |
 
 ## Color Tokens
@@ -73,6 +74,72 @@ Mizu includes 13 token categories:
 | **error** | #DC2626 | #B91C1C | #991B1B | #FEF2F2 |
 | **warning** | #D97706 | #B45309 | #92400E | #FFFBEB |
 | **info** | #0284C7 | #0369A1 | #075985 | #F0F9FF |
+
+## Easing Tokens
+
+Easing tokens define the motion curves used throughout the design system. Each token maps to a CSS `animation-timing-function` or `transition-timing-function` value, providing consistent motion language across components.
+
+| Token | Value | CSS Variable | Usage |
+|-------|-------|-------------|-------|
+| `ease/default` | `ease-out` | `--ease-default` | Standard decelerated entrance for overlays, dialogs, and panels |
+| `ease/exit` | `ease-in` | `--ease-exit` | Accelerated exit for notifications and closing elements |
+| `ease/interaction` | `ease-in-out` | `--ease-interaction` | Hover, focus, and form interaction transitions |
+| `ease/emphasized` | `cubic-bezier(0.34, 1.56, 0.64, 1)` | `--ease-emphasized` | Expressive spring-like overshoot for accordion and playful entrances |
+| `ease/entrance` | `cubic-bezier(0.16, 1, 0.3, 1)` | `--ease-entrance` | Decelerated entrance for popover and tooltip reveals |
+
+### Visual Demo
+
+Compare how each easing curve affects motion. Press **Play All** to see the difference.
+
+import EasingDemo from '../../../components/docs/EasingDemo.vue';
+
+<EasingDemo client:load />
+
+### Usage in CSS
+
+```css
+.my-element {
+  transition: transform 300ms var(--ease-emphasized);
+  animation: slideIn 400ms var(--ease-entrance);
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+```
+
+### Usage with Tailwind v4
+
+Easing tokens are available as `@theme` variables in Tailwind:
+
+```css
+@theme {
+  --ease-default: ease-out;
+  --ease-emphasized: cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+```
+
+```html
+<div class="transition-all duration-fast ease-emphasized">
+  Content
+</div>
+```
+
+### Usage in JavaScript/TypeScript
+
+```typescript
+import { EASE_EMPHASIZED, EASE_ENTRANCE } from '@mizu/tokens';
+
+// Use in a animation library or inline styles
+element.style.animationTimingFunction = EASE_EMPHASIZED;
+```
 
 ## Using Tokens
 

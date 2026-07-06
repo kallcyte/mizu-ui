@@ -66,6 +66,7 @@ function toggleIndeterminate() {
 
 const basicCode = `<MizuCheckbox v-model="checked" />
 <MizuCheckbox v-model="checked" label="Subscribe" />
+<MizuCheckbox v-model="checked" label="Remember me" />
 <MizuCheckbox v-model="checked" disabled label="Disabled unchecked" />
 <MizuCheckbox v-model="checked" disabled label="Disabled checked" />`;
 
@@ -98,7 +99,7 @@ const indeterminateCode = `<MizuCheckbox
   v-model="selectAllState"
   label="Select all items in this list"
 />
-<!-- State: {{ selectAllState }} -->
+<p class="demo-text">State: <code>{{ selectAllState }}</code></p>
 <MizuButton size="sm" variant="outline" @click="toggleIndeterminate">
   Toggle Indeterminate
 </MizuButton>`;
@@ -111,7 +112,11 @@ const selectAllCode = `<MizuCheckbox
   <MizuCheckbox v-model="emailEnabled" label="EMAIL" />
   <MizuCheckbox v-model="smsEnabled" label="SMS" />
   <MizuCheckbox v-model="pushEnabled" label="PUSH" />
-</div>`;
+</div>
+<p class="demo-text">
+  Selected: <code>{{ selectedCount }}</code> of
+  <code>{{ channelRefs.length }}</code>
+</p>`;
 
 const customValuesCode = `<MizuCheckbox
   v-model="customString"
@@ -119,12 +124,18 @@ const customValuesCode = `<MizuCheckbox
   false-value="no"
   label="Accept terms"
 />
+<p class="demo-text">
+  Value: <code>{{ customString }}</code> (resolved boolean: <code>{{ acceptTermsTrue }}</code>)
+</p>
 <MizuCheckbox
   v-model="customNumber"
   :true-value="1"
   :false-value="0"
   label="Grant permission"
-/>`;
+/>
+<p class="demo-text">
+  Value: <code>{{ customNumber }}</code>
+</p>`;
 
 const loginFormCode = `<MizuCheckbox
   v-model="keepSignedIn"

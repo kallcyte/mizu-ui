@@ -52,7 +52,9 @@ A thin wrapper around Reka UI's `CollapsibleTrigger`. Use `as-child` to slot in 
 
 ### CollapsibleContent
 
-The collapsible panel. Uses CSS `overflow: hidden` and height animation driven by `--reka-collapsible-content-height`. Wraps Reka UI's `CollapsibleContent`.
+### CollapsibleContent
+
+The collapsible panel. Uses CSS `overflow: hidden` and height animation driven by `--reka-collapsible-content-height`. Set `collapsed-height` to create a partial collapse pattern where the panel remains visible at a fixed height when closed. Wraps Reka UI's `CollapsibleContent`.
 
 ## Color Specifications
 
@@ -72,6 +74,8 @@ The collapsible panel. Uses CSS `overflow: hidden` and height animation driven b
 
 | Content height | 200ms | ease-out |
 | Content opacity | 200ms | ease-out |
+
+When `collapsedHeight` is set, the content animates to that height instead of 0px. The `--collapsed-height` CSS variable is used as the animation endpoint.
 
 
 ## Accessibility
@@ -136,6 +140,8 @@ The collapsible panel. Uses CSS `overflow: hidden` and height animation driven b
 | `forceMount` | `boolean` | `undefined` | Always render content (for animation control) |
 | `asChild` | `boolean` | `undefined` | Merge props onto child element |
 | `as` | `string` | `undefined` | Render as a different element |
+| `background` | `string` | `''` | Background color for the content panel. Accepts any valid CSS color value (hex, rgb, hsl, etc.) |
+| `collapsedHeight` | `string` | `undefined` | Height to maintain when collapsed (e.g. `"80px"`, `"50%"`). Creates a partial collapse / "show more" pattern. Content outside the collapsed region becomes inert. |
 
 ### Slots
 
@@ -151,9 +157,25 @@ All three sub-components expose a `default` slot.
 
 ```vue
 <MizuCollapsibleRoot v-model:open="isOpen">
-  <MizuCollapsibleTrigger>Toggle details</MizuCollapsibleTrigger>
-  <MizuCollapsibleContent>
+  <MizuCollapsibleTrigger as-child>
+    <MizuButton variant="primary">Toggle details</MizuButton>
+  </MizuCollapsibleTrigger>
+  <MizuCollapsibleContent background="#FAFAFA">
     This content is toggleable.
+  </MizuCollapsibleContent>
+</MizuCollapsibleRoot>
+```
+
+#### Partial collapse
+
+```vue
+<MizuCollapsibleRoot>
+  <MizuCollapsibleTrigger as-child>
+    <MizuButton variant="primary">Show more</MizuButton>
+  </MizuCollapsibleTrigger>
+  <MizuCollapsibleContent collapsed-height="80px">
+    <p>This content is partially visible when collapsed.</p>
+    <p>Click to expand and read the full text.</p>
   </MizuCollapsibleContent>
 </MizuCollapsibleRoot>
 ```
@@ -161,7 +183,7 @@ All three sub-components expose a `default` slot.
 ## Implementation Notes
 
 1. **Reka UI primitive** — wraps `CollapsibleRoot`, `CollapsibleTrigger`, and `CollapsibleContent` from `reka-ui`
-2. **CSS var animation** — content height animation uses `--reka-collapsible-content-height` set by Reka UI at runtime
+2. **CSS var animation** — content height animation uses `--reka-collapsible-content-height` set by Reka UI at runtime. When `collapsedHeight` is set, `--collapsed-height` is also used as the animation endpoint for the collapsed state.
 3. **Thin trigger wrapper** — `MizuCollapsibleTrigger` is a minimal passthrough around Reka UI's `CollapsibleTrigger`. Use `as-child` with `MizuButton` for styled triggers.
 4. **Class inheritance** — accepts `class` prop via `useAttrs()` for Tailwind overrides
 5. **Self-contained CSS** — styles are bundled into `dist/index.css` via `@tailwindcss/vite`; consumers do not need Tailwind installed

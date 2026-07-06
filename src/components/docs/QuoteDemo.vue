@@ -15,11 +15,11 @@ const accentCode = `<MizuQuote accent>
 </MizuQuote>`;
 
 const accentCiteCode = `<MizuQuote accent cite="Albert Einstein">
-  Imagination is more important than knowledge.
+  Imagination is more important than knowledge. Knowledge is limited. Imagination encircles the world.
 </MizuQuote>`;
 
 const multiParagraphCode = `<MizuQuote accent cite="APA Style">
-  <p>A block quote is a paraphrase or direct quotation that is longer than 40 words.</p>
+  <p>A block quote is a paraphrase or direct quotation that is longer than 40 words. It should be formatted as a freestanding block of text that does not use quotation marks.</p>
   <p>Block quotes should start on a new line and be indented from the left margin.</p>
 </MizuQuote>`;
 </script>

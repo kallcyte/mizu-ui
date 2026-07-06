@@ -20,11 +20,27 @@ const multipleCode = `<MizuToggleGroupRoot v-model="multiFormat" type="multiple"
   <MizuToggleGroupItem value="underline"><Underline :size="14" /><span>Underline</span></MizuToggleGroupItem>
 </MizuToggleGroupRoot>`;
 
-const sizesCode = `<MizuToggleGroupRoot v-model="alignment" type="single" size="sm">
-  <MizuToggleGroupItem value="left"><AlignLeft :size="12" /></MizuToggleGroupItem>
-  <MizuToggleGroupItem value="center"><AlignCenter :size="12" /></MizuToggleGroupItem>
-  <MizuToggleGroupItem value="right"><AlignRight :size="12" /></MizuToggleGroupItem>
-</MizuToggleGroupRoot>`;
+const sizesCode = `<div class="col"><span class="demo-label">sm</span>
+  <MizuToggleGroupRoot v-model="alignment" type="single" size="sm">
+    <MizuToggleGroupItem value="left"><AlignLeft :size="12" /></MizuToggleGroupItem>
+    <MizuToggleGroupItem value="center"><AlignCenter :size="12" /></MizuToggleGroupItem>
+    <MizuToggleGroupItem value="right"><AlignRight :size="12" /></MizuToggleGroupItem>
+  </MizuToggleGroupRoot>
+</div>
+<div class="col"><span class="demo-label">md</span>
+  <MizuToggleGroupRoot v-model="alignment" type="single" size="md">
+    <MizuToggleGroupItem value="left"><AlignLeft :size="14" /></MizuToggleGroupItem>
+    <MizuToggleGroupItem value="center"><AlignCenter :size="14" /></MizuToggleGroupItem>
+    <MizuToggleGroupItem value="right"><AlignRight :size="14" /></MizuToggleGroupItem>
+  </MizuToggleGroupRoot>
+</div>
+<div class="col"><span class="demo-label">lg</span>
+  <MizuToggleGroupRoot v-model="alignment" type="single" size="lg">
+    <MizuToggleGroupItem value="left"><AlignLeft :size="16" /></MizuToggleGroupItem>
+    <MizuToggleGroupItem value="center"><AlignCenter :size="16" /></MizuToggleGroupItem>
+    <MizuToggleGroupItem value="right"><AlignRight :size="16" /></MizuToggleGroupItem>
+  </MizuToggleGroupRoot>
+</div>`;
 
 const disabledCode = `<MizuToggleGroupRoot v-model="textFormat" type="single" size="md">
   <MizuToggleGroupItem value="bold"><Bold :size="14" /><span>Bold</span></MizuToggleGroupItem>

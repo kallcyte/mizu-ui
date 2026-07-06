@@ -26,7 +26,7 @@ const isDeleteAccountValid = computed(() => deleteAccountInput.value === "delete
 
 const basicCode = `<MizuAlertDialogRoot v-model:open="open">
   <MizuAlertDialogTrigger as-child>
-    <MizuButton variant="primary" size="md">Delete Invoice</MizuButton>
+    <MizuButton variant="primary" size="md" class="w-max">Delete Invoice</MizuButton>
   </MizuAlertDialogTrigger>
   <MizuAlertDialogPortal>
     <MizuAlertDialogOverlay />
@@ -36,24 +36,24 @@ const basicCode = `<MizuAlertDialogRoot v-model:open="open">
       </MizuDialogHeader>
       <MizuDialogBody>
         <MizuAlertDialogDescription>
-          Are you sure you want to delete this invoice?
+          Are you sure you want to delete this invoice? This action cannot be undone.
         </MizuAlertDialogDescription>
       </MizuDialogBody>
       <MizuDialogFooter>
         <MizuAlertDialogCancel as-child>
-          <MizuButton variant="ghost" size="md">Cancel</MizuButton>
+          <MizuButton variant="ghost" size="md" class="w-max">Cancel</MizuButton>
         </MizuAlertDialogCancel>
         <MizuAlertDialogAction as-child>
-          <MizuButton variant="primary" size="md">Delete</MizuButton>
+          <MizuButton variant="primary" size="md" class="w-max">Delete</MizuButton>
         </MizuAlertDialogAction>
       </MizuDialogFooter>
     </MizuAlertDialogContent>
   </MizuAlertDialogPortal>
 </MizuAlertDialogRoot>`;
 
-const destructiveCode = `<MizuAlertDialogRoot v-model:open="open">
+const destructiveCode = `<MizuAlertDialogRoot v-model:open="open" @update:open="(v: boolean) => { if (v) deleteAccountInput = '' }">
   <MizuAlertDialogTrigger as-child>
-    <MizuButton variant="error" size="md">Delete Account</MizuButton>
+    <MizuButton variant="error" size="md" class="w-max">Delete Account</MizuButton>
   </MizuAlertDialogTrigger>
   <MizuAlertDialogPortal>
     <MizuAlertDialogOverlay />
@@ -61,22 +61,22 @@ const destructiveCode = `<MizuAlertDialogRoot v-model:open="open">
       <MizuDialogHeader>
         <MizuAlertDialogTitle>Delete Account</MizuAlertDialogTitle>
         <MizuAlertDialogDescription>
-          Type <strong>delete</strong> to confirm.
+          This permanently removes your account and all associated data. Type <strong>delete</strong> to confirm.
         </MizuAlertDialogDescription>
       </MizuDialogHeader>
       <MizuDialogBody>
         <MizuInput
-          v-model="input"
+          v-model="deleteAccountInput"
           label='Type "delete" to confirm'
           placeholder="delete"
         />
       </MizuDialogBody>
       <MizuDialogFooter>
         <MizuAlertDialogCancel as-child>
-          <MizuButton variant="ghost" size="md">Cancel</MizuButton>
+          <MizuButton variant="ghost" size="md" class="w-max">Cancel</MizuButton>
         </MizuAlertDialogCancel>
         <MizuAlertDialogAction as-child>
-          <MizuButton variant="error" size="md" :disabled="!valid">Delete Account</MizuButton>
+          <MizuButton variant="error" size="md" class="w-max" :disabled="!isDeleteAccountValid">Delete Account</MizuButton>
         </MizuAlertDialogAction>
       </MizuDialogFooter>
     </MizuAlertDialogContent>
@@ -85,7 +85,7 @@ const destructiveCode = `<MizuAlertDialogRoot v-model:open="open">
 
 const contentCode = `<MizuAlertDialogRoot v-model:open="open">
   <MizuAlertDialogTrigger as-child>
-    <MizuButton variant="primary" size="md">Discard Changes</MizuButton>
+    <MizuButton variant="primary" size="md" class="w-max">Discard Changes</MizuButton>
   </MizuAlertDialogTrigger>
   <MizuAlertDialogPortal>
     <MizuAlertDialogOverlay />
@@ -93,11 +93,11 @@ const contentCode = `<MizuAlertDialogRoot v-model:open="open">
       <MizuDialogHeader>
         <MizuAlertDialogTitle>Discard unsaved changes?</MizuAlertDialogTitle>
         <MizuAlertDialogDescription>
-          You have unsaved changes that will be lost.
+          You have unsaved changes that will be lost if you leave this page.
         </MizuAlertDialogDescription>
       </MizuDialogHeader>
       <MizuDialogBody>
-        <ul>
+        <ul class="changes-list">
           <li>Updated invoice #INV-2026-0042 line items</li>
           <li>Modified client billing address</li>
           <li>Added new tax rate (9.5%)</li>
@@ -105,10 +105,10 @@ const contentCode = `<MizuAlertDialogRoot v-model:open="open">
       </MizuDialogBody>
       <MizuDialogFooter>
         <MizuAlertDialogCancel as-child>
-          <MizuButton variant="primary" size="md">Keep Editing</MizuButton>
+          <MizuButton variant="primary" size="md" class="w-max">Keep Editing</MizuButton>
         </MizuAlertDialogCancel>
         <MizuAlertDialogAction as-child>
-          <MizuButton variant="ghost" size="md">Discard</MizuButton>
+          <MizuButton variant="ghost" size="md" class="w-max">Discard</MizuButton>
         </MizuAlertDialogAction>
       </MizuDialogFooter>
     </MizuAlertDialogContent>

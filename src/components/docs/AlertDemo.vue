@@ -15,17 +15,23 @@ const variantsCode = `<MizuAlert variant="success">
   We were unable to process your request. Please try again.
 </MizuAlert>
 <MizuAlert variant="warning">
-  Your subscription will expire in 3 days.
+  Your subscription will expire in 3 days. Renew now to avoid service interruption.
 </MizuAlert>
 <MizuAlert variant="info">
-  A new version of the application is available.
+  A new version of the application is available. Refresh to update.
 </MizuAlert>`;
 
 const withTitleCode = `<MizuAlert variant="success" title="Payment received">
-  Your invoice #1234 has been paid in full.
+  Your invoice #1234 has been paid in full. A receipt has been emailed to you.
 </MizuAlert>
 <MizuAlert variant="error" title="Connection lost">
-  Unable to reach the server.
+  Unable to reach the server. Your work has been saved locally and will sync when the connection is restored.
+</MizuAlert>
+<MizuAlert variant="warning" title="Storage almost full">
+  You have used 95% of your storage quota. Upgrade your plan or delete old files.
+</MizuAlert>
+<MizuAlert variant="info" title="Tip">
+  You can use keyboard shortcuts to navigate faster. Press ? to see all available shortcuts.
 </MizuAlert>`;
 
 const closableCode = `<MizuAlert
@@ -34,11 +40,14 @@ const closableCode = `<MizuAlert
   closable
   @close="closableVisible = false"
 >
-  Try our new dashboard layout.
+  Try our new dashboard layout. You can switch back at any time from settings.
 </MizuAlert>`;
 
 const withoutIconCode = `<MizuAlert variant="success" :default-icon="false">
   Compact alert with no icon.
+</MizuAlert>
+<MizuAlert variant="error" :default-icon="false">
+  Another compact alert.
 </MizuAlert>`;
 
 const withCustomIconCode = `<MizuAlert variant="success">
@@ -48,6 +57,14 @@ const withCustomIconCode = `<MizuAlert variant="success">
     </svg>
   </template>
   Featured highlight with a custom star icon.
+</MizuAlert>
+<MizuAlert variant="info">
+  <template #icon>
+    <svg viewBox="0 0 16 16" width="16" height="16" fill="none">
+      <path d="M3 8H13M3 4H13M3 12H9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+    </svg>
+  </template>
+  Custom icon slot works with any icon library.
 </MizuAlert>`;
 
 const closableAllVariantsCode = `<MizuAlert variant="success" closable @close="successVisible = false">

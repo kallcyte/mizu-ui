@@ -14,7 +14,8 @@ const sizesCode = `<MizuBadge size="sm" :count="5" />
 
 const dotIndicatorCode = `<MizuBadge dot variant="success" size="sm" />
 <MizuBadge dot variant="warning" size="sm" />
-<MizuBadge dot variant="error" size="sm" />`;
+<MizuBadge dot variant="error" size="sm" />
+<MizuBadge dot variant="info" size="md" />`;
 
 const countOverflowCode = `<MizuBadge :count="5" />
 <MizuBadge :count="42" />
@@ -25,9 +26,17 @@ const countOverflowCode = `<MizuBadge :count="5" />
 const showZeroCode = `<MizuBadge :count="0" />
 <MizuBadge :count="0" show-zero />`;
 
-const positionedOnAvatarCode = `<div class="relative">
+const positionedOnAvatarCode = `<div class="avatar-badge-wrapper">
   <MizuAvatar name="Jane Doe" size="lg" />
   <MizuBadge dot variant="success" position="bottom-right" />
+</div>
+<div class="avatar-badge-wrapper">
+  <MizuAvatar name="John Smith" size="lg" />
+  <MizuBadge :count="3" variant="error" position="top-right" />
+</div>
+<div class="avatar-badge-wrapper">
+  <MizuAvatar name="Alex Kim" size="lg" />
+  <MizuBadge :count="128" variant="accent" position="top-right" />
 </div>`;
 
 const textContentCode = `<MizuBadge variant="accent">New</MizuBadge>

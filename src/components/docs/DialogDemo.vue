@@ -30,7 +30,7 @@ const isDeleteValid = computed(() => deleteInput.value === "delete");
 
 const basicCode = `<MizuDialogRoot v-model:open="basicOpen">
   <MizuDialogTrigger as-child>
-    <MizuButton variant="accent" size="md">Open Dialog</MizuButton>
+    <MizuButton variant="accent" size="md" class="w-max">Open Dialog</MizuButton>
   </MizuDialogTrigger>
   <MizuDialogPortal>
     <MizuDialogOverlay />
@@ -40,12 +40,12 @@ const basicCode = `<MizuDialogRoot v-model:open="basicOpen">
       </MizuDialogHeader>
       <MizuDialogBody>
         <MizuDialogDescription>
-          Are you sure you want to delete this invoice?
+          Are you sure you want to delete this invoice? This action cannot be undone.
         </MizuDialogDescription>
       </MizuDialogBody>
       <MizuDialogFooter>
-        <MizuButton variant="ghost" size="md" @click="basicOpen = false">Cancel</MizuButton>
-        <MizuButton variant="accent" size="md" @click="basicOpen = false">Delete</MizuButton>
+        <MizuButton variant="ghost" size="md" class="w-max" @click="basicOpen = false">Cancel</MizuButton>
+        <MizuButton variant="accent" size="md" class="w-max" @click="basicOpen = false">Delete</MizuButton>
       </MizuDialogFooter>
     </MizuDialogContent>
   </MizuDialogPortal>
@@ -56,19 +56,23 @@ const shorthandCode = `<MizuDialogRoot
   title="Confirm Deletion"
   description="This action cannot be undone."
 >
-  <MizuButton variant="accent" size="md">Shorthand Dialog</MizuButton>
+  <MizuButton variant="accent" size="md" class="w-max">Shorthand Dialog</MizuButton>
   <template #body>
-    <p>Custom body content with named slots.</p>
+    <p class="body-text">
+      The shorthand API uses <code>title</code> / <code>description</code> props and named
+      slots (<code>#body</code>, <code>#footer</code>) instead of sub-components. The
+      <code>#footer</code> slot receives <code>{ close }</code> scoped data.
+    </p>
   </template>
   <template #footer="{ close }">
-    <MizuButton variant="ghost" size="md" @click="close">Cancel</MizuButton>
-    <MizuButton variant="accent" size="md" @click="close">Delete</MizuButton>
+    <MizuButton variant="ghost" size="md" class="w-max" @click="close">Cancel</MizuButton>
+    <MizuButton variant="accent" size="md" class="w-max" @click="close">Delete</MizuButton>
   </template>
 </MizuDialogRoot>`;
 
 const closeIconCode = `<MizuDialogRoot v-model:open="closeIconOpen">
   <MizuDialogTrigger as-child>
-    <MizuButton variant="accent" size="md">Open with Close Icon</MizuButton>
+    <MizuButton variant="accent" size="md" class="w-max">Open with Close Icon</MizuButton>
   </MizuDialogTrigger>
   <MizuDialogPortal>
     <MizuDialogOverlay />
@@ -79,18 +83,21 @@ const closeIconCode = `<MizuDialogRoot v-model:open="closeIconOpen">
         <MizuDialogDescription>Configure your email notification preferences.</MizuDialogDescription>
       </MizuDialogHeader>
       <MizuDialogBody>
-        <p>Use MizuDialogClose for an X icon close button.</p>
+        <p class="body-text">
+          Use <code>MizuDialogClose</code> for an X icon close button. It renders a close button
+          at the top-right corner of the dialog content panel.
+        </p>
       </MizuDialogBody>
       <MizuDialogFooter>
-        <MizuButton variant="primary" size="md" @click="closeIconOpen = false">Save Changes</MizuButton>
+        <MizuButton variant="primary" size="md" class="w-max" @click="closeIconOpen = false">Save Changes</MizuButton>
       </MizuDialogFooter>
     </MizuDialogContent>
   </MizuDialogPortal>
 </MizuDialogRoot>`;
 
-const confirmCode = `<MizuDialogRoot v-model:open="formOpen">
+const confirmCode = `<MizuDialogRoot v-model:open="formOpen" @update:open="(v: boolean) => { if (v) deleteInput = '' }">
   <MizuDialogTrigger as-child>
-    <MizuButton variant="accent" size="md">Delete Invoice</MizuButton>
+    <MizuButton variant="accent" size="md" class="w-max">Delete Invoice</MizuButton>
   </MizuDialogTrigger>
   <MizuDialogPortal>
     <MizuDialogOverlay />
@@ -98,7 +105,8 @@ const confirmCode = `<MizuDialogRoot v-model:open="formOpen">
       <MizuDialogHeader>
         <MizuDialogTitle>Delete Invoice</MizuDialogTitle>
         <MizuDialogDescription>
-          Type <strong>delete</strong> to confirm.
+          This action permanently removes this invoice and all associated data. Type
+          <strong>delete</strong> to confirm.
         </MizuDialogDescription>
       </MizuDialogHeader>
       <MizuDialogBody>
@@ -109,8 +117,8 @@ const confirmCode = `<MizuDialogRoot v-model:open="formOpen">
         />
       </MizuDialogBody>
       <MizuDialogFooter>
-        <MizuButton variant="ghost" size="md" @click="formOpen = false">Cancel</MizuButton>
-        <MizuButton variant="error" size="md" :disabled="!isDeleteValid" @click="formOpen = false">Delete</MizuButton>
+        <MizuButton variant="ghost" size="md" class="w-max" @click="formOpen = false">Cancel</MizuButton>
+        <MizuButton variant="error" size="md" class="w-max" :disabled="!isDeleteValid" @click="formOpen = false">Delete</MizuButton>
       </MizuDialogFooter>
     </MizuDialogContent>
   </MizuDialogPortal>
@@ -139,7 +147,7 @@ const scrollableCode = `<MizuDialogRoot v-model:open="scrollOpen">
 
 const customWidthCode = `<MizuDialogRoot v-model:open="sizedOpen">
   <MizuDialogTrigger as-child>
-    <MizuButton variant="accent" size="md">Large Dialog</MizuButton>
+    <MizuButton variant="accent" size="md" class="w-max">Large Dialog</MizuButton>
   </MizuDialogTrigger>
   <MizuDialogPortal>
     <MizuDialogOverlay />
@@ -149,11 +157,13 @@ const customWidthCode = `<MizuDialogRoot v-model:open="sizedOpen">
         <MizuDialogDescription>Review your order before submitting.</MizuDialogDescription>
       </MizuDialogHeader>
       <MizuDialogBody>
-        <p>This dialog has max-width: 600px.</p>
+        <p class="body-text">
+          The dialog width can be customized via the <code>style</code> prop on <code>MizuDialogContent</code>. This dialog has <code>max-width: 600px</code> instead of the default 450px.
+        </p>
       </MizuDialogBody>
       <MizuDialogFooter>
-        <MizuButton variant="ghost" size="md" @click="sizedOpen = false">Cancel</MizuButton>
-        <MizuButton variant="primary" size="md" @click="sizedOpen = false">Submit</MizuButton>
+        <MizuButton variant="ghost" size="md" class="w-max" @click="sizedOpen = false">Cancel</MizuButton>
+        <MizuButton variant="primary" size="md" class="w-max" @click="sizedOpen = false">Submit Order</MizuButton>
       </MizuDialogFooter>
     </MizuDialogContent>
   </MizuDialogPortal>
@@ -161,7 +171,7 @@ const customWidthCode = `<MizuDialogRoot v-model:open="sizedOpen">
 
 const complexCode = `<MizuDialogRoot v-model:open="complexOpen">
   <MizuDialogTrigger as-child>
-    <MizuButton variant="accent" size="md">Project Settings</MizuButton>
+    <MizuButton variant="accent" size="md" class="w-max">Project Settings</MizuButton>
   </MizuDialogTrigger>
   <MizuDialogPortal>
     <MizuDialogOverlay />
@@ -169,15 +179,15 @@ const complexCode = `<MizuDialogRoot v-model:open="complexOpen">
       <MizuDialogClose />
       <MizuDialogHeader>
         <MizuDialogTitle>Project Settings</MizuDialogTitle>
-        <MizuDialogDescription>Manage project details.</MizuDialogDescription>
+        <MizuDialogDescription>Manage project details, team access, and advanced options.</MizuDialogDescription>
       </MizuDialogHeader>
       <MizuDialogBody style="max-height: 400px;">
         <MizuInput label="Project Name" placeholder="e.g. Mizu Design System" model-value="Mizu Design System" />
         <!-- ... team members, danger zone ... -->
       </MizuDialogBody>
       <MizuDialogFooter>
-        <MizuButton variant="ghost" size="md" @click="complexOpen = false">Cancel</MizuButton>
-        <MizuButton variant="primary" size="md" @click="complexOpen = false">Save Changes</MizuButton>
+        <MizuButton variant="ghost" size="md" class="w-max" @click="complexOpen = false">Cancel</MizuButton>
+        <MizuButton variant="primary" size="md" class="w-max" @click="complexOpen = false">Save Changes</MizuButton>
       </MizuDialogFooter>
     </MizuDialogContent>
   </MizuDialogPortal>

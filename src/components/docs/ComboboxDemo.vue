@@ -148,7 +148,7 @@ watch(validationSelected, (val) => {
 });
 
 const basicCode = `<MizuComboboxRoot v-model="selected" ignore-filter>
-  <MizuComboboxAnchor>
+  <MizuComboboxAnchor class="combobox-anchor">
     <MizuComboboxInput
       v-model="search"
       :display-value="(v) => v?.name ?? ''"
@@ -164,6 +164,40 @@ const basicCode = `<MizuComboboxRoot v-model="selected" ignore-filter>
   <MizuComboboxPortal>
     <MizuComboboxContent position="popper" :side-offset="4">
       <MizuComboboxViewport>
+        <MizuComboboxEmpty>No results found.</MizuComboboxEmpty>
+        <MizuComboboxItem
+          v-for="person in filteredPeople"
+          :key="person.id"
+          :value="person"
+        >
+          <MizuComboboxItemIndicator>
+            <Check :size="16" />
+          </MizuComboboxItemIndicator>
+          {{ person.name }}
+        </MizuComboboxItem>
+      </MizuComboboxViewport>
+    </MizuComboboxContent>
+  </MizuComboboxPortal>
+</MizuComboboxRoot>`;
+
+const searchCode = `<MizuComboboxRoot v-model="selected" ignore-filter>
+  <MizuComboboxAnchor class="combobox-anchor">
+    <MizuComboboxInput
+      v-model="search"
+      :display-value="(v) => v?.name ?? ''"
+      placeholder="Search people..."
+    />
+    <MizuComboboxTrigger>
+      <ChevronDown :size="16" />
+    </MizuComboboxTrigger>
+    <MizuComboboxCancel v-if="selected" @click="selected = undefined">
+      <X :size="16" />
+    </MizuComboboxCancel>
+  </MizuComboboxAnchor>
+  <MizuComboboxPortal>
+    <MizuComboboxContent position="popper" :side-offset="4">
+      <MizuComboboxViewport>
+        <MizuComboboxEmpty>No results found.</MizuComboboxEmpty>
         <MizuComboboxItem
           v-for="person in filteredPeople"
           :key="person.id"
@@ -180,9 +214,12 @@ const basicCode = `<MizuComboboxRoot v-model="selected" ignore-filter>
 </MizuComboboxRoot>`;
 
 const groupsCode = `<MizuComboboxRoot v-model="selected" ignore-filter>
-  <MizuComboboxAnchor>
+  <MizuComboboxAnchor class="combobox-anchor">
     <MizuComboboxInput v-model="search" placeholder="Select..." />
     <MizuComboboxTrigger><ChevronDown :size="16" /></MizuComboboxTrigger>
+    <MizuComboboxCancel v-if="selected" @click="selected = undefined">
+      <X :size="16" />
+    </MizuComboboxCancel>
   </MizuComboboxAnchor>
   <MizuComboboxPortal>
     <MizuComboboxContent position="popper" :side-offset="4">
@@ -198,6 +235,7 @@ const groupsCode = `<MizuComboboxRoot v-model="selected" ignore-filter>
         <MizuComboboxGroup>
           <MizuComboboxLabel>Team B</MizuComboboxLabel>
           <MizuComboboxItem v-for="p in groupB" :key="p.id" :value="p">
+            <MizuComboboxItemIndicator><Check :size="16" /></MizuComboboxItemIndicator>
             {{ p.name }}
           </MizuComboboxItem>
         </MizuComboboxGroup>
@@ -207,7 +245,7 @@ const groupsCode = `<MizuComboboxRoot v-model="selected" ignore-filter>
 </MizuComboboxRoot>`;
 
 const multipleCode = `<MizuComboboxRoot v-model="selected" multiple ignore-filter>
-  <MizuComboboxAnchor class="multi">
+  <MizuComboboxAnchor class="combobox-anchor multi">
     <MizuTag
       v-for="person in selected"
       :key="person.id"
@@ -222,6 +260,7 @@ const multipleCode = `<MizuComboboxRoot v-model="selected" multiple ignore-filte
   <MizuComboboxPortal>
     <MizuComboboxContent position="popper" :side-offset="4">
       <MizuComboboxViewport>
+        <MizuComboboxEmpty>No results found.</MizuComboboxEmpty>
         <MizuComboboxItem v-for="p in filtered" :key="p.id" :value="p">
           <MizuComboboxItemIndicator><Check :size="16" /></MizuComboboxItemIndicator>
           {{ p.name }}
@@ -232,19 +271,20 @@ const multipleCode = `<MizuComboboxRoot v-model="selected" multiple ignore-filte
 </MizuComboboxRoot>`;
 
 const lazyCode = `<MizuComboboxRoot v-model="selected" ignore-filter>
-  <MizuComboboxAnchor>
+  <MizuComboboxAnchor class="combobox-anchor">
     <MizuComboboxInput v-model="search" placeholder="Type to search..." />
     <MizuComboboxTrigger><ChevronDown :size="16" /></MizuComboboxTrigger>
   </MizuComboboxAnchor>
   <MizuComboboxPortal>
     <MizuComboboxContent position="popper" :side-offset="4">
       <MizuComboboxViewport>
-        <MizuComboboxItem v-for="p in visibleItems" :key="p.id" :value="p">
+        <MizuComboboxEmpty>No results found.</MizuComboboxEmpty>
+        <MizuComboboxItem v-for="p in visibleLazy" :key="p.id" :value="p">
           <MizuComboboxItemIndicator><Check :size="16" /></MizuComboboxItemIndicator>
           {{ p.name }}
         </MizuComboboxItem>
-        <div v-if="hasMore" ref="setupSentinel">
-          <LoaderCircle v-if="loading" class="spinner" />
+        <div v-if="hasMoreLazy" :ref="setupSentinel" class="lazy-sentinel">
+          <LoaderCircle v-if="loadingMore" :size="14" class="lazy-spinner" />
           <span v-else>{{ remaining }} more...</span>
         </div>
       </MizuComboboxViewport>
@@ -252,52 +292,39 @@ const lazyCode = `<MizuComboboxRoot v-model="selected" ignore-filter>
   </MizuComboboxPortal>
 </MizuComboboxRoot>`;
 
-const validationCode = `<script setup>
-import { ref, watch } from 'vue';
-
-const selected = ref();
-const error = ref(false);
-
-function submit() {
-  if (!selected.value) error.value = true;
-}
-
-watch(selected, (val) => {
-  if (val) error.value = false;
-});
-<\/script>
-
-<template>
-  <MizuComboboxRoot v-model="selected" ignore-filter>
-    <MizuComboboxAnchor
-      :error="error"
-      :helper-text="error ? 'Please select a team member.' : undefined"
-    >
-      <MizuComboboxInput
-        :display-value="(v) => v?.name ?? ''"
-        placeholder="Select a person..."
-      />
-      <MizuComboboxTrigger><ChevronDown :size="16" /></MizuComboboxTrigger>
-      <MizuComboboxCancel v-if="selected" @click="selected = undefined">
-        <X :size="16" />
-      </MizuComboboxCancel>
-    </MizuComboboxAnchor>
-    <MizuComboboxPortal>
-      <MizuComboboxContent position="popper" :side-offset="4">
-        <MizuComboboxViewport>
-          <MizuComboboxEmpty>No results found.</MizuComboboxEmpty>
-          <MizuComboboxItem v-for="p in people" :key="p.id" :value="p">
-            <MizuComboboxItemIndicator><Check :size="16" /></MizuComboboxItemIndicator>
-            {{ p.name }}
-          </MizuComboboxItem>
-        </MizuComboboxViewport>
-      </MizuComboboxContent>
-    </MizuComboboxPortal>
-  </MizuComboboxRoot>
-  <MizuButton size="sm" variant="primary" @click="submit">
-    Submit
-  </MizuButton>
-<\/template>`;
+const validationCode = `<MizuComboboxRoot v-model="selected" ignore-filter>
+  <MizuComboboxAnchor
+    class="combobox-anchor"
+    :error="error"
+    :helper-text="error ? 'Please select a team member.' : undefined"
+  >
+    <MizuComboboxInput
+      :display-value="(v) => v?.name ?? ''"
+      placeholder="Select a person..."
+    />
+    <MizuComboboxTrigger><ChevronDown :size="16" /></MizuComboboxTrigger>
+    <MizuComboboxCancel v-if="selected" @click="selected = undefined">
+      <X :size="16" />
+    </MizuComboboxCancel>
+  </MizuComboboxAnchor>
+  <MizuComboboxPortal>
+    <MizuComboboxContent position="popper" :side-offset="4">
+      <MizuComboboxViewport>
+        <MizuComboboxEmpty>No results found.</MizuComboboxEmpty>
+        <MizuComboboxItem v-for="p in people" :key="p.id" :value="p">
+          <MizuComboboxItemIndicator><Check :size="16" /></MizuComboboxItemIndicator>
+          {{ p.name }}
+        </MizuComboboxItem>
+      </MizuComboboxViewport>
+    </MizuComboboxContent>
+  </MizuComboboxPortal>
+</MizuComboboxRoot>
+<MizuButton size="sm" variant="primary" @click="submit">
+  Submit
+</MizuButton>
+<MizuButton size="sm" variant="ghost" @click="selected = undefined; error = false">
+  Reset
+</MizuButton>`;
 </script>
 
 <template>
@@ -347,7 +374,7 @@ watch(selected, (val) => {
       </div>
     </DemoTabs>
 
-    <DemoTabs :code="basicCode">
+    <DemoTabs :code="searchCode">
       <div class="demo-section">
         <h3>With Search</h3>
         <MizuComboboxRoot v-model="searchSelected" ignore-filter>

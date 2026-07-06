@@ -41,7 +41,8 @@ const statusCode = `<MizuTag variant="warning">Pending</MizuTag>
 <MizuTag variant="accent">In Progress</MizuTag>
 <MizuTag variant="success">Success</MizuTag>
 <MizuTag variant="primary">Done</MizuTag>
-<MizuTag variant="error">Rejected</MizuTag>`;
+<MizuTag variant="error">Rejected</MizuTag>
+<MizuTag variant="info">Cancelled</MizuTag>`;
 
 const closableCode = `<MizuTag variant="primary" closable>Closable</MizuTag>
 <MizuTag variant="accent" closable>Draft</MizuTag>
@@ -57,6 +58,9 @@ const interactiveCode = `<MizuTag
   @close="removeTag(tag)"
 >
   {{ tag }}
+</MizuTag>
+<MizuTag v-if="tags.length === 0" variant="info">
+  No tags — add one above
 </MizuTag>`;
 </script>
 

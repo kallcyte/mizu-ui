@@ -23,7 +23,8 @@ const trendCode = `<MizuMetric label="Revenue" value="$48,250" trend="up" trend-
 
 const dashboardCode = `<MizuMetric label="Total Sales" value="$84,250" trend="up" trend-value="+8.2%" variant="primary" size="lg" />
 <MizuMetric label="Orders" value="1,842" trend="up" trend-value="+5.7%" variant="accent" />
-<MizuMetric label="Returns" value="23" trend="down" trend-value="-2.1%" variant="error" />`;
+<MizuMetric label="Returns" value="23" trend="down" trend-value="-2.1%" variant="error" />
+<MizuMetric label="Avg. Order Value" value="$46.20" trend="up" trend-value="+1.4%" variant="success" />`;
 </script>
 
 <template>

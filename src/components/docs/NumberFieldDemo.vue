@@ -9,10 +9,13 @@ import {
 import DemoTabs from "./DemoTabs.vue";
 
 const basicCode = `<MizuNumberFieldRoot v-model="age" :min="0" :max="150">
-  <MizuNumberFieldDecrement>−</MizuNumberFieldDecrement>
-  <MizuNumberFieldInput />
-  <MizuNumberFieldIncrement>+</MizuNumberFieldIncrement>
-</MizuNumberFieldRoot>`;
+  <div class="number-field-group">
+    <MizuNumberFieldDecrement>−</MizuNumberFieldDecrement>
+    <MizuNumberFieldInput />
+    <MizuNumberFieldIncrement>+</MizuNumberFieldIncrement>
+  </div>
+</MizuNumberFieldRoot>
+<p class="demo-hint">Value: {{ age }}</p>`;
 
 const currencyCode = `<MizuNumberFieldRoot
   v-model="price"
@@ -20,10 +23,13 @@ const currencyCode = `<MizuNumberFieldRoot
   :step="0.01"
   :format-options="{ style: 'currency', currency: 'USD' }"
 >
-  <MizuNumberFieldDecrement>−</MizuNumberFieldDecrement>
-  <MizuNumberFieldInput />
-  <MizuNumberFieldIncrement>+</MizuNumberFieldIncrement>
-</MizuNumberFieldRoot>`;
+  <div class="number-field-group">
+    <MizuNumberFieldDecrement>−</MizuNumberFieldDecrement>
+    <MizuNumberFieldInput />
+    <MizuNumberFieldIncrement>+</MizuNumberFieldIncrement>
+  </div>
+</MizuNumberFieldRoot>
+<p class="demo-hint">Value: {{ price }}</p>`;
 
 const percentCode = `<MizuNumberFieldRoot
   v-model="percent"
@@ -32,10 +38,13 @@ const percentCode = `<MizuNumberFieldRoot
   :step="0.01"
   :format-options="{ style: 'percent' }"
 >
-  <MizuNumberFieldDecrement>−</MizuNumberFieldDecrement>
-  <MizuNumberFieldInput />
-  <MizuNumberFieldIncrement>+</MizuNumberFieldIncrement>
-</MizuNumberFieldRoot>`;
+  <div class="number-field-group">
+    <MizuNumberFieldDecrement>−</MizuNumberFieldDecrement>
+    <MizuNumberFieldInput />
+    <MizuNumberFieldIncrement>+</MizuNumberFieldIncrement>
+  </div>
+</MizuNumberFieldRoot>
+<p class="demo-hint">Value: {{ percent }}</p>`;
 
 const age = ref(25);
 const price = ref(19.99);

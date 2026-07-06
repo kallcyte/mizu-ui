@@ -3,17 +3,17 @@ import { ref } from "vue";
 import { MizuPagination } from "@mizu/vue";
 import DemoTabs from "./DemoTabs.vue";
 
-const basicCode = `<MizuPagination v-model:page="page" :total="10" />`;
+const basicCode = `<MizuPagination v-model:page="page1" :total="10" />`;
 
-const edgesCode = `<MizuPagination v-model:page="page" :total="20" :show-edges="true" />`;
+const edgesCode = `<MizuPagination v-model:page="page2" :total="20" :show-edges="true" />`;
 
-const siblingsCode = `<MizuPagination v-model:page="page" :total="20" :sibling-count="2" :show-edges="true" />`;
+const siblingsCode = `<MizuPagination v-model:page="page3" :total="20" :sibling-count="2" :show-edges="true" />`;
 
-const sizesCode = `<MizuPagination v-model:page="page" :total="10" size="sm" />
-<MizuPagination v-model:page="page" :total="10" size="md" />
-<MizuPagination v-model:page="page" :total="10" size="lg" />`;
+const sizesCode = `<MizuPagination v-model:page="page4" :total="10" size="sm" />
+<MizuPagination v-model:page="page4" :total="10" size="md" />
+<MizuPagination v-model:page="page4" :total="10" size="lg" />`;
 
-const manyCode = `<MizuPagination v-model:page="page" :total="100" :sibling-count="1" :show-edges="true" />`;
+const manyCode = `<MizuPagination v-model:page="page5" :total="100" :sibling-count="1" :show-edges="true" />`;
 
 const page1 = ref(1);
 const page2 = ref(1);

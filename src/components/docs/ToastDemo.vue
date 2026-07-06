@@ -13,9 +13,11 @@ const position = ref<Position>("top-right");
 
 const positionCode = `<MizuToastProvider :position="position">
   <MizuButton
-    v-for="pos in positions"
+    v-for="pos in (['top-left', 'top-center', 'top-right', 'bottom-left', 'bottom-center', 'bottom-right'] as Position[])"
     :key="pos"
     :variant="position === pos ? 'accent' : 'outline'"
+    size="md"
+    class="w-max"
     @click="position = pos"
   >
     {{ pos }}

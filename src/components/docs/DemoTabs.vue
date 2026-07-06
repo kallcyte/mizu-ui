@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, computed, shallowRef } from "vue";
 import { MizuTabsRoot, MizuTabsList, MizuTabsTrigger, MizuTabsContent } from "@mizu/vue";
-import { createHighlighter } from "shiki";
+import { getSingletonHighlighter, type Highlighter } from "shiki";
 
 const props = defineProps<{
   code: string;
@@ -10,7 +10,7 @@ const props = defineProps<{
 const activeTab = ref("preview");
 const copied = ref(false);
 
-const highlighter = shallowRef<Awaited<ReturnType<typeof createHighlighter>>>();
+const highlighter = shallowRef<Highlighter>();
 
 const highlightedCode = computed(() => {
   if (!highlighter.value) return "";
@@ -20,7 +20,7 @@ const highlightedCode = computed(() => {
   });
 });
 
-createHighlighter({
+getSingletonHighlighter({
   themes: ["github-dark"],
   langs: ["javascript", "vue"],
 }).then((h) => {

@@ -19,10 +19,14 @@ const team = [
 
 const basicCode = `<MizuAvatar name="Mariko Tanaka" />
 <MizuAvatar name="Daichi Suzuki" />
-<MizuAvatar name="Elena Rossi" />`;
+<MizuAvatar name="Elena Rossi" />
+<MizuAvatar name="Mateo Alvarez" />
+<MizuAvatar name="Hina Yamamoto" />`;
 
 const withImageCode = `<MizuAvatar name="Aria Patel" src="https://i.pravatar.cc/96?img=32" />
-<MizuAvatar name="Daichi Suzuki" src="https://i.pravatar.cc/96?img=12" />`;
+<MizuAvatar name="Daichi Suzuki" src="https://i.pravatar.cc/96?img=12" />
+<MizuAvatar name="Elena Rossi" src="https://i.pravatar.cc/96?img=49" />
+<MizuAvatar name="Broken Image" />`;
 
 const sizesCode = `<MizuAvatar name="Small" size="sm" />
 <MizuAvatar name="Medium" size="md" />
@@ -32,10 +36,12 @@ const sizesCode = `<MizuAvatar name="Small" size="sm" />
 const sizesWithImageCode = `<MizuAvatar name="Small" size="sm" src="https://i.pravatar.cc/96?img=12" />
 <MizuAvatar name="Medium" size="md" src="https://i.pravatar.cc/96?img=12" />
 <MizuAvatar name="Large" size="lg" src="https://i.pravatar.cc/96?img=12" />
-<MizuAvatar name="Xtra Large" size="xl" src="https://i.pravatar.cc/96?img=12" />`;
+<MizuAvatar name="Eli Lin" size="xl" src="https://i.pravatar.cc/96?img=12" />`;
 
 const shapesCode = `<MizuAvatar name="Circle" shape="circle" />
-<MizuAvatar name="Square" shape="square" />`;
+<MizuAvatar name="Square" shape="square" />
+<MizuAvatar name="Circle" shape="circle" size="lg" src="https://i.pravatar.cc/96?img=49" />
+<MizuAvatar name="Square" shape="square" size="lg" src="https://i.pravatar.cc/96?img=49" />`;
 
 const colorVariantsCode = `<MizuAvatar name="Muted" color="muted" />
 <MizuAvatar name="Primary" color="primary" />
@@ -55,26 +61,52 @@ const customIconSlotCode = `<MizuAvatar size="md">
       <path d="M2 12L12 17L22 12" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" />
     </svg>
   </template>
+</MizuAvatar>
+<MizuAvatar size="lg" color="primary">
+  <template #icon>
+    <svg viewBox="0 0 24 24" fill="none">
+      <path d="M9 12L11 14L15 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+      <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.5" />
+    </svg>
+  </template>
+</MizuAvatar>
+<MizuAvatar size="md" color="accent">
+  <template #icon>
+    <svg viewBox="0 0 24 24" fill="none">
+      <path d="M12 2L14 8H20L15 12L17 18L12 14L7 18L9 12L4 8H10L12 2Z" fill="currentColor" />
+    </svg>
+  </template>
 </MizuAvatar>`;
 
-const teamListCode = `<div v-for="member in team" :key="member.name">
+const teamListCode = `<div v-for="member in team" :key="member.name || 'anon'" class="team-row">
   <MizuAvatar :name="member.name" :src="member.src" size="md" />
-  <span>{{ member.name || "Anonymous User" }}</span>
+  <div class="team-info">
+    <div class="team-name">
+      {{ member.name || "Anonymous User" }}
+    </div>
+    <div class="team-meta">
+      {{ member.src ? "Has photo" : "No photo" }}
+    </div>
+  </div>
 </div>`;
 
 const commentThreadCode = `<div class="comment">
   <MizuAvatar name="Aria Patel" src="https://i.pravatar.cc/96?img=32" size="md" />
-  <div>
-    <span>Aria Patel</span>
-    <span>2 hours ago</span>
-    <p>Let me know if anything in the dashboard layout feels off.</p>
+  <div class="comment-body">
+    <div class="comment-header">
+      <span class="comment-author">Aria Patel</span>
+      <span class="comment-time">2 hours ago</span>
+    </div>
+    <p class="comment-text">
+      Pulled the latest design tokens into the shared package — let me know if anything in the dashboard layout feels off.
+    </p>
   </div>
 </div>`;
 
 const profileHeaderCode = `<MizuAvatar :name="user.name" :src="user.src" size="xl" />
-<div>
-  <div>{{ user.name }}</div>
-  <div>{{ user.role }}</div>
+<div class="profile-info">
+  <div class="profile-name">{{ user.name }}</div>
+  <div class="profile-role">{{ user.role }}</div>
 </div>`;
 </script>
 
