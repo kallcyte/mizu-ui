@@ -1,0 +1,48 @@
+name: CI
+
+on:
+  pull_request:
+    branches: [master]
+  push:
+    branches: [master]
+
+jobs:
+  check:
+    name: Lint, Typecheck, Test & Build
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build tokens
+        run: pnpm build:tokens
+
+      - name: Format check
+        run: pnpm format:check
+
+      - name: Lint
+        run: pnpm lint
+
+      - name: Typecheck (Vue)
+        run: pnpm --filter @mizu/vue typecheck
+
+      - name: Test
+        run: pnpm --filter @mizu/vue test
+
+      - name: Build Vue
+        run: pnpm build:vue
+
+      - name: Build docs site
+        run: pnpm build

@@ -33,11 +33,7 @@ const anchorClasses = computed(() => {
 
 <template>
   <div class="mizu-combobox__anchor-wrapper">
-    <ComboboxAnchor
-      :class="anchorClasses"
-      :as-child="asChild"
-      :as="as"
-    >
+    <ComboboxAnchor :class="anchorClasses" :as-child="asChild" :as="as">
       <slot />
     </ComboboxAnchor>
     <span
@@ -62,7 +58,9 @@ const anchorClasses = computed(() => {
   box-sizing: border-box;
   border: 1px solid var(--color-surface-muted);
   background-color: var(--color-surface-base);
-  transition: border-color 200ms ease-in-out, box-shadow 200ms ease-in-out;
+  transition:
+    border-color 200ms ease-in-out,
+    box-shadow 200ms ease-in-out;
 }
 
 .mizu-combobox__anchor:focus-within {
@@ -86,9 +84,18 @@ const anchorClasses = computed(() => {
   cursor: not-allowed;
 }
 
-.mizu-combobox__anchor--sm { @apply h-[28px]; border-radius: 4px; }
-.mizu-combobox__anchor--md { @apply h-[36px]; border-radius: 6px; }
-.mizu-combobox__anchor--lg { @apply h-[40px]; border-radius: 6px; }
+.mizu-combobox__anchor--sm {
+  @apply h-[28px];
+  border-radius: 4px;
+}
+.mizu-combobox__anchor--md {
+  @apply h-[36px];
+  border-radius: 6px;
+}
+.mizu-combobox__anchor--lg {
+  @apply h-[40px];
+  border-radius: 6px;
+}
 
 /* Helper text */
 .mizu-combobox__helper {

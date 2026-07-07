@@ -246,17 +246,30 @@ const navCode = `<MizuDrawerRoot v-model:open="open">
               <MizuDrawerClose />
               <MizuDrawerHeader>
                 <MizuDrawerTitle>Right Drawer</MizuDrawerTitle>
-                <MizuDrawerDescription>This drawer slides in from the right edge.</MizuDrawerDescription>
+                <MizuDrawerDescription
+                  >This drawer slides in from the right edge.</MizuDrawerDescription
+                >
               </MizuDrawerHeader>
               <MizuDrawerBody>
-                <p style="color: var(--color-foreground-secondary); font-size: 14px; line-height: 1.6; margin: 0;">
-                  Drawers are great for side panels, filter menus, and supplementary content. They slide over the main content
-                  without fully blocking the page.
+                <p
+                  style="
+                    color: var(--color-foreground-secondary);
+                    font-size: 14px;
+                    line-height: 1.6;
+                    margin: 0;
+                  "
+                >
+                  Drawers are great for side panels, filter menus, and supplementary content. They
+                  slide over the main content without fully blocking the page.
                 </p>
               </MizuDrawerBody>
               <MizuDrawerFooter>
-                <MizuButton variant="ghost" size="md" class="w-max" @click="rightOpen = false">Cancel</MizuButton>
-                <MizuButton variant="accent" size="md" class="w-max" @click="rightOpen = false">Save</MizuButton>
+                <MizuButton variant="ghost" size="md" class="w-max" @click="rightOpen = false"
+                  >Cancel</MizuButton
+                >
+                <MizuButton variant="accent" size="md" class="w-max" @click="rightOpen = false"
+                  >Save</MizuButton
+                >
               </MizuDrawerFooter>
             </MizuDrawerContent>
           </MizuDrawerPortal>
@@ -277,16 +290,27 @@ const navCode = `<MizuDrawerRoot v-model:open="open">
               <MizuDrawerClose />
               <MizuDrawerHeader>
                 <MizuDrawerTitle>Navigation</MizuDrawerTitle>
-                <MizuDrawerDescription>Left-side panels are commonly used for navigation.</MizuDrawerDescription>
+                <MizuDrawerDescription
+                  >Left-side panels are commonly used for navigation.</MizuDrawerDescription
+                >
               </MizuDrawerHeader>
               <MizuDrawerBody>
-                <p style="color: var(--color-foreground-secondary); font-size: 14px; line-height: 1.6; margin: 0;">
-                  Set <code>side="left"</code> to mount the drawer on the left edge. Ideal for mobile nav menus,
-                  chat sidebars, and settings panels.
+                <p
+                  style="
+                    color: var(--color-foreground-secondary);
+                    font-size: 14px;
+                    line-height: 1.6;
+                    margin: 0;
+                  "
+                >
+                  Set <code>side="left"</code> to mount the drawer on the left edge. Ideal for
+                  mobile nav menus, chat sidebars, and settings panels.
                 </p>
               </MizuDrawerBody>
               <MizuDrawerFooter>
-                <MizuButton variant="accent" size="md" class="w-max" @click="leftOpen = false">Close</MizuButton>
+                <MizuButton variant="accent" size="md" class="w-max" @click="leftOpen = false"
+                  >Close</MizuButton
+                >
               </MizuDrawerFooter>
             </MizuDrawerContent>
           </MizuDrawerPortal>
@@ -307,17 +331,30 @@ const navCode = `<MizuDrawerRoot v-model:open="open">
               <MizuDrawerClose />
               <MizuDrawerHeader>
                 <MizuDrawerTitle>Notifications</MizuDrawerTitle>
-                <MizuDrawerDescription>Drawers can also slide in from the top.</MizuDrawerDescription>
+                <MizuDrawerDescription
+                  >Drawers can also slide in from the top.</MizuDrawerDescription
+                >
               </MizuDrawerHeader>
               <MizuDrawerBody>
-                <p style="color: var(--color-foreground-secondary); font-size: 14px; line-height: 1.6; margin: 0;">
-                  Top drawers are useful for notification panels, search overlays, and announcement banners.
-                  Set <code>side="top"</code> to mount from the top edge.
+                <p
+                  style="
+                    color: var(--color-foreground-secondary);
+                    font-size: 14px;
+                    line-height: 1.6;
+                    margin: 0;
+                  "
+                >
+                  Top drawers are useful for notification panels, search overlays, and announcement
+                  banners. Set <code>side="top"</code> to mount from the top edge.
                 </p>
               </MizuDrawerBody>
               <MizuDrawerFooter>
-                <MizuButton variant="ghost" size="md" class="w-max" @click="topOpen = false">Dismiss</MizuButton>
-                <MizuButton variant="accent" size="md" class="w-max" @click="topOpen = false">View All</MizuButton>
+                <MizuButton variant="ghost" size="md" class="w-max" @click="topOpen = false"
+                  >Dismiss</MizuButton
+                >
+                <MizuButton variant="accent" size="md" class="w-max" @click="topOpen = false"
+                  >View All</MizuButton
+                >
               </MizuDrawerFooter>
             </MizuDrawerContent>
           </MizuDrawerPortal>
@@ -338,16 +375,27 @@ const navCode = `<MizuDrawerRoot v-model:open="open">
               <MizuDrawerClose />
               <MizuDrawerHeader>
                 <MizuDrawerTitle>Bottom Sheet</MizuDrawerTitle>
-                <MizuDrawerDescription>Commonly used for mobile action sheets and filters.</MizuDrawerDescription>
+                <MizuDrawerDescription
+                  >Commonly used for mobile action sheets and filters.</MizuDrawerDescription
+                >
               </MizuDrawerHeader>
               <MizuDrawerBody>
-                <p style="color: var(--color-foreground-secondary); font-size: 14px; line-height: 1.6; margin: 0;">
-                  Bottom drawers are the standard mobile pattern for action sheets, sort/filter panels, and
-                  sharing options. Use <code>side="bottom"</code>.
+                <p
+                  style="
+                    color: var(--color-foreground-secondary);
+                    font-size: 14px;
+                    line-height: 1.6;
+                    margin: 0;
+                  "
+                >
+                  Bottom drawers are the standard mobile pattern for action sheets, sort/filter
+                  panels, and sharing options. Use <code>side="bottom"</code>.
                 </p>
               </MizuDrawerBody>
               <MizuDrawerFooter>
-                <MizuButton variant="accent" size="md" class="w-max" @click="bottomOpen = false">Done</MizuButton>
+                <MizuButton variant="accent" size="md" class="w-max" @click="bottomOpen = false"
+                  >Done</MizuButton
+                >
               </MizuDrawerFooter>
             </MizuDrawerContent>
           </MizuDrawerPortal>
@@ -359,10 +407,18 @@ const navCode = `<MizuDrawerRoot v-model:open="open">
       <h3>Size Variants</h3>
       <CodeCollapsible :code="sizeCode">
         <div class="size-row">
-          <MizuSelect v-model="selectedSize" :options="sizeOptions" placeholder="md" size="sm" style="width: 120px;" />
+          <MizuSelect
+            v-model="selectedSize"
+            :options="sizeOptions"
+            placeholder="md"
+            size="sm"
+            style="width: 120px"
+          />
           <MizuDrawerRoot v-model:open="sizedOpen">
             <MizuDrawerTrigger as-child>
-              <MizuButton variant="accent" size="md" class="w-max">Open {{ selectedSize }} Drawer</MizuButton>
+              <MizuButton variant="accent" size="md" class="w-max"
+                >Open {{ selectedSize }} Drawer</MizuButton
+              >
             </MizuDrawerTrigger>
             <MizuDrawerPortal>
               <MizuDrawerOverlay />
@@ -371,17 +427,27 @@ const navCode = `<MizuDrawerRoot v-model:open="open">
                 <MizuDrawerHeader>
                   <MizuDrawerTitle>Size: {{ selectedSize }}</MizuDrawerTitle>
                   <MizuDrawerDescription>
-                      {{ sizeDisplay }}
-                    </MizuDrawerDescription>
+                    {{ sizeDisplay }}
+                  </MizuDrawerDescription>
                 </MizuDrawerHeader>
                 <MizuDrawerBody>
-                  <p style="color: var(--color-foreground-secondary); font-size: 14px; line-height: 1.6; margin: 0;">
-                    Drawers support five sizes: <code>sm</code>, <code>md</code> (default), <code>lg</code>, <code>xl</code>, and <code>full</code>.
-                    Sizes control width for left/right drawers and height for top/bottom drawers.
+                  <p
+                    style="
+                      color: var(--color-foreground-secondary);
+                      font-size: 14px;
+                      line-height: 1.6;
+                      margin: 0;
+                    "
+                  >
+                    Drawers support five sizes: <code>sm</code>, <code>md</code> (default),
+                    <code>lg</code>, <code>xl</code>, and <code>full</code>. Sizes control width for
+                    left/right drawers and height for top/bottom drawers.
                   </p>
                 </MizuDrawerBody>
                 <MizuDrawerFooter>
-                  <MizuButton variant="accent" size="md" class="w-max" @click="sizedOpen = false">Close</MizuButton>
+                  <MizuButton variant="accent" size="md" class="w-max" @click="sizedOpen = false"
+                    >Close</MizuButton
+                  >
                 </MizuDrawerFooter>
               </MizuDrawerContent>
             </MizuDrawerPortal>
@@ -402,17 +468,33 @@ const navCode = `<MizuDrawerRoot v-model:open="open">
             <MizuDrawerContent :dismissible="false">
               <MizuDrawerHeader>
                 <MizuDrawerTitle>Important Action Required</MizuDrawerTitle>
-                <MizuDrawerDescription>This drawer cannot be dismissed by clicking outside or pressing Escape.</MizuDrawerDescription>
+                <MizuDrawerDescription
+                  >This drawer cannot be dismissed by clicking outside or pressing
+                  Escape.</MizuDrawerDescription
+                >
               </MizuDrawerHeader>
               <MizuDrawerBody>
-                <p style="color: var(--color-foreground-secondary); font-size: 14px; line-height: 1.6; margin: 0;">
-                  When <code>:dismissible="false"</code>, the close button is hidden and the drawer stays open
-                  until the user explicitly clicks an action button in the footer. Use this for critical flows
-                  that require a deliberate choice.
+                <p
+                  style="
+                    color: var(--color-foreground-secondary);
+                    font-size: 14px;
+                    line-height: 1.6;
+                    margin: 0;
+                  "
+                >
+                  When <code>:dismissible="false"</code>, the close button is hidden and the drawer
+                  stays open until the user explicitly clicks an action button in the footer. Use
+                  this for critical flows that require a deliberate choice.
                 </p>
               </MizuDrawerBody>
               <MizuDrawerFooter>
-                <MizuButton variant="accent" size="md" class="w-max" @click="nonDismissibleOpen = false">I Understand</MizuButton>
+                <MizuButton
+                  variant="accent"
+                  size="md"
+                  class="w-max"
+                  @click="nonDismissibleOpen = false"
+                  >I Understand</MizuButton
+                >
               </MizuDrawerFooter>
             </MizuDrawerContent>
           </MizuDrawerPortal>
@@ -445,7 +527,9 @@ const navCode = `<MizuDrawerRoot v-model:open="open">
                 </div>
               </MizuDrawerBody>
               <MizuDrawerFooter>
-                <MizuButton variant="ghost" size="md" class="w-max" @click="navOpen = false">Close</MizuButton>
+                <MizuButton variant="ghost" size="md" class="w-max" @click="navOpen = false"
+                  >Close</MizuButton
+                >
               </MizuDrawerFooter>
             </MizuDrawerContent>
           </MizuDrawerPortal>
@@ -463,7 +547,9 @@ const navCode = `<MizuDrawerRoot v-model:open="open">
   gap: 32px;
   font-family: inherit;
 }
-.drawer-examples :deep(*) { margin: 0; }
+.drawer-examples :deep(*) {
+  margin: 0;
+}
 .example-section {
   all: revert;
   display: flex;
@@ -499,7 +585,9 @@ const navCode = `<MizuDrawerRoot v-model:open="open">
   font-size: 14px;
   color: var(--color-foreground-secondary);
   text-decoration: none;
-  transition: background 150ms, color 150ms;
+  transition:
+    background 150ms,
+    color 150ms;
   margin: 0;
 }
 

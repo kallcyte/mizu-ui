@@ -22,11 +22,7 @@ const decClasses = computed(() => {
 </script>
 
 <template>
-  <NumberFieldDecrement
-    :class="decClasses"
-    :as-child="asChild"
-    :as="as"
-  >
+  <NumberFieldDecrement :class="decClasses" :as-child="asChild" :as="as">
     <slot />
   </NumberFieldDecrement>
 </template>

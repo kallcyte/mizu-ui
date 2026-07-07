@@ -231,11 +231,7 @@ const loadingAutoCode = `<MizuButton variant="primary" loading-auto @click="simu
       <h3>Loading</h3>
       <CodeCollapsible :code="loadingCode">
         <div class="button-row">
-          <MizuButton
-            variant="primary"
-            :loading="loading"
-            @click="handleClick"
-          >
+          <MizuButton variant="primary" :loading="loading" @click="handleClick">
             {{ loading ? "Loading..." : "Click me" }}
           </MizuButton>
         </div>
@@ -298,7 +294,7 @@ const loadingAutoCode = `<MizuButton variant="primary" loading-auto @click="simu
     <section class="example-section">
       <h3>Block (Full Width)</h3>
       <CodeCollapsible :code="blockCode">
-        <div class="button-row" style="flex-direction: column; width: 100%;">
+        <div class="button-row" style="flex-direction: column; width: 100%">
           <MizuButton variant="primary" block>Full Width Primary</MizuButton>
           <MizuButton variant="outline" block>Full Width Outline</MizuButton>
           <MizuButton variant="ghost" block>Full Width Ghost</MizuButton>
@@ -328,7 +324,10 @@ const loadingAutoCode = `<MizuButton variant="primary" loading-auto @click="simu
 
     <section class="example-section">
       <h3>Loading Auto</h3>
-      <p class="example-hint">The <code>loading-auto</code> prop automatically sets <code>loading=true</code> while the <code>@click</code> handler's returned promise is pending.</p>
+      <p class="example-hint">
+        The <code>loading-auto</code> prop automatically sets <code>loading=true</code> while the
+        <code>@click</code> handler's returned promise is pending.
+      </p>
       <CodeCollapsible :code="loadingAutoCode">
         <div class="button-row">
           <MizuButton variant="primary" loading-auto @click="simulateAsync">

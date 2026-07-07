@@ -53,11 +53,7 @@ const visible = computed(() => {
 const isOverlay = computed(() => props.position !== "inline" && hasSlotContent.value);
 
 const badgeClasses = computed(() => {
-  const classes = [
-    "mizu-badge",
-    `mizu-badge--${props.variant}`,
-    `mizu-badge--${props.size}`,
-  ];
+  const classes = ["mizu-badge", `mizu-badge--${props.variant}`, `mizu-badge--${props.size}`];
 
   if (props.dot) classes.push("mizu-badge--dot");
   if (isOverlay.value || (props.position !== "inline" && !hasSlotContent.value))
@@ -79,11 +75,7 @@ const badgeClasses = computed(() => {
     </span>
   </span>
   <!-- Standalone / inline mode -->
-  <span
-    v-else-if="visible"
-    :class="badgeClasses"
-    role="status"
-  >
+  <span v-else-if="visible" :class="badgeClasses" role="status">
     <template v-if="dot" />
     <template v-else-if="displayText != null">{{ displayText }}</template>
     <slot v-else />

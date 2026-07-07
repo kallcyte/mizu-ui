@@ -35,7 +35,11 @@ const props = withDefaults(defineProps<TooltipContentProps>(), {
 const attrs = useAttrs();
 
 const contentClasses = computed(() => {
-  const classes = ["mizu-tooltip__content", `mizu-tooltip__content--${props.side}`, `mizu-tooltip__content--${props.variant}`];
+  const classes = [
+    "mizu-tooltip__content",
+    `mizu-tooltip__content--${props.side}`,
+    `mizu-tooltip__content--${props.variant}`,
+  ];
   if (attrs.class) classes.push(attrs.class as string);
   return classes.join(" ");
 });

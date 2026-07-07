@@ -1,7 +1,15 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import { z } from "zod";
-import { useForm, MizuInput, MizuButton, MizuCheckbox, MizuCard, MizuCardContent, MizuAlert } from "@mizu/vue";
+import {
+  useForm,
+  MizuInput,
+  MizuButton,
+  MizuCheckbox,
+  MizuCard,
+  MizuCardContent,
+  MizuAlert,
+} from "@mizu/vue";
 import { Mail, Lock } from "@lucide/vue";
 
 const loginSchema = z.object({
@@ -53,18 +61,13 @@ const submitHandler = form.handleSubmit(handleLogin);
               {{ loginError }}
             </MizuAlert>
 
-            <MizuAlert
-              v-if="loginSuccess"
-              variant="success"
-              title="Success!"
-            >
+            <MizuAlert v-if="loginSuccess" variant="success" title="Success!">
               You have been logged in successfully.
             </MizuAlert>
 
-            <form @submit="submitHandler" novalidate autocomplete="off" class="login-form">
+            <form novalidate autocomplete="off" class="login-form" @submit="submitHandler">
               <MizuInput
                 :model-value="form.fields.email.modelValue.value"
-                @update:model-value="form.fields.email.onChange"
                 :error="!!form.fields.email.error.value"
                 :helper-text="form.fields.email.error.value || undefined"
                 label="Email"
@@ -72,6 +75,7 @@ const submitHandler = form.handleSubmit(handleLogin);
                 placeholder="you@example.com"
                 name="email"
                 required
+                @update:model-value="form.fields.email.onChange"
                 @blur="form.fields.email.onBlur()"
               >
                 <template #leading-icon>
@@ -81,7 +85,6 @@ const submitHandler = form.handleSubmit(handleLogin);
 
               <MizuInput
                 :model-value="form.fields.password.modelValue.value"
-                @update:model-value="form.fields.password.onChange"
                 :error="!!form.fields.password.error.value"
                 :helper-text="form.fields.password.error.value || undefined"
                 label="Password"
@@ -90,6 +93,7 @@ const submitHandler = form.handleSubmit(handleLogin);
                 name="password"
                 required
                 show-password
+                @update:model-value="form.fields.password.onChange"
                 @blur="form.fields.password.onBlur()"
               >
                 <template #leading-icon>
@@ -99,8 +103,8 @@ const submitHandler = form.handleSubmit(handleLogin);
 
               <MizuCheckbox
                 :model-value="form.fields.remember.modelValue.value"
-                @update:model-value="form.fields.remember.onChange"
                 label="Remember me"
+                @update:model-value="form.fields.remember.onChange"
               />
 
               <MizuButton

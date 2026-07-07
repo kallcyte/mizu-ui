@@ -3,7 +3,7 @@ title: Input
 description: Inputs let users enter and edit text in a form.
 ---
 
-import InputDemo from '../../../../components/docs/InputDemo.vue';
+import InputDemo from "../../../../components/docs/InputDemo.vue";
 
 Inputs let users enter and edit text in a form. They are the foundation for most form-based interfaces.
 
@@ -15,52 +15,52 @@ Inputs let users enter and edit text in a form. They are the foundation for most
 
 ### Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `modelValue` | `string` | `""` | Controlled value, supports v-model |
-| `placeholder` | `string` | `""` | Placeholder text |
-| `disabled` | `boolean` | `false` | Disabled state |
-| `error` | `boolean` | `false` | Error state |
-| `type` | `'text' \| 'password' \| 'email' \| 'number' \| 'tel' \| 'url' \| 'search'` | `'text'` | Input type |
-| `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | Input size |
-| `name` | `string` | `undefined` | Form field name |
-| `required` | `boolean` | `false` | Required state |
-| `label` | `string` | `undefined` | Label text |
-| `helperText` | `string` | `undefined` | Helper text below input |
-| `showPassword` | `boolean` | `false` | Show password toggle button (only when type=`"password"`) |
+| Prop           | Type                                                                        | Default     | Description                                               |
+| -------------- | --------------------------------------------------------------------------- | ----------- | --------------------------------------------------------- |
+| `modelValue`   | `string`                                                                    | `""`        | Controlled value, supports v-model                        |
+| `placeholder`  | `string`                                                                    | `""`        | Placeholder text                                          |
+| `disabled`     | `boolean`                                                                   | `false`     | Disabled state                                            |
+| `error`        | `boolean`                                                                   | `false`     | Error state                                               |
+| `type`         | `'text' \| 'password' \| 'email' \| 'number' \| 'tel' \| 'url' \| 'search'` | `'text'`    | Input type                                                |
+| `size`         | `'sm' \| 'md' \| 'lg'`                                                      | `'md'`      | Input size                                                |
+| `name`         | `string`                                                                    | `undefined` | Form field name                                           |
+| `required`     | `boolean`                                                                   | `false`     | Required state                                            |
+| `label`        | `string`                                                                    | `undefined` | Label text                                                |
+| `helperText`   | `string`                                                                    | `undefined` | Helper text below input                                   |
+| `showPassword` | `boolean`                                                                   | `false`     | Show password toggle button (only when type=`"password"`) |
 
 ### Slots
 
-| Slot | Description |
-|------|-------------|
-| `leading-icon` | Leading icon content |
+| Slot            | Description           |
+| --------------- | --------------------- |
+| `leading-icon`  | Leading icon content  |
 | `trailing-icon` | Trailing icon content |
 
 ### Events
 
-| Event | Payload | Description |
-|-------|---------|-------------|
-| `update:modelValue` | `string` | Emitted on value change |
-| `focus` | `FocusEvent` | Emitted on focus |
-| `blur` | `FocusEvent` | Emitted on blur |
+| Event               | Payload      | Description             |
+| ------------------- | ------------ | ----------------------- |
+| `update:modelValue` | `string`     | Emitted on value change |
+| `focus`             | `FocusEvent` | Emitted on focus        |
+| `blur`              | `FocusEvent` | Emitted on blur         |
 
 ## Theme
 
 ### CSS Custom Properties
 
-| Token | Value | Usage |
-|-------|-------|-------|
-| `--color-surface-base` | #FFFFFF | Input background |
-| `--color-surface-muted` | #F3F4F6 | Border, disabled bg |
-| `--color-foreground-primary` | #1B1B1D | Input text |
-| `--color-foreground-secondary` | #4B5563 | Helper text |
-| `--color-foreground-tertiary` | #9CA3AF | Placeholder, disabled text |
-| `--color-brand-ycp` | #007FFF | Focus border, focus ring |
-| `--color-feedback-error-base` | #DC2626 | Error border, error helper |
-| `--radius-tight` | 4px | SM border radius |
-| `--radius-default` | 8px | MD/LG border radius |
-| `--duration-fast` | 200ms | State transitions |
-| `--font-weight-medium` | 500 | Label weight |
+| Token                          | Value   | Usage                      |
+| ------------------------------ | ------- | -------------------------- |
+| `--color-surface-base`         | #FFFFFF | Input background           |
+| `--color-surface-muted`        | #F3F4F6 | Border, disabled bg        |
+| `--color-foreground-primary`   | #1B1B1D | Input text                 |
+| `--color-foreground-secondary` | #4B5563 | Helper text                |
+| `--color-foreground-tertiary`  | #9CA3AF | Placeholder, disabled text |
+| `--color-brand-ycp`            | #007FFF | Focus border, focus ring   |
+| `--color-feedback-error-base`  | #DC2626 | Error border, error helper |
+| `--radius-tight`               | 4px     | SM border radius           |
+| `--radius-default`             | 8px     | MD/LG border radius        |
+| `--duration-fast`              | 200ms   | State transitions          |
+| `--font-weight-medium`         | 500     | Label weight               |
 
 ### Sizing
 
@@ -68,19 +68,19 @@ Inputs share the same height scale as MizuButton so side-by-side fields and butt
 
 #### Height & Padding
 
-| Size | Height | Horizontal Padding | Border Radius |
-|------|--------|-------------------|---------------|
-| **SM** | 28px | 8px | 4px |
-| **MD** | 36px | 10px | 6px |
-| **LG** | 40px | 10px | 6px |
+| Size   | Height | Horizontal Padding | Border Radius |
+| ------ | ------ | ------------------ | ------------- |
+| **SM** | 28px   | 8px                | 4px           |
+| **MD** | 36px   | 10px               | 6px           |
+| **LG** | 40px   | 10px               | 6px           |
 
 #### Icon Sizes
 
-| Size | Icon Container | Icon Size |
-|------|----------------|-----------|
-| **SM** | 28px | 12px |
-| **MD** | 34px | 14px |
-| **LG** | 36px | 14px |
+| Size   | Icon Container | Icon Size |
+| ------ | -------------- | --------- |
+| **SM** | 28px           | 12px      |
+| **MD** | 34px           | 14px      |
+| **LG** | 36px           | 14px      |
 
 #### Touch Target
 
@@ -88,43 +88,43 @@ All input sizes maintain a minimum touch target of **44px x 44px** for accessibi
 
 ### Transitions
 
-| Property | Duration | Easing |
-|----------|----------|--------|
-| Border Color | 200ms | ease-in-out |
-| Box Shadow | 200ms | ease-in-out |
+| Property     | Duration | Easing      |
+| ------------ | -------- | ----------- |
+| Border Color | 200ms    | ease-in-out |
+| Box Shadow   | 200ms    | ease-in-out |
 
 ### Focus Ring
 
-| Property | Value |
-|----------|-------|
-| Style | `border-color: brand-ycp` + `box-shadow: 0 0 0 1px brand-ycp` |
-| Offset | 0px (inset) |
-| Border Radius | Inherit from input |
+| Property      | Value                                                         |
+| ------------- | ------------------------------------------------------------- |
+| Style         | `border-color: brand-ycp` + `box-shadow: 0 0 0 1px brand-ycp` |
+| Offset        | 0px (inset)                                                   |
+| Border Radius | Inherit from input                                            |
 
 ### Accessibility
 
-| Criterion | Implementation |
-|-----------|----------------|
-| Touch Target | Minimum 44px x 44px |
-| Color Contrast | 4.5:1 for text, 3:1 for borders |
-| Keyboard Navigation | `tabindex="0"`, Tab to focus, Enter to submit |
-| Screen Reader | `<label>` associated via `for`/`id` |
-| Focus Indicator | Visible focus ring on keyboard focus |
-| Disabled State | `aria-disabled="true"`, `disabled` attribute |
-| Required | `aria-required="true"`, `required` attribute |
-| Error | `aria-invalid="true"`, `aria-describedby` for helper text |
+| Criterion           | Implementation                                            |
+| ------------------- | --------------------------------------------------------- |
+| Touch Target        | Minimum 44px x 44px                                       |
+| Color Contrast      | 4.5:1 for text, 3:1 for borders                           |
+| Keyboard Navigation | `tabindex="0"`, Tab to focus, Enter to submit             |
+| Screen Reader       | `<label>` associated via `for`/`id`                       |
+| Focus Indicator     | Visible focus ring on keyboard focus                      |
+| Disabled State      | `aria-disabled="true"`, `disabled` attribute              |
+| Required            | `aria-required="true"`, `required` attribute              |
+| Error               | `aria-invalid="true"`, `aria-describedby` for helper text |
 
 ## Anatomy
 
 An input consists of up to 5 parts:
 
-| Part | Required | Description |
-|------|----------|-------------|
-| Container | Yes | The input's border and background area |
-| Label | No | Descriptive text above the input |
-| Leading Icon | No | Icon placed inside the input, before the text |
-| Trailing Icon | No | Icon placed inside the input, after the text |
-| Helper Text | No | Descriptive text below the input |
+| Part          | Required | Description                                   |
+| ------------- | -------- | --------------------------------------------- |
+| Container     | Yes      | The input's border and background area        |
+| Label         | No       | Descriptive text above the input              |
+| Leading Icon  | No       | Icon placed inside the input, before the text |
+| Trailing Icon | No       | Icon placed inside the input, after the text  |
+| Helper Text   | No       | Descriptive text below the input              |
 
 ## Show Password
 

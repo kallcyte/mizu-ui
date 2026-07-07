@@ -5,7 +5,8 @@ import { ToastViewport } from "reka-ui";
 export interface ToastViewportProps {
   hotkey?: string[];
   label?: string | ((hotkey: string) => string);
-  position?: "top-right" | "top-left" | "top-center" | "bottom-right" | "bottom-left" | "bottom-center";
+  position?:
+    "top-right" | "top-left" | "top-center" | "bottom-right" | "bottom-left" | "bottom-center";
 }
 
 const props = withDefaults(defineProps<ToastViewportProps>(), {
@@ -24,11 +25,7 @@ const viewportClasses = computed(() => {
 </script>
 
 <template>
-  <ToastViewport
-    :class="viewportClasses"
-    :hotkey="hotkey"
-    :label="label"
-  >
+  <ToastViewport :class="viewportClasses" :hotkey="hotkey" :label="label">
     <slot />
   </ToastViewport>
 </template>

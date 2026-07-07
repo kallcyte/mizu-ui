@@ -3,7 +3,7 @@ title: Checkbox Group
 description: A group of checkboxes with shared state and layout.
 ---
 
-import CheckboxGroupDemo from '../../../../components/docs/CheckboxGroupDemo.vue';
+import CheckboxGroupDemo from "../../../../components/docs/CheckboxGroupDemo.vue";
 
 The Checkbox Group component manages a collection of checkboxes with shared state, layout, and accessibility. It renders as a fieldset with a legend for proper form semantics.
 
@@ -15,57 +15,46 @@ The Checkbox Group component manages a collection of checkboxes with shared stat
 
 ```vue
 <script setup>
-import { ref } from 'vue';
+import { ref } from "vue";
 
-const selected = ref(['email']);
+const selected = ref(["email"]);
 const options = [
-  { value: 'email', label: 'Email notifications' },
-  { value: 'sms', label: 'SMS notifications' },
-  { value: 'push', label: 'Push notifications' },
+  { value: "email", label: "Email notifications" },
+  { value: "sms", label: "SMS notifications" },
+  { value: "push", label: "Push notifications" },
 ];
 </script>
 
 <template>
-  <MizuCheckboxGroup
-    v-model="selected"
-    :options="options"
-    legend="Notification preferences"
-  />
+  <MizuCheckboxGroup v-model="selected" :options="options" legend="Notification preferences" />
 </template>
 ```
 
 ### Horizontal Layout
 
 ```vue
-<MizuCheckboxGroup
-  v-model="selected"
-  :options="options"
-  orientation="horizontal"
-/>
+<MizuCheckboxGroup v-model="selected" :options="options" orientation="horizontal" />
 ```
 
 ### With Disabled Options
 
 ```vue
-const options = [
-  { value: 'email', label: 'Email' },
-  { value: 'sms', label: 'SMS (coming soon)', disabled: true },
-  { value: 'push', label: 'Push' },
-];
+const options = [ { value: 'email', label: 'Email' }, { value: 'sms', label: 'SMS (coming soon)',
+disabled: true }, { value: 'push', label: 'Push' }, ];
 ```
 
 ## API
 
 ### Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `modelValue` | `string[]` (v-model) | `[]` | Selected values |
-| `options` | `CheckboxGroupOption[]` | `[]` | Available options |
-| `orientation` | `'horizontal' \| 'vertical'` | `'vertical'` | Layout direction |
-| `legend` | `string` | — | Fieldset legend text |
-| `disabled` | `boolean` | `false` | Disabled state for all checkboxes |
-| `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | Size for all checkboxes |
+| Prop          | Type                         | Default      | Description                       |
+| ------------- | ---------------------------- | ------------ | --------------------------------- |
+| `modelValue`  | `string[]` (v-model)         | `[]`         | Selected values                   |
+| `options`     | `CheckboxGroupOption[]`      | `[]`         | Available options                 |
+| `orientation` | `'horizontal' \| 'vertical'` | `'vertical'` | Layout direction                  |
+| `legend`      | `string`                     | —            | Fieldset legend text              |
+| `disabled`    | `boolean`                    | `false`      | Disabled state for all checkboxes |
+| `size`        | `'sm' \| 'md' \| 'lg'`       | `'md'`       | Size for all checkboxes           |
 
 ### CheckboxGroupOption
 
@@ -79,18 +68,18 @@ interface CheckboxGroupOption {
 
 ### Events
 
-| Event | Payload | Description |
-|-------|---------|-------------|
+| Event               | Payload    | Description                    |
+| ------------------- | ---------- | ------------------------------ |
 | `update:modelValue` | `string[]` | Emitted when selection changes |
 
 ## Anatomy
 
 A checkbox group consists of a fieldset containing multiple checkboxes:
 
-| Part | Required | Description |
-|------|----------|-------------|
-| Fieldset | Yes | Container with optional legend |
-| Checkboxes | Yes | Collection of MizuCheckbox components |
+| Part       | Required | Description                           |
+| ---------- | -------- | ------------------------------------- |
+| Fieldset   | Yes      | Container with optional legend        |
+| Checkboxes | Yes      | Collection of MizuCheckbox components |
 
 ## Implementation Notes
 

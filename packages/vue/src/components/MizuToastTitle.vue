@@ -22,11 +22,7 @@ const titleClasses = computed(() => {
 </script>
 
 <template>
-  <ToastTitle
-    :class="titleClasses"
-    :as-child="asChild"
-    :as="as"
-  >
+  <ToastTitle :class="titleClasses" :as-child="asChild" :as="as">
     <slot />
   </ToastTitle>
 </template>

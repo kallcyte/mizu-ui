@@ -22,11 +22,7 @@ const viewportClasses = computed(() => {
 </script>
 
 <template>
-  <ComboboxViewport
-    :class="viewportClasses"
-    :as-child="asChild"
-    :as="as"
-  >
+  <ComboboxViewport :class="viewportClasses" :as-child="asChild" :as="as">
     <slot />
   </ComboboxViewport>
 </template>

@@ -22,11 +22,7 @@ const triggerClasses = computed(() => {
 </script>
 
 <template>
-  <DropdownMenuTrigger
-    :class="triggerClasses"
-    :as-child="asChild"
-    :as="as"
-  >
+  <DropdownMenuTrigger :class="triggerClasses" :as-child="asChild" :as="as">
     <slot />
   </DropdownMenuTrigger>
 </template>

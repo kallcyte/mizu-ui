@@ -24,12 +24,7 @@ const contentClasses = computed(() => {
 </script>
 
 <template>
-  <AccordionContent
-    :class="contentClasses"
-    :force-mount="forceMount"
-    :as-child="asChild"
-    :as="as"
-  >
+  <AccordionContent :class="contentClasses" :force-mount="forceMount" :as-child="asChild" :as="as">
     <div class="mizu-accordion__content-inner">
       <slot />
     </div>

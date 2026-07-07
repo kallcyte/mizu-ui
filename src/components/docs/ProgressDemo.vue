@@ -164,24 +164,14 @@ const skillChecklistCode = `<div class="checklist">
     <section class="example-section">
       <h3>File Download</h3>
       <CodeCollapsible :code="fileDownloadCode">
-        <MizuProgress
-          :model-value="download"
-          :max="100"
-          variant="info"
-          show-label
-        />
+        <MizuProgress :model-value="download" :max="100" variant="info" show-label />
       </CodeCollapsible>
     </section>
 
     <section class="example-section">
       <h3>Server Load (Live)</h3>
       <CodeCollapsible :code="serverLoadCode">
-        <MizuProgress
-          :model-value="serverLoad"
-          :max="100"
-          variant="warning"
-          show-label
-        />
+        <MizuProgress :model-value="serverLoad" :max="100" variant="warning" show-label />
         <button class="reset-button" @click="serverLoad = 30">Set 30%</button>
         <button class="reset-button" @click="serverLoad = 75">Set 75%</button>
         <button class="reset-button" @click="serverLoad = 95">Set 95%</button>

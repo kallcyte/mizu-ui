@@ -22,11 +22,7 @@ const cancelClasses = computed(() => {
 </script>
 
 <template>
-  <AlertDialogCancel
-    :class="cancelClasses"
-    :as-child="asChild"
-    :as="as"
-  >
+  <AlertDialogCancel :class="cancelClasses" :as-child="asChild" :as="as">
     <slot />
   </AlertDialogCancel>
 </template>

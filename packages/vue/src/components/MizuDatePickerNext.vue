@@ -22,11 +22,7 @@ const nextClasses = computed(() => {
 </script>
 
 <template>
-  <DatePickerNext
-    :class="nextClasses"
-    :as-child="asChild"
-    :as="as"
-  >
+  <DatePickerNext :class="nextClasses" :as-child="asChild" :as="as">
     <slot />
   </DatePickerNext>
 </template>

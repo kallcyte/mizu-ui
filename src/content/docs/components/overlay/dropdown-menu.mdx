@@ -3,7 +3,7 @@ title: DropdownMenu
 description: Contextual menu triggered by a button or element.
 ---
 
-import DropdownMenuDemo from '../../../../components/docs/DropdownMenuDemo.vue';
+import DropdownMenuDemo from "../../../../components/docs/DropdownMenuDemo.vue";
 
 A DropdownMenu displays a list of actions or options triggered by a button. It supports items with icons and shortcuts, labels, separators, checkboxes, radio groups, destructive actions, and nested submenus.
 
@@ -15,114 +15,114 @@ A DropdownMenu displays a list of actions or options triggered by a button. It s
 
 ### DropdownMenuRoot Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `open` | `boolean` | `undefined` | Controlled open state |
-| `defaultOpen` | `boolean` | `false` | Default open state |
-| `modal` | `boolean` | `true` | Whether menu is modal |
+| Prop          | Type      | Default     | Description           |
+| ------------- | --------- | ----------- | --------------------- |
+| `open`        | `boolean` | `undefined` | Controlled open state |
+| `defaultOpen` | `boolean` | `false`     | Default open state    |
+| `modal`       | `boolean` | `true`      | Whether menu is modal |
 
 ### DropdownMenuRoot Events
 
-| Event | Payload | Description |
-|-------|---------|-------------|
+| Event         | Payload   | Description                     |
+| ------------- | --------- | ------------------------------- |
 | `update:open` | `boolean` | Emitted when open state changes |
 
 ### DropdownMenuTrigger Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `asChild` | `boolean` | `undefined` | Merge with child element |
-| `as` | `string` | `undefined` | Render as a different element |
+| Prop      | Type      | Default     | Description                   |
+| --------- | --------- | ----------- | ----------------------------- |
+| `asChild` | `boolean` | `undefined` | Merge with child element      |
+| `as`      | `string`  | `undefined` | Render as a different element |
 
 ### DropdownMenuContent Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `side` | `"top" \| "right" \| "bottom" \| "left"` | `"bottom"` | Preferred content side |
-| `sideOffset` | `number` | `4` | Offset from trigger |
-| `align` | `"start" \| "center" \| "end"` | `"start"` | Alignment relative to trigger |
-| `alignOffset` | `number` | `0` | Offset from alignment edge |
-| `avoidCollisions` | `boolean` | `true` | Prevent viewport overflow |
-| `collisionPadding` | `number` | `8` | Padding from viewport edge |
-| `sticky` | `"partial" \| "always"` | `"partial"` | Stick to preferred side |
-| `hideWhenDetached` | `boolean` | `false` | Hide when trigger is scrolled away |
+| Prop               | Type                                     | Default     | Description                        |
+| ------------------ | ---------------------------------------- | ----------- | ---------------------------------- |
+| `side`             | `"top" \| "right" \| "bottom" \| "left"` | `"bottom"`  | Preferred content side             |
+| `sideOffset`       | `number`                                 | `4`         | Offset from trigger                |
+| `align`            | `"start" \| "center" \| "end"`           | `"start"`   | Alignment relative to trigger      |
+| `alignOffset`      | `number`                                 | `0`         | Offset from alignment edge         |
+| `avoidCollisions`  | `boolean`                                | `true`      | Prevent viewport overflow          |
+| `collisionPadding` | `number`                                 | `8`         | Padding from viewport edge         |
+| `sticky`           | `"partial" \| "always"`                  | `"partial"` | Stick to preferred side            |
+| `hideWhenDetached` | `boolean`                                | `false`     | Hide when trigger is scrolled away |
 
 ### DropdownMenuContent Events
 
-| Event | Payload | Description |
-|-------|---------|-------------|
-| `escapeKeyDown` | `KeyboardEvent` | Escape key pressed |
-| `pointerDownOutside` | `unknown` | Click outside content |
-| `focusOutside` | `unknown` | Focus outside content |
-| `interactOutside` | `unknown` | Interaction outside content |
-| `openAutoFocus` | `unknown` | Auto-focus on open |
-| `closeAutoFocus` | `unknown` | Auto-focus on close |
+| Event                | Payload         | Description                 |
+| -------------------- | --------------- | --------------------------- |
+| `escapeKeyDown`      | `KeyboardEvent` | Escape key pressed          |
+| `pointerDownOutside` | `unknown`       | Click outside content       |
+| `focusOutside`       | `unknown`       | Focus outside content       |
+| `interactOutside`    | `unknown`       | Interaction outside content |
+| `openAutoFocus`      | `unknown`       | Auto-focus on open          |
+| `closeAutoFocus`     | `unknown`       | Auto-focus on close         |
 
 ### DropdownMenuItem Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `disabled` | `boolean` | `false` | Disable the item |
-| `variant` | `"default" \| "destructive"` | `"default"` | Visual variant |
+| Prop       | Type                         | Default     | Description      |
+| ---------- | ---------------------------- | ----------- | ---------------- |
+| `disabled` | `boolean`                    | `false`     | Disable the item |
+| `variant`  | `"default" \| "destructive"` | `"default"` | Visual variant   |
 
 ### DropdownMenuItem Events
 
-| Event | Payload | Description |
-|-------|---------|-------------|
+| Event    | Payload | Description                |
+| -------- | ------- | -------------------------- |
 | `select` | `Event` | Emitted on item activation |
 
 ### DropdownMenuCheckboxItem Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
+| Prop         | Type      | Default     | Description              |
+| ------------ | --------- | ----------- | ------------------------ |
 | `modelValue` | `boolean` | `undefined` | Controlled checked state |
-| `checked` | `boolean` | `undefined` | Alias for `modelValue` |
-| `disabled` | `boolean` | `false` | Disable the item |
+| `checked`    | `boolean` | `undefined` | Alias for `modelValue`   |
+| `disabled`   | `boolean` | `false`     | Disable the item         |
 
 ### DropdownMenuCheckboxItem Events
 
-| Event | Payload | Description |
-|-------|---------|-------------|
-| `update:modelValue` | `boolean` | Emitted when checked changes |
-| `update:checked` | `boolean` | Emitted when checked changes (alias) |
+| Event               | Payload   | Description                          |
+| ------------------- | --------- | ------------------------------------ |
+| `update:modelValue` | `boolean` | Emitted when checked changes         |
+| `update:checked`    | `boolean` | Emitted when checked changes (alias) |
 
 ### DropdownMenuRadioGroup Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
+| Prop         | Type              | Default     | Description      |
+| ------------ | ----------------- | ----------- | ---------------- |
 | `modelValue` | `AcceptableValue` | `undefined` | Controlled value |
 
 ### DropdownMenuRadioGroup Events
 
-| Event | Payload | Description |
-|-------|---------|-------------|
+| Event               | Payload           | Description             |
+| ------------------- | ----------------- | ----------------------- |
 | `update:modelValue` | `AcceptableValue` | Emitted on value change |
 
 ### DropdownMenuRadioItem Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `value` | `string` | — | Unique value (required) |
-| `disabled` | `boolean` | `false` | Disable the item |
+| Prop       | Type      | Default | Description             |
+| ---------- | --------- | ------- | ----------------------- |
+| `value`    | `string`  | —       | Unique value (required) |
+| `disabled` | `boolean` | `false` | Disable the item        |
 
 ### DropdownMenuShortcut Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `asChild` | `boolean` | `undefined` | Merge with child element |
-| `as` | `string` | `undefined` | Render as a different element |
+| Prop      | Type      | Default     | Description                   |
+| --------- | --------- | ----------- | ----------------------------- |
+| `asChild` | `boolean` | `undefined` | Merge with child element      |
+| `as`      | `string`  | `undefined` | Render as a different element |
 
 ### DropdownMenuSub Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `open` | `boolean` | `undefined` | Controlled open state |
-| `defaultOpen` | `boolean` | `false` | Default open state |
+| Prop          | Type      | Default     | Description           |
+| ------------- | --------- | ----------- | --------------------- |
+| `open`        | `boolean` | `undefined` | Controlled open state |
+| `defaultOpen` | `boolean` | `false`     | Default open state    |
 
 ### DropdownMenuSub Events
 
-| Event | Payload | Description |
-|-------|---------|-------------|
+| Event         | Payload   | Description                     |
+| ------------- | --------- | ------------------------------- |
 | `update:open` | `boolean` | Emitted when open state changes |
 
 ### Example Usage
@@ -212,81 +212,81 @@ const format = ref("json");
 
 ### CSS Custom Properties
 
-| Token | Default | Description |
-|-------|---------|-------------|
-| `--color-surface-base` | #FFFFFF / #0F1117 | Content panel background |
-| `--color-surface-hover` | #F4F5F7 / #1D1F28 | Item highlighted state |
-| `--color-surface-muted` | #F3F4F6 / #1E2030 | Separator line |
-| `--color-foreground-primary` | #001C44 / #EDEDED | Default text color |
-| `--color-foreground-secondary` | #4A5568 / #A0AEC0 | Secondary text |
-| `--color-foreground-tertiary` | #696D7D / #9DA0AD | Label text |
-| `--color-foreground-disabled` | #8B8FA3 / #5C5F6E | Disabled text |
-| `--color-feedback-error-base` | #DC3545 / #F87171 | Destructive text |
-| `--color-feedback-error-subtle` | #FFF1F2 / #2D1B1E | Destructive highlight |
+| Token                           | Default           | Description              |
+| ------------------------------- | ----------------- | ------------------------ |
+| `--color-surface-base`          | #FFFFFF / #0F1117 | Content panel background |
+| `--color-surface-hover`         | #F4F5F7 / #1D1F28 | Item highlighted state   |
+| `--color-surface-muted`         | #F3F4F6 / #1E2030 | Separator line           |
+| `--color-foreground-primary`    | #001C44 / #EDEDED | Default text color       |
+| `--color-foreground-secondary`  | #4A5568 / #A0AEC0 | Secondary text           |
+| `--color-foreground-tertiary`   | #696D7D / #9DA0AD | Label text               |
+| `--color-foreground-disabled`   | #8B8FA3 / #5C5F6E | Disabled text            |
+| `--color-feedback-error-base`   | #DC3545 / #F87171 | Destructive text         |
+| `--color-feedback-error-subtle` | #FFF1F2 / #2D1B1E | Destructive highlight    |
 
 ### Destructive Variant
 
-| Token | Value | Usage |
-|-------|-------|-------|
-| `--color-feedback-error-base` | #DC3545 (light) / #F87171 (dark) | Destructive text color |
+| Token                           | Value                            | Usage                              |
+| ------------------------------- | -------------------------------- | ---------------------------------- |
+| `--color-feedback-error-base`   | #DC3545 (light) / #F87171 (dark) | Destructive text color             |
 | `--color-feedback-error-subtle` | #FFF1F2 (light) / #2D1B1E (dark) | Destructive highlighted background |
 
 ### Sizing
 
-| Property | Value |
-|----------|-------|
+| Property              | Value |
+| --------------------- | ----- |
 | Content border-radius | `8px` |
-| Item border-radius | `6px` |
-| Separator height | `1px` |
+| Item border-radius    | `6px` |
+| Separator height      | `1px` |
 
 ### Transitions
 
-| Property | Duration | Easing |
-|----------|----------|--------|
-| Content open animation | 150ms | ease-out |
-| Content close animation | 100ms | ease-in |
+| Property                | Duration | Easing   |
+| ----------------------- | -------- | -------- |
+| Content open animation  | 150ms    | ease-out |
+| Content close animation | 100ms    | ease-in  |
 
 ### Accessibility
 
-| Criterion | Implementation |
-|-----------|---------------|
+| Criterion                                                                            | Implementation                                              |
+| ------------------------------------------------------------------------------------ | ----------------------------------------------------------- |
 | [Menu Button WAI-ARIA pattern](https://www.w3.org/WAI/ARIA/apg/patterns/menu-button) | Reka UI manages focus and keyboard navigation automatically |
-| Roving tabindex | Arrow keys navigate between items |
-| `role="menu"` | Applied to content by Reka UI |
+| Roving tabindex                                                                      | Arrow keys navigate between items                           |
+| `role="menu"`                                                                        | Applied to content by Reka UI                               |
 
 #### Keyboard Interactions
 
-| Key | Description |
-|-----|-------------|
-| Enter / Space | Opens menu and focuses first item; activates focused item |
-| ArrowDown | Opens menu on trigger; moves focus to next item |
-| ArrowUp | Moves focus to previous item |
-| ArrowRight / ArrowLeft | Opens/closes submenu |
-| Esc | Closes menu and refocuses trigger |
+| Key                    | Description                                               |
+| ---------------------- | --------------------------------------------------------- |
+| Enter / Space          | Opens menu and focuses first item; activates focused item |
+| ArrowDown              | Opens menu on trigger; moves focus to next item           |
+| ArrowUp                | Moves focus to previous item                              |
+| ArrowRight / ArrowLeft | Opens/closes submenu                                      |
+| Esc                    | Closes menu and refocuses trigger                         |
 
 ## Anatomy
 
 A DropdownMenu consists of 17 parts:
 
-| Part | Required | Description |
-|------|----------|-------------|
-| DropdownMenuRoot | Yes | Controls open state and modal behavior |
-| DropdownMenuTrigger | Yes | Button that toggles the menu |
-| DropdownMenuPortal | No | Teleports content to `body` (default) |
-| DropdownMenuContent | Yes | The pop-out menu panel |
-| DropdownMenuArrow | No | Optional arrow pointing to the trigger |
-| DropdownMenuItem | No | A menu item with select event |
-| DropdownMenuGroup | No | Groups multiple items together |
-| DropdownMenuLabel | No | Non-focusable section label |
-| DropdownMenuCheckboxItem | No | Item that can be toggled |
-| DropdownMenuRadioGroup | No | Groups radio items |
-| DropdownMenuRadioItem | No | Item with single-select |
-| DropdownMenuItemIndicator | No | Renders when parent item is checked |
-| DropdownMenuSeparator | No | Visual divider between items |
-| DropdownMenuShortcut | No | Keyboard shortcut hint |
-| DropdownMenuSub | No | Nested submenu container |
-| DropdownMenuSubTrigger | No | Item that opens a submenu (includes chevron icon) |
-| DropdownMenuSubContent | No | The submenu pop-out panel |
+| Part                      | Required | Description                                       |
+| ------------------------- | -------- | ------------------------------------------------- |
+| DropdownMenuRoot          | Yes      | Controls open state and modal behavior            |
+| DropdownMenuTrigger       | Yes      | Button that toggles the menu                      |
+| DropdownMenuPortal        | No       | Teleports content to `body` (default)             |
+| DropdownMenuContent       | Yes      | The pop-out menu panel                            |
+| DropdownMenuArrow         | No       | Optional arrow pointing to the trigger            |
+| DropdownMenuItem          | No       | A menu item with select event                     |
+| DropdownMenuGroup         | No       | Groups multiple items together                    |
+| DropdownMenuLabel         | No       | Non-focusable section label                       |
+| DropdownMenuCheckboxItem  | No       | Item that can be toggled                          |
+| DropdownMenuRadioGroup    | No       | Groups radio items                                |
+| DropdownMenuRadioItem     | No       | Item with single-select                           |
+| DropdownMenuItemIndicator | No       | Renders when parent item is checked               |
+| DropdownMenuSeparator     | No       | Visual divider between items                      |
+| DropdownMenuShortcut      | No       | Keyboard shortcut hint                            |
+| DropdownMenuSub           | No       | Nested submenu container                          |
+| DropdownMenuSubTrigger    | No       | Item that opens a submenu (includes chevron icon) |
+| DropdownMenuSubContent    | No       | The submenu pop-out panel                         |
 
 ## Composition
 

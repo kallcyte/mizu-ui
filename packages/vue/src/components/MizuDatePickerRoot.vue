@@ -12,7 +12,9 @@ export interface DatePickerRootProps {
   name?: string;
   placeholder?: any;
   locale?: string;
-  readonlySegments?: ("year" | "month" | "day" | "hour" | "minute" | "second" | "dayPeriod" | "timeZoneName")[];
+  readonlySegments?: (
+    "year" | "month" | "day" | "hour" | "minute" | "second" | "dayPeriod" | "timeZoneName"
+  )[];
   hourCycle?: 12 | 24;
   granularity?: "day" | "hour" | "minute" | "second";
   hideTimeZone?: boolean;

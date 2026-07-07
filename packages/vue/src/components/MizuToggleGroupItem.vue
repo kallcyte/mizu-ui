@@ -57,13 +57,16 @@ const itemClasses = computed(() => {
   user-select: none;
   outline: none;
   margin-top: 0;
-  transition: color 150ms ease, background-color 150ms ease;
+  transition:
+    color 150ms ease,
+    background-color 150ms ease;
 }
 
 .mizu-toggle-group__item[data-state="on"] {
   color: var(--color-foreground-primary);
   background-color: var(--color-surface-base);
-  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.08),
+  box-shadow:
+    0 1px 3px 0 rgba(0, 0, 0, 0.08),
     0 1px 2px -1px rgba(0, 0, 0, 0.06);
 }
 

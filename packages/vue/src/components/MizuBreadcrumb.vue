@@ -38,17 +38,27 @@ const isComponent = computed(() => {
 <template>
   <nav :class="breadcrumbClasses" aria-label="Breadcrumb">
     <ol class="mizu-breadcrumb__list">
-      <li
-        v-for="(item, index) in items"
-        :key="index"
-        class="mizu-breadcrumb__item"
-      >
-        <span v-if="isCurrent(index)" class="mizu-breadcrumb__link mizu-breadcrumb__link--current" aria-current="page">
-          <component :is="item.icon" v-if="item.icon" :aria-hidden="!!item.label" class="mizu-breadcrumb__icon" />
+      <li v-for="(item, index) in items" :key="index" class="mizu-breadcrumb__item">
+        <span
+          v-if="isCurrent(index)"
+          class="mizu-breadcrumb__link mizu-breadcrumb__link--current"
+          aria-current="page"
+        >
+          <component
+            :is="item.icon"
+            v-if="item.icon"
+            :aria-hidden="!!item.label"
+            class="mizu-breadcrumb__icon"
+          />
           <template v-if="item.label">{{ item.label }}</template>
         </span>
         <a v-else :href="item.href || '#'" class="mizu-breadcrumb__link">
-          <component :is="item.icon" v-if="item.icon" :aria-hidden="!!item.label" class="mizu-breadcrumb__icon" />
+          <component
+            :is="item.icon"
+            v-if="item.icon"
+            :aria-hidden="!!item.label"
+            class="mizu-breadcrumb__icon"
+          />
           <template v-if="item.label">{{ item.label }}</template>
         </a>
         <span v-if="!isCurrent(index)" class="mizu-breadcrumb__separator" aria-hidden="true">

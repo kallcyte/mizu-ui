@@ -98,15 +98,23 @@ const rootClasses = computed(() => {
 });
 
 // Shorthand mode active when title, description, or content slots are used
-const isShorthand = computed(() =>
-  !!(props.title || props.description || slots.content || slots.header || slots.body || slots.footer),
+const isShorthand = computed(
+  () =>
+    !!(
+      props.title ||
+      props.description ||
+      slots.content ||
+      slots.header ||
+      slots.body ||
+      slots.footer
+    )
 );
 
-const hasHeader = computed(() =>
-  !!(props.title || props.description || slots.title || slots.description),
+const hasHeader = computed(
+  () => !!(props.title || props.description || slots.title || slots.description)
 );
 
-function close() {
+function handleClose() {
   emit("update:open", false);
 }
 
@@ -163,15 +171,11 @@ function handlePointerDownOutside(e: unknown) {
         >
           <!-- Close button -->
           <slot name="close" :ui="{ close: 'mizu-dialog__close' }">
-            <MizuDialogClose
-              v-if="close !== false"
-              :close-icon="closeIcon"
-              :class="ui?.close"
-            />
+            <MizuDialogClose v-if="close !== false" :close-icon="closeIcon" :class="ui?.close" />
           </slot>
 
           <!-- Full content override -->
-          <slot name="content" :close="close" />
+          <slot name="content" :close="handleClose" />
 
           <!-- Default layout: header + body + footer -->
           <template v-if="!slots.content">
@@ -180,16 +184,18 @@ function handlePointerDownOutside(e: unknown) {
                 <MizuDialogTitle v-if="title" :class="ui?.title">{{ title }}</MizuDialogTitle>
               </slot>
               <slot name="description">
-                <MizuDialogDescription v-if="description" :class="ui?.description">{{ description }}</MizuDialogDescription>
+                <MizuDialogDescription v-if="description" :class="ui?.description">{{
+                  description
+                }}</MizuDialogDescription>
               </slot>
             </MizuDialogHeader>
 
             <MizuDialogBody :class="ui?.body">
-              <slot name="body" :close="close" />
+              <slot name="body" :close="handleClose" />
             </MizuDialogBody>
 
             <MizuDialogFooter v-if="slots.footer" :class="ui?.footer">
-              <slot name="footer" :close="close" />
+              <slot name="footer" :close="handleClose" />
             </MizuDialogFooter>
           </template>
         </MizuDialogContent>

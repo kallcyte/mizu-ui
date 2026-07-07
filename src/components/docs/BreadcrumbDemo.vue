@@ -16,10 +16,7 @@ const deepItems = [
   { label: "Invoice #1234" },
 ];
 
-const twoItems = [
-  { label: "", href: "/", icon: Home },
-  { label: "Settings" },
-];
+const twoItems = [{ label: "", href: "/", icon: Home }, { label: "Settings" }];
 
 const basicCode = `const items = [
   { label: "", href: "/", icon: Home },
@@ -123,7 +120,9 @@ const sizesCode = `<MizuBreadcrumb :items="items" size="sm" />
   gap: 32px;
   font-family: inherit;
 }
-.breadcrumb-examples :deep(*) { margin: 0; }
+.breadcrumb-examples :deep(*) {
+  margin: 0;
+}
 .example-section {
   all: revert;
   display: flex;

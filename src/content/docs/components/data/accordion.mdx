@@ -3,7 +3,7 @@ title: Accordion
 description: Vertically stacked sections that expand and collapse to reveal content.
 ---
 
-import AccordionDemo from '../../../../components/docs/AccordionDemo.vue';
+import AccordionDemo from "../../../../components/docs/AccordionDemo.vue";
 
 Accordion displays expandable content panels. Use it to organize related information into collapsible sections, reducing visual clutter while keeping content accessible.
 
@@ -15,54 +15,54 @@ Accordion displays expandable content panels. Use it to organize related informa
 
 ### AccordionRoot Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `modelValue` | `string \| string[]` | `undefined` | Controlled value for the open item(s) |
-| `type` | `"single" \| "multiple"` | `"single"` | Selection mode |
-| `collapsible` | `boolean` | `false` | Allow collapsing the open item (single mode) |
-| `disabled` | `boolean` | `false` | Disable the entire accordion |
-| `orientation` | `"vertical" \| "horizontal"` | `"vertical"` | Accordion orientation |
+| Prop          | Type                         | Default      | Description                                  |
+| ------------- | ---------------------------- | ------------ | -------------------------------------------- |
+| `modelValue`  | `string \| string[]`         | `undefined`  | Controlled value for the open item(s)        |
+| `type`        | `"single" \| "multiple"`     | `"single"`   | Selection mode                               |
+| `collapsible` | `boolean`                    | `false`      | Allow collapsing the open item (single mode) |
+| `disabled`    | `boolean`                    | `false`      | Disable the entire accordion                 |
+| `orientation` | `"vertical" \| "horizontal"` | `"vertical"` | Accordion orientation                        |
 
 ### AccordionRoot Events
 
-| Event | Payload | Description |
-|-------|---------|-------------|
+| Event               | Payload                           | Description                         |
+| ------------------- | --------------------------------- | ----------------------------------- |
 | `update:modelValue` | `string \| string[] \| undefined` | Emitted when expanded state changes |
 
 ### AccordionItem Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `value` | `string` | — | Unique identifier for the item (required) |
-| `disabled` | `boolean` | `false` | Disable this item |
+| Prop       | Type      | Default | Description                               |
+| ---------- | --------- | ------- | ----------------------------------------- |
+| `value`    | `string`  | —       | Unique identifier for the item (required) |
+| `disabled` | `boolean` | `false` | Disable this item                         |
 
 ### AccordionHeader Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `as` | `string` | `"h3"` | Heading level element |
+| Prop | Type     | Default | Description           |
+| ---- | -------- | ------- | --------------------- |
+| `as` | `string` | `"h3"`  | Heading level element |
 
 ### AccordionTrigger Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
+| Prop | Type     | Default     | Description                    |
+| ---- | -------- | ----------- | ------------------------------ |
 | `as` | `string` | `undefined` | Custom element for the trigger |
 
 ### AccordionContent Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
+| Prop         | Type      | Default     | Description                     |
+| ------------ | --------- | ----------- | ------------------------------- |
 | `forceMount` | `boolean` | `undefined` | Keep content in DOM when closed |
-| `as` | `string` | `undefined` | Custom element for content |
+| `as`         | `string`  | `undefined` | Custom element for content      |
 
 ### Type
 
 MizuAccordion supports two selection modes controlled by the `type` prop:
 
-| Type | Behavior |
-|------|----------|
-| `"single"` | At most one item can be open at a time. With `collapsible`, clicking the open item closes it. |
-| `"multiple"` | Multiple items can be open simultaneously. Items toggle independently. |
+| Type         | Behavior                                                                                      |
+| ------------ | --------------------------------------------------------------------------------------------- |
+| `"single"`   | At most one item can be open at a time. With `collapsible`, clicking the open item closes it. |
+| `"multiple"` | Multiple items can be open simultaneously. Items toggle independently.                        |
 
 ### Example Usage
 
@@ -119,14 +119,14 @@ const activeItems = ref(["faq-1"]);
 
 ### CSS Custom Properties
 
-| Token | Default | Description |
-|-------|---------|-------------|
-| `--color-foreground-primary` | `#001C44` (light) / `#EDEDED` (dark) | Trigger title text |
-| `--color-foreground-secondary` | `#9DA0AD` (light) / `#696D7D` (dark) | Chevron icon, content body text |
-| `--color-foreground-tertiary` | `#696D7D` (light) / `#9DA0AD` (dark) | Disabled item text (with 0.5 opacity) |
-| `--color-surface-subtle` | `#F8F9FA` (light) / `#141626` (dark) | Trigger hover background |
-| `--color-surface-muted` | `#F3F4F6` (light) / `#1E2030` (dark) | Item separator border |
-| `--color-brand-ycp` | `#305EF0` (light) / `#5C7BFF` (dark) | Focus ring color |
+| Token                          | Default                              | Description                           |
+| ------------------------------ | ------------------------------------ | ------------------------------------- |
+| `--color-foreground-primary`   | `#001C44` (light) / `#EDEDED` (dark) | Trigger title text                    |
+| `--color-foreground-secondary` | `#9DA0AD` (light) / `#696D7D` (dark) | Chevron icon, content body text       |
+| `--color-foreground-tertiary`  | `#696D7D` (light) / `#9DA0AD` (dark) | Disabled item text (with 0.5 opacity) |
+| `--color-surface-subtle`       | `#F8F9FA` (light) / `#141626` (dark) | Trigger hover background              |
+| `--color-surface-muted`        | `#F3F4F6` (light) / `#1E2030` (dark) | Item separator border                 |
+| `--color-brand-ycp`            | `#305EF0` (light) / `#5C7BFF` (dark) | Focus ring color                      |
 
 ### Sizing
 
@@ -149,47 +149,45 @@ const activeItems = ref(["faq-1"]);
 └─────────────────────────────────────────┘
 ```
 
-| Part | Padding |
-|------|---------|
-| Trigger | `16px` all sides |
+| Part          | Padding                                 |
+| ------------- | --------------------------------------- |
+| Trigger       | `16px` all sides                        |
 | Content inner | `0 16px 16px` (top, horizontal, bottom) |
 
 Internal gap between trigger and chevron: `8px`.
 
 ### Transitions
 
-| Property | Duration | Easing |
-|----------|----------|--------|
-| Content slide | 200ms | ease-out |
-| Chevron rotation | 200ms | ease |
+| Property         | Duration | Easing   |
+| ---------------- | -------- | -------- |
+| Content slide    | 200ms    | ease-out |
+| Chevron rotation | 200ms    | ease     |
 
 ### Accessibility
 
-| Criterion | Implementation |
-|-----------|---------------|
+| Criterion                                                                         | Implementation                                                                                         |
+| --------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------ |
 | [Accordion WAI-ARIA pattern](https://www.w3.org/WAI/ARIA/apg/patterns/accordion/) | Reka UI provides `role="heading"`, `aria-expanded`, `aria-labelledby`, and manages keyboard navigation |
-| Keyboard navigation | Arrow keys, Home/End navigate between triggers. Enter/Space toggles open state |
+| Keyboard navigation                                                               | Arrow keys, Home/End navigate between triggers. Enter/Space toggles open state                         |
 
 ```html
 <div role="heading" aria-level="3">
   <button aria-expanded="true" aria-controls="content-1">Trigger label</button>
 </div>
-<div id="content-1" role="region" aria-labelledby="trigger-1">
-  Content panel.
-</div>
+<div id="content-1" role="region" aria-labelledby="trigger-1">Content panel.</div>
 ```
 
 ## Anatomy
 
 A MizuAccordion consists of 5 parts:
 
-| Part | Required | Description |
-|------|----------|-------------|
-| AccordionRoot | Yes | Container that manages expanded state |
-| AccordionItem | Yes | Wrapper for each collapsed panel |
-| AccordionHeader | Yes | Heading wrapper around the trigger |
-| AccordionTrigger | Yes | Button that toggles the content visibility |
-| AccordionContent | Yes | The expandable content panel |
+| Part             | Required | Description                                |
+| ---------------- | -------- | ------------------------------------------ |
+| AccordionRoot    | Yes      | Container that manages expanded state      |
+| AccordionItem    | Yes      | Wrapper for each collapsed panel           |
+| AccordionHeader  | Yes      | Heading wrapper around the trigger         |
+| AccordionTrigger | Yes      | Button that toggles the content visibility |
+| AccordionContent | Yes      | The expandable content panel               |
 
 ## Composition
 
@@ -207,14 +205,14 @@ MizuAccordionRoot (type, collapsible)
 
 ## Accordion vs Collapsible
 
-| | Accordion | Collapsible |
-|---|---|---|
-| **Structure** | Multiple sections stacked | Single expandable section |
-| **Sub-components** | Root, Item, Header, Trigger, Content | Root, Trigger, Content |
-| **Multiple open?** | By default only one item open (`type="single"`) | Yes — each is independent |
-| **Item management** | Built-in item tracking (Root manages open items by `value`) | Manual (controlled via `open` prop) |
-| **Wrapping** | Designed for multi-section UI out of the box | You would manually wrap multiple collapsibles for multi-section UI |
-| **Use case** | Group of related sections (e.g., settings page, product details, FAQs) | Single expand/collapse region (e.g., a filter panel, FAQ item) |
+|                     | Accordion                                                              | Collapsible                                                        |
+| ------------------- | ---------------------------------------------------------------------- | ------------------------------------------------------------------ |
+| **Structure**       | Multiple sections stacked                                              | Single expandable section                                          |
+| **Sub-components**  | Root, Item, Header, Trigger, Content                                   | Root, Trigger, Content                                             |
+| **Multiple open?**  | By default only one item open (`type="single"`)                        | Yes — each is independent                                          |
+| **Item management** | Built-in item tracking (Root manages open items by `value`)            | Manual (controlled via `open` prop)                                |
+| **Wrapping**        | Designed for multi-section UI out of the box                           | You would manually wrap multiple collapsibles for multi-section UI |
+| **Use case**        | Group of related sections (e.g., settings page, product details, FAQs) | Single expand/collapse region (e.g., a filter panel, FAQ item)     |
 
 Use **Accordion** when you have multiple related expandable sections that should coordinate with each other. Use **Collapsible** when you need a single toggle region.
 

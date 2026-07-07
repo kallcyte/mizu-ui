@@ -132,7 +132,8 @@ const disabledCode = `<MizuAccordionRoot type="single" collapsible>
               <MizuAccordionTrigger>What is Mizu Design System?</MizuAccordionTrigger>
             </MizuAccordionHeader>
             <MizuAccordionContent>
-              Mizu is a multi-framework design system built on DTCG tokens. It provides Vue components via Reka UI and will expand to React via shadcn/ui.
+              Mizu is a multi-framework design system built on DTCG tokens. It provides Vue
+              components via Reka UI and will expand to React via shadcn/ui.
             </MizuAccordionContent>
           </MizuAccordionItem>
           <MizuAccordionItem value="item-2">
@@ -140,7 +141,8 @@ const disabledCode = `<MizuAccordionRoot type="single" collapsible>
               <MizuAccordionTrigger>Which frameworks are supported?</MizuAccordionTrigger>
             </MizuAccordionHeader>
             <MizuAccordionContent>
-              Currently Vue 3 with Reka UI primitives. React support via shadcn/ui + ReUI is planned.
+              Currently Vue 3 with Reka UI primitives. React support via shadcn/ui + ReUI is
+              planned.
             </MizuAccordionContent>
           </MizuAccordionItem>
           <MizuAccordionItem value="item-3">
@@ -148,7 +150,8 @@ const disabledCode = `<MizuAccordionRoot type="single" collapsible>
               <MizuAccordionTrigger>Is it production ready?</MizuAccordionTrigger>
             </MizuAccordionHeader>
             <MizuAccordionContent>
-              The library is in pre-1.0 development. Components are functional but APIs may change between minor versions.
+              The library is in pre-1.0 development. Components are functional but APIs may change
+              between minor versions.
             </MizuAccordionContent>
           </MizuAccordionItem>
         </MizuAccordionRoot>
@@ -198,7 +201,8 @@ const disabledCode = `<MizuAccordionRoot type="single" collapsible>
               <MizuAccordionTrigger>Getting Started</MizuAccordionTrigger>
             </MizuAccordionHeader>
             <MizuAccordionContent>
-              Install via pnpm: <code>pnpm add @mizu/vue</code>. Then import components from <code>@mizu/vue</code> and the stylesheet from <code>@mizu/vue/style.css</code>.
+              Install via pnpm: <code>pnpm add @mizu/vue</code>. Then import components from
+              <code>@mizu/vue</code> and the stylesheet from <code>@mizu/vue/style.css</code>.
             </MizuAccordionContent>
           </MizuAccordionItem>
           <MizuAccordionItem value="item-2">
@@ -206,7 +210,8 @@ const disabledCode = `<MizuAccordionRoot type="single" collapsible>
               <MizuAccordionTrigger>Token System</MizuAccordionTrigger>
             </MizuAccordionHeader>
             <MizuAccordionContent>
-              Mizu uses DTCG tokens as a single source of truth, exported as CSS custom properties via <code>@mizu/tokens</code>.
+              Mizu uses DTCG tokens as a single source of truth, exported as CSS custom properties
+              via <code>@mizu/tokens</code>.
             </MizuAccordionContent>
           </MizuAccordionItem>
           <MizuAccordionItem value="item-3">
@@ -214,7 +219,8 @@ const disabledCode = `<MizuAccordionRoot type="single" collapsible>
               <MizuAccordionTrigger>Component Patterns</MizuAccordionTrigger>
             </MizuAccordionHeader>
             <MizuAccordionContent>
-              Each component wraps a Reka UI primitive, accepts a <code>class</code> prop for Tailwind overrides, and uses Mizu token classes directly.
+              Each component wraps a Reka UI primitive, accepts a <code>class</code> prop for
+              Tailwind overrides, and uses Mizu token classes directly.
             </MizuAccordionContent>
           </MizuAccordionItem>
         </MizuAccordionRoot>

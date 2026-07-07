@@ -3,7 +3,7 @@ title: Avatar Group
 description: Display multiple avatars in a stacked layout with overflow indicator.
 ---
 
-import AvatarGroupDemo from '../../../../components/docs/AvatarGroupDemo.vue';
+import AvatarGroupDemo from "../../../../components/docs/AvatarGroupDemo.vue";
 
 The Avatar Group component displays a collection of avatars in a compact, overlapping layout. When there are more avatars than the `max` limit, it shows an overflow indicator with the count of hidden avatars.
 
@@ -16,9 +16,9 @@ The Avatar Group component displays a collection of avatars in a compact, overla
 ```vue
 <script setup>
 const users = [
-  { src: '/avatars/alice.jpg', alt: 'Alice', fallback: 'A' },
-  { src: '/avatars/bob.jpg', alt: 'Bob', fallback: 'B' },
-  { src: '/avatars/carol.jpg', alt: 'Carol', fallback: 'C' },
+  { src: "/avatars/alice.jpg", alt: "Alice", fallback: "A" },
+  { src: "/avatars/bob.jpg", alt: "Bob", fallback: "B" },
+  { src: "/avatars/carol.jpg", alt: "Carol", fallback: "C" },
 ];
 </script>
 
@@ -37,11 +37,11 @@ const users = [
 
 ### Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `items` | `AvatarGroupItem[]` | `[]` | Array of avatar items |
-| `max` | `number` | `5` | Max visible before +N overflow |
-| `size` | `'sm' \| 'md' \| 'lg' \| 'xl'` | `'md'` | Avatar size |
+| Prop    | Type                           | Default | Description                    |
+| ------- | ------------------------------ | ------- | ------------------------------ |
+| `items` | `AvatarGroupItem[]`            | `[]`    | Array of avatar items          |
+| `max`   | `number`                       | `5`     | Max visible before +N overflow |
+| `size`  | `'sm' \| 'md' \| 'lg' \| 'xl'` | `'md'`  | Avatar size                    |
 
 ### AvatarGroupItem
 
@@ -59,28 +59,28 @@ interface AvatarGroupItem {
 
 #### Overlap
 
-| Size | Overlap Margin |
-|------|----------------|
-| **SM** | -6px |
-| **MD** | -8px |
-| **LG** | -10px |
-| **XL** | -12px |
+| Size   | Overlap Margin |
+| ------ | -------------- |
+| **SM** | -6px           |
+| **MD** | -8px           |
+| **LG** | -10px          |
+| **XL** | -12px          |
 
 ### Accessibility
 
-| Criterion | Implementation |
-|-----------|----------------|
-| Semantic Group | `role="group"` for screen reader support |
+| Criterion         | Implementation                                          |
+| ----------------- | ------------------------------------------------------- |
+| Semantic Group    | `role="group"` for screen reader support                |
 | Visual Separation | Each avatar has a 2px border matching the surface color |
 
 ## Anatomy
 
 An avatar group consists of multiple avatars and an optional overflow indicator:
 
-| Part | Required | Description |
-|------|----------|-------------|
-| Avatars | Yes | Collection of MizuAvatar components |
-| Overflow | No | "+N" indicator when exceeding max |
+| Part     | Required | Description                         |
+| -------- | -------- | ----------------------------------- |
+| Avatars  | Yes      | Collection of MizuAvatar components |
+| Overflow | No       | "+N" indicator when exceeding max   |
 
 ## Implementation Notes
 

@@ -46,9 +46,7 @@ const groupClasses = computed(() => {
       :size="size"
       class="mizu-avatar-group__avatar"
     />
-    <span v-if="overflowCount > 0" class="mizu-avatar-group__overflow">
-      +{{ overflowCount }}
-    </span>
+    <span v-if="overflowCount > 0" class="mizu-avatar-group__overflow"> +{{ overflowCount }} </span>
   </div>
 </template>
 
@@ -66,16 +64,41 @@ const groupClasses = computed(() => {
 .mizu-avatar-group__avatar:not(:first-child) {
   margin-left: -8px;
 }
-.mizu-avatar-group--sm .mizu-avatar-group__avatar:not(:first-child) { margin-left: -6px; }
-.mizu-avatar-group--lg .mizu-avatar-group__avatar:not(:first-child) { margin-left: -10px; }
-.mizu-avatar-group--xl .mizu-avatar-group__avatar:not(:first-child) { margin-left: -12px; }
+.mizu-avatar-group--sm .mizu-avatar-group__avatar:not(:first-child) {
+  margin-left: -6px;
+}
+.mizu-avatar-group--lg .mizu-avatar-group__avatar:not(:first-child) {
+  margin-left: -10px;
+}
+.mizu-avatar-group--xl .mizu-avatar-group__avatar:not(:first-child) {
+  margin-left: -12px;
+}
 
 .mizu-avatar-group__overflow {
   @apply inline-flex items-center justify-center rounded-full bg-[var(--color-surface-muted)] text-[var(--color-foreground-secondary)] font-medium select-none shrink-0 border-2 border-[var(--color-surface-base)];
   margin-left: -8px;
 }
-.mizu-avatar-group--sm .mizu-avatar-group__overflow { width: 24px; height: 24px; font-size: 10px; margin-left: -6px; }
-.mizu-avatar-group--md .mizu-avatar-group__overflow { width: 32px; height: 32px; font-size: 12px; }
-.mizu-avatar-group--lg .mizu-avatar-group__overflow { width: 40px; height: 40px; font-size: 14px; margin-left: -10px; }
-.mizu-avatar-group--xl .mizu-avatar-group__overflow { width: 56px; height: 56px; font-size: 18px; margin-left: -12px; }
+.mizu-avatar-group--sm .mizu-avatar-group__overflow {
+  width: 24px;
+  height: 24px;
+  font-size: 10px;
+  margin-left: -6px;
+}
+.mizu-avatar-group--md .mizu-avatar-group__overflow {
+  width: 32px;
+  height: 32px;
+  font-size: 12px;
+}
+.mizu-avatar-group--lg .mizu-avatar-group__overflow {
+  width: 40px;
+  height: 40px;
+  font-size: 14px;
+  margin-left: -10px;
+}
+.mizu-avatar-group--xl .mizu-avatar-group__overflow {
+  width: 56px;
+  height: 56px;
+  font-size: 18px;
+  margin-left: -12px;
+}
 </style>

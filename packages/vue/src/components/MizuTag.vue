@@ -22,19 +22,40 @@ const handleClose = () => {
 const attrs = useAttrs();
 
 const variantColors: Record<string, { bg: string; text: string; border: string }> = {
-  primary: { bg: "var(--color-brand-primary-subtle)", text: "var(--color-brand-primary)", border: "color-mix(in srgb, var(--color-brand-primary) 25%, transparent)" },
-  accent: { bg: "var(--color-brand-ycp-subtle)", text: "var(--color-brand-ycp)", border: "color-mix(in srgb, var(--color-brand-ycp) 25%, transparent)" },
-  success: { bg: "var(--color-feedback-success-subtle)", text: "var(--color-feedback-success-base)", border: "color-mix(in srgb, var(--color-feedback-success-base) 25%, transparent)" },
-  warning: { bg: "var(--color-feedback-warning-subtle)", text: "var(--color-feedback-warning-base)", border: "color-mix(in srgb, var(--color-feedback-warning-base) 25%, transparent)" },
-  error: { bg: "var(--color-feedback-error-subtle)", text: "var(--color-feedback-error-base)", border: "color-mix(in srgb, var(--color-feedback-error-base) 25%, transparent)" },
-  info: { bg: "var(--color-feedback-info-subtle)", text: "var(--color-feedback-info-base)", border: "color-mix(in srgb, var(--color-feedback-info-base) 25%, transparent)" },
+  primary: {
+    bg: "var(--color-brand-primary-subtle)",
+    text: "var(--color-brand-primary)",
+    border: "color-mix(in srgb, var(--color-brand-primary) 25%, transparent)",
+  },
+  accent: {
+    bg: "var(--color-brand-ycp-subtle)",
+    text: "var(--color-brand-ycp)",
+    border: "color-mix(in srgb, var(--color-brand-ycp) 25%, transparent)",
+  },
+  success: {
+    bg: "var(--color-feedback-success-subtle)",
+    text: "var(--color-feedback-success-base)",
+    border: "color-mix(in srgb, var(--color-feedback-success-base) 25%, transparent)",
+  },
+  warning: {
+    bg: "var(--color-feedback-warning-subtle)",
+    text: "var(--color-feedback-warning-base)",
+    border: "color-mix(in srgb, var(--color-feedback-warning-base) 25%, transparent)",
+  },
+  error: {
+    bg: "var(--color-feedback-error-subtle)",
+    text: "var(--color-feedback-error-base)",
+    border: "color-mix(in srgb, var(--color-feedback-error-base) 25%, transparent)",
+  },
+  info: {
+    bg: "var(--color-feedback-info-subtle)",
+    text: "var(--color-feedback-info-base)",
+    border: "color-mix(in srgb, var(--color-feedback-info-base) 25%, transparent)",
+  },
 };
 
 const tagClasses = computed(() => {
-  const classes = [
-    "mizu-tag",
-    `mizu-tag--${props.variant}`,
-  ];
+  const classes = ["mizu-tag", `mizu-tag--${props.variant}`];
   if (props.closable) classes.push("mizu-tag--closable");
   if (attrs.class) classes.push(attrs.class as string);
   return classes.join(" ");
@@ -57,11 +78,16 @@ const styleVars = computed(() => {
       v-if="closable"
       type="button"
       class="mizu-tag__close"
-      @click="handleClose"
       aria-label="Remove tag"
+      @click="handleClose"
     >
       <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
-        <path d="M1 1L9 9M9 1L1 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+        <path
+          d="M1 1L9 9M9 1L1 9"
+          stroke="currentColor"
+          stroke-width="1.5"
+          stroke-linecap="round"
+        />
       </svg>
     </button>
   </span>

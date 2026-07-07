@@ -92,7 +92,9 @@ const contentStyle = computed(() => {
   padding: 16px;
   background-color: var(--color-surface-base);
   color: var(--color-foreground-primary);
-  box-shadow: 0 10px 38px -10px rgba(0, 0, 0, 0.15), 0 6px 20px -14px rgba(0, 0, 0, 0.2);
+  box-shadow:
+    0 10px 38px -10px rgba(0, 0, 0, 0.15),
+    0 6px 20px -14px rgba(0, 0, 0, 0.2);
   font-family: inherit;
   margin-top: 0;
 }
@@ -106,12 +108,24 @@ const contentStyle = computed(() => {
 }
 
 @keyframes datePickerContentIn {
-  from { opacity: 0; transform: scale(0.95); }
-  to { opacity: 1; transform: scale(1); }
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 @keyframes datePickerContentOut {
-  from { opacity: 1; transform: scale(1); }
-  to { opacity: 0; transform: scale(0.95); }
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.95);
+  }
 }
 </style>

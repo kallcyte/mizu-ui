@@ -22,11 +22,7 @@ const indicatorClasses = computed(() => {
 </script>
 
 <template>
-  <ComboboxItemIndicator
-    :class="indicatorClasses"
-    :as-child="asChild"
-    :as="as"
-  >
+  <ComboboxItemIndicator :class="indicatorClasses" :as-child="asChild" :as="as">
     <slot />
   </ComboboxItemIndicator>
 </template>

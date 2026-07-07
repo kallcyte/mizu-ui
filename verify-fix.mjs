@@ -29,24 +29,24 @@ try {
   // Detailed test: for each container, check trigger button data-state AND content visibility
   for (let i = 0; i < containers.length; i++) {
     const container = containers[i];
-    
+
     // Check if disabled
     const disabledRoot = container.locator("[data-disabled]");
-    if (await disabledRoot.count() > 0) {
+    if ((await disabledRoot.count()) > 0) {
       console.log(`\nContainer ${i}: DISABLED`);
       continue;
     }
 
     // Find trigger button (with data-state)
     const triggerBtn = container.locator("button[data-state]").first();
-    if (await triggerBtn.count() === 0) {
+    if ((await triggerBtn.count()) === 0) {
       console.log(`\nContainer ${i}: No button with data-state`);
       continue;
     }
 
     const btnText = (await triggerBtn.textContent()).trim();
     const stateBefore = await triggerBtn.getAttribute("data-state");
-    
+
     // Check content visibility
     const content = container.locator(".mizu-collapsible__content");
     const contentStateBefore = await content.getAttribute("data-state");
@@ -91,12 +91,14 @@ try {
   const tagCount = await tagRow.locator(".mizu-tag").count();
   console.log(`Initial tags: ${tagCount}`);
 
-  const addButton = interactiveSection.locator("button.mizu-button").filter({ hasText: "Add" }).first();
+  const addButton = interactiveSection
+    .locator("button.mizu-button")
+    .filter({ hasText: "Add" })
+    .first();
   await addButton.click();
   await page.waitForTimeout(500);
   const afterCount = await tagRow.locator(".mizu-tag").count();
   console.log(`After Add: ${afterCount} (delta: ${afterCount - tagCount})`);
-
 } catch (err) {
   errors.push(`[fatal] ${err.message}`);
   console.error("Fatal error:", err);

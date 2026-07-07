@@ -12,8 +12,7 @@ export interface SkeletonThemeProps {
   customHighlightBackground?: string;
 }
 
-export const SKELETON_THEME_KEY: InjectionKey<SkeletonThemeProps> =
-  Symbol("mizu-skeleton-theme");
+export const SKELETON_THEME_KEY: InjectionKey<SkeletonThemeProps> = Symbol("mizu-skeleton-theme");
 
 export interface SkeletonProps extends SkeletonThemeProps {
   variant?: "text" | "circle" | "rect";

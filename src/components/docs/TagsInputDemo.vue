@@ -113,10 +113,7 @@ const readOnlyCode = `<MizuTagsInput
       <h3>Basic</h3>
       <CodeCollapsible :code="basicCode">
         <p class="demo-hint">Type and press Enter or comma to add a tag:</p>
-        <MizuTagsInput
-          v-model="basicTags"
-          placeholder="Add a tag..."
-        />
+        <MizuTagsInput v-model="basicTags" placeholder="Add a tag..." />
         <p class="demo-hint">Tags: {{ basicTags.length ? basicTags.join(", ") : "none" }}</p>
       </CodeCollapsible>
     </section>
@@ -150,12 +147,42 @@ const readOnlyCode = `<MizuTagsInput
       <h3>Variants</h3>
       <CodeCollapsible :code="variantsCode">
         <div class="demo-stack">
-          <MizuTagsInput v-model="categoriesTags" tag-variant="primary" label="Primary" placeholder="Primary variant..." />
-          <MizuTagsInput v-model="categoriesTags" tag-variant="accent" label="Accent" placeholder="Accent variant..." />
-          <MizuTagsInput v-model="categoriesTags" tag-variant="success" label="Success" placeholder="Success variant..." />
-          <MizuTagsInput v-model="categoriesTags" tag-variant="warning" label="Warning" placeholder="Warning variant..." />
-          <MizuTagsInput v-model="categoriesTags" tag-variant="error" label="Error" placeholder="Error variant..." />
-          <MizuTagsInput v-model="categoriesTags" tag-variant="info" label="Info" placeholder="Info variant..." />
+          <MizuTagsInput
+            v-model="categoriesTags"
+            tag-variant="primary"
+            label="Primary"
+            placeholder="Primary variant..."
+          />
+          <MizuTagsInput
+            v-model="categoriesTags"
+            tag-variant="accent"
+            label="Accent"
+            placeholder="Accent variant..."
+          />
+          <MizuTagsInput
+            v-model="categoriesTags"
+            tag-variant="success"
+            label="Success"
+            placeholder="Success variant..."
+          />
+          <MizuTagsInput
+            v-model="categoriesTags"
+            tag-variant="warning"
+            label="Warning"
+            placeholder="Warning variant..."
+          />
+          <MizuTagsInput
+            v-model="categoriesTags"
+            tag-variant="error"
+            label="Error"
+            placeholder="Error variant..."
+          />
+          <MizuTagsInput
+            v-model="categoriesTags"
+            tag-variant="info"
+            label="Info"
+            placeholder="Info variant..."
+          />
         </div>
       </CodeCollapsible>
     </section>
@@ -180,7 +207,9 @@ const readOnlyCode = `<MizuTagsInput
           :separator="['Enter', ',', ';', 'Tab']"
           placeholder="Multi-separator..."
         />
-        <p class="demo-hint">Tags: {{ separatorTags.length ? separatorTags.join(", ") : "none" }}</p>
+        <p class="demo-hint">
+          Tags: {{ separatorTags.length ? separatorTags.join(", ") : "none" }}
+        </p>
       </CodeCollapsible>
     </section>
 
@@ -212,22 +241,14 @@ const readOnlyCode = `<MizuTagsInput
     <section class="example-section">
       <h3>Disabled</h3>
       <CodeCollapsible :code="disabledCode">
-        <MizuTagsInput
-          v-model="readOnlyTags"
-          disabled
-          label="Read-only system tags"
-        />
+        <MizuTagsInput v-model="readOnlyTags" disabled label="Read-only system tags" />
       </CodeCollapsible>
     </section>
 
     <section class="example-section">
       <h3>Read-Only</h3>
       <CodeCollapsible :code="readOnlyCode">
-        <MizuTagsInput
-          v-model="readOnlyTags"
-          read-only
-          label="Tags (read-only)"
-        />
+        <MizuTagsInput v-model="readOnlyTags" read-only label="Tags (read-only)" />
       </CodeCollapsible>
     </section>
   </div>

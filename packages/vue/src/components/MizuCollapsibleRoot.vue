@@ -36,10 +36,7 @@ const collapsibleProps = computed(() => {
 </script>
 
 <template>
-  <CollapsibleRoot
-  v-bind="collapsibleProps"
-  @update:open="(value) => emit('update:open', value)"
->
+  <CollapsibleRoot v-bind="collapsibleProps" @update:open="(value) => emit('update:open', value)">
     <slot />
   </CollapsibleRoot>
 </template>

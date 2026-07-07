@@ -22,11 +22,7 @@ const titleClasses = computed(() => {
 </script>
 
 <template>
-  <AlertDialogTitle
-    :class="titleClasses"
-    :as-child="asChild"
-    :as="as"
-  >
+  <AlertDialogTitle :class="titleClasses" :as-child="asChild" :as="as">
     <slot />
   </AlertDialogTitle>
 </template>

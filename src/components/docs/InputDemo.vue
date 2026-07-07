@@ -140,11 +140,7 @@ const passwordDemoValue = ref("");
             error
             helper-text="Please enter a valid email address"
           />
-          <MizuInput
-            v-model="successValue"
-            label="Email"
-            helper-text="Email is available"
-          />
+          <MizuInput v-model="successValue" label="Email" helper-text="Email is available" />
         </div>
       </CodeCollapsible>
     </section>
@@ -193,8 +189,21 @@ const passwordDemoValue = ref("");
       <h3>Show Password</h3>
       <CodeCollapsible :code="showPasswordCode">
         <div class="input-row">
-          <MizuInput v-model="passwordDemoValue" label="Password" type="password" show-password placeholder="Enter password" />
-          <MizuInput v-model="passwordDemoValue" label="New Password" type="password" show-password placeholder="Create password" helper-text="Click the eye icon to toggle" />
+          <MizuInput
+            v-model="passwordDemoValue"
+            label="Password"
+            type="password"
+            show-password
+            placeholder="Enter password"
+          />
+          <MizuInput
+            v-model="passwordDemoValue"
+            label="New Password"
+            type="password"
+            show-password
+            placeholder="Create password"
+            helper-text="Click the eye icon to toggle"
+          />
         </div>
       </CodeCollapsible>
     </section>
@@ -216,21 +225,12 @@ const passwordDemoValue = ref("");
       <h3>Error with Trailing Icon</h3>
       <CodeCollapsible :code="errorTrailingCode">
         <div class="input-row">
-          <MizuInput
-            v-model="errorValue"
-            label="Email"
-            error
-            helper-text="Invalid email format"
-          >
+          <MizuInput v-model="errorValue" label="Email" error helper-text="Invalid email format">
             <template #trailing-icon>
               <AlertCircle />
             </template>
           </MizuInput>
-          <MizuInput
-            v-model="successValue"
-            label="Email"
-            helper-text="Email is valid"
-          >
+          <MizuInput v-model="successValue" label="Email" helper-text="Email is valid">
             <template #trailing-icon>
               <CheckCircle />
             </template>

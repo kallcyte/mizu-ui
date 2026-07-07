@@ -3,7 +3,7 @@ title: Toast
 description: Brief, auto-dismissible notification for feedback messages.
 ---
 
-import ToastDemo from '../../../../components/docs/ToastDemo.vue';
+import ToastDemo from "../../../../components/docs/ToastDemo.vue";
 
 A Toast is a non-modal notification that provides brief, time-sensitive feedback. It auto-dismisses after a duration and supports swipe-to-close gestures.
 
@@ -15,99 +15,99 @@ A Toast is a non-modal notification that provides brief, time-sensitive feedback
 
 ### ToastProvider Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `label` | `string` | `'Notification'` | Author-localized label for each toast |
-| `duration` | `number` | `3000` | Default duration in ms |
-| `swipeDirection` | `'up' \| 'down' \| 'left' \| 'right'` | `'right'` | Swipe direction to dismiss |
-| `swipeThreshold` | `number` | `50` | Swipe distance threshold in px |
-| `position` | `'top-right' \| 'top-left' \| 'top-center' \| 'bottom-right' \| 'bottom-left' \| 'bottom-center'` | `'top-right'` | Toast viewport position |
+| Prop             | Type                                                                                              | Default          | Description                           |
+| ---------------- | ------------------------------------------------------------------------------------------------- | ---------------- | ------------------------------------- |
+| `label`          | `string`                                                                                          | `'Notification'` | Author-localized label for each toast |
+| `duration`       | `number`                                                                                          | `3000`           | Default duration in ms                |
+| `swipeDirection` | `'up' \| 'down' \| 'left' \| 'right'`                                                             | `'right'`        | Swipe direction to dismiss            |
+| `swipeThreshold` | `number`                                                                                          | `50`             | Swipe distance threshold in px        |
+| `position`       | `'top-right' \| 'top-left' \| 'top-center' \| 'bottom-right' \| 'bottom-left' \| 'bottom-center'` | `'top-right'`    | Toast viewport position               |
 
 ### ToastViewport Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `hotkey` | `string[]` | `['F8']` | Keys to move focus to viewport |
-| `label` | `string \| ((hotkey: string) => string)` | `'Notifications ({hotkey})'` | ARIA label for the viewport |
-| `position` | `'top-right' \| 'top-left' \| 'top-center' \| 'bottom-right' \| 'bottom-left' \| 'bottom-center'` | `'top-right'` | Viewport position on screen |
+| Prop       | Type                                                                                              | Default                      | Description                    |
+| ---------- | ------------------------------------------------------------------------------------------------- | ---------------------------- | ------------------------------ |
+| `hotkey`   | `string[]`                                                                                        | `['F8']`                     | Keys to move focus to viewport |
+| `label`    | `string \| ((hotkey: string) => string)`                                                          | `'Notifications ({hotkey})'` | ARIA label for the viewport    |
+| `position` | `'top-right' \| 'top-left' \| 'top-center' \| 'bottom-right' \| 'bottom-left' \| 'bottom-center'` | `'top-right'`                | Viewport position on screen    |
 
 ### ToastRoot Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `open` | `boolean` | `undefined` | Controlled open state (v-model) |
-| `defaultOpen` | `boolean` | `true` | Uncontrolled initial state |
-| `type` | `'foreground' \| 'background'` | `'foreground'` | Accessibility sensitivity |
-| `duration` | `number` | `undefined` | Toast duration (overrides provider) |
-| `variant` | `'info' \| 'success' \| 'warning' \| 'error'` | `'info'` | Visual variant |
-| `forceMount` | `boolean` | `undefined` | Force mount for animation |
+| Prop          | Type                                          | Default        | Description                         |
+| ------------- | --------------------------------------------- | -------------- | ----------------------------------- |
+| `open`        | `boolean`                                     | `undefined`    | Controlled open state (v-model)     |
+| `defaultOpen` | `boolean`                                     | `true`         | Uncontrolled initial state          |
+| `type`        | `'foreground' \| 'background'`                | `'foreground'` | Accessibility sensitivity           |
+| `duration`    | `number`                                      | `undefined`    | Toast duration (overrides provider) |
+| `variant`     | `'info' \| 'success' \| 'warning' \| 'error'` | `'info'`       | Visual variant                      |
+| `forceMount`  | `boolean`                                     | `undefined`    | Force mount for animation           |
 
 ### ToastRoot Events
 
-| Event | Payload | Description |
-|-------|---------|-------------|
-| `update:open` | `boolean` | Emitted when open state changes |
-| `pause` | `void` | Timer paused (hover/focus/blur) |
-| `resume` | `void` | Timer resumed |
-| `escapeKeyDown` | `KeyboardEvent` | Escape key pressed |
-| `swipeStart` | `SwipeEvent` | Swipe gesture started |
-| `swipeMove` | `SwipeEvent` | Swipe gesture moved |
-| `swipeCancel` | `SwipeEvent` | Swipe gesture cancelled |
-| `swipeEnd` | `SwipeEvent` | Swipe gesture ended |
+| Event           | Payload         | Description                     |
+| --------------- | --------------- | ------------------------------- |
+| `update:open`   | `boolean`       | Emitted when open state changes |
+| `pause`         | `void`          | Timer paused (hover/focus/blur) |
+| `resume`        | `void`          | Timer resumed                   |
+| `escapeKeyDown` | `KeyboardEvent` | Escape key pressed              |
+| `swipeStart`    | `SwipeEvent`    | Swipe gesture started           |
+| `swipeMove`     | `SwipeEvent`    | Swipe gesture moved             |
+| `swipeCancel`   | `SwipeEvent`    | Swipe gesture cancelled         |
+| `swipeEnd`      | `SwipeEvent`    | Swipe gesture ended             |
 
 ### ToastTitle Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
+| Prop      | Type      | Default     | Description             |
+| --------- | --------- | ----------- | ----------------------- |
 | `asChild` | `boolean` | `undefined` | Render as child element |
-| `as` | `string` | `undefined` | Custom root element |
+| `as`      | `string`  | `undefined` | Custom root element     |
 
 ### ToastDescription Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
+| Prop      | Type      | Default     | Description             |
+| --------- | --------- | ----------- | ----------------------- |
 | `asChild` | `boolean` | `undefined` | Render as child element |
-| `as` | `string` | `undefined` | Custom root element |
+| `as`      | `string`  | `undefined` | Custom root element     |
 
 ### ToastAction Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `altText` | `string` | required | Description for screen readers |
-| `asChild` | `boolean` | `undefined` | Render as child element |
-| `as` | `string` | `undefined` | Custom root element |
+| Prop      | Type      | Default     | Description                    |
+| --------- | --------- | ----------- | ------------------------------ |
+| `altText` | `string`  | required    | Description for screen readers |
+| `asChild` | `boolean` | `undefined` | Render as child element        |
+| `as`      | `string`  | `undefined` | Custom root element            |
 
 ### ToastClose Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
+| Prop      | Type      | Default     | Description             |
+| --------- | --------- | ----------- | ----------------------- |
 | `asChild` | `boolean` | `undefined` | Render as child element |
-| `as` | `string` | `undefined` | Custom root element |
+| `as`      | `string`  | `undefined` | Custom root element     |
 
 ### Slots
 
-| Component | Slot | Description |
-|-----------|------|-------------|
-| All components | `default` | Child content |
-| `MizuToastProvider` | `toast` | Custom toast rendering (scoped: `{ toast: ToastItem }`) |
+| Component           | Slot      | Description                                             |
+| ------------------- | --------- | ------------------------------------------------------- |
+| All components      | `default` | Child content                                           |
+| `MizuToastProvider` | `toast`   | Custom toast rendering (scoped: `{ toast: ToastItem }`) |
 
 ### `useToast` Composable
 
 ```ts
 interface ToastContext {
-  addToast(options: Omit<ToastItem, 'id' | 'open'>): string
-  dismissToast(id: string): void
+  addToast(options: Omit<ToastItem, "id" | "open">): string;
+  dismissToast(id: string): void;
 }
 ```
 
-| Option | Type | Description |
-|--------|------|-------------|
-| `title` | `string` (optional) | Toast heading |
-| `description` | `string` (optional) | Supporting text |
-| `variant` | `'info' \| 'success' \| 'warning' \| 'error'` | Visual variant |
-| `duration` | `number` (optional) | Override provider duration |
-| `showTimer` | `boolean` (optional) | Show countdown timer on the toast |
-| `action` | `{ label, altText, onClick }` (optional) | Action button config |
+| Option        | Type                                          | Description                       |
+| ------------- | --------------------------------------------- | --------------------------------- |
+| `title`       | `string` (optional)                           | Toast heading                     |
+| `description` | `string` (optional)                           | Supporting text                   |
+| `variant`     | `'info' \| 'success' \| 'warning' \| 'error'` | Visual variant                    |
+| `duration`    | `number` (optional)                           | Override provider duration        |
+| `showTimer`   | `boolean` (optional)                          | Show countdown timer on the toast |
+| `action`      | `{ label, altText, onClick }` (optional)      | Action button config              |
 
 ### Example Usage
 
@@ -137,78 +137,76 @@ function showNotification() {
 
 ### CSS Custom Properties
 
-| Token | Default | Description |
-|-------|---------|-------------|
-| `--color-surface-base` | #FFFFFF / #0F1117 | Toast background |
-| `--color-foreground-primary` | #001C44 / #EDEDED | Title text |
-| `--color-foreground-secondary` | #4A5568 / #A0AEC0 | Description text |
-| `--color-feedback-info-base` | #3B82F6 / #60A5FA | Info icon + border |
+| Token                           | Default           | Description           |
+| ------------------------------- | ----------------- | --------------------- |
+| `--color-surface-base`          | #FFFFFF / #0F1117 | Toast background      |
+| `--color-foreground-primary`    | #001C44 / #EDEDED | Title text            |
+| `--color-foreground-secondary`  | #4A5568 / #A0AEC0 | Description text      |
+| `--color-feedback-info-base`    | #3B82F6 / #60A5FA | Info icon + border    |
 | `--color-feedback-success-base` | #22C55E / #4ADE80 | Success icon + border |
 | `--color-feedback-warning-base` | #F59E0B / #FBBF24 | Warning icon + border |
-| `--color-feedback-error-base` | #EF4444 / #F87171 | Error icon + border |
+| `--color-feedback-error-base`   | #EF4444 / #F87171 | Error icon + border   |
 
 ### Variants
 
 All variants use a gradient background from the subtle variant color on the left to `--color-surface-base` on the right, plus a solid left border in the variant's base color.
 
-| Variant | Gradient Start (left) | Left Border | Icon | Use Case |
-|---------|----------------------|-------------|------|----------|
-| `info` | `--color-feedback-info-subtle` (#EFF6FF) | `--color-feedback-info-base` | `Info` (blue) | General notifications |
-| `success` | `--color-feedback-success-subtle` (#F0FDF4) | `--color-feedback-success-base` | `CheckCircle` (green) | Successful operations |
+| Variant   | Gradient Start (left)                       | Left Border                     | Icon                     | Use Case              |
+| --------- | ------------------------------------------- | ------------------------------- | ------------------------ | --------------------- |
+| `info`    | `--color-feedback-info-subtle` (#EFF6FF)    | `--color-feedback-info-base`    | `Info` (blue)            | General notifications |
+| `success` | `--color-feedback-success-subtle` (#F0FDF4) | `--color-feedback-success-base` | `CheckCircle` (green)    | Successful operations |
 | `warning` | `--color-feedback-warning-subtle` (#FFFBEB) | `--color-feedback-warning-base` | `AlertTriangle` (yellow) | Warnings and cautions |
-| `error` | `--color-feedback-error-subtle` (#FEF2F2) | `--color-feedback-error-base` | `XCircle` (red) | Errors and failures |
+| `error`   | `--color-feedback-error-subtle` (#FEF2F2)   | `--color-feedback-error-base`   | `XCircle` (red)          | Errors and failures   |
 
 ### Positions
 
 Toasts can be placed in 6 positions via the `position` prop on `MizuToastProvider`:
 
-| Position | Description |
-|----------|-------------|
-| `top-right` | Top-right corner (default) |
-| `top-left` | Top-left corner |
-| `top-center` | Top center, horizontally centered |
-| `bottom-right` | Bottom-right corner |
-| `bottom-left` | Bottom-left corner |
+| Position        | Description                          |
+| --------------- | ------------------------------------ |
+| `top-right`     | Top-right corner (default)           |
+| `top-left`      | Top-left corner                      |
+| `top-center`    | Top center, horizontally centered    |
+| `bottom-right`  | Bottom-right corner                  |
+| `bottom-left`   | Bottom-left corner                   |
 | `bottom-center` | Bottom center, horizontally centered |
 
 ### Sizing
 
-| Property | Value |
-|----------|-------|
-| Horizontal padding | 16px |
-| Vertical padding | 12px |
-| Border radius | 8px |
-| Max viewport width | 420px |
-| Default duration | 3000ms |
-| Swipe threshold | 50px |
-| Left border width | 3px |
-| Icon size | 18px |
+| Property           | Value  |
+| ------------------ | ------ |
+| Horizontal padding | 16px   |
+| Vertical padding   | 12px   |
+| Border radius      | 8px    |
+| Max viewport width | 420px  |
+| Default duration   | 3000ms |
+| Swipe threshold    | 50px   |
+| Left border width  | 3px    |
+| Icon size          | 18px   |
 
 ### Transitions
 
-| Property | Duration | Easing |
-|----------|----------|--------|
-| Slide in from right | 200ms | ease-out |
-| Slide out to right | 150ms | ease-in |
-| Swipe cancel (translate reset) | 200ms | ease-out |
+| Property                       | Duration | Easing   |
+| ------------------------------ | -------- | -------- |
+| Slide in from right            | 200ms    | ease-out |
+| Slide out to right             | 150ms    | ease-in  |
+| Swipe cancel (translate reset) | 200ms    | ease-out |
 
 ### Accessibility
 
-| Criterion | Implementation |
-|-----------|---------------|
-| Role | Each toast is rendered as `role="status"` with `aria-live="polite"` (`assertive` for foreground type) |
-| Focus management | Tab cycles through toasts in reverse order (most recent first). Focus proxies handle entry/exit. |
-| Keyboard shortcut | `F8` moves focus to the toast viewport |
-| Swipe | Pointer swipe to dismiss. Can be disabled via `disableSwipe` prop. |
-| Auto-dismiss | Timer pauses on hover, focus, and window blur. Resumes on leave, blur, and window focus. |
+| Criterion         | Implementation                                                                                        |
+| ----------------- | ----------------------------------------------------------------------------------------------------- |
+| Role              | Each toast is rendered as `role="status"` with `aria-live="polite"` (`assertive` for foreground type) |
+| Focus management  | Tab cycles through toasts in reverse order (most recent first). Focus proxies handle entry/exit.      |
+| Keyboard shortcut | `F8` moves focus to the toast viewport                                                                |
+| Swipe             | Pointer swipe to dismiss. Can be disabled via `disableSwipe` prop.                                    |
+| Auto-dismiss      | Timer pauses on hover, focus, and window blur. Resumes on leave, blur, and window focus.              |
 
 #### ARIA Attributes
 
 ```html
 <ol role="region" aria-label="Notifications (F8)" tabindex="-1">
-  <li role="status" aria-live="polite" tabindex="0" data-state="open">
-    Invoice saved
-  </li>
+  <li role="status" aria-live="polite" tabindex="0" data-state="open">Invoice saved</li>
 </ol>
 ```
 
@@ -216,15 +214,15 @@ Toasts can be placed in 6 positions via the `position` prop on `MizuToastProvide
 
 A Toast consists of up to 7 parts:
 
-| Part | Required | Description |
-|------|----------|-------------|
-| ToastProvider | Yes | Context provider — wrap at app root |
-| ToastViewport | Yes | Fixed-position list container for all toasts |
-| ToastRoot | Yes | Individual toast item with auto-dismiss timer |
-| ToastTitle | No | Heading text for the toast |
-| ToastDescription | No | Supporting detail text |
-| ToastAction | No | Action button within the toast |
-| ToastClose | No | Close button within the toast |
+| Part             | Required | Description                                   |
+| ---------------- | -------- | --------------------------------------------- |
+| ToastProvider    | Yes      | Context provider — wrap at app root           |
+| ToastViewport    | Yes      | Fixed-position list container for all toasts  |
+| ToastRoot        | Yes      | Individual toast item with auto-dismiss timer |
+| ToastTitle       | No       | Heading text for the toast                    |
+| ToastDescription | No       | Supporting detail text                        |
+| ToastAction      | No       | Action button within the toast                |
+| ToastClose       | No       | Close button within the toast                 |
 
 ## Composition
 

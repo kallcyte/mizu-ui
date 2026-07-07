@@ -12,9 +12,20 @@ defineOptions({
   inheritAttrs: false,
 });
 
-
 export interface ButtonProps {
-  variant?: "primary" | "accent" | "ghost" | "outline" | "success" | "warning" | "error" | "info" | "outline-success" | "outline-warning" | "outline-error" | "outline-info";
+  variant?:
+    | "primary"
+    | "accent"
+    | "ghost"
+    | "outline"
+    | "success"
+    | "warning"
+    | "error"
+    | "info"
+    | "outline-success"
+    | "outline-warning"
+    | "outline-error"
+    | "outline-info";
   size?: "sm" | "md" | "lg";
   disabled?: boolean;
   loading?: boolean;
@@ -61,16 +72,52 @@ const hasDefaultSlot = computed(() => !!slots.default);
 const variantColors: Record<string, { bg: string; text: string; border: string }> = {
   primary: { bg: "var(--color-brand-primary)", text: "#fff", border: "transparent" },
   accent: { bg: "var(--color-brand-ycp)", text: "#fff", border: "transparent" },
-  success: { bg: "var(--color-feedback-success-base)", text: "var(--color-foreground-inverse)", border: "transparent" },
-  warning: { bg: "var(--color-feedback-warning-base)", text: "var(--color-foreground-inverse)", border: "transparent" },
-  error: { bg: "var(--color-feedback-error-base)", text: "var(--color-foreground-inverse)", border: "transparent" },
-  info: { bg: "var(--color-feedback-info-base)", text: "var(--color-foreground-inverse)", border: "transparent" },
+  success: {
+    bg: "var(--color-feedback-success-base)",
+    text: "var(--color-foreground-inverse)",
+    border: "transparent",
+  },
+  warning: {
+    bg: "var(--color-feedback-warning-base)",
+    text: "var(--color-foreground-inverse)",
+    border: "transparent",
+  },
+  error: {
+    bg: "var(--color-feedback-error-base)",
+    text: "var(--color-foreground-inverse)",
+    border: "transparent",
+  },
+  info: {
+    bg: "var(--color-feedback-info-base)",
+    text: "var(--color-foreground-inverse)",
+    border: "transparent",
+  },
   ghost: { bg: "transparent", text: "var(--color-foreground-primary)", border: "transparent" },
-  outline: { bg: "transparent", text: "var(--color-foreground-primary)", border: "var(--color-foreground-primary)" },
-  "outline-success": { bg: "transparent", text: "var(--color-feedback-success-base)", border: "var(--color-feedback-success-base)" },
-  "outline-warning": { bg: "transparent", text: "var(--color-feedback-warning-base)", border: "var(--color-feedback-warning-base)" },
-  "outline-error": { bg: "transparent", text: "var(--color-feedback-error-base)", border: "var(--color-feedback-error-base)" },
-  "outline-info": { bg: "transparent", text: "var(--color-feedback-info-base)", border: "var(--color-feedback-info-base)" },
+  outline: {
+    bg: "transparent",
+    text: "var(--color-foreground-primary)",
+    border: "var(--color-foreground-primary)",
+  },
+  "outline-success": {
+    bg: "transparent",
+    text: "var(--color-feedback-success-base)",
+    border: "var(--color-feedback-success-base)",
+  },
+  "outline-warning": {
+    bg: "transparent",
+    text: "var(--color-feedback-warning-base)",
+    border: "var(--color-feedback-warning-base)",
+  },
+  "outline-error": {
+    bg: "transparent",
+    text: "var(--color-feedback-error-base)",
+    border: "var(--color-feedback-error-base)",
+  },
+  "outline-info": {
+    bg: "transparent",
+    text: "var(--color-feedback-info-base)",
+    border: "var(--color-feedback-info-base)",
+  },
 };
 
 const variantColor = computed(() => variantColors[props.variant] || variantColors.primary);
@@ -85,11 +132,7 @@ const autoLoading = ref(false);
 const isLoading = computed(() => props.loading || autoLoading.value);
 
 const buttonClasses = computed(() => {
-  const classes = [
-    "mizu-button",
-    `mizu-button--${props.size}`,
-    `mizu-${props.variant}`,
-  ];
+  const classes = ["mizu-button", `mizu-button--${props.size}`, `mizu-${props.variant}`];
 
   if (props.disabled) classes.push("mizu-button--disabled");
   if (isLoading.value) classes.push("mizu-button--loading");
@@ -140,13 +183,13 @@ async function handleClick(event: MouseEvent) {
     @click="handleClick"
   >
     <template v-if="isLoading">
-      <svg
-        :class="['mizu-spinner', spinnerSizeClass]"
-        viewBox="0 0 24 24"
-        fill="none"
-      >
+      <svg :class="['mizu-spinner', spinnerSizeClass]" viewBox="0 0 24 24" fill="none">
         <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4" opacity="0.25" />
-        <path d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" fill="currentColor" opacity="0.75" />
+        <path
+          d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+          fill="currentColor"
+          opacity="0.75"
+        />
       </svg>
       <span v-if="hasDefaultSlot" class="mizu-button__label">
         <slot />
@@ -208,28 +251,62 @@ async function handleClick(event: MouseEvent) {
   @apply shrink-0;
   animation: mizu-spin 1s linear infinite;
 }
-.mizu-button--sm .mizu-spinner { @apply w-[10px] h-[10px]; }
-.mizu-button--md .mizu-spinner { @apply w-[16px] h-[16px]; }
-.mizu-button--lg .mizu-spinner { @apply w-[20px] h-[20px]; }
+.mizu-button--sm .mizu-spinner {
+  @apply w-[10px] h-[10px];
+}
+.mizu-button--md .mizu-spinner {
+  @apply w-[16px] h-[16px];
+}
+.mizu-button--lg .mizu-spinner {
+  @apply w-[20px] h-[20px];
+}
 
 @keyframes mizu-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 /* Hover states */
-.mizu-primary:hover:not(:disabled) { @apply bg-[var(--color-brand-primary-hover)]; }
-.mizu-accent:hover:not(:disabled) { @apply bg-[var(--color-brand-ycp-hover)]; }
-.mizu-ghost:hover:not(:disabled) { @apply text-[var(--color-brand-primary-hover)]; }
-.mizu-outline:hover:not(:disabled) { @apply bg-[var(--color-surface-subtle)]; }
-.mizu-success:hover:not(:disabled) { @apply bg-[var(--color-feedback-success-hover)]; }
-.mizu-warning:hover:not(:disabled) { @apply bg-[var(--color-feedback-warning-hover)]; }
-.mizu-error:hover:not(:disabled) { @apply bg-[var(--color-feedback-error-hover)]; }
-.mizu-info:hover:not(:disabled) { @apply bg-[var(--color-feedback-info-hover)]; }
-.mizu-outline-success:hover:not(:disabled) { @apply bg-[var(--color-feedback-success-subtle)]; }
-.mizu-outline-warning:hover:not(:disabled) { @apply bg-[var(--color-feedback-warning-subtle)]; }
-.mizu-outline-error:hover:not(:disabled) { @apply bg-[var(--color-feedback-error-subtle)]; }
-.mizu-outline-info:hover:not(:disabled) { @apply bg-[var(--color-feedback-info-subtle)]; }
+.mizu-primary:hover:not(:disabled) {
+  @apply bg-[var(--color-brand-primary-hover)];
+}
+.mizu-accent:hover:not(:disabled) {
+  @apply bg-[var(--color-brand-ycp-hover)];
+}
+.mizu-ghost:hover:not(:disabled) {
+  @apply text-[var(--color-brand-primary-hover)];
+}
+.mizu-outline:hover:not(:disabled) {
+  @apply bg-[var(--color-surface-subtle)];
+}
+.mizu-success:hover:not(:disabled) {
+  @apply bg-[var(--color-feedback-success-hover)];
+}
+.mizu-warning:hover:not(:disabled) {
+  @apply bg-[var(--color-feedback-warning-hover)];
+}
+.mizu-error:hover:not(:disabled) {
+  @apply bg-[var(--color-feedback-error-hover)];
+}
+.mizu-info:hover:not(:disabled) {
+  @apply bg-[var(--color-feedback-info-hover)];
+}
+.mizu-outline-success:hover:not(:disabled) {
+  @apply bg-[var(--color-feedback-success-subtle)];
+}
+.mizu-outline-warning:hover:not(:disabled) {
+  @apply bg-[var(--color-feedback-warning-subtle)];
+}
+.mizu-outline-error:hover:not(:disabled) {
+  @apply bg-[var(--color-feedback-error-subtle)];
+}
+.mizu-outline-info:hover:not(:disabled) {
+  @apply bg-[var(--color-feedback-info-subtle)];
+}
 
 /* Outline press inset shadow */
 .mizu-outline:active:not(:disabled),

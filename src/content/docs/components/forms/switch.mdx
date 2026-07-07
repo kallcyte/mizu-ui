@@ -3,7 +3,7 @@ title: Switch
 description: A toggle switch that represents boolean state with a sliding thumb.
 ---
 
-import SwitchDemo from '../../../../components/docs/SwitchDemo.vue';
+import SwitchDemo from "../../../../components/docs/SwitchDemo.vue";
 
 A switch is a binary input control that toggles between checked and unchecked states. Use it for settings, preferences, and other boolean options.
 
@@ -15,71 +15,71 @@ A switch is a binary input control that toggles between checked and unchecked st
 
 ### Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `modelValue` | `boolean` | `false` | v-model controlled state |
-| `disabled` | `boolean` | `false` | Disables the switch |
-| `required` | `boolean` | `false` | Required for form validation |
-| `name` | `string` | `undefined` | Form field name |
-| `value` | `string` | `undefined` | Form field value |
-| `label` | `string` | `undefined` | Visible label text |
-| `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | Controls track and thumb dimensions |
-| `trueValue` | `boolean \| string \| number` | `true` | Value emitted when checked |
-| `falseValue` | `boolean \| string \| number` | `false` | Value emitted when unchecked |
+| Prop         | Type                          | Default     | Description                         |
+| ------------ | ----------------------------- | ----------- | ----------------------------------- |
+| `modelValue` | `boolean`                     | `false`     | v-model controlled state            |
+| `disabled`   | `boolean`                     | `false`     | Disables the switch                 |
+| `required`   | `boolean`                     | `false`     | Required for form validation        |
+| `name`       | `string`                      | `undefined` | Form field name                     |
+| `value`      | `string`                      | `undefined` | Form field value                    |
+| `label`      | `string`                      | `undefined` | Visible label text                  |
+| `size`       | `'sm' \| 'md' \| 'lg'`        | `'md'`      | Controls track and thumb dimensions |
+| `trueValue`  | `boolean \| string \| number` | `true`      | Value emitted when checked          |
+| `falseValue` | `boolean \| string \| number` | `false`     | Value emitted when unchecked        |
 
 ### Events
 
-| Event | Payload | Description |
-|-------|---------|-------------|
+| Event               | Payload                       | Description                           |
+| ------------------- | ----------------------------- | ------------------------------------- |
 | `update:modelValue` | `boolean \| string \| number` | Emitted on toggle with resolved value |
 
 ## Theme
 
 ### CSS Custom Properties
 
-| Token | Value | Usage |
-|-------|-------|-------|
-| `--color-foreground-tertiary` | #9CA3AF / #4B5563 | Track off state |
-| `--color-brand-primary` | #0070F2 | Track on state |
-| `--color-brand-primary-hover` | #005AC2 | Track on hover |
-| `--color-surface-muted` | #F3F4F6 / #1E2030 | Track disabled off |
-| `--color-foreground-inverse` | #FFFFFF | Thumb color |
-| `--color-foreground-primary` | #1B1B1D / #F9FAFB | Label color |
-| `--color-brand-ycp` | #001C44 | Focus ring |
+| Token                         | Value             | Usage              |
+| ----------------------------- | ----------------- | ------------------ |
+| `--color-foreground-tertiary` | #9CA3AF / #4B5563 | Track off state    |
+| `--color-brand-primary`       | #0070F2           | Track on state     |
+| `--color-brand-primary-hover` | #005AC2           | Track on hover     |
+| `--color-surface-muted`       | #F3F4F6 / #1E2030 | Track disabled off |
+| `--color-foreground-inverse`  | #FFFFFF           | Thumb color        |
+| `--color-foreground-primary`  | #1B1B1D / #F9FAFB | Label color        |
+| `--color-brand-ycp`           | #001C44           | Focus ring         |
 
 ### Sizing
 
-| Size | Track Width | Track Height | Thumb Size | Match |
-|------|-------------|--------------|------------|-------|
-| SM | 36px | 20px | 16px | Button SM |
-| MD | 44px | 24px | 20px | Button MD |
-| LG | 52px | 28px | 24px | Button LG |
+| Size | Track Width | Track Height | Thumb Size | Match     |
+| ---- | ----------- | ------------ | ---------- | --------- |
+| SM   | 36px        | 20px         | 16px       | Button SM |
+| MD   | 44px        | 24px         | 20px       | Button MD |
+| LG   | 52px        | 28px         | 24px       | Button LG |
 
 ### Transitions
 
-| Property | Duration | Easing |
-|----------|----------|--------|
-| Track background | 200ms | ease-in-out |
-| Thumb transform | 200ms | ease-in-out |
+| Property         | Duration | Easing      |
+| ---------------- | -------- | ----------- |
+| Track background | 200ms    | ease-in-out |
+| Thumb transform  | 200ms    | ease-in-out |
 
 ### Accessibility
 
-| Criterion | Implementation |
-|-----------|----------------|
-| Role | Native `button` role via Reka UI SwitchRoot |
-| Label | Associated `<label>` element via `for`/`id` |
-| Keyboard | Toggle via Space or Enter |
-| Focus | Visible focus ring via `focus-visible` |
-| Disabled | `aria-disabled` attribute |
+| Criterion | Implementation                              |
+| --------- | ------------------------------------------- |
+| Role      | Native `button` role via Reka UI SwitchRoot |
+| Label     | Associated `<label>` element via `for`/`id` |
+| Keyboard  | Toggle via Space or Enter                   |
+| Focus     | Visible focus ring via `focus-visible`      |
+| Disabled  | `aria-disabled` attribute                   |
 
 ## Anatomy
 
 A switch consists of two parts:
 
-| Part | Required | Description |
-|------|----------|-------------|
-| Track | Yes | The background pill that contains the thumb |
-| Thumb | Yes | The circular handle that slides between on/off positions |
+| Part  | Required | Description                                              |
+| ----- | -------- | -------------------------------------------------------- |
+| Track | Yes      | The background pill that contains the thumb              |
+| Thumb | Yes      | The circular handle that slides between on/off positions |
 
 ## Implementation Notes
 

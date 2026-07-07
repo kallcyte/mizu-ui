@@ -22,11 +22,7 @@ const indicatorClasses = computed(() => {
 </script>
 
 <template>
-  <DropdownMenuItemIndicator
-    :class="indicatorClasses"
-    :as-child="asChild"
-    :as="as"
-  >
+  <DropdownMenuItemIndicator :class="indicatorClasses" :as-child="asChild" :as="as">
     <slot />
   </DropdownMenuItemIndicator>
 </template>

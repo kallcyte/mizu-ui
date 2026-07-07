@@ -15,9 +15,24 @@ interface EasingItem {
 const easings: EasingItem[] = [
   { name: "Default (ease-out)", cssValue: "ease-out", token: "var(--ease-default)", delay: 0 },
   { name: "Exit (ease-in)", cssValue: "ease-in", token: "var(--ease-exit)", delay: 80 },
-  { name: "Interaction (ease-in-out)", cssValue: "ease-in-out", token: "var(--ease-interaction)", delay: 160 },
-  { name: "Emphasized (out-back)", cssValue: "cubic-bezier(0.34, 1.56, 0.64, 1)", token: "var(--ease-emphasized)", delay: 240 },
-  { name: "Entrance (decelerated)", cssValue: "cubic-bezier(0.16, 1, 0.3, 1)", token: "var(--ease-entrance)", delay: 320 },
+  {
+    name: "Interaction (ease-in-out)",
+    cssValue: "ease-in-out",
+    token: "var(--ease-interaction)",
+    delay: 160,
+  },
+  {
+    name: "Emphasized (out-back)",
+    cssValue: "cubic-bezier(0.34, 1.56, 0.64, 1)",
+    token: "var(--ease-emphasized)",
+    delay: 240,
+  },
+  {
+    name: "Entrance (decelerated)",
+    cssValue: "cubic-bezier(0.16, 1, 0.3, 1)",
+    token: "var(--ease-entrance)",
+    delay: 320,
+  },
 ];
 
 function setRef(el: HTMLElement | null, i: number) {
@@ -43,18 +58,12 @@ function play() {
     const padding = 4; // 2px each side
     const maxX = track.clientWidth - dotW - padding;
 
-    el.animate(
-      [
-        { transform: "translateX(0)" },
-        { transform: `translateX(${maxX}px)` },
-      ],
-      {
-        duration: 1000,
-        delay: easing.delay,
-        easing: easing.cssValue,
-        fill: "forwards",
-      },
-    );
+    el.animate([{ transform: "translateX(0)" }, { transform: `translateX(${maxX}px)` }], {
+      duration: 1000,
+      delay: easing.delay,
+      easing: easing.cssValue,
+      fill: "forwards",
+    });
   });
 
   // Re-enable button after the slowest animation finishes
@@ -90,25 +99,18 @@ import { EASE_EMPHASIZED } from '@mizu/tokens';
       <h3>Easing Curves</h3>
       <CodeCollapsible :code="usageCode">
         <div class="easing-list">
-          <div
-            v-for="(easing, i) in easings"
-            :key="easing.name"
-            class="easing-row"
-          >
+          <div v-for="(easing, i) in easings" :key="easing.name" class="easing-row">
             <div class="easing-head">
               <strong class="easing-name">{{ easing.name }}</strong>
               <code class="easing-token">{{ easing.token }}</code>
               <code class="easing-value">{{ easing.cssValue }}</code>
             </div>
             <div class="easing-track">
-              <div
-                :ref="(el: any) => setRef(el, i)"
-                class="easing-dot"
-              />
+              <div :ref="(el: any) => setRef(el, i)" class="easing-dot" />
             </div>
           </div>
         </div>
-        <button class="play-button" @click="play" :disabled="isPlaying">
+        <button class="play-button" :disabled="isPlaying" @click="play">
           {{ isPlaying ? "Animating..." : "Play All" }}
         </button>
       </CodeCollapsible>
@@ -125,7 +127,9 @@ import { EASE_EMPHASIZED } from '@mizu/tokens';
   font-family: inherit;
 }
 
-.easing-examples :deep(*) { margin: 0; }
+.easing-examples :deep(*) {
+  margin: 0;
+}
 
 .example-section {
   all: revert;

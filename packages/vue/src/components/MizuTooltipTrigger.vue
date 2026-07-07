@@ -13,10 +13,7 @@ const props = withDefaults(defineProps<TooltipTriggerProps>(), {
 </script>
 
 <template>
-  <TooltipTrigger
-    :as-child="asChild"
-    :as="as"
-  >
+  <TooltipTrigger :as-child="asChild" :as="as">
     <slot />
   </TooltipTrigger>
 </template>

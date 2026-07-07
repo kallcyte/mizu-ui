@@ -22,11 +22,7 @@ const closeClasses = computed(() => {
 </script>
 
 <template>
-  <DatePickerClose
-    :class="closeClasses"
-    :as-child="asChild"
-    :as="as"
-  >
+  <DatePickerClose :class="closeClasses" :as-child="asChild" :as="as">
     <slot />
   </DatePickerClose>
 </template>

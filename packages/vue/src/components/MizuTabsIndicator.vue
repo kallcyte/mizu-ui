@@ -22,11 +22,7 @@ const indicatorClasses = computed(() => {
 </script>
 
 <template>
-  <TabsIndicator
-    :class="indicatorClasses"
-    :as-child="asChild"
-    :as="as"
-  >
+  <TabsIndicator :class="indicatorClasses" :as-child="asChild" :as="as">
     <slot />
   </TabsIndicator>
 </template>
@@ -38,7 +34,9 @@ const indicatorClasses = computed(() => {
   bottom: -1px;
   height: 2px;
   background-color: var(--color-brand-ycp);
-  transition: left 200ms ease, width 200ms ease;
+  transition:
+    left 200ms ease,
+    width 200ms ease;
 }
 
 .mizu-tabs__list[data-orientation="vertical"] .mizu-tabs__indicator {
@@ -47,6 +45,8 @@ const indicatorClasses = computed(() => {
   left: -1px;
   width: 2px;
   height: auto;
-  transition: top 200ms ease, height 200ms ease;
+  transition:
+    top 200ms ease,
+    height 200ms ease;
 }
 </style>

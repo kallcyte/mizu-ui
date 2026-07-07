@@ -22,11 +22,7 @@ const portalClasses = computed(() => {
 </script>
 
 <template>
-  <ComboboxPortal
-    :class="portalClasses"
-    :to="to"
-    :disabled="disabled"
-  >
+  <ComboboxPortal :class="portalClasses" :to="to" :disabled="disabled">
     <slot />
   </ComboboxPortal>
 </template>

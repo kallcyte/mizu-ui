@@ -1,5 +1,12 @@
 <script setup lang="ts">
-import { MizuTooltipProvider, MizuTooltipRoot, MizuTooltipTrigger, MizuTooltipContent, MizuButton, MizuTag } from "@mizu/vue";
+import {
+  MizuTooltipProvider,
+  MizuTooltipRoot,
+  MizuTooltipTrigger,
+  MizuTooltipContent,
+  MizuButton,
+  MizuTag,
+} from "@mizu/vue";
 import CodeCollapsible from "./CodeCollapsible.vue";
 
 const basicCode = `<MizuTooltipProvider>
@@ -409,7 +416,8 @@ const variantsCode = `<MizuTooltipProvider>
       <h3>On Text Link</h3>
       <CodeCollapsible :code="textLinkCode">
         <p class="demo-text">
-          Read the <MizuTooltipProvider>
+          Read the
+          <MizuTooltipProvider>
             <MizuTooltipRoot>
               <MizuTooltipTrigger as-child>
                 <a href="#" class="demo-link">documentation</a>
@@ -418,7 +426,8 @@ const variantsCode = `<MizuTooltipProvider>
                 <span>View the full API reference guide</span>
               </MizuTooltipContent>
             </MizuTooltipRoot>
-          </MizuTooltipProvider> for more details.
+          </MizuTooltipProvider>
+          for more details.
         </p>
       </CodeCollapsible>
     </section>
@@ -427,7 +436,8 @@ const variantsCode = `<MizuTooltipProvider>
       <h3>Abbreviation</h3>
       <CodeCollapsible :code="abbreviationCode">
         <p class="demo-text">
-          The <MizuTooltipProvider>
+          The
+          <MizuTooltipProvider>
             <MizuTooltipRoot>
               <MizuTooltipTrigger as-child>
                 <abbr href="#" class="demo-abbr">ERP</abbr>
@@ -436,7 +446,8 @@ const variantsCode = `<MizuTooltipProvider>
                 <span>Enterprise Resource Planning</span>
               </MizuTooltipContent>
             </MizuTooltipRoot>
-          </MizuTooltipProvider> system manages core business processes.
+          </MizuTooltipProvider>
+          system manages core business processes.
         </p>
       </CodeCollapsible>
     </section>
@@ -506,9 +517,20 @@ const variantsCode = `<MizuTooltipProvider>
           <MizuTooltipRoot>
             <MizuTooltipTrigger>
               <MizuButton class="w-max" variant="secondary" size="sm">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M12 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
-                  <path d="M18.375 2.625a1 1 0 0 1 3 3l-9.013 9.014a2 2 0 0 1-.853.505l-2.873.84a.5.5 0 0 1-.62-.62l.84-2.873a2 2 0 0 1 .506-.852z"/>
+                <svg
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M12 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" />
+                  <path
+                    d="M18.375 2.625a1 1 0 0 1 3 3l-9.013 9.014a2 2 0 0 1-.853.505l-2.873.84a.5.5 0 0 1-.62-.62l.84-2.873a2 2 0 0 1 .506-.852z"
+                  />
                 </svg>
               </MizuButton>
             </MizuTooltipTrigger>
@@ -529,10 +551,19 @@ const variantsCode = `<MizuTooltipProvider>
             <MizuTooltipRoot>
               <MizuTooltipTrigger as-child>
                 <span class="info-icon">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <circle cx="12" cy="12" r="10"/>
-                    <path d="M12 16v-4"/>
-                    <path d="M12 8h.01"/>
+                  <svg
+                    width="14"
+                    height="14"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <circle cx="12" cy="12" r="10" />
+                    <path d="M12 16v-4" />
+                    <path d="M12 8h.01" />
                   </svg>
                 </span>
               </MizuTooltipTrigger>
@@ -729,10 +760,19 @@ const variantsCode = `<MizuTooltipProvider>
           <MizuTooltipRoot>
             <MizuTooltipTrigger as-child>
               <button class="icon-trigger" aria-label="Info">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <circle cx="12" cy="12" r="10"/>
-                  <path d="M12 16v-4"/>
-                  <path d="M12 8h.01"/>
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <circle cx="12" cy="12" r="10" />
+                  <path d="M12 16v-4" />
+                  <path d="M12 8h.01" />
                 </svg>
               </button>
             </MizuTooltipTrigger>
@@ -752,9 +792,11 @@ const variantsCode = `<MizuTooltipProvider>
             <MizuTooltipTrigger>
               <MizuButton class="w-max" variant="secondary" size="sm">Order details</MizuButton>
             </MizuTooltipTrigger>
-            <MizuTooltipContent style="padding: 8px 12px;">
-              <div style="font-weight: 600; font-size: 13px; line-height: 1.5;">Order #12345</div>
-              <div style="font-size: 11px; opacity: 0.75; line-height: 1.4;">Created on Jun 5, 2026 at 2:30 PM</div>
+            <MizuTooltipContent style="padding: 8px 12px">
+              <div style="font-weight: 600; font-size: 13px; line-height: 1.5">Order #12345</div>
+              <div style="font-size: 11px; opacity: 0.75; line-height: 1.4">
+                Created on Jun 5, 2026 at 2:30 PM
+              </div>
             </MizuTooltipContent>
           </MizuTooltipRoot>
         </MizuTooltipProvider>
@@ -769,8 +811,11 @@ const variantsCode = `<MizuTooltipProvider>
             <MizuTooltipTrigger>
               <MizuButton class="w-max" variant="secondary" size="sm">Hover me</MizuButton>
             </MizuTooltipTrigger>
-            <MizuTooltipContent style="max-width: 200px;">
-              <span>This tooltip has a longer message that wraps to multiple lines when there is not enough space.</span>
+            <MizuTooltipContent style="max-width: 200px">
+              <span
+                >This tooltip has a longer message that wraps to multiple lines when there is not
+                enough space.</span
+              >
             </MizuTooltipContent>
           </MizuTooltipRoot>
         </MizuTooltipProvider>
@@ -780,13 +825,13 @@ const variantsCode = `<MizuTooltipProvider>
     <section class="example-section">
       <h3>Colored Tooltip</h3>
       <CodeCollapsible :code="coloredTooltipCode">
-        <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+        <div style="display: flex; gap: 8px; flex-wrap: wrap">
           <MizuTooltipProvider>
             <MizuTooltipRoot>
               <MizuTooltipTrigger>
                 <MizuButton class="w-max" variant="secondary" size="sm">Info</MizuButton>
               </MizuTooltipTrigger>
-              <MizuTooltipContent style="--color-foreground-primary: #2563eb;">
+              <MizuTooltipContent style="--color-foreground-primary: #2563eb">
                 <span>This is an informational message</span>
               </MizuTooltipContent>
             </MizuTooltipRoot>
@@ -797,7 +842,7 @@ const variantsCode = `<MizuTooltipProvider>
               <MizuTooltipTrigger>
                 <MizuButton class="w-max" variant="secondary" size="sm">Warning</MizuButton>
               </MizuTooltipTrigger>
-              <MizuTooltipContent style="--color-foreground-primary: #92400e;">
+              <MizuTooltipContent style="--color-foreground-primary: #92400e">
                 <span>This is a warning message</span>
               </MizuTooltipContent>
             </MizuTooltipRoot>
@@ -808,20 +853,22 @@ const variantsCode = `<MizuTooltipProvider>
               <MizuTooltipTrigger>
                 <MizuButton class="w-max" variant="secondary" size="sm">Error</MizuButton>
               </MizuTooltipTrigger>
-              <MizuTooltipContent style="--color-foreground-primary: #dc2626;">
+              <MizuTooltipContent style="--color-foreground-primary: #dc2626">
                 <span>This is an error message</span>
               </MizuTooltipContent>
             </MizuTooltipRoot>
           </MizuTooltipProvider>
         </div>
-        <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-top: 12px;">
-          <span style="font-size: 12px; color: var(--sl-color-text); width: 100%;">Dark colored</span>
+        <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-top: 12px">
+          <span style="font-size: 12px; color: var(--sl-color-text); width: 100%"
+            >Dark colored</span
+          >
           <MizuTooltipProvider>
             <MizuTooltipRoot>
               <MizuTooltipTrigger>
                 <MizuButton class="w-max" variant="secondary" size="sm">Info</MizuButton>
               </MizuTooltipTrigger>
-              <MizuTooltipContent variant="dark" style="--color-foreground-primary: #2563eb;">
+              <MizuTooltipContent variant="dark" style="--color-foreground-primary: #2563eb">
                 <span>This is an informational message</span>
               </MizuTooltipContent>
             </MizuTooltipRoot>
@@ -832,7 +879,7 @@ const variantsCode = `<MizuTooltipProvider>
               <MizuTooltipTrigger>
                 <MizuButton class="w-max" variant="secondary" size="sm">Warning</MizuButton>
               </MizuTooltipTrigger>
-              <MizuTooltipContent variant="dark" style="--color-foreground-primary: #d97706;">
+              <MizuTooltipContent variant="dark" style="--color-foreground-primary: #d97706">
                 <span>This is a warning message</span>
               </MizuTooltipContent>
             </MizuTooltipRoot>
@@ -843,7 +890,7 @@ const variantsCode = `<MizuTooltipProvider>
               <MizuTooltipTrigger>
                 <MizuButton class="w-max" variant="secondary" size="sm">Error</MizuButton>
               </MizuTooltipTrigger>
-              <MizuTooltipContent variant="dark" style="--color-foreground-primary: #dc2626;">
+              <MizuTooltipContent variant="dark" style="--color-foreground-primary: #dc2626">
                 <span>This is an error message</span>
               </MizuTooltipContent>
             </MizuTooltipRoot>
@@ -861,9 +908,18 @@ const variantsCode = `<MizuTooltipProvider>
               <MizuButton class="w-max" variant="secondary" size="sm">Save</MizuButton>
             </MizuTooltipTrigger>
             <MizuTooltipContent>
-              <span style="display: flex; align-items: center; gap: 6px;">
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M20 6 9 17l-5-5"/>
+              <span style="display: flex; align-items: center; gap: 6px">
+                <svg
+                  width="12"
+                  height="12"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M20 6 9 17l-5-5" />
                 </svg>
                 Changes saved successfully
               </span>
@@ -876,7 +932,7 @@ const variantsCode = `<MizuTooltipProvider>
     <section class="example-section">
       <h3>Variants</h3>
       <CodeCollapsible :code="variantsCode">
-        <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+        <div style="display: flex; gap: 8px; flex-wrap: wrap">
           <MizuTooltipProvider>
             <MizuTooltipRoot>
               <MizuTooltipTrigger>

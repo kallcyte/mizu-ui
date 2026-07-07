@@ -9,89 +9,89 @@ Mizu uses design tokens as the single source of truth for all visual design deci
 
 Mizu includes 14 token categories:
 
-| Category | Description | Examples |
-|----------|-------------|----------|
-| **color** | Brand, surface, foreground, feedback colors | `brand-primary`, `surface-base`, `error-subtle` |
-| **fontFamily** | Typeface definitions | `sans`, `mono`, `serif` |
-| **fontSize** | Type scale values | `display`, `h1`, `body`, `caption` |
-| **fontWeight** | Font weight values | `regular`, `medium`, `semibold`, `bold` |
-| **lineHeight** | Line height scale | `display`, `h1`, `body`, `tight` |
-| **letterSpacing** | Tracking values | `tight`, `snug`, `wide` |
-| **spacing** | Spatial values | `xs`, `sm`, `md`, `lg`, `xl`, `xxl` |
-| **borderRadius** | Corner radius values | `tight`, `default`, `card`, `full` |
-| **shadow** | Elevation shadows | `ring`, `whisper` |
-| **sizing** | Component dimensions | `icon-inline`, `card-visual` |
-| **zIndex** | Stack order values | `nav` |
-| **duration** | Animation timing | `fast`, `normal` |
-| **ease** | Animation easing curves | `default`, `emphasized`, `entrance` |
-| **breakpoint** | Responsive breakpoints | `sm`, `md`, `lg`, `xl` |
+| Category          | Description                                 | Examples                                        |
+| ----------------- | ------------------------------------------- | ----------------------------------------------- |
+| **color**         | Brand, surface, foreground, feedback colors | `brand-primary`, `surface-base`, `error-subtle` |
+| **fontFamily**    | Typeface definitions                        | `sans`, `mono`, `serif`                         |
+| **fontSize**      | Type scale values                           | `display`, `h1`, `body`, `caption`              |
+| **fontWeight**    | Font weight values                          | `regular`, `medium`, `semibold`, `bold`         |
+| **lineHeight**    | Line height scale                           | `display`, `h1`, `body`, `tight`                |
+| **letterSpacing** | Tracking values                             | `tight`, `snug`, `wide`                         |
+| **spacing**       | Spatial values                              | `xs`, `sm`, `md`, `lg`, `xl`, `xxl`             |
+| **borderRadius**  | Corner radius values                        | `tight`, `default`, `card`, `full`              |
+| **shadow**        | Elevation shadows                           | `ring`, `whisper`                               |
+| **sizing**        | Component dimensions                        | `icon-inline`, `card-visual`                    |
+| **zIndex**        | Stack order values                          | `nav`                                           |
+| **duration**      | Animation timing                            | `fast`, `normal`                                |
+| **ease**          | Animation easing curves                     | `default`, `emphasized`, `entrance`             |
+| **breakpoint**    | Responsive breakpoints                      | `sm`, `md`, `lg`, `xl`                          |
 
 ## Color Tokens
 
 ### Brand Colors
 
-| Token | Value | Usage |
-|-------|-------|-------|
-| `brand-primary` | #0070F2 | Primary brand color |
-| `brand-primary-hover` | #005AC2 | Primary hover state |
-| `brand-primary-focus` | #338DF5 | Primary focus state |
-| `brand-primary-subtle` | #CCE2FC | Light primary background |
-| `brand-ycp` | #001C44 | Interactive accent |
-| `brand-ycp-hover` | #001636 | Accent hover state |
-| `brand-ycp-focus` | #334969 | Accent focus state |
-| `brand-ycp-subtle` | #CCD2DA | Light accent background |
-| `brand-secondary` | #1524A9 | Supporting brand blue |
-| `brand-secondary-hover` | #101C82 | Secondary hover state |
-| `brand-secondary-focus` | #0C1561 | Secondary focus state |
-| `brand-secondary-subtle` | #E1E7FF | Light secondary background |
-| `brand-nexus` | #4521D8 | Nexus purple for premium features |
-| `brand-nexus-hover` | #371AAD | Nexus hover state |
-| `brand-nexus-focus` | #6A4DE0 | Nexus focus state |
-| `brand-nexus-subtle` | #DAD3F7 | Light nexus background |
+| Token                    | Value   | Usage                             |
+| ------------------------ | ------- | --------------------------------- |
+| `brand-primary`          | #0070F2 | Primary brand color               |
+| `brand-primary-hover`    | #005AC2 | Primary hover state               |
+| `brand-primary-focus`    | #338DF5 | Primary focus state               |
+| `brand-primary-subtle`   | #CCE2FC | Light primary background          |
+| `brand-ycp`              | #001C44 | Interactive accent                |
+| `brand-ycp-hover`        | #001636 | Accent hover state                |
+| `brand-ycp-focus`        | #334969 | Accent focus state                |
+| `brand-ycp-subtle`       | #CCD2DA | Light accent background           |
+| `brand-secondary`        | #1524A9 | Supporting brand blue             |
+| `brand-secondary-hover`  | #101C82 | Secondary hover state             |
+| `brand-secondary-focus`  | #0C1561 | Secondary focus state             |
+| `brand-secondary-subtle` | #E1E7FF | Light secondary background        |
+| `brand-nexus`            | #4521D8 | Nexus purple for premium features |
+| `brand-nexus-hover`      | #371AAD | Nexus hover state                 |
+| `brand-nexus-focus`      | #6A4DE0 | Nexus focus state                 |
+| `brand-nexus-subtle`     | #DAD3F7 | Light nexus background            |
 
 ### Surface Colors
 
-| Token | Value | Usage |
-|-------|-------|-------|
-| `surface-base` | #FFFFFF | Default background |
-| `surface-subtle` | #F9FAFB | Secondary surface |
-| `surface-muted` | #F3F4F6 | Tertiary surface |
+| Token            | Value   | Usage              |
+| ---------------- | ------- | ------------------ |
+| `surface-base`   | #FFFFFF | Default background |
+| `surface-subtle` | #F9FAFB | Secondary surface  |
+| `surface-muted`  | #F3F4F6 | Tertiary surface   |
 
 ### Foreground Colors
 
-| Token | Value | Usage |
-|-------|-------|-------|
-| `foreground-primary` | #1B1B1D | High-emphasis text |
-| `foreground-secondary` | #4B5563 | Supporting text |
-| `foreground-tertiary` | #9CA3AF | Low-emphasis text |
-| `foreground-inverse` | #FFFFFF | Text on dark backgrounds |
+| Token                  | Value   | Usage                    |
+| ---------------------- | ------- | ------------------------ |
+| `foreground-primary`   | #1B1B1D | High-emphasis text       |
+| `foreground-secondary` | #4B5563 | Supporting text          |
+| `foreground-tertiary`  | #9CA3AF | Low-emphasis text        |
+| `foreground-inverse`   | #FFFFFF | Text on dark backgrounds |
 
 ### Feedback Colors
 
-| Token | Base | Hover | Focus | Subtle |
-|-------|------|-------|-------|--------|
+| Token       | Base    | Hover   | Focus   | Subtle  |
+| ----------- | ------- | ------- | ------- | ------- |
 | **success** | #15803D | #166534 | #14532D | #DCFCE7 |
-| **error** | #DC2626 | #B91C1C | #991B1B | #FEF2F2 |
+| **error**   | #DC2626 | #B91C1C | #991B1B | #FEF2F2 |
 | **warning** | #D97706 | #B45309 | #92400E | #FFFBEB |
-| **info** | #0284C7 | #0369A1 | #075985 | #F0F9FF |
+| **info**    | #0284C7 | #0369A1 | #075985 | #F0F9FF |
 
 ## Easing Tokens
 
 Easing tokens define the motion curves used throughout the design system. Each token maps to a CSS `animation-timing-function` or `transition-timing-function` value, providing consistent motion language across components.
 
-| Token | Value | CSS Variable | Usage |
-|-------|-------|-------------|-------|
-| `ease/default` | `ease-out` | `--ease-default` | Standard decelerated entrance for overlays, dialogs, and panels |
-| `ease/exit` | `ease-in` | `--ease-exit` | Accelerated exit for notifications and closing elements |
-| `ease/interaction` | `ease-in-out` | `--ease-interaction` | Hover, focus, and form interaction transitions |
-| `ease/emphasized` | `cubic-bezier(0.34, 1.56, 0.64, 1)` | `--ease-emphasized` | Expressive spring-like overshoot for accordion and playful entrances |
-| `ease/entrance` | `cubic-bezier(0.16, 1, 0.3, 1)` | `--ease-entrance` | Decelerated entrance for popover and tooltip reveals |
+| Token              | Value                               | CSS Variable         | Usage                                                                |
+| ------------------ | ----------------------------------- | -------------------- | -------------------------------------------------------------------- |
+| `ease/default`     | `ease-out`                          | `--ease-default`     | Standard decelerated entrance for overlays, dialogs, and panels      |
+| `ease/exit`        | `ease-in`                           | `--ease-exit`        | Accelerated exit for notifications and closing elements              |
+| `ease/interaction` | `ease-in-out`                       | `--ease-interaction` | Hover, focus, and form interaction transitions                       |
+| `ease/emphasized`  | `cubic-bezier(0.34, 1.56, 0.64, 1)` | `--ease-emphasized`  | Expressive spring-like overshoot for accordion and playful entrances |
+| `ease/entrance`    | `cubic-bezier(0.16, 1, 0.3, 1)`     | `--ease-entrance`    | Decelerated entrance for popover and tooltip reveals                 |
 
 ### Visual Demo
 
 Compare how each easing curve affects motion. Press **Play All** to see the difference.
 
-import EasingDemo from '../../../components/docs/EasingDemo.vue';
+import EasingDemo from "../../../components/docs/EasingDemo.vue";
 
 <EasingDemo client:only="vue" />
 
@@ -127,15 +127,13 @@ Easing tokens are available as `@theme` variables in Tailwind:
 ```
 
 ```html
-<div class="transition-all duration-fast ease-emphasized">
-  Content
-</div>
+<div class="transition-all duration-fast ease-emphasized">Content</div>
 ```
 
 ### Usage in JavaScript/TypeScript
 
 ```typescript
-import { EASE_EMPHASIZED, EASE_ENTRANCE } from '@mizu/tokens';
+import { EASE_EMPHASIZED, EASE_ENTRANCE } from "@mizu/tokens";
 
 // Use in a animation library or inline styles
 element.style.animationTimingFunction = EASE_EMPHASIZED;
@@ -159,28 +157,22 @@ element.style.animationTimingFunction = EASE_EMPHASIZED;
 Mizu tokens are mapped to Tailwind v4 utility classes:
 
 ```html
-<div class="bg-surface-base text-foreground-primary rounded-default p-md">
-  Content
-</div>
+<div class="bg-surface-base text-foreground-primary rounded-default p-md">Content</div>
 ```
 
 ### In JavaScript/TypeScript
 
 ```typescript
-import { 
-  COLOR_BRAND_PRIMARY,
-  SPACING_MD,
-  RADIUS_DEFAULT 
-} from '@mizu/tokens';
+import { COLOR_BRAND_PRIMARY, SPACING_MD, RADIUS_DEFAULT } from "@mizu/tokens";
 ```
 
 ## Naming Convention
 
 Tokens follow a consistent naming pattern:
 
-| Type | Pattern | Example |
-|------|---------|---------|
-| Surface colors | `--color-surface-{variant}` | `bg-surface-base` |
+| Type              | Pattern                        | Example                   |
+| ----------------- | ------------------------------ | ------------------------- |
+| Surface colors    | `--color-surface-{variant}`    | `bg-surface-base`         |
 | Foreground colors | `--color-foreground-{variant}` | `text-foreground-primary` |
-| Brand colors | `--color-brand-{variant}` | `bg-brand-primary` |
-| Feedback colors | `--color-{type}-{variant}` | `bg-error-subtle` |
+| Brand colors      | `--color-brand-{variant}`      | `bg-brand-primary`        |
+| Feedback colors   | `--color-{type}-{variant}`     | `bg-error-subtle`         |

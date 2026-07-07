@@ -3,7 +3,7 @@ title: Kbd
 description: Display keyboard shortcuts and key combinations.
 ---
 
-import KbdDemo from '../../../../components/docs/KbdDemo.vue';
+import KbdDemo from "../../../../components/docs/KbdDemo.vue";
 
 The Kbd component displays keyboard keys and shortcuts in a visually distinct style. It renders as a `<kbd>` element for semantic correctness.
 
@@ -30,36 +30,36 @@ The Kbd component displays keyboard keys and shortcuts in a visually distinct st
 
 ### Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `keys` | `string \| string[]` | — | Key or keys to display |
-| `size` | `'sm' \| 'md'` | `'md'` | Size |
+| Prop   | Type                 | Default | Description            |
+| ------ | -------------------- | ------- | ---------------------- |
+| `keys` | `string \| string[]` | —       | Key or keys to display |
+| `size` | `'sm' \| 'md'`       | `'md'`  | Size                   |
 
 ## Theme
 
 ### CSS Custom Properties
 
-| Token | Default | Description |
-|-------|---------|-------------|
-| `--color-surface-muted` | #F3F4F6 | Background |
-| `--color-foreground-primary` | #1B1B1D | Text color |
-| `--color-surface-base` | #FFFFFF | Border color |
+| Token                        | Default | Description  |
+| ---------------------------- | ------- | ------------ |
+| `--color-surface-muted`      | #F3F4F6 | Background   |
+| `--color-foreground-primary` | #1B1B1D | Text color   |
+| `--color-surface-base`       | #FFFFFF | Border color |
 
 ### Sizing
 
-| Size | Height | Padding | Font Size | Border Radius |
-|------|--------|---------|-----------|---------------|
-| **SM** | 20px | 0 4px | 11px | 4px |
-| **MD** | 24px | 0 6px | 12px | 4px |
+| Size   | Height | Padding | Font Size | Border Radius |
+| ------ | ------ | ------- | --------- | ------------- |
+| **SM** | 20px   | 0 4px   | 11px      | 4px           |
+| **MD** | 24px   | 0 6px   | 12px      | 4px           |
 
 ## Anatomy
 
 A kbd consists of one or more key elements:
 
-| Part | Required | Description |
-|------|----------|-------------|
-| Key | Yes | Individual keyboard key |
-| Separator | No | Plus sign between multiple keys |
+| Part      | Required | Description                     |
+| --------- | -------- | ------------------------------- |
+| Key       | Yes      | Individual keyboard key         |
+| Separator | No       | Plus sign between multiple keys |
 
 ## Implementation Notes
 

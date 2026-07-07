@@ -21,11 +21,16 @@ const dividerClasses = computed(() => {
 </script>
 
 <template>
-  <div v-if="orientation === 'vertical'" role="separator" :class="dividerClasses" :aria-orientation="orientation" />
+  <div
+    v-if="orientation === 'vertical'"
+    role="separator"
+    :class="dividerClasses"
+    :aria-orientation="orientation"
+  />
   <div v-else-if="label" :class="dividerClasses" role="separator">
     <span class="mizu-divider__label">{{ label }}</span>
   </div>
-  <hr v-else :class="dividerClasses" role="separator" :aria-label="label">
+  <hr v-else :class="dividerClasses" role="separator" :aria-label="label" />
 </template>
 
 <style>

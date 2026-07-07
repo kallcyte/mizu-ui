@@ -3,7 +3,7 @@ title: Combobox
 description: Searchable list input with text filtering and single/multi selection.
 ---
 
-import ComboboxDemo from '../../../../components/docs/ComboboxDemo.vue';
+import ComboboxDemo from "../../../../components/docs/ComboboxDemo.vue";
 
 A Combobox combines a text input with a dropdown list, letting users filter and select from a set of options. It supports single and multiple selection, groups, labels, and custom filtering.
 
@@ -15,91 +15,91 @@ A Combobox combines a text input with a dropdown list, letting users filter and 
 
 ### ComboboxRoot Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `modelValue` | `AcceptableValue \| AcceptableValue[]` | `undefined` | Selected value(s) |
-| `multiple` | `boolean` | `false` | Enable multi-select |
-| `open` | `boolean` | `undefined` | Controlled open state |
-| `disabled` | `boolean` | `false` | Disable the combobox |
-| `ignoreFilter` | `boolean` | `false` | Disable built-in filtering |
+| Prop           | Type                                   | Default     | Description                |
+| -------------- | -------------------------------------- | ----------- | -------------------------- |
+| `modelValue`   | `AcceptableValue \| AcceptableValue[]` | `undefined` | Selected value(s)          |
+| `multiple`     | `boolean`                              | `false`     | Enable multi-select        |
+| `open`         | `boolean`                              | `undefined` | Controlled open state      |
+| `disabled`     | `boolean`                              | `false`     | Disable the combobox       |
+| `ignoreFilter` | `boolean`                              | `false`     | Disable built-in filtering |
 
 ### ComboboxRoot Events
 
-| Event | Payload | Description |
-|-------|---------|-------------|
-| `update:modelValue` | `AcceptableValue \| AcceptableValue[] \| undefined` | Emitted on selection change |
-| `update:open` | `boolean` | Emitted when open state changes |
+| Event               | Payload                                             | Description                     |
+| ------------------- | --------------------------------------------------- | ------------------------------- |
+| `update:modelValue` | `AcceptableValue \| AcceptableValue[] \| undefined` | Emitted on selection change     |
+| `update:open`       | `boolean`                                           | Emitted when open state changes |
 
 ### ComboboxInput Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `size` | `"sm" \| "md" \| "lg"` | `"md"` | Input font-size and padding (matches Input sizing) |
-| `displayValue` | `(item: unknown) => string` | `undefined` | Maps value to display text |
-| `placeholder` | `string` | `undefined` | Input placeholder |
-| `modelValue` | `string` | `undefined` | Search term |
+| Prop           | Type                        | Default     | Description                                        |
+| -------------- | --------------------------- | ----------- | -------------------------------------------------- |
+| `size`         | `"sm" \| "md" \| "lg"`      | `"md"`      | Input font-size and padding (matches Input sizing) |
+| `displayValue` | `(item: unknown) => string` | `undefined` | Maps value to display text                         |
+| `placeholder`  | `string`                    | `undefined` | Input placeholder                                  |
+| `modelValue`   | `string`                    | `undefined` | Search term                                        |
 
 ### ComboboxAnchor Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `size` | `"sm" \| "md" \| "lg"` | `"md"` | Anchor height and border-radius (matches Input sizing) |
-| `error` | `boolean` | `false` | Show error state (red border and focus ring) |
-| `disabled` | `boolean` | `false` | Disabled state (muted background) |
-| `helperText` | `string` | `undefined` | Helper text displayed below the anchor |
+| Prop         | Type                   | Default     | Description                                            |
+| ------------ | ---------------------- | ----------- | ------------------------------------------------------ |
+| `size`       | `"sm" \| "md" \| "lg"` | `"md"`      | Anchor height and border-radius (matches Input sizing) |
+| `error`      | `boolean`              | `false`     | Show error state (red border and focus ring)           |
+| `disabled`   | `boolean`              | `false`     | Disabled state (muted background)                      |
+| `helperText` | `string`               | `undefined` | Helper text displayed below the anchor                 |
 
 ### ComboboxItem Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `value` | `AcceptableValue` | — | Item value (required) |
-| `disabled` | `boolean` | `false` | Disable the item |
+| Prop       | Type              | Default | Description           |
+| ---------- | ----------------- | ------- | --------------------- |
+| `value`    | `AcceptableValue` | —       | Item value (required) |
+| `disabled` | `boolean`         | `false` | Disable the item      |
 
 ### ComboboxItem Events
 
-| Event | Payload | Description |
-|-------|---------|-------------|
+| Event    | Payload | Description               |
+| -------- | ------- | ------------------------- |
 | `select` | `Event` | Emitted on item selection |
 
 ### ComboboxContent Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `position` | `"popper" \| "inline"` | `"inline"` | Positioning mode |
-| `side` | `"top" \| "bottom" \| "left" \| "right"` | `"bottom"` | Preferred side (popper) |
-| `sideOffset` | `number` | `4` | Offset from trigger (popper) |
-| `align` | `"start" \| "center" \| "end"` | `"start"` | Alignment (popper) |
+| Prop         | Type                                     | Default    | Description                  |
+| ------------ | ---------------------------------------- | ---------- | ---------------------------- |
+| `position`   | `"popper" \| "inline"`                   | `"inline"` | Positioning mode             |
+| `side`       | `"top" \| "bottom" \| "left" \| "right"` | `"bottom"` | Preferred side (popper)      |
+| `sideOffset` | `number`                                 | `4`        | Offset from trigger (popper) |
+| `align`      | `"start" \| "center" \| "end"`           | `"start"`  | Alignment (popper)           |
 
 ## Theme
 
 ### Transitions
 
-| Property | Duration | Easing |
-|----------|----------|--------|
-| Content open animation | 150ms | ease-out |
-| Content close animation | 100ms | ease-in |
+| Property                | Duration | Easing   |
+| ----------------------- | -------- | -------- |
+| Content open animation  | 150ms    | ease-out |
+| Content close animation | 100ms    | ease-in  |
 
 ## Anatomy
 
 A Combobox consists of up to 15 parts:
 
-| Part | Required | Description |
-|------|----------|-------------|
-| ComboboxRoot | Yes | Manages value, open state, filtering |
-| ComboboxAnchor | No | Wraps input + trigger + cancel |
-| ComboboxInput | Yes | Text input for searching/display |
-| ComboboxTrigger | No | Button to toggle the dropdown |
-| ComboboxCancel | No | Button to clear the search term |
-| ComboboxPortal | No | Teleports content to `body` |
-| ComboboxContent | Yes | The dropdown panel |
-| ComboboxViewport | No | Scrollable viewport for items |
-| ComboboxEmpty | No | Shown when no items match |
-| ComboboxItem | Yes | Selectable option |
-| ComboboxItemIndicator | No | Checkmark when item is selected |
-| ComboboxGroup | No | Groups items with a label |
-| ComboboxLabel | No | Group heading |
-| ComboboxSeparator | No | Visual divider |
-| ComboboxArrow | No | Optional arrow (popper mode) |
+| Part                  | Required | Description                          |
+| --------------------- | -------- | ------------------------------------ |
+| ComboboxRoot          | Yes      | Manages value, open state, filtering |
+| ComboboxAnchor        | No       | Wraps input + trigger + cancel       |
+| ComboboxInput         | Yes      | Text input for searching/display     |
+| ComboboxTrigger       | No       | Button to toggle the dropdown        |
+| ComboboxCancel        | No       | Button to clear the search term      |
+| ComboboxPortal        | No       | Teleports content to `body`          |
+| ComboboxContent       | Yes      | The dropdown panel                   |
+| ComboboxViewport      | No       | Scrollable viewport for items        |
+| ComboboxEmpty         | No       | Shown when no items match            |
+| ComboboxItem          | Yes      | Selectable option                    |
+| ComboboxItemIndicator | No       | Checkmark when item is selected      |
+| ComboboxGroup         | No       | Groups items with a label            |
+| ComboboxLabel         | No       | Group heading                        |
+| ComboboxSeparator     | No       | Visual divider                       |
+| ComboboxArrow         | No       | Optional arrow (popper mode)         |
 
 ## Composition
 

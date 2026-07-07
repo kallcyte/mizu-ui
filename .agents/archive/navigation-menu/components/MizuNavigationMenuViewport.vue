@@ -35,15 +35,22 @@ const viewportClasses = computed(() => {
   width: var(--reka-navigation-menu-viewport-width);
   height: var(--reka-navigation-menu-viewport-height);
   font-family: inherit;
-  transition: width, height, 250ms ease;
+  transition:
+    width,
+    height,
+    250ms ease;
   overflow: hidden;
   border-radius: 6px;
   background: var(--color-surface-base, white);
   border: 1px solid var(--color-surface-muted, #e0e0e0);
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+  box-shadow:
+    0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -2px rgba(0, 0, 0, 0.1);
 }
 
 [data-theme="dark"] .NavigationMenuViewport {
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -2px rgba(0, 0, 0, 0.2);
+  box-shadow:
+    0 4px 6px -1px rgba(0, 0, 0, 0.3),
+    0 2px 4px -2px rgba(0, 0, 0, 0.2);
 }
 </style>

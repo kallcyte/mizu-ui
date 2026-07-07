@@ -3,7 +3,7 @@ title: Badge
 description: A compact count or status indicator for notifications, statuses, and inline labels.
 ---
 
-import BadgeDemo from '../../../../components/docs/BadgeDemo.vue';
+import BadgeDemo from "../../../../components/docs/BadgeDemo.vue";
 
 A badge is a small, compact indicator used to display counts, statuses, or short labels. It can render as a dot for presence indicators, a number for notification counts, or inline text for status labels. Badges are typically positioned relative to another element (such as an avatar or button) using the `position` prop.
 
@@ -27,7 +27,8 @@ A badge is a small, compact indicator used to display counts, statuses, or short
 <MizuBadge value="New" variant="accent" />
 
 <!-- Custom max overflow -->
-<MizuBadge :count="1500" :max="999" />  <!-- 999+ -->
+<MizuBadge :count="1500" :max="999" />
+<!-- 999+ -->
 
 <!-- Show zero -->
 <MizuBadge :count="0" show-zero />
@@ -40,21 +41,21 @@ A badge is a small, compact indicator used to display counts, statuses, or short
 
 ### Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `variant` | `'primary' \| 'accent' \| 'success' \| 'warning' \| 'error' \| 'info'` | `'error'` | Visual variant |
-| `size` | `'sm' \| 'md'` | `'md'` | Badge size |
-| `dot` | `boolean` | `false` | Render as a dot indicator (ignores content) |
-| `value` | `string \| number` | `undefined` | Simple display text (takes priority over `count`). Replaces the need for `MizuChip`. |
-| `count` | `number` | `undefined` | Numeric count to display |
-| `max` | `number` | `99` | Maximum count before overflow (`{max}+`) |
-| `showZero` | `boolean` | `false` | Show badge when count is 0 |
-| `position` | `'inline' \| 'top-right' \| 'top-left' \| 'bottom-right' \| 'bottom-left'` | `'inline'` | Absolute positioning relative to parent |
+| Prop       | Type                                                                       | Default     | Description                                                                          |
+| ---------- | -------------------------------------------------------------------------- | ----------- | ------------------------------------------------------------------------------------ |
+| `variant`  | `'primary' \| 'accent' \| 'success' \| 'warning' \| 'error' \| 'info'`     | `'error'`   | Visual variant                                                                       |
+| `size`     | `'sm' \| 'md'`                                                             | `'md'`      | Badge size                                                                           |
+| `dot`      | `boolean`                                                                  | `false`     | Render as a dot indicator (ignores content)                                          |
+| `value`    | `string \| number`                                                         | `undefined` | Simple display text (takes priority over `count`). Replaces the need for `MizuChip`. |
+| `count`    | `number`                                                                   | `undefined` | Numeric count to display                                                             |
+| `max`      | `number`                                                                   | `99`        | Maximum count before overflow (`{max}+`)                                             |
+| `showZero` | `boolean`                                                                  | `false`     | Show badge when count is 0                                                           |
+| `position` | `'inline' \| 'top-right' \| 'top-left' \| 'bottom-right' \| 'bottom-left'` | `'inline'`  | Absolute positioning relative to parent                                              |
 
 ### Slots
 
-| Slot | Description |
-|------|-------------|
+| Slot      | Description                                                                                    |
+| --------- | ---------------------------------------------------------------------------------------------- |
 | `default` | Custom content (text label when `position="inline"`, parent element when position is a corner) |
 
 ## Theme
@@ -63,73 +64,73 @@ A badge is a small, compact indicator used to display counts, statuses, or short
 
 Customize the badge appearance with these CSS custom properties:
 
-| Token | Default | Description |
-|-------|---------|-------------|
-| `--color-brand-primary` | #001C44 | Primary variant background |
-| `--color-brand-ycp` | #007FFF | Accent variant background |
-| `--color-feedback-success-base` | #15803D | Success variant background |
-| `--color-feedback-warning-base` | #D97706 | Warning variant background |
-| `--color-feedback-error-base` | #DC2626 | Error variant background |
-| `--color-feedback-info-base` | #0284C7 | Info variant background |
-| `--color-foreground-inverse` | #FFFFFF | Content text color (all variants) |
-| `--font-weight-medium` | 500 | Content font weight |
+| Token                           | Default | Description                       |
+| ------------------------------- | ------- | --------------------------------- |
+| `--color-brand-primary`         | #001C44 | Primary variant background        |
+| `--color-brand-ycp`             | #007FFF | Accent variant background         |
+| `--color-feedback-success-base` | #15803D | Success variant background        |
+| `--color-feedback-warning-base` | #D97706 | Warning variant background        |
+| `--color-feedback-error-base`   | #DC2626 | Error variant background          |
+| `--color-feedback-info-base`    | #0284C7 | Info variant background           |
+| `--color-foreground-inverse`    | #FFFFFF | Content text color (all variants) |
+| `--font-weight-medium`          | 500     | Content font weight               |
 
 #### Variant Color Map
 
 All variants use a solid fill with inverse text for high contrast against their background:
 
-| Variant | Background | Text Color | Use Case |
-|---------|------------|------------|----------|
-| **Primary** | `brand-primary` | `foreground-inverse` | Brand emphasis, primary notifications |
-| **Accent** | `brand-ycp` | `foreground-inverse` | Interactive highlights, new items |
-| **Success** | `feedback-success-base` | `foreground-inverse` | Online status, completed items |
-| **Warning** | `feedback-warning-base` | `foreground-inverse` | Pending items, warnings |
-| **Error** | `feedback-error-base` | `foreground-inverse` | Error counts, critical alerts |
-| **Info** | `feedback-info-base` | `foreground-inverse` | Informational counts, neutral status |
+| Variant     | Background              | Text Color           | Use Case                              |
+| ----------- | ----------------------- | -------------------- | ------------------------------------- |
+| **Primary** | `brand-primary`         | `foreground-inverse` | Brand emphasis, primary notifications |
+| **Accent**  | `brand-ycp`             | `foreground-inverse` | Interactive highlights, new items     |
+| **Success** | `feedback-success-base` | `foreground-inverse` | Online status, completed items        |
+| **Warning** | `feedback-warning-base` | `foreground-inverse` | Pending items, warnings               |
+| **Error**   | `feedback-error-base`   | `foreground-inverse` | Error counts, critical alerts         |
+| **Info**    | `feedback-info-base`    | `foreground-inverse` | Informational counts, neutral status  |
 
 Badges do not have interactive states (hover, focus, pressed) as they are non-interactive indicators.
 
 ### Sizing
 
-| Property | `sm` | `md` |
-|----------|------|------|
-| Min Width (content) | 16px | 20px |
-| Height (content) | 16px | 20px |
-| Dot Diameter | 8px | 10px |
-| Horizontal Padding | 4px | 6px |
-| Font Size | 10px | 11px |
-| Border Radius (content) | 8px | 10px |
-| Border Radius (dot) | 9999px | 9999px |
+| Property                | `sm`   | `md`   |
+| ----------------------- | ------ | ------ |
+| Min Width (content)     | 16px   | 20px   |
+| Height (content)        | 16px   | 20px   |
+| Dot Diameter            | 8px    | 10px   |
+| Horizontal Padding      | 4px    | 6px    |
+| Font Size               | 10px   | 11px   |
+| Border Radius (content) | 8px    | 10px   |
+| Border Radius (dot)     | 9999px | 9999px |
 
 #### Typography
 
-| Property | `sm` | `md` |
-|----------|------|------|
-| Font Size | 10px | 11px |
-| Font Weight | 500 (medium) | 500 (medium) |
-| Line Height | 1 | 1 |
+| Property             | `sm`         | `md`         |
+| -------------------- | ------------ | ------------ |
+| Font Size            | 10px         | 11px         |
+| Font Weight          | 500 (medium) | 500 (medium) |
+| Line Height          | 1            | 1            |
 | Font Variant Numeric | tabular-nums | tabular-nums |
 
 #### Shape
 
-| Mode | Border Radius |
-|------|---------------|
-| Content (sm) | 8px |
-| Content (md) | 10px |
-| Dot | 9999px (fully rounded) |
+| Mode         | Border Radius          |
+| ------------ | ---------------------- |
+| Content (sm) | 8px                    |
+| Content (md) | 10px                   |
+| Dot          | 9999px (fully rounded) |
 
 #### Count Overflow
 
 When the `count` prop exceeds the `max` value (default: 99), the badge displays `{max}+`. When `count` is `0` and `showZero` is `false` (default), the badge is hidden.
 
 | `count` | `max` | `showZero` | Display |
-|---------|-------|------------|---------|
-| 0 | 99 | false | Hidden |
-| 0 | 99 | true | `0` |
-| 5 | 99 | — | `5` |
-| 99 | 99 | — | `99` |
-| 100 | 99 | — | `99+` |
-| 1500 | 999 | — | `999+` |
+| ------- | ----- | ---------- | ------- |
+| 0       | 99    | false      | Hidden  |
+| 0       | 99    | true       | `0`     |
+| 5       | 99    | —          | `5`     |
+| 99      | 99    | —          | `99`    |
+| 100     | 99    | —          | `99+`   |
+| 1500    | 999   | —          | `999+`  |
 
 #### Positioned Badge Layout
 
@@ -144,21 +145,21 @@ When `position` is set to a corner and a slot is provided, the badge wraps the s
 └─────────────────────────┘
 ```
 
-| Position | Top | Right | Bottom | Left | Transform |
-|----------|-----|-------|--------|------|-----------|
-| `top-right` | 0 | 0 | — | — | `translate(50%, -50%)` |
-| `top-left` | 0 | — | — | 0 | `translate(-50%, -50%)` |
-| `bottom-right` | — | 0 | 0 | — | `translate(50%, 50%)` |
-| `bottom-left` | — | — | 0 | 0 | `translate(-50%, 50%)` |
+| Position       | Top | Right | Bottom | Left | Transform               |
+| -------------- | --- | ----- | ------ | ---- | ----------------------- |
+| `top-right`    | 0   | 0     | —      | —    | `translate(50%, -50%)`  |
+| `top-left`     | 0   | —     | —      | 0    | `translate(-50%, -50%)` |
+| `bottom-right` | —   | 0     | 0      | —    | `translate(50%, 50%)`   |
+| `bottom-left`  | —   | —     | 0      | 0    | `translate(-50%, 50%)`  |
 
 ### Accessibility
 
-| Criterion | Implementation |
-|-----------|----------------|
-| Color Contrast | 4.5:1 for count/text content against solid background |
-| Screen Reader | `role="status"` on the badge element |
-| Non-interactive | Badge is a `<span>`, not focusable; decorative when positioned |
-| Semantic | Count content is announced by screen readers via `role="status"` |
+| Criterion       | Implementation                                                   |
+| --------------- | ---------------------------------------------------------------- |
+| Color Contrast  | 4.5:1 for count/text content against solid background            |
+| Screen Reader   | `role="status"` on the badge element                             |
+| Non-interactive | Badge is a `<span>`, not focusable; decorative when positioned   |
+| Semantic        | Count content is announced by screen readers via `role="status"` |
 
 ```html
 <span class="mizu-badge mizu-badge--error mizu-badge--md" role="status">5</span>
@@ -171,10 +172,10 @@ When `position` is set to a corner and a slot is provided, the badge wraps the s
 
 A badge consists of up to 2 parts:
 
-| Part | Required | Description |
-|------|----------|-------------|
-| Container | Yes | The badge's background and shape |
-| Content | No | Count, text, or dot indicator |
+| Part      | Required | Description                      |
+| --------- | -------- | -------------------------------- |
+| Container | Yes      | The badge's background and shape |
+| Content   | No       | Count, text, or dot indicator    |
 
 ## Implementation Notes
 

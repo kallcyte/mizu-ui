@@ -24,12 +24,7 @@ const triggerClasses = computed(() => {
 </script>
 
 <template>
-  <NavigationMenuTrigger
-    :class="triggerClasses"
-    :disabled="disabled"
-    :as-child="asChild"
-    :as="as"
-  >
+  <NavigationMenuTrigger :class="triggerClasses" :disabled="disabled" :as-child="asChild" :as="as">
     <slot />
   </NavigationMenuTrigger>
 </template>
@@ -54,7 +49,9 @@ const triggerClasses = computed(() => {
   white-space: nowrap;
   user-select: none;
   outline: none;
-  transition: color 150ms ease, background-color 150ms ease;
+  transition:
+    color 150ms ease,
+    background-color 150ms ease;
 }
 
 .NavigationMenuTrigger:hover,

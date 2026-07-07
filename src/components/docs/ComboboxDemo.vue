@@ -22,19 +22,79 @@ import {
 import CodeCollapsible from "./CodeCollapsible.vue";
 
 const firstNames = [
-  "James", "Mary", "Robert", "Patricia", "Michael", "Jennifer", "David", "Linda",
-  "William", "Elizabeth", "Richard", "Barbara", "Joseph", "Susan", "Thomas", "Jessica",
-  "Christopher", "Sarah", "Charles", "Karen", "Daniel", "Lisa", "Matthew", "Nancy",
-  "Anthony", "Betty", "Mark", "Margaret", "Donald", "Sandra", "Steven", "Ashley",
-  "Paul", "Dorothy", "Andrew", "Kimberly", "Joshua", "Emily", "Kenneth", "Donna",
-  "Kevin", "Michelle", "Brian", "Carol", "George", "Amanda", "Timothy", "Melissa",
-  "Ronald", "Deborah",
+  "James",
+  "Mary",
+  "Robert",
+  "Patricia",
+  "Michael",
+  "Jennifer",
+  "David",
+  "Linda",
+  "William",
+  "Elizabeth",
+  "Richard",
+  "Barbara",
+  "Joseph",
+  "Susan",
+  "Thomas",
+  "Jessica",
+  "Christopher",
+  "Sarah",
+  "Charles",
+  "Karen",
+  "Daniel",
+  "Lisa",
+  "Matthew",
+  "Nancy",
+  "Anthony",
+  "Betty",
+  "Mark",
+  "Margaret",
+  "Donald",
+  "Sandra",
+  "Steven",
+  "Ashley",
+  "Paul",
+  "Dorothy",
+  "Andrew",
+  "Kimberly",
+  "Joshua",
+  "Emily",
+  "Kenneth",
+  "Donna",
+  "Kevin",
+  "Michelle",
+  "Brian",
+  "Carol",
+  "George",
+  "Amanda",
+  "Timothy",
+  "Melissa",
+  "Ronald",
+  "Deborah",
 ];
 
 const lastNames = [
-  "Smith", "Johnson", "Williams", "Brown", "Jones", "Garcia", "Miller", "Davis",
-  "Rodriguez", "Martinez", "Hernandez", "Lopez", "Gonzalez", "Wilson", "Anderson",
-  "Thomas", "Taylor", "Moore", "Jackson", "Martin",
+  "Smith",
+  "Johnson",
+  "Williams",
+  "Brown",
+  "Jones",
+  "Garcia",
+  "Miller",
+  "Davis",
+  "Rodriguez",
+  "Martinez",
+  "Hernandez",
+  "Lopez",
+  "Gonzalez",
+  "Wilson",
+  "Anderson",
+  "Thomas",
+  "Taylor",
+  "Moore",
+  "Jackson",
+  "Martin",
 ];
 
 function generatePeople(count: number) {
@@ -55,38 +115,28 @@ const basicSelected = ref<any>(undefined);
 const basicSearch = ref("");
 const basicShowChevron = ref(true);
 const filteredBasic = computed(() =>
-  people.filter((p) =>
-    p.name.toLowerCase().includes(basicSearch.value.toLowerCase())
-  )
+  people.filter((p) => p.name.toLowerCase().includes(basicSearch.value.toLowerCase()))
 );
 
 const searchSelected = ref<any>(undefined);
 const searchSearch = ref("");
 const filteredSearch = computed(() =>
-  people.filter((p) =>
-    p.name.toLowerCase().includes(searchSearch.value.toLowerCase())
-  )
+  people.filter((p) => p.name.toLowerCase().includes(searchSearch.value.toLowerCase()))
 );
 
 const groupSelected = ref<any>(undefined);
 const groupSearch = ref("");
 const filteredGroupA = computed(() =>
-  people.slice(0, 3).filter((p) =>
-    p.name.toLowerCase().includes(groupSearch.value.toLowerCase())
-  )
+  people.slice(0, 3).filter((p) => p.name.toLowerCase().includes(groupSearch.value.toLowerCase()))
 );
 const filteredGroupB = computed(() =>
-  people.slice(3, 5).filter((p) =>
-    p.name.toLowerCase().includes(groupSearch.value.toLowerCase())
-  )
+  people.slice(3, 5).filter((p) => p.name.toLowerCase().includes(groupSearch.value.toLowerCase()))
 );
 
 const multipleSelected = ref<any[]>([]);
 const multipleSearch = ref("");
 const filteredMultiple = computed(() =>
-  people.filter((p) =>
-    p.name.toLowerCase().includes(multipleSearch.value.toLowerCase())
-  )
+  people.filter((p) => p.name.toLowerCase().includes(multipleSearch.value.toLowerCase()))
 );
 
 function removePerson(person: any) {
@@ -101,14 +151,10 @@ const loadingMore = ref(false);
 let observer: IntersectionObserver | null = null;
 
 const filteredLazy = computed(() =>
-  allPeople.filter((p) =>
-    p.name.toLowerCase().includes(lazySearch.value.toLowerCase())
-  )
+  allPeople.filter((p) => p.name.toLowerCase().includes(lazySearch.value.toLowerCase()))
 );
 
-const visibleLazy = computed(() =>
-  filteredLazy.value.slice(0, visibleCount.value)
-);
+const visibleLazy = computed(() => filteredLazy.value.slice(0, visibleCount.value));
 
 const hasMoreLazy = computed(() => visibleCount.value < filteredLazy.value.length);
 
@@ -350,11 +396,7 @@ const validationCode = `<MizuComboboxRoot v-model="selected" ignore-filter>
             <MizuComboboxContent position="popper" :side-offset="4">
               <MizuComboboxViewport>
                 <MizuComboboxEmpty>No results found.</MizuComboboxEmpty>
-                <MizuComboboxItem
-                  v-for="person in filteredBasic"
-                  :key="person.id"
-                  :value="person"
-                >
+                <MizuComboboxItem v-for="person in filteredBasic" :key="person.id" :value="person">
                   <MizuComboboxItemIndicator>
                     <Check :size="16" />
                   </MizuComboboxItemIndicator>
@@ -367,7 +409,7 @@ const validationCode = `<MizuComboboxRoot v-model="selected" ignore-filter>
         <div class="demo-footer">
           <p class="demo-hint">Selected: {{ basicSelected?.name ?? "None" }}</p>
           <label class="demo-toggle">
-            <input type="checkbox" v-model="basicShowChevron" />
+            <input v-model="basicShowChevron" type="checkbox" />
             <span>Show chevron</span>
           </label>
         </div>
@@ -395,11 +437,7 @@ const validationCode = `<MizuComboboxRoot v-model="selected" ignore-filter>
             <MizuComboboxContent position="popper" :side-offset="4">
               <MizuComboboxViewport>
                 <MizuComboboxEmpty>No results found.</MizuComboboxEmpty>
-                <MizuComboboxItem
-                  v-for="person in filteredSearch"
-                  :key="person.id"
-                  :value="person"
-                >
+                <MizuComboboxItem v-for="person in filteredSearch" :key="person.id" :value="person">
                   <MizuComboboxItemIndicator>
                     <Check :size="16" />
                   </MizuComboboxItemIndicator>
@@ -513,7 +551,12 @@ const validationCode = `<MizuComboboxRoot v-model="selected" ignore-filter>
           </MizuComboboxPortal>
         </MizuComboboxRoot>
         <div class="demo-footer">
-          <p class="demo-hint">Selected: {{ multipleSelected.length ? multipleSelected.map((p: any) => p.name).join(", ") : "None" }}</p>
+          <p class="demo-hint">
+            Selected:
+            {{
+              multipleSelected.length ? multipleSelected.map((p: any) => p.name).join(", ") : "None"
+            }}
+          </p>
         </div>
       </CodeCollapsible>
     </section>
@@ -539,21 +582,13 @@ const validationCode = `<MizuComboboxRoot v-model="selected" ignore-filter>
             <MizuComboboxContent position="popper" :side-offset="4">
               <MizuComboboxViewport>
                 <MizuComboboxEmpty>No results found.</MizuComboboxEmpty>
-                <MizuComboboxItem
-                  v-for="person in visibleLazy"
-                  :key="person.id"
-                  :value="person"
-                >
+                <MizuComboboxItem v-for="person in visibleLazy" :key="person.id" :value="person">
                   <MizuComboboxItemIndicator>
                     <Check :size="16" />
                   </MizuComboboxItemIndicator>
                   {{ person.name }}
                 </MizuComboboxItem>
-                <div
-                  v-if="hasMoreLazy"
-                  :ref="setupSentinel"
-                  class="lazy-sentinel"
-                >
+                <div v-if="hasMoreLazy" :ref="setupSentinel" class="lazy-sentinel">
                   <LoaderCircle v-if="loadingMore" :size="14" class="lazy-spinner" />
                   <span v-else>{{ filteredLazy.length - visibleCount }} more...</span>
                 </div>
@@ -592,11 +627,7 @@ const validationCode = `<MizuComboboxRoot v-model="selected" ignore-filter>
             <MizuComboboxContent position="popper" :side-offset="4">
               <MizuComboboxViewport>
                 <MizuComboboxEmpty>No results found.</MizuComboboxEmpty>
-                <MizuComboboxItem
-                  v-for="person in people"
-                  :key="person.id"
-                  :value="person"
-                >
+                <MizuComboboxItem v-for="person in people" :key="person.id" :value="person">
                   <MizuComboboxItemIndicator>
                     <Check :size="16" />
                   </MizuComboboxItemIndicator>
@@ -609,10 +640,15 @@ const validationCode = `<MizuComboboxRoot v-model="selected" ignore-filter>
         <div class="demo-footer">
           <p class="demo-hint">Selected: {{ validationSelected?.name ?? "None" }}</p>
           <div class="demo-validation-actions">
-            <MizuButton size="sm" variant="primary" @click="submitValidation">
-              Submit
-            </MizuButton>
-            <MizuButton size="sm" variant="ghost" @click="validationSelected = undefined; validationError = false">
+            <MizuButton size="sm" variant="primary" @click="submitValidation"> Submit </MizuButton>
+            <MizuButton
+              size="sm"
+              variant="ghost"
+              @click="
+                validationSelected = undefined;
+                validationError = false;
+              "
+            >
               Reset
             </MizuButton>
           </div>
@@ -730,7 +766,11 @@ const validationCode = `<MizuComboboxRoot v-model="selected" ignore-filter>
 }
 
 @keyframes spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 </style>

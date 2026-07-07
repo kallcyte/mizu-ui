@@ -86,7 +86,9 @@ const sizesCode = `<MizuAvatarGroup :items="group" :max="4" size="sm" />
   gap: 32px;
   font-family: inherit;
 }
-.avatar-group-examples :deep(*) { margin: 0; }
+.avatar-group-examples :deep(*) {
+  margin: 0;
+}
 .example-section {
   all: revert;
   display: flex;
@@ -100,5 +102,11 @@ const sizesCode = `<MizuAvatarGroup :items="group" :max="4" size="sm" />
   color: var(--sl-color-text);
   margin: 0;
 }
-.size-row { display: flex; flex-direction: column; gap: 16px; margin: 0; padding: 0; }
+.size-row {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin: 0;
+  padding: 0;
+}
 </style>

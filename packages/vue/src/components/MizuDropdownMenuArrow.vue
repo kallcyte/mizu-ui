@@ -22,9 +22,5 @@ const arrowClasses = computed(() => {
 </script>
 
 <template>
-  <DropdownMenuArrow
-    :class="arrowClasses"
-    :width="width"
-    :height="height"
-  />
+  <DropdownMenuArrow :class="arrowClasses" :width="width" :height="height" />
 </template>

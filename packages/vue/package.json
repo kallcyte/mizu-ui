@@ -25,7 +25,10 @@
     "story:dev": "histoire dev",
     "story:build": "histoire build",
     "story:preview": "histoire preview",
-    "typecheck": "vue-tsc --noEmit"
+    "typecheck": "vue-tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage"
   },
   "dependencies": {
     "@internationalized/date": "^3.12.2",
@@ -39,11 +42,15 @@
     "@histoire/plugin-vue": "1.0.0-beta.1",
     "@tailwindcss/vite": "^4.3.2",
     "@vitejs/plugin-vue": "^6.0.7",
+    "@vitest/coverage-v8": "^4.1.9",
+    "@vue/test-utils": "^2.4.11",
     "histoire": "1.0.0-beta.1",
+    "jsdom": "^29.1.1",
     "tailwindcss": "^4.3.2",
     "typescript": "^5.0.0",
     "vite": "^7.3.6",
     "vite-plugin-dts": "^4.0.0",
+    "vitest": "^4.1.9",
     "vue-tsc": "^2.0.0"
   },
   "peerDependencies": {

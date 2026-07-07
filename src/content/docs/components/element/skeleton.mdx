@@ -3,7 +3,7 @@ title: Skeleton
 description: A loading placeholder that visually represents content while data is being fetched.
 ---
 
-import SkeletonDemo from '../../../../components/docs/SkeletonDemo.vue';
+import SkeletonDemo from "../../../../components/docs/SkeletonDemo.vue";
 
 A skeleton is a lightweight, non-interactive placeholder used to indicate that content is loading. It mirrors the shape of the eventual content (text, avatars, cards, list items) so the layout stays stable while data fetches.
 
@@ -47,14 +47,14 @@ A skeleton is a lightweight, non-interactive placeholder used to indicate that c
 
 ### Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `variant` | `'text' \| 'circle' \| 'rect'` | `'text'` | Shape variant |
-| `width` | `string \| number` | `undefined` | CSS width (number → `Npx`, string → as-is) |
-| `height` | `string \| number` | `undefined` | CSS height (number → `Npx`, string → as-is) |
-| `radius` | `string \| number` | `undefined` | CSS border-radius override |
+| Prop        | Type                             | Default     | Description                                                                             |
+| ----------- | -------------------------------- | ----------- | --------------------------------------------------------------------------------------- |
+| `variant`   | `'text' \| 'circle' \| 'rect'`   | `'text'`    | Shape variant                                                                           |
+| `width`     | `string \| number`               | `undefined` | CSS width (number → `Npx`, string → as-is)                                              |
+| `height`    | `string \| number`               | `undefined` | CSS height (number → `Npx`, string → as-is)                                             |
+| `radius`    | `string \| number`               | `undefined` | CSS border-radius override                                                              |
 | `animation` | `'shimmer' \| 'pulse' \| 'none'` | `'shimmer'` | Loading animation. `shimmer` sweeps a gradient highlight; `pulse` fades opacity in/out. |
-| `lines` | `number` | `1` | Number of text lines when `variant="text"` (only when >1; renders a stack) |
+| `lines`     | `number`                         | `1`         | Number of text lines when `variant="text"` (only when >1; renders a stack)              |
 
 ### Slots
 
@@ -68,11 +68,11 @@ None. Skeleton is non-interactive.
 
 ### CSS Custom Properties
 
-| Token | Default | Description |
-|-------|---------|-------------|
-| `--color-skeleton-base` (light) | `#E5E7EB` | Placeholder background in light mode |
-| `--color-skeleton-base` (dark) | `#1F2937` | Placeholder background in dark mode (via `[data-theme=dark]`) |
-| `--radius-default` | 6px | Rounded corners on text/rect variants |
+| Token                           | Default   | Description                                                   |
+| ------------------------------- | --------- | ------------------------------------------------------------- |
+| `--color-skeleton-base` (light) | `#E5E7EB` | Placeholder background in light mode                          |
+| `--color-skeleton-base` (dark)  | `#1F2937` | Placeholder background in dark mode (via `[data-theme=dark]`) |
+| `--radius-default`              | 6px       | Rounded corners on text/rect variants                         |
 
 The shimmer gradient uses explicit hex colors for the base and highlight so it remains clearly visible across themes. The background color token is reused as the gradient edge stops; only the middle peak is lighter.
 
@@ -80,10 +80,10 @@ Skeletons are intentionally neutral. They do not carry semantic color variants s
 
 #### Variant Color Map
 
-| Element | Token | Light | Dark |
-|---------|-------|-------|------|
-| Placeholder fill | `--color-skeleton-base` | `#E5E7EB` | `#1F2937` |
-| Shimmer highlight | inline gradient | `#F9FAFB` peak on `#E5E7EB` | `#374151` peak on `#1F2937` |
+| Element           | Token                   | Light                       | Dark                        |
+| ----------------- | ----------------------- | --------------------------- | --------------------------- |
+| Placeholder fill  | `--color-skeleton-base` | `#E5E7EB`                   | `#1F2937`                   |
+| Shimmer highlight | inline gradient         | `#F9FAFB` peak on `#E5E7EB` | `#374151` peak on `#1F2937` |
 
 The placeholder fill uses two neutral grays (one per theme) that sit between the page surface and typical content colors so they read as placeholders.
 
@@ -91,29 +91,29 @@ The placeholder fill uses two neutral grays (one per theme) that sit between the
 
 #### Variant Shapes
 
-| Variant | Aspect | Default Size | Use Case |
-|---------|--------|--------------|----------|
-| **Text** | Variable | 100% width, 0.85em height | Paragraph text, headings, labels |
-| **Circle** | 1:1 | width = height prop | Avatars, icons, status dots |
-| **Rect** | Any | width × height props | Thumbnails, cards, buttons, images |
+| Variant    | Aspect   | Default Size              | Use Case                           |
+| ---------- | -------- | ------------------------- | ---------------------------------- |
+| **Text**   | Variable | 100% width, 0.85em height | Paragraph text, headings, labels   |
+| **Circle** | 1:1      | width = height prop       | Avatars, icons, status dots        |
+| **Rect**   | Any      | width × height props      | Thumbnails, cards, buttons, images |
 
 #### Dimensions
 
-| Property | Text | Circle | Rect |
-|----------|------|--------|------|
-| Height | 0.85em (line-height aligned) | = width | explicit `height` prop |
-| Width | 100% (or `width` prop) | explicit `width` prop | explicit `width` prop |
-| Multi-line Stack Gap | 0.5em between lines | — | — |
-| Last-line Width (in stack) | 60% (mimics natural prose) | — | — |
+| Property                   | Text                         | Circle                | Rect                   |
+| -------------------------- | ---------------------------- | --------------------- | ---------------------- |
+| Height                     | 0.85em (line-height aligned) | = width               | explicit `height` prop |
+| Width                      | 100% (or `width` prop)       | explicit `width` prop | explicit `width` prop  |
+| Multi-line Stack Gap       | 0.5em between lines          | —                     | —                      |
+| Last-line Width (in stack) | 60% (mimics natural prose)   | —                     | —                      |
 
 #### Shape
 
-| Mode | Border Radius |
-|------|---------------|
-| `text` | `radius-default` (6px) |
-| `circle` | 9999px |
-| `rect` | `radius-default` (6px) |
-| Custom | any value via `radius` prop |
+| Mode     | Border Radius               |
+| -------- | --------------------------- |
+| `text`   | `radius-default` (6px)      |
+| `circle` | 9999px                      |
+| `rect`   | `radius-default` (6px)      |
+| Custom   | any value via `radius` prop |
 
 #### Multi-line Text Layout
 
@@ -131,10 +131,10 @@ The placeholder fill uses two neutral grays (one per theme) that sit between the
 └───────────────────────┘
 ```
 
-| Property | Value |
-|----------|-------|
-| Stack Gap | 0.5em |
-| Last-line Width | 60% |
+| Property        | Value |
+| --------------- | ----- |
+| Stack Gap       | 0.5em |
+| Last-line Width | 60%   |
 
 ### Transitions
 
@@ -142,39 +142,39 @@ The placeholder fill uses two neutral grays (one per theme) that sit between the
 
 The shimmer renders a gradient highlight band that sweeps horizontally across the placeholder via animated `background-position`. The gradient reuses the skeleton base color at the edges and blends into a lighter peak in the middle, producing a visible moving shine.
 
-| Property | Value |
-|----------|-------|
-| Implementation | `background-image` gradient with `background-size: 200% 100%`; animated via `background-position` |
-| Gradient shape (light) | `#E5E7EB → #F9FAFB (30%) → #E5E7EB` |
-| Gradient shape (dark) | `#1F2937 → #374151 (30%) → #1F2937` |
-| Sweep mechanism | `background-position` animates from `200% 0` (off-screen right) to `-200% 0` (off-screen left) |
-| Cycle duration | **1500ms** |
-| Easing | `ease-in-out` |
-| Iteration | infinite |
-| Honors `prefers-reduced-motion` | Yes — animation disabled, opacity locked to 0.7 |
+| Property                        | Value                                                                                             |
+| ------------------------------- | ------------------------------------------------------------------------------------------------- |
+| Implementation                  | `background-image` gradient with `background-size: 200% 100%`; animated via `background-position` |
+| Gradient shape (light)          | `#E5E7EB → #F9FAFB (30%) → #E5E7EB`                                                               |
+| Gradient shape (dark)           | `#1F2937 → #374151 (30%) → #1F2937`                                                               |
+| Sweep mechanism                 | `background-position` animates from `200% 0` (off-screen right) to `-200% 0` (off-screen left)    |
+| Cycle duration                  | **1500ms**                                                                                        |
+| Easing                          | `ease-in-out`                                                                                     |
+| Iteration                       | infinite                                                                                          |
+| Honors `prefers-reduced-motion` | Yes — animation disabled, opacity locked to 0.7                                                   |
 
 #### Pulse Animation
 
 The pulse animation fades the skeleton's opacity between 1 and 0.5, matching shadcn's `animate-pulse` pattern. This provides a simpler, more subdued loading indicator that works well in dense layouts.
 
-| Property | Value |
-|----------|-------|
-| Implementation | `opacity` animation on the element itself |
-| Cycle duration | **2000ms** |
-| Easing | `cubic-bezier(0.4, 0, 0.6, 1)` |
-| Iteration | infinite |
+| Property                        | Value                                           |
+| ------------------------------- | ----------------------------------------------- |
+| Implementation                  | `opacity` animation on the element itself       |
+| Cycle duration                  | **2000ms**                                      |
+| Easing                          | `cubic-bezier(0.4, 0, 0.6, 1)`                  |
+| Iteration                       | infinite                                        |
 | Honors `prefers-reduced-motion` | Yes — animation disabled, opacity locked to 0.7 |
 
 When `prefers-reduced-motion: reduce` is set, both animations stop and the skeleton renders with a flat 0.7 opacity.
 
 ### Accessibility
 
-| Criterion | Implementation |
-|-----------|----------------|
-| Screen Reader | Placeholder is hidden via `aria-hidden="true"` since it carries no semantic information |
-| Non-interactive | Skeleton is not focusable, not keyboard-accessible, and emits no events |
-| Reduced Motion | Shimmer and pulse animations are suppressed when `prefers-reduced-motion: reduce` is set |
-| Color Contrast | Placeholder color is decorative, not informational; no contrast requirement |
+| Criterion       | Implementation                                                                           |
+| --------------- | ---------------------------------------------------------------------------------------- |
+| Screen Reader   | Placeholder is hidden via `aria-hidden="true"` since it carries no semantic information  |
+| Non-interactive | Skeleton is not focusable, not keyboard-accessible, and emits no events                  |
+| Reduced Motion  | Shimmer and pulse animations are suppressed when `prefers-reduced-motion: reduce` is set |
+| Color Contrast  | Placeholder color is decorative, not informational; no contrast requirement              |
 
 ```html
 <!-- Single skeleton -->
@@ -192,9 +192,9 @@ When `prefers-reduced-motion: reduce` is set, both animations stop and the skele
 
 A skeleton consists of a single styled placeholder element:
 
-| Part | Required | Description |
-|------|----------|-------------|
-| Placeholder | Yes | A `div` or `span` element with a subtle background fill and optional animation |
+| Part        | Required | Description                                                                    |
+| ----------- | -------- | ------------------------------------------------------------------------------ |
+| Placeholder | Yes      | A `div` or `span` element with a subtle background fill and optional animation |
 
 For multi-line text, a stack wrapper groups `lines` placeholder elements and shrinks the final line to 60% width to mimic natural prose.
 

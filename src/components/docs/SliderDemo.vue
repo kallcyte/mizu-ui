@@ -1,11 +1,6 @@
 <script setup lang="ts">
 import { ref, computed } from "vue";
-import {
-  MizuSliderRoot,
-  MizuSliderTrack,
-  MizuSliderRange,
-  MizuSliderThumb,
-} from "@mizu/vue";
+import { MizuSliderRoot, MizuSliderTrack, MizuSliderRange, MizuSliderThumb } from "@mizu/vue";
 import CodeCollapsible from "./CodeCollapsible.vue";
 
 const basicCode = `<MizuSliderRoot v-model="basicValue" class="slider-root">
@@ -174,7 +169,11 @@ const disabledValue = ref<number>(50);
       <h3>Vertical</h3>
       <CodeCollapsible :code="verticalCode">
         <div class="vertical-container">
-          <MizuSliderRoot v-model="verticalValue" orientation="vertical" class="slider-root-vertical">
+          <MizuSliderRoot
+            v-model="verticalValue"
+            orientation="vertical"
+            class="slider-root-vertical"
+          >
             <MizuSliderTrack>
               <MizuSliderRange />
             </MizuSliderTrack>

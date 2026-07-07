@@ -60,13 +60,16 @@ const selectionColumn: ColumnDef<T, unknown> = {
   id: "select",
   header: ({ table }) =>
     h(MizuCheckbox, {
-      modelValue: table.getIsAllPageRowsSelected() || (table.getIsSomePageRowsSelected() && "indeterminate"),
-      "onUpdate:modelValue": (value: boolean | "indeterminate" | string | number | null) => table.toggleAllPageRowsSelected(value === true),
+      modelValue:
+        table.getIsAllPageRowsSelected() || (table.getIsSomePageRowsSelected() && "indeterminate"),
+      "onUpdate:modelValue": (value: boolean | "indeterminate" | string | number | null) =>
+        table.toggleAllPageRowsSelected(value === true),
     }),
   cell: ({ row }) =>
     h(MizuCheckbox, {
       modelValue: row.getIsSelected(),
-      "onUpdate:modelValue": (value: boolean | "indeterminate" | string | number | null) => row.toggleSelected(value === true),
+      "onUpdate:modelValue": (value: boolean | "indeterminate" | string | number | null) =>
+        row.toggleSelected(value === true),
     }),
   enableSorting: false,
   enableHiding: false,
@@ -146,24 +149,37 @@ const totalPages = computed(() => {
               @click="header.column.getToggleSortingHandler()?.($event)"
             >
               <div v-if="header.id === 'select'" class="mizu-data-table__th-content">
-                <FlexRender
-                  :render="header.column.columnDef.header"
-                  :props="header.getContext()"
-                />
+                <FlexRender :render="header.column.columnDef.header" :props="header.getContext()" />
               </div>
               <div v-else class="mizu-data-table__th-content">
-                <FlexRender
-                  :render="header.column.columnDef.header"
-                  :props="header.getContext()"
-                />
+                <FlexRender :render="header.column.columnDef.header" :props="header.getContext()" />
                 <span v-if="header.column.getCanSort()" class="mizu-data-table__sort-icon">
-                  <svg v-if="header.column.getIsSorted() === 'asc'" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <svg
+                    v-if="header.column.getIsSorted() === 'asc'"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
                     <polyline points="18 15 12 9 6 15" />
                   </svg>
-                  <svg v-else-if="header.column.getIsSorted() === 'desc'" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <svg
+                    v-else-if="header.column.getIsSorted() === 'desc'"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
                     <polyline points="6 9 12 15 18 9" />
                   </svg>
-                  <svg v-else viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="mizu-data-table__sort-icon--inactive">
+                  <svg
+                    v-else
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    class="mizu-data-table__sort-icon--inactive"
+                  >
                     <polyline points="8 9 12 5 16 9" />
                     <polyline points="8 15 12 19 16 15" />
                   </svg>
@@ -178,8 +194,19 @@ const totalPages = computed(() => {
               <td :colspan="table.getAllColumns().length" class="mizu-data-table__loading">
                 <div class="mizu-data-table__spinner">
                   <svg viewBox="0 0 24 24" fill="none">
-                    <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4" opacity="0.25" />
-                    <path d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" fill="currentColor" opacity="0.75" />
+                    <circle
+                      cx="12"
+                      cy="12"
+                      r="10"
+                      stroke="currentColor"
+                      stroke-width="4"
+                      opacity="0.25"
+                    />
+                    <path
+                      d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                      fill="currentColor"
+                      opacity="0.75"
+                    />
                   </svg>
                 </div>
                 <span>Loading...</span>
@@ -206,10 +233,7 @@ const totalPages = computed(() => {
                 class="mizu-data-table__td"
                 :class="{ 'mizu-data-table__td--select': cell.column.id === 'select' }"
               >
-                <FlexRender
-                  :render="cell.column.columnDef.cell"
-                  :props="cell.getContext()"
-                />
+                <FlexRender :render="cell.column.columnDef.cell" :props="cell.getContext()" />
               </td>
             </tr>
           </template>
@@ -334,8 +358,12 @@ const totalPages = computed(() => {
 }
 
 @keyframes mizu-data-table-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .mizu-data-table__footer {

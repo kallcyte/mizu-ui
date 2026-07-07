@@ -24,12 +24,7 @@ const linkClasses = computed(() => {
 </script>
 
 <template>
-  <NavigationMenuLink
-    :class="linkClasses"
-    :active="active"
-    :as-child="asChild"
-    :as="as"
-  >
+  <NavigationMenuLink :class="linkClasses" :active="active" :as-child="asChild" :as="as">
     <slot />
   </NavigationMenuLink>
 </template>
@@ -52,7 +47,9 @@ const linkClasses = computed(() => {
   white-space: nowrap;
   user-select: none;
   outline: none;
-  transition: color 150ms ease, background-color 150ms ease;
+  transition:
+    color 150ms ease,
+    background-color 150ms ease;
 }
 
 .NavigationMenuLink:hover {

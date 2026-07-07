@@ -12,7 +12,6 @@ const props = withDefaults(defineProps<CollapsibleTriggerProps>(), {
   as: undefined,
 });
 
-
 const triggerClass = computed(() => {
   // When asChild is true, the class is forwarded to the child element
   // (e.g., MizuButton), which has its own styling. Skip the class to
@@ -29,10 +28,7 @@ const triggerProps = computed(() => {
 </script>
 
 <template>
-  <CollapsibleTrigger
-    :class="triggerClass"
-    v-bind="triggerProps"
-  >
+  <CollapsibleTrigger :class="triggerClass" v-bind="triggerProps">
     <slot />
   </CollapsibleTrigger>
 </template>
@@ -48,4 +44,3 @@ const triggerProps = computed(() => {
   color: inherit;
 }
 </style>
-

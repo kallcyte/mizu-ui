@@ -22,9 +22,5 @@ const arrowClasses = computed(() => {
 </script>
 
 <template>
-  <DatePickerArrow
-    :class="arrowClasses"
-    :width="width"
-    :height="height"
-  />
+  <DatePickerArrow :class="arrowClasses" :width="width" :height="height" />
 </template>

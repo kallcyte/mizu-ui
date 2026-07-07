@@ -33,19 +33,20 @@ const closeClasses = computed(() => {
 </script>
 
 <template>
-  <DialogClose
-    v-if="dismissible"
-    :class="closeClasses"
-    :as-child="asChild"
-    :as="as"
-  >
+  <DialogClose v-if="dismissible" :class="closeClasses" :as-child="asChild" :as="as">
     <slot>
-      <component
-        v-if="closeIcon"
-        :is="closeIcon"
-        :size="16"
-      />
-      <svg v-else width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <component :is="closeIcon" v-if="closeIcon" :size="16" />
+      <svg
+        v-else
+        width="16"
+        height="16"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
         <path d="M18 6 6 18" />
         <path d="m6 6 12 12" />
       </svg>
@@ -72,7 +73,9 @@ const closeClasses = computed(() => {
   padding: 0;
   margin: 0;
   font: inherit;
-  transition: background 150ms, color 150ms;
+  transition:
+    background 150ms,
+    color 150ms;
 }
 
 .mizu-dialog__close:hover {

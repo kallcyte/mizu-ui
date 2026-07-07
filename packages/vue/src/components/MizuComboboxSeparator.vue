@@ -22,11 +22,7 @@ const separatorClasses = computed(() => {
 </script>
 
 <template>
-  <ComboboxSeparator
-    :class="separatorClasses"
-    :as-child="asChild"
-    :as="as"
-  />
+  <ComboboxSeparator :class="separatorClasses" :as-child="asChild" :as="as" />
 </template>
 
 <style>

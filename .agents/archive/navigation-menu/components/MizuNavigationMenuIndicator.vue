@@ -35,7 +35,10 @@ const attrs = useAttrs();
   overflow: hidden;
   z-index: 1;
   font-family: inherit;
-  transition: width, transform, 250ms ease;
+  transition:
+    width,
+    transform,
+    250ms ease;
 }
 
 .NavigationMenuIndicator::after {

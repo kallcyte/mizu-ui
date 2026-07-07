@@ -22,13 +22,18 @@ const closeClasses = computed(() => {
 </script>
 
 <template>
-  <ToastClose
-    :class="closeClasses"
-    :as-child="asChild"
-    :as="as"
-  >
+  <ToastClose :class="closeClasses" :as-child="asChild" :as="as">
     <slot>
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <svg
+        width="14"
+        height="14"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
         <path d="M18 6 6 18" />
         <path d="m6 6 12 12" />
       </svg>
@@ -53,7 +58,9 @@ const closeClasses = computed(() => {
   padding: 0;
   margin: 0;
   font: inherit;
-  transition: background 150ms, color 150ms;
+  transition:
+    background 150ms,
+    color 150ms;
 }
 
 .mizu-toast__close:hover {

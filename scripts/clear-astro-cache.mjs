@@ -20,27 +20,16 @@ if (process.argv.includes("--watch")) {
 
   const watchers = [
     // Watch content docs directory recursively for .md/.mdx changes
-    watch(
-      resolve(root, "src/content/docs"),
-      { recursive: true },
-      (event, filename) => {
-        if (
-          filename &&
-          (filename.endsWith(".mdx") || filename.endsWith(".md"))
-        ) {
-          console.log(
-            `[cache-watch] ${filename} changed (${event}), clearing cache...`
-          );
-          clearCache();
-        }
+    watch(resolve(root, "src/content/docs"), { recursive: true }, (event, filename) => {
+      if (filename && (filename.endsWith(".mdx") || filename.endsWith(".md"))) {
+        console.log(`[cache-watch] ${filename} changed (${event}), clearing cache...`);
+        clearCache();
       }
-    ),
+    }),
     // Watch project root for astro.config.mjs changes
     watch(resolve(root), { recursive: false }, (event, filename) => {
       if (filename === "astro.config.mjs") {
-        console.log(
-          `[cache-watch] astro.config.mjs changed (${event}), clearing cache...`
-        );
+        console.log(`[cache-watch] astro.config.mjs changed (${event}), clearing cache...`);
         clearCache();
       }
     }),

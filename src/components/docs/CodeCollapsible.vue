@@ -11,10 +11,7 @@ const highlightedHtml = ref("");
 const currentTheme = ref("light");
 
 function escapeHtml(text: string) {
-  return text
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;");
+  return text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
 }
 
 let highlighter: any = null;
@@ -66,9 +63,12 @@ onUnmounted(() => {
   if (themeObserver) themeObserver.disconnect();
 });
 
-watch(() => props.code, (newCode) => {
-  if (newCode) highlightCode(newCode);
-});
+watch(
+  () => props.code,
+  (newCode) => {
+    if (newCode) highlightCode(newCode);
+  }
+);
 
 function toggle() {
   open.value = !open.value;
@@ -132,15 +132,35 @@ async function copyCode() {
           :aria-label="copied ? 'Copied' : 'Copy code'"
           @click="copyCode"
         >
-          <svg v-if="copied" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <svg
+            v-if="copied"
+            width="14"
+            height="14"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
             <polyline points="20 6 9 17 4 12" />
           </svg>
-          <svg v-else width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <svg
+            v-else
+            width="14"
+            height="14"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
             <rect width="14" height="14" x="8" y="8" rx="2" ry="2" />
             <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" />
           </svg>
         </button>
-        <div v-if="highlightedHtml" v-html="highlightedHtml" class="code-collapsible__html"></div>
+        <div v-if="highlightedHtml" class="code-collapsible__html" v-html="highlightedHtml"></div>
         <pre v-else class="code-collapsible__block"><code>{{ escapeHtml(code) }}</code></pre>
       </div>
     </div>
@@ -191,7 +211,9 @@ async function copyCode() {
   font-weight: 500;
   cursor: pointer;
   font-family: inherit;
-  transition: color 150ms, background 150ms;
+  transition:
+    color 150ms,
+    background 150ms;
 }
 
 .code-collapsible__toggle:hover {
@@ -296,7 +318,10 @@ async function copyCode() {
   cursor: pointer;
   padding: 0;
   font: inherit;
-  transition: color 150ms, background 150ms, border-color 150ms;
+  transition:
+    color 150ms,
+    background 150ms,
+    border-color 150ms;
 }
 
 .code-collapsible__copy-btn:hover {

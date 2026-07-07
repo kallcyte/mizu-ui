@@ -88,7 +88,9 @@ const customValuesCode = `<MizuSwitch
             false-value="no"
             label="Custom values (yes/no)"
           />
-          <p class="demo-text">Value: <code>{{ customYes }}</code></p>
+          <p class="demo-text">
+            Value: <code>{{ customYes }}</code>
+          </p>
         </div>
       </CodeCollapsible>
     </section>

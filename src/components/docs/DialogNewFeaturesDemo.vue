@@ -1,9 +1,18 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import {
-  MizuDialogRoot, MizuDialogPortal, MizuDialogOverlay, MizuDialogContent,
-  MizuDialogHeader, MizuDialogBody, MizuDialogFooter, MizuDialogTitle,
-  MizuDialogDescription, MizuDialogClose, MizuDialogTrigger, MizuButton,
+  MizuDialogRoot,
+  MizuDialogPortal,
+  MizuDialogOverlay,
+  MizuDialogContent,
+  MizuDialogHeader,
+  MizuDialogBody,
+  MizuDialogFooter,
+  MizuDialogTitle,
+  MizuDialogDescription,
+  MizuDialogClose,
+  MizuDialogTrigger,
+  MizuButton,
 } from "@mizu/vue";
 import CodeCollapsible from "./CodeCollapsible.vue";
 
@@ -128,26 +137,50 @@ const noTransitionOpen = ref(false);
       <CodeCollapsible :code="sizesCode">
         <div class="button-row">
           <MizuDialogRoot v-model:open="sizeSmOpen">
-            <MizuDialogTrigger as-child><MizuButton variant="outline" size="md" class="w-max">Small (400px)</MizuButton></MizuDialogTrigger>
+            <MizuDialogTrigger as-child
+              ><MizuButton variant="outline" size="md" class="w-max"
+                >Small (400px)</MizuButton
+              ></MizuDialogTrigger
+            >
             <MizuDialogPortal>
               <MizuDialogOverlay />
               <MizuDialogContent size="sm">
                 <MizuDialogClose />
                 <MizuDialogHeader><MizuDialogTitle>Small Dialog</MizuDialogTitle></MizuDialogHeader>
-                <MizuDialogBody><p class="body-text"><code>size="sm"</code> (400px max-width).</p></MizuDialogBody>
-                <MizuDialogFooter><MizuButton variant="primary" size="md" class="w-max" @click="sizeSmOpen = false">Close</MizuButton></MizuDialogFooter>
+                <MizuDialogBody
+                  ><p class="body-text">
+                    <code>size="sm"</code> (400px max-width).
+                  </p></MizuDialogBody
+                >
+                <MizuDialogFooter
+                  ><MizuButton variant="primary" size="md" class="w-max" @click="sizeSmOpen = false"
+                    >Close</MizuButton
+                  ></MizuDialogFooter
+                >
               </MizuDialogContent>
             </MizuDialogPortal>
           </MizuDialogRoot>
           <MizuDialogRoot v-model:open="sizeLgOpen">
-            <MizuDialogTrigger as-child><MizuButton variant="outline" size="md" class="w-max">Large (700px)</MizuButton></MizuDialogTrigger>
+            <MizuDialogTrigger as-child
+              ><MizuButton variant="outline" size="md" class="w-max"
+                >Large (700px)</MizuButton
+              ></MizuDialogTrigger
+            >
             <MizuDialogPortal>
               <MizuDialogOverlay />
               <MizuDialogContent size="lg">
                 <MizuDialogClose />
                 <MizuDialogHeader><MizuDialogTitle>Large Dialog</MizuDialogTitle></MizuDialogHeader>
-                <MizuDialogBody><p class="body-text"><code>size="lg"</code> (700px max-width).</p></MizuDialogBody>
-                <MizuDialogFooter><MizuButton variant="primary" size="md" class="w-max" @click="sizeLgOpen = false">Close</MizuButton></MizuDialogFooter>
+                <MizuDialogBody
+                  ><p class="body-text">
+                    <code>size="lg"</code> (700px max-width).
+                  </p></MizuDialogBody
+                >
+                <MizuDialogFooter
+                  ><MizuButton variant="primary" size="md" class="w-max" @click="sizeLgOpen = false"
+                    >Close</MizuButton
+                  ></MizuDialogFooter
+                >
               </MizuDialogContent>
             </MizuDialogPortal>
           </MizuDialogRoot>
@@ -159,7 +192,11 @@ const noTransitionOpen = ref(false);
       <h3>Fullscreen</h3>
       <CodeCollapsible :code="fullscreenCode">
         <MizuDialogRoot v-model:open="fullscreenOpen">
-          <MizuDialogTrigger as-child><MizuButton variant="accent" size="md" class="w-max">Open Fullscreen</MizuButton></MizuDialogTrigger>
+          <MizuDialogTrigger as-child
+            ><MizuButton variant="accent" size="md" class="w-max"
+              >Open Fullscreen</MizuButton
+            ></MizuDialogTrigger
+          >
           <MizuDialogPortal>
             <MizuDialogOverlay />
             <MizuDialogContent fullscreen>
@@ -167,10 +204,20 @@ const noTransitionOpen = ref(false);
                 <MizuDialogTitle>Fullscreen Dialog</MizuDialogTitle>
                 <MizuDialogDescription>Fills the entire viewport.</MizuDialogDescription>
               </MizuDialogHeader>
-              <MizuDialogBody><p class="body-text">Uses <code>fullscreen</code> prop.</p></MizuDialogBody>
+              <MizuDialogBody
+                ><p class="body-text">Uses <code>fullscreen</code> prop.</p></MizuDialogBody
+              >
               <MizuDialogFooter>
-                <MizuButton variant="ghost" size="md" class="w-max" @click="fullscreenOpen = false">Cancel</MizuButton>
-                <MizuButton variant="primary" size="md" class="w-max" @click="fullscreenOpen = false">Save</MizuButton>
+                <MizuButton variant="ghost" size="md" class="w-max" @click="fullscreenOpen = false"
+                  >Cancel</MizuButton
+                >
+                <MizuButton
+                  variant="primary"
+                  size="md"
+                  class="w-max"
+                  @click="fullscreenOpen = false"
+                  >Save</MizuButton
+                >
               </MizuDialogFooter>
             </MizuDialogContent>
           </MizuDialogPortal>
@@ -182,7 +229,11 @@ const noTransitionOpen = ref(false);
       <h3>Non-Dismissible</h3>
       <CodeCollapsible :code="nonDismissibleCode">
         <MizuDialogRoot v-model:open="nonDismissibleOpen">
-          <MizuDialogTrigger as-child><MizuButton variant="warning" size="md" class="w-max">Must Use Buttons</MizuButton></MizuDialogTrigger>
+          <MizuDialogTrigger as-child
+            ><MizuButton variant="warning" size="md" class="w-max"
+              >Must Use Buttons</MizuButton
+            ></MizuDialogTrigger
+          >
           <MizuDialogPortal>
             <MizuDialogOverlay />
             <MizuDialogContent :dismissible="false">
@@ -190,10 +241,26 @@ const noTransitionOpen = ref(false);
                 <MizuDialogTitle>Terms of Service</MizuDialogTitle>
                 <MizuDialogDescription>Click-outside and Escape disabled.</MizuDialogDescription>
               </MizuDialogHeader>
-              <MizuDialogBody><p class="body-text"><code>:dismissible="false"</code>. No close button, no escape.</p></MizuDialogBody>
+              <MizuDialogBody
+                ><p class="body-text">
+                  <code>:dismissible="false"</code>. No close button, no escape.
+                </p></MizuDialogBody
+              >
               <MizuDialogFooter>
-                <MizuButton variant="ghost" size="md" class="w-max" @click="nonDismissibleOpen = false">Decline</MizuButton>
-                <MizuButton variant="primary" size="md" class="w-max" @click="nonDismissibleOpen = false">Accept</MizuButton>
+                <MizuButton
+                  variant="ghost"
+                  size="md"
+                  class="w-max"
+                  @click="nonDismissibleOpen = false"
+                  >Decline</MizuButton
+                >
+                <MizuButton
+                  variant="primary"
+                  size="md"
+                  class="w-max"
+                  @click="nonDismissibleOpen = false"
+                  >Accept</MizuButton
+                >
               </MizuDialogFooter>
             </MizuDialogContent>
           </MizuDialogPortal>
@@ -205,14 +272,30 @@ const noTransitionOpen = ref(false);
       <h3>No Transition</h3>
       <CodeCollapsible :code="noTransitionCode">
         <MizuDialogRoot v-model:open="noTransitionOpen">
-          <MizuDialogTrigger as-child><MizuButton variant="outline" size="md" class="w-max">Instant Open</MizuButton></MizuDialogTrigger>
+          <MizuDialogTrigger as-child
+            ><MizuButton variant="outline" size="md" class="w-max"
+              >Instant Open</MizuButton
+            ></MizuDialogTrigger
+          >
           <MizuDialogPortal>
             <MizuDialogOverlay :transition="false" />
             <MizuDialogContent :transition="false">
               <MizuDialogClose />
               <MizuDialogHeader><MizuDialogTitle>Instant Dialog</MizuDialogTitle></MizuDialogHeader>
-              <MizuDialogBody><p class="body-text">No animations — <code>:transition="false"</code>.</p></MizuDialogBody>
-              <MizuDialogFooter><MizuButton variant="primary" size="md" class="w-max" @click="noTransitionOpen = false">Close</MizuButton></MizuDialogFooter>
+              <MizuDialogBody
+                ><p class="body-text">
+                  No animations — <code>:transition="false"</code>.
+                </p></MizuDialogBody
+              >
+              <MizuDialogFooter
+                ><MizuButton
+                  variant="primary"
+                  size="md"
+                  class="w-max"
+                  @click="noTransitionOpen = false"
+                  >Close</MizuButton
+                ></MizuDialogFooter
+              >
             </MizuDialogContent>
           </MizuDialogPortal>
         </MizuDialogRoot>
@@ -229,7 +312,9 @@ const noTransitionOpen = ref(false);
   gap: 32px;
   font-family: inherit;
 }
-.dialog-new-examples :deep(*) { margin: 0; }
+.dialog-new-examples :deep(*) {
+  margin: 0;
+}
 .example-section {
   all: revert;
   display: flex;
@@ -244,6 +329,16 @@ const noTransitionOpen = ref(false);
   margin: 0;
 }
 
-.button-row { display: flex; flex-wrap: wrap; gap: 8px; margin: 0; padding: 0; }
-.body-text { font-size: 14px; color: var(--color-foreground-secondary); margin: 0; }
+.button-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+}
+.body-text {
+  font-size: 14px;
+  color: var(--color-foreground-secondary);
+  margin: 0;
+}
 </style>

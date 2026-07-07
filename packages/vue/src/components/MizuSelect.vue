@@ -50,10 +50,7 @@ const selectId = computed(() => {
 const helperId = computed(() => `${selectId.value}-helper`);
 
 const selectClasses = computed(() => {
-  const classes = [
-    "mizu-select",
-    `mizu-select--${props.size}`,
-  ];
+  const classes = ["mizu-select", `mizu-select--${props.size}`];
 
   if (props.error) classes.push("mizu-select--error");
   if (props.disabled) classes.push("mizu-select--disabled");
@@ -114,29 +111,14 @@ function handleBlur(event: FocusEvent) {
         @focus="handleFocus"
         @blur="handleBlur"
       >
-        <option
-          v-if="placeholder"
-          value=""
-          disabled
-          hidden
-        >
+        <option v-if="placeholder" value="" disabled hidden>
           {{ placeholder }}
         </option>
-        <option
-          v-for="opt in options"
-          :key="opt.value"
-          :value="opt.value"
-          :disabled="opt.disabled"
-        >
+        <option v-for="opt in options" :key="opt.value" :value="opt.value" :disabled="opt.disabled">
           {{ opt.label }}
         </option>
       </select>
-      <svg
-        class="mizu-select-chevron"
-        viewBox="0 0 20 20"
-        fill="none"
-        aria-hidden="true"
-      >
+      <svg class="mizu-select-chevron" viewBox="0 0 20 20" fill="none" aria-hidden="true">
         <path
           d="M5 8L10 13L15 8"
           stroke="currentColor"
@@ -167,9 +149,15 @@ function handleBlur(event: FocusEvent) {
 .mizu-select-label {
   @apply font-medium text-[var(--color-foreground-primary)];
 }
-.mizu-select-label--sm { @apply text-[12px]; }
-.mizu-select-label--md { @apply text-[12px]; }
-.mizu-select-label--lg { @apply text-[14px]; }
+.mizu-select-label--sm {
+  @apply text-[12px];
+}
+.mizu-select-label--md {
+  @apply text-[12px];
+}
+.mizu-select-label--lg {
+  @apply text-[14px];
+}
 .mizu-select-label__required {
   @apply ml-[2px] text-[var(--color-feedback-error-base)];
 }
@@ -185,7 +173,9 @@ function handleBlur(event: FocusEvent) {
   border: 1px solid var(--color-surface-muted);
   background-color: var(--color-surface-base);
   color: var(--color-foreground-primary);
-  transition: border-color 200ms ease-in-out, box-shadow 200ms ease-in-out;
+  transition:
+    border-color 200ms ease-in-out,
+    box-shadow 200ms ease-in-out;
 }
 .mizu-select:focus-visible {
   border-color: var(--color-brand-ycp);
@@ -231,8 +221,12 @@ function handleBlur(event: FocusEvent) {
   color: var(--color-foreground-tertiary);
 }
 
-.mizu-select-wrapper--sm .mizu-select-chevron { right: 6px; }
-.mizu-select-wrapper--lg .mizu-select-chevron { right: 10px; }
+.mizu-select-wrapper--sm .mizu-select-chevron {
+  right: 6px;
+}
+.mizu-select-wrapper--lg .mizu-select-chevron {
+  right: 10px;
+}
 
 .mizu-select-helper {
   @apply text-[12px] text-[var(--color-foreground-secondary)];

@@ -52,7 +52,9 @@ const emptyClasses = computed(() => {
 .mizu-empty__icon {
   @apply mb-4 text-[var(--color-foreground-tertiary)];
 }
-.mizu-empty__icon svg { @apply w-12 h-12; }
+.mizu-empty__icon svg {
+  @apply w-12 h-12;
+}
 
 .mizu-empty__title {
   @apply text-base font-semibold text-[var(--color-foreground-primary)] mb-2;

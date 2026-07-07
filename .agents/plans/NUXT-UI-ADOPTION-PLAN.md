@@ -31,8 +31,8 @@ High-visibility, low-effort improvements inspired by `UButton`.
 
 ### 1.1 `block` prop
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
+| Prop    | Type      | Default | Description                                        |
+| ------- | --------- | ------- | -------------------------------------------------- |
 | `block` | `boolean` | `false` | Render button full width (`w-full justify-center`) |
 
 ```vue
@@ -41,19 +41,20 @@ High-visibility, low-effort improvements inspired by `UButton`.
 
 ### 1.2 `square` prop
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
+| Prop     | Type      | Default | Description                                 |
+| -------- | --------- | ------- | ------------------------------------------- |
 | `square` | `boolean` | `false` | Equal padding on all sides (icon-only mode) |
 
 When `square` mode is active:
+
 - `sm`: `p-[8px]`
 - `md`: `p-[10px]`
 - `lg`: `p-[10px]`
 
 ### 1.3 `loading-auto` prop
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
+| Prop          | Type      | Default | Description                                                                               |
+| ------------- | --------- | ------- | ----------------------------------------------------------------------------------------- |
 | `loadingAuto` | `boolean` | `false` | Automatically set `loading=true` while the `@click` handler's returned promise is pending |
 
 Implementation: Wrap `handleClick` to detect if the handler returns a promise. If so, set `loading=true` before `await`, restore to `false` after settle.
@@ -77,42 +78,46 @@ Target: `MizuDialog*` components
 
 ### 2.1 `fullscreen` prop on MizuDialogRoot
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
+| Prop         | Type      | Default | Description                                                |
+| ------------ | --------- | ------- | ---------------------------------------------------------- |
 | `fullscreen` | `boolean` | `false` | Dialog takes full viewport — no border, no shadow, inset 0 |
 
 When `fullscreen=true` on `MizuDialogContent`:
+
 - CSS: `inset: 0; border-radius: 0; max-width: 100%; max-height: 100%; width: 100vw; height: 100dvh; box-shadow: none`
 
 ### 2.2 `dismissible` prop
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `dismissible` | `boolean` | `true` | When `false`, prevents close on click-outside / Escape |
+| Prop          | Type      | Default | Description                                            |
+| ------------- | --------- | ------- | ------------------------------------------------------ |
+| `dismissible` | `boolean` | `true`  | When `false`, prevents close on click-outside / Escape |
 
 When `dismissible=false`:
+
 - Pass `disable-outside-pointer-events` to Reka `DialogContent` (reversing the boolean — `true` = block outside clicks)
 - Do **not** render close button
 - Emit `closePrevent` when close is attempted
 
 ### 2.3 `scrollable` prop
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
+| Prop         | Type      | Default | Description                                                                   |
+| ------------ | --------- | ------- | ----------------------------------------------------------------------------- |
 | `scrollable` | `boolean` | `false` | Content scrolls within the overlay instead of the dialog being fixed-position |
 
 When `scrollable=true`:
+
 - Overlay becomes `overflow-y-auto`
 - Dialog content becomes `relative` (not `fixed`)
 - Wrap overlay + content in a grid `place-items-center`
 
 ### 2.4 `transition` toggle
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `transition` | `boolean` | `true` | Disable enter/leave animations |
+| Prop         | Type      | Default | Description                    |
+| ------------ | --------- | ------- | ------------------------------ |
+| `transition` | `boolean` | `true`  | Disable enter/leave animations |
 
 When `transition=false`:
+
 - Remove animation classes from content and overlay
 - (Useful for reduced-motion preferences or SSR)
 
@@ -151,34 +156,34 @@ MizuDrawer
 
 ### Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `open` | `boolean` (v-model) | `false` | Controlled open state |
-| `side` | `"left" \| "right" \| "top" \| "bottom"` | `"right"` | Which edge the drawer slides from |
-| `size` | `"sm" \| "md" \| "lg" \| "xl" \| "full"` | `"md"` | Width (for left/right) or height (for top/bottom) |
-| `title` | `string` | — | Optional title in header |
-| `description` | `string` | — | Optional description in header |
-| `dismissible` | `boolean` | `true` | Prevent close on outside-click / Escape |
+| Prop          | Type                                     | Default   | Description                                       |
+| ------------- | ---------------------------------------- | --------- | ------------------------------------------------- |
+| `open`        | `boolean` (v-model)                      | `false`   | Controlled open state                             |
+| `side`        | `"left" \| "right" \| "top" \| "bottom"` | `"right"` | Which edge the drawer slides from                 |
+| `size`        | `"sm" \| "md" \| "lg" \| "xl" \| "full"` | `"md"`    | Width (for left/right) or height (for top/bottom) |
+| `title`       | `string`                                 | —         | Optional title in header                          |
+| `description` | `string`                                 | —         | Optional description in header                    |
+| `dismissible` | `boolean`                                | `true`    | Prevent close on outside-click / Escape           |
 
 ### Size mapping (right/left)
 
-| Size | Width |
-|------|-------|
-| `sm` | `max-w-sm` (384px) |
-| `md` | `max-w-md` (448px) |
-| `lg` | `max-w-lg` (512px) |
-| `xl` | `max-w-xl` (576px) |
-| `full` | `w-screen` |
+| Size   | Width              |
+| ------ | ------------------ |
+| `sm`   | `max-w-sm` (384px) |
+| `md`   | `max-w-md` (448px) |
+| `lg`   | `max-w-lg` (512px) |
+| `xl`   | `max-w-xl` (576px) |
+| `full` | `w-screen`         |
 
 ### Size mapping (top/bottom)
 
-| Size | Height |
-|------|--------|
-| `sm` | `max-h-[30vh]` |
-| `md` | `max-h-[50vh]` |
-| `lg` | `max-h-[70vh]` |
-| `xl` | `max-h-[85vh]` |
-| `full` | `h-screen` |
+| Size   | Height         |
+| ------ | -------------- |
+| `sm`   | `max-h-[30vh]` |
+| `md`   | `max-h-[50vh]` |
+| `lg`   | `max-h-[70vh]` |
+| `xl`   | `max-h-[85vh]` |
+| `full` | `h-screen`     |
 
 ### Files to create
 
@@ -209,13 +214,13 @@ MizuDrawer
 
 Numeric or status indicator (notification dot / count badge).
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `value` | `string \| number` | — | Display value |
-| `size` | `"sm" \| "md"` | `"md"` | Size |
-| `color` | `"primary" \| "accent" \| "success" \| "warning" \| "error" \| "info"` | `"accent"` | Color variant |
-| `dot` | `boolean` | `false` | Dot-only mode (no value) |
-| `position` | `"top-right" \| "top-left" \| "bottom-right" \| "bottom-left"` | `"top-right"` | Position relative to parent |
+| Prop       | Type                                                                   | Default       | Description                 |
+| ---------- | ---------------------------------------------------------------------- | ------------- | --------------------------- |
+| `value`    | `string \| number`                                                     | —             | Display value               |
+| `size`     | `"sm" \| "md"`                                                         | `"md"`        | Size                        |
+| `color`    | `"primary" \| "accent" \| "success" \| "warning" \| "error" \| "info"` | `"accent"`    | Color variant               |
+| `dot`      | `boolean`                                                              | `false`       | Dot-only mode (no value)    |
+| `position` | `"top-right" \| "top-left" \| "bottom-right" \| "bottom-left"`         | `"top-right"` | Position relative to parent |
 
 Uses Reka UI `Presence` for mount/unmount animation. When used as standalone (no default slot), renders as inline badge. When wrapped around children, positions as overlay dot badge.
 
@@ -223,10 +228,10 @@ Uses Reka UI `Presence` for mount/unmount animation. When used as standalone (no
 
 Keyboard key display (`⌘K`, `Ctrl+S`, etc.).
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `keys` | `string \| string[]` | — | Key or keys to display |
-| `size` | `"sm" \| "md"` | `"md"` | Size |
+| Prop   | Type                 | Default | Description            |
+| ------ | -------------------- | ------- | ---------------------- |
+| `keys` | `string \| string[]` | —       | Key or keys to display |
+| `size` | `"sm" \| "md"`       | `"md"`  | Size                   |
 
 Renders `<kbd>` element with stylized key appearance using `--radius-xs` and `--color-surface-muted` background.
 
@@ -234,10 +239,10 @@ Renders `<kbd>` element with stylized key appearance using `--radius-xs` and `--
 
 Stacked avatars with overlap and overflow count.
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `items` | `AvatarGroupItem[]` | — | Array of avatar items |
-| `max` | `number` | `5` | Max visible before `+N` overflow indicator |
+| Prop    | Type                | Default | Description                                |
+| ------- | ------------------- | ------- | ------------------------------------------ |
+| `items` | `AvatarGroupItem[]` | —       | Array of avatar items                      |
+| `max`   | `number`            | `5`     | Max visible before `+N` overflow indicator |
 
 ```typescript
 interface AvatarGroupItem {
@@ -253,23 +258,23 @@ The `+N` overflow chip uses the same `MizuChip` component. Each avatar has negat
 
 Empty state placeholder for data displays.
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `icon` | `string` (slot) | — | Optional icon slot |
-| `title` | `string` | — | Heading text |
-| `description` | `string` | — | Body text |
-| `action` | `string` (slot) | — | Optional CTA slot (typically a button) |
+| Prop          | Type            | Default | Description                            |
+| ------------- | --------------- | ------- | -------------------------------------- |
+| `icon`        | `string` (slot) | —       | Optional icon slot                     |
+| `title`       | `string`        | —       | Heading text                           |
+| `description` | `string`        | —       | Body text                              |
+| `action`      | `string` (slot) | —       | Optional CTA slot (typically a button) |
 
 ### 4.5 `MizuCheckboxGroup`
 
 Group wrapper around `MizuCheckbox`.
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `modelValue` | `string[]` (v-model) | `[]` | Selected values |
-| `options` | `CheckboxGroupOption[]` | `[]` | Available options |
-| `orientation` | `"horizontal" \| "vertical"` | `"vertical"` | Layout direction |
-| `legend` | `string` | — | Fieldset legend text |
+| Prop          | Type                         | Default      | Description          |
+| ------------- | ---------------------------- | ------------ | -------------------- |
+| `modelValue`  | `string[]` (v-model)         | `[]`         | Selected values      |
+| `options`     | `CheckboxGroupOption[]`      | `[]`         | Available options    |
+| `orientation` | `"horizontal" \| "vertical"` | `"vertical"` | Layout direction     |
+| `legend`      | `string`                     | —            | Fieldset legend text |
 
 Renders `<fieldset>` with `<legend>`. Each option renders as `<MizuCheckbox>` with label.
 
@@ -298,11 +303,11 @@ Target: Integrate with existing `useForm` (`useMizuField`) composable.
 
 Wrapper component that consumes `FieldState` from `useMizuField` context and provides submission/validation lifecycle.
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `state` | `Record<string, unknown>` | — | Reactive form state object |
-| `validate` | `(state) => ValidationError[]` | — | Validation function |
-| `submit` | `(state) => Promise<void>` | — | Submit handler |
+| Prop       | Type                           | Default | Description                |
+| ---------- | ------------------------------ | ------- | -------------------------- |
+| `state`    | `Record<string, unknown>`      | —       | Reactive form state object |
+| `validate` | `(state) => ValidationError[]` | —       | Validation function        |
+| `submit`   | `(state) => Promise<void>`     | —       | Submit handler             |
 
 Emits `submit` event with the validated state. Prevents submission when validation fails. Shows errors on touched fields only.
 
@@ -310,12 +315,12 @@ Emits `submit` event with the validated state. Prevents submission when validati
 
 Validation-aware wrapper for any form input.
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `name` | `string` | — | Field name (matches key in form state) |
-| `label` | `string` | — | Label text |
-| `required` | `boolean` | `false` | Adds asterisk to label |
-| `help` | `string` | — | Help text below input |
+| Prop       | Type      | Default | Description                            |
+| ---------- | --------- | ------- | -------------------------------------- |
+| `name`     | `string`  | —       | Field name (matches key in form state) |
+| `label`    | `string`  | —       | Label text                             |
+| `required` | `boolean` | `false` | Adds asterisk to label                 |
+| `help`     | `string`  | —       | Help text below input                  |
 
 Connects to `MizuForm` context to resolve error messages for the given `name`. Passes `error` boolean and `helperText` to child input components.
 
@@ -342,12 +347,12 @@ Low-priority ergonomic improvements to existing components.
 
 Add an `items` prop shorthand to existing compound components, keeping the sub-component API for complex cases.
 
-| Component | Current API | Items shorthand |
-|-----------|-------------|----------------|
-| `MizuAccordion` | `<MizuAccordionRoot>` + Item + Header + Trigger + Content | `:items="[{ label, content, icon, disabled }]"` |
-| `MizuTabs` | `<MizuTabsRoot>` + List + Trigger + Content | `:tabs="[{ label, value, content }]"` |
-| `MizuDropdownMenu` | `<MizuDropdownMenuRoot>` + Item + etc. | `:items="[{ label, icon, onSelect }]"` |
-| `MizuBreadcrumb` | Already has items array | — |
+| Component          | Current API                                               | Items shorthand                                 |
+| ------------------ | --------------------------------------------------------- | ----------------------------------------------- |
+| `MizuAccordion`    | `<MizuAccordionRoot>` + Item + Header + Trigger + Content | `:items="[{ label, content, icon, disabled }]"` |
+| `MizuTabs`         | `<MizuTabsRoot>` + List + Trigger + Content               | `:tabs="[{ label, value, content }]"`           |
+| `MizuDropdownMenu` | `<MizuDropdownMenuRoot>` + Item + etc.                    | `:items="[{ label, icon, onSelect }]"`          |
+| `MizuBreadcrumb`   | Already has items array                                   | —                                               |
 
 When items array is provided, the component internally maps each item to the appropriate sub-components. When not provided, the user composes sub-components manually (current behavior).
 
@@ -355,13 +360,13 @@ When items array is provided, the component internally maps each item to the app
 
 Ensure all overlay components use `v-model:open` consistently:
 
-| Component | Current | Target |
-|-----------|---------|--------|
-| `MizuDialogRoot` | Already `v-model:open` | ✅ OK |
-| `MizuAlertDialogRoot` | Already `v-model:open` | ✅ OK |
-| `MizuPopoverRoot` | Check | `v-model:open` |
-| `MizuDropdownMenuRoot` | Check | `v-model:open` |
-| `MizuTooltipRoot` | Check | `v-model:open` |
+| Component              | Current                | Target         |
+| ---------------------- | ---------------------- | -------------- |
+| `MizuDialogRoot`       | Already `v-model:open` | ✅ OK          |
+| `MizuAlertDialogRoot`  | Already `v-model:open` | ✅ OK          |
+| `MizuPopoverRoot`      | Check                  | `v-model:open` |
+| `MizuDropdownMenuRoot` | Check                  | `v-model:open` |
+| `MizuTooltipRoot`      | Check                  | `v-model:open` |
 
 ### 6.3 `ui` prop for slot-level styling
 
@@ -397,6 +402,7 @@ Lower priority, higher effort.
 Cmd+K / Ctrl+K search overlay. Powered by Fuse.js for fuzzy search.
 
 Components:
+
 - `MizuCommandPaletteRoot`
 - `MizuCommandPaletteInput`
 - `MizuCommandPaletteGroup`
@@ -429,15 +435,15 @@ const result = await overlay.open(MizuDialog, { title: 'Confirm', ... })
 
 ## Effort Estimate & Priority
 
-| Phase | Components | Effort | Priority | Dependencies |
-|-------|-----------|--------|----------|-------------|
-| 1 — Button enhancements | 1 modify | Small | **P0** | None |
-| 2 — Dialog enhancements | 4 modify | Small | **P0** | None |
-| 3 — Drawer | 11 create | Medium | **P1** | Reka UI Dialog |
-| 4 — Missing simple components | 5 create | Small-Medium | **P1** | None |
-| 5 — Form + FormField | 2 create, 1 modify | Medium | **P1** | `useMizuField` |
-| 6 — Convenience APIs | ~5 modify | Large | **P2** | — |
-| 7 — Larger components | 5 create | Large | **P3** | Fuse.js (for CmdPalette) |
+| Phase                         | Components         | Effort       | Priority | Dependencies             |
+| ----------------------------- | ------------------ | ------------ | -------- | ------------------------ |
+| 1 — Button enhancements       | 1 modify           | Small        | **P0**   | None                     |
+| 2 — Dialog enhancements       | 4 modify           | Small        | **P0**   | None                     |
+| 3 — Drawer                    | 11 create          | Medium       | **P1**   | Reka UI Dialog           |
+| 4 — Missing simple components | 5 create           | Small-Medium | **P1**   | None                     |
+| 5 — Form + FormField          | 2 create, 1 modify | Medium       | **P1**   | `useMizuField`           |
+| 6 — Convenience APIs          | ~5 modify          | Large        | **P2**   | —                        |
+| 7 — Larger components         | 5 create           | Large        | **P3**   | Fuse.js (for CmdPalette) |
 
 ---
 
@@ -447,17 +453,17 @@ const result = await overlay.open(MizuDialog, { title: 'Confirm', ... })
 Iteration A (current sprint):
   1. Phase 1 — Button: block, square, loading-auto
   2. Phase 2 — Dialog: fullscreen, dismissible, scrollable, transition
-  
+
 Iteration B (next sprint):
   3. Phase 4 — Chip, Kbd, AvatarGroup, Empty, CheckboxGroup
-  
+
 Iteration C:
   4. Phase 3 — Drawer (all 11 components)
   5. Phase 5 — Form + FormField
-  
+
 Iteration D:
   6. Phase 6 — Items array APIs, v-model audit, ui prop
-  
+
 Future:
   7. Phase 7 — CommandPalette, NavMenu, PinInput, ContextMenu, useOverlay
 ```

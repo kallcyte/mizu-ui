@@ -13,10 +13,7 @@ withDefaults(defineProps<PopoverTriggerProps>(), {
 </script>
 
 <template>
-  <PopoverTrigger
-    :as-child="asChild"
-    :as="as"
-  >
+  <PopoverTrigger :as-child="asChild" :as="as">
     <slot />
   </PopoverTrigger>
 </template>

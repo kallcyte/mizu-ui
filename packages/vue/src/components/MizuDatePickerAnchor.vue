@@ -22,11 +22,7 @@ const anchorClasses = computed(() => {
 </script>
 
 <template>
-  <DatePickerAnchor
-    :class="anchorClasses"
-    :as-child="asChild"
-    :as="as"
-  >
+  <DatePickerAnchor :class="anchorClasses" :as-child="asChild" :as="as">
     <slot />
   </DatePickerAnchor>
 </template>

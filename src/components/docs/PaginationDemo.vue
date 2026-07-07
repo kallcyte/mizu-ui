@@ -84,7 +84,9 @@ const page5 = ref(1);
   gap: 32px;
   font-family: inherit;
 }
-.pagination-examples :deep(*) { margin: 0; }
+.pagination-examples :deep(*) {
+  margin: 0;
+}
 .example-section {
   all: revert;
   display: flex;

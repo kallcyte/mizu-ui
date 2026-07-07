@@ -56,19 +56,15 @@ const horizontalCode = `<MizuCheckboxGroup
           :options="notificationOptions"
           legend="Notification preferences"
         />
-        <p class="demo-value">Selected: {{ notifications.join(', ') || 'none' }}</p>
+        <p class="demo-value">Selected: {{ notifications.join(", ") || "none" }}</p>
       </CodeCollapsible>
     </section>
 
     <section class="example-section">
       <h3>With Disabled Option</h3>
       <CodeCollapsible :code="disabledOptionCode">
-        <MizuCheckboxGroup
-          v-model="roles"
-          :options="roleOptions"
-          legend="Assign roles"
-        />
-        <p class="demo-value">Selected: {{ roles.join(', ') || 'none' }}</p>
+        <MizuCheckboxGroup v-model="roles" :options="roleOptions" legend="Assign roles" />
+        <p class="demo-value">Selected: {{ roles.join(", ") || "none" }}</p>
       </CodeCollapsible>
     </section>
 
@@ -81,7 +77,7 @@ const horizontalCode = `<MizuCheckboxGroup
           orientation="horizontal"
           legend="Select options"
         />
-        <p class="demo-value">Selected: {{ horizontal.join(', ') || 'none' }}</p>
+        <p class="demo-value">Selected: {{ horizontal.join(", ") || "none" }}</p>
       </CodeCollapsible>
     </section>
   </div>

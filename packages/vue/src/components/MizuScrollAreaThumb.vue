@@ -13,11 +13,7 @@ const attrs = useAttrs();
 </script>
 
 <template>
-  <ScrollAreaThumb
-    :class="['mizu-scroll-area__thumb', attrs.class]"
-    :as-child="asChild"
-    :as="as"
-  >
+  <ScrollAreaThumb :class="['mizu-scroll-area__thumb', attrs.class]" :as-child="asChild" :as="as">
     <slot />
   </ScrollAreaThumb>
 </template>

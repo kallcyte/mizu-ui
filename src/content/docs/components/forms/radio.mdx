@@ -3,7 +3,7 @@ title: Radio
 description: A radio group for selecting one option from a set.
 ---
 
-import RadioDemo from '../../../../components/docs/RadioDemo.vue';
+import RadioDemo from "../../../../components/docs/RadioDemo.vue";
 
 A radio group allows users to select exactly one option from a predefined set. Use it when options are mutually exclusive and all options should be visible.
 
@@ -15,64 +15,64 @@ A radio group allows users to select exactly one option from a predefined set. U
 
 ### Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `modelValue` | `string` | `''` | v-model selected value |
-| `items` | `RadioItem[]` | `[]` | Array of `{ value, label, disabled? }` |
-| `disabled` | `boolean` | `false` | Disables all items |
-| `name` | `string` | `undefined` | Form field name |
-| `required` | `boolean` | `false` | Required for form validation |
-| `label` | `string` | `undefined` | Group label text |
-| `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | Controls radio size |
-| `orientation` | `'vertical' \| 'horizontal'` | `'vertical'` | Layout direction |
+| Prop          | Type                         | Default      | Description                            |
+| ------------- | ---------------------------- | ------------ | -------------------------------------- |
+| `modelValue`  | `string`                     | `''`         | v-model selected value                 |
+| `items`       | `RadioItem[]`                | `[]`         | Array of `{ value, label, disabled? }` |
+| `disabled`    | `boolean`                    | `false`      | Disables all items                     |
+| `name`        | `string`                     | `undefined`  | Form field name                        |
+| `required`    | `boolean`                    | `false`      | Required for form validation           |
+| `label`       | `string`                     | `undefined`  | Group label text                       |
+| `size`        | `'sm' \| 'md' \| 'lg'`       | `'md'`       | Controls radio size                    |
+| `orientation` | `'vertical' \| 'horizontal'` | `'vertical'` | Layout direction                       |
 
 ### Events
 
-| Event | Payload | Description |
-|-------|---------|-------------|
+| Event               | Payload  | Description                    |
+| ------------------- | -------- | ------------------------------ |
 | `update:modelValue` | `string` | Emitted when selection changes |
 
 ## Theme
 
 ### CSS Custom Properties
 
-| Token | Value | Usage |
-|-------|-------|-------|
-| `--color-foreground-tertiary` | #9CA3AF / #4B5563 | Unchecked border |
-| `--color-surface-base` | #FFFFFF / #0D0E12 | Unchecked background |
-| `--color-brand-primary` | #0070F2 | Checked background |
-| `--color-brand-primary-hover` | #005AC2 | Checked hover |
-| `--color-foreground-inverse` | #FFFFFF | Checked indicator |
-| `--color-surface-muted` | #F3F4F6 / #1E2030 | Disabled unchecked |
-| `--color-brand-ycp` | #001C44 | Focus ring |
+| Token                         | Value             | Usage                |
+| ----------------------------- | ----------------- | -------------------- |
+| `--color-foreground-tertiary` | #9CA3AF / #4B5563 | Unchecked border     |
+| `--color-surface-base`        | #FFFFFF / #0D0E12 | Unchecked background |
+| `--color-brand-primary`       | #0070F2           | Checked background   |
+| `--color-brand-primary-hover` | #005AC2           | Checked hover        |
+| `--color-foreground-inverse`  | #FFFFFF           | Checked indicator    |
+| `--color-surface-muted`       | #F3F4F6 / #1E2030 | Disabled unchecked   |
+| `--color-brand-ycp`           | #001C44           | Focus ring           |
 
 ### Sizing
 
 | Size | Radio Diameter | Indicator Dot | Label Size |
-|------|----------------|---------------|------------|
-| SM | 16px | 6px | 12px |
-| MD | 18px | 8px | 13px |
-| LG | 20px | 10px | 14px |
+| ---- | -------------- | ------------- | ---------- |
+| SM   | 16px           | 6px           | 12px       |
+| MD   | 18px           | 8px           | 13px       |
+| LG   | 20px           | 10px          | 14px       |
 
 ### Accessibility
 
-| Criterion | Implementation |
-|-----------|----------------|
-| Role | `radiogroup` on the group, `radio` on each item |
-| Label | Group label + per-item labels via `id`/`for` |
-| Keyboard | Arrow keys navigate between options |
-| Focus | Visible focus ring via `focus-visible` |
-| Disabled | Items removed from tab order |
+| Criterion | Implementation                                  |
+| --------- | ----------------------------------------------- |
+| Role      | `radiogroup` on the group, `radio` on each item |
+| Label     | Group label + per-item labels via `id`/`for`    |
+| Keyboard  | Arrow keys navigate between options             |
+| Focus     | Visible focus ring via `focus-visible`          |
+| Disabled  | Items removed from tab order                    |
 
 ## Anatomy
 
 A radio group consists of up to three parts:
 
-| Part | Required | Description |
-|------|----------|-------------|
-| Group label | No | Descriptive text above the radio group |
-| Radio item | Yes | One radio button per option |
-| Item label | Yes | Text label for each radio button |
+| Part        | Required | Description                            |
+| ----------- | -------- | -------------------------------------- |
+| Group label | No       | Descriptive text above the radio group |
+| Radio item  | Yes      | One radio button per option            |
+| Item label  | Yes      | Text label for each radio button       |
 
 ## Implementation Notes
 

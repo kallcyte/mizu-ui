@@ -3,7 +3,7 @@ title: Card
 description: Displays a card with image, header, content, and footer.
 ---
 
-import CardDemo from '../../../../components/docs/CardDemo.vue';
+import CardDemo from "../../../../components/docs/CardDemo.vue";
 
 Cards are containers for grouping related content and actions. They provide a clean, organized way to present information with optional visual emphasis.
 
@@ -59,65 +59,65 @@ Cards are containers for grouping related content and actions. They provide a cl
 
 #### Card
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
+| Prop      | Type                                      | Default     | Description          |
+| --------- | ----------------------------------------- | ----------- | -------------------- |
 | `spacing` | `'compact' \| 'default' \| 'comfortable'` | `'default'` | Card spacing variant |
 
 #### CardImage
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `src` | `string` | — | Image URL (required) |
-| `alt` | `string` | `''` | Alt text |
+| Prop  | Type     | Default | Description          |
+| ----- | -------- | ------- | -------------------- |
+| `src` | `string` | —       | Image URL (required) |
+| `alt` | `string` | `''`    | Alt text             |
 
 #### CardHeader
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `class` | `string` | — | Additional CSS classes |
+| Prop    | Type     | Default | Description            |
+| ------- | -------- | ------- | ---------------------- |
+| `class` | `string` | —       | Additional CSS classes |
 
 #### CardTitle
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `class` | `string` | — | Additional CSS classes |
+| Prop    | Type     | Default | Description            |
+| ------- | -------- | ------- | ---------------------- |
+| `class` | `string` | —       | Additional CSS classes |
 
 #### CardDescription
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `class` | `string` | — | Additional CSS classes |
+| Prop    | Type     | Default | Description            |
+| ------- | -------- | ------- | ---------------------- |
+| `class` | `string` | —       | Additional CSS classes |
 
 #### CardAction
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `class` | `string` | — | Additional CSS classes |
+| Prop    | Type     | Default | Description            |
+| ------- | -------- | ------- | ---------------------- |
+| `class` | `string` | —       | Additional CSS classes |
 
 #### CardContent
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `class` | `string` | — | Additional CSS classes |
+| Prop    | Type     | Default | Description            |
+| ------- | -------- | ------- | ---------------------- |
+| `class` | `string` | —       | Additional CSS classes |
 
 #### CardFooter
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `class` | `string` | — | Additional CSS classes |
+| Prop    | Type     | Default | Description            |
+| ------- | -------- | ------- | ---------------------- |
+| `class` | `string` | —       | Additional CSS classes |
 
 ### Slots
 
-| Component | Slot | Description |
-|-----------|------|-------------|
-| Card | `default` | Card child components |
-| CardImage | `default` | No slot, renders `<img>` directly |
-| CardHeader | `default` | Header content (title, description, action) |
-| CardTitle | `default` | Title text |
-| CardDescription | `default` | Description text |
-| CardAction | `default` | Action content |
-| CardContent | `default` | Main content |
-| CardFooter | `default` | Footer content |
+| Component       | Slot      | Description                                 |
+| --------------- | --------- | ------------------------------------------- |
+| Card            | `default` | Card child components                       |
+| CardImage       | `default` | No slot, renders `<img>` directly           |
+| CardHeader      | `default` | Header content (title, description, action) |
+| CardTitle       | `default` | Title text                                  |
+| CardDescription | `default` | Description text                            |
+| CardAction      | `default` | Action content                              |
+| CardContent     | `default` | Main content                                |
+| CardFooter      | `default` | Footer content                              |
 
 ## Theme
 
@@ -125,21 +125,21 @@ Cards are containers for grouping related content and actions. They provide a cl
 
 Customize the card appearance with these CSS custom properties:
 
-| Token | Default | Description |
-|-------|---------|-------------|
-| `--color-surface-base` | #FFFFFF | Card + content background |
-| `--color-surface-subtle` | #F9FAFB | Header + footer background |
+| Token                         | Default | Description                              |
+| ----------------------------- | ------- | ---------------------------------------- |
+| `--color-surface-base`        | #FFFFFF | Card + content background                |
+| `--color-surface-subtle`      | #F9FAFB | Header + footer background               |
 | `--color-foreground-tertiary` | #9CA3AF | Card border, separator, description text |
-| `--color-foreground-primary` | #1B1B1D | Title + content text |
-| `--font-size-h3` | 16px | Title font size |
-| `--font-size-caption` | 12px | Description font size |
-| `--font-size-body` | 14px | Content font size |
-| `--line-height-h3` | 1.3 | Title line height |
-| `--line-height-caption` | 1.45 | Description line height |
-| `--line-height-body` | 1.6 | Content line height |
-| `--letter-spacing-tight` | -0.03em | Title letter spacing |
-| `--radius-md` | 6px | Card border radius |
-| `--duration-normal` | 200ms | Border color transition |
+| `--color-foreground-primary`  | #1B1B1D | Title + content text                     |
+| `--font-size-h3`              | 16px    | Title font size                          |
+| `--font-size-caption`         | 12px    | Description font size                    |
+| `--font-size-body`            | 14px    | Content font size                        |
+| `--line-height-h3`            | 1.3     | Title line height                        |
+| `--line-height-caption`       | 1.45    | Description line height                  |
+| `--line-height-body`          | 1.6     | Content line height                      |
+| `--letter-spacing-tight`      | -0.03em | Title letter spacing                     |
+| `--radius-md`                 | 6px     | Card border radius                       |
+| `--duration-normal`           | 200ms   | Border color transition                  |
 
 ### Sizing
 
@@ -147,85 +147,85 @@ Spacing is propagated via CSS custom properties (`--mizu-card-px`, `--mizu-card-
 
 #### Spacing Variants
 
-| Variant | Section Padding | Header Gap | Use Case |
-|---------|----------------|------------|----------|
-| **compact** | 12px | 4px | Tight layouts, dense UIs |
-| **default** | 16px | 6px | Standard cards |
-| **comfortable** | 24px | 8px | Generous whitespace |
+| Variant         | Section Padding | Header Gap | Use Case                 |
+| --------------- | --------------- | ---------- | ------------------------ |
+| **compact**     | 12px            | 4px        | Tight layouts, dense UIs |
+| **default**     | 16px            | 6px        | Standard cards           |
+| **comfortable** | 24px            | 8px        | Generous whitespace      |
 
 #### Visual Sections
 
-| Section | Background | Separator |
-|---------|-----------|-----------|
-| CardHeader | `surface-subtle` (#F9FAFB) | Bottom border at 25% opacity |
-| CardContent | `surface-base` (#FFFFFF) | — |
-| CardFooter | `surface-subtle` (#F9FAFB) | Top border at 25% opacity |
+| Section     | Background                 | Separator                    |
+| ----------- | -------------------------- | ---------------------------- |
+| CardHeader  | `surface-subtle` (#F9FAFB) | Bottom border at 25% opacity |
+| CardContent | `surface-base` (#FFFFFF)   | —                            |
+| CardFooter  | `surface-subtle` (#F9FAFB) | Top border at 25% opacity    |
 
 Separators use `color-mix(in srgb, var(--mizu-color-foreground-tertiary) 25%, transparent)`.
 
 #### Shape
 
-| Property | Value |
-|----------|-------|
-| Border Radius | 6px |
-| Border Width | 1px |
-| Border Color | `foreground-tertiary` (#9CA3AF) |
+| Property      | Value                           |
+| ------------- | ------------------------------- |
+| Border Radius | 6px                             |
+| Border Width  | 1px                             |
+| Border Color  | `foreground-tertiary` (#9CA3AF) |
 
 #### Typography
 
 **CardTitle**
 
-| Property | Token | Value |
-|----------|-------|-------|
-| Text Color | `foreground-primary` | #1B1B1D |
-| Font Size | `font-size-h3` | 16px |
-| Font Weight | `font-weight-semibold` | 600 |
-| Line Height | `line-height-h3` | 1.3 |
+| Property       | Token                  | Value   |
+| -------------- | ---------------------- | ------- |
+| Text Color     | `foreground-primary`   | #1B1B1D |
+| Font Size      | `font-size-h3`         | 16px    |
+| Font Weight    | `font-weight-semibold` | 600     |
+| Line Height    | `line-height-h3`       | 1.3     |
 | Letter Spacing | `letter-spacing-tight` | -0.03em |
 
 **CardDescription**
 
-| Property | Token | Value |
-|----------|-------|-------|
-| Text Color | `foreground-tertiary` | #9CA3AF |
-| Font Size | `font-size-caption` | 12px |
-| Font Weight | `font-weight-regular` | 400 |
-| Line Height | `line-height-caption` | 1.45 |
+| Property    | Token                 | Value   |
+| ----------- | --------------------- | ------- |
+| Text Color  | `foreground-tertiary` | #9CA3AF |
+| Font Size   | `font-size-caption`   | 12px    |
+| Font Weight | `font-weight-regular` | 400     |
+| Line Height | `line-height-caption` | 1.45    |
 
 **CardContent Children**
 
-| Property | Token | Value |
-|----------|-------|-------|
-| Text Color | `foreground-primary` | #1B1B1D |
-| Font Size | `font-size-body` | 14px |
-| Font Weight | `font-weight-regular` | 400 |
-| Line Height | `line-height-body` | 1.6 |
+| Property    | Token                 | Value   |
+| ----------- | --------------------- | ------- |
+| Text Color  | `foreground-primary`  | #1B1B1D |
+| Font Size   | `font-size-body`      | 14px    |
+| Font Weight | `font-weight-regular` | 400     |
+| Line Height | `line-height-body`    | 1.6     |
 
 #### CardImage
 
 The image section renders a full-width image at the top of the card, clipped by the card's rounded corners.
 
-| Property | Default | Description |
-|----------|---------|-------------|
-| `src` | — | Image URL (required) |
-| `alt` | `""` | Alt text |
-| Aspect Ratio | 2:1 | Controlled via CSS `aspect-ratio` |
-| Fit | `object-fit: cover` | Crops to fill container |
+| Property     | Default             | Description                       |
+| ------------ | ------------------- | --------------------------------- |
+| `src`        | —                   | Image URL (required)              |
+| `alt`        | `""`                | Alt text                          |
+| Aspect Ratio | 2:1                 | Controlled via CSS `aspect-ratio` |
+| Fit          | `object-fit: cover` | Crops to fill container           |
 
 ### Transitions
 
-| Property | Duration | Easing |
-|----------|----------|--------|
-| Border Color | 200ms | ease-in-out |
+| Property     | Duration | Easing      |
+| ------------ | -------- | ----------- |
+| Border Color | 200ms    | ease-in-out |
 
 ### Accessibility
 
-| Criterion | Implementation |
-|-----------|----------------|
-| Semantic HTML | Use `<article>` or `<section>` for card containers when interactive |
-| Heading Hierarchy | Cards should contain headings for screen reader navigation |
+| Criterion           | Implementation                                                         |
+| ------------------- | ---------------------------------------------------------------------- |
+| Semantic HTML       | Use `<article>` or `<section>` for card containers when interactive    |
+| Heading Hierarchy   | Cards should contain headings for screen reader navigation             |
 | Keyboard Navigation | If card is interactive, ensure focusable elements inside are reachable |
-| Color Contrast | Border and background meet 3:1 contrast ratio |
+| Color Contrast      | Border and background meet 3:1 contrast ratio                          |
 
 ```html
 <!-- Static card -->
@@ -250,16 +250,16 @@ The image section renders a full-width image at the top of the card, clipped by 
 
 A card consists of up to 8 parts:
 
-| Part | Required | Description |
-|------|----------|-------------|
-| Card | Yes | Root container with border and rounded corners |
-| CardImage | No | Full-width image at the top, flushed to card edges |
-| CardHeader | No | Container for title, description, and action |
-| CardTitle | No | The card's heading |
-| CardDescription | No | Helper text under the title |
-| CardAction | No | Action area in the top-right of the header |
-| CardContent | No | Main body content |
-| CardFooter | No | Actions or secondary content at the bottom |
+| Part            | Required | Description                                        |
+| --------------- | -------- | -------------------------------------------------- |
+| Card            | Yes      | Root container with border and rounded corners     |
+| CardImage       | No       | Full-width image at the top, flushed to card edges |
+| CardHeader      | No       | Container for title, description, and action       |
+| CardTitle       | No       | The card's heading                                 |
+| CardDescription | No       | Helper text under the title                        |
+| CardAction      | No       | Action area in the top-right of the header         |
+| CardContent     | No       | Main body content                                  |
+| CardFooter      | No       | Actions or secondary content at the bottom         |
 
 #### Composition
 

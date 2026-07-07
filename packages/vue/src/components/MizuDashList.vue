@@ -22,7 +22,11 @@ const props = withDefaults(defineProps<DashListProps>(), {
 const attrs = useAttrs();
 
 const listClasses = computed(() => {
-  const classes = ["mizu-dashlist", `mizu-dashlist--${props.size}`, `mizu-dashlist--${props.orientation}`];
+  const classes = [
+    "mizu-dashlist",
+    `mizu-dashlist--${props.size}`,
+    `mizu-dashlist--${props.orientation}`,
+  ];
 
   if (attrs.class) classes.push(attrs.class as string);
 
@@ -89,20 +93,36 @@ const listClasses = computed(() => {
   color: var(--color-foreground-primary);
 }
 
-.mizu-dashlist--sm .mizu-dashlist__label { @apply text-[11px]; }
-.mizu-dashlist--sm .mizu-dashlist__value { @apply text-[12px]; }
+.mizu-dashlist--sm .mizu-dashlist__label {
+  @apply text-[11px];
+}
+.mizu-dashlist--sm .mizu-dashlist__value {
+  @apply text-[12px];
+}
 
-.mizu-dashlist--md .mizu-dashlist__label { @apply text-[12px]; }
-.mizu-dashlist--md .mizu-dashlist__value { @apply text-[13px]; }
+.mizu-dashlist--md .mizu-dashlist__label {
+  @apply text-[12px];
+}
+.mizu-dashlist--md .mizu-dashlist__value {
+  @apply text-[13px];
+}
 
-.mizu-dashlist--lg .mizu-dashlist__label { @apply text-[13px]; }
-.mizu-dashlist--lg .mizu-dashlist__value { @apply text-[15px]; }
+.mizu-dashlist--lg .mizu-dashlist__label {
+  @apply text-[13px];
+}
+.mizu-dashlist--lg .mizu-dashlist__value {
+  @apply text-[15px];
+}
 
 .mizu-dashlist__row--highlighted .mizu-dashlist__value {
   color: var(--color-brand-primary);
   font-weight: 600;
 }
 
-.mizu-dashlist--vertical.mizu-dashlist--sm .mizu-dashlist__row { padding: 6px 0; }
-.mizu-dashlist--vertical.mizu-dashlist--lg .mizu-dashlist__row { padding: 10px 0; }
+.mizu-dashlist--vertical.mizu-dashlist--sm .mizu-dashlist__row {
+  padding: 6px 0;
+}
+.mizu-dashlist--vertical.mizu-dashlist--lg .mizu-dashlist__row {
+  padding: 10px 0;
+}
 </style>

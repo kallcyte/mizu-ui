@@ -90,7 +90,7 @@ function getItemValue(item: AccordionItem, index: number): string {
       >
         <MizuAccordionHeader>
           <MizuAccordionTrigger>
-            <template #trailing-icon v-if="item.trailingIcon || trailingIcon || $slots.trailing">
+            <template v-if="item.trailingIcon || trailingIcon || $slots.trailing" #trailing-icon>
               <slot name="trailing" :item="item" :index="index">
                 <component
                   :is="item.trailingIcon || trailingIcon"
@@ -99,11 +99,7 @@ function getItemValue(item: AccordionItem, index: number): string {
               </slot>
             </template>
             <slot name="leading" :item="item" :index="index">
-              <component
-                :is="item.icon"
-                v-if="item.icon"
-                class="mizu-accordion__leading-icon"
-              />
+              <component :is="item.icon" v-if="item.icon" class="mizu-accordion__leading-icon" />
             </slot>
             <span class="mizu-accordion__label">{{ item.label }}</span>
           </MizuAccordionTrigger>

@@ -3,7 +3,7 @@ title: Popover
 description: A floating popup triggered by an element for displaying rich content, forms, or actions.
 ---
 
-import PopoverDemo from '../../../../components/docs/PopoverDemo.vue';
+import PopoverDemo from "../../../../components/docs/PopoverDemo.vue";
 
 A popover displays floating content anchored to a trigger element. Use it for rich interactive content such as forms, color pickers, profile cards, or menus of actions that need more space than a tooltip provides.
 
@@ -15,76 +15,76 @@ A popover displays floating content anchored to a trigger element. Use it for ri
 
 ### MizuPopoverRoot Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `open` | `boolean` | `undefined` | Controlled open state (v-model:open) |
-| `defaultOpen` | `boolean` | `false` | Initial open state when uncontrolled |
-| `modal` | `boolean` | `false` | Trap focus and disable outside interaction when true |
+| Prop          | Type      | Default     | Description                                          |
+| ------------- | --------- | ----------- | ---------------------------------------------------- |
+| `open`        | `boolean` | `undefined` | Controlled open state (v-model:open)                 |
+| `defaultOpen` | `boolean` | `false`     | Initial open state when uncontrolled                 |
+| `modal`       | `boolean` | `false`     | Trap focus and disable outside interaction when true |
 
 ### MizuPopoverTrigger Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `asChild` | `boolean` | `true` | Merge props onto the child element |
-| `as` | `string` | `"button"` | Element or component to render as |
+| Prop      | Type      | Default    | Description                        |
+| --------- | --------- | ---------- | ---------------------------------- |
+| `asChild` | `boolean` | `true`     | Merge props onto the child element |
+| `as`      | `string`  | `"button"` | Element or component to render as  |
 
 ### MizuPopoverPortal Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `forceMount` | `boolean` | `undefined` | Force render even when closed (useful for animations) |
-| `to` | `string \| HTMLElement` | `"body"` | Where to portal the content |
+| Prop         | Type                    | Default     | Description                                           |
+| ------------ | ----------------------- | ----------- | ----------------------------------------------------- |
+| `forceMount` | `boolean`               | `undefined` | Force render even when closed (useful for animations) |
+| `to`         | `string \| HTMLElement` | `"body"`    | Where to portal the content                           |
 
 ### MizuPopoverContent Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `side` | `"top" \| "right" \| "bottom" \| "left"` | `"bottom"` | Preferred side relative to the trigger |
-| `sideOffset` | `number` | `8` | Distance from the trigger in pixels |
-| `align` | `"start" \| "center" \| "end"` | `"center"` | Alignment along the trigger axis |
-| `alignOffset` | `number` | `0` | Offset along the alignment axis |
-| `avoidCollisions` | `boolean` | `true` | Flip to opposite side when colliding with viewport |
-| `collisionBoundary` | `Element \| Element[] \| null` | `undefined` | Custom boundary for collision detection |
-| `collisionPadding` | `number` | `8` | Padding from collision boundary in pixels |
-| `sticky` | `"partial" \| "always"` | `"partial"` | Keep content in view while trigger scrolls |
-| `hideWhenDetached` | `boolean` | `false` | Hide when trigger is occluded |
-| `arrowPadding` | `number` | `0` | Minimum distance between arrow and corner |
+| Prop                | Type                                     | Default     | Description                                        |
+| ------------------- | ---------------------------------------- | ----------- | -------------------------------------------------- |
+| `side`              | `"top" \| "right" \| "bottom" \| "left"` | `"bottom"`  | Preferred side relative to the trigger             |
+| `sideOffset`        | `number`                                 | `8`         | Distance from the trigger in pixels                |
+| `align`             | `"start" \| "center" \| "end"`           | `"center"`  | Alignment along the trigger axis                   |
+| `alignOffset`       | `number`                                 | `0`         | Offset along the alignment axis                    |
+| `avoidCollisions`   | `boolean`                                | `true`      | Flip to opposite side when colliding with viewport |
+| `collisionBoundary` | `Element \| Element[] \| null`           | `undefined` | Custom boundary for collision detection            |
+| `collisionPadding`  | `number`                                 | `8`         | Padding from collision boundary in pixels          |
+| `sticky`            | `"partial" \| "always"`                  | `"partial"` | Keep content in view while trigger scrolls         |
+| `hideWhenDetached`  | `boolean`                                | `false`     | Hide when trigger is occluded                      |
+| `arrowPadding`      | `number`                                 | `0`         | Minimum distance between arrow and corner          |
 
 ### MizuPopoverArrow Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `width` | `number` | `10` | Arrow width in pixels |
-| `height` | `number` | `5` | Arrow height in pixels |
+| Prop      | Type      | Default     | Description                        |
+| --------- | --------- | ----------- | ---------------------------------- |
+| `width`   | `number`  | `10`        | Arrow width in pixels              |
+| `height`  | `number`  | `5`         | Arrow height in pixels             |
 | `asChild` | `boolean` | `undefined` | Merge props onto the child element |
-| `as` | `string` | `undefined` | Element or component to render as |
+| `as`      | `string`  | `undefined` | Element or component to render as  |
 
 ### MizuPopoverClose Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
+| Prop      | Type      | Default     | Description                        |
+| --------- | --------- | ----------- | ---------------------------------- |
 | `asChild` | `boolean` | `undefined` | Merge props onto the child element |
-| `as` | `string` | `undefined` | Element or component to render as |
+| `as`      | `string`  | `undefined` | Element or component to render as  |
 
 ### MizuPopoverAnchor Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `asChild` | `boolean` | `undefined` | Merge props onto the child element |
-| `as` | `string` | `undefined` | Element or component to render as |
+| Prop        | Type          | Default     | Description                              |
+| ----------- | ------------- | ----------- | ---------------------------------------- |
+| `asChild`   | `boolean`     | `undefined` | Merge props onto the child element       |
+| `as`        | `string`      | `undefined` | Element or component to render as        |
 | `reference` | `HTMLElement` | `undefined` | Custom reference element for positioning |
 
 ### Events
 
-| Event | Payload | Description |
-|-------|---------|-------------|
-| `update:open` | `boolean` | Emitted from Root when open state changes |
-| `openAutoFocus` | `Event` | Emitted before focus moves to content |
-| `closeAutoFocus` | `Event` | Emitted before focus returns to trigger |
-| `escapeKeyDown` | `KeyboardEvent` | Emitted when Escape is pressed |
-| `pointerDownOutside` | `Event` | Emitted when a pointerdown occurs outside |
-| `focusOutside` | `Event` | Emitted when focus moves outside |
-| `interactOutside` | `Event` | Emitted on any outside interaction |
+| Event                | Payload         | Description                               |
+| -------------------- | --------------- | ----------------------------------------- |
+| `update:open`        | `boolean`       | Emitted from Root when open state changes |
+| `openAutoFocus`      | `Event`         | Emitted before focus moves to content     |
+| `closeAutoFocus`     | `Event`         | Emitted before focus returns to trigger   |
+| `escapeKeyDown`      | `KeyboardEvent` | Emitted when Escape is pressed            |
+| `pointerDownOutside` | `Event`         | Emitted when a pointerdown occurs outside |
+| `focusOutside`       | `Event`         | Emitted when focus moves outside          |
+| `interactOutside`    | `Event`         | Emitted on any outside interaction        |
 
 ### Example Usage
 
@@ -126,43 +126,43 @@ const open = ref(false);
 
 ### CSS Custom Properties
 
-| Token | Default | Description |
-|-------|---------|-------------|
-| `--color-surface-base` | #FFFFFF / #0F1117 | Background |
-| `--color-surface-muted` | #E2E8F0 / #1E2030 | Border |
-| `--color-foreground-primary` | #111827 / #F1F5F9 | Title text |
-| `--color-foreground-secondary` | #4B5563 / #94A3B8 | Body text |
-| `--color-foreground-tertiary` | #6B7280 / #94A3B8 | Helper text, muted |
-| `--color-surface-subtle` | #F8FAFC / #161821 | Hover background |
-| `--color-feedback-success-base` | #10B981 / #34D399 | Status indicators |
+| Token                           | Default           | Description        |
+| ------------------------------- | ----------------- | ------------------ |
+| `--color-surface-base`          | #FFFFFF / #0F1117 | Background         |
+| `--color-surface-muted`         | #E2E8F0 / #1E2030 | Border             |
+| `--color-foreground-primary`    | #111827 / #F1F5F9 | Title text         |
+| `--color-foreground-secondary`  | #4B5563 / #94A3B8 | Body text          |
+| `--color-foreground-tertiary`   | #6B7280 / #94A3B8 | Helper text, muted |
+| `--color-surface-subtle`        | #F8FAFC / #161821 | Hover background   |
+| `--color-feedback-success-base` | #10B981 / #34D399 | Status indicators  |
 
 ### Sizing
 
-| Property | Value |
-|----------|-------|
-| Min width | 200px |
-| Max width | 360px |
-| Default side offset | 8px |
-| Default collision padding | 8px |
-| Border radius | 8px |
-| Padding | 12px |
+| Property                  | Value |
+| ------------------------- | ----- |
+| Min width                 | 200px |
+| Max width                 | 360px |
+| Default side offset       | 8px   |
+| Default collision padding | 8px   |
+| Border radius             | 8px   |
+| Padding                   | 12px  |
 
 ### Spacing
 
-| Property | Value |
-|----------|-------|
-| Padding | 12px |
-| Internal gap (title → body) | 6px |
-| Min width | 200px |
-| Max width | 360px |
+| Property                    | Value |
+| --------------------------- | ----- |
+| Padding                     | 12px  |
+| Internal gap (title → body) | 6px   |
+| Min width                   | 200px |
+| Max width                   | 360px |
 
 ### Transitions
 
-| Property | Duration | Easing |
-|----------|----------|--------|
-| opacity | 200ms | cubic-bezier(0.16, 1, 0.3, 1) |
-| transform | 200ms | cubic-bezier(0.16, 1, 0.3, 1) |
-| translate (per side) | 8px | cubic-bezier(0.16, 1, 0.3, 1) |
+| Property             | Duration | Easing                        |
+| -------------------- | -------- | ----------------------------- |
+| opacity              | 200ms    | cubic-bezier(0.16, 1, 0.3, 1) |
+| transform            | 200ms    | cubic-bezier(0.16, 1, 0.3, 1) |
+| translate (per side) | 8px      | cubic-bezier(0.16, 1, 0.3, 1) |
 
 Animations are direction-aware: when `side="top"`, content slides down from above; when `side="right"`, content slides in from the right, and so on.
 
@@ -172,13 +172,13 @@ The popover content itself does not render a focus ring (it is programmatically 
 
 ### Accessibility
 
-| Criterion | Implementation |
-|-----------|----------------|
-| Keyboard | `Tab` moves focus through interactive elements inside the popover; `Escape` closes it |
-| Screen readers | Content announced via `role="dialog"`; trigger is a `button` element |
-| Focus trap | When `modal` is true, focus is trapped inside the popover |
-| Click outside | Clicking outside closes the popover (unless `modal` is true with `disableOutsidePointerEvents`) |
-| Focus return | On close, focus returns to the trigger element |
+| Criterion      | Implementation                                                                                  |
+| -------------- | ----------------------------------------------------------------------------------------------- |
+| Keyboard       | `Tab` moves focus through interactive elements inside the popover; `Escape` closes it           |
+| Screen readers | Content announced via `role="dialog"`; trigger is a `button` element                            |
+| Focus trap     | When `modal` is true, focus is trapped inside the popover                                       |
+| Click outside  | Clicking outside closes the popover (unless `modal` is true with `disableOutsidePointerEvents`) |
+| Focus return   | On close, focus returns to the trigger element                                                  |
 
 #### ARIA Attributes
 
@@ -193,15 +193,15 @@ Reka UI handles all ARIA attributes automatically when using the compound compon
 
 A popover consists of up to seven parts:
 
-| Part | Required | Description |
-|------|----------|-------------|
-| Root | Yes | Controls open state and modal behavior of a single popover |
-| Trigger | Yes | The element that opens the popover when clicked |
-| Portal | No | Renders content into the body to escape stacking-context issues |
-| Content | Yes | The floating panel that holds the popover body |
-| Arrow | No | Optional arrow pointing back to the trigger element |
-| Close | No | Any element that closes the popover when activated |
-| Anchor | No | Custom anchor element for advanced positioning |
+| Part    | Required | Description                                                     |
+| ------- | -------- | --------------------------------------------------------------- |
+| Root    | Yes      | Controls open state and modal behavior of a single popover      |
+| Trigger | Yes      | The element that opens the popover when clicked                 |
+| Portal  | No       | Renders content into the body to escape stacking-context issues |
+| Content | Yes      | The floating panel that holds the popover body                  |
+| Arrow   | No       | Optional arrow pointing back to the trigger element             |
+| Close   | No       | Any element that closes the popover when activated              |
+| Anchor  | No       | Custom anchor element for advanced positioning                  |
 
 ## Composition
 

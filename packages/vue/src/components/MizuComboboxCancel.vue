@@ -22,11 +22,7 @@ const cancelClasses = computed(() => {
 </script>
 
 <template>
-  <ComboboxCancel
-    :class="cancelClasses"
-    :as-child="asChild"
-    :as="as"
-  >
+  <ComboboxCancel :class="cancelClasses" :as-child="asChild" :as="as">
     <slot />
   </ComboboxCancel>
 </template>

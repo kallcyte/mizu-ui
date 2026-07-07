@@ -23,12 +23,7 @@ const cellClasses = computed(() => {
 </script>
 
 <template>
-  <DatePickerCell
-    :class="cellClasses"
-    :date="date"
-    :as-child="asChild"
-    :as="as"
-  >
+  <DatePickerCell :class="cellClasses" :date="date" :as-child="asChild" :as="as">
     <slot />
   </DatePickerCell>
 </template>

@@ -70,7 +70,12 @@ const percent = ref(0.05);
     <section class="example-section">
       <h3>Currency</h3>
       <CodeCollapsible :code="currencyCode">
-        <MizuNumberFieldRoot v-model="price" :min="0" :step="0.01" :format-options="{ style: 'currency', currency: 'USD' }">
+        <MizuNumberFieldRoot
+          v-model="price"
+          :min="0"
+          :step="0.01"
+          :format-options="{ style: 'currency', currency: 'USD' }"
+        >
           <div class="number-field-group">
             <MizuNumberFieldDecrement>−</MizuNumberFieldDecrement>
             <MizuNumberFieldInput />
@@ -84,7 +89,13 @@ const percent = ref(0.05);
     <section class="example-section">
       <h3>Percentage</h3>
       <CodeCollapsible :code="percentCode">
-        <MizuNumberFieldRoot v-model="percent" :min="0" :max="1" :step="0.01" :format-options="{ style: 'percent' }">
+        <MizuNumberFieldRoot
+          v-model="percent"
+          :min="0"
+          :max="1"
+          :step="0.01"
+          :format-options="{ style: 'percent' }"
+        >
           <div class="number-field-group">
             <MizuNumberFieldDecrement>−</MizuNumberFieldDecrement>
             <MizuNumberFieldInput />

@@ -3,7 +3,7 @@ title: Button
 description: Buttons allow users to take actions and make choices with a single tap.
 ---
 
-import ButtonExamples from '../../../../components/docs/ButtonExamples.vue';
+import ButtonExamples from "../../../../components/docs/ButtonExamples.vue";
 
 Buttons allow users to take actions and make choices with a single tap. They communicate the action that will occur when the user touches them.
 
@@ -15,29 +15,29 @@ Buttons allow users to take actions and make choices with a single tap. They com
 
 ### Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `variant` | `'primary' \| 'accent' \| 'ghost' \| 'outline' \| 'success' \| 'warning' \| 'error' \| 'info' \| 'outline-success' \| 'outline-warning' \| 'outline-error' \| 'outline-info'` | `'primary'` | Visual variant |
-| `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | Button size |
-| `disabled` | `boolean` | `false` | Disabled state |
-| `loading` | `boolean` | `false` | Loading state with spinner |
-| `type` | `'button' \| 'submit' \| 'reset'` | `'button'` | Native button type |
-| `block` | `boolean` | `false` | Render button full width (`w-full`) |
-| `square` | `boolean` | `false` | Equal padding on all sides (icon-only mode) |
-| `loadingAuto` | `boolean` | `false` | Auto-set `loading=true` while `@click` handler's returned promise is pending |
+| Prop          | Type                                                                                                                                                                          | Default     | Description                                                                  |
+| ------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- | ---------------------------------------------------------------------------- |
+| `variant`     | `'primary' \| 'accent' \| 'ghost' \| 'outline' \| 'success' \| 'warning' \| 'error' \| 'info' \| 'outline-success' \| 'outline-warning' \| 'outline-error' \| 'outline-info'` | `'primary'` | Visual variant                                                               |
+| `size`        | `'sm' \| 'md' \| 'lg'`                                                                                                                                                        | `'md'`      | Button size                                                                  |
+| `disabled`    | `boolean`                                                                                                                                                                     | `false`     | Disabled state                                                               |
+| `loading`     | `boolean`                                                                                                                                                                     | `false`     | Loading state with spinner                                                   |
+| `type`        | `'button' \| 'submit' \| 'reset'`                                                                                                                                             | `'button'`  | Native button type                                                           |
+| `block`       | `boolean`                                                                                                                                                                     | `false`     | Render button full width (`w-full`)                                          |
+| `square`      | `boolean`                                                                                                                                                                     | `false`     | Equal padding on all sides (icon-only mode)                                  |
+| `loadingAuto` | `boolean`                                                                                                                                                                     | `false`     | Auto-set `loading=true` while `@click` handler's returned promise is pending |
 
 ### Slots
 
-| Slot | Description |
-|------|-------------|
-| `default` | Button label content |
-| `leading-icon` | Leading icon content |
+| Slot            | Description           |
+| --------------- | --------------------- |
+| `default`       | Button label content  |
+| `leading-icon`  | Leading icon content  |
 | `trailing-icon` | Trailing icon content |
 
 ### Events
 
-| Event | Payload | Description |
-|-------|---------|-------------|
+| Event   | Payload      | Description             |
+| ------- | ------------ | ----------------------- |
 | `click` | `MouseEvent` | Emitted on button click |
 
 ## Theme
@@ -46,70 +46,70 @@ Buttons allow users to take actions and make choices with a single tap. They com
 
 Customize the button appearance with these CSS custom properties:
 
-| Token | Default | Description |
-|-------|---------|-------------|
-| `--color-brand-primary` | `#0070F2` | Primary button background |
-| `--color-brand-primary-hover` | `#005AC2` | Primary hover background |
-| `--color-brand-primary-focus` | `#338DF5` | Primary focus/pressed background |
-| `--color-brand-ycp` | `#001C44` | Accent button background |
-| `--color-brand-ycp-hover` | `#001636` | Accent hover background |
-| `--color-brand-ycp-focus` | `#334969` | Accent focus/pressed background |
-| `--color-foreground-inverse` | `#FFFFFF` | Primary/Accent label color |
-| `--color-foreground-primary` | `#1B1B1D` | Ghost/Outline label color |
-| `--color-foreground-tertiary` | `#9CA3AF` | Disabled label color |
-| `--color-surface-subtle` | `#F9FAFB` | Ghost hover background |
-| `--color-surface-muted` | `#F3F4F6` | Outline border, disabled background |
+| Token                         | Default   | Description                         |
+| ----------------------------- | --------- | ----------------------------------- |
+| `--color-brand-primary`       | `#0070F2` | Primary button background           |
+| `--color-brand-primary-hover` | `#005AC2` | Primary hover background            |
+| `--color-brand-primary-focus` | `#338DF5` | Primary focus/pressed background    |
+| `--color-brand-ycp`           | `#001C44` | Accent button background            |
+| `--color-brand-ycp-hover`     | `#001636` | Accent hover background             |
+| `--color-brand-ycp-focus`     | `#334969` | Accent focus/pressed background     |
+| `--color-foreground-inverse`  | `#FFFFFF` | Primary/Accent label color          |
+| `--color-foreground-primary`  | `#1B1B1D` | Ghost/Outline label color           |
+| `--color-foreground-tertiary` | `#9CA3AF` | Disabled label color                |
+| `--color-surface-subtle`      | `#F9FAFB` | Ghost hover background              |
+| `--color-surface-muted`       | `#F3F4F6` | Outline border, disabled background |
 
 ### Sizing
 
-| Size | Height | Horizontal Padding | Vertical Padding | Gap | Border Radius | Font Size |
-|------|--------|-------------------|------------------|-----|---------------|-----------|
-| **SM** | 28px | 8px | 8px | 4px | 4px | 10px |
-| **MD** | 36px | 10px | 10px | 6px | 6px | 12px |
-| **LG** | 40px | 10px | 10px | 8px | 6px | 14px |
+| Size   | Height | Horizontal Padding | Vertical Padding | Gap | Border Radius | Font Size |
+| ------ | ------ | ------------------ | ---------------- | --- | ------------- | --------- |
+| **SM** | 28px   | 8px                | 8px              | 4px | 4px           | 10px      |
+| **MD** | 36px   | 10px               | 10px             | 6px | 6px           | 12px      |
+| **LG** | 40px   | 10px               | 10px             | 8px | 6px           | 14px      |
 
 ### Icon Sizes
 
-| Size | Icon Size | Stroke Width |
-|------|-----------|--------------|
-| **SM** | 10px | 1.5px |
-| **MD** | 16px | 1.5px |
-| **LG** | 20px | 2px |
+| Size   | Icon Size | Stroke Width |
+| ------ | --------- | ------------ |
+| **SM** | 10px      | 1.5px        |
+| **MD** | 16px      | 1.5px        |
+| **LG** | 20px      | 2px          |
 
 ### Transitions
 
-| Property | Duration | Easing |
-|----------|----------|--------|
-| Background / Border / Box Shadow | 200ms | ease-in-out |
-| Transform (press) | 100ms | ease-out |
+| Property                         | Duration | Easing      |
+| -------------------------------- | -------- | ----------- |
+| Background / Border / Box Shadow | 200ms    | ease-in-out |
+| Transform (press)                | 100ms    | ease-out    |
 
 ### Focus Ring
 
-| Property | Value |
-|----------|-------|
-| Style | `outline: 2px solid var(--color-brand-ycp)` |
-| Offset | `2px` |
-| Border Radius | Inherits from button |
+| Property      | Value                                       |
+| ------------- | ------------------------------------------- |
+| Style         | `outline: 2px solid var(--color-brand-ycp)` |
+| Offset        | `2px`                                       |
+| Border Radius | Inherits from button                        |
 
 ### Accessibility
 
-| Criterion | Implementation |
-|-----------|----------------|
-| Touch Target | Minimum 44px × 44px |
-| Color Contrast | 4.5:1 for text, 3:1 for icons |
-| Keyboard Navigation | `tabindex="0"`, Enter/Space triggers click |
-| Screen Reader | `role="button"` or native `<button>` |
-| Focus Indicator | Visible focus ring on keyboard focus |
-| Disabled State | `aria-disabled="true"`, `disabled` attribute |
+| Criterion           | Implementation                               |
+| ------------------- | -------------------------------------------- |
+| Touch Target        | Minimum 44px × 44px                          |
+| Color Contrast      | 4.5:1 for text, 3:1 for icons                |
+| Keyboard Navigation | `tabindex="0"`, Enter/Space triggers click   |
+| Screen Reader       | `role="button"` or native `<button>`         |
+| Focus Indicator     | Visible focus ring on keyboard focus         |
+| Disabled State      | `aria-disabled="true"`, `disabled` attribute |
 
 ## Anatomy
 
-| Part | Required | Description |
-|------|----------|-------------|
-| Container | Yes | The button's background/fill area |
-| Label Text | Yes | The button's text content |
-| Leading Icon | No | Icon placed before the label |
-| Trailing Icon | No | Icon placed after the label |
+| Part          | Required | Description                       |
+| ------------- | -------- | --------------------------------- |
+| Container     | Yes      | The button's background/fill area |
+| Label Text    | Yes      | The button's text content         |
+| Leading Icon  | No       | Icon placed before the label      |
+| Trailing Icon | No       | Icon placed after the label       |
 
 ## Implementation Notes
 

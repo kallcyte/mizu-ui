@@ -22,11 +22,7 @@ const prevClasses = computed(() => {
 </script>
 
 <template>
-  <DatePickerPrev
-    :class="prevClasses"
-    :as-child="asChild"
-    :as="as"
-  >
+  <DatePickerPrev :class="prevClasses" :as-child="asChild" :as="as">
     <slot />
   </DatePickerPrev>
 </template>

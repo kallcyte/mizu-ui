@@ -61,7 +61,11 @@ const checkboxClasses = computed(() => {
 <template>
   <label
     :for="checkboxId"
-    :class="['mizu-checkbox-wrapper', `mizu-checkbox-wrapper--${size}`, { 'mizu-checkbox-wrapper--disabled': disabled, 'mizu-checkbox-wrapper--no-label': !label }]"
+    :class="[
+      'mizu-checkbox-wrapper',
+      `mizu-checkbox-wrapper--${size}`,
+      { 'mizu-checkbox-wrapper--disabled': disabled, 'mizu-checkbox-wrapper--no-label': !label },
+    ]"
   >
     <CheckboxRoot
       :id="checkboxId"
@@ -76,26 +80,10 @@ const checkboxClasses = computed(() => {
       @update:model-value="(value) => emit('update:modelValue', value)"
     >
       <CheckboxIndicator class="mizu-checkbox__indicator">
-        <svg
-          v-if="isIndeterminate"
-          viewBox="0 0 14 14"
-          class="mizu-checkbox__icon"
-        >
-          <rect
-            x="3"
-            y="6"
-            width="8"
-            height="2"
-            rx="1"
-            fill="currentColor"
-          />
+        <svg v-if="isIndeterminate" viewBox="0 0 14 14" class="mizu-checkbox__icon">
+          <rect x="3" y="6" width="8" height="2" rx="1" fill="currentColor" />
         </svg>
-        <svg
-          v-else
-          viewBox="0 0 14 14"
-          fill="none"
-          class="mizu-checkbox__icon"
-        >
+        <svg v-else viewBox="0 0 14 14" fill="none" class="mizu-checkbox__icon">
           <path
             d="M2.5 7.5L5.5 10.5L11.5 4.5"
             stroke="currentColor"
@@ -128,9 +116,15 @@ const checkboxClasses = computed(() => {
   color: #fff;
 }
 
-.mizu-checkbox--sm { @apply w-[16px] h-[16px]; }
-.mizu-checkbox--md { @apply w-[18px] h-[18px]; }
-.mizu-checkbox--lg { @apply w-[20px] h-[20px]; }
+.mizu-checkbox--sm {
+  @apply w-[16px] h-[16px];
+}
+.mizu-checkbox--md {
+  @apply w-[18px] h-[18px];
+}
+.mizu-checkbox--lg {
+  @apply w-[20px] h-[20px];
+}
 
 .mizu-checkbox:hover:not(.mizu-checkbox--disabled) {
   border-color: var(--color-brand-primary);
@@ -175,9 +169,15 @@ const checkboxClasses = computed(() => {
   line-height: 1.3;
 }
 
-.mizu-checkbox-wrapper--sm .mizu-checkbox__label { @apply text-[12px]; }
-.mizu-checkbox-wrapper--md .mizu-checkbox__label { @apply text-[13px]; }
-.mizu-checkbox-wrapper--lg .mizu-checkbox__label { @apply text-[14px]; }
+.mizu-checkbox-wrapper--sm .mizu-checkbox__label {
+  @apply text-[12px];
+}
+.mizu-checkbox-wrapper--md .mizu-checkbox__label {
+  @apply text-[13px];
+}
+.mizu-checkbox-wrapper--lg .mizu-checkbox__label {
+  @apply text-[14px];
+}
 
 .mizu-checkbox-wrapper--disabled .mizu-checkbox__label {
   @apply text-[var(--color-foreground-tertiary)];

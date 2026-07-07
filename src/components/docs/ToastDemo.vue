@@ -1,13 +1,10 @@
 <script setup lang="ts">
 import { ref } from "vue";
-import {
-  MizuToastProvider,
-  MizuButton,
-  useToast,
-} from "@mizu/vue";
+import { MizuToastProvider, MizuButton, useToast } from "@mizu/vue";
 import CodeCollapsible from "./CodeCollapsible.vue";
 
-type Position = "top-right" | "top-left" | "top-center" | "bottom-right" | "bottom-left" | "bottom-center";
+type Position =
+  "top-right" | "top-left" | "top-center" | "bottom-right" | "bottom-left" | "bottom-center";
 
 const position = ref<Position>("top-right");
 
@@ -33,7 +30,14 @@ const positionCode = `<MizuToastProvider :position="position">
         <CodeCollapsible :code="positionCode">
           <div class="button-row">
             <MizuButton
-              v-for="pos in (['top-left', 'top-center', 'top-right', 'bottom-left', 'bottom-center', 'bottom-right'] as Position[])"
+              v-for="pos in [
+                'top-left',
+                'top-center',
+                'top-right',
+                'bottom-left',
+                'bottom-center',
+                'bottom-right',
+              ] as Position[]"
               :key="pos"
               :variant="position === pos ? 'accent' : 'outline'"
               size="md"
@@ -168,44 +172,102 @@ addToast({ description: "A new version is available. Refresh to update.", varian
   variant: "info",
 });`;
 
-    return () => h("div", { style: "display: contents;" }, [
-      h("section", { class: "example-section" }, [
-        h("h3", "Variants"),
-        h(CodeCollapsibleInner, { code: variantsCode }, {
-          default: () => h("div", { class: "button-row" }, [
-            h(MizuButton, { variant: "success", size: "md", class: "w-max", onClick: showSuccess }, { default: () => "Success" }),
-            h(MizuButton, { variant: "error", size: "md", class: "w-max", onClick: showError }, { default: () => "Error" }),
-            h(MizuButton, { variant: "warning", size: "md", class: "w-max", onClick: showWarning }, { default: () => "Warning" }),
-            h(MizuButton, { variant: "primary", size: "md", class: "w-max", onClick: showInfo }, { default: () => "Info" }),
-          ]),
-        }),
-      ]),
-      h("section", { class: "example-section" }, [
-        h("h3", "Content Variations"),
-        h(CodeCollapsibleInner, { code: contentVariationsCode }, {
-          default: () => h("div", { class: "button-row" }, [
-            h(MizuButton, { variant: "outline", size: "md", class: "w-max", onClick: showTitleOnly }, { default: () => "Title Only" }),
-            h(MizuButton, { variant: "outline", size: "md", class: "w-max", onClick: showDescriptionOnly }, { default: () => "Description Only" }),
-          ]),
-        }),
-      ]),
-      h("section", { class: "example-section" }, [
-        h("h3", "With Action"),
-        h(CodeCollapsibleInner, { code: actionCode }, {
-          default: () => h("div", { class: "button-row" }, [
-            h(MizuButton, { variant: "accent", size: "md", class: "w-max", onClick: showWithAction }, { default: () => "Discard with Undo" }),
-          ]),
-        }),
-      ]),
-      h("section", { class: "example-section" }, [
-        h("h3", "Custom Duration"),
-        h(CodeCollapsibleInner, { code: customDurationCode }, {
-          default: () => h("div", { class: "button-row" }, [
-            h(MizuButton, { variant: "ghost", size: "md", class: "w-max", onClick: showLongDuration }, { default: () => "10-second Toast" }),
-          ]),
-        }),
-      ]),
-    ]);
+    return () =>
+      h("div", { style: "display: contents;" }, [
+        h("section", { class: "example-section" }, [
+          h("h3", "Variants"),
+          h(
+            CodeCollapsibleInner,
+            { code: variantsCode },
+            {
+              default: () =>
+                h("div", { class: "button-row" }, [
+                  h(
+                    MizuButton,
+                    { variant: "success", size: "md", class: "w-max", onClick: showSuccess },
+                    { default: () => "Success" }
+                  ),
+                  h(
+                    MizuButton,
+                    { variant: "error", size: "md", class: "w-max", onClick: showError },
+                    { default: () => "Error" }
+                  ),
+                  h(
+                    MizuButton,
+                    { variant: "warning", size: "md", class: "w-max", onClick: showWarning },
+                    { default: () => "Warning" }
+                  ),
+                  h(
+                    MizuButton,
+                    { variant: "primary", size: "md", class: "w-max", onClick: showInfo },
+                    { default: () => "Info" }
+                  ),
+                ]),
+            }
+          ),
+        ]),
+        h("section", { class: "example-section" }, [
+          h("h3", "Content Variations"),
+          h(
+            CodeCollapsibleInner,
+            { code: contentVariationsCode },
+            {
+              default: () =>
+                h("div", { class: "button-row" }, [
+                  h(
+                    MizuButton,
+                    { variant: "outline", size: "md", class: "w-max", onClick: showTitleOnly },
+                    { default: () => "Title Only" }
+                  ),
+                  h(
+                    MizuButton,
+                    {
+                      variant: "outline",
+                      size: "md",
+                      class: "w-max",
+                      onClick: showDescriptionOnly,
+                    },
+                    { default: () => "Description Only" }
+                  ),
+                ]),
+            }
+          ),
+        ]),
+        h("section", { class: "example-section" }, [
+          h("h3", "With Action"),
+          h(
+            CodeCollapsibleInner,
+            { code: actionCode },
+            {
+              default: () =>
+                h("div", { class: "button-row" }, [
+                  h(
+                    MizuButton,
+                    { variant: "accent", size: "md", class: "w-max", onClick: showWithAction },
+                    { default: () => "Discard with Undo" }
+                  ),
+                ]),
+            }
+          ),
+        ]),
+        h("section", { class: "example-section" }, [
+          h("h3", "Custom Duration"),
+          h(
+            CodeCollapsibleInner,
+            { code: customDurationCode },
+            {
+              default: () =>
+                h("div", { class: "button-row" }, [
+                  h(
+                    MizuButton,
+                    { variant: "ghost", size: "md", class: "w-max", onClick: showLongDuration },
+                    { default: () => "10-second Toast" }
+                  ),
+                ]),
+            }
+          ),
+        ]),
+      ]);
   },
 });
 </script>

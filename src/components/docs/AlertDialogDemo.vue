@@ -153,7 +153,14 @@ const contentCode = `<MizuAlertDialogRoot v-model:open="open">
     <section class="example-section">
       <h3>Destructive Action</h3>
       <CodeCollapsible :code="destructiveCode">
-        <MizuAlertDialogRoot v-model:open="destructiveOpen" @update:open="(v: boolean) => { if (v) deleteAccountInput = '' }">
+        <MizuAlertDialogRoot
+          v-model:open="destructiveOpen"
+          @update:open="
+            (v: boolean) => {
+              if (v) deleteAccountInput = '';
+            }
+          "
+        >
           <MizuAlertDialogTrigger as-child>
             <MizuButton variant="error" size="md" class="w-max">Delete Account</MizuButton>
           </MizuAlertDialogTrigger>
@@ -163,7 +170,8 @@ const contentCode = `<MizuAlertDialogRoot v-model:open="open">
               <MizuDialogHeader>
                 <MizuAlertDialogTitle>Delete Account</MizuAlertDialogTitle>
                 <MizuAlertDialogDescription>
-                  This permanently removes your account and all associated data. Type <strong>delete</strong> to confirm.
+                  This permanently removes your account and all associated data. Type
+                  <strong>delete</strong> to confirm.
                 </MizuAlertDialogDescription>
               </MizuDialogHeader>
               <MizuDialogBody>
@@ -178,7 +186,13 @@ const contentCode = `<MizuAlertDialogRoot v-model:open="open">
                   <MizuButton variant="ghost" size="md" class="w-max">Cancel</MizuButton>
                 </MizuAlertDialogCancel>
                 <MizuAlertDialogAction as-child>
-                  <MizuButton variant="error" size="md" class="w-max" :disabled="!isDeleteAccountValid">Delete Account</MizuButton>
+                  <MizuButton
+                    variant="error"
+                    size="md"
+                    class="w-max"
+                    :disabled="!isDeleteAccountValid"
+                    >Delete Account</MizuButton
+                  >
                 </MizuAlertDialogAction>
               </MizuDialogFooter>
             </MizuAlertDialogContent>
@@ -234,7 +248,9 @@ const contentCode = `<MizuAlertDialogRoot v-model:open="open">
   gap: 32px;
   font-family: inherit;
 }
-.alert-dialog-examples :deep(*) { margin: 0; }
+.alert-dialog-examples :deep(*) {
+  margin: 0;
+}
 .example-section {
   all: revert;
   display: flex;

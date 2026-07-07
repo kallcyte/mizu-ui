@@ -22,11 +22,7 @@ const descriptionClasses = computed(() => {
 </script>
 
 <template>
-  <ToastDescription
-    :class="descriptionClasses"
-    :as-child="asChild"
-    :as="as"
-  >
+  <ToastDescription :class="descriptionClasses" :as-child="asChild" :as="as">
     <slot />
   </ToastDescription>
 </template>

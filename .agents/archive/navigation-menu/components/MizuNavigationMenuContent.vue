@@ -64,23 +64,47 @@ const contentClasses = computed(() => {
 }
 
 @keyframes enterFromRight {
-  from { opacity: 0; transform: translateX(200px); }
-  to { opacity: 1; transform: translateX(0); }
+  from {
+    opacity: 0;
+    transform: translateX(200px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 
 @keyframes enterFromLeft {
-  from { opacity: 0; transform: translateX(-200px); }
-  to { opacity: 1; transform: translateX(0); }
+  from {
+    opacity: 0;
+    transform: translateX(-200px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 
 @keyframes exitToRight {
-  from { opacity: 1; transform: translateX(0); }
-  to { opacity: 0; transform: translateX(200px); }
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(200px);
+  }
 }
 
 @keyframes exitToLeft {
-  from { opacity: 1; transform: translateX(0); }
-  to { opacity: 0; transform: translateX(-200px); }
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(-200px);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

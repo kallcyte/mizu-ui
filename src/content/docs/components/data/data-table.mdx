@@ -3,7 +3,7 @@ title: Data Table
 description: A table component for displaying and interacting with structured data.
 ---
 
-import DataTableDemo from '../../../../components/docs/DataTableDemo.vue';
+import DataTableDemo from "../../../../components/docs/DataTableDemo.vue";
 
 A data table displays structured data in rows and columns with built-in sorting, pagination, and row selection. Use it for lists, reports, and any tabular data.
 
@@ -81,11 +81,14 @@ async function loadMore() {
 
 let observer;
 onMounted(() => {
-  observer = new IntersectionObserver((entries) => {
-    if (entries[0].isIntersecting && hasMore.value && !loading.value) {
-      loadMore();
-    }
-  }, { threshold: 0.1 });
+  observer = new IntersectionObserver(
+    (entries) => {
+      if (entries[0].isIntersecting && hasMore.value && !loading.value) {
+        loadMore();
+      }
+    },
+    { threshold: 0.1 }
+  );
   if (sentinel.value) observer.observe(sentinel.value);
 });
 onUnmounted(() => observer?.disconnect());
@@ -106,26 +109,26 @@ onUnmounted(() => observer?.disconnect());
 
 ### Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `columns` | `ColumnDef<T>[]` | required | Column definitions (from @tanstack/vue-table) |
-| `data` | `T[]` | required | Array of row data |
-| `sortable` | `boolean` | `true` | Enable column sorting |
-| `selectable` | `boolean` | `false` | Enable row selection with checkboxes |
-| `paginated` | `boolean` | `true` | Show pagination footer |
-| `loading` | `boolean` | `false` | Show loading spinner |
-| `emptyText` | `string` | `"No data available"` | Message when no data |
-| `pageSize` | `number` | `10` | Rows per page |
-| `page` | `number` | `1` | Current page (v-model:page) |
-| `totalRows` | `number` | `undefined` | Total rows (for external pagination) |
+| Prop         | Type             | Default               | Description                                   |
+| ------------ | ---------------- | --------------------- | --------------------------------------------- |
+| `columns`    | `ColumnDef<T>[]` | required              | Column definitions (from @tanstack/vue-table) |
+| `data`       | `T[]`            | required              | Array of row data                             |
+| `sortable`   | `boolean`        | `true`                | Enable column sorting                         |
+| `selectable` | `boolean`        | `false`               | Enable row selection with checkboxes          |
+| `paginated`  | `boolean`        | `true`                | Show pagination footer                        |
+| `loading`    | `boolean`        | `false`               | Show loading spinner                          |
+| `emptyText`  | `string`         | `"No data available"` | Message when no data                          |
+| `pageSize`   | `number`         | `10`                  | Rows per page                                 |
+| `page`       | `number`         | `1`                   | Current page (v-model:page)                   |
+| `totalRows`  | `number`         | `undefined`           | Total rows (for external pagination)          |
 
 ### Events
 
-| Event | Payload | Description |
-|-------|---------|-------------|
-| `update:page` | `number` | Emitted when page changes |
-| `sortingChange` | `SortingState` | Emitted when sort changes |
-| `rowSelect` | `RowSelectionState` | Emitted when row selection changes |
+| Event           | Payload             | Description                        |
+| --------------- | ------------------- | ---------------------------------- |
+| `update:page`   | `number`            | Emitted when page changes          |
+| `sortingChange` | `SortingState`      | Emitted when sort changes          |
+| `rowSelect`     | `RowSelectionState` | Emitted when row selection changes |
 
 ### Example Usage
 
@@ -156,12 +159,7 @@ const page = ref(1);
 </script>
 
 <template>
-  <MizuDataTable
-    :columns="columns"
-    :data="data"
-    v-model:page="page"
-    :page-size="10"
-  />
+  <MizuDataTable :columns="columns" :data="data" v-model:page="page" :page-size="10" />
 </template>
 ```
 
@@ -169,23 +167,23 @@ const page = ref(1);
 
 ### CSS Custom Properties
 
-| Token | Default | Description |
-|-------|---------|-------------|
-| `--color-surface-base` | `#FFFFFF` (light) / `#0F1117` (dark) | Table and row background |
-| `--color-surface-subtle` | `#F9FAFB` (light) / `#1A1D2E` (dark) | Header background, row hover |
-| `--color-surface-muted` | `#F3F4F6` (light) / `#1E2030` (dark) | Border color |
-| `--color-foreground-primary` | `#111827` (light) / `#F1F5F9` (dark) | Cell text, header hover |
-| `--color-foreground-tertiary` | `#9CA3AF` (light) / `#64748B` (dark) | Header text |
-| `--color-brand-ycp-subtle` | — | Selected row background |
+| Token                         | Default                              | Description                  |
+| ----------------------------- | ------------------------------------ | ---------------------------- |
+| `--color-surface-base`        | `#FFFFFF` (light) / `#0F1117` (dark) | Table and row background     |
+| `--color-surface-subtle`      | `#F9FAFB` (light) / `#1A1D2E` (dark) | Header background, row hover |
+| `--color-surface-muted`       | `#F3F4F6` (light) / `#1E2030` (dark) | Border color                 |
+| `--color-foreground-primary`  | `#111827` (light) / `#F1F5F9` (dark) | Cell text, header hover      |
+| `--color-foreground-tertiary` | `#9CA3AF` (light) / `#64748B` (dark) | Header text                  |
+| `--color-brand-ycp-subtle`    | —                                    | Selected row background      |
 
 ### Accessibility
 
-| Criterion | Implementation |
-|-----------|----------------|
-| Table semantics | Uses native `<table>`, `<thead>`, `<tbody>`, `<tr>`, `<th>`, `<td>` elements |
-| Sortable columns | Click to toggle sort; visual indicator shows current sort direction |
-| Keyboard | Tab to navigate between interactive elements; Enter/Space to activate |
-| Selection | Checkbox in first column when `selectable` is true |
+| Criterion        | Implementation                                                               |
+| ---------------- | ---------------------------------------------------------------------------- |
+| Table semantics  | Uses native `<table>`, `<thead>`, `<tbody>`, `<tr>`, `<th>`, `<td>` elements |
+| Sortable columns | Click to toggle sort; visual indicator shows current sort direction          |
+| Keyboard         | Tab to navigate between interactive elements; Enter/Space to activate        |
+| Selection        | Checkbox in first column when `selectable` is true                           |
 
 ```html
 <table>
@@ -210,14 +208,14 @@ const page = ref(1);
 
 A data table consists of six parts:
 
-| Part | Required | Description |
-|------|----------|-------------|
-| Table | Yes | The `<table>` element containing all rows |
-| Header | Yes | Column headers with optional sort indicators |
-| Body | Yes | Data rows with cell content |
-| Row | Yes | A single data entry |
-| Cell | Yes | Individual data value |
-| Footer | No | Pagination and selection info |
+| Part   | Required | Description                                  |
+| ------ | -------- | -------------------------------------------- |
+| Table  | Yes      | The `<table>` element containing all rows    |
+| Header | Yes      | Column headers with optional sort indicators |
+| Body   | Yes      | Data rows with cell content                  |
+| Row    | Yes      | A single data entry                          |
+| Cell   | Yes      | Individual data value                        |
+| Footer | No       | Pagination and selection info                |
 
 ## Composition
 

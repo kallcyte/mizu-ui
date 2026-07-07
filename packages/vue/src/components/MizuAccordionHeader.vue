@@ -16,11 +16,7 @@ const attrs = useAttrs();
 </script>
 
 <template>
-  <AccordionHeader
-    :as="as"
-    :as-child="asChild"
-    :class="attrs.class"
-  >
+  <AccordionHeader :as="as" :as-child="asChild" :class="attrs.class">
     <slot />
   </AccordionHeader>
 </template>

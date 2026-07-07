@@ -22,11 +22,7 @@ const separatorClasses = computed(() => {
 </script>
 
 <template>
-  <DropdownMenuSeparator
-    :class="separatorClasses"
-    :as-child="asChild"
-    :as="as"
-  />
+  <DropdownMenuSeparator :class="separatorClasses" :as-child="asChild" :as="as" />
 </template>
 
 <style>

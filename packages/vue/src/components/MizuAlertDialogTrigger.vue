@@ -22,11 +22,7 @@ const triggerClasses = computed(() => {
 </script>
 
 <template>
-  <AlertDialogTrigger
-    :class="triggerClasses"
-    :as-child="asChild"
-    :as="as"
-  >
+  <AlertDialogTrigger :class="triggerClasses" :as-child="asChild" :as="as">
     <slot />
   </AlertDialogTrigger>
 </template>

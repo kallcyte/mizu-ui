@@ -22,11 +22,7 @@ const titleClasses = computed(() => {
 </script>
 
 <template>
-  <DialogTitle
-    :class="titleClasses"
-    :as-child="asChild"
-    :as="as"
-  >
+  <DialogTitle :class="titleClasses" :as-child="asChild" :as="as">
     <slot />
   </DialogTitle>
 </template>

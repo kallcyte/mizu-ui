@@ -3,7 +3,7 @@ title: Validation Patterns
 description: Learn how to validate forms using the useForm composable with Zod schemas.
 ---
 
-import LoginDemo from '../../../../components/docs/LoginDemo.vue';
+import LoginDemo from "../../../../components/docs/LoginDemo.vue";
 
 Mizu provides a lightweight `useForm` composable that pairs with [Zod](https://zod.dev) schemas for form validation. It is designed to work with the existing `error` and `helperText` props on `MizuInput` and other form components, keeping validation at the application level rather than baked into the components themselves.
 
@@ -83,29 +83,29 @@ const submitHandler = form.handleSubmit(handleSubmit);
 
 ### `useForm(schema)`
 
-| Return value | Type | Description |
-|---|---|---|
-| `fields` | `Record<string, FieldState>` | Reactive field objects with `value`, `error`, `touched`, `onChange`, `onBlur` |
-| `values` | `ComputedRef<T>` | All form values as a single reactive object |
-| `errors` | `ComputedRef<Record<string, string>>` | All field errors as `{ fieldName: message }` |
-| `hasErrors` | `ComputedRef<boolean>` | Whether any field has an error |
-| `isSubmitting` | `Ref<boolean>` | Whether the form is currently submitting |
-| `submitCount` | `Ref<number>` | Number of times the form has been submitted |
-| `validate()` | `() => boolean` | Validate all fields, returns `true` if valid |
-| `handleSubmit(fn)` | `(fn) => (event?) => Promise<void>` | Wraps your submit handler with validation |
-| `reset()` | `() => void` | Reset values, errors, and touched state |
-| `setFieldValue(field, value)` | `(field, value) => void` | Programmatically set a field value |
-| `setFieldError(field, error)` | `(field, error) => void` | Programmatically set a field error (e.g. server validation) |
+| Return value                  | Type                                  | Description                                                                   |
+| ----------------------------- | ------------------------------------- | ----------------------------------------------------------------------------- |
+| `fields`                      | `Record<string, FieldState>`          | Reactive field objects with `value`, `error`, `touched`, `onChange`, `onBlur` |
+| `values`                      | `ComputedRef<T>`                      | All form values as a single reactive object                                   |
+| `errors`                      | `ComputedRef<Record<string, string>>` | All field errors as `{ fieldName: message }`                                  |
+| `hasErrors`                   | `ComputedRef<boolean>`                | Whether any field has an error                                                |
+| `isSubmitting`                | `Ref<boolean>`                        | Whether the form is currently submitting                                      |
+| `submitCount`                 | `Ref<number>`                         | Number of times the form has been submitted                                   |
+| `validate()`                  | `() => boolean`                       | Validate all fields, returns `true` if valid                                  |
+| `handleSubmit(fn)`            | `(fn) => (event?) => Promise<void>`   | Wraps your submit handler with validation                                     |
+| `reset()`                     | `() => void`                          | Reset values, errors, and touched state                                       |
+| `setFieldValue(field, value)` | `(field, value) => void`              | Programmatically set a field value                                            |
+| `setFieldError(field, error)` | `(field, error) => void`              | Programmatically set a field error (e.g. server validation)                   |
 
 ### `FieldState`
 
-| Property | Type | Description |
-|---|---|---|
-| `value` | `Ref<string \| boolean \| number>` | Two-way bindable field value (use with `v-model`) |
-| `error` | `Ref<string \| undefined>` | Current validation error message |
-| `touched` | `Ref<boolean>` | Whether the field has been blurred |
-| `onChange(value)` | `(value) => void` | Call when the field value changes |
-| `onBlur()` | `() => void` | Call when the field loses focus |
+| Property          | Type                               | Description                                       |
+| ----------------- | ---------------------------------- | ------------------------------------------------- |
+| `value`           | `Ref<string \| boolean \| number>` | Two-way bindable field value (use with `v-model`) |
+| `error`           | `Ref<string \| undefined>`         | Current validation error message                  |
+| `touched`         | `Ref<boolean>`                     | Whether the field has been blurred                |
+| `onChange(value)` | `(value) => void`                  | Call when the field value changes                 |
+| `onBlur()`        | `() => void`                       | Call when the field loses focus                   |
 
 ## Validation Patterns
 
@@ -136,13 +136,15 @@ const schema = z.object({
 ### Password Confirmation (Cross-Field)
 
 ```ts
-const schema = z.object({
-  password: z.string().min(8, "Password must be at least 8 characters"),
-  confirmPassword: z.string(),
-}).refine(
-  (data) => data.password === data.confirmPassword,
-  { message: "Passwords do not match", path: ["confirmPassword"] }
-);
+const schema = z
+  .object({
+    password: z.string().min(8, "Password must be at least 8 characters"),
+    confirmPassword: z.string(),
+  })
+  .refine((data) => data.password === data.confirmPassword, {
+    message: "Passwords do not match",
+    path: ["confirmPassword"],
+  });
 ```
 
 ### Server-Side Errors
@@ -173,10 +175,10 @@ async function handleSubmit(values: Form) {
 
 ## Summary
 
-| Concern | Handled by |
-|---|---|
-| Schema definition | Zod |
-| Reactive state | `useForm` composable |
-| Visual feedback | `MizuInput` `error` + `helperText` props |
-| Submission lifecycle | `handleSubmit` wrapper |
-| Server errors | `setFieldError` after API call |
+| Concern              | Handled by                               |
+| -------------------- | ---------------------------------------- |
+| Schema definition    | Zod                                      |
+| Reactive state       | `useForm` composable                     |
+| Visual feedback      | `MizuInput` `error` + `helperText` props |
+| Submission lifecycle | `handleSubmit` wrapper                   |
+| Server errors        | `setFieldError` after API call           |

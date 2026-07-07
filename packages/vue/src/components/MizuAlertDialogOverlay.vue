@@ -20,10 +20,7 @@ const overlayClasses = computed(() => {
 </script>
 
 <template>
-  <AlertDialogOverlay
-    :class="overlayClasses"
-    :force-mount="forceMount"
-  >
+  <AlertDialogOverlay :class="overlayClasses" :force-mount="forceMount">
     <slot />
   </AlertDialogOverlay>
 </template>

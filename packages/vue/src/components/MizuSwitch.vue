@@ -56,7 +56,11 @@ const switchClasses = computed(() => {
 <template>
   <label
     :for="switchId"
-    :class="['mizu-switch-wrapper', `mizu-switch-wrapper--${size}`, { 'mizu-switch-wrapper--disabled': disabled, 'mizu-switch-wrapper--no-label': !label }]"
+    :class="[
+      'mizu-switch-wrapper',
+      `mizu-switch-wrapper--${size}`,
+      { 'mizu-switch-wrapper--disabled': disabled, 'mizu-switch-wrapper--no-label': !label },
+    ]"
   >
     <SwitchRoot
       :id="switchId"
@@ -100,9 +104,15 @@ const switchClasses = computed(() => {
   background-color: var(--color-brand-primary-hover);
 }
 
-.mizu-switch--sm { @apply w-[36px] h-[20px]; }
-.mizu-switch--md { @apply w-[44px] h-[24px]; }
-.mizu-switch--lg { @apply w-[52px] h-[28px]; }
+.mizu-switch--sm {
+  @apply w-[36px] h-[20px];
+}
+.mizu-switch--md {
+  @apply w-[44px] h-[24px];
+}
+.mizu-switch--lg {
+  @apply w-[52px] h-[28px];
+}
 
 .mizu-switch:focus-visible {
   box-shadow: 0 0 0 2px var(--color-brand-ycp);
@@ -130,9 +140,15 @@ const switchClasses = computed(() => {
   background-color: var(--color-surface-base);
 }
 
-.mizu-switch--sm .mizu-switch__thumb { @apply w-[16px] h-[16px]; }
-.mizu-switch--md .mizu-switch__thumb { @apply w-[20px] h-[20px]; }
-.mizu-switch--lg .mizu-switch__thumb { @apply w-[24px] h-[24px]; }
+.mizu-switch--sm .mizu-switch__thumb {
+  @apply w-[16px] h-[16px];
+}
+.mizu-switch--md .mizu-switch__thumb {
+  @apply w-[20px] h-[20px];
+}
+.mizu-switch--lg .mizu-switch__thumb {
+  @apply w-[24px] h-[24px];
+}
 
 .mizu-switch--checked .mizu-switch__thumb {
   background-color: #fff;
@@ -143,9 +159,15 @@ const switchClasses = computed(() => {
   line-height: 1.3;
 }
 
-.mizu-switch-wrapper--sm .mizu-switch__label { @apply text-[12px]; }
-.mizu-switch-wrapper--md .mizu-switch__label { @apply text-[13px]; }
-.mizu-switch-wrapper--lg .mizu-switch__label { @apply text-[14px]; }
+.mizu-switch-wrapper--sm .mizu-switch__label {
+  @apply text-[12px];
+}
+.mizu-switch-wrapper--md .mizu-switch__label {
+  @apply text-[13px];
+}
+.mizu-switch-wrapper--lg .mizu-switch__label {
+  @apply text-[14px];
+}
 
 .mizu-switch-wrapper--disabled .mizu-switch__label {
   @apply text-[var(--color-foreground-tertiary)];

@@ -22,11 +22,7 @@ const fieldClasses = computed(() => {
 </script>
 
 <template>
-  <DatePickerField
-    :class="fieldClasses"
-    :as-child="asChild"
-    :as="as"
-  >
+  <DatePickerField :class="fieldClasses" :as-child="asChild" :as="as">
     <slot />
   </DatePickerField>
 </template>

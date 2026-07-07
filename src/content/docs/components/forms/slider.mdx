@@ -3,7 +3,7 @@ title: Slider
 description: Numeric range input for selecting a value or range within a bounded interval.
 ---
 
-import SliderDemo from '../../../../components/docs/SliderDemo.vue';
+import SliderDemo from "../../../../components/docs/SliderDemo.vue";
 
 A Slider lets users pick a numeric value or range by dragging a thumb along a track. Use it for bounded inputs like volume, price range, or opacity.
 
@@ -15,72 +15,72 @@ A Slider lets users pick a numeric value or range by dragging a thumb along a tr
 
 ### SliderRoot Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `modelValue` | `number \| number[]` | `undefined` | Controlled value (single number or `[min, max]` range) |
-| `defaultValue` | `number \| number[]` | `undefined` | Default uncontrolled value |
-| `min` | `number` | `0` | Minimum allowed value |
-| `max` | `number` | `100` | Maximum allowed value |
-| `step` | `number` | `1` | Step increment |
-| `orientation` | `"horizontal" \| "vertical"` | `"horizontal"` | Slider orientation |
-| `disabled` | `boolean` | `false` | Disable the slider |
-| `size` | `"sm" \| "md" \| "lg"` | `"md"` | Controls track height and thumb size |
-| `inverted` | `boolean` | `false` | Invert the value direction |
-| `dir` | `"ltr" \| "rtl"` | `undefined` | Reading direction |
+| Prop           | Type                         | Default        | Description                                            |
+| -------------- | ---------------------------- | -------------- | ------------------------------------------------------ |
+| `modelValue`   | `number \| number[]`         | `undefined`    | Controlled value (single number or `[min, max]` range) |
+| `defaultValue` | `number \| number[]`         | `undefined`    | Default uncontrolled value                             |
+| `min`          | `number`                     | `0`            | Minimum allowed value                                  |
+| `max`          | `number`                     | `100`          | Maximum allowed value                                  |
+| `step`         | `number`                     | `1`            | Step increment                                         |
+| `orientation`  | `"horizontal" \| "vertical"` | `"horizontal"` | Slider orientation                                     |
+| `disabled`     | `boolean`                    | `false`        | Disable the slider                                     |
+| `size`         | `"sm" \| "md" \| "lg"`       | `"md"`         | Controls track height and thumb size                   |
+| `inverted`     | `boolean`                    | `false`        | Invert the value direction                             |
+| `dir`          | `"ltr" \| "rtl"`             | `undefined`    | Reading direction                                      |
 
 ### SliderRoot Events
 
-| Event | Payload | Description |
-|-------|---------|-------------|
+| Event               | Payload              | Description                |
+| ------------------- | -------------------- | -------------------------- |
 | `update:modelValue` | `number \| number[]` | Emitted when value changes |
 
 ### SliderTrack Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `as` | `string` | `undefined` | Custom element for the track |
+| Prop      | Type      | Default     | Description                    |
+| --------- | --------- | ----------- | ------------------------------ |
+| `as`      | `string`  | `undefined` | Custom element for the track   |
 | `asChild` | `boolean` | `undefined` | Merge props onto child element |
 
 ### SliderRange Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `as` | `string` | `undefined` | Custom element for the range |
+| Prop      | Type      | Default     | Description                    |
+| --------- | --------- | ----------- | ------------------------------ |
+| `as`      | `string`  | `undefined` | Custom element for the range   |
 | `asChild` | `boolean` | `undefined` | Merge props onto child element |
 
 ### SliderThumb Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `as` | `string` | `undefined` | Custom element for the thumb |
+| Prop      | Type      | Default     | Description                    |
+| --------- | --------- | ----------- | ------------------------------ |
+| `as`      | `string`  | `undefined` | Custom element for the thumb   |
 | `asChild` | `boolean` | `undefined` | Merge props onto child element |
 
 ## Theme
 
 ### CSS Custom Properties
 
-| Token | Value | Usage |
-|-------|-------|-------|
-| `--color-surface-muted` | #F3F4F6 / #1E2030 | Track background |
-| `--color-brand-ycp` | #305EF0 / #5C7BFF | Range fill, thumb fill, hover/focus ring |
-| `--color-surface-base` | #FFFFFF / #0F111D | Thumb border |
-| `--color-foreground-tertiary` | #696D7D / #9DA0AD | Disabled thumb fill |
+| Token                         | Value             | Usage                                    |
+| ----------------------------- | ----------------- | ---------------------------------------- |
+| `--color-surface-muted`       | #F3F4F6 / #1E2030 | Track background                         |
+| `--color-brand-ycp`           | #305EF0 / #5C7BFF | Range fill, thumb fill, hover/focus ring |
+| `--color-surface-base`        | #FFFFFF / #0F111D | Thumb border                             |
+| `--color-foreground-tertiary` | #696D7D / #9DA0AD | Disabled thumb fill                      |
 
 ### Sizing
 
 | Size | Track Height | Thumb Size |
-|------|-------------|------------|
-| `sm` | 4px | 14px |
-| `md` | 6px | 18px |
-| `lg` | 8px | 22px |
+| ---- | ------------ | ---------- |
+| `sm` | 4px          | 14px       |
+| `md` | 6px          | 18px       |
+| `lg` | 8px          | 22px       |
 
 All sizes use `border-radius: 9999px` (fully rounded) for both track and thumb.
 
 ### Transitions
 
-| Property | Duration | Easing |
-|----------|----------|--------|
-| Thumb shadow (hover/focus) | 200ms | ease-in-out |
+| Property                   | Duration | Easing      |
+| -------------------------- | -------- | ----------- |
+| Thumb shadow (hover/focus) | 200ms    | ease-in-out |
 
 ### Focus Ring
 
@@ -88,23 +88,23 @@ On `:focus-visible`, the thumb displays a `0 0 0 4px color-mix(in srgb, var(--co
 
 ### Accessibility
 
-| Criterion | Implementation |
-|-----------|---------------|
+| Criterion                                                                              | Implementation                                                                                                                              |
+| -------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
 | [Slider WAI-ARIA pattern](https://www.w3.org/WAI/ARIA/apg/patterns/slider-multithumb/) | Reka UI manages `role="slider"`, `aria-valuemin`, `aria-valuemax`, `aria-valuenow`, `aria-orientation`, `tabindex`, and keyboard navigation |
-| Keyboard navigation | Arrow keys or Up/Down adjust value by step. Home/End jump to min/max |
-| Touch-friendly | Container has `touch-action: none` to prevent scroll interference on touch devices |
-| Disabled state | `aria-disabled="true"` when disabled; thumb also uses `data-disabled` attribute |
+| Keyboard navigation                                                                    | Arrow keys or Up/Down adjust value by step. Home/End jump to min/max                                                                        |
+| Touch-friendly                                                                         | Container has `touch-action: none` to prevent scroll interference on touch devices                                                          |
+| Disabled state                                                                         | `aria-disabled="true"` when disabled; thumb also uses `data-disabled` attribute                                                             |
 
 ## Anatomy
 
 A MizuSlider consists of 4 parts:
 
-| Part | Required | Description |
-|------|----------|-------------|
-| SliderRoot | Yes | Container that manages the value state |
-| SliderTrack | Yes | The horizontal or vertical track that defines the drag range |
-| SliderRange | No | Filled portion of the track representing the selected interval |
-| SliderThumb | Yes | Draggable handle that users interact with |
+| Part        | Required | Description                                                    |
+| ----------- | -------- | -------------------------------------------------------------- |
+| SliderRoot  | Yes      | Container that manages the value state                         |
+| SliderTrack | Yes      | The horizontal or vertical track that defines the drag range   |
+| SliderRange | No       | Filled portion of the track representing the selected interval |
+| SliderThumb | Yes      | Draggable handle that users interact with                      |
 
 ## Composition
 

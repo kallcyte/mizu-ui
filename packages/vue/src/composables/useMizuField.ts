@@ -82,11 +82,7 @@ export function useForm<T extends z.ZodRawShape>(
   const submitCount = ref(0);
 
   function validateField(field: string): string | undefined {
-    const err = getFieldError(
-      schema as unknown as z.ZodType,
-      field,
-      values.value[field]
-    );
+    const err = getFieldError(schema as unknown as z.ZodType, field, values.value[field]);
     fieldErrors.value[field] = err;
     return err;
   }
@@ -140,7 +136,7 @@ export function useForm<T extends z.ZodRawShape>(
 
   const errors = computed(() => ({ ...fieldErrors.value }));
   const hasErrors = computed(() =>
-    Object.values(fieldErrors.value).some(e => e !== undefined && e !== "")
+    Object.values(fieldErrors.value).some((e) => e !== undefined && e !== "")
   );
 
   function validate(): boolean {

@@ -75,7 +75,12 @@ const contentStyle = computed(() => {
     @open-auto-focus="(e) => emit('openAutoFocus', e)"
     @close-auto-focus="(e) => emit('closeAutoFocus', e)"
     @escape-key-down="(e: KeyboardEvent) => emit('escapeKeyDown', e)"
-    @pointer-down-outside="(e) => { if (popoverModal) e.preventDefault(); emit('pointerDownOutside', e); }"
+    @pointer-down-outside="
+      (e) => {
+        if (popoverModal) e.preventDefault();
+        emit('pointerDownOutside', e);
+      }
+    "
     @focus-outside="(e) => emit('focusOutside', e)"
     @interact-outside="(e) => emit('interactOutside', e)"
   >
@@ -93,7 +98,9 @@ const contentStyle = computed(() => {
   padding: 12px;
   background-color: var(--color-surface-base);
   color: var(--color-foreground-primary);
-  box-shadow: 0 10px 38px -10px rgba(0, 0, 0, 0.15), 0 6px 20px -14px rgba(0, 0, 0, 0.2);
+  box-shadow:
+    0 10px 38px -10px rgba(0, 0, 0, 0.15),
+    0 6px 20px -14px rgba(0, 0, 0, 0.2);
   font-family: inherit;
   font-size: 14px;
   line-height: 1.5;

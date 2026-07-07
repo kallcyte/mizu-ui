@@ -3,7 +3,7 @@ title: DashList
 description: A definition list component for label-value pairs.
 ---
 
-import DashListDemo from '../../../../components/docs/DashListDemo.vue';
+import DashListDemo from "../../../../components/docs/DashListDemo.vue";
 
 A dash list displays a collection of label-value pairs in a structured layout. Use it for metadata, specs, profile information, and analytics data.
 
@@ -15,11 +15,11 @@ A dash list displays a collection of label-value pairs in a structured layout. U
 
 ### Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `items` | `DashItem[]` | `[]` | Array of `{ label, value?, highlighted? }` |
-| `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | Controls typography and spacing |
-| `orientation` | `'vertical' \| 'horizontal'` | `'vertical'` | Layout direction |
+| Prop          | Type                         | Default      | Description                                |
+| ------------- | ---------------------------- | ------------ | ------------------------------------------ |
+| `items`       | `DashItem[]`                 | `[]`         | Array of `{ label, value?, highlighted? }` |
+| `size`        | `'sm' \| 'md' \| 'lg'`       | `'md'`       | Controls typography and spacing            |
+| `orientation` | `'vertical' \| 'horizontal'` | `'vertical'` | Layout direction                           |
 
 ### Example Usage
 
@@ -35,11 +35,7 @@ A dash list displays a collection of label-value pairs in a structured layout. U
   />
 
   <!-- Horizontal -->
-  <MizuDashList
-    :items="productSpecs"
-    orientation="horizontal"
-    size="sm"
-  />
+  <MizuDashList :items="productSpecs" orientation="horizontal" size="sm" />
 
   <!-- Sizes -->
   <MizuDashList :items="data" size="sm" />
@@ -52,34 +48,34 @@ A dash list displays a collection of label-value pairs in a structured layout. U
 
 ### CSS Custom Properties
 
-| Token | Default | Description |
-|-------|---------|-------------|
-| `--color-foreground-secondary` | `#4B5563` (light) / `#9CA3AF` (dark) | Label color |
-| `--color-foreground-primary` | `#1B1B1D` (light) / `#F9FAFB` (dark) | Value color |
-| `--color-brand-primary` | `#001C44` | Highlighted value |
-| `--color-surface-muted` | `#F3F4F6` (light) / `#1E2030` (dark) | Row separator line |
+| Token                          | Default                              | Description        |
+| ------------------------------ | ------------------------------------ | ------------------ |
+| `--color-foreground-secondary` | `#4B5563` (light) / `#9CA3AF` (dark) | Label color        |
+| `--color-foreground-primary`   | `#1B1B1D` (light) / `#F9FAFB` (dark) | Value color        |
+| `--color-brand-primary`        | `#001C44`                            | Highlighted value  |
+| `--color-surface-muted`        | `#F3F4F6` (light) / `#1E2030` (dark) | Row separator line |
 
 ### Variants
 
-| Variant | Layout | Use Case |
-|---------|--------|----------|
-| Vertical | Rows stacked top-to-bottom | Detail views, profiles, metadata |
-| Horizontal | Rows laid out inline left-to-right | Summary stats, spec sheets |
+| Variant    | Layout                             | Use Case                         |
+| ---------- | ---------------------------------- | -------------------------------- |
+| Vertical   | Rows stacked top-to-bottom         | Detail views, profiles, metadata |
+| Horizontal | Rows laid out inline left-to-right | Summary stats, spec sheets       |
 
 ### Sizing
 
-| Size | Label Font | Value Font | Row Padding Y (vertical) |
-|------|------------|------------|--------------------------|
-| **SM** | 11px | 12px | 6px |
-| **MD** | 12px | 13px | 8px |
-| **LG** | 13px | 15px | 10px |
+| Size   | Label Font | Value Font | Row Padding Y (vertical) |
+| ------ | ---------- | ---------- | ------------------------ |
+| **SM** | 11px       | 12px       | 6px                      |
+| **MD** | 12px       | 13px       | 8px                      |
+| **LG** | 13px       | 15px       | 10px                     |
 
 ### Accessibility
 
-| Criterion | Implementation |
-|-----------|----------------|
-| Semantic structure | Native `<dl>` with `<dt>` / `<dd>` children |
-| Screen reader | Correctly announced as term/definition pairs |
+| Criterion          | Implementation                               |
+| ------------------ | -------------------------------------------- |
+| Semantic structure | Native `<dl>` with `<dt>` / `<dd>` children  |
+| Screen reader      | Correctly announced as term/definition pairs |
 
 ```html
 <dl>
@@ -94,10 +90,10 @@ A dash list displays a collection of label-value pairs in a structured layout. U
 
 A dash list consists of rows, each containing two parts:
 
-| Part | Required | Description |
-|------|----------|-------------|
-| Label | Yes | The `<dt>` element (term) |
-| Value | Yes | The `<dd>` element (definition) |
+| Part  | Required | Description                     |
+| ----- | -------- | ------------------------------- |
+| Label | Yes      | The `<dt>` element (term)       |
+| Value | Yes      | The `<dd>` element (definition) |
 
 ## Implementation Notes
 

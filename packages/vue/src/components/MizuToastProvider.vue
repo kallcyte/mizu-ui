@@ -16,13 +16,13 @@ onMounted(() => {
   mounted.value = true;
 });
 
-
 export interface ToastProviderProps {
   label?: string;
   duration?: number;
   swipeDirection?: "up" | "down" | "left" | "right";
   swipeThreshold?: number;
-  position?: "top-right" | "top-left" | "top-center" | "bottom-right" | "bottom-left" | "bottom-center";
+  position?:
+    "top-right" | "top-left" | "top-center" | "bottom-right" | "bottom-left" | "bottom-center";
 }
 
 const props = withDefaults(defineProps<ToastProviderProps>(), {
@@ -134,9 +134,7 @@ function clearTimer(id: string) {
   stopTimerInterval(id);
 }
 
-function addToast(
-  options: Omit<InternalToast, "id" | "open">
-): string {
+function addToast(options: Omit<InternalToast, "id" | "open">): string {
   const id = `toast-${++nextId}`;
   const toast = reactive<InternalToast>({ ...options, id, open: true });
   toasts.value.push(toast);
@@ -182,21 +180,29 @@ provide(TOAST_CONTEXT_KEY, { addToast, dismissToast });
     :swipe-threshold="swipeThreshold"
   >
     <slot />
-    <Teleport to="body" v-if="mounted">
+    <Teleport v-if="mounted" to="body">
       <MizuToastViewport :position="position">
         <template v-for="toast in toasts" :key="toast.id">
           <slot name="toast" :toast="toast">
             <MizuToastRoot
-                :open="toast.open"
-                :variant="toast.variant"
-                :position="position"
-                @update:open="(v: boolean) => onToastUpdate(toast, v)"
+              :open="toast.open"
+              :variant="toast.variant"
+              :position="position"
+              @update:open="(v: boolean) => onToastUpdate(toast, v)"
               @mouseenter="pauseTimer(toast.id)"
               @mouseleave="resumeTimer(toast)"
             >
               <div class="mizu-toast__inner">
                 <component
-                  :is="toast.variant === 'success' ? CheckCircle : toast.variant === 'warning' ? AlertTriangle : toast.variant === 'error' ? XCircle : Info"
+                  :is="
+                    toast.variant === 'success'
+                      ? CheckCircle
+                      : toast.variant === 'warning'
+                        ? AlertTriangle
+                        : toast.variant === 'error'
+                          ? XCircle
+                          : Info
+                  "
                   :size="18"
                   :class="['mizu-toast__icon', `mizu-toast__icon--${toast.variant}`]"
                 />
@@ -212,7 +218,9 @@ provide(TOAST_CONTEXT_KEY, { addToast, dismissToast });
                   as-child
                   @click="handleActionClick(toast)"
                 >
-                  <MizuButton variant="outline" size="md" class="w-max">{{ toast.action.label }}</MizuButton>
+                  <MizuButton variant="outline" size="md" class="w-max">{{
+                    toast.action.label
+                  }}</MizuButton>
                 </MizuToastAction>
                 <span v-if="toast.showTimer" class="mizu-toast__timer">
                   {{ (((toast.duration ?? 3000) - (toast.timerElapsed ?? 0)) / 1000).toFixed(2) }}s

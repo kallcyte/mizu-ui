@@ -24,12 +24,7 @@ const inputClasses = computed(() => {
 </script>
 
 <template>
-  <DatePickerInput
-    :class="inputClasses"
-    :part="part"
-    :as-child="asChild"
-    :as="as"
-  >
+  <DatePickerInput :class="inputClasses" :part="part" :as-child="asChild" :as="as">
     <slot />
   </DatePickerInput>
 </template>

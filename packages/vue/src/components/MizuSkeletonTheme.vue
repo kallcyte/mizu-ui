@@ -1,9 +1,6 @@
 <script setup lang="ts">
 import { provide } from "vue";
-import {
-  SKELETON_THEME_KEY,
-  type SkeletonThemeProps,
-} from "./skeleton-types";
+import { SKELETON_THEME_KEY, type SkeletonThemeProps } from "./skeleton-types";
 
 const props = withDefaults(defineProps<SkeletonThemeProps>(), {
   width: undefined,

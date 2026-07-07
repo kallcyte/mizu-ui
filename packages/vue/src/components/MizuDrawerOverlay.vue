@@ -24,10 +24,7 @@ const overlayClasses = computed(() => {
 </script>
 
 <template>
-  <DialogOverlay
-    :class="overlayClasses"
-    :force-mount="forceMount"
-  >
+  <DialogOverlay :class="overlayClasses" :force-mount="forceMount">
     <slot />
   </DialogOverlay>
 </template>
@@ -55,12 +52,20 @@ const overlayClasses = computed(() => {
 }
 
 @keyframes drawerOverlayIn {
-  from { opacity: 0; }
-  to   { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 @keyframes drawerOverlayOut {
-  from { opacity: 1; }
-  to   { opacity: 0; }
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
 }
 </style>

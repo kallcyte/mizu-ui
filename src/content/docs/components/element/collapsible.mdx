@@ -3,20 +3,20 @@ title: Collapsible
 description: A toggleable panel that shows and hides content with animated transitions.
 ---
 
-import CollapsibleDemo from '../../../../components/docs/CollapsibleDemo.vue';
+import CollapsibleDemo from "../../../../components/docs/CollapsibleDemo.vue";
 
 Collapsible is a compound component that provides a toggleable panel for showing and hiding content. It is useful for progressive disclosure patterns where secondary content is hidden until the user requests it.
 
 ## Collapsible vs Accordion
 
-| | Collapsible | Accordion |
-|---|---|---|
-| **Structure** | Single expandable section | Multiple sections stacked |
-| **Sub-components** | Root, Trigger, Content | Root, Item, Header, Trigger, Content |
-| **Multiple open?** | Yes — each is independent | By default only one item open (`type="single"`) |
-| **Item management** | Manual (controlled via `open` prop) | Built-in item tracking (Root manages open items by `value`) |
-| **Wrapping** | You would manually wrap multiple collapsibles for multi-section UI | Designed for multi-section UI out of the box |
-| **Use case** | Single expand/collapse region (e.g., a filter panel, FAQ item) | Group of related sections (e.g., settings page, product details, FAQs) |
+|                     | Collapsible                                                        | Accordion                                                              |
+| ------------------- | ------------------------------------------------------------------ | ---------------------------------------------------------------------- |
+| **Structure**       | Single expandable section                                          | Multiple sections stacked                                              |
+| **Sub-components**  | Root, Trigger, Content                                             | Root, Item, Header, Trigger, Content                                   |
+| **Multiple open?**  | Yes — each is independent                                          | By default only one item open (`type="single"`)                        |
+| **Item management** | Manual (controlled via `open` prop)                                | Built-in item tracking (Root manages open items by `value`)            |
+| **Wrapping**        | You would manually wrap multiple collapsibles for multi-section UI | Designed for multi-section UI out of the box                           |
+| **Use case**        | Single expand/collapse region (e.g., a filter panel, FAQ item)     | Group of related sections (e.g., settings page, product details, FAQs) |
 
 Use **Collapsible** when you need a single toggle region. Use **Accordion** when you have multiple related expandable sections that should coordinate with each other.
 
@@ -55,30 +55,30 @@ Use **Collapsible** when you need a single toggle region. Use **Accordion** when
 
 #### CollapsibleRoot
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `open` | `boolean` | `undefined` | Controlled open state (v-model:open) |
-| `defaultOpen` | `boolean` | `false` | Initial open state (uncontrolled) |
-| `disabled` | `boolean` | `false` | Disables the collapsible |
-| `asChild` | `boolean` | `undefined` | Merge props onto child element |
-| `as` | `string` | `undefined` | Render as a different element |
+| Prop          | Type      | Default     | Description                          |
+| ------------- | --------- | ----------- | ------------------------------------ |
+| `open`        | `boolean` | `undefined` | Controlled open state (v-model:open) |
+| `defaultOpen` | `boolean` | `false`     | Initial open state (uncontrolled)    |
+| `disabled`    | `boolean` | `false`     | Disables the collapsible             |
+| `asChild`     | `boolean` | `undefined` | Merge props onto child element       |
+| `as`          | `string`  | `undefined` | Render as a different element        |
 
 #### CollapsibleTrigger
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
+| Prop      | Type      | Default     | Description                    |
+| --------- | --------- | ----------- | ------------------------------ |
 | `asChild` | `boolean` | `undefined` | Merge props onto child element |
-| `as` | `string` | `undefined` | Render as a different element |
+| `as`      | `string`  | `undefined` | Render as a different element  |
 
 #### CollapsibleContent
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `forceMount` | `boolean` | `undefined` | Always render content (for animation control) |
-| `asChild` | `boolean` | `undefined` | Merge props onto child element |
-| `as` | `string` | `undefined` | Render as a different element |
-| `background` | `string` | `''` | Background color for the content panel. Accepts any valid CSS color value (hex, rgb, hsl, etc.) |
-| `collapsedHeight` | `string` | `undefined` | Height to maintain when collapsed (e.g. `"80px"`, `"50%"`). Creates a partial collapse / "show more" pattern. Content outside the collapsed region becomes inert. |
+| Prop              | Type      | Default     | Description                                                                                                                                                       |
+| ----------------- | --------- | ----------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `forceMount`      | `boolean` | `undefined` | Always render content (for animation control)                                                                                                                     |
+| `asChild`         | `boolean` | `undefined` | Merge props onto child element                                                                                                                                    |
+| `as`              | `string`  | `undefined` | Render as a different element                                                                                                                                     |
+| `background`      | `string`  | `''`        | Background color for the content panel. Accepts any valid CSS color value (hex, rgb, hsl, etc.)                                                                   |
+| `collapsedHeight` | `string`  | `undefined` | Height to maintain when collapsed (e.g. `"80px"`, `"50%"`). Creates a partial collapse / "show more" pattern. Content outside the collapsed region becomes inert. |
 
 ### Slots
 
@@ -86,63 +86,59 @@ All three sub-components expose a `default` slot.
 
 ### Events
 
-| Event | Payload | Component | Description |
-|-------|---------|-----------|-------------|
-| `update:open` | `boolean` | Root | Emitted when open state changes |
+| Event         | Payload   | Component | Description                     |
+| ------------- | --------- | --------- | ------------------------------- |
+| `update:open` | `boolean` | Root      | Emitted when open state changes |
 
 ## Theme
 
 ### CSS Custom Properties
 
-| Token | Default | Description |
-|-------|---------|-------------|
+| Token                          | Default | Description        |
+| ------------------------------ | ------- | ------------------ |
 | `--color-foreground-secondary` | #4B5563 | Content text color |
 
 #### Color State Map
 
-| State | Content BG | Content Text |
-|-------|-----------|-------------|
-| Enabled | transparent | `foreground-secondary` |
-| Hovered | transparent | `foreground-secondary` |
-| Focused | transparent | `foreground-secondary` |
-| Disabled | transparent | `foreground-tertiary` |
+| State    | Content BG  | Content Text           |
+| -------- | ----------- | ---------------------- |
+| Enabled  | transparent | `foreground-secondary` |
+| Hovered  | transparent | `foreground-secondary` |
+| Focused  | transparent | `foreground-secondary` |
+| Disabled | transparent | `foreground-tertiary`  |
 
 ### Transitions
 
-| Property | Duration | Easing |
-|----------|----------|--------|
-| Content height | 200ms | ease-out |
-| Content opacity | 200ms | ease-out |
+| Property        | Duration | Easing   |
+| --------------- | -------- | -------- |
+| Content height  | 200ms    | ease-out |
+| Content opacity | 200ms    | ease-out |
 
 When `collapsedHeight` is set, the content animates to that height instead of 0px. The `--collapsed-height` CSS variable is used as the animation endpoint.
 
 ### Accessibility
 
-| Criterion | Implementation |
-|-----------|----------------|
-| Keyboard | Enter/Space toggles content |
-| ARIA | `aria-expanded` on trigger, `aria-controls` linking trigger to content |
-| Focus | Visible focus ring (2px `brand-ycp`) on keyboard focus |
-| Disabled | `aria-disabled="true"`, `pointer-events: none` |
+| Criterion | Implementation                                                         |
+| --------- | ---------------------------------------------------------------------- |
+| Keyboard  | Enter/Space toggles content                                            |
+| ARIA      | `aria-expanded` on trigger, `aria-controls` linking trigger to content |
+| Focus     | Visible focus ring (2px `brand-ycp`) on keyboard focus                 |
+| Disabled  | `aria-disabled="true"`, `pointer-events: none`                         |
 
 ```html
-<button aria-expanded="false" aria-controls="content-id">
-  Toggle content
-</button>
-<div id="content-id" role="region">
-  Hidden content
-</div>
+<button aria-expanded="false" aria-controls="content-id">Toggle content</button>
+<div id="content-id" role="region">Hidden content</div>
 ```
 
 ## Anatomy
 
 A collapsible consists of 3 parts:
 
-| Part | Required | Description |
-|------|----------|-------------|
-| Root | Yes | Container that manages the open/close state |
-| Trigger | Yes | Button that toggles the content visibility |
-| Content | Yes | Panel that shows or hides based on state |
+| Part    | Required | Description                                 |
+| ------- | -------- | ------------------------------------------- |
+| Root    | Yes      | Container that manages the open/close state |
+| Trigger | Yes      | Button that toggles the content visibility  |
+| Content | Yes      | Panel that shows or hides based on state    |
 
 #### Composition
 

@@ -15,11 +15,7 @@ withDefaults(defineProps<PopoverAnchorProps>(), {
 </script>
 
 <template>
-  <PopoverAnchor
-    :as-child="asChild"
-    :as="as"
-    :reference="reference"
-  >
+  <PopoverAnchor :as-child="asChild" :as="as" :reference="reference">
     <slot />
   </PopoverAnchor>
 </template>

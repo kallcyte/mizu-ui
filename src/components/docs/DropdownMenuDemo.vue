@@ -335,7 +335,9 @@ const complexCode = `<MizuDropdownMenuRoot>
                 <MizuDropdownMenuShortcut>⌘P</MizuDropdownMenuShortcut>
               </MizuDropdownMenuItem>
               <MizuDropdownMenuSeparator />
-              <MizuDropdownMenuItem @select="() => console.log('Downloads')">Downloads</MizuDropdownMenuItem>
+              <MizuDropdownMenuItem @select="() => console.log('Downloads')"
+                >Downloads</MizuDropdownMenuItem
+              >
             </MizuDropdownMenuContent>
           </MizuDropdownMenuPortal>
         </MizuDropdownMenuRoot>
@@ -425,7 +427,10 @@ const complexCode = `<MizuDropdownMenuRoot>
             </MizuDropdownMenuContent>
           </MizuDropdownMenuPortal>
         </MizuDropdownMenuRoot>
-        <p class="demo-hint">Bookmarks: {{ bookmarksChecked }}, URLs: {{ urlsChecked }}, Full Name: {{ fullnameChecked }}, Notifications: {{ notificationsChecked }}</p>
+        <p class="demo-hint">
+          Bookmarks: {{ bookmarksChecked }}, URLs: {{ urlsChecked }}, Full Name:
+          {{ fullnameChecked }}, Notifications: {{ notificationsChecked }}
+        </p>
       </CodeCollapsible>
     </section>
 
@@ -464,8 +469,12 @@ const complexCode = `<MizuDropdownMenuRoot>
                 <MizuDropdownMenuSubTrigger>More Options</MizuDropdownMenuSubTrigger>
                 <MizuDropdownMenuPortal>
                   <MizuDropdownMenuSubContent>
-                    <MizuDropdownMenuItem @select="() => console.log('Compress')">Compress</MizuDropdownMenuItem>
-                    <MizuDropdownMenuItem @select="() => console.log('Encrypt')">Encrypt</MizuDropdownMenuItem>
+                    <MizuDropdownMenuItem @select="() => console.log('Compress')"
+                      >Compress</MizuDropdownMenuItem
+                    >
+                    <MizuDropdownMenuItem @select="() => console.log('Encrypt')"
+                      >Encrypt</MizuDropdownMenuItem
+                    >
                   </MizuDropdownMenuSubContent>
                 </MizuDropdownMenuPortal>
               </MizuDropdownMenuSub>
@@ -509,7 +518,7 @@ const complexCode = `<MizuDropdownMenuRoot>
                 <MizuDropdownMenuShortcut>⌘S</MizuDropdownMenuShortcut>
               </MizuDropdownMenuItem>
               <MizuDropdownMenuSeparator />
-              <MizuDropdownMenuItem @select="() => console.log('Delete')" variant="destructive">
+              <MizuDropdownMenuItem variant="destructive" @select="() => console.log('Delete')">
                 <Trash2 :size="16" />
                 Delete
                 <MizuDropdownMenuShortcut>⌘⌫</MizuDropdownMenuShortcut>
@@ -622,7 +631,9 @@ const complexCode = `<MizuDropdownMenuRoot>
   gap: 32px;
   font-family: inherit;
 }
-.dropdown-menu-examples :deep(*) { margin: 0; }
+.dropdown-menu-examples :deep(*) {
+  margin: 0;
+}
 .example-section {
   all: revert;
   display: flex;

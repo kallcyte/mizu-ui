@@ -22,11 +22,7 @@ const actionClasses = computed(() => {
 </script>
 
 <template>
-  <AlertDialogAction
-    :class="actionClasses"
-    :as-child="asChild"
-    :as="as"
-  >
+  <AlertDialogAction :class="actionClasses" :as-child="asChild" :as="as">
     <slot />
   </AlertDialogAction>
 </template>

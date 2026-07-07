@@ -4,10 +4,7 @@ import MizuButton from "../components/MizuButton.vue";
 </script>
 
 <template>
-  <Story
-    title="Badge"
-    :layout="{ type: 'single', width: 400 }"
-  >
+  <Story title="Badge" :layout="{ type: 'single', width: 400 }">
     <Variant title="Variants" :description="'primary | accent | success | warning | error | info'">
       <div class="flex flex-wrap gap-3 items-center">
         <MizuBadge variant="primary">Primary</MizuBadge>

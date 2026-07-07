@@ -22,11 +22,7 @@ const emptyClasses = computed(() => {
 </script>
 
 <template>
-  <ComboboxEmpty
-    :class="emptyClasses"
-    :as-child="asChild"
-    :as="as"
-  >
+  <ComboboxEmpty :class="emptyClasses" :as-child="asChild" :as="as">
     <slot />
   </ComboboxEmpty>
 </template>

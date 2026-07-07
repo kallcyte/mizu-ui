@@ -13,7 +13,9 @@ disable-model-invocation: false
 
 ```vue
 <style scoped>
-.your-demo { all: revert; }
+.your-demo {
+  all: revert;
+}
 
 .your-demo .demo-section {
   margin-top: 0;
@@ -61,10 +63,7 @@ import MizuComponent from "../components/MizuComponent.vue";
 </script>
 
 <template>
-  <Story
-    title="ComponentName"
-    :layout="{ type: 'single', width: 400 }"
-  >
+  <Story title="ComponentName" :layout="{ type: 'single', width: 400 }">
     <Variant title="Variants">
       <div class="flex flex-wrap gap-3 items-center">
         <MizuComponent variant="primary" />
@@ -99,18 +98,24 @@ Run `pnpm --filter @mizu/vue story:dev` to preview stories locally. Use `pnpm --
    - Add a component card to `src/components/home/ComponentsSection.astro` inside `<div class="comp-grid">`. Use this template:
 
 ```html
-<a href="/components/{slug}" class="block p-6 rounded-xl border transition-all duration-200 card-hover border-surface-muted bg-surface-base no-underline group hover:border-brand-ycp/30 hover:shadow-[0_0_0_1px_var(--color-brand-ycp)]">
-  <h4 class="text-[16px] font-semibold mb-1 group-hover:text-brand-ycp transition-colors">{DisplayName}</h4>
+<a
+  href="/components/{slug}"
+  class="block p-6 rounded-xl border transition-all duration-200 card-hover border-surface-muted bg-surface-base no-underline group hover:border-brand-ycp/30 hover:shadow-[0_0_0_1px_var(--color-brand-ycp)]"
+>
+  <h4 class="text-[16px] font-semibold mb-1 group-hover:text-brand-ycp transition-colors">
+    {DisplayName}
+  </h4>
   <p class="text-sm text-foreground-secondary">{One-line description}.</p>
 </a>
 ```
 
-   - Add the component to the Starlight sidebar under the "Components" group in `astro.config.mjs`.
-   - Verify all three stay in sync: sidebar entries, homepage cards, and docs pages. Compare the sidebar component list in `astro.config.mjs` against `src/components/home/ComponentsSection.astro` and `src/content/docs/components/` after every batch.
+- Add the component to the Starlight sidebar under the "Components" group in `astro.config.mjs`.
+- Verify all three stay in sync: sidebar entries, homepage cards, and docs pages. Compare the sidebar component list in `astro.config.mjs` against `src/components/home/ComponentsSection.astro` and `src/content/docs/components/` after every batch.
+
 9. Before documenting a new component, run `pnpm --filter @mizu/vue build` to regenerate `packages/vue/src/index.ts`, then verify every exported component has a corresponding sidebar entry (`astro.config.mjs`), docs page (`src/content/docs/components/`), and homepage card (`src/components/home/ComponentsSection.astro`). The three must always be in sync — a missing homepage card is a documentation bug.
 10. Create a new changelog entry in `src/content/docs/getting-started/changelog.mdx` before committing.
-10. **Bump the patch version** (e.g., `0.12.0` → `0.12.1`) in `packages/vue/package.json` and `package.json` (root) after adding a new component.
-11. After a version bump, update the version number in:
+11. **Bump the patch version** (e.g., `0.12.0` → `0.12.1`) in `packages/vue/package.json` and `package.json` (root) after adding a new component.
+12. After a version bump, update the version number in:
     - `packages/vue/package.json` (the canonical source of truth)
     - `package.json` (root, keep in sync)
     - `src/components/home/Hero.astro` — search for `Design System · v0.`
@@ -135,6 +140,7 @@ gh release create v{VERSION} \
 ```
 
 **Release notes must include:**
+
 1. One-line summary of the release
 2. Table or list of new components with sub-component count and description
 3. Enhanced/changed components with specific prop/API changes
@@ -142,6 +148,7 @@ gh release create v{VERSION} \
 5. Stats (files changed, insertions, package version)
 
 **Changelog entry before release:**
+
 - All changes go into a single version entry in `src/content/docs/getting-started/changelog.mdx`
 - Do NOT create phantom version entries (e.g. 0.8.0, 0.9.0) for work that was committed together — consolidate into the actual released version
 - Verify the changelog includes ALL components in the release (check `packages/vue/src/index.ts` exports)
@@ -191,8 +198,8 @@ One sentence explaining what the component is and when to use it. No heading.
 `## Anatomy` → short prose ("A {component} consists of up to N parts:") + a table:
 
 | Part | Required | Description |
-|------|----------|-------------|
-| ... | Yes/No | ... |
+| ---- | -------- | ----------- |
+| ...  | Yes/No   | ...         |
 
 ### 6. Variants **or** Composition
 
@@ -226,6 +233,7 @@ One sentence explaining what the component is and when to use it. No heading.
 ### 13. Component-specific sections (optional, in order)
 
 Insert any of these between Transitions and Accessibility when relevant:
+
 - `## Focus Ring` — when the component has a custom focus ring spec.
 - `## Status Tags` — variant-to-workflow-status mapping table (tags, badges).
 - `## Visual Sections` — per-section background / separator spec (cards).
@@ -251,7 +259,7 @@ Insert any of these between Transitions and Accessibility when relevant:
 ### Conventions
 
 - **Section heading levels**: `##` for top-level sections (drives Starlight's auto-generated right-sidebar TOC). `###` for per-variant / per-state subsections. Never use `h1` (the page title comes from frontmatter).
-use the kebab-case token path with `--color-` / `--font-` / `--spacing-` / `--radius-` / `--duration-` prefix (the canonical name). When showing the resolved value, put the hex in parentheses: `brand-primary` (#001C44).
+  use the kebab-case token path with `--color-` / `--font-` / `--spacing-` / `--radius-` / `--duration-` prefix (the canonical name). When showing the resolved value, put the hex in parentheses: `brand-primary` (#001C44).
 - **Tables** for any tabular data (variants, sizes, state maps, props, slots, events, tokens). Avoid prose lists.
 - **No emojis** in tables, headings, or code blocks.
 - **Example blocks** fence with ` ```vue ` for component examples and ` ```html ` for raw ARIA/HTML snippets.

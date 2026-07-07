@@ -113,7 +113,8 @@ const partialCollapseCode = `<MizuCollapsibleRoot>
             <MizuButton variant="primary">Show more</MizuButton>
           </MizuCollapsibleTrigger>
           <MizuCollapsibleContent>
-            This content can be collapsed and expanded. Click the trigger above to toggle visibility.
+            This content can be collapsed and expanded. Click the trigger above to toggle
+            visibility.
           </MizuCollapsibleContent>
         </MizuCollapsibleRoot>
       </CodeCollapsible>
@@ -210,11 +211,11 @@ const partialCollapseCode = `<MizuCollapsibleRoot>
             <MizuButton variant="primary">Show more</MizuButton>
           </MizuCollapsibleTrigger>
           <MizuCollapsibleContent collapsed-height="80px">
-            <p style="margin: 0 0 8px 0;">This content is partially visible when collapsed.</p>
-            <p style="margin: 0 0 8px 0;">The collapsedHeight prop keeps the panel at 80px tall</p>
-            <p style="margin: 0 0 8px 0;">so users can see a preview of the content.</p>
-            <p style="margin: 0 0 8px 0;">Click "Show more" to expand and read the full text.</p>
-            <p style="margin: 0;">This is useful for "show more/less" patterns.</p>
+            <p style="margin: 0 0 8px 0">This content is partially visible when collapsed.</p>
+            <p style="margin: 0 0 8px 0">The collapsedHeight prop keeps the panel at 80px tall</p>
+            <p style="margin: 0 0 8px 0">so users can see a preview of the content.</p>
+            <p style="margin: 0 0 8px 0">Click "Show more" to expand and read the full text.</p>
+            <p style="margin: 0">This is useful for "show more/less" patterns.</p>
           </MizuCollapsibleContent>
         </MizuCollapsibleRoot>
       </CodeCollapsible>
@@ -228,8 +229,8 @@ const partialCollapseCode = `<MizuCollapsibleRoot>
             <MizuButton variant="primary">Show details</MizuButton>
           </MizuCollapsibleTrigger>
           <MizuCollapsibleContent>
-            <p style="margin: 0 0 8px 0;">Collapsibles can contain any content:</p>
-            <ul style="margin: 0; padding-left: 20px;">
+            <p style="margin: 0 0 8px 0">Collapsibles can contain any content:</p>
+            <ul style="margin: 0; padding-left: 20px">
               <li>Text and paragraphs</li>
               <li>Lists and tables</li>
               <li>Forms and inputs</li>

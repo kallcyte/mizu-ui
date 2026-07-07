@@ -22,11 +22,7 @@ const labelClasses = computed(() => {
 </script>
 
 <template>
-  <ComboboxLabel
-    :class="labelClasses"
-    :as-child="asChild"
-    :as="as"
-  >
+  <ComboboxLabel :class="labelClasses" :as-child="asChild" :as="as">
     <slot />
   </ComboboxLabel>
 </template>

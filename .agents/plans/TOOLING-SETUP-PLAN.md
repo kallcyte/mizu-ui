@@ -10,14 +10,14 @@ Set up three foundational quality tools for the mizu-ui monorepo:
 
 ### Current State
 
-| Aspect | Status |
-|---|---|
-| Monorepo tool | pnpm workspaces (`pnpm-workspace.yaml`) |
-| Packages | `@mizu/tokens`, `@mizu/vue`, `@mizu/react` (future) |
-| Build tools | `tsx` (tokens), Vite + vue-tsc (vue), Astro (docs) |
-| Testing | ❌ None — zero test files, no test runner |
-| Linting/Formatting | ❌ None — no ESLint, no Prettier |
-| CI/CD | ⚠️ Release workflow only (`.github/workflows/release.yml`) — no PR checks |
+| Aspect             | Status                                                                    |
+| ------------------ | ------------------------------------------------------------------------- |
+| Monorepo tool      | pnpm workspaces (`pnpm-workspace.yaml`)                                   |
+| Packages           | `@mizu/tokens`, `@mizu/vue`, `@mizu/react` (future)                       |
+| Build tools        | `tsx` (tokens), Vite + vue-tsc (vue), Astro (docs)                        |
+| Testing            | ❌ None — zero test files, no test runner                                 |
+| Linting/Formatting | ❌ None — no ESLint, no Prettier                                          |
+| CI/CD              | ⚠️ Release workflow only (`.github/workflows/release.yml`) — no PR checks |
 
 ---
 
@@ -37,12 +37,12 @@ Set up three foundational quality tools for the mizu-ui monorepo:
 pnpm --filter @mizu/vue add -D vitest @vue/test-utils jsdom @vitest/coverage-v8
 ```
 
-| Package | Purpose |
-|---|---|
-| `vitest` | Test runner — native Vite integration |
-| `@vue/test-utils` | Mount Vue components, assert props/slots/emits/DOM |
-| `jsdom` | Lightweight DOM environment for component tests |
-| `@vitest/coverage-v8` | Code coverage reporting via V8 |
+| Package               | Purpose                                            |
+| --------------------- | -------------------------------------------------- |
+| `vitest`              | Test runner — native Vite integration              |
+| `@vue/test-utils`     | Mount Vue components, assert props/slots/emits/DOM |
+| `jsdom`               | Lightweight DOM environment for component tests    |
+| `@vitest/coverage-v8` | Code coverage reporting via V8                     |
 
 ### Configuration
 
@@ -52,19 +52,22 @@ Create `packages/vue/vitest.config.ts`:
 import { defineConfig, mergeConfig } from "vitest/config";
 import viteConfig from "./vite.config";
 
-export default mergeConfig(viteConfig, defineConfig({
-  test: {
-    environment: "jsdom",
-    globals: true,
-    include: ["src/**/*.test.ts"],
-    coverage: {
-      provider: "v8",
-      reporter: ["text", "json", "html"],
-      include: ["src/**/*.{ts,vue}"],
-      exclude: ["src/**/*.test.ts", "src/index.ts"],
+export default mergeConfig(
+  viteConfig,
+  defineConfig({
+    test: {
+      environment: "jsdom",
+      globals: true,
+      include: ["src/**/*.test.ts"],
+      coverage: {
+        provider: "v8",
+        reporter: ["text", "json", "html"],
+        include: ["src/**/*.{ts,vue}"],
+        exclude: ["src/**/*.test.ts", "src/index.ts"],
+      },
     },
-  },
-}));
+  })
+);
 ```
 
 Add scripts to `packages/vue/package.json`:
@@ -116,11 +119,11 @@ packages/vue/src/__tests__/
 
 Start with **3 tests** to validate the setup works end-to-end:
 
-| Test File | Priority | What It Covers |
-|---|---|---|
-| `useMizuField.test.ts` | P0 | Zod validation, touched tracking, error states, handleSubmit flow |
-| `MizuInput.test.ts` | P0 | helperText rendering, error state classes, v-model binding |
-| `MizuButton.test.ts` | P0 | Variant classes, disabled state, loading state, click events |
+| Test File              | Priority | What It Covers                                                    |
+| ---------------------- | -------- | ----------------------------------------------------------------- |
+| `useMizuField.test.ts` | P0       | Zod validation, touched tracking, error states, handleSubmit flow |
+| `MizuInput.test.ts`    | P0       | helperText rendering, error state classes, v-model binding        |
+| `MizuButton.test.ts`   | P0       | Variant classes, disabled state, loading state, click events      |
 
 ### Key Testing Patterns
 
@@ -149,7 +152,7 @@ import MizuInput from "../components/MizuInput.vue";
 
 test("renders helper text below the input", () => {
   const wrapper = mount(MizuInput, {
-    props: { helperText: "Please enter a valid email", error: true }
+    props: { helperText: "Please enter a valid email", error: true },
   });
   const helper = wrapper.find(".mizu-input-helper");
   expect(helper.exists()).toBe(true);
@@ -169,14 +172,14 @@ test("does not render helper span when helperText is empty", () => {
 
 ### Prioritized Rollout
 
-| Phase | Scope | Why first |
-|---|---|---|
-| **1** | `useMizuField` + `MizuInput` + `MizuButton` | Core form validation + highest regression risk |
-| **2** | Form components: Select, Textarea, Checkbox, Radio, Switch | Same `helperText`/`error` pattern — ensure parity |
-| **3** | Display components: Alert, Badge, Card, Tag, Progress, Avatar, Divider, Quote, DashList, Metric | Simple assertions, quick coverage wins |
-| **4** | Complex components: DataTable, Pagination, Tabs, Breadcrumb, Toast | Higher complexity, TanStack/Reka interactions |
-| **5** | Reka UI wrappers: Accordion, Collapsible, Slider, ToggleGroup, TagsInput, Dialog, AlertDialog, DropdownMenu, Combobox | Focus on Mizu props, not Reka internals |
-| **6** | CI coverage thresholds | `vitest --coverage`, fail under 70% |
+| Phase | Scope                                                                                                                 | Why first                                         |
+| ----- | --------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------- |
+| **1** | `useMizuField` + `MizuInput` + `MizuButton`                                                                           | Core form validation + highest regression risk    |
+| **2** | Form components: Select, Textarea, Checkbox, Radio, Switch                                                            | Same `helperText`/`error` pattern — ensure parity |
+| **3** | Display components: Alert, Badge, Card, Tag, Progress, Avatar, Divider, Quote, DashList, Metric                       | Simple assertions, quick coverage wins            |
+| **4** | Complex components: DataTable, Pagination, Tabs, Breadcrumb, Toast                                                    | Higher complexity, TanStack/Reka interactions     |
+| **5** | Reka UI wrappers: Accordion, Collapsible, Slider, ToggleGroup, TagsInput, Dialog, AlertDialog, DropdownMenu, Combobox | Focus on Mizu props, not Reka internals           |
+| **6** | CI coverage thresholds                                                                                                | `vitest --coverage`, fail under 70%               |
 
 ---
 
@@ -202,13 +205,13 @@ ESLint (code quality)          Prettier (formatting)
 pnpm add -Dw eslint @eslint/js typescript-eslint eslint-plugin-vue prettier eslint-config-prettier
 ```
 
-| Package | Purpose |
-|---|---|
-| `eslint` | Core linter (v9 flat config) |
-| `@eslint/js` | Recommended JS rules |
-| `typescript-eslint` | TypeScript-specific rules + parser |
-| `eslint-plugin-vue` | Vue SFC linting rules |
-| `prettier` | Code formatter |
+| Package                  | Purpose                                           |
+| ------------------------ | ------------------------------------------------- |
+| `eslint`                 | Core linter (v9 flat config)                      |
+| `@eslint/js`             | Recommended JS rules                              |
+| `typescript-eslint`      | TypeScript-specific rules + parser                |
+| `eslint-plugin-vue`      | Vue SFC linting rules                             |
+| `prettier`               | Code formatter                                    |
 | `eslint-config-prettier` | Disables ESLint rules that conflict with Prettier |
 
 ### Files to Create
@@ -313,8 +316,8 @@ packages/tokens/src/index.ts
 
 ### Existing Workflows
 
-| File | Trigger | Purpose |
-|---|---|---|
+| File                            | Trigger          | Purpose                    |
+| ------------------------------- | ---------------- | -------------------------- |
 | `.github/workflows/release.yml` | push to `master` | Auto-create GitHub Release |
 
 ### New Workflow: `.github/workflows/ci.yml`
@@ -411,30 +414,30 @@ PR opened/updated
 
 ## Implementation Steps
 
-| Step | Task | Files |
-|---|---|---|
-| 1 | Install Vitest dependencies | `packages/vue/package.json` |
-| 2 | Create Vitest config | `packages/vue/vitest.config.ts` |
-| 3 | Write 3 initial tests (Phase 1) | `packages/vue/src/__tests__/{composables,components}/*.test.ts` |
-| 4 | Verify tests pass locally | `pnpm --filter @mizu/vue test` |
-| 5 | Install ESLint + Prettier deps | `package.json` (root) |
-| 6 | Create ESLint flat config | `eslint.config.js` |
-| 7 | Create Prettier config | `.prettierrc`, `.prettierignore` |
-| 8 | Add lint/format scripts to root | `package.json` (root) |
-| 9 | Run `pnpm format` to format all files | — |
-| 10 | Run `pnpm lint:fix` to auto-fix issues | — |
-| 11 | Manually fix remaining lint warnings | Various files |
-| 12 | Create CI workflow | `.github/workflows/ci.yml` |
-| 13 | Verify full pipeline locally | `pnpm lint && pnpm format:check && pnpm --filter @mizu/vue typecheck && pnpm --filter @mizu/vue test && pnpm build` |
+| Step | Task                                   | Files                                                                                                               |
+| ---- | -------------------------------------- | ------------------------------------------------------------------------------------------------------------------- |
+| 1    | Install Vitest dependencies            | `packages/vue/package.json`                                                                                         |
+| 2    | Create Vitest config                   | `packages/vue/vitest.config.ts`                                                                                     |
+| 3    | Write 3 initial tests (Phase 1)        | `packages/vue/src/__tests__/{composables,components}/*.test.ts`                                                     |
+| 4    | Verify tests pass locally              | `pnpm --filter @mizu/vue test`                                                                                      |
+| 5    | Install ESLint + Prettier deps         | `package.json` (root)                                                                                               |
+| 6    | Create ESLint flat config              | `eslint.config.js`                                                                                                  |
+| 7    | Create Prettier config                 | `.prettierrc`, `.prettierignore`                                                                                    |
+| 8    | Add lint/format scripts to root        | `package.json` (root)                                                                                               |
+| 9    | Run `pnpm format` to format all files  | —                                                                                                                   |
+| 10   | Run `pnpm lint:fix` to auto-fix issues | —                                                                                                                   |
+| 11   | Manually fix remaining lint warnings   | Various files                                                                                                       |
+| 12   | Create CI workflow                     | `.github/workflows/ci.yml`                                                                                          |
+| 13   | Verify full pipeline locally           | `pnpm lint && pnpm format:check && pnpm --filter @mizu/vue typecheck && pnpm --filter @mizu/vue test && pnpm build` |
 
 ---
 
 ## Future Considerations (Out of Scope for Now)
 
-| Item | When to Add |
-|---|---|
-| **Coverage threshold** (`--coverage.thresholds.lines: 70`) | After Phase 3+ tests are written |
-| **Pre-commit hooks** (`lint-staged` + `husky`) | When team grows beyond 1 contributor |
-| **E2E tests** (Playwright) | When sample pages need smoke testing |
-| **Visual regression** (Chromatic/Percy) | When component visual stability matters |
-| **Bundle size tracking** (`size-limit`) | Before publishing to npm |
+| Item                                                       | When to Add                             |
+| ---------------------------------------------------------- | --------------------------------------- |
+| **Coverage threshold** (`--coverage.thresholds.lines: 70`) | After Phase 3+ tests are written        |
+| **Pre-commit hooks** (`lint-staged` + `husky`)             | When team grows beyond 1 contributor    |
+| **E2E tests** (Playwright)                                 | When sample pages need smoke testing    |
+| **Visual regression** (Chromatic/Percy)                    | When component visual stability matters |
+| **Bundle size tracking** (`size-limit`)                    | Before publishing to npm                |

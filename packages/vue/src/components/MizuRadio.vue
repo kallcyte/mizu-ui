@@ -37,7 +37,11 @@ const emit = defineEmits<{
 const attrs = useAttrs();
 
 const radioGroupClasses = computed(() => {
-  const classes = ["mizu-radio-group", `mizu-radio-group--${props.size}`, `mizu-radio-group--${props.orientation}`];
+  const classes = [
+    "mizu-radio-group",
+    `mizu-radio-group--${props.size}`,
+    `mizu-radio-group--${props.orientation}`,
+  ];
 
   if (props.disabled) classes.push("mizu-radio-group--disabled");
 
@@ -53,10 +57,7 @@ function handleValueChange(value: unknown) {
 
 <template>
   <div :class="['mizu-radio-wrapper', `mizu-radio-wrapper--${size}`]">
-    <label
-      v-if="label"
-      class="mizu-radio-group-label"
-    >
+    <label v-if="label" class="mizu-radio-group-label">
       {{ label }}
       <span v-if="required" class="mizu-radio-group-label__required" aria-hidden="true">*</span>
     </label>
@@ -71,12 +72,16 @@ function handleValueChange(value: unknown) {
       <div
         v-for="item in items"
         :key="item.value"
-        :class="['mizu-radio-item', `mizu-radio-item--${size}`, { 'mizu-radio-item--disabled': item.disabled || disabled }]"
+        :class="[
+          'mizu-radio-item',
+          `mizu-radio-item--${size}`,
+          { 'mizu-radio-item--disabled': item.disabled || disabled },
+        ]"
       >
         <RadioGroupItem
+          :id="`${name || 'mizu-radio'}-${item.value}`"
           :value="item.value"
           :disabled="item.disabled || disabled"
-          :id="`${name || 'mizu-radio'}-${item.value}`"
           class="mizu-radio"
         >
           <RadioGroupIndicator class="mizu-radio__indicator" />
@@ -104,9 +109,15 @@ function handleValueChange(value: unknown) {
 .mizu-radio-group-label {
   @apply font-medium text-[var(--color-foreground-primary)];
 }
-.mizu-radio-wrapper--sm .mizu-radio-group-label { @apply text-[12px]; }
-.mizu-radio-wrapper--md .mizu-radio-group-label { @apply text-[12px]; }
-.mizu-radio-wrapper--lg .mizu-radio-group-label { @apply text-[14px]; }
+.mizu-radio-wrapper--sm .mizu-radio-group-label {
+  @apply text-[12px];
+}
+.mizu-radio-wrapper--md .mizu-radio-group-label {
+  @apply text-[12px];
+}
+.mizu-radio-wrapper--lg .mizu-radio-group-label {
+  @apply text-[14px];
+}
 .mizu-radio-group-label__required {
   @apply ml-[2px] text-[var(--color-feedback-error-base)];
 }
@@ -139,9 +150,15 @@ function handleValueChange(value: unknown) {
   border-color: var(--color-foreground-tertiary);
 }
 
-.mizu-radio-item--sm .mizu-radio { @apply w-[16px] h-[16px]; }
-.mizu-radio-item--md .mizu-radio { @apply w-[18px] h-[18px]; }
-.mizu-radio-item--lg .mizu-radio { @apply w-[20px] h-[20px]; }
+.mizu-radio-item--sm .mizu-radio {
+  @apply w-[16px] h-[16px];
+}
+.mizu-radio-item--md .mizu-radio {
+  @apply w-[18px] h-[18px];
+}
+.mizu-radio-item--lg .mizu-radio {
+  @apply w-[20px] h-[20px];
+}
 
 .mizu-radio:hover:not(.mizu-radio-item--disabled .mizu-radio) {
   border-color: var(--color-brand-primary);
@@ -188,9 +205,15 @@ function handleValueChange(value: unknown) {
   line-height: 1.3;
 }
 
-.mizu-radio-item--sm .mizu-radio__item-label { @apply text-[12px]; }
-.mizu-radio-item--md .mizu-radio__item-label { @apply text-[13px]; }
-.mizu-radio-item--lg .mizu-radio__item-label { @apply text-[14px]; }
+.mizu-radio-item--sm .mizu-radio__item-label {
+  @apply text-[12px];
+}
+.mizu-radio-item--md .mizu-radio__item-label {
+  @apply text-[13px];
+}
+.mizu-radio-item--lg .mizu-radio__item-label {
+  @apply text-[14px];
+}
 
 .mizu-radio-item--disabled .mizu-radio__item-label {
   @apply text-[var(--color-foreground-tertiary)] cursor-not-allowed;

@@ -13,17 +13,35 @@ interface Invoice {
 }
 
 const allInvoices: Invoice[] = [
-  { id: "INV-001", customer: "Acme Corp", amount: 1250.00, status: "paid", date: "2026-06-01" },
-  { id: "INV-002", customer: "Globex Inc", amount: 890.50, status: "pending", date: "2026-06-03" },
-  { id: "INV-003", customer: "Initech", amount: 2100.00, status: "overdue", date: "2026-05-15" },
+  { id: "INV-001", customer: "Acme Corp", amount: 1250.0, status: "paid", date: "2026-06-01" },
+  { id: "INV-002", customer: "Globex Inc", amount: 890.5, status: "pending", date: "2026-06-03" },
+  { id: "INV-003", customer: "Initech", amount: 2100.0, status: "overdue", date: "2026-05-15" },
   { id: "INV-004", customer: "Umbrella Co", amount: 450.75, status: "paid", date: "2026-06-05" },
-  { id: "INV-005", customer: "Stark Industries", amount: 5600.00, status: "paid", date: "2026-06-07" },
-  { id: "INV-006", customer: "Wayne Enterprises", amount: 3200.00, status: "pending", date: "2026-06-08" },
+  {
+    id: "INV-005",
+    customer: "Stark Industries",
+    amount: 5600.0,
+    status: "paid",
+    date: "2026-06-07",
+  },
+  {
+    id: "INV-006",
+    customer: "Wayne Enterprises",
+    amount: 3200.0,
+    status: "pending",
+    date: "2026-06-08",
+  },
   { id: "INV-007", customer: "Oscorp", amount: 780.25, status: "paid", date: "2026-06-09" },
-  { id: "INV-008", customer: "Cyberdyne", amount: 1950.00, status: "overdue", date: "2026-05-20" },
-  { id: "INV-009", customer: "Massive Dynamic", amount: 4100.00, status: "paid", date: "2026-06-10" },
-  { id: "INV-010", customer: "Hooli", amount: 670.50, status: "pending", date: "2026-06-11" },
-  { id: "INV-011", customer: "Pied Piper", amount: 2890.00, status: "paid", date: "2026-06-12" },
+  { id: "INV-008", customer: "Cyberdyne", amount: 1950.0, status: "overdue", date: "2026-05-20" },
+  {
+    id: "INV-009",
+    customer: "Massive Dynamic",
+    amount: 4100.0,
+    status: "paid",
+    date: "2026-06-10",
+  },
+  { id: "INV-010", customer: "Hooli", amount: 670.5, status: "pending", date: "2026-06-11" },
+  { id: "INV-011", customer: "Pied Piper", amount: 2890.0, status: "paid", date: "2026-06-12" },
   { id: "INV-012", customer: "Soylent Corp", amount: 1120.75, status: "paid", date: "2026-06-13" },
 ];
 
@@ -63,10 +81,38 @@ interface Contact {
 }
 
 const contacts: Contact[] = [
-  { name: "Sarah Chen", email: "sarah@acme.com", phone: "+1 555-0101", role: "Engineering Lead", status: "active", notes: "Primary technical contact for API integration project. Prefers email communication." },
-  { name: "Marcus Johnson", email: "marcus@globex.com", phone: "+1 555-0102", role: "Product Manager", status: "active", notes: "Oversees the ERP migration initiative." },
-  { name: "Elena Rodriguez", email: "elena@initech.com", phone: "+1 555-0103", role: "Finance Director", status: "inactive", notes: "On leave until Q3." },
-  { name: "James Wilson", email: "james@umbrella.co", phone: "+1 555-0104", role: "Operations Manager", status: "active", notes: "Manages warehouse logistics and supply chain." },
+  {
+    name: "Sarah Chen",
+    email: "sarah@acme.com",
+    phone: "+1 555-0101",
+    role: "Engineering Lead",
+    status: "active",
+    notes: "Primary technical contact for API integration project. Prefers email communication.",
+  },
+  {
+    name: "Marcus Johnson",
+    email: "marcus@globex.com",
+    phone: "+1 555-0102",
+    role: "Product Manager",
+    status: "active",
+    notes: "Oversees the ERP migration initiative.",
+  },
+  {
+    name: "Elena Rodriguez",
+    email: "elena@initech.com",
+    phone: "+1 555-0103",
+    role: "Finance Director",
+    status: "inactive",
+    notes: "On leave until Q3.",
+  },
+  {
+    name: "James Wilson",
+    email: "james@umbrella.co",
+    phone: "+1 555-0104",
+    role: "Operations Manager",
+    status: "active",
+    notes: "Manages warehouse logistics and supply chain.",
+  },
 ];
 
 const contactColumns: ColumnDef<Contact, unknown>[] = [
@@ -97,7 +143,11 @@ const contactColumns: ColumnDef<Contact, unknown>[] = [
     header: "Status",
     cell: ({ row }) => {
       const status = row.getValue("status") as string;
-      return h(MizuTag, { variant: status === "active" ? "success" : "warning", size: "sm" }, () => status);
+      return h(
+        MizuTag,
+        { variant: status === "active" ? "success" : "warning", size: "sm" },
+        () => status
+      );
     },
   },
   {
@@ -193,12 +243,7 @@ const emptyCode = `<MizuDataTable
     <section class="example-section">
       <h3>Basic</h3>
       <CodeCollapsible :code="basicCode">
-        <MizuDataTable
-          :columns="columns"
-          :data="allInvoices"
-          v-model:page="page1"
-          :page-size="5"
-        />
+        <MizuDataTable v-model:page="page1" :columns="columns" :data="allInvoices" :page-size="5" />
       </CodeCollapsible>
     </section>
 
@@ -206,9 +251,9 @@ const emptyCode = `<MizuDataTable
       <h3>With Selection</h3>
       <CodeCollapsible :code="selectionCode">
         <MizuDataTable
+          v-model:page="page2"
           :columns="columns"
           :data="allInvoices"
-          v-model:page="page2"
           :page-size="5"
           :selectable="true"
         />
@@ -219,11 +264,7 @@ const emptyCode = `<MizuDataTable
       <h3>Infinite Scroll</h3>
       <CodeCollapsible :code="infiniteCode">
         <div class="infinite-scroll-wrapper">
-          <MizuDataTable
-            :columns="columns"
-            :data="infiniteData"
-            :paginated="false"
-          />
+          <MizuDataTable :columns="columns" :data="infiniteData" :paginated="false" />
           <div ref="sentinel" class="infinite-scroll-sentinel">
             <template v-if="infiniteLoading">
               <div class="infinite-spinner"></div>
@@ -241,33 +282,21 @@ const emptyCode = `<MizuDataTable
     <section class="example-section">
       <h3>Multi-line Cells</h3>
       <CodeCollapsible :code="multiLineCellsCode">
-        <MizuDataTable
-          :columns="contactColumns"
-          :data="contacts"
-          :paginated="false"
-        />
+        <MizuDataTable :columns="contactColumns" :data="contacts" :paginated="false" />
       </CodeCollapsible>
     </section>
 
     <section class="example-section">
       <h3>Loading</h3>
       <CodeCollapsible :code="loadingCode">
-        <MizuDataTable
-          :columns="columns"
-          :data="[]"
-          :loading="true"
-        />
+        <MizuDataTable :columns="columns" :data="[]" :loading="true" />
       </CodeCollapsible>
     </section>
 
     <section class="example-section">
       <h3>Empty</h3>
       <CodeCollapsible :code="emptyCode">
-        <MizuDataTable
-          :columns="columns"
-          :data="[]"
-          empty-text="No invoices found"
-        />
+        <MizuDataTable :columns="columns" :data="[]" empty-text="No invoices found" />
       </CodeCollapsible>
     </section>
   </div>
@@ -326,7 +355,9 @@ const emptyCode = `<MizuDataTable
 }
 
 @keyframes spin {
-  to { transform: rotate(360deg); }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .scroll-hint {

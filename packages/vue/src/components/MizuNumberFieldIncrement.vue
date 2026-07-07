@@ -22,11 +22,7 @@ const incClasses = computed(() => {
 </script>
 
 <template>
-  <NumberFieldIncrement
-    :class="incClasses"
-    :as-child="asChild"
-    :as="as"
-  >
+  <NumberFieldIncrement :class="incClasses" :as-child="asChild" :as="as">
     <slot />
   </NumberFieldIncrement>
 </template>

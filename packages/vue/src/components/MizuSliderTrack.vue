@@ -13,11 +13,7 @@ const attrs = useAttrs();
 </script>
 
 <template>
-  <SliderTrack
-    :class="['mizu-slider__track', attrs.class]"
-    :as-child="asChild"
-    :as="as"
-  >
+  <SliderTrack :class="['mizu-slider__track', attrs.class]" :as-child="asChild" :as="as">
     <slot />
   </SliderTrack>
 </template>

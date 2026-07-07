@@ -39,7 +39,7 @@ watch(
   () => props.src,
   () => {
     imageFailed.value = false;
-  },
+  }
 );
 
 onMounted(() => {
@@ -72,22 +72,23 @@ const initials = computed(() => {
   return (words[0].charAt(0) + words[words.length - 1].charAt(0)).toUpperCase();
 });
 
-const showInitials = computed(
-  () => !showImage.value && initials.value.length > 0,
-);
+const showInitials = computed(() => !showImage.value && initials.value.length > 0);
 
 const hasIconSlot = computed(() => !!slots.icon);
 
-const showIcon = computed(
-  () => !showImage.value && !showInitials.value && hasIconSlot.value,
-);
+const showIcon = computed(() => !showImage.value && !showInitials.value && hasIconSlot.value);
 
 const showDefaultIcon = computed(
-  () => !showImage.value && !showInitials.value && !hasIconSlot.value,
+  () => !showImage.value && !showInitials.value && !hasIconSlot.value
 );
 
 const avatarClasses = computed(() => {
-  const classes = ["mizu-avatar", `mizu-avatar--${props.size}`, `mizu-avatar--${props.shape}`, `mizu-avatar--${props.color}`];
+  const classes = [
+    "mizu-avatar",
+    `mizu-avatar--${props.size}`,
+    `mizu-avatar--${props.shape}`,
+    `mizu-avatar--${props.color}`,
+  ];
 
   if (attrs.class) classes.push(attrs.class as string);
 
@@ -102,13 +103,7 @@ const imageAlt = computed(() => {
 </script>
 
 <template>
-  <div
-    ref="avatarRef"
-    :id="avatarId"
-    :class="avatarClasses"
-    role="img"
-    :aria-label="imageAlt"
-  >
+  <div :id="avatarId" ref="avatarRef" :class="avatarClasses" role="img" :aria-label="imageAlt">
     <img
       v-if="showImage"
       :src="src"
@@ -178,10 +173,18 @@ const imageAlt = computed(() => {
 .mizu-avatar--square {
   border-radius: var(--radius-default, 8px);
 }
-.mizu-avatar--square.mizu-avatar--sm { border-radius: 4px; }
-.mizu-avatar--square.mizu-avatar--md { border-radius: 6px; }
-.mizu-avatar--square.mizu-avatar--lg { border-radius: 8px; }
-.mizu-avatar--square.mizu-avatar--xl { border-radius: 10px; }
+.mizu-avatar--square.mizu-avatar--sm {
+  border-radius: 4px;
+}
+.mizu-avatar--square.mizu-avatar--md {
+  border-radius: 6px;
+}
+.mizu-avatar--square.mizu-avatar--lg {
+  border-radius: 8px;
+}
+.mizu-avatar--square.mizu-avatar--xl {
+  border-radius: 10px;
+}
 
 /* Color variants */
 .mizu-avatar--muted {
@@ -192,9 +195,9 @@ const imageAlt = computed(() => {
 .mizu-avatar--primary {
   background-color: var(--color-brand-primary);
   color: #fff;
-    border-color: var(--color-brand-primary);
-  }
-  .mizu-avatar--accent {
+  border-color: var(--color-brand-primary);
+}
+.mizu-avatar--accent {
   background-color: var(--color-brand-ycp-subtle);
   color: var(--color-brand-ycp);
   border-color: var(--color-brand-ycp-subtle);
@@ -202,7 +205,7 @@ const imageAlt = computed(() => {
 .mizu-avatar--neutral {
   background-color: var(--color-brand-neutral);
   color: #fff;
-    border-color: var(--color-brand-neutral);
+  border-color: var(--color-brand-neutral);
 }
 
 /* Image */
@@ -228,6 +231,12 @@ const imageAlt = computed(() => {
   width: 60%;
   height: 60%;
 }
-.mizu-avatar--sm .mizu-avatar__icon svg { width: 70%; height: 70%; }
-.mizu-avatar--xl .mizu-avatar__icon svg { width: 50%; height: 50%; }
+.mizu-avatar--sm .mizu-avatar__icon svg {
+  width: 70%;
+  height: 70%;
+}
+.mizu-avatar--xl .mizu-avatar__icon svg {
+  width: 50%;
+  height: 50%;
+}
 </style>

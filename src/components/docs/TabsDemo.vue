@@ -33,7 +33,11 @@ watch(asyncTab, (tab) => {
   setTimeout(() => {
     const mock: Record<string, string[]> = {
       users: ["Alice Chen — Admin", "Bob Martinez — Editor", "Carol Johnson — Viewer"],
-      projects: ["Mizu Design System — Active", "Customer Portal — Review", "Mobile App — Archived"],
+      projects: [
+        "Mizu Design System — Active",
+        "Customer Portal — Review",
+        "Mobile App — Archived",
+      ],
       reports: ["Q2 Revenue: $142K ↑12%", "User Growth: 8,420 ↑5%", "Churn Rate: 2.1% ↓0.3%"],
     };
     asyncData.value = { ...asyncData.value, [tab]: mock[tab] };
@@ -645,9 +649,9 @@ const asyncContentCode = `<MizuTabsRoot v-model="asyncTab" defaultValue="users">
           <MizuTabsList>
             <MizuTabsTrigger value="general">General</MizuTabsTrigger>
             <MizuTabsTrigger value="notifications">
-                Notifications
-                <span class="tab-badge">3</span>
-              </MizuTabsTrigger>
+              Notifications
+              <span class="tab-badge">3</span>
+            </MizuTabsTrigger>
             <MizuTabsTrigger value="security">Security</MizuTabsTrigger>
             <MizuTabsTrigger value="integrations">Integrations</MizuTabsTrigger>
           </MizuTabsList>
@@ -659,27 +663,42 @@ const asyncContentCode = `<MizuTabsRoot v-model="asyncTab" defaultValue="users">
 
               <div class="field-group">
                 <label class="field-label">Display Name</label>
-                <p class="field-hint">This is the name that will be displayed across the platform and in your public profile.</p>
+                <p class="field-hint">
+                  This is the name that will be displayed across the platform and in your public
+                  profile.
+                </p>
               </div>
 
               <div class="field-group">
                 <label class="field-label">Email Address</label>
-                <p class="field-hint">Your primary email is used for notifications and account recovery. You can add additional emails in Security settings.</p>
+                <p class="field-hint">
+                  Your primary email is used for notifications and account recovery. You can add
+                  additional emails in Security settings.
+                </p>
               </div>
 
               <div class="field-group">
                 <label class="field-label">Bio</label>
-                <p class="field-hint">Write a short bio about yourself. This will appear on your public profile and can be up to 160 characters.</p>
+                <p class="field-hint">
+                  Write a short bio about yourself. This will appear on your public profile and can
+                  be up to 160 characters.
+                </p>
               </div>
 
               <div class="field-group">
                 <label class="field-label">Language</label>
-                <p class="field-hint">Select your preferred language for the interface. This affects all menus, buttons, and system messages.</p>
+                <p class="field-hint">
+                  Select your preferred language for the interface. This affects all menus, buttons,
+                  and system messages.
+                </p>
               </div>
 
               <div class="field-group">
                 <label class="field-label">Timezone</label>
-                <p class="field-hint">Used for scheduling, timestamps, and notification delivery times across the platform.</p>
+                <p class="field-hint">
+                  Used for scheduling, timestamps, and notification delivery times across the
+                  platform.
+                </p>
               </div>
 
               <div class="actions">
@@ -696,27 +715,42 @@ const asyncContentCode = `<MizuTabsRoot v-model="asyncTab" defaultValue="users">
 
               <div class="field-group">
                 <label class="field-label">Email Notifications</label>
-                <p class="field-hint">Receive email digests for important activity. You can choose between real-time, daily, or weekly summaries.</p>
+                <p class="field-hint">
+                  Receive email digests for important activity. You can choose between real-time,
+                  daily, or weekly summaries.
+                </p>
               </div>
 
               <div class="field-group">
                 <label class="field-label">Push Notifications</label>
-                <p class="field-hint">Get browser push notifications for mentions, assignments, and direct messages. Requires browser permission.</p>
+                <p class="field-hint">
+                  Get browser push notifications for mentions, assignments, and direct messages.
+                  Requires browser permission.
+                </p>
               </div>
 
               <div class="field-group">
                 <label class="field-label">In-App Notifications</label>
-                <p class="field-hint">Show a notification badge and dropdown panel within the application. These are always synced in real-time.</p>
+                <p class="field-hint">
+                  Show a notification badge and dropdown panel within the application. These are
+                  always synced in real-time.
+                </p>
               </div>
 
               <div class="field-group">
                 <label class="field-label">Weekly Digest</label>
-                <p class="field-hint">Receive a weekly summary of activity, new followers, and recommended content every Monday at 9:00 AM.</p>
+                <p class="field-hint">
+                  Receive a weekly summary of activity, new followers, and recommended content every
+                  Monday at 9:00 AM.
+                </p>
               </div>
 
               <div class="field-group">
                 <label class="field-label">Marketing Emails</label>
-                <p class="field-hint">Occasional updates about new features, product announcements, and tips for getting the most out of the platform.</p>
+                <p class="field-hint">
+                  Occasional updates about new features, product announcements, and tips for getting
+                  the most out of the platform.
+                </p>
               </div>
 
               <div class="actions">
@@ -733,27 +767,42 @@ const asyncContentCode = `<MizuTabsRoot v-model="asyncTab" defaultValue="users">
 
               <div class="field-group">
                 <label class="field-label">Password</label>
-                <p class="field-hint">Last changed 45 days ago. We recommend updating your password every 90 days for security. Use a strong, unique password.</p>
+                <p class="field-hint">
+                  Last changed 45 days ago. We recommend updating your password every 90 days for
+                  security. Use a strong, unique password.
+                </p>
               </div>
 
               <div class="field-group">
                 <label class="field-label">Two-Factor Authentication</label>
-                <p class="field-hint">Add an extra layer of security to your account. When enabled, you will need to enter a code from your authenticator app in addition to your password.</p>
+                <p class="field-hint">
+                  Add an extra layer of security to your account. When enabled, you will need to
+                  enter a code from your authenticator app in addition to your password.
+                </p>
               </div>
 
               <div class="field-group">
                 <label class="field-label">Active Sessions</label>
-                <p class="field-hint">You are currently signed in on 2 devices. Review and revoke any sessions you do not recognize. Sessions expire after 30 days of inactivity.</p>
+                <p class="field-hint">
+                  You are currently signed in on 2 devices. Review and revoke any sessions you do
+                  not recognize. Sessions expire after 30 days of inactivity.
+                </p>
               </div>
 
               <div class="field-group">
                 <label class="field-label">Login Notifications</label>
-                <p class="field-hint">Get notified when a new device signs into your account. Notifications are sent to your primary email address immediately.</p>
+                <p class="field-hint">
+                  Get notified when a new device signs into your account. Notifications are sent to
+                  your primary email address immediately.
+                </p>
               </div>
 
               <div class="field-group">
                 <label class="field-label">API Keys</label>
-                <p class="field-hint">Manage API keys for programmatic access. Each key can be scoped to specific permissions and revoked independently.</p>
+                <p class="field-hint">
+                  Manage API keys for programmatic access. Each key can be scoped to specific
+                  permissions and revoked independently.
+                </p>
               </div>
 
               <div class="actions">
@@ -770,27 +819,42 @@ const asyncContentCode = `<MizuTabsRoot v-model="asyncTab" defaultValue="users">
 
               <div class="field-group">
                 <label class="field-label">GitHub</label>
-                <p class="field-hint">Sync repositories, pull requests, and commit history. Enables code review features and automatic linking of PRs to tasks.</p>
+                <p class="field-hint">
+                  Sync repositories, pull requests, and commit history. Enables code review features
+                  and automatic linking of PRs to tasks.
+                </p>
               </div>
 
               <div class="field-group">
                 <label class="field-label">Slack</label>
-                <p class="field-hint">Receive notifications in Slack channels. Supports thread replies, mentions, and interactive slash commands.</p>
+                <p class="field-hint">
+                  Receive notifications in Slack channels. Supports thread replies, mentions, and
+                  interactive slash commands.
+                </p>
               </div>
 
               <div class="field-group">
                 <label class="field-label">Google Calendar</label>
-                <p class="field-hint">Sync deadlines and milestones with your calendar. Events are created automatically when tasks are assigned due dates.</p>
+                <p class="field-hint">
+                  Sync deadlines and milestones with your calendar. Events are created automatically
+                  when tasks are assigned due dates.
+                </p>
               </div>
 
               <div class="field-group">
                 <label class="field-label">Figma</label>
-                <p class="field-hint">Embed design files directly in tasks and receive updates when designs are modified. Supports real-time collaboration.</p>
+                <p class="field-hint">
+                  Embed design files directly in tasks and receive updates when designs are
+                  modified. Supports real-time collaboration.
+                </p>
               </div>
 
               <div class="field-group">
                 <label class="field-label">Zapier</label>
-                <p class="field-hint">Create custom workflows connecting to 5,000+ apps. Use triggers and actions to automate repetitive tasks.</p>
+                <p class="field-hint">
+                  Create custom workflows connecting to 5,000+ apps. Use triggers and actions to
+                  automate repetitive tasks.
+                </p>
               </div>
 
               <div class="actions">
@@ -807,16 +871,25 @@ const asyncContentCode = `<MizuTabsRoot v-model="asyncTab" defaultValue="users">
       <h3>Color Variants</h3>
       <CodeCollapsible :code="colorVariantsCode">
         <div class="color-select-row">
-          <MizuSelect v-model="selectedColor" :options="colorOptions" label="Color" size="sm" class="color-select" />
+          <MizuSelect
+            v-model="selectedColor"
+            :options="colorOptions"
+            label="Color"
+            size="sm"
+            class="color-select"
+          />
         </div>
-        <MizuTabsRoot :key="selectedColor" defaultValue="tab1">
+        <MizuTabsRoot :key="selectedColor" default-value="tab1">
           <MizuTabsList :color="selectedColor">
             <MizuTabsTrigger value="tab1">Account</MizuTabsTrigger>
             <MizuTabsTrigger value="tab2">Password</MizuTabsTrigger>
             <MizuTabsTrigger value="tab3">Settings</MizuTabsTrigger>
           </MizuTabsList>
           <MizuTabsContent value="tab1">
-            <p class="tab-body">Manage your account details using the <strong>{{ selectedColor }}</strong> color scheme.</p>
+            <p class="tab-body">
+              Manage your account details using the <strong>{{ selectedColor }}</strong> color
+              scheme.
+            </p>
           </MizuTabsContent>
           <MizuTabsContent value="tab2">
             <p class="tab-body">Update your password and security settings.</p>
@@ -831,7 +904,7 @@ const asyncContentCode = `<MizuTabsRoot v-model="asyncTab" defaultValue="users">
     <section class="example-section">
       <h3>Async Content</h3>
       <CodeCollapsible :code="asyncContentCode">
-        <MizuTabsRoot v-model="asyncTab" defaultValue="users">
+        <MizuTabsRoot v-model="asyncTab" default-value="users">
           <MizuTabsList>
             <MizuTabsTrigger value="users">Users</MizuTabsTrigger>
             <MizuTabsTrigger value="projects">Projects</MizuTabsTrigger>
@@ -872,7 +945,9 @@ const asyncContentCode = `<MizuTabsRoot v-model="asyncTab" defaultValue="users">
   gap: 32px;
   font-family: inherit;
 }
-.tabs-examples :deep(*) { margin: 0; }
+.tabs-examples :deep(*) {
+  margin: 0;
+}
 .example-section {
   all: revert;
   display: flex;

@@ -1,12 +1,6 @@
 <script setup lang="ts">
 import { reactive, ref } from "vue";
-import {
-  MizuForm,
-  MizuFormField,
-  MizuInput,
-  MizuButton,
-  type ValidationError,
-} from "@mizu/vue";
+import { MizuForm, MizuFormField, MizuInput, MizuButton, type ValidationError } from "@mizu/vue";
 import CodeCollapsible from "./CodeCollapsible.vue";
 
 const basicCode = `<MizuForm
@@ -82,19 +76,30 @@ async function submitLogin(state: LoginState) {
         >
           <MizuFormField name="email" label="Email" required help="Your work email address">
             <template #default="{ error, id }">
-              <MizuInput :id="id" name="email" v-model="loginState.email" :error="error" placeholder="you@company.com" />
+              <MizuInput
+                :id="id"
+                v-model="loginState.email"
+                name="email"
+                :error="error"
+                placeholder="you@company.com"
+              />
             </template>
           </MizuFormField>
 
           <MizuFormField name="password" label="Password" required>
             <template #default="{ error, id }">
-              <MizuInput :id="id" name="password" v-model="loginState.password" type="password" :error="error" placeholder="At least 6 characters" />
+              <MizuInput
+                :id="id"
+                v-model="loginState.password"
+                name="password"
+                type="password"
+                :error="error"
+                placeholder="At least 6 characters"
+              />
             </template>
           </MizuFormField>
 
-          <MizuButton variant="primary" size="md" type="submit" class="w-max">
-            Log In
-          </MizuButton>
+          <MizuButton variant="primary" size="md" type="submit" class="w-max"> Log In </MizuButton>
 
           <p v-if="loginSuccess" class="success-text">Login successful!</p>
         </MizuForm>

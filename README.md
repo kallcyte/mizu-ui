@@ -11,11 +11,11 @@ Constraint-based design tokens and multi-framework UI components for building co
 
 ## Packages
 
-| Package | Description |
-|---|---|
-| `@mizu/tokens` | Typed JS/TS exports from `tokens.json` |
-| `@mizu/vue` | Vue 3 component library with Reka UI |
-| `@mizu/react` | React component library with shadcn/ui _(coming soon)_ |
+| Package        | Description                                            |
+| -------------- | ------------------------------------------------------ |
+| `@mizu/tokens` | Typed JS/TS exports from `tokens.json`                 |
+| `@mizu/vue`    | Vue 3 component library with Reka UI                   |
+| `@mizu/react`  | React component library with shadcn/ui _(coming soon)_ |
 
 ## Quick Start
 
@@ -25,7 +25,7 @@ npm install @mizu/vue
 
 ```vue
 <script setup>
-import { MizuButton } from '@mizu/vue'
+import { MizuButton } from "@mizu/vue";
 </script>
 
 <template>

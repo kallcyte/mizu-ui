@@ -67,10 +67,7 @@ const variantColors: Record<string, { bg: string; text: string; border: string; 
 const variantColor = computed(() => variantColors[props.variant] || variantColors.info);
 
 const alertClasses = computed(() => {
-  const classes = [
-    "mizu-alert",
-    `mizu-alert--${props.variant}`,
-  ];
+  const classes = ["mizu-alert", `mizu-alert--${props.variant}`];
 
   if (closing.value) classes.push("mizu-alert--closing");
   if (attrs.class) classes.push(attrs.class as string);
@@ -103,37 +100,51 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div
-    :id="alertId"
-    :class="alertClasses"
-    :style="styleVars"
-    :role="role"
-    :aria-live="ariaLive"
-  >
+  <div :id="alertId" :class="alertClasses" :style="styleVars" :role="role" :aria-live="ariaLive">
     <span v-if="hasDefaultIcon || hasCustomIcon" class="mizu-alert__icon">
       <slot name="icon">
-        <svg
-          v-if="hasDefaultIcon"
-          viewBox="0 0 16 16"
-          fill="none"
-          width="16"
-          height="16"
-        >
+        <svg v-if="hasDefaultIcon" viewBox="0 0 16 16" fill="none" width="16" height="16">
           <template v-if="variant === 'success'">
             <circle cx="8" cy="8" r="7" stroke="currentColor" stroke-width="1.5" />
-            <path d="M5 8.5L7 10.5L11 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+            <path
+              d="M5 8.5L7 10.5L11 6"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
           </template>
           <template v-else-if="variant === 'error'">
             <circle cx="8" cy="8" r="7" stroke="currentColor" stroke-width="1.5" />
-            <path d="M8 5V8.5M8 11V11.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+            <path
+              d="M8 5V8.5M8 11V11.5"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+            />
           </template>
           <template v-else-if="variant === 'warning'">
-            <path d="M8 2L14.5 13.5H1.5L8 2Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" />
-            <path d="M8 6V9.5M8 11V11.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+            <path
+              d="M8 2L14.5 13.5H1.5L8 2Z"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M8 6V9.5M8 11V11.5"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+            />
           </template>
           <template v-else>
             <circle cx="8" cy="8" r="7" stroke="currentColor" stroke-width="1.5" />
-            <path d="M8 7V11M8 5V5.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+            <path
+              d="M8 7V11M8 5V5.5"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+            />
           </template>
         </svg>
       </slot>
@@ -153,7 +164,12 @@ onUnmounted(() => {
       @click="handleClose"
     >
       <svg viewBox="0 0 10 10" width="10" height="10" fill="none">
-        <path d="M1 1L9 9M9 1L1 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+        <path
+          d="M1 1L9 9M9 1L1 9"
+          stroke="currentColor"
+          stroke-width="1.5"
+          stroke-linecap="round"
+        />
       </svg>
     </button>
   </div>
@@ -172,7 +188,9 @@ onUnmounted(() => {
   line-height: 1.45;
   opacity: 1;
   transform: translateY(0);
-  transition: opacity 200ms ease-out, transform 200ms ease-out;
+  transition:
+    opacity 200ms ease-out,
+    transform 200ms ease-out;
 }
 
 .mizu-alert--closing {

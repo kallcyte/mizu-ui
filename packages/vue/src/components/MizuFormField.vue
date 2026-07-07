@@ -50,9 +50,9 @@ const fieldClasses = computed(() => {
       <span v-if="required" class="mizu-form-field__required" aria-hidden="true">*</span>
     </label>
     <slot
+      :id="fieldId"
       :error="hasError"
       :helper-text="hasError && fieldError ? fieldError : help"
-      :id="fieldId"
       :name="name"
       :required="required"
       :touched="fieldTouched"

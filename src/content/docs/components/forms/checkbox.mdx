@@ -3,7 +3,7 @@ title: Checkbox
 description: Checkboxes allow users to select one or more options from a set, or toggle a single boolean setting.
 ---
 
-import CheckboxDemo from '../../../../components/docs/CheckboxDemo.vue';
+import CheckboxDemo from "../../../../components/docs/CheckboxDemo.vue";
 
 Checkboxes allow users to select one or more options from a set, or toggle a single boolean setting. They support indeterminate state for partial selections (e.g. "select all" with some items checked).
 
@@ -15,48 +15,48 @@ Checkboxes allow users to select one or more options from a set, or toggle a sin
 
 ### Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `modelValue` | `boolean \| 'indeterminate' \| null` | `false` | Checked state (v-model) |
-| `disabled` | `boolean` | `false` | Disable interaction |
-| `required` | `boolean` | `false` | Mark as required (form validation) |
-| `name` | `string` | `undefined` | Form field name |
-| `value` | `string` | `undefined` | Form field value (for groups) |
-| `label` | `string` | `undefined` | Inline label text |
-| `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | Visual size |
-| `trueValue` | `boolean \| string \| number` | `true` | Value when checked |
-| `falseValue` | `boolean \| string \| number` | `false` | Value when unchecked |
+| Prop         | Type                                 | Default     | Description                        |
+| ------------ | ------------------------------------ | ----------- | ---------------------------------- |
+| `modelValue` | `boolean \| 'indeterminate' \| null` | `false`     | Checked state (v-model)            |
+| `disabled`   | `boolean`                            | `false`     | Disable interaction                |
+| `required`   | `boolean`                            | `false`     | Mark as required (form validation) |
+| `name`       | `string`                             | `undefined` | Form field name                    |
+| `value`      | `string`                             | `undefined` | Form field value (for groups)      |
+| `label`      | `string`                             | `undefined` | Inline label text                  |
+| `size`       | `'sm' \| 'md' \| 'lg'`               | `'md'`      | Visual size                        |
+| `trueValue`  | `boolean \| string \| number`        | `true`      | Value when checked                 |
+| `falseValue` | `boolean \| string \| number`        | `false`     | Value when unchecked               |
 
 ### Events
 
-| Event | Payload | Description |
-|-------|---------|-------------|
+| Event               | Payload                              | Description                     |
+| ------------------- | ------------------------------------ | ------------------------------- |
 | `update:modelValue` | `boolean \| 'indeterminate' \| null` | Emitted on toggle (for v-model) |
 
 ## Theme
 
 ### CSS Custom Properties
 
-| Token | Value | Usage |
-|-------|-------|-------|
-| `--color-surface-base` | white / dark | Unchecked background |
-| `--color-surface-muted` | gray-100 | Disabled background |
-| `--color-foreground-tertiary` | gray-400 | Unchecked border |
-| `--color-foreground-inverse` | white | Check icon |
-| `--color-brand-primary` | brand color | Checked bg + border |
-| `--color-brand-primary-hover` | brand hover | Checked hover |
-| `--color-brand-ycp` | accent color | Focus ring |
-| `--radius-default` | 8px | Border radius (4px used) |
+| Token                         | Value        | Usage                    |
+| ----------------------------- | ------------ | ------------------------ |
+| `--color-surface-base`        | white / dark | Unchecked background     |
+| `--color-surface-muted`       | gray-100     | Disabled background      |
+| `--color-foreground-tertiary` | gray-400     | Unchecked border         |
+| `--color-foreground-inverse`  | white        | Check icon               |
+| `--color-brand-primary`       | brand color  | Checked bg + border      |
+| `--color-brand-primary-hover` | brand hover  | Checked hover            |
+| `--color-brand-ycp`           | accent color | Focus ring               |
+| `--radius-default`            | 8px          | Border radius (4px used) |
 
 ### Sizing
 
 Mizu checkboxes support 3 sizes, aligned with the MizuButton height system for visual consistency in form rows.
 
-| Size | Box Dimensions | Use Case |
-|------|---------------|----------|
-| **sm** | 16px x 16px | Compact tables, dense lists |
-| **md** | 18px x 18px | Default — most form layouts |
-| **lg** | 20px x 20px | Prominent choices, marketing pages |
+| Size   | Box Dimensions | Use Case                           |
+| ------ | -------------- | ---------------------------------- |
+| **sm** | 16px x 16px    | Compact tables, dense lists        |
+| **md** | 18px x 18px    | Default — most form layouts        |
+| **lg** | 20px x 20px    | Prominent choices, marketing pages |
 
 ```
 SM:  16x16   12px label
@@ -66,41 +66,41 @@ LG:  20x20   14px label
 
 #### Size Specifications
 
-| Property | sm | md | lg |
-|----------|----|----|----|
-| Box Width | 16px | 18px | 20px |
-| Box Height | 16px | 18px | 20px |
-| Border Radius | 4px | 4px | 4px |
-| Border Width | 1px | 1px | 1px |
-| Box to Label Gap | 8px | 8px | 8px |
-| Label Font Size | 12px | 13px | 14px |
-| Icon Size | 12px | 13.5px | 15px |
+| Property         | sm   | md     | lg   |
+| ---------------- | ---- | ------ | ---- |
+| Box Width        | 16px | 18px   | 20px |
+| Box Height       | 16px | 18px   | 20px |
+| Border Radius    | 4px  | 4px    | 4px  |
+| Border Width     | 1px  | 1px    | 1px  |
+| Box to Label Gap | 8px  | 8px    | 8px  |
+| Label Font Size  | 12px | 13px   | 14px |
+| Icon Size        | 12px | 13.5px | 15px |
 
 ### Transitions
 
-| Property | Duration | Easing |
-|----------|----------|--------|
-| Border color | 200ms | ease-in-out |
-| Background color | 200ms | ease-in-out |
+| Property         | Duration | Easing      |
+| ---------------- | -------- | ----------- |
+| Border color     | 200ms    | ease-in-out |
+| Background color | 200ms    | ease-in-out |
 
 ### Accessibility
 
-| Criterion | Implementation |
-|-----------|----------------|
-| Tri-state pattern | `aria-checked="mixed"` when indeterminate (Reka UI handles) |
-| Keyboard | `Space` toggles the checkbox |
-| Focus Indicator | 2px brand-ycp ring on `:focus-visible` |
-| Label Association | Wrapped in `<label>` for native click target |
-| Disabled | `aria-disabled="true"` + `disabled` attribute (Reka UI handles) |
-| Required | `aria-required="true"` + `required` attribute (Reka UI handles) |
-| Form Integration | Hidden `<input type="checkbox">` auto-renders inside forms |
+| Criterion         | Implementation                                                  |
+| ----------------- | --------------------------------------------------------------- |
+| Tri-state pattern | `aria-checked="mixed"` when indeterminate (Reka UI handles)     |
+| Keyboard          | `Space` toggles the checkbox                                    |
+| Focus Indicator   | 2px brand-ycp ring on `:focus-visible`                          |
+| Label Association | Wrapped in `<label>` for native click target                    |
+| Disabled          | `aria-disabled="true"` + `disabled` attribute (Reka UI handles) |
+| Required          | `aria-required="true"` + `required` attribute (Reka UI handles) |
+| Form Integration  | Hidden `<input type="checkbox">` auto-renders inside forms      |
 
 #### Keyboard Interactions
 
-| Key | Description |
-|-----|-------------|
+| Key     | Description                                        |
+| ------- | -------------------------------------------------- |
 | `Space` | Toggles the checkbox between checked and unchecked |
-| `Tab` | Moves focus to / from the checkbox |
+| `Tab`   | Moves focus to / from the checkbox                 |
 
 #### Hidden Input
 
@@ -110,47 +110,44 @@ When used inside a `<form>`, Reka UI automatically renders a hidden `<input type
 
 A checkbox consists of 2 parts:
 
-| Part | Required | Description |
-|------|----------|-------------|
-| Box | Yes | The visual control (square with check or indeterminate icon) |
-| Label | No | Inline text label (via `label` prop) |
+| Part  | Required | Description                                                  |
+| ----- | -------- | ------------------------------------------------------------ |
+| Box   | Yes      | The visual control (square with check or indeterminate icon) |
+| Label | No       | Inline text label (via `label` prop)                         |
 
 The checkbox is wrapped in a native `<label>` element so clicking the text toggles the control — no manual `for`/`id` wiring required.
 
 ## States
 
-| State | Description | Use Case |
-|-------|-------------|----------|
-| **Unchecked** | Empty box, neutral border | Default state, no selection |
-| **Checked** | Box with check icon, brand color | User has selected the option |
-| **Indeterminate** | Box with dash icon, brand color | Mixed/partial selection (e.g. parent of a checklist) |
-| **Disabled** | Reduced opacity, no pointer | Option unavailable |
-| **Focus** | 2px brand-ycp ring | Keyboard navigation |
-| **Hover** | Border darkens to brand color | Mouse hover feedback |
+| State             | Description                      | Use Case                                             |
+| ----------------- | -------------------------------- | ---------------------------------------------------- |
+| **Unchecked**     | Empty box, neutral border        | Default state, no selection                          |
+| **Checked**       | Box with check icon, brand color | User has selected the option                         |
+| **Indeterminate** | Box with dash icon, brand color  | Mixed/partial selection (e.g. parent of a checklist) |
+| **Disabled**      | Reduced opacity, no pointer      | Option unavailable                                   |
+| **Focus**         | 2px brand-ycp ring               | Keyboard navigation                                  |
+| **Hover**         | Border darkens to brand color    | Mouse hover feedback                                 |
 
 ### Indeterminate State
 
 Set `modelValue="indeterminate"` to display the indeterminate icon (horizontal dash). This is typically used for "select all" parents in a list where some — but not all — children are checked.
 
 ```vue
-<MizuCheckbox
-  v-model="parentState"
-  label="Select all"
-/>
+<MizuCheckbox v-model="parentState" label="Select all" />
 <!-- parentState is "indeterminate" | true | false -->
 ```
 
 ### State Map
 
-| State | Background | Border | Icon Color |
-|-------|-----------|--------|------------|
-| **Unchecked** | `surface-base` | `foreground-tertiary` | — |
-| **Hover (Unchecked)** | `surface-base` | `brand-primary` | — |
-| **Checked** | `brand-primary` | `brand-primary` | `foreground-inverse` |
-| **Hover (Checked)** | `brand-primary-hover` | `brand-primary-hover` | `foreground-inverse` |
-| **Indeterminate** | `brand-primary` | `brand-primary` | `foreground-inverse` |
-| **Disabled** | `surface-muted` | `surface-muted` | `foreground-tertiary` |
-| **Focus Ring** | — | 2px solid `brand-ycp` | — |
+| State                 | Background            | Border                | Icon Color            |
+| --------------------- | --------------------- | --------------------- | --------------------- |
+| **Unchecked**         | `surface-base`        | `foreground-tertiary` | —                     |
+| **Hover (Unchecked)** | `surface-base`        | `brand-primary`       | —                     |
+| **Checked**           | `brand-primary`       | `brand-primary`       | `foreground-inverse`  |
+| **Hover (Checked)**   | `brand-primary-hover` | `brand-primary-hover` | `foreground-inverse`  |
+| **Indeterminate**     | `brand-primary`       | `brand-primary`       | `foreground-inverse`  |
+| **Disabled**          | `surface-muted`       | `surface-muted`       | `foreground-tertiary` |
+| **Focus Ring**        | —                     | 2px solid `brand-ycp` | —                     |
 
 ## Default Icon
 
@@ -162,23 +159,14 @@ Checkboxes support custom true/false values for non-boolean bindings:
 
 ```vue
 <!-- String values -->
-<MizuCheckbox
-  v-model="acceptTerms"
-  true-value="yes"
-  false-value="no"
-  label="Accept terms"
-/>
+<MizuCheckbox v-model="acceptTerms" true-value="yes" false-value="no" label="Accept terms" />
 
 <!-- Number values -->
-<MizuCheckbox
-  v-model="permission"
-  :true-value="1"
-  :false-value="0"
-  label="Grant permission"
-/>
+<MizuCheckbox v-model="permission" :true-value="1" :false-value="0" label="Grant permission" />
 ```
 
 This is useful for:
+
 - Form state stored as strings (`"yes"` / `"no"`)
 - Numeric permissions (`0` / `1`)
 - Enum-like state where `true`/`false` isn't appropriate
@@ -191,33 +179,29 @@ Use a computed `v-model` for the parent and individual `ref`s for each child. Th
 
 ```vue
 <script setup>
-import { computed, ref } from 'vue'
-import { MizuCheckbox } from '@mizu/vue'
+import { computed, ref } from "vue";
+import { MizuCheckbox } from "@mizu/vue";
 
-const emailEnabled = ref(true)
-const smsEnabled = ref(false)
-const pushEnabled = ref(true)
-const channelRefs = [emailEnabled, smsEnabled, pushEnabled]
+const emailEnabled = ref(true);
+const smsEnabled = ref(false);
+const pushEnabled = ref(true);
+const channelRefs = [emailEnabled, smsEnabled, pushEnabled];
 
-const selectedCount = computed(
-  () => channelRefs.filter((c) => c.value === true).length,
-)
-const allSelected = computed(
-  () => selectedCount.value === channelRefs.length,
-)
-const someSelected = computed(() => selectedCount.value > 0)
+const selectedCount = computed(() => channelRefs.filter((c) => c.value === true).length);
+const allSelected = computed(() => selectedCount.value === channelRefs.length);
+const someSelected = computed(() => selectedCount.value > 0);
 
 const parentState = computed({
   get() {
-    if (allSelected.value) return true
-    if (someSelected.value) return 'indeterminate'
-    return false
+    if (allSelected.value) return true;
+    if (someSelected.value) return "indeterminate";
+    return false;
   },
   set(value) {
-    const next = value === true
-    for (const c of channelRefs) c.value = next
+    const next = value === true;
+    for (const c of channelRefs) c.value = next;
   },
-})
+});
 </script>
 
 <template>
@@ -231,6 +215,7 @@ const parentState = computed({
 ```
 
 Behavior:
+
 - **0 selected** → parent unchecked
 - **Some selected** → parent indeterminate (minus icon)
 - **All selected** → parent checked
@@ -246,12 +231,12 @@ For groups of checkboxes (e.g. a list of permissions), use a plain Vue `v-for` o
 
 ```vue
 <script setup>
-import { ref } from 'vue'
-import { MizuCheckbox } from '@mizu/vue'
+import { ref } from "vue";
+import { MizuCheckbox } from "@mizu/vue";
 
-const emailEnabled = ref(true)
-const smsEnabled = ref(false)
-const pushEnabled = ref(true)
+const emailEnabled = ref(true);
+const smsEnabled = ref(false);
+const pushEnabled = ref(true);
 </script>
 
 <template>

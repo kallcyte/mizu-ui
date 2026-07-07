@@ -89,12 +89,10 @@ const horizontalSelected = ref("option-1");
     <section class="example-section">
       <h3>Basic</h3>
       <CodeCollapsible :code="basicCode">
-        <MizuRadio
-          v-model="basicSelected"
-          :items="basicOptions"
-          name="basic"
-        />
-        <p class="demo-text">Selected: <code>{{ basicSelected }}</code></p>
+        <MizuRadio v-model="basicSelected" :items="basicOptions" name="basic" />
+        <p class="demo-text">
+          Selected: <code>{{ basicSelected }}</code>
+        </p>
       </CodeCollapsible>
     </section>
 
@@ -144,7 +142,9 @@ const horizontalSelected = ref("option-1");
           orientation="horizontal"
           name="horizontal"
         />
-        <p class="demo-text">Selected: <code>{{ horizontalSelected }}</code></p>
+        <p class="demo-text">
+          Selected: <code>{{ horizontalSelected }}</code>
+        </p>
       </CodeCollapsible>
     </section>
 
@@ -158,7 +158,9 @@ const horizontalSelected = ref("option-1");
           name="fruit"
           required
         />
-        <p class="demo-text">Selected: <code>{{ fruitSelected }}</code></p>
+        <p class="demo-text">
+          Selected: <code>{{ fruitSelected }}</code>
+        </p>
       </CodeCollapsible>
     </section>
   </div>

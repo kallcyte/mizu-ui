@@ -83,7 +83,11 @@ function handleSubmit() {
       <CodeCollapsible :code="basicCode">
         <div class="select-stack">
           <MizuSelect v-model="basicSelected" :options="fruitOptions" />
-          <MizuSelect v-model="withPlaceholder" :options="fruitOptions" placeholder="Choose a fruit..." />
+          <MizuSelect
+            v-model="withPlaceholder"
+            :options="fruitOptions"
+            placeholder="Choose a fruit..."
+          />
           <MizuSelect v-model="withLabel" :options="fruitOptions" label="Favorite fruit" />
         </div>
       </CodeCollapsible>
@@ -104,8 +108,19 @@ function handleSubmit() {
       <h3>States</h3>
       <CodeCollapsible :code="statesCode">
         <div class="select-stack">
-          <MizuSelect v-model="errorSelected" :options="fruitOptions" label="With Error" error helper-text="This field has an error" />
-          <MizuSelect v-model="disabledSelected" :options="countryOptions" label="Disabled" disabled />
+          <MizuSelect
+            v-model="errorSelected"
+            :options="fruitOptions"
+            label="With Error"
+            error
+            helper-text="This field has an error"
+          />
+          <MizuSelect
+            v-model="disabledSelected"
+            :options="countryOptions"
+            label="Disabled"
+            disabled
+          />
         </div>
       </CodeCollapsible>
     </section>

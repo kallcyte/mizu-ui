@@ -312,7 +312,10 @@ const controlledOpen = ref(false);
           <MizuPopoverPortal>
             <MizuPopoverContent>
               <div class="popover-title">About this feature</div>
-              <div class="popover-body">Popovers are great for showing additional content or controls related to a trigger element.</div>
+              <div class="popover-body">
+                Popovers are great for showing additional content or controls related to a trigger
+                element.
+              </div>
             </MizuPopoverContent>
           </MizuPopoverPortal>
         </MizuPopoverRoot>
@@ -329,7 +332,9 @@ const controlledOpen = ref(false);
           <MizuPopoverPortal>
             <MizuPopoverContent side="bottom" :side-offset="10">
               <div class="popover-title">Pro tip</div>
-              <div class="popover-body">Use the arrow to indicate which element the popover is anchored to.</div>
+              <div class="popover-body">
+                Use the arrow to indicate which element the popover is anchored to.
+              </div>
               <MizuPopoverArrow />
             </MizuPopoverContent>
           </MizuPopoverPortal>
@@ -485,13 +490,25 @@ const controlledOpen = ref(false);
               <div class="popover-header">
                 <div class="popover-title">New Feature Available</div>
                 <MizuPopoverClose class="popover-close-btn" aria-label="Close">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <svg
+                    width="14"
+                    height="14"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
                     <path d="M18 6 6 18" />
                     <path d="m6 6 12 12" />
                   </svg>
                 </MizuPopoverClose>
               </div>
-              <div class="popover-body">We've just released batch updates. Check out the changelog for the full list of improvements and bug fixes.</div>
+              <div class="popover-body">
+                We've just released batch updates. Check out the changelog for the full list of
+                improvements and bug fixes.
+              </div>
               <MizuPopoverArrow />
             </MizuPopoverContent>
           </MizuPopoverPortal>
@@ -518,8 +535,12 @@ const controlledOpen = ref(false);
                 </div>
               </div>
               <div class="profile-meta">
-                <div class="meta-row"><span class="meta-label">Role</span><span class="meta-value">Administrator</span></div>
-                <div class="meta-row"><span class="meta-label">Status</span><span class="status-dot">Active</span></div>
+                <div class="meta-row">
+                  <span class="meta-label">Role</span><span class="meta-value">Administrator</span>
+                </div>
+                <div class="meta-row">
+                  <span class="meta-label">Status</span><span class="status-dot">Active</span>
+                </div>
               </div>
               <MizuPopoverArrow />
             </MizuPopoverContent>
@@ -539,7 +560,9 @@ const controlledOpen = ref(false);
             <MizuPopoverPortal>
               <MizuPopoverContent>
                 <div class="popover-title">Controlled state</div>
-                <div class="popover-body">Current open state: <strong>{{ controlledOpen }}</strong></div>
+                <div class="popover-body">
+                  Current open state: <strong>{{ controlledOpen }}</strong>
+                </div>
                 <div class="controlled-actions">
                   <MizuPopoverClose>
                     <MizuButton variant="primary" size="sm">Close via sub-component</MizuButton>
@@ -563,7 +586,11 @@ const controlledOpen = ref(false);
           <MizuPopoverPortal>
             <MizuPopoverContent side="bottom" :side-offset="8" :style="{ width: '420px' }">
               <div class="popover-title">Wide layout</div>
-              <div class="popover-body">This popover demonstrates that the content can be customized with explicit widths via inline styles passed through to MizuPopoverContent. Useful for richer content like tables, grids, or multi-column forms.</div>
+              <div class="popover-body">
+                This popover demonstrates that the content can be customized with explicit widths
+                via inline styles passed through to MizuPopoverContent. Useful for richer content
+                like tables, grids, or multi-column forms.
+              </div>
             </MizuPopoverContent>
           </MizuPopoverPortal>
         </MizuPopoverRoot>
@@ -581,14 +608,14 @@ const controlledOpen = ref(false);
             <MizuPopoverContent side="bottom" align="start" :side-offset="8">
               <div class="popover-title">Brand color</div>
               <div class="color-grid">
-                <button class="color-chip" style="background: #001C44;" aria-label="Primary" />
-                <button class="color-chip" style="background: #4F46E5;" aria-label="Indigo" />
-                <button class="color-chip" style="background: #0EA5E9;" aria-label="Sky" />
-                <button class="color-chip" style="background: #10B981;" aria-label="Emerald" />
-                <button class="color-chip" style="background: #F59E0B;" aria-label="Amber" />
-                <button class="color-chip" style="background: #EF4444;" aria-label="Red" />
-                <button class="color-chip" style="background: #EC4899;" aria-label="Pink" />
-                <button class="color-chip" style="background: #6B7280;" aria-label="Gray" />
+                <button class="color-chip" style="background: #001c44" aria-label="Primary" />
+                <button class="color-chip" style="background: #4f46e5" aria-label="Indigo" />
+                <button class="color-chip" style="background: #0ea5e9" aria-label="Sky" />
+                <button class="color-chip" style="background: #10b981" aria-label="Emerald" />
+                <button class="color-chip" style="background: #f59e0b" aria-label="Amber" />
+                <button class="color-chip" style="background: #ef4444" aria-label="Red" />
+                <button class="color-chip" style="background: #ec4899" aria-label="Pink" />
+                <button class="color-chip" style="background: #6b7280" aria-label="Gray" />
               </div>
               <MizuPopoverArrow />
             </MizuPopoverContent>
@@ -603,7 +630,16 @@ const controlledOpen = ref(false);
         <MizuPopoverRoot>
           <MizuPopoverTrigger>
             <button class="date-trigger">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <svg
+                width="14"
+                height="14"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
                 <rect width="18" height="18" x="3" y="4" rx="2" />
                 <path d="M16 2v4" />
                 <path d="M8 2v4" />
@@ -640,14 +676,17 @@ const controlledOpen = ref(false);
           </MizuPopoverTrigger>
           <MizuPopoverPortal>
             <MizuPopoverContent>
-                <div class="popover-title">Modal mode</div>
-                <div class="popover-body">When modal is true, the rest of the page is inert while the popover is open. The background is not clickable.</div>
-                <div class="modal-actions">
-                  <MizuPopoverClose>
-                    <MizuButton variant="primary" size="sm">Close</MizuButton>
-                  </MizuPopoverClose>
-                </div>
-              </MizuPopoverContent>
+              <div class="popover-title">Modal mode</div>
+              <div class="popover-body">
+                When modal is true, the rest of the page is inert while the popover is open. The
+                background is not clickable.
+              </div>
+              <div class="modal-actions">
+                <MizuPopoverClose>
+                  <MizuButton variant="primary" size="sm">Close</MizuButton>
+                </MizuPopoverClose>
+              </div>
+            </MizuPopoverContent>
           </MizuPopoverPortal>
         </MizuPopoverRoot>
       </CodeCollapsible>
@@ -663,7 +702,9 @@ const controlledOpen = ref(false);
   gap: 32px;
   font-family: inherit;
 }
-.popover-examples :deep(*) { margin: 0; }
+.popover-examples :deep(*) {
+  margin: 0;
+}
 .example-section {
   all: revert;
   display: flex;
@@ -731,7 +772,9 @@ const controlledOpen = ref(false);
   padding: 0;
   margin: 0;
   font: inherit;
-  transition: background 150ms, color 150ms;
+  transition:
+    background 150ms,
+    color 150ms;
 }
 
 .popover-close-btn:hover {

@@ -22,9 +22,5 @@ const arrowClasses = computed(() => {
 </script>
 
 <template>
-  <ComboboxArrow
-    :class="arrowClasses"
-    :width="width"
-    :height="height"
-  />
+  <ComboboxArrow :class="arrowClasses" :width="width" :height="height" />
 </template>

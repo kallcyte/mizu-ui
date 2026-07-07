@@ -13,11 +13,7 @@ const attrs = useAttrs();
 </script>
 
 <template>
-  <SliderRange
-    :class="['mizu-slider__range', attrs.class]"
-    :as-child="asChild"
-    :as="as"
-  />
+  <SliderRange :class="['mizu-slider__range', attrs.class]" :as-child="asChild" :as="as" />
 </template>
 
 <style>

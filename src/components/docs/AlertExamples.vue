@@ -84,9 +84,7 @@ const closableAllVariantsCode = `<MizuAlert variant="success" closable @close="s
       <h3>Variants</h3>
       <CodeCollapsible :code="variantsCode">
         <div class="alert-stack">
-          <MizuAlert variant="success">
-            Your changes have been saved successfully.
-          </MizuAlert>
+          <MizuAlert variant="success"> Your changes have been saved successfully. </MizuAlert>
           <MizuAlert variant="error">
             We were unable to process your request. Please try again.
           </MizuAlert>
@@ -108,13 +106,15 @@ const closableAllVariantsCode = `<MizuAlert variant="success" closable @close="s
             Your invoice #1234 has been paid in full. A receipt has been emailed to you.
           </MizuAlert>
           <MizuAlert variant="error" title="Connection lost">
-            Unable to reach the server. Your work has been saved locally and will sync when the connection is restored.
+            Unable to reach the server. Your work has been saved locally and will sync when the
+            connection is restored.
           </MizuAlert>
           <MizuAlert variant="warning" title="Storage almost full">
             You have used 95% of your storage quota. Upgrade your plan or delete old files.
           </MizuAlert>
           <MizuAlert variant="info" title="Tip">
-            You can use keyboard shortcuts to navigate faster. Press ? to see all available shortcuts.
+            You can use keyboard shortcuts to navigate faster. Press ? to see all available
+            shortcuts.
           </MizuAlert>
         </div>
       </CodeCollapsible>
@@ -152,9 +152,7 @@ const closableAllVariantsCode = `<MizuAlert variant="success" closable @close="s
           <MizuAlert variant="success" :default-icon="false">
             Compact alert with no icon.
           </MizuAlert>
-          <MizuAlert variant="error" :default-icon="false">
-            Another compact alert.
-          </MizuAlert>
+          <MizuAlert variant="error" :default-icon="false"> Another compact alert. </MizuAlert>
         </div>
       </CodeCollapsible>
     </section>
@@ -166,7 +164,10 @@ const closableAllVariantsCode = `<MizuAlert variant="success" closable @close="s
           <MizuAlert variant="success">
             <template #icon>
               <svg viewBox="0 0 16 16" width="16" height="16" fill="none">
-                <path d="M8 1L10 6H15L11 9.5L12.5 15L8 11.5L3.5 15L5 9.5L1 6H6L8 1Z" fill="currentColor" />
+                <path
+                  d="M8 1L10 6H15L11 9.5L12.5 15L8 11.5L3.5 15L5 9.5L1 6H6L8 1Z"
+                  fill="currentColor"
+                />
               </svg>
             </template>
             Featured highlight with a custom star icon.
@@ -174,7 +175,12 @@ const closableAllVariantsCode = `<MizuAlert variant="success" closable @close="s
           <MizuAlert variant="info">
             <template #icon>
               <svg viewBox="0 0 16 16" width="16" height="16" fill="none">
-                <path d="M3 8H13M3 4H13M3 12H9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+                <path
+                  d="M3 8H13M3 4H13M3 12H9"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                />
               </svg>
             </template>
             Custom icon slot works with any icon library.
@@ -203,19 +209,18 @@ const closableAllVariantsCode = `<MizuAlert variant="success" closable @close="s
           >
             Warning dismissible.
           </MizuAlert>
-          <MizuAlert
-            v-if="infoVisible"
-            variant="info"
-            closable
-            @close="infoVisible = false"
-          >
+          <MizuAlert v-if="infoVisible" variant="info" closable @close="infoVisible = false">
             Info dismissible.
           </MizuAlert>
           <MizuButton
             v-if="!successVisible && !warningVisible && !infoVisible"
             variant="outline"
             size="sm"
-            @click="successVisible = true; warningVisible = true; infoVisible = true"
+            @click="
+              successVisible = true;
+              warningVisible = true;
+              infoVisible = true;
+            "
           >
             Reset
           </MizuButton>

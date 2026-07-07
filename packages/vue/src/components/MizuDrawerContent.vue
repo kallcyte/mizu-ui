@@ -135,13 +135,21 @@ function handleEscapeKeyDown(e: KeyboardEvent) {
 }
 
 @keyframes drawerInRight {
-  from { transform: translateX(100%); }
-  to   { transform: translateX(0); }
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
 }
 
 @keyframes drawerOutRight {
-  from { transform: translateX(0); }
-  to   { transform: translateX(100%); }
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(100%);
+  }
 }
 
 /* ---- Left ---- */
@@ -163,13 +171,21 @@ function handleEscapeKeyDown(e: KeyboardEvent) {
 }
 
 @keyframes drawerInLeft {
-  from { transform: translateX(-100%); }
-  to   { transform: translateX(0); }
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
 }
 
 @keyframes drawerOutLeft {
-  from { transform: translateX(0); }
-  to   { transform: translateX(-100%); }
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-100%);
+  }
 }
 
 /* ---- Top ---- */
@@ -190,13 +206,21 @@ function handleEscapeKeyDown(e: KeyboardEvent) {
 }
 
 @keyframes drawerInTop {
-  from { transform: translateY(-100%); }
-  to   { transform: translateY(0); }
+  from {
+    transform: translateY(-100%);
+  }
+  to {
+    transform: translateY(0);
+  }
 }
 
 @keyframes drawerOutTop {
-  from { transform: translateY(0); }
-  to   { transform: translateY(-100%); }
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-100%);
+  }
 }
 
 /* ---- Bottom ---- */
@@ -217,13 +241,21 @@ function handleEscapeKeyDown(e: KeyboardEvent) {
 }
 
 @keyframes drawerInBottom {
-  from { transform: translateY(100%); }
-  to   { transform: translateY(0); }
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
 }
 
 @keyframes drawerOutBottom {
-  from { transform: translateY(0); }
-  to   { transform: translateY(100%); }
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(100%);
+  }
 }
 
 /* ---- Size variants (left / right) ---- */

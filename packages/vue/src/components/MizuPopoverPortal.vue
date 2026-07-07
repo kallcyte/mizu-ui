@@ -13,10 +13,7 @@ withDefaults(defineProps<PopoverPortalProps>(), {
 </script>
 
 <template>
-  <PopoverPortal
-    :force-mount="forceMount"
-    :to="to"
-  >
+  <PopoverPortal :force-mount="forceMount" :to="to">
     <slot />
   </PopoverPortal>
 </template>

@@ -53,17 +53,9 @@ const trendColor = computed(() => {
           d="M8 3L13 8L11.5 9.5L9 7V13H7V7L4.5 9.5L3 8L8 3Z"
           fill="currentColor"
         />
-        <path
-          v-else
-          d="M8 13L3 8L4.5 6.5L7 9V3H9V9L11.5 6.5L13 8L8 13Z"
-          fill="currentColor"
-        />
+        <path v-else d="M8 13L3 8L4.5 6.5L7 9V3H9V9L11.5 6.5L13 8L8 13Z" fill="currentColor" />
       </svg>
-      <span
-        v-if="trendValue"
-        class="mizu-metric__trend-value"
-        :style="{ color: trendColor }"
-      >
+      <span v-if="trendValue" class="mizu-metric__trend-value" :style="{ color: trendColor }">
         {{ trendValue }}
       </span>
     </div>
@@ -104,17 +96,35 @@ const trendColor = computed(() => {
   @apply font-medium;
 }
 
-.mizu-metric--sm .mizu-metric__label { @apply text-[11px]; }
-.mizu-metric--sm .mizu-metric__value { @apply text-[18px]; }
-.mizu-metric--sm .mizu-metric__trend-value { @apply text-[11px]; }
+.mizu-metric--sm .mizu-metric__label {
+  @apply text-[11px];
+}
+.mizu-metric--sm .mizu-metric__value {
+  @apply text-[18px];
+}
+.mizu-metric--sm .mizu-metric__trend-value {
+  @apply text-[11px];
+}
 
-.mizu-metric--md .mizu-metric__label { @apply text-[12px]; }
-.mizu-metric--md .mizu-metric__value { @apply text-[24px]; }
-.mizu-metric--md .mizu-metric__trend-value { @apply text-[12px]; }
+.mizu-metric--md .mizu-metric__label {
+  @apply text-[12px];
+}
+.mizu-metric--md .mizu-metric__value {
+  @apply text-[24px];
+}
+.mizu-metric--md .mizu-metric__trend-value {
+  @apply text-[12px];
+}
 
-.mizu-metric--lg .mizu-metric__label { @apply text-[13px]; }
-.mizu-metric--lg .mizu-metric__value { @apply text-[36px]; }
-.mizu-metric--lg .mizu-metric__trend-value { @apply text-[13px]; }
+.mizu-metric--lg .mizu-metric__label {
+  @apply text-[13px];
+}
+.mizu-metric--lg .mizu-metric__value {
+  @apply text-[36px];
+}
+.mizu-metric--lg .mizu-metric__trend-value {
+  @apply text-[13px];
+}
 
 .mizu-metric--primary .mizu-metric__value {
   color: var(--color-brand-primary);

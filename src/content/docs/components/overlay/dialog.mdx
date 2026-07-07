@@ -3,8 +3,8 @@ title: Dialog
 description: Modal overlay for confirmations, forms, and detailed content.
 ---
 
-import DialogDemo from '../../../../components/docs/DialogDemo.vue';
-import DialogNewFeaturesDemo from '../../../../components/docs/DialogNewFeaturesDemo.vue';
+import DialogDemo from "../../../../components/docs/DialogDemo.vue";
+import DialogNewFeaturesDemo from "../../../../components/docs/DialogNewFeaturesDemo.vue";
 
 A Dialog presents content in a modal overlay that interrupts the current page, requiring user action before returning to the main flow.
 
@@ -17,107 +17,107 @@ A Dialog presents content in a modal overlay that interrupts the current page, r
 
 ### DialogRoot Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `open` | `boolean` | `undefined` | Controlled open state (v-model) |
-| `defaultOpen` | `boolean` | `false` | Uncontrolled initial open state |
-| `modal` | `boolean` | `true` | When `true`, renders as modal with overlay and focus trap |
-| `title` | `string` | `undefined` | Dialog heading text — enables shorthand mode |
-| `description` | `string` | `undefined` | Subtitle below title in shorthand mode |
-| `overlay` | `boolean` | `true` | Show/hide backdrop overlay |
-| `close` | `boolean` | `true` | Show/hide close button; `false` hides it entirely |
-| `closeIcon` | `Component` | `undefined` | Custom icon component for the close button |
-| `unmountOnHide` | `boolean` | `true` | When `true`, unmounts dialog DOM when closed; `false` keeps it mounted |
-| `fullscreen` | `boolean` | `false` | Dialog fills the entire viewport |
-| `dismissible` | `boolean` | `true` | When `false`, prevents close on click-outside/Escape and hides close button |
-| `scrollable` | `boolean` | `false` | Content scrolls within the overlay (max-height: 90vh) |
-| `transition` | `boolean` | `true` | Enable/disable enter/leave animations |
-| `size` | `'sm' \| 'md' \| 'lg' \| 'xl'` | `'md'` | Dialog width (sm: 400px, md: 500px, lg: 700px, xl: 900px) |
-| `ui` | `object` | `undefined` | Slot-level CSS class overrides (see Shorthand API below) |
+| Prop            | Type                           | Default     | Description                                                                 |
+| --------------- | ------------------------------ | ----------- | --------------------------------------------------------------------------- |
+| `open`          | `boolean`                      | `undefined` | Controlled open state (v-model)                                             |
+| `defaultOpen`   | `boolean`                      | `false`     | Uncontrolled initial open state                                             |
+| `modal`         | `boolean`                      | `true`      | When `true`, renders as modal with overlay and focus trap                   |
+| `title`         | `string`                       | `undefined` | Dialog heading text — enables shorthand mode                                |
+| `description`   | `string`                       | `undefined` | Subtitle below title in shorthand mode                                      |
+| `overlay`       | `boolean`                      | `true`      | Show/hide backdrop overlay                                                  |
+| `close`         | `boolean`                      | `true`      | Show/hide close button; `false` hides it entirely                           |
+| `closeIcon`     | `Component`                    | `undefined` | Custom icon component for the close button                                  |
+| `unmountOnHide` | `boolean`                      | `true`      | When `true`, unmounts dialog DOM when closed; `false` keeps it mounted      |
+| `fullscreen`    | `boolean`                      | `false`     | Dialog fills the entire viewport                                            |
+| `dismissible`   | `boolean`                      | `true`      | When `false`, prevents close on click-outside/Escape and hides close button |
+| `scrollable`    | `boolean`                      | `false`     | Content scrolls within the overlay (max-height: 90vh)                       |
+| `transition`    | `boolean`                      | `true`      | Enable/disable enter/leave animations                                       |
+| `size`          | `'sm' \| 'md' \| 'lg' \| 'xl'` | `'md'`      | Dialog width (sm: 400px, md: 500px, lg: 700px, xl: 900px)                   |
+| `ui`            | `object`                       | `undefined` | Slot-level CSS class overrides (see Shorthand API below)                    |
 
 Props `title` through `ui` enable the **shorthand API** — providing `title`, `description`, or any named slot (`#content`, `#header`, `#body`, `#footer`) activates shorthand mode, which renders internal sub-components automatically. When none of these are present, the component operates in compound mode (full slot passthrough) for backward compatibility.
 
 ### DialogRoot Events
 
-| Event | Payload | Description |
-|-------|---------|-------------|
-| `update:open` | `boolean` | Emitted when open state changes |
-| `close:prevent` | none | Fired when user attempts to close a non-dismissible dialog (Escape or outside click). The dialog stays open; use this to show a warning or take alternative action. |
+| Event           | Payload   | Description                                                                                                                                                         |
+| --------------- | --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `update:open`   | `boolean` | Emitted when open state changes                                                                                                                                     |
+| `close:prevent` | none      | Fired when user attempts to close a non-dismissible dialog (Escape or outside click). The dialog stays open; use this to show a warning or take alternative action. |
 
 ### DialogPortal Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `to` | `string \| HTMLElement` | `"body"` | Teleport target |
-| `disabled` | `boolean` | `false` | Disable teleport |
-| `forceMount` | `boolean` | `false` | Always mount even when closed |
+| Prop         | Type                    | Default  | Description                   |
+| ------------ | ----------------------- | -------- | ----------------------------- |
+| `to`         | `string \| HTMLElement` | `"body"` | Teleport target               |
+| `disabled`   | `boolean`               | `false`  | Disable teleport              |
+| `forceMount` | `boolean`               | `false`  | Always mount even when closed |
 
 ### DialogOverlay Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
+| Prop         | Type      | Default     | Description                      |
+| ------------ | --------- | ----------- | -------------------------------- |
 | `forceMount` | `boolean` | `undefined` | Keep overlay mounted when closed |
-| `transition` | `boolean` | `true` | Enable/disable fade animation |
+| `transition` | `boolean` | `true`      | Enable/disable fade animation    |
 
 ### DialogContent Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `forceMount` | `boolean` | `undefined` | Keep content mounted when closed |
-| `size` | `'sm' \| 'md' \| 'lg' \| 'xl'` | `'md'` | Dialog width size (sm: 400px, md: 500px, lg: 700px, xl: 900px) |
-| `fullscreen` | `boolean` | `false` | Dialog takes full viewport |
-| `dismissible` | `boolean` | `true` | When `false`, prevents close on click-outside / Escape and hides `MizuDialogClose` |
-| `scrollable` | `boolean` | `false` | Content scrolls within overlay (max-height: 90vh) |
-| `transition` | `boolean` | `true` | Enable/disable enter/leave animations |
-| `disableOutsidePointerEvents` | `boolean` | `undefined` | Disable pointer events outside |
-| `asChild` | `boolean` | `undefined` | Render as child element |
-| `as` | `string` | `undefined` | Custom root element |
+| Prop                          | Type                           | Default     | Description                                                                        |
+| ----------------------------- | ------------------------------ | ----------- | ---------------------------------------------------------------------------------- |
+| `forceMount`                  | `boolean`                      | `undefined` | Keep content mounted when closed                                                   |
+| `size`                        | `'sm' \| 'md' \| 'lg' \| 'xl'` | `'md'`      | Dialog width size (sm: 400px, md: 500px, lg: 700px, xl: 900px)                     |
+| `fullscreen`                  | `boolean`                      | `false`     | Dialog takes full viewport                                                         |
+| `dismissible`                 | `boolean`                      | `true`      | When `false`, prevents close on click-outside / Escape and hides `MizuDialogClose` |
+| `scrollable`                  | `boolean`                      | `false`     | Content scrolls within overlay (max-height: 90vh)                                  |
+| `transition`                  | `boolean`                      | `true`      | Enable/disable enter/leave animations                                              |
+| `disableOutsidePointerEvents` | `boolean`                      | `undefined` | Disable pointer events outside                                                     |
+| `asChild`                     | `boolean`                      | `undefined` | Render as child element                                                            |
+| `as`                          | `string`                       | `undefined` | Custom root element                                                                |
 
 ### DialogContent Events
 
-| Event | Payload | Description |
-|-------|---------|-------------|
-| `escapeKeyDown` | `KeyboardEvent` | Escape key pressed |
-| `pointerDownOutside` | `PointerEvent` | Click outside content |
-| `focusOutside` | `FocusEvent` | Focus leaves content |
-| `interactOutside` | `Event` | Interaction outside content |
-| `openAutoFocus` | `Event` | Auto-focus on open |
-| `closeAutoFocus` | `Event` | Auto-focus on close |
+| Event                | Payload         | Description                 |
+| -------------------- | --------------- | --------------------------- |
+| `escapeKeyDown`      | `KeyboardEvent` | Escape key pressed          |
+| `pointerDownOutside` | `PointerEvent`  | Click outside content       |
+| `focusOutside`       | `FocusEvent`    | Focus leaves content        |
+| `interactOutside`    | `Event`         | Interaction outside content |
+| `openAutoFocus`      | `Event`         | Auto-focus on open          |
+| `closeAutoFocus`     | `Event`         | Auto-focus on close         |
 
 ### DialogTitle Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `asChild` | `boolean` | `undefined` | Render as child element |
-| `as` | `string` | `undefined` | Custom root element (default `h2`) |
+| Prop      | Type      | Default     | Description                        |
+| --------- | --------- | ----------- | ---------------------------------- |
+| `asChild` | `boolean` | `undefined` | Render as child element            |
+| `as`      | `string`  | `undefined` | Custom root element (default `h2`) |
 
 ### DialogDescription Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `asChild` | `boolean` | `undefined` | Render as child element |
-| `as` | `string` | `undefined` | Custom root element (default `p`) |
+| Prop      | Type      | Default     | Description                       |
+| --------- | --------- | ----------- | --------------------------------- |
+| `asChild` | `boolean` | `undefined` | Render as child element           |
+| `as`      | `string`  | `undefined` | Custom root element (default `p`) |
 
 ### DialogClose Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `asChild` | `boolean` | `undefined` | Render as child element |
-| `as` | `string` | `undefined` | Custom root element (default `button`) |
+| Prop        | Type        | Default     | Description                                         |
+| ----------- | ----------- | ----------- | --------------------------------------------------- |
+| `asChild`   | `boolean`   | `undefined` | Render as child element                             |
+| `as`        | `string`    | `undefined` | Custom root element (default `button`)              |
 | `closeIcon` | `Component` | `undefined` | Custom icon component to replace the default X icon |
 
 ### DialogTrigger Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `asChild` | `boolean` | `undefined` | Render as child element |
-| `as` | `string` | `undefined` | Custom root element (default `button`) |
+| Prop      | Type      | Default     | Description                            |
+| --------- | --------- | ----------- | -------------------------------------- |
+| `asChild` | `boolean` | `undefined` | Render as child element                |
+| `as`      | `string`  | `undefined` | Custom root element (default `button`) |
 
 ### Slots (Compound Mode)
 
-| Component | Slot | Description |
-|-----------|------|-------------|
-| All components | `default` | Child content |
+| Component         | Slot      | Description                            |
+| ----------------- | --------- | -------------------------------------- |
+| All components    | `default` | Child content                          |
 | `MizuDialogClose` | `default` | Close button content (default: X icon) |
 
 ### Shorthand API
@@ -130,31 +130,31 @@ The default slot becomes the trigger button. Props `title` through `ui` on `Mizu
 
 The `ui` prop accepts an object that maps slot names to CSS class strings. Each class is applied to the corresponding internal element:
 
-| Key | Applied to |
-|-----|-----------|
-| `overlay` | `MizuDialogOverlay` |
-| `content` | `MizuDialogContent` |
-| `header` | `MizuDialogHeader` |
-| `body` | `MizuDialogBody` |
-| `footer` | `MizuDialogFooter` |
-| `title` | `MizuDialogTitle` |
+| Key           | Applied to              |
+| ------------- | ----------------------- |
+| `overlay`     | `MizuDialogOverlay`     |
+| `content`     | `MizuDialogContent`     |
+| `header`      | `MizuDialogHeader`      |
+| `body`        | `MizuDialogBody`        |
+| `footer`      | `MizuDialogFooter`      |
+| `title`       | `MizuDialogTitle`       |
 | `description` | `MizuDialogDescription` |
-| `close` | `MizuDialogClose` |
+| `close`       | `MizuDialogClose`       |
 
 #### Slots (Shorthand Mode)
 
 All slots are **scoped** with `{ close: () => void }` (except `#close`):
 
-| Slot | Scope | Description |
-|------|-------|-------------|
-| `default` | `{ open?: boolean }` | Trigger button — the element that opens the dialog |
-| `#content` | `{ close }` | Full override of the dialog body. When present, header/body/footer are not rendered. |
-| `#header` | `{ close }` | Override the entire header section |
-| `#title` | none | Override title text (falls back to `title` prop) |
-| `#description` | none | Override description text (falls back to `description` prop) |
-| `#body` | `{ close }` | Override the body section |
-| `#footer` | `{ close }` | Override the footer section |
-| `#close` | `{ ui: { close: string } }` | Override the close button |
+| Slot           | Scope                       | Description                                                                          |
+| -------------- | --------------------------- | ------------------------------------------------------------------------------------ |
+| `default`      | `{ open?: boolean }`        | Trigger button — the element that opens the dialog                                   |
+| `#content`     | `{ close }`                 | Full override of the dialog body. When present, header/body/footer are not rendered. |
+| `#header`      | `{ close }`                 | Override the entire header section                                                   |
+| `#title`       | none                        | Override title text (falls back to `title` prop)                                     |
+| `#description` | none                        | Override description text (falls back to `description` prop)                         |
+| `#body`        | `{ close }`                 | Override the body section                                                            |
+| `#footer`      | `{ close }`                 | Override the footer section                                                          |
+| `#close`       | `{ ui: { close: string } }` | Override the close button                                                            |
 
 #### Shorthand Example
 
@@ -223,7 +223,9 @@ const open = ref(false);
           <p>Content goes here.</p>
         </MizuDialogBody>
         <MizuDialogFooter>
-          <MizuButton variant="primary" size="md" class="w-max" @click="open = false">Save</MizuButton>
+          <MizuButton variant="primary" size="md" class="w-max" @click="open = false"
+            >Save</MizuButton
+          >
         </MizuDialogFooter>
       </MizuDialogContent>
     </MizuDialogPortal>
@@ -235,46 +237,46 @@ const open = ref(false);
 
 ### CSS Custom Properties
 
-| Token | Default | Description |
-|-------|---------|-------------|
-| `--color-surface-base` | #FFFFFF / #0F1117 | Content background |
-| `--color-surface-muted` | #E2E8F0 / #2A2D3E | Header/footer border |
-| `--color-surface-subtle` | #F1F5F9 / #1E2030 | Close button hover |
-| `--color-foreground-primary` | #001C44 / #F1F5F9 | Title and body text, close hover |
-| `--color-foreground-secondary` | #4B5563 / #94A3B8 | Description text, close default |
+| Token                          | Default           | Description                      |
+| ------------------------------ | ----------------- | -------------------------------- |
+| `--color-surface-base`         | #FFFFFF / #0F1117 | Content background               |
+| `--color-surface-muted`        | #E2E8F0 / #2A2D3E | Header/footer border             |
+| `--color-surface-subtle`       | #F1F5F9 / #1E2030 | Close button hover               |
+| `--color-foreground-primary`   | #001C44 / #F1F5F9 | Title and body text, close hover |
+| `--color-foreground-secondary` | #4B5563 / #94A3B8 | Description text, close default  |
 
 ### Overlay
 
-| Token | Value | Usage |
-|-------|-------|-------|
+| Token                | Value  | Usage              |
+| -------------------- | ------ | ------------------ |
 | `rgba(0, 0, 0, 0.5)` | inline | Overlay background |
 
 ### Close Button
 
-| Token | Value | Usage |
-|-------|-------|-------|
+| Token                          | Value                            | Usage              |
+| ------------------------------ | -------------------------------- | ------------------ |
 | `--color-foreground-secondary` | #4B5563 (light) / #94A3B8 (dark) | Default icon color |
-| `--color-surface-subtle` | #F1F5F9 (light) / #1E2030 (dark) | Hover background |
-| `--color-foreground-primary` | #001C44 (light) / #F1F5F9 (dark) | Hover icon color |
+| `--color-surface-subtle`       | #F1F5F9 (light) / #1E2030 (dark) | Hover background   |
+| `--color-foreground-primary`   | #001C44 (light) / #F1F5F9 (dark) | Hover icon color   |
 
 ### Transitions
 
-| Property | Duration | Easing |
-|----------|----------|--------|
-| Overlay opacity | 200ms in / 150ms out | ease-out / ease-in |
+| Property                | Duration             | Easing             |
+| ----------------------- | -------------------- | ------------------ |
+| Overlay opacity         | 200ms in / 150ms out | ease-out / ease-in |
 | Content opacity + scale | 200ms in / 150ms out | ease-out / ease-in |
 
 ### Accessibility
 
-| Criterion | Implementation |
-|-----------|---------------|
-| Focus trap | Reka UI DialogContentModal traps focus within the dialog while open |
-| Body scroll lock | Reka UI disables background scrolling when dialog is open |
-| Escape key | Reka UI closes dialog on Escape key press |
-| Outside click | Reka UI closes dialog on click outside content (modal mode) |
-| ARIA role | Dialog content has `role="dialog"` and `aria-modal="true"` |
-| ARIA labelling | `aria-labelledby` links to DialogTitle; `aria-describedby` links to DialogDescription |
-| Focus return | Focus returns to the trigger element when dialog closes |
+| Criterion        | Implementation                                                                        |
+| ---------------- | ------------------------------------------------------------------------------------- |
+| Focus trap       | Reka UI DialogContentModal traps focus within the dialog while open                   |
+| Body scroll lock | Reka UI disables background scrolling when dialog is open                             |
+| Escape key       | Reka UI closes dialog on Escape key press                                             |
+| Outside click    | Reka UI closes dialog on click outside content (modal mode)                           |
+| ARIA role        | Dialog content has `role="dialog"` and `aria-modal="true"`                            |
+| ARIA labelling   | `aria-labelledby` links to DialogTitle; `aria-describedby` links to DialogDescription |
+| Focus return     | Focus returns to the trigger element when dialog closes                               |
 
 #### ARIA Attributes
 
@@ -290,19 +292,19 @@ const open = ref(false);
 
 A dialog consists of up to 11 parts:
 
-| Part | Required | Description |
-|------|----------|-------------|
-| DialogRoot | Yes | Controls open state and modality |
-| DialogPortal | Yes | Teleports overlay and content to `body` |
-| DialogOverlay | Yes | Semi-transparent backdrop behind the dialog |
-| DialogContent | Yes | The dialog panel |
-| DialogHeader | Yes | Header section containing title and optional description |
-| DialogBody | No | Scrollable content area between header and footer |
-| DialogFooter | No | Action buttons container at the bottom |
-| DialogTitle | Yes | Accessible heading for the dialog |
-| DialogDescription | No | Optional description — placed in either `MizuDialogHeader` or `MizuDialogBody` |
-| DialogClose | No | Close button (X icon). Placed directly inside `MizuDialogContent` for absolute positioning |
-| DialogTrigger | Yes | Button or element that opens the dialog |
+| Part              | Required | Description                                                                                |
+| ----------------- | -------- | ------------------------------------------------------------------------------------------ |
+| DialogRoot        | Yes      | Controls open state and modality                                                           |
+| DialogPortal      | Yes      | Teleports overlay and content to `body`                                                    |
+| DialogOverlay     | Yes      | Semi-transparent backdrop behind the dialog                                                |
+| DialogContent     | Yes      | The dialog panel                                                                           |
+| DialogHeader      | Yes      | Header section containing title and optional description                                   |
+| DialogBody        | No       | Scrollable content area between header and footer                                          |
+| DialogFooter      | No       | Action buttons container at the bottom                                                     |
+| DialogTitle       | Yes      | Accessible heading for the dialog                                                          |
+| DialogDescription | No       | Optional description — placed in either `MizuDialogHeader` or `MizuDialogBody`             |
+| DialogClose       | No       | Close button (X icon). Placed directly inside `MizuDialogContent` for absolute positioning |
+| DialogTrigger     | Yes      | Button or element that opens the dialog                                                    |
 
 ## Composition
 

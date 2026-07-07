@@ -3,7 +3,7 @@ title: TagsInput
 description: Multi-value text input that lets users build a list of tags by typing and submitting values.
 ---
 
-import TagsInputDemo from '../../../../components/docs/TagsInputDemo.vue';
+import TagsInputDemo from "../../../../components/docs/TagsInputDemo.vue";
 
 TagsInput is a text field that converts typed entries into a list of removable tag chips. It is used wherever users need to assign multiple discrete values to an entity — labels, skills, recipients, categories.
 
@@ -15,50 +15,50 @@ TagsInput is a text field that converts typed entries into a list of removable t
 
 ### Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `modelValue` | `string[]` | `undefined` | Controlled list of tag values |
-| `defaultValue` | `string[]` | `undefined` | Initial uncontrolled tags |
-| `placeholder` | `string` | `'Add a tag...'` | Input placeholder (only when empty) |
-| `disabled` | `boolean` | `false` | Disable the control and hide remove buttons |
-| `readOnly` | `boolean` | `false` | Render the control without removing or typing |
-| `required` | `boolean` | `false` | Marks the field as required; renders a label asterisk |
-| `error` | `boolean` | `false` | Applies the error border + `aria-invalid="true"` |
-| `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | Control + chip dimensions |
-| `tagVariant` | `'primary' \| 'accent' \| 'success' \| 'warning' \| 'error' \| 'info'` | `'primary'` | Chip color scheme (delegated to each `MizuTag`) |
-| `separator` | `('Enter' \| ',' \| ';' \| 'Tab')[]` | `['Enter', ',']` | Keys / characters that commit a tag |
-| `maxTags` | `number` | `undefined` | Maximum allowed tag count |
-| `allowDuplicates` | `boolean` | `false` | Permit repeated values |
-| `validate` | `(value: string) => boolean \| string` | `undefined` | Custom validator; `false` or empty-string result rejects the tag |
-| `name` | `string` | `undefined` | Form field name |
-| `label` | `string` | `undefined` | Optional label rendered above the control |
-| `helperText` | `string` | `undefined` | Optional hint shown below the control |
-| `id` | `string` | `undefined` | Optional explicit ID for the container |
+| Prop              | Type                                                                   | Default          | Description                                                      |
+| ----------------- | ---------------------------------------------------------------------- | ---------------- | ---------------------------------------------------------------- |
+| `modelValue`      | `string[]`                                                             | `undefined`      | Controlled list of tag values                                    |
+| `defaultValue`    | `string[]`                                                             | `undefined`      | Initial uncontrolled tags                                        |
+| `placeholder`     | `string`                                                               | `'Add a tag...'` | Input placeholder (only when empty)                              |
+| `disabled`        | `boolean`                                                              | `false`          | Disable the control and hide remove buttons                      |
+| `readOnly`        | `boolean`                                                              | `false`          | Render the control without removing or typing                    |
+| `required`        | `boolean`                                                              | `false`          | Marks the field as required; renders a label asterisk            |
+| `error`           | `boolean`                                                              | `false`          | Applies the error border + `aria-invalid="true"`                 |
+| `size`            | `'sm' \| 'md' \| 'lg'`                                                 | `'md'`           | Control + chip dimensions                                        |
+| `tagVariant`      | `'primary' \| 'accent' \| 'success' \| 'warning' \| 'error' \| 'info'` | `'primary'`      | Chip color scheme (delegated to each `MizuTag`)                  |
+| `separator`       | `('Enter' \| ',' \| ';' \| 'Tab')[]`                                   | `['Enter', ',']` | Keys / characters that commit a tag                              |
+| `maxTags`         | `number`                                                               | `undefined`      | Maximum allowed tag count                                        |
+| `allowDuplicates` | `boolean`                                                              | `false`          | Permit repeated values                                           |
+| `validate`        | `(value: string) => boolean \| string`                                 | `undefined`      | Custom validator; `false` or empty-string result rejects the tag |
+| `name`            | `string`                                                               | `undefined`      | Form field name                                                  |
+| `label`           | `string`                                                               | `undefined`      | Optional label rendered above the control                        |
+| `helperText`      | `string`                                                               | `undefined`      | Optional hint shown below the control                            |
+| `id`              | `string`                                                               | `undefined`      | Optional explicit ID for the container                           |
 
 ### Events
 
-| Event | Payload | Description |
-|-------|---------|-------------|
-| `update:modelValue` | `string[]` | Emitted on every commit and remove (use with `v-model`) |
-| `add` | `string` | Emitted when a tag is committed |
-| `remove` | `string` | Emitted when a tag is removed (via button or Backspace) |
-| `focus` | `FocusEvent` | Emitted when the trailing input receives focus |
-| `blur` | `FocusEvent` | Emitted when the trailing input loses focus |
-| `invalid-tag` | `[value: string, reason: 'duplicate' \| 'max' \| 'validation']` | Emitted when a tag is rejected |
+| Event               | Payload                                                         | Description                                             |
+| ------------------- | --------------------------------------------------------------- | ------------------------------------------------------- |
+| `update:modelValue` | `string[]`                                                      | Emitted on every commit and remove (use with `v-model`) |
+| `add`               | `string`                                                        | Emitted when a tag is committed                         |
+| `remove`            | `string`                                                        | Emitted when a tag is removed (via button or Backspace) |
+| `focus`             | `FocusEvent`                                                    | Emitted when the trailing input receives focus          |
+| `blur`              | `FocusEvent`                                                    | Emitted when the trailing input loses focus             |
+| `invalid-tag`       | `[value: string, reason: 'duplicate' \| 'max' \| 'validation']` | Emitted when a tag is rejected                          |
 
 ## Theme
 
 ### CSS Custom Properties
 
-| Token | Value | Usage |
-|-------|-------|-------|
-| `--color-surface-base` | #FFFFFF / #0F1117 | Container background |
-| `--color-surface-muted` | #F4F4F6 / #1B1D26 | Container border + disabled background |
-| `--color-foreground-primary` | #001C44 / #EDEDED | Input text color |
-| `--color-foreground-tertiary` | #6E7079 / #9C9DA8 | Input placeholder |
-| `--color-foreground-secondary` | #4F5159 / #B5B6BD | Helper text |
-| `--color-brand-ycp` | #001C44 | Focus border on container |
-| `--color-feedback-error-base` | #DC2626 | Error border + error helper text |
+| Token                          | Value             | Usage                                  |
+| ------------------------------ | ----------------- | -------------------------------------- |
+| `--color-surface-base`         | #FFFFFF / #0F1117 | Container background                   |
+| `--color-surface-muted`        | #F4F4F6 / #1B1D26 | Container border + disabled background |
+| `--color-foreground-primary`   | #001C44 / #EDEDED | Input text color                       |
+| `--color-foreground-tertiary`  | #6E7079 / #9C9DA8 | Input placeholder                      |
+| `--color-foreground-secondary` | #4F5159 / #B5B6BD | Helper text                            |
+| `--color-brand-ycp`            | #001C44           | Focus border on container              |
+| `--color-feedback-error-base`  | #DC2626           | Error border + error helper text       |
 
 Chip colors are consumed from the same tokens as `MizuTag` (`--mizu-tag-bg`, `--mizu-tag-text`, `--mizu-tag-border`).
 
@@ -67,50 +67,50 @@ Chip colors are consumed from the same tokens as `MizuTag` (`--mizu-tag-bg`, `--
 Three sizes control the container height and input font size. The chips themselves are always rendered by `MizuTag` at its fixed 24px height.
 
 | Size | Container Min-Height | Horizontal Padding | Vertical Padding | Input Font Size | Input Height |
-|------|---------------------|-------------------|------------------|-----------------|--------------|
-| `sm` | 28px | 8px | 2px | 12px | 24px |
-| `md` | 36px | 10px | 6px | 12px | 24px |
-| `lg` | 40px | 10px | 8px | 14px | 24px |
+| ---- | -------------------- | ------------------ | ---------------- | --------------- | ------------ |
+| `sm` | 28px                 | 8px                | 2px              | 12px            | 24px         |
+| `md` | 36px                 | 10px               | 6px              | 12px            | 24px         |
+| `lg` | 40px                 | 10px               | 8px              | 14px            | 24px         |
 
 ### Transitions
 
-| Property | Duration | Easing |
-|----------|----------|--------|
-| Container border / shadow (focus) | 200ms | ease-in-out |
-| Chip add animation | 150ms | ease-out (`scale(0.85) → scale(1)` + fade) |
-| Chip error flash (invalid) | 200ms | ease-in-out (`translateX` shake) |
-| Remove button opacity | 150ms | linear |
+| Property                          | Duration | Easing                                     |
+| --------------------------------- | -------- | ------------------------------------------ |
+| Container border / shadow (focus) | 200ms    | ease-in-out                                |
+| Chip add animation                | 150ms    | ease-out (`scale(0.85) → scale(1)` + fade) |
+| Chip error flash (invalid)        | 200ms    | ease-in-out (`translateX` shake)           |
+| Remove button opacity             | 150ms    | linear                                     |
 
 ### Focus Ring
 
-| Element | Behavior |
-|---------|----------|
-| Container (focus) | Border becomes `brand-ycp`, `0 0 0 1px brand-ycp` shadow |
-| Remove button (focus-visible) | 2px `brand-ycp` shadow ring at `border-radius: 2px` |
-| Error + focused | Border becomes `feedback-error-base` with matching shadow |
+| Element                       | Behavior                                                  |
+| ----------------------------- | --------------------------------------------------------- |
+| Container (focus)             | Border becomes `brand-ycp`, `0 0 0 1px brand-ycp` shadow  |
+| Remove button (focus-visible) | 2px `brand-ycp` shadow ring at `border-radius: 2px`       |
+| Error + focused               | Border becomes `feedback-error-base` with matching shadow |
 
 ### Accessibility
 
-| Criterion | Implementation |
-|-----------|----------------|
-| Color Contrast | 4.5:1 for chip label text via `brand-primary` / `feedback-*-base` |
-| Keyboard | `Enter`, `,`, `;`, `Tab` commit a tag; `Backspace` removes the last tag when input is empty |
-| Screen Reader | Container announces as `role="group"`; helper text linked via `aria-describedby`; remove button uses `aria-label="Remove {tag}"` |
-| Disabled | `aria-disabled="true"` on container; native `disabled` on input |
-| Required | `aria-required="true"` on container; visual asterisk in label |
-| Invalid | `aria-invalid="true"` on container when `error` is set |
+| Criterion      | Implementation                                                                                                                   |
+| -------------- | -------------------------------------------------------------------------------------------------------------------------------- |
+| Color Contrast | 4.5:1 for chip label text via `brand-primary` / `feedback-*-base`                                                                |
+| Keyboard       | `Enter`, `,`, `;`, `Tab` commit a tag; `Backspace` removes the last tag when input is empty                                      |
+| Screen Reader  | Container announces as `role="group"`; helper text linked via `aria-describedby`; remove button uses `aria-label="Remove {tag}"` |
+| Disabled       | `aria-disabled="true"` on container; native `disabled` on input                                                                  |
+| Required       | `aria-required="true"` on container; visual asterisk in label                                                                    |
+| Invalid        | `aria-invalid="true"` on container when `error` is set                                                                           |
 
 ## Anatomy
 
 A TagsInput consists of up to 5 parts:
 
-| Part | Required | Description |
-|------|----------|-------------|
-| Wrapper | Yes | Layout shell with vertical label → control → helper text stack (same as `MizuInput`) |
-| Container | Yes | The chip-and-input "well" reusing `MizuInput`'s `.mizu-input` styling |
-| `MizuTag` Chip | No | A closable `MizuTag` pill for each committed value |
-| Native Input | Yes | The trailing transparent text field where new values are typed |
-| Helper Text | No | Optional hint shown below the control (or an error message) |
+| Part           | Required | Description                                                                          |
+| -------------- | -------- | ------------------------------------------------------------------------------------ |
+| Wrapper        | Yes      | Layout shell with vertical label → control → helper text stack (same as `MizuInput`) |
+| Container      | Yes      | The chip-and-input "well" reusing `MizuInput`'s `.mizu-input` styling                |
+| `MizuTag` Chip | No       | A closable `MizuTag` pill for each committed value                                   |
+| Native Input   | Yes      | The trailing transparent text field where new values are typed                       |
+| Helper Text    | No       | Optional hint shown below the control (or an error message)                          |
 
 ## Implementation Notes
 

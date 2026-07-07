@@ -22,11 +22,7 @@ const labelClasses = computed(() => {
 </script>
 
 <template>
-  <DropdownMenuLabel
-    :class="labelClasses"
-    :as-child="asChild"
-    :as="as"
-  >
+  <DropdownMenuLabel :class="labelClasses" :as-child="asChild" :as="as">
     <slot />
   </DropdownMenuLabel>
 </template>

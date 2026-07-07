@@ -28,4 +28,5 @@ const classes = computed(() => {
 .mizu-dialog__content--fullscreen .mizu-dialog__body,
 .mizu-alert-dialog__content--fullscreen .mizu-dialog__body {
   max-height: none;
-}</style>
+}
+</style>

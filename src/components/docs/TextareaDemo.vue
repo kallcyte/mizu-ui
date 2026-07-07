@@ -79,9 +79,19 @@ const formCode = `<MizuTextarea
       <h3>States</h3>
       <CodeCollapsible :code="statesCode">
         <div class="textarea-stack">
-          <MizuTextarea v-model="errorValue" label="With Error" error helper-text="This field has an error" />
+          <MizuTextarea
+            v-model="errorValue"
+            label="With Error"
+            error
+            helper-text="This field has an error"
+          />
           <MizuTextarea v-model="disabledValue" label="Disabled" disabled />
-          <MizuTextarea v-model="rowsValue" label="Custom Rows (5)" :rows="5" placeholder="5 rows tall" />
+          <MizuTextarea
+            v-model="rowsValue"
+            label="Custom Rows (5)"
+            :rows="5"
+            placeholder="5 rows tall"
+          />
         </div>
       </CodeCollapsible>
     </section>

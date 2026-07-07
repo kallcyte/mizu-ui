@@ -1,7 +1,9 @@
 <script lang="ts">
 import { type InjectionKey } from "vue";
 
-export const MizuAlertDialogDismissibleKey: InjectionKey<boolean> = Symbol("MizuAlertDialogDismissible");
+export const MizuAlertDialogDismissibleKey: InjectionKey<boolean> = Symbol(
+  "MizuAlertDialogDismissible"
+);
 
 export interface AlertDialogContentProps {
   forceMount?: boolean;
@@ -131,20 +133,40 @@ function handleEscapeKeyDown(e: KeyboardEvent) {
 }
 
 @keyframes alertDialogContentIn {
-  from { opacity: 0; transform: scale(0.95); }
-  to { opacity: 1; transform: scale(1); }
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 @keyframes alertDialogContentOut {
-  from { opacity: 1; transform: scale(1); }
-  to { opacity: 0; transform: scale(0.95); }
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.95);
+  }
 }
 
 /* Size variants */
-.mizu-alert-dialog__content--sm { max-width: 400px; }
-.mizu-alert-dialog__content--md { max-width: 500px; }
-.mizu-alert-dialog__content--lg { max-width: 700px; }
-.mizu-alert-dialog__content--xl { max-width: 900px; }
+.mizu-alert-dialog__content--sm {
+  max-width: 400px;
+}
+.mizu-alert-dialog__content--md {
+  max-width: 500px;
+}
+.mizu-alert-dialog__content--lg {
+  max-width: 700px;
+}
+.mizu-alert-dialog__content--xl {
+  max-width: 900px;
+}
 
 /* Fullscreen mode */
 .mizu-alert-dialog__content--fullscreen {

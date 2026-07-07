@@ -23,12 +23,7 @@ const actionClasses = computed(() => {
 </script>
 
 <template>
-  <ToastAction
-    :class="actionClasses"
-    :alt-text="altText"
-    :as-child="asChild"
-    :as="as"
-  >
+  <ToastAction :class="actionClasses" :alt-text="altText" :as-child="asChild" :as="as">
     <slot />
   </ToastAction>
 </template>

@@ -24,12 +24,7 @@ const portalClasses = computed(() => {
 </script>
 
 <template>
-  <AlertDialogPortal
-    :class="portalClasses"
-    :to="to"
-    :disabled="disabled"
-    :force-mount="forceMount"
-  >
+  <AlertDialogPortal :class="portalClasses" :to="to" :disabled="disabled" :force-mount="forceMount">
     <slot />
   </AlertDialogPortal>
 </template>

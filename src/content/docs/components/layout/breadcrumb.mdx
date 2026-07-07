@@ -3,7 +3,7 @@ title: Breadcrumb
 description: A navigation component that shows the current page location within a hierarchy.
 ---
 
-import BreadcrumbDemo from '../../../../components/docs/BreadcrumbDemo.vue';
+import BreadcrumbDemo from "../../../../components/docs/BreadcrumbDemo.vue";
 
 A breadcrumb displays the current page's position in a site's hierarchy. It helps users understand where they are and navigate back to parent pages.
 
@@ -15,19 +15,19 @@ A breadcrumb displays the current page's position in a site's hierarchy. It help
 
 ### Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `items` | `BreadcrumbItem[]` | required | Array of breadcrumb items |
-| `separator` | `'/' \| '>' \| '·' \| Component` | `'/'` | Visual separator between items |
-| `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | Size variant |
+| Prop        | Type                             | Default  | Description                    |
+| ----------- | -------------------------------- | -------- | ------------------------------ |
+| `items`     | `BreadcrumbItem[]`               | required | Array of breadcrumb items      |
+| `separator` | `'/' \| '>' \| '·' \| Component` | `'/'`    | Visual separator between items |
+| `size`      | `'sm' \| 'md' \| 'lg'`           | `'md'`   | Size variant                   |
 
 ### BreadcrumbItem
 
-| Property | Type | Required | Description |
-|----------|------|----------|-------------|
-| `label` | `string` | Yes | Display text for the item |
-| `href` | `string` | No | URL for the item; omit for current page |
-| `icon` | `Component` | No | Optional icon component |
+| Property | Type        | Required | Description                             |
+| -------- | ----------- | -------- | --------------------------------------- |
+| `label`  | `string`    | Yes      | Display text for the item               |
+| `href`   | `string`    | No       | URL for the item; omit for current page |
+| `icon`   | `Component` | No       | Optional icon component                 |
 
 ### Slots
 
@@ -59,10 +59,7 @@ const items = [
   <MizuBreadcrumb :items="items" separator=">" size="sm" />
 
   <!-- With icons -->
-  <MizuBreadcrumb :items="[
-    { label: 'Home', href: '/', icon: Home },
-    { label: 'Settings' },
-  ]" />
+  <MizuBreadcrumb :items="[{ label: 'Home', href: '/', icon: Home }, { label: 'Settings' }]" />
 </template>
 ```
 
@@ -70,56 +67,56 @@ const items = [
 
 ### Variants
 
-| Variant | Separator | Use Case |
-|---------|-----------|----------|
-| Slash | `/` | Default, general-purpose navigation |
-| Chevron | `>` | Deep hierarchies, file explorers |
-| Dot | `·` | Minimal, compact layouts |
+| Variant | Separator | Use Case                            |
+| ------- | --------- | ----------------------------------- |
+| Slash   | `/`       | Default, general-purpose navigation |
+| Chevron | `>`       | Deep hierarchies, file explorers    |
+| Dot     | `·`       | Minimal, compact layouts            |
 
 ### CSS Custom Properties
 
-| Token | Default | Description |
-|-------|---------|-------------|
-| `--color-foreground-secondary` | #4B5563 / #9CA3B8 | Link text color |
-| `--color-brand-primary` | #001C44 / #60A5FA | Link hover color |
-| `--color-foreground-primary` | #111827 / #F1F5F9 | Current page text color |
-| `--color-foreground-tertiary` | #9CA3AF / #64748B | Separator color |
+| Token                          | Default           | Description             |
+| ------------------------------ | ----------------- | ----------------------- |
+| `--color-foreground-secondary` | #4B5563 / #9CA3B8 | Link text color         |
+| `--color-brand-primary`        | #001C44 / #60A5FA | Link hover color        |
+| `--color-foreground-primary`   | #111827 / #F1F5F9 | Current page text color |
+| `--color-foreground-tertiary`  | #9CA3AF / #64748B | Separator color         |
 
 ### Color Specifications
 
-| Element | State | Token | Light | Dark |
-|---------|-------|-------|-------|------|
-| Link | Default | `foreground-secondary` | #4B5563 | #9CA3B8 |
-| Link | Hover | `brand-primary` | #001C44 | #60A5FA |
-| Current | Default | `foreground-primary` | #111827 | #F1F5F9 |
-| Separator | Default | `foreground-tertiary` | #9CA3AF | #64748B |
+| Element   | State   | Token                  | Light   | Dark    |
+| --------- | ------- | ---------------------- | ------- | ------- |
+| Link      | Default | `foreground-secondary` | #4B5563 | #9CA3B8 |
+| Link      | Hover   | `brand-primary`        | #001C44 | #60A5FA |
+| Current   | Default | `foreground-primary`   | #111827 | #F1F5F9 |
+| Separator | Default | `foreground-tertiary`  | #9CA3AF | #64748B |
 
 ### Sizing
 
-| Size | Font Size | Icon Size | Separator Margin |
-|------|-----------|-----------|------------------|
-| `sm` | `text-xs` (12px) | 12px | 4px |
-| `md` | `text-sm` (14px) | 16px | 6px |
-| `lg` | `text-base` (16px) | 20px | 8px |
+| Size | Font Size          | Icon Size | Separator Margin |
+| ---- | ------------------ | --------- | ---------------- |
+| `sm` | `text-xs` (12px)   | 12px      | 4px              |
+| `md` | `text-sm` (14px)   | 16px      | 6px              |
+| `lg` | `text-base` (16px) | 20px      | 8px              |
 
 ### Typography
 
-| Size | Font Size | Font Weight | Line Height |
-|------|-----------|-------------|-------------|
-| `sm` | 12px | 400 (regular) | 1.5 |
-| `md` | 14px | 400 (regular) | 1.5 |
-| `lg` | 16px | 400 (regular) | 1.5 |
+| Size | Font Size | Font Weight   | Line Height |
+| ---- | --------- | ------------- | ----------- |
+| `sm` | 12px      | 400 (regular) | 1.5         |
+| `md` | 14px      | 400 (regular) | 1.5         |
+| `lg` | 16px      | 400 (regular) | 1.5         |
 
 The current page item uses font weight 500 (medium) to distinguish it from ancestor links.
 
 ### Accessibility
 
-| Criterion | Implementation |
-|-----------|----------------|
-| Landmark | `<nav>` with `aria-label="Breadcrumb"` identifies the navigation region |
-| Current page | `aria-current="page"` on the last item's link |
-| List semantics | `<ol>` provides ordered list semantics, conveying page hierarchy |
-| Link targets | All ancestor items render as `<a>` elements; current page renders as `<span>` (not focusable) |
+| Criterion      | Implementation                                                                                |
+| -------------- | --------------------------------------------------------------------------------------------- |
+| Landmark       | `<nav>` with `aria-label="Breadcrumb"` identifies the navigation region                       |
+| Current page   | `aria-current="page"` on the last item's link                                                 |
+| List semantics | `<ol>` provides ordered list semantics, conveying page hierarchy                              |
+| Link targets   | All ancestor items render as `<a>` elements; current page renders as `<span>` (not focusable) |
 
 ```html
 <nav aria-label="Breadcrumb">
@@ -141,11 +138,11 @@ The current page item uses font weight 500 (medium) to distinguish it from ances
 
 ## Anatomy
 
-| Part | Required | Description |
-|------|----------|-------------|
-| Nav | Yes | `<nav>` wrapper with `aria-label="Breadcrumb"` |
-| List | Yes | `<ol>` containing the breadcrumb items |
-| Item | Yes | `<li>` wrapping a link or current-page text |
+| Part | Required | Description                                    |
+| ---- | -------- | ---------------------------------------------- |
+| Nav  | Yes      | `<nav>` wrapper with `aria-label="Breadcrumb"` |
+| List | Yes      | `<ol>` containing the breadcrumb items         |
+| Item | Yes      | `<li>` wrapping a link or current-page text    |
 
 ## Implementation Notes
 

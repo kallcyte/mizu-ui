@@ -22,11 +22,7 @@ const calendarClasses = computed(() => {
 </script>
 
 <template>
-  <DatePickerCalendar
-    :class="calendarClasses"
-    :as-child="asChild"
-    :as="as"
-  >
+  <DatePickerCalendar :class="calendarClasses" :as-child="asChild" :as="as">
     <slot />
   </DatePickerCalendar>
 </template>

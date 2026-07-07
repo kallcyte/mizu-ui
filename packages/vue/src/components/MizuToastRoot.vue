@@ -9,7 +9,8 @@ export interface ToastRootProps {
   duration?: number;
   forceMount?: boolean;
   variant?: "info" | "success" | "warning" | "error";
-  position?: "top-right" | "top-left" | "top-center" | "bottom-right" | "bottom-left" | "bottom-center";
+  position?:
+    "top-right" | "top-left" | "top-center" | "bottom-right" | "bottom-left" | "bottom-center";
 }
 
 const props = withDefaults(defineProps<ToastRootProps>(), {
@@ -55,13 +56,13 @@ const slideFromY = computed(() => {
 
 <template>
   <ToastRoot
-      :class="rootClasses"
-      :style="{ '--toast-slide-from-x': slideFromX, '--toast-slide-from-y': slideFromY }"
-      :open="open"
-      :default-open="defaultOpen"
-      :type="type"
-      :duration="duration"
-      :force-mount="forceMount"
+    :class="rootClasses"
+    :style="{ '--toast-slide-from-x': slideFromX, '--toast-slide-from-y': slideFromY }"
+    :open="open"
+    :default-open="defaultOpen"
+    :type="type"
+    :duration="duration"
+    :force-mount="forceMount"
     @update:open="(v: boolean) => emit('update:open', v)"
     @pause="emit('pause')"
     @resume="emit('resume')"
@@ -85,7 +86,9 @@ const slideFromY = computed(() => {
   border-radius: 8px;
   background-color: var(--color-surface-base);
   color: var(--color-foreground-primary);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1), 0 1px 4px rgba(0, 0, 0, 0.06);
+  box-shadow:
+    0 4px 16px rgba(0, 0, 0, 0.1),
+    0 1px 4px rgba(0, 0, 0, 0.06);
   font-family: inherit;
   margin-top: 0;
   border: none;
@@ -117,22 +120,38 @@ const slideFromY = computed(() => {
 }
 
 .mizu-toast--success {
-  background: linear-gradient(to right, var(--color-feedback-success-subtle, #f0fdf4), var(--color-surface-base));
+  background: linear-gradient(
+    to right,
+    var(--color-feedback-success-subtle, #f0fdf4),
+    var(--color-surface-base)
+  );
   border-left: 3px solid var(--color-feedback-success-base);
 }
 
 .mizu-toast--warning {
-  background: linear-gradient(to right, var(--color-feedback-warning-subtle, #fffbeb), var(--color-surface-base));
+  background: linear-gradient(
+    to right,
+    var(--color-feedback-warning-subtle, #fffbeb),
+    var(--color-surface-base)
+  );
   border-left: 3px solid var(--color-feedback-warning-base);
 }
 
 .mizu-toast--error {
-  background: linear-gradient(to right, var(--color-feedback-error-subtle, #fef2f2), var(--color-surface-base));
+  background: linear-gradient(
+    to right,
+    var(--color-feedback-error-subtle, #fef2f2),
+    var(--color-surface-base)
+  );
   border-left: 3px solid var(--color-feedback-error-base);
 }
 
 .mizu-toast--info {
-  background: linear-gradient(to right, var(--color-feedback-info-subtle, #eff6ff), var(--color-surface-base));
+  background: linear-gradient(
+    to right,
+    var(--color-feedback-info-subtle, #eff6ff),
+    var(--color-surface-base)
+  );
   border-left: 3px solid var(--color-feedback-info-base);
 }
 

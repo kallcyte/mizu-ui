@@ -26,12 +26,7 @@ const inputStyle = computed(() => {
 </script>
 
 <template>
-  <NumberFieldInput
-    :class="inputClasses"
-    :style="inputStyle"
-    :as-child="asChild"
-    :as="as"
-  >
+  <NumberFieldInput :class="inputClasses" :style="inputStyle" :as-child="asChild" :as="as">
     <slot />
   </NumberFieldInput>
 </template>

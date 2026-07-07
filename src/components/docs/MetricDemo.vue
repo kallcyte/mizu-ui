@@ -81,16 +81,41 @@ const dashboardCode = `<MizuMetric label="Total Sales" value="$84,250" trend="up
       <CodeCollapsible :code="dashboardCode">
         <div class="dashboard-grid">
           <div class="dashboard-card">
-            <MizuMetric label="Total Sales" value="$84,250" trend="up" trend-value="+8.2%" variant="primary" size="lg" />
+            <MizuMetric
+              label="Total Sales"
+              value="$84,250"
+              trend="up"
+              trend-value="+8.2%"
+              variant="primary"
+              size="lg"
+            />
           </div>
           <div class="dashboard-card">
-            <MizuMetric label="Orders" value="1,842" trend="up" trend-value="+5.7%" variant="accent" />
+            <MizuMetric
+              label="Orders"
+              value="1,842"
+              trend="up"
+              trend-value="+5.7%"
+              variant="accent"
+            />
           </div>
           <div class="dashboard-card">
-            <MizuMetric label="Returns" value="23" trend="down" trend-value="-2.1%" variant="error" />
+            <MizuMetric
+              label="Returns"
+              value="23"
+              trend="down"
+              trend-value="-2.1%"
+              variant="error"
+            />
           </div>
           <div class="dashboard-card">
-            <MizuMetric label="Avg. Order Value" value="$46.20" trend="up" trend-value="+1.4%" variant="success" />
+            <MizuMetric
+              label="Avg. Order Value"
+              value="$46.20"
+              trend="up"
+              trend-value="+1.4%"
+              variant="success"
+            />
           </div>
         </div>
       </CodeCollapsible>

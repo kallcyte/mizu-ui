@@ -44,10 +44,7 @@ const textareaId = computed(() => {
 const helperId = computed(() => `${textareaId.value}-helper`);
 
 const textareaClasses = computed(() => {
-  const classes = [
-    "mizu-textarea",
-    `mizu-textarea--${props.size}`,
-  ];
+  const classes = ["mizu-textarea", `mizu-textarea--${props.size}`];
 
   if (props.error) classes.push("mizu-textarea--error");
   if (props.disabled) classes.push("mizu-textarea--disabled");
@@ -130,9 +127,15 @@ function handleBlur(event: FocusEvent) {
 .mizu-textarea-label {
   @apply font-medium text-[var(--color-foreground-primary)];
 }
-.mizu-textarea-label--sm { @apply text-[12px]; }
-.mizu-textarea-label--md { @apply text-[12px]; }
-.mizu-textarea-label--lg { @apply text-[14px]; }
+.mizu-textarea-label--sm {
+  @apply text-[12px];
+}
+.mizu-textarea-label--md {
+  @apply text-[12px];
+}
+.mizu-textarea-label--lg {
+  @apply text-[14px];
+}
 .mizu-textarea-label__required {
   @apply ml-[2px] text-[var(--color-feedback-error-base)];
 }
@@ -142,7 +145,9 @@ function handleBlur(event: FocusEvent) {
   border: 1px solid var(--color-surface-muted);
   background-color: var(--color-surface-base);
   color: var(--color-foreground-primary);
-  transition: border-color 200ms ease-in-out, box-shadow 200ms ease-in-out;
+  transition:
+    border-color 200ms ease-in-out,
+    box-shadow 200ms ease-in-out;
 }
 .mizu-textarea::placeholder {
   @apply text-[var(--color-foreground-tertiary)];

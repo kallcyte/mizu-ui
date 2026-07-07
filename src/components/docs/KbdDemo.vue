@@ -34,15 +34,9 @@ const sizesCode = `<MizuKbd :keys="['⌘', 'K']" size="sm" />
     <section class="example-section">
       <h3>Key Combinations</h3>
       <CodeCollapsible :code="keyCombinationsCode">
-        <p class="demo-text">
-          Open command palette: <MizuKbd :keys="['⌘', 'K']" />
-        </p>
-        <p class="demo-text">
-          Save file: <MizuKbd :keys="['Ctrl', 'S']" />
-        </p>
-        <p class="demo-text">
-          Format code: <MizuKbd :keys="['Shift', 'Alt', 'F']" />
-        </p>
+        <p class="demo-text">Open command palette: <MizuKbd :keys="['⌘', 'K']" /></p>
+        <p class="demo-text">Save file: <MizuKbd :keys="['Ctrl', 'S']" /></p>
+        <p class="demo-text">Format code: <MizuKbd :keys="['Shift', 'Alt', 'F']" /></p>
       </CodeCollapsible>
     </section>
 
@@ -50,9 +44,8 @@ const sizesCode = `<MizuKbd :keys="['⌘', 'K']" size="sm" />
       <h3>Sizes</h3>
       <CodeCollapsible :code="sizesCode">
         <p class="demo-text">
-          Small: <MizuKbd :keys="['⌘', 'K']" size="sm" />
-          &nbsp;
-          Medium: <MizuKbd :keys="['⌘', 'K']" size="md" />
+          Small: <MizuKbd :keys="['⌘', 'K']" size="sm" /> &nbsp; Medium:
+          <MizuKbd :keys="['⌘', 'K']" size="md" />
         </p>
       </CodeCollapsible>
     </section>

@@ -86,11 +86,25 @@ const listClasses = computed(() => {
 }
 
 /* Color variants */
-.mizu-tabs__list[data-color="primary"] { --mizu-tabs-color: var(--color-brand-primary); }
-.mizu-tabs__list[data-color="accent"] { --mizu-tabs-color: var(--color-brand-ycp); }
-.mizu-tabs__list[data-color="error"] { --mizu-tabs-color: var(--color-feedback-error-base); }
-.mizu-tabs__list[data-color="success"] { --mizu-tabs-color: var(--color-feedback-success-base); }
-.mizu-tabs__list[data-color="warning"] { --mizu-tabs-color: var(--color-feedback-warning-base); }
-.mizu-tabs__list[data-color="info"] { --mizu-tabs-color: var(--color-feedback-info-base); }
-.mizu-tabs__list[data-color="neutral"] { --mizu-tabs-color: var(--color-brand-neutral); }
+.mizu-tabs__list[data-color="primary"] {
+  --mizu-tabs-color: var(--color-brand-primary);
+}
+.mizu-tabs__list[data-color="accent"] {
+  --mizu-tabs-color: var(--color-brand-ycp);
+}
+.mizu-tabs__list[data-color="error"] {
+  --mizu-tabs-color: var(--color-feedback-error-base);
+}
+.mizu-tabs__list[data-color="success"] {
+  --mizu-tabs-color: var(--color-feedback-success-base);
+}
+.mizu-tabs__list[data-color="warning"] {
+  --mizu-tabs-color: var(--color-feedback-warning-base);
+}
+.mizu-tabs__list[data-color="info"] {
+  --mizu-tabs-color: var(--color-feedback-info-base);
+}
+.mizu-tabs__list[data-color="neutral"] {
+  --mizu-tabs-color: var(--color-brand-neutral);
+}
 </style>

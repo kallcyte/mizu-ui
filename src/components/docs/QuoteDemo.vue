@@ -47,9 +47,7 @@ const multiParagraphCode = `<MizuQuote accent cite="APA Style">
     <section class="example-section">
       <h3>Accent Variant</h3>
       <CodeCollapsible :code="accentCode">
-        <MizuQuote accent>
-          The best design is the simplest one that works.
-        </MizuQuote>
+        <MizuQuote accent> The best design is the simplest one that works. </MizuQuote>
       </CodeCollapsible>
     </section>
 
@@ -57,7 +55,8 @@ const multiParagraphCode = `<MizuQuote accent cite="APA Style">
       <h3>Accent With Cite</h3>
       <CodeCollapsible :code="accentCiteCode">
         <MizuQuote accent cite="Albert Einstein">
-          Imagination is more important than knowledge. Knowledge is limited. Imagination encircles the world.
+          Imagination is more important than knowledge. Knowledge is limited. Imagination encircles
+          the world.
         </MizuQuote>
       </CodeCollapsible>
     </section>
@@ -66,7 +65,10 @@ const multiParagraphCode = `<MizuQuote accent cite="APA Style">
       <h3>Multi-paragraph</h3>
       <CodeCollapsible :code="multiParagraphCode">
         <MizuQuote accent cite="APA Style">
-          <p>A block quote is a paraphrase or direct quotation that is longer than 40 words. It should be formatted as a freestanding block of text that does not use quotation marks.</p>
+          <p>
+            A block quote is a paraphrase or direct quotation that is longer than 40 words. It
+            should be formatted as a freestanding block of text that does not use quotation marks.
+          </p>
           <p>Block quotes should start on a new line and be indented from the left margin.</p>
         </MizuQuote>
       </CodeCollapsible>

@@ -3,7 +3,7 @@ title: NavigationMenu
 description: Horizontal or vertical navigation bar with dropdown content panels for site navigation.
 ---
 
-import NavigationMenuDemo from '../../../components/docs/NavigationMenuDemo.vue';
+import NavigationMenuDemo from "../../../components/docs/NavigationMenuDemo.vue";
 
 A navigation menu is a hierarchical nav bar where triggers open dropdown content panels — useful for site headers, mega-menus, and app sidebar navigation.
 
@@ -15,19 +15,19 @@ A navigation menu is a hierarchical nav bar where triggers open dropdown content
 
 A navigation menu consists of up to 9 parts:
 
-| Part | Required | Description |
-|------|----------|-------------|
-| NavigationMenuRoot | Yes | Container managing open state, orientation, and hover/click delays |
-| NavigationMenuList | Yes | Horizontal or vertical list of menu items |
-| NavigationMenuItem | Yes | Associates a trigger with its content panel |
-| NavigationMenuTrigger | Yes* | Button that opens the content panel |
-| NavigationMenuContent | Yes* | Dropdown panel shown when the trigger is active |
-| NavigationMenuLink | No | Navigational link with active state |
-| NavigationMenuIndicator | No | Arrow pointing from content to trigger |
-| NavigationMenuViewport | No | Animated container that resizes between content panels |
-| NavigationMenuSub | No | Nested sub-menu with its own trigger/content pair |
+| Part                    | Required | Description                                                        |
+| ----------------------- | -------- | ------------------------------------------------------------------ |
+| NavigationMenuRoot      | Yes      | Container managing open state, orientation, and hover/click delays |
+| NavigationMenuList      | Yes      | Horizontal or vertical list of menu items                          |
+| NavigationMenuItem      | Yes      | Associates a trigger with its content panel                        |
+| NavigationMenuTrigger   | Yes\*    | Button that opens the content panel                                |
+| NavigationMenuContent   | Yes\*    | Dropdown panel shown when the trigger is active                    |
+| NavigationMenuLink      | No       | Navigational link with active state                                |
+| NavigationMenuIndicator | No       | Arrow pointing from content to trigger                             |
+| NavigationMenuViewport  | No       | Animated container that resizes between content panels             |
+| NavigationMenuSub       | No       | Nested sub-menu with its own trigger/content pair                  |
 
-*Either a Trigger+Content pair or a Link is required per item.
+\*Either a Trigger+Content pair or a Link is required per item.
 
 ## Composition
 
@@ -44,93 +44,97 @@ MizuNavigationMenuRoot (orientation, modelValue)
 
 ## Orientation
 
-| Orientation | Layout | Use Case |
-|-------------|--------|----------|
+| Orientation  | Layout                               | Use Case                   |
+| ------------ | ------------------------------------ | -------------------------- |
 | `horizontal` | Row of triggers, content drops below | Site headers, top nav bars |
+
 ## Size Specifications
 
-| Element | Padding | Font Size | Border Radius |
-|---------|---------|-----------|---------------|
-| Trigger | 8px 14px | 14px | 6px |
-| Link | 8px 14px | 14px | 6px |
-| Content panel | 16px | — | 8px |
-| Viewport | — | — | 8px |
+| Element       | Padding  | Font Size | Border Radius |
+| ------------- | -------- | --------- | ------------- |
+| Trigger       | 8px 14px | 14px      | 6px           |
+| Link          | 8px 14px | 14px      | 6px           |
+| Content panel | 16px     | —         | 8px           |
+| Viewport      | —        | —         | 8px           |
 
 ## Color Specifications
 
-| State | Background | Text |
-|-------|-----------|------|
-| Trigger idle | transparent | `foreground-secondary` (#696D7D) |
-| Trigger hover/open | `surface-subtle` (#F8F9FA) | `foreground-primary` (#001C44) |
-| Link idle | transparent | `foreground-secondary` (#696D7D) |
-| Link hover | `surface-subtle` (#F8F9FA) | `foreground-primary` (#001C44) |
-| Link active | `brand-ycp-subtle` | `brand-primary` (#001C44) |
-| Content panel | `surface-base` (#FFFFFF) | `foreground-primary` (#001C44) |
-| Content border | `surface-muted` (#F3F4F6) | — |
+| State              | Background                 | Text                             |
+| ------------------ | -------------------------- | -------------------------------- |
+| Trigger idle       | transparent                | `foreground-secondary` (#696D7D) |
+| Trigger hover/open | `surface-subtle` (#F8F9FA) | `foreground-primary` (#001C44)   |
+| Link idle          | transparent                | `foreground-secondary` (#696D7D) |
+| Link hover         | `surface-subtle` (#F8F9FA) | `foreground-primary` (#001C44)   |
+| Link active        | `brand-ycp-subtle`         | `brand-primary` (#001C44)        |
+| Content panel      | `surface-base` (#FFFFFF)   | `foreground-primary` (#001C44)   |
+| Content border     | `surface-muted` (#F3F4F6)  | —                                |
 
-| Element | Token | Light | Dark |
-|---------|-------|-------|------|
-| Trigger hover bg | `surface-subtle` | #F8F9FA | #141626 |
-| Content panel bg | `surface-base` | #FFFFFF | #1B1B1D |
-| Content border | `surface-muted` | #F3F4F6 | #1E2030 |
-| Active link bg | `brand-ycp-subtle` | #E8F0FF | #1A2440 |
-| Active link text | `brand-primary` | #001C44 | #5C7BFF |
-| Focus ring | `brand-ycp` | #305EF0 | #5C7BFF |
+| Element          | Token              | Light   | Dark    |
+| ---------------- | ------------------ | ------- | ------- |
+| Trigger hover bg | `surface-subtle`   | #F8F9FA | #141626 |
+| Content panel bg | `surface-base`     | #FFFFFF | #1B1B1D |
+| Content border   | `surface-muted`    | #F3F4F6 | #1E2030 |
+| Active link bg   | `brand-ycp-subtle` | #E8F0FF | #1A2440 |
+| Active link text | `brand-primary`    | #001C44 | #5C7BFF |
+| Focus ring       | `brand-ycp`        | #305EF0 | #5C7BFF |
 
 ## Transitions
 
-| Property | Duration | Easing |
-|----------|----------|--------|
-| trigger color | 150ms | ease |
-| trigger background-color | 150ms | ease |
-| link color | 150ms | ease |
-| link background-color | 150ms | ease |
-| content enter | 200ms | ease (opacity + translateY) |
-| viewport size | 250ms | ease |
+| Property                 | Duration | Easing                      |
+| ------------------------ | -------- | --------------------------- |
+| trigger color            | 150ms    | ease                        |
+| trigger background-color | 150ms    | ease                        |
+| link color               | 150ms    | ease                        |
+| link background-color    | 150ms    | ease                        |
+| content enter            | 200ms    | ease (opacity + translateY) |
+| viewport size            | 250ms    | ease                        |
 
 ## Accessibility
 
-| Criterion | Implementation |
-|-----------|---------------|
-| Keyboard navigation | Arrow keys move between triggers; Enter/Space opens content; Escape closes |
-| Focus management | `focus-visible` ring on triggers and links |
-| ARIA roles | `navigation` on root, `menubar` on list, `menuitem` on items |
-| Screen reader | Open state announced via `data-state` on triggers; content region is labelled |
+| Criterion           | Implementation                                                                |
+| ------------------- | ----------------------------------------------------------------------------- |
+| Keyboard navigation | Arrow keys move between triggers; Enter/Space opens content; Escape closes    |
+| Focus management    | `focus-visible` ring on triggers and links                                    |
+| ARIA roles          | `navigation` on root, `menubar` on list, `menuitem` on items                  |
+| Screen reader       | Open state announced via `data-state` on triggers; content region is labelled |
 
 ## Vue Component API
 
 ### MizuNavigationMenuRoot Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `modelValue` | `string` | — | Controlled active item value (v-model). |
-| `defaultValue` | `string` | — | Initial active item when uncontrolled. |
-| `orientation` | `"horizontal" \| "vertical"` | `"horizontal"` | Layout direction. |
-| `delayDuration` | `number` | `200` | ms before content opens on hover. |
-| `skipDelayDuration` | `number` | `300` | ms grace period between trigger hovers. |
-| `disableClickTrigger` | `boolean` | `false` | Prevent opening via click. |
-| `disableHoverTrigger` | `boolean` | `false` | Prevent opening via hover. |
+| Prop                  | Type                         | Default        | Description                             |
+| --------------------- | ---------------------------- | -------------- | --------------------------------------- |
+| `modelValue`          | `string`                     | —              | Controlled active item value (v-model). |
+| `defaultValue`        | `string`                     | —              | Initial active item when uncontrolled.  |
+| `orientation`         | `"horizontal" \| "vertical"` | `"horizontal"` | Layout direction.                       |
+| `delayDuration`       | `number`                     | `200`          | ms before content opens on hover.       |
+| `skipDelayDuration`   | `number`                     | `300`          | ms grace period between trigger hovers. |
+| `disableClickTrigger` | `boolean`                    | `false`        | Prevent opening via click.              |
+| `disableHoverTrigger` | `boolean`                    | `false`        | Prevent opening via hover.              |
 
 ### MizuNavigationMenuTrigger Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
+| Prop       | Type      | Default | Description           |
+| ---------- | --------- | ------- | --------------------- |
 | `disabled` | `boolean` | `false` | Disables the trigger. |
 
 ### MizuNavigationMenuLink Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `active` | `boolean` | — | Highlights the link as the current page. |
+| Prop     | Type      | Default | Description                              |
+| -------- | --------- | ------- | ---------------------------------------- |
+| `active` | `boolean` | —       | Highlights the link as the current page. |
 
 ### Example Usage
 
 ```vue
 <script setup>
 import {
-  MizuNavigationMenuRoot, MizuNavigationMenuList,
-  MizuNavigationMenuItem, MizuNavigationMenuTrigger,
-  MizuNavigationMenuContent, MizuNavigationMenuLink,
+  MizuNavigationMenuRoot,
+  MizuNavigationMenuList,
+  MizuNavigationMenuItem,
+  MizuNavigationMenuTrigger,
+  MizuNavigationMenuContent,
+  MizuNavigationMenuLink,
 } from "@mizu/vue";
 </script>
 

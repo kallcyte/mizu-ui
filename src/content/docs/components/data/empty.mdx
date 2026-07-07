@@ -3,7 +3,7 @@ title: Empty
 description: Placeholder for empty states in data displays.
 ---
 
-import EmptyDemo from '../../../../components/docs/EmptyDemo.vue';
+import EmptyDemo from "../../../../components/docs/EmptyDemo.vue";
 
 The Empty component provides a consistent placeholder UI for empty states in lists, tables, and other data displays. It supports an icon, title, description, and action button.
 
@@ -33,10 +33,7 @@ The Empty component provides a consistent placeholder UI for empty states in lis
 ### With Action
 
 ```vue
-<MizuEmpty
-  title="No projects yet"
-  description="Get started by creating your first project."
->
+<MizuEmpty title="No projects yet" description="Get started by creating your first project.">
   <template #action>
     <MizuButton variant="primary">Create Project</MizuButton>
   </template>
@@ -47,37 +44,37 @@ The Empty component provides a consistent placeholder UI for empty states in lis
 
 ### Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `title` | `string` | — | Heading text |
-| `description` | `string` | — | Body text |
+| Prop          | Type     | Default | Description  |
+| ------------- | -------- | ------- | ------------ |
+| `title`       | `string` | —       | Heading text |
+| `description` | `string` | —       | Body text    |
 
 ### Slots
 
-| Slot | Description |
-|------|-------------|
-| `icon` | Icon or illustration above the title |
-| `action` | Action button below the description |
+| Slot     | Description                          |
+| -------- | ------------------------------------ |
+| `icon`   | Icon or illustration above the title |
+| `action` | Action button below the description  |
 
 ## Theme
 
 ### Accessibility
 
-| Criterion | Implementation |
-|-----------|----------------|
-| Semantic structure | Uses semantic `<div>` with heading and paragraph elements |
-| Screen reader | Descriptive text content fully accessible to screen readers |
+| Criterion          | Implementation                                              |
+| ------------------ | ----------------------------------------------------------- |
+| Semantic structure | Uses semantic `<div>` with heading and paragraph elements   |
+| Screen reader      | Descriptive text content fully accessible to screen readers |
 
 ## Anatomy
 
 An empty state consists of up to 4 parts:
 
-| Part | Required | Description |
-|------|----------|-------------|
-| Icon | No | Visual indicator (slot) |
-| Title | Yes | Heading text |
-| Description | No | Supporting text |
-| Action | No | CTA button (slot) |
+| Part        | Required | Description             |
+| ----------- | -------- | ----------------------- |
+| Icon        | No       | Visual indicator (slot) |
+| Title       | Yes      | Heading text            |
+| Description | No       | Supporting text         |
+| Action      | No       | CTA button (slot)       |
 
 ## Implementation Notes
 

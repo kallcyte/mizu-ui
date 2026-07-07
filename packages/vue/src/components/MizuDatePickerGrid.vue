@@ -22,11 +22,7 @@ const gridClasses = computed(() => {
 </script>
 
 <template>
-  <DatePickerGrid
-    :class="gridClasses"
-    :as-child="asChild"
-    :as="as"
-  >
+  <DatePickerGrid :class="gridClasses" :as-child="asChild" :as="as">
     <slot />
   </DatePickerGrid>
 </template>

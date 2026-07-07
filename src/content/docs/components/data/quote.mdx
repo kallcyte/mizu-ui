@@ -3,7 +3,7 @@ title: Quote
 description: A block quotation for displaying cited or highlighted text.
 ---
 
-import QuoteDemo from '../../../../components/docs/QuoteDemo.vue';
+import QuoteDemo from "../../../../components/docs/QuoteDemo.vue";
 
 A quote is a styled `<blockquote>` element for displaying cited passages, testimonials, or highlighted text. Use it to visually distinguish quoted content from the surrounding body copy.
 
@@ -15,15 +15,15 @@ A quote is a styled `<blockquote>` element for displaying cited passages, testim
 
 ### Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `cite` | `string` | `undefined` | Source attribution text shown in the footer |
-| `accent` | `boolean` | `false` | Enables the accent variant (colored left border + tinted background) |
+| Prop     | Type      | Default     | Description                                                          |
+| -------- | --------- | ----------- | -------------------------------------------------------------------- |
+| `cite`   | `string`  | `undefined` | Source attribution text shown in the footer                          |
+| `accent` | `boolean` | `false`     | Enables the accent variant (colored left border + tinted background) |
 
 ### Slots
 
-| Slot | Description |
-|------|-------------|
+| Slot    | Description        |
+| ------- | ------------------ |
 | default | The quoted content |
 
 ### Example Usage
@@ -31,9 +31,7 @@ A quote is a styled `<blockquote>` element for displaying cited passages, testim
 ```vue
 <template>
   <!-- Basic -->
-  <MizuQuote>
-    Design is not just what it looks like and feels like.
-  </MizuQuote>
+  <MizuQuote> Design is not just what it looks like and feels like. </MizuQuote>
 
   <!-- With citation -->
   <MizuQuote cite="Steve Jobs">
@@ -57,42 +55,40 @@ A quote is a styled `<blockquote>` element for displaying cited passages, testim
 
 ### CSS Custom Properties
 
-| Token | Default | Description |
-|-------|---------|-------------|
-| `--color-surface-muted` | `#F3F4F6` (light) / `#1E2030` (dark) | Default left border color |
-| `--color-brand-ycp` | `#007FFF` (light) / `#93C5FD` (dark) | Accent left border color |
-| `--color-brand-ycp-subtle` | `#E0F2FE` (light) / `#1E3A5F` (dark) | Accent background |
-| `--color-foreground-primary` | `#1B1B1D` (light) / `#F1F5F9` (dark) | Content text color |
-| `--color-foreground-tertiary` | `#9CA3AF` (light) / `#6B7280` (dark) | Citation text color |
+| Token                         | Default                              | Description               |
+| ----------------------------- | ------------------------------------ | ------------------------- |
+| `--color-surface-muted`       | `#F3F4F6` (light) / `#1E2030` (dark) | Default left border color |
+| `--color-brand-ycp`           | `#007FFF` (light) / `#93C5FD` (dark) | Accent left border color  |
+| `--color-brand-ycp-subtle`    | `#E0F2FE` (light) / `#1E3A5F` (dark) | Accent background         |
+| `--color-foreground-primary`  | `#1B1B1D` (light) / `#F1F5F9` (dark) | Content text color        |
+| `--color-foreground-tertiary` | `#9CA3AF` (light) / `#6B7280` (dark) | Citation text color       |
 
 ### Sizing
 
-| Element | Font Size | Weight | Line Height | Style |
-|---------|-----------|--------|-------------|-------|
-| Content | 14px (body) | normal | 1.5 | normal |
-| Citation | 12px (caption) | normal | 1.4 | italic |
+| Element  | Font Size      | Weight | Line Height | Style  |
+| -------- | -------------- | ------ | ----------- | ------ |
+| Content  | 14px (body)    | normal | 1.5         | normal |
+| Citation | 12px (caption) | normal | 1.4         | italic |
 
 ### Shape
 
-| Element | Value |
-|---------|-------|
-| Left border width | 3px |
-| Border radius | 0 |
-| Padding | 12px top/bottom, 16px left/right |
-| Content-to-citation gap | 8px |
+| Element                 | Value                            |
+| ----------------------- | -------------------------------- |
+| Left border width       | 3px                              |
+| Border radius           | 0                                |
+| Padding                 | 12px top/bottom, 16px left/right |
+| Content-to-citation gap | 8px                              |
 
 ### Accessibility
 
-| Criterion | Implementation |
-|-----------|----------------|
-| Semantic element | Native `<blockquote>` element |
-| Citation | `<cite>` element inside `<footer>` for machine-readable source attribution |
+| Criterion        | Implementation                                                             |
+| ---------------- | -------------------------------------------------------------------------- |
+| Semantic element | Native `<blockquote>` element                                              |
+| Citation         | `<cite>` element inside `<footer>` for machine-readable source attribution |
 
 ```html
 <blockquote class="mizu-quote">
-  <div class="mizu-quote__content">
-    Quoted text goes here.
-  </div>
+  <div class="mizu-quote__content">Quoted text goes here.</div>
   <footer class="mizu-quote__cite">
     <cite>Source Name</cite>
   </footer>
@@ -103,10 +99,10 @@ A quote is a styled `<blockquote>` element for displaying cited passages, testim
 
 A quote consists of two parts:
 
-| Part | Required | Description |
-|------|----------|-------------|
-| Content | Yes | The quoted text (default slot) |
-| Citation | No | The source attribution footer |
+| Part     | Required | Description                    |
+| -------- | -------- | ------------------------------ |
+| Content  | Yes      | The quoted text (default slot) |
+| Citation | No       | The source attribution footer  |
 
 ## Implementation Notes
 

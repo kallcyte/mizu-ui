@@ -22,11 +22,7 @@ const triggerClasses = computed(() => {
 </script>
 
 <template>
-  <AccordionTrigger
-    :class="triggerClasses"
-    :as-child="asChild"
-    :as="as"
-  >
+  <AccordionTrigger :class="triggerClasses" :as-child="asChild" :as="as">
     <span class="mizu-accordion__trigger-content">
       <slot />
     </span>

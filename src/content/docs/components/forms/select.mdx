@@ -3,7 +3,7 @@ title: Select
 description: A dropdown select for choosing one option from a list.
 ---
 
-import SelectDemo from '../../../../components/docs/SelectDemo.vue';
+import SelectDemo from "../../../../components/docs/SelectDemo.vue";
 
 A select displays a dropdown list of options and allows users to choose one. Use it when there are many options or space is limited.
 
@@ -15,70 +15,70 @@ A select displays a dropdown list of options and allows users to choose one. Use
 
 ### Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `modelValue` | `string` | `''` | v-model selected value |
-| `placeholder` | `string` | `''` | Placeholder option text |
-| `options` | `SelectOption[]` | `[]` | Array of `{ value, label, disabled? }` |
-| `disabled` | `boolean` | `false` | Disables the select |
-| `error` | `boolean` | `false` | Shows error state |
-| `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | Controls height and padding |
-| `name` | `string` | `undefined` | Form field name |
-| `required` | `boolean` | `false` | Required form validation |
-| `label` | `string` | `undefined` | Visible label text |
-| `helperText` | `string` | `undefined` | Helper or error message text |
+| Prop          | Type                   | Default     | Description                            |
+| ------------- | ---------------------- | ----------- | -------------------------------------- |
+| `modelValue`  | `string`               | `''`        | v-model selected value                 |
+| `placeholder` | `string`               | `''`        | Placeholder option text                |
+| `options`     | `SelectOption[]`       | `[]`        | Array of `{ value, label, disabled? }` |
+| `disabled`    | `boolean`              | `false`     | Disables the select                    |
+| `error`       | `boolean`              | `false`     | Shows error state                      |
+| `size`        | `'sm' \| 'md' \| 'lg'` | `'md'`      | Controls height and padding            |
+| `name`        | `string`               | `undefined` | Form field name                        |
+| `required`    | `boolean`              | `false`     | Required form validation               |
+| `label`       | `string`               | `undefined` | Visible label text                     |
+| `helperText`  | `string`               | `undefined` | Helper or error message text           |
 
 ### Events
 
-| Event | Payload | Description |
-|-------|---------|-------------|
-| `update:modelValue` | `string` | Emitted on change with selected value |
-| `focus` | `FocusEvent` | Emitted on focus |
-| `blur` | `FocusEvent` | Emitted on blur |
+| Event               | Payload      | Description                           |
+| ------------------- | ------------ | ------------------------------------- |
+| `update:modelValue` | `string`     | Emitted on change with selected value |
+| `focus`             | `FocusEvent` | Emitted on focus                      |
+| `blur`              | `FocusEvent` | Emitted on blur                       |
 
 ## Theme
 
 ### CSS Custom Properties
 
-| Token | Value | Usage |
-|-------|-------|-------|
-| `--color-surface-muted` | #F3F4F6 / #1E2030 | Border and disabled background |
-| `--color-surface-base` | #FFFFFF / #0D0E12 | Select background |
-| `--color-foreground-primary` | #1B1B1D / #F9FAFB | Text color |
-| `--color-foreground-tertiary` | #9CA3AF / #4B5563 | Chevron color |
-| `--color-brand-ycp` | #001C44 | Focus border and shadow |
-| `--color-feedback-error-base` | #DC2626 | Error state border |
-| `--color-foreground-secondary` | #4B5563 | Helper text |
+| Token                          | Value             | Usage                          |
+| ------------------------------ | ----------------- | ------------------------------ |
+| `--color-surface-muted`        | #F3F4F6 / #1E2030 | Border and disabled background |
+| `--color-surface-base`         | #FFFFFF / #0D0E12 | Select background              |
+| `--color-foreground-primary`   | #1B1B1D / #F9FAFB | Text color                     |
+| `--color-foreground-tertiary`  | #9CA3AF / #4B5563 | Chevron color                  |
+| `--color-brand-ycp`            | #001C44           | Focus border and shadow        |
+| `--color-feedback-error-base`  | #DC2626           | Error state border             |
+| `--color-foreground-secondary` | #4B5563           | Helper text                    |
 
 ### Sizing
 
 | Size | Height | Padding (left) | Padding (right for chevron) | Border Radius |
-|------|--------|----------------|------------------------------|---------------|
-| SM | 28px | 8px | 28px | 4px |
-| MD | 36px | 10px | 32px | 6px |
-| LG | 40px | 10px | 36px | 6px |
+| ---- | ------ | -------------- | --------------------------- | ------------- |
+| SM   | 28px   | 8px            | 28px                        | 4px           |
+| MD   | 36px   | 10px           | 32px                        | 6px           |
+| LG   | 40px   | 10px           | 36px                        | 6px           |
 
 ### Accessibility
 
-| Criterion | Implementation |
-|-----------|----------------|
-| Role | Native `<select>` element |
-| Label | `<label>` with `for`/`id` association |
-| Required | `aria-required` + visible `*` indicator |
-| Error | `aria-invalid` + `aria-describedby` linking to helper text |
-| Disabled | `aria-disabled` attribute |
+| Criterion | Implementation                                             |
+| --------- | ---------------------------------------------------------- |
+| Role      | Native `<select>` element                                  |
+| Label     | `<label>` with `for`/`id` association                      |
+| Required  | `aria-required` + visible `*` indicator                    |
+| Error     | `aria-invalid` + `aria-describedby` linking to helper text |
+| Disabled  | `aria-disabled` attribute                                  |
 
 ## Anatomy
 
 A select consists of up to five parts:
 
-| Part | Required | Description |
-|------|----------|-------------|
-| Label | No | Descriptive text above the select |
-| Container | Yes | The visible trigger element |
-| Chevron | Yes | Dropdown indicator icon |
-| Options | Yes | The `<option>` elements in the native dropdown |
-| Helper text | No | Contextual help or error message below |
+| Part        | Required | Description                                    |
+| ----------- | -------- | ---------------------------------------------- |
+| Label       | No       | Descriptive text above the select              |
+| Container   | Yes      | The visible trigger element                    |
+| Chevron     | Yes      | Dropdown indicator icon                        |
+| Options     | Yes      | The `<option>` elements in the native dropdown |
+| Helper text | No       | Contextual help or error message below         |
 
 ## Implementation Notes
 

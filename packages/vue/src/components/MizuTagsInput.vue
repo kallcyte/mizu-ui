@@ -159,7 +159,10 @@ function splitSeparators(text: string): string[] {
   if (seps.length === 0) return [text];
   const escaped = seps.map((s) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")).join("|");
   const regex = new RegExp(escaped, "g");
-  return text.split(regex).map((p) => p.trim()).filter((p) => p !== "");
+  return text
+    .split(regex)
+    .map((p) => p.trim())
+    .filter((p) => p !== "");
 }
 
 function handleInput(event: Event) {
@@ -251,11 +254,7 @@ function handleContainerClick(event: MouseEvent) {
 
 <template>
   <div :class="wrapperClasses">
-    <label
-      v-if="label"
-      :for="inputId"
-      :class="['mizu-input-label', `mizu-input-label--${size}`]"
-    >
+    <label v-if="label" :for="inputId" :class="['mizu-input-label', `mizu-input-label--${size}`]">
       {{ label }}
       <span v-if="required" class="mizu-input-label__required" aria-hidden="true">*</span>
     </label>
@@ -371,9 +370,15 @@ function handleContainerClick(event: MouseEvent) {
   background: transparent;
 }
 
-.mizu-tags-input__field--sm { font-size: 12px; }
-.mizu-tags-input__field--md { font-size: 12px; }
-.mizu-tags-input__field--lg { font-size: 14px; }
+.mizu-tags-input__field--sm {
+  font-size: 12px;
+}
+.mizu-tags-input__field--md {
+  font-size: 12px;
+}
+.mizu-tags-input__field--lg {
+  font-size: 14px;
+}
 
 .mizu-tags-input__field--disabled {
   cursor: not-allowed;
@@ -395,8 +400,15 @@ function handleContainerClick(event: MouseEvent) {
 }
 
 @keyframes mizu-tags-input-shake {
-  0%, 100% { transform: translateX(0); }
-  25% { transform: translateX(-3px); }
-  75% { transform: translateX(3px); }
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-3px);
+  }
+  75% {
+    transform: translateX(3px);
+  }
 }
 </style>

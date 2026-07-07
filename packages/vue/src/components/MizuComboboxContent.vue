@@ -96,7 +96,9 @@ const contentStyle = computed(() => {
   padding: 4px;
   background-color: var(--color-surface-base);
   color: var(--color-foreground-primary);
-  box-shadow: 0 10px 38px -10px rgba(0, 0, 0, 0.15), 0 6px 20px -14px rgba(0, 0, 0, 0.2);
+  box-shadow:
+    0 10px 38px -10px rgba(0, 0, 0, 0.15),
+    0 6px 20px -14px rgba(0, 0, 0, 0.2);
   font-family: inherit;
   transform-origin: var(--reka-combobox-content-transform-origin);
   margin-top: 0;

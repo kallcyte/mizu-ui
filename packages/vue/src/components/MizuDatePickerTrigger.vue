@@ -22,11 +22,7 @@ const triggerClasses = computed(() => {
 </script>
 
 <template>
-  <DatePickerTrigger
-    :class="triggerClasses"
-    :as-child="asChild"
-    :as="as"
-  >
+  <DatePickerTrigger :class="triggerClasses" :as-child="asChild" :as="as">
     <slot />
   </DatePickerTrigger>
 </template>

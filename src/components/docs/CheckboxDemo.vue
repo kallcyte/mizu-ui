@@ -30,24 +30,20 @@ const smsEnabled = ref(false);
 const pushEnabled = ref(true);
 const channelRefs = [emailEnabled, smsEnabled, pushEnabled];
 
-const selectedCount = computed(
-    () => channelRefs.filter((c) => c.value === true).length,
-);
-const allChannelsSelected = computed(
-    () => selectedCount.value === channelRefs.length,
-);
+const selectedCount = computed(() => channelRefs.filter((c) => c.value === true).length);
+const allChannelsSelected = computed(() => selectedCount.value === channelRefs.length);
 const someChannelsSelected = computed(() => selectedCount.value > 0);
 
 const channelsParentState = computed<boolean | "indeterminate">({
-    get() {
-        if (allChannelsSelected.value) return true;
-        if (someChannelsSelected.value) return "indeterminate";
-        return false;
-    },
-    set(value) {
-        const next = value === true;
-        for (const c of channelRefs) c.value = next;
-    },
+  get() {
+    if (allChannelsSelected.value) return true;
+    if (someChannelsSelected.value) return "indeterminate";
+    return false;
+  },
+  set(value) {
+    const next = value === true;
+    for (const c of channelRefs) c.value = next;
+  },
 });
 
 const customString = ref("no");
@@ -60,8 +56,7 @@ const acceptTermsTrue = computed(() => customString.value === "yes");
 const permissionValue = computed(() => customNumber.value);
 
 function toggleIndeterminate() {
-    selectAllState.value =
-        selectAllState.value === "indeterminate" ? false : "indeterminate";
+  selectAllState.value = selectAllState.value === "indeterminate" ? false : "indeterminate";
 }
 
 const basicCode = `<MizuCheckbox v-model="checked" />
@@ -191,20 +186,9 @@ const loginFormCode = `<MizuCheckbox
       <h3>With Form Labels</h3>
       <CodeCollapsible :code="formLabelsCode">
         <div class="checkbox-stack">
-          <MizuCheckbox
-            v-model="formTerms"
-            required
-            label="I accept the terms and conditions"
-          />
-          <MizuCheckbox
-            v-model="formNewsletter"
-            required
-            label="Subscribe to the newsletter"
-          />
-          <MizuCheckbox
-            v-model="formUpdates"
-            label="Receive product updates by email"
-          />
+          <MizuCheckbox v-model="formTerms" required label="I accept the terms and conditions" />
+          <MizuCheckbox v-model="formNewsletter" required label="Subscribe to the newsletter" />
+          <MizuCheckbox v-model="formUpdates" label="Receive product updates by email" />
         </div>
       </CodeCollapsible>
     </section>
@@ -213,10 +197,7 @@ const loginFormCode = `<MizuCheckbox
       <h3>Indeterminate</h3>
       <CodeCollapsible :code="indeterminateCode">
         <div class="checkbox-stack">
-          <MizuCheckbox
-            v-model="selectAllState"
-            label="Select all items in this list"
-          />
+          <MizuCheckbox v-model="selectAllState" label="Select all items in this list" />
           <p class="demo-text">
             State: <code>{{ selectAllState }}</code>
           </p>
@@ -231,23 +212,11 @@ const loginFormCode = `<MizuCheckbox
       <h3>Select All with Children</h3>
       <CodeCollapsible :code="selectAllCode">
         <div class="checkbox-stack">
-          <MizuCheckbox
-            v-model="channelsParentState"
-            label="Notification preferences"
-          />
+          <MizuCheckbox v-model="channelsParentState" label="Notification preferences" />
           <div class="checkbox-children">
-            <MizuCheckbox
-              v-model="emailEnabled"
-              label="EMAIL"
-            />
-            <MizuCheckbox
-              v-model="smsEnabled"
-              label="SMS"
-            />
-            <MizuCheckbox
-              v-model="pushEnabled"
-              label="PUSH"
-            />
+            <MizuCheckbox v-model="emailEnabled" label="EMAIL" />
+            <MizuCheckbox v-model="smsEnabled" label="SMS" />
+            <MizuCheckbox v-model="pushEnabled" label="PUSH" />
           </div>
           <p class="demo-text">
             Selected: <code>{{ selectedCount }}</code> of
@@ -268,7 +237,9 @@ const loginFormCode = `<MizuCheckbox
             label="Accept terms"
           />
           <p class="demo-text">
-            Value: <code>{{ customString }}</code> (resolved boolean: <code>{{ acceptTermsTrue }}</code>)
+            Value: <code>{{ customString }}</code> (resolved boolean:
+            <code>{{ acceptTermsTrue }}</code
+            >)
           </p>
           <MizuCheckbox
             v-model="customNumber"
@@ -287,10 +258,7 @@ const loginFormCode = `<MizuCheckbox
       <h3>Login Form Example</h3>
       <CodeCollapsible :code="loginFormCode">
         <div class="checkbox-stack">
-          <MizuCheckbox
-            v-model="keepSignedIn"
-            label="Keep me signed in on this device"
-          />
+          <MizuCheckbox v-model="keepSignedIn" label="Keep me signed in on this device" />
           <MizuCheckbox
             v-model="agreeToTerms"
             required

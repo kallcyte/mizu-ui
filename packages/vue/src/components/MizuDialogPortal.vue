@@ -24,12 +24,7 @@ const portalClasses = computed(() => {
 </script>
 
 <template>
-  <DialogPortal
-    :class="portalClasses"
-    :to="to"
-    :disabled="disabled"
-    :force-mount="forceMount"
-  >
+  <DialogPortal :class="portalClasses" :to="to" :disabled="disabled" :force-mount="forceMount">
     <slot />
   </DialogPortal>
 </template>

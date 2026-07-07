@@ -13,11 +13,7 @@ const attrs = useAttrs();
 </script>
 
 <template>
-  <SliderThumb
-    :class="['mizu-slider__thumb', attrs.class]"
-    :as-child="asChild"
-    :as="as"
-  >
+  <SliderThumb :class="['mizu-slider__thumb', attrs.class]" :as-child="asChild" :as="as">
     <slot />
   </SliderThumb>
 </template>

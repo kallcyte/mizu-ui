@@ -12,7 +12,10 @@
     "build:vue": "nx run @mizu/vue:build",
     "dev:docs": "astro dev",
     "build:docs": "astro build",
-    "lint": "nx run-many -t lint",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
     "clean": "node -e \"fs.rmSync('.astro',{recursive:true,force:true})\" && nx run-many -t clean",
     "preview": "astro preview"
   },
@@ -34,11 +37,18 @@
     "zod": "^4.4.3"
   },
   "devDependencies": {
+    "@eslint/js": "^10.0.1",
     "@tailwindcss/vite": "^4.3.2",
     "concurrently": "^10.0.3",
     "cross-env": "^10.1.0",
+    "eslint": "^10.6.0",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-vue": "^10.9.2",
+    "globals": "^17.7.0",
     "nx": "^23.0.1",
     "playwright": "^1.61.1",
-    "tailwindcss": "^4.3.2"
+    "prettier": "^3.9.4",
+    "tailwindcss": "^4.3.2",
+    "typescript-eslint": "^8.62.1"
   }
 }

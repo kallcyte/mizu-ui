@@ -12,10 +12,7 @@ const props = withDefaults(defineProps<CardProps>(), {
 const attrs = useAttrs();
 
 const cardClasses = computed(() => {
-  const classes = [
-    "mizu-card",
-    `mizu-card--spacing-${props.spacing}`,
-  ];
+  const classes = ["mizu-card", `mizu-card--spacing-${props.spacing}`];
   if (attrs.class) classes.push(attrs.class as string);
   return classes.join(" ");
 });

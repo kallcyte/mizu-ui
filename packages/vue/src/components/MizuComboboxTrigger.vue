@@ -22,11 +22,7 @@ const triggerClasses = computed(() => {
 </script>
 
 <template>
-  <ComboboxTrigger
-    :class="triggerClasses"
-    :as-child="asChild"
-    :as="as"
-  >
+  <ComboboxTrigger :class="triggerClasses" :as-child="asChild" :as="as">
     <slot />
   </ComboboxTrigger>
 </template>

@@ -53,7 +53,9 @@ const rootClasses = computed(() => {
     :name="name"
     :ignore-filter="ignoreFilter"
     :by="by"
-    @update:model-value="(v: AcceptableValue | AcceptableValue[] | undefined) => emit('update:modelValue', v)"
+    @update:model-value="
+      (v: AcceptableValue | AcceptableValue[] | undefined) => emit('update:modelValue', v)
+    "
     @update:open="(v: boolean) => emit('update:open', v)"
   >
     <slot />

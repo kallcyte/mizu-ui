@@ -41,7 +41,11 @@ const displayText = computed(() => {
 });
 
 const progressClasses = computed(() => {
-  const classes = ["mizu-progress", `mizu-progress--${props.size}`, `mizu-progress--${props.variant}`];
+  const classes = [
+    "mizu-progress",
+    `mizu-progress--${props.size}`,
+    `mizu-progress--${props.variant}`,
+  ];
 
   if (attrs.class) classes.push(attrs.class as string);
 
@@ -63,10 +67,7 @@ const indicatorStyle = computed(() => {
       :get-value-text="getValueText"
       @update:model-value="(value) => emit('update:modelValue', (value ?? null) as number | null)"
     >
-      <ProgressIndicator
-        class="mizu-progress__indicator"
-        :style="indicatorStyle"
-      />
+      <ProgressIndicator class="mizu-progress__indicator" :style="indicatorStyle" />
     </ProgressRoot>
     <span v-if="showLabel" class="mizu-progress__label">{{ displayText }}</span>
   </div>
@@ -85,9 +86,15 @@ const indicatorStyle = computed(() => {
   background-color: var(--color-surface-muted);
 }
 
-.mizu-progress--sm { height: 4px; }
-.mizu-progress--md { height: 8px; }
-.mizu-progress--lg { height: 12px; }
+.mizu-progress--sm {
+  height: 4px;
+}
+.mizu-progress--md {
+  height: 8px;
+}
+.mizu-progress--lg {
+  height: 12px;
+}
 
 .mizu-progress__indicator {
   @apply h-full w-full;
@@ -140,7 +147,16 @@ const indicatorStyle = computed(() => {
   text-align: right;
 }
 
-.mizu-progress-wrapper--sm .mizu-progress__label { font-size: 10px; min-width: 28px; }
-.mizu-progress-wrapper--md .mizu-progress__label { font-size: 12px; min-width: 32px; }
-.mizu-progress-wrapper--lg .mizu-progress__label { font-size: 13px; min-width: 36px; }
+.mizu-progress-wrapper--sm .mizu-progress__label {
+  font-size: 10px;
+  min-width: 28px;
+}
+.mizu-progress-wrapper--md .mizu-progress__label {
+  font-size: 12px;
+  min-width: 32px;
+}
+.mizu-progress-wrapper--lg .mizu-progress__label {
+  font-size: 13px;
+  min-width: 36px;
+}
 </style>

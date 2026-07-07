@@ -13,10 +13,7 @@ withDefaults(defineProps<PopoverCloseProps>(), {
 </script>
 
 <template>
-  <PopoverClose
-    :as-child="asChild"
-    :as="as"
-  >
+  <PopoverClose :as-child="asChild" :as="as">
     <slot />
   </PopoverClose>
 </template>

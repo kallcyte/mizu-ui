@@ -52,10 +52,7 @@ const attrs = useAttrs();
 provide(MizuDialogDismissibleKey, props.dismissible);
 
 const contentClasses = computed(() => {
-  const classes = [
-    "mizu-dialog__content",
-    `mizu-dialog__content--${props.size}`,
-  ];
+  const classes = ["mizu-dialog__content", `mizu-dialog__content--${props.size}`];
   if (props.fullscreen) classes.push("mizu-dialog__content--fullscreen");
   if (props.scrollable) classes.push("mizu-dialog__content--scrollable");
   if (!props.transition) classes.push("mizu-dialog__content--no-transition");

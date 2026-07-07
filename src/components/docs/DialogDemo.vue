@@ -215,8 +215,12 @@ const complexCode = `<MizuDialogRoot v-model:open="complexOpen">
                 </MizuDialogDescription>
               </MizuDialogBody>
               <MizuDialogFooter>
-                <MizuButton variant="ghost" size="md" class="w-max" @click="basicOpen = false">Cancel</MizuButton>
-                <MizuButton variant="accent" size="md" class="w-max" @click="basicOpen = false">Delete</MizuButton>
+                <MizuButton variant="ghost" size="md" class="w-max" @click="basicOpen = false"
+                  >Cancel</MizuButton
+                >
+                <MizuButton variant="accent" size="md" class="w-max" @click="basicOpen = false"
+                  >Delete</MizuButton
+                >
               </MizuDialogFooter>
             </MizuDialogContent>
           </MizuDialogPortal>
@@ -261,16 +265,20 @@ const complexCode = `<MizuDialogRoot v-model:open="complexOpen">
               <MizuDialogClose />
               <MizuDialogHeader>
                 <MizuDialogTitle>Notification Settings</MizuDialogTitle>
-                <MizuDialogDescription>Configure your email notification preferences.</MizuDialogDescription>
+                <MizuDialogDescription
+                  >Configure your email notification preferences.</MizuDialogDescription
+                >
               </MizuDialogHeader>
               <MizuDialogBody>
                 <p class="body-text">
-                  Use <code>MizuDialogClose</code> for an X icon close button. It renders a close button
-                  at the top-right corner of the dialog content panel.
+                  Use <code>MizuDialogClose</code> for an X icon close button. It renders a close
+                  button at the top-right corner of the dialog content panel.
                 </p>
               </MizuDialogBody>
               <MizuDialogFooter>
-                <MizuButton variant="primary" size="md" class="w-max" @click="closeIconOpen = false">Save Changes</MizuButton>
+                <MizuButton variant="primary" size="md" class="w-max" @click="closeIconOpen = false"
+                  >Save Changes</MizuButton
+                >
               </MizuDialogFooter>
             </MizuDialogContent>
           </MizuDialogPortal>
@@ -281,7 +289,14 @@ const complexCode = `<MizuDialogRoot v-model:open="complexOpen">
     <section class="example-section">
       <h3>Confirm with Prompt</h3>
       <CodeCollapsible :code="confirmCode">
-        <MizuDialogRoot v-model:open="formOpen" @update:open="(v: boolean) => { if (v) deleteInput = '' }">
+        <MizuDialogRoot
+          v-model:open="formOpen"
+          @update:open="
+            (v: boolean) => {
+              if (v) deleteInput = '';
+            }
+          "
+        >
           <MizuDialogTrigger as-child>
             <MizuButton variant="accent" size="md" class="w-max">Delete Invoice</MizuButton>
           </MizuDialogTrigger>
@@ -303,8 +318,17 @@ const complexCode = `<MizuDialogRoot v-model:open="complexOpen">
                 />
               </MizuDialogBody>
               <MizuDialogFooter>
-                <MizuButton variant="ghost" size="md" class="w-max" @click="formOpen = false">Cancel</MizuButton>
-                <MizuButton variant="error" size="md" class="w-max" :disabled="!isDeleteValid" @click="formOpen = false">Delete</MizuButton>
+                <MizuButton variant="ghost" size="md" class="w-max" @click="formOpen = false"
+                  >Cancel</MizuButton
+                >
+                <MizuButton
+                  variant="error"
+                  size="md"
+                  class="w-max"
+                  :disabled="!isDeleteValid"
+                  @click="formOpen = false"
+                  >Delete</MizuButton
+                >
               </MizuDialogFooter>
             </MizuDialogContent>
           </MizuDialogPortal>
@@ -328,14 +352,17 @@ const complexCode = `<MizuDialogRoot v-model:open="complexOpen">
                   Full breakdown of charges and payment terms.
                 </MizuDialogDescription>
               </MizuDialogHeader>
-              <MizuDialogBody style="max-height: 300px;">
+              <MizuDialogBody style="max-height: 300px">
                 <div class="detail-row">
                   <span class="detail-label">Item</span>
                   <span class="detail-value">Enterprise License (Annual)</span>
                 </div>
                 <div class="detail-row">
                   <span class="detail-label">Description</span>
-                  <span class="detail-value">Full-featured ERP platform including CRM, inventory, accounting, HR, and analytics modules.</span>
+                  <span class="detail-value"
+                    >Full-featured ERP platform including CRM, inventory, accounting, HR, and
+                    analytics modules.</span
+                  >
                 </div>
                 <div class="detail-row">
                   <span class="detail-label">Quantity</span>
@@ -377,15 +404,22 @@ const complexCode = `<MizuDialogRoot v-model:open="complexOpen">
                 </div>
                 <div class="detail-row">
                   <span class="detail-label">Billing Address</span>
-                  <span class="detail-value">123 Business Ave, Suite 400, San Francisco, CA 94105</span>
+                  <span class="detail-value"
+                    >123 Business Ave, Suite 400, San Francisco, CA 94105</span
+                  >
                 </div>
                 <div class="detail-row">
                   <span class="detail-label">Notes</span>
-                  <span class="detail-value">Payment via wire transfer. Please reference invoice number in the payment memo.</span>
+                  <span class="detail-value"
+                    >Payment via wire transfer. Please reference invoice number in the payment
+                    memo.</span
+                  >
                 </div>
               </MizuDialogBody>
               <MizuDialogFooter>
-                <MizuButton variant="ghost" size="md" class="w-max" @click="scrollOpen = false">Close</MizuButton>
+                <MizuButton variant="ghost" size="md" class="w-max" @click="scrollOpen = false"
+                  >Close</MizuButton
+                >
               </MizuDialogFooter>
             </MizuDialogContent>
           </MizuDialogPortal>
@@ -402,19 +436,25 @@ const complexCode = `<MizuDialogRoot v-model:open="complexOpen">
           </MizuDialogTrigger>
           <MizuDialogPortal>
             <MizuDialogOverlay />
-            <MizuDialogContent style="max-width: 600px;">
+            <MizuDialogContent style="max-width: 600px">
               <MizuDialogHeader>
                 <MizuDialogTitle>Order Summary</MizuDialogTitle>
                 <MizuDialogDescription>Review your order before submitting.</MizuDialogDescription>
               </MizuDialogHeader>
               <MizuDialogBody>
                 <p class="body-text">
-                  The dialog width can be customized via the <code>style</code> prop on <code>MizuDialogContent</code>. This dialog has <code>max-width: 600px</code> instead of the default 450px.
+                  The dialog width can be customized via the <code>style</code> prop on
+                  <code>MizuDialogContent</code>. This dialog has
+                  <code>max-width: 600px</code> instead of the default 450px.
                 </p>
               </MizuDialogBody>
               <MizuDialogFooter>
-                <MizuButton variant="ghost" size="md" class="w-max" @click="sizedOpen = false">Cancel</MizuButton>
-                <MizuButton variant="primary" size="md" class="w-max" @click="sizedOpen = false">Submit Order</MizuButton>
+                <MizuButton variant="ghost" size="md" class="w-max" @click="sizedOpen = false"
+                  >Cancel</MizuButton
+                >
+                <MizuButton variant="primary" size="md" class="w-max" @click="sizedOpen = false"
+                  >Submit Order</MizuButton
+                >
               </MizuDialogFooter>
             </MizuDialogContent>
           </MizuDialogPortal>
@@ -431,17 +471,27 @@ const complexCode = `<MizuDialogRoot v-model:open="complexOpen">
           </MizuDialogTrigger>
           <MizuDialogPortal>
             <MizuDialogOverlay />
-            <MizuDialogContent style="max-width: 560px;">
+            <MizuDialogContent style="max-width: 560px">
               <MizuDialogClose />
               <MizuDialogHeader>
                 <MizuDialogTitle>Project Settings</MizuDialogTitle>
-                <MizuDialogDescription>Manage project details, team access, and advanced options.</MizuDialogDescription>
+                <MizuDialogDescription
+                  >Manage project details, team access, and advanced options.</MizuDialogDescription
+                >
               </MizuDialogHeader>
-              <MizuDialogBody style="max-height: 400px;">
+              <MizuDialogBody style="max-height: 400px">
                 <section class="settings-section">
                   <h4 class="settings-heading">General</h4>
-                  <MizuInput label="Project Name" placeholder="e.g. Mizu Design System" model-value="Mizu Design System" />
-                  <MizuInput label="Description" placeholder="Brief description of the project" model-value="Enterprise design system and component library" />
+                  <MizuInput
+                    label="Project Name"
+                    placeholder="e.g. Mizu Design System"
+                    model-value="Mizu Design System"
+                  />
+                  <MizuInput
+                    label="Description"
+                    placeholder="Brief description of the project"
+                    model-value="Enterprise design system and component library"
+                  />
                 </section>
                 <div class="settings-divider" />
                 <section class="settings-section">
@@ -465,12 +515,18 @@ const complexCode = `<MizuDialogRoot v-model:open="complexOpen">
                   <p class="settings-hint">
                     Once you delete this project, there is no going back. Please be certain.
                   </p>
-                  <MizuButton variant="error" size="md" class="w-max" @click="complexOpen = false">Delete Project</MizuButton>
+                  <MizuButton variant="error" size="md" class="w-max" @click="complexOpen = false"
+                    >Delete Project</MizuButton
+                  >
                 </section>
               </MizuDialogBody>
               <MizuDialogFooter>
-                <MizuButton variant="ghost" size="md" class="w-max" @click="complexOpen = false">Cancel</MizuButton>
-                <MizuButton variant="primary" size="md" class="w-max" @click="complexOpen = false">Save Changes</MizuButton>
+                <MizuButton variant="ghost" size="md" class="w-max" @click="complexOpen = false"
+                  >Cancel</MizuButton
+                >
+                <MizuButton variant="primary" size="md" class="w-max" @click="complexOpen = false"
+                  >Save Changes</MizuButton
+                >
               </MizuDialogFooter>
             </MizuDialogContent>
           </MizuDialogPortal>
@@ -488,7 +544,9 @@ const complexCode = `<MizuDialogRoot v-model:open="complexOpen">
   gap: 32px;
   font-family: inherit;
 }
-.dialog-examples :deep(*) { margin: 0; }
+.dialog-examples :deep(*) {
+  margin: 0;
+}
 .example-section {
   all: revert;
   display: flex;

@@ -22,11 +22,7 @@ const headingClasses = computed(() => {
 </script>
 
 <template>
-  <DatePickerHeading
-    :class="headingClasses"
-    :as-child="asChild"
-    :as="as"
-  >
+  <DatePickerHeading :class="headingClasses" :as-child="asChild" :as="as">
     <slot />
   </DatePickerHeading>
 </template>

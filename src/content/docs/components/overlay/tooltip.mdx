@@ -3,7 +3,7 @@ title: Tooltip
 description: A popup that displays information related to an element on hover or focus.
 ---
 
-import TooltipDemo from '../../../../components/docs/TooltipDemo.vue';
+import TooltipDemo from "../../../../components/docs/TooltipDemo.vue";
 
 A tooltip displays contextual information when a user hovers over or focuses an element. Use it for labels, descriptions, or hints that supplement the UI without cluttering it.
 
@@ -15,54 +15,60 @@ A tooltip displays contextual information when a user hovers over or focuses an 
 
 ### MizuTooltipProvider Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `delayDuration` | `number` | `700` | Delay before tooltip opens (ms) |
-| `skipDelayDuration` | `number` | `300` | Delay to skip when moving between tooltips (ms) |
-| `disableHoverableContent` | `boolean` | `false` | Disable hover on content |
-| `disabled` | `boolean` | `false` | Disable all tooltips |
+| Prop                      | Type      | Default | Description                                     |
+| ------------------------- | --------- | ------- | ----------------------------------------------- |
+| `delayDuration`           | `number`  | `700`   | Delay before tooltip opens (ms)                 |
+| `skipDelayDuration`       | `number`  | `300`   | Delay to skip when moving between tooltips (ms) |
+| `disableHoverableContent` | `boolean` | `false` | Disable hover on content                        |
+| `disabled`                | `boolean` | `false` | Disable all tooltips                            |
 
 ### MizuTooltipRoot Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `open` | `boolean` | `undefined` | Controlled open state (v-model:open) |
-| `defaultOpen` | `boolean` | `false` | Initial open state |
-| `delayDuration` | `number` | `undefined` | Override provider delay |
-| `disableHoverableContent` | `boolean` | `undefined` | Override provider setting |
-| `disableClosingTrigger` | `boolean` | `undefined` | Disable closing on trigger click |
-| `disabled` | `boolean` | `undefined` | Disable this tooltip |
+| Prop                      | Type      | Default     | Description                          |
+| ------------------------- | --------- | ----------- | ------------------------------------ |
+| `open`                    | `boolean` | `undefined` | Controlled open state (v-model:open) |
+| `defaultOpen`             | `boolean` | `false`     | Initial open state                   |
+| `delayDuration`           | `number`  | `undefined` | Override provider delay              |
+| `disableHoverableContent` | `boolean` | `undefined` | Override provider setting            |
+| `disableClosingTrigger`   | `boolean` | `undefined` | Disable closing on trigger click     |
+| `disabled`                | `boolean` | `undefined` | Disable this tooltip                 |
 
 ### MizuTooltipTrigger Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `asChild` | `boolean` | `false` | Merge props onto child element |
-| `as` | `string` | `"button"` | Element or component to render as |
+| Prop      | Type      | Default    | Description                       |
+| --------- | --------- | ---------- | --------------------------------- |
+| `asChild` | `boolean` | `false`    | Merge props onto child element    |
+| `as`      | `string`  | `"button"` | Element or component to render as |
 
 ### MizuTooltipContent Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `side` | `"top" \| "right" \| "bottom" \| "left"` | `"top"` | Preferred side |
-| `sideOffset` | `number` | `8` | Distance from trigger |
-| `align` | `"start" \| "center" \| "end"` | `"center"` | Alignment along trigger |
-| `alignOffset` | `number` | `0` | Offset from alignment |
-| `avoidCollisions` | `boolean` | `true` | Flip when colliding |
-| `collisionPadding` | `number` | `0` | Padding from viewport edge |
-| `showArrow` | `boolean` | `true` | Show arrow pointing to trigger |
+| Prop               | Type                                     | Default    | Description                    |
+| ------------------ | ---------------------------------------- | ---------- | ------------------------------ |
+| `side`             | `"top" \| "right" \| "bottom" \| "left"` | `"top"`    | Preferred side                 |
+| `sideOffset`       | `number`                                 | `8`        | Distance from trigger          |
+| `align`            | `"start" \| "center" \| "end"`           | `"center"` | Alignment along trigger        |
+| `alignOffset`      | `number`                                 | `0`        | Offset from alignment          |
+| `avoidCollisions`  | `boolean`                                | `true`     | Flip when colliding            |
+| `collisionPadding` | `number`                                 | `0`        | Padding from viewport edge     |
+| `showArrow`        | `boolean`                                | `true`     | Show arrow pointing to trigger |
 
 ### Events
 
-| Event | Payload | Description |
-|-------|---------|-------------|
+| Event         | Payload   | Description                     |
+| ------------- | --------- | ------------------------------- |
 | `update:open` | `boolean` | Emitted when open state changes |
 
 ### Example Usage
 
 ```vue
 <script setup>
-import { MizuTooltipProvider, MizuTooltipRoot, MizuTooltipTrigger, MizuTooltipContent, MizuButton } from "@mizu/vue";
+import {
+  MizuTooltipProvider,
+  MizuTooltipRoot,
+  MizuTooltipTrigger,
+  MizuTooltipContent,
+  MizuButton,
+} from "@mizu/vue";
 </script>
 
 <template>
@@ -83,26 +89,26 @@ import { MizuTooltipProvider, MizuTooltipRoot, MizuTooltipTrigger, MizuTooltipCo
 
 ### CSS Custom Properties
 
-| Token | Default | Description |
-|-------|---------|-------------|
+| Token                        | Default           | Description        |
+| ---------------------------- | ----------------- | ------------------ |
 | `--color-foreground-primary` | #111827 / #F1F5F9 | Tooltip background |
 | `--color-foreground-inverse` | #FFFFFF / #0F1117 | Tooltip text color |
 
 ### Transitions
 
-| Property | Duration | Easing |
-|----------|----------|--------|
-| opacity | 150ms | cubic-bezier(0.16, 1, 0.3, 1) |
-| transform | 150ms | cubic-bezier(0.16, 1, 0.3, 1) |
+| Property  | Duration | Easing                        |
+| --------- | -------- | ----------------------------- |
+| opacity   | 150ms    | cubic-bezier(0.16, 1, 0.3, 1) |
+| transform | 150ms    | cubic-bezier(0.16, 1, 0.3, 1) |
 
 ### Accessibility
 
-| Criterion | Implementation |
-|-----------|----------------|
-| Keyboard | Trigger receives focus; tooltip opens on focus |
-| Screen readers | Content associated with trigger via aria-describedby |
-| Hover | Tooltip appears on hover with configurable delay |
-| Dismiss | Tooltip closes when trigger loses focus or mouse leaves |
+| Criterion      | Implementation                                          |
+| -------------- | ------------------------------------------------------- |
+| Keyboard       | Trigger receives focus; tooltip opens on focus          |
+| Screen readers | Content associated with trigger via aria-describedby    |
+| Hover          | Tooltip appears on hover with configurable delay        |
+| Dismiss        | Tooltip closes when trigger loses focus or mouse leaves |
 
 #### ARIA Attributes
 
@@ -115,12 +121,12 @@ import { MizuTooltipProvider, MizuTooltipRoot, MizuTooltipTrigger, MizuTooltipCo
 
 A tooltip consists of four parts:
 
-| Part | Required | Description |
-|------|----------|-------------|
-| Provider | Yes | Wraps tooltips and manages shared delay/delay settings |
-| Root | Yes | Controls open state and behavior of a single tooltip |
-| Trigger | Yes | The element that activates the tooltip on hover/focus |
-| Content | Yes | The popup that displays the tooltip text |
+| Part     | Required | Description                                            |
+| -------- | -------- | ------------------------------------------------------ |
+| Provider | Yes      | Wraps tooltips and manages shared delay/delay settings |
+| Root     | Yes      | Controls open state and behavior of a single tooltip   |
+| Trigger  | Yes      | The element that activates the tooltip on hover/focus  |
+| Content  | Yes      | The popup that displays the tooltip text               |
 
 ## Composition
 

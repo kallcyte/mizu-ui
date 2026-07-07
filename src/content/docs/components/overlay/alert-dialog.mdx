@@ -3,7 +3,7 @@ title: AlertDialog
 description: Modal confirmation dialog for destructive and critical actions.
 ---
 
-import AlertDialogDemo from '../../../../components/docs/AlertDialogDemo.vue';
+import AlertDialogDemo from "../../../../components/docs/AlertDialogDemo.vue";
 
 An AlertDialog is a modal dialog that interrupts the user to confirm a critical or potentially destructive action. Unlike Dialog, it does not close on outside click and auto-focuses the cancel button for safety.
 
@@ -15,97 +15,97 @@ An AlertDialog is a modal dialog that interrupts the user to confirm a critical 
 
 ### AlertDialogRoot Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `open` | `boolean` | `undefined` | Controlled open state (v-model) |
-| `defaultOpen` | `boolean` | `false` | Uncontrolled initial open state |
+| Prop          | Type      | Default     | Description                     |
+| ------------- | --------- | ----------- | ------------------------------- |
+| `open`        | `boolean` | `undefined` | Controlled open state (v-model) |
+| `defaultOpen` | `boolean` | `false`     | Uncontrolled initial open state |
 
 ### AlertDialogRoot Events
 
-| Event | Payload | Description |
-|-------|---------|-------------|
+| Event         | Payload   | Description                     |
+| ------------- | --------- | ------------------------------- |
 | `update:open` | `boolean` | Emitted when open state changes |
 
 ### AlertDialogPortal Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `to` | `string \| HTMLElement` | `"body"` | Teleport target |
-| `disabled` | `boolean` | `false` | Disable teleport |
-| `forceMount` | `boolean` | `false` | Always mount even when closed |
+| Prop         | Type                    | Default  | Description                   |
+| ------------ | ----------------------- | -------- | ----------------------------- |
+| `to`         | `string \| HTMLElement` | `"body"` | Teleport target               |
+| `disabled`   | `boolean`               | `false`  | Disable teleport              |
+| `forceMount` | `boolean`               | `false`  | Always mount even when closed |
 
 ### AlertDialogOverlay Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
+| Prop         | Type      | Default     | Description                      |
+| ------------ | --------- | ----------- | -------------------------------- |
 | `forceMount` | `boolean` | `undefined` | Keep overlay mounted when closed |
 
 ### AlertDialogContent Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `forceMount` | `boolean` | `undefined` | Keep content mounted when closed |
-| `disableOutsidePointerEvents` | `boolean` | `undefined` | Disable pointer events outside |
-| `asChild` | `boolean` | `undefined` | Render as child element |
-| `as` | `string` | `undefined` | Custom root element |
-| `fullscreen` | `boolean` | `false` | Dialog fills entire viewport — no border, no shadow, inset 0 |
-| `dismissible` | `boolean` | `true` | When `false`, prevents close on click-outside / Escape (overrides Reka UI default for safety) |
-| `scrollable` | `boolean` | `false` | Content scrolls within the overlay (max-height: 90vh) |
-| `transition` | `boolean` | `true` | Enable/disable enter/leave animations |
-| `size` | `'sm' \| 'md' \| 'lg' \| 'xl'` | `'md'` | Dialog width (sm: 400px, md: 500px, lg: 700px, xl: 900px) |
+| Prop                          | Type                           | Default     | Description                                                                                   |
+| ----------------------------- | ------------------------------ | ----------- | --------------------------------------------------------------------------------------------- |
+| `forceMount`                  | `boolean`                      | `undefined` | Keep content mounted when closed                                                              |
+| `disableOutsidePointerEvents` | `boolean`                      | `undefined` | Disable pointer events outside                                                                |
+| `asChild`                     | `boolean`                      | `undefined` | Render as child element                                                                       |
+| `as`                          | `string`                       | `undefined` | Custom root element                                                                           |
+| `fullscreen`                  | `boolean`                      | `false`     | Dialog fills entire viewport — no border, no shadow, inset 0                                  |
+| `dismissible`                 | `boolean`                      | `true`      | When `false`, prevents close on click-outside / Escape (overrides Reka UI default for safety) |
+| `scrollable`                  | `boolean`                      | `false`     | Content scrolls within the overlay (max-height: 90vh)                                         |
+| `transition`                  | `boolean`                      | `true`      | Enable/disable enter/leave animations                                                         |
+| `size`                        | `'sm' \| 'md' \| 'lg' \| 'xl'` | `'md'`      | Dialog width (sm: 400px, md: 500px, lg: 700px, xl: 900px)                                     |
 
 ### AlertDialogContent Events
 
-| Event | Payload | Description |
-|-------|---------|-------------|
-| `escapeKeyDown` | `KeyboardEvent` | Escape key pressed |
-| `pointerDownOutside` | `PointerEvent` | Click outside content — fires only when `dismissible` is `true` |
-| `focusOutside` | `FocusEvent` | Focus leaves content |
-| `interactOutside` | `Event` | Interaction outside content — fires only when `dismissible` is `true` |
-| `openAutoFocus` | `Event` | Auto-focus on open |
-| `closeAutoFocus` | `Event` | Auto-focus on close |
+| Event                | Payload         | Description                                                           |
+| -------------------- | --------------- | --------------------------------------------------------------------- |
+| `escapeKeyDown`      | `KeyboardEvent` | Escape key pressed                                                    |
+| `pointerDownOutside` | `PointerEvent`  | Click outside content — fires only when `dismissible` is `true`       |
+| `focusOutside`       | `FocusEvent`    | Focus leaves content                                                  |
+| `interactOutside`    | `Event`         | Interaction outside content — fires only when `dismissible` is `true` |
+| `openAutoFocus`      | `Event`         | Auto-focus on open                                                    |
+| `closeAutoFocus`     | `Event`         | Auto-focus on close                                                   |
 
 When `dismissible` is `false`, `pointerDownOutside` and `interactOutside` events are prevented (same as Reka UI AlertDialog default behavior). When `dismissible` is `true`, these events fire and the dialog will close on click-outside.
 
 ### AlertDialogTitle Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `asChild` | `boolean` | `undefined` | Render as child element |
-| `as` | `string` | `undefined` | Custom root element (default `h2`) |
+| Prop      | Type      | Default     | Description                        |
+| --------- | --------- | ----------- | ---------------------------------- |
+| `asChild` | `boolean` | `undefined` | Render as child element            |
+| `as`      | `string`  | `undefined` | Custom root element (default `h2`) |
 
 ### AlertDialogDescription Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `asChild` | `boolean` | `undefined` | Render as child element |
-| `as` | `string` | `undefined` | Custom root element (default `p`) |
+| Prop      | Type      | Default     | Description                       |
+| --------- | --------- | ----------- | --------------------------------- |
+| `asChild` | `boolean` | `undefined` | Render as child element           |
+| `as`      | `string`  | `undefined` | Custom root element (default `p`) |
 
 ### AlertDialogAction Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `asChild` | `boolean` | `undefined` | Render as child element |
-| `as` | `string` | `undefined` | Custom root element (default `button`) |
+| Prop      | Type      | Default     | Description                            |
+| --------- | --------- | ----------- | -------------------------------------- |
+| `asChild` | `boolean` | `undefined` | Render as child element                |
+| `as`      | `string`  | `undefined` | Custom root element (default `button`) |
 
 ### AlertDialogCancel Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `asChild` | `boolean` | `undefined` | Render as child element |
-| `as` | `string` | `undefined` | Custom root element (default `button`) |
+| Prop      | Type      | Default     | Description                            |
+| --------- | --------- | ----------- | -------------------------------------- |
+| `asChild` | `boolean` | `undefined` | Render as child element                |
+| `as`      | `string`  | `undefined` | Custom root element (default `button`) |
 
 ### AlertDialogTrigger Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `asChild` | `boolean` | `undefined` | Render as child element |
-| `as` | `string` | `undefined` | Custom root element (default `button`) |
+| Prop      | Type      | Default     | Description                            |
+| --------- | --------- | ----------- | -------------------------------------- |
+| `asChild` | `boolean` | `undefined` | Render as child element                |
+| `as`      | `string`  | `undefined` | Custom root element (default `button`) |
 
 ### Slots
 
-| Component | Slot | Description |
-|-----------|------|-------------|
+| Component      | Slot      | Description   |
+| -------------- | --------- | ------------- |
 | All components | `default` | Child content |
 
 ### Example Usage
@@ -167,43 +167,48 @@ const open = ref(false);
 
 ### CSS Custom Properties
 
-| Token | Default | Description |
-|-------|---------|-------------|
-| `--color-surface-base` | #FFFFFF / #0F1117 | Content background |
-| `--color-surface-muted` | #E2E8F0 / #2A2D3E | Header/footer border |
-| `--color-foreground-primary` | #001C44 / #F1F5F9 | Title and body text |
-| `--color-foreground-secondary` | #4B5563 / #94A3B8 | Description text |
+| Token                          | Default           | Description          |
+| ------------------------------ | ----------------- | -------------------- |
+| `--color-surface-base`         | #FFFFFF / #0F1117 | Content background   |
+| `--color-surface-muted`        | #E2E8F0 / #2A2D3E | Header/footer border |
+| `--color-foreground-primary`   | #001C44 / #F1F5F9 | Title and body text  |
+| `--color-foreground-secondary` | #4B5563 / #94A3B8 | Description text     |
 
 ### Overlay
 
-| Token | Value | Usage |
-|-------|-------|-------|
+| Token                | Value  | Usage              |
+| -------------------- | ------ | ------------------ |
 | `rgba(0, 0, 0, 0.5)` | inline | Overlay background |
 
 ### Transitions
 
-| Property | Duration | Easing |
-|----------|----------|--------|
-| Overlay opacity | 200ms in / 150ms out | ease-out / ease-in |
+| Property                | Duration             | Easing             |
+| ----------------------- | -------------------- | ------------------ |
+| Overlay opacity         | 200ms in / 150ms out | ease-out / ease-in |
 | Content opacity + scale | 200ms in / 150ms out | ease-out / ease-in |
 
 ### Accessibility
 
-| Criterion | Implementation |
-|-----------|---------------|
-| Focus trap | Reka UI DialogContentModal traps focus within the dialog |
-| Body scroll lock | Reka UI disables background scrolling when open |
-| Escape key | Reka UI closes dialog on Escape key press |
-| Outside click | Reka UI AlertDialog prevents closing on outside click (safety) |
-| ARIA role | Content has `role="alertdialog"` and `aria-modal="true"` |
-| ARIA labelling | `aria-labelledby` links to `AlertDialogTitle`; `aria-describedby` links to `AlertDialogDescription` |
-| Focus return | Focus returns to the trigger element on close |
-| Auto-focus cancel | Cancel button receives initial focus on open for safety |
+| Criterion         | Implementation                                                                                      |
+| ----------------- | --------------------------------------------------------------------------------------------------- |
+| Focus trap        | Reka UI DialogContentModal traps focus within the dialog                                            |
+| Body scroll lock  | Reka UI disables background scrolling when open                                                     |
+| Escape key        | Reka UI closes dialog on Escape key press                                                           |
+| Outside click     | Reka UI AlertDialog prevents closing on outside click (safety)                                      |
+| ARIA role         | Content has `role="alertdialog"` and `aria-modal="true"`                                            |
+| ARIA labelling    | `aria-labelledby` links to `AlertDialogTitle`; `aria-describedby` links to `AlertDialogDescription` |
+| Focus return      | Focus returns to the trigger element on close                                                       |
+| Auto-focus cancel | Cancel button receives initial focus on open for safety                                             |
 
 #### ARIA Attributes
 
 ```html
-<div role="alertdialog" aria-modal="true" aria-labelledby="alert-title" aria-describedby="alert-desc">
+<div
+  role="alertdialog"
+  aria-modal="true"
+  aria-labelledby="alert-title"
+  aria-describedby="alert-desc"
+>
   <h2 id="alert-title">Confirm Deletion</h2>
   <p id="alert-desc">This action cannot be undone.</p>
   <button>Cancel</button>
@@ -215,17 +220,17 @@ const open = ref(false);
 
 An AlertDialog consists of up to 9 parts:
 
-| Part | Required | Description |
-|------|----------|-------------|
-| AlertDialogRoot | Yes | Controls open state |
-| AlertDialogPortal | Yes | Teleports overlay and content to `body` |
-| AlertDialogOverlay | Yes | Semi-transparent backdrop |
-| AlertDialogContent | Yes | The alert dialog panel with `role="alertdialog"` |
-| AlertDialogTitle | Yes | Accessible title linked via `aria-labelledby` |
-| AlertDialogDescription | No | Optional description linked via `aria-describedby` |
-| AlertDialogAction | Yes | Button that confirms the action and closes the dialog |
-| AlertDialogCancel | No | Button that cancels and closes; auto-focused on open |
-| AlertDialogTrigger | Yes | Button or element that opens the dialog |
+| Part                   | Required | Description                                           |
+| ---------------------- | -------- | ----------------------------------------------------- |
+| AlertDialogRoot        | Yes      | Controls open state                                   |
+| AlertDialogPortal      | Yes      | Teleports overlay and content to `body`               |
+| AlertDialogOverlay     | Yes      | Semi-transparent backdrop                             |
+| AlertDialogContent     | Yes      | The alert dialog panel with `role="alertdialog"`      |
+| AlertDialogTitle       | Yes      | Accessible title linked via `aria-labelledby`         |
+| AlertDialogDescription | No       | Optional description linked via `aria-describedby`    |
+| AlertDialogAction      | Yes      | Button that confirms the action and closes the dialog |
+| AlertDialogCancel      | No       | Button that cancels and closes; auto-focused on open  |
+| AlertDialogTrigger     | Yes      | Button or element that opens the dialog               |
 
 Layout sub-components from Dialog (`MizuDialogHeader`, `MizuDialogBody`, `MizuDialogFooter`) may be reused for structure.
 

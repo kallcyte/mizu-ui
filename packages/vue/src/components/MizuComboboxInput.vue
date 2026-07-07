@@ -70,7 +70,16 @@ const inputStyle = computed(() => {
   color: var(--color-foreground-tertiary);
 }
 
-.mizu-combobox__input--sm { @apply text-[12px]; padding: 0 8px; }
-.mizu-combobox__input--md { @apply text-[12px]; padding: 0 10px; }
-.mizu-combobox__input--lg { @apply text-[14px]; padding: 0 10px; }
+.mizu-combobox__input--sm {
+  @apply text-[12px];
+  padding: 0 8px;
+}
+.mizu-combobox__input--md {
+  @apply text-[12px];
+  padding: 0 10px;
+}
+.mizu-combobox__input--lg {
+  @apply text-[14px];
+  padding: 0 10px;
+}
 </style>
