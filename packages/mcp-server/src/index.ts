@@ -203,7 +203,7 @@ function parsePropsInterface(
         if (nextLineIndex - i > 20) break;
       }
       // The reassignment here is consumed by the for-loop's update clause (i++)
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      // eslint-disable-next-line no-useless-assignment
       i = nextLineIndex - 1;
 
       typeStr = typeStr.replace(/;\s*$/, "").replace(/,\s*$/, "").trim();
