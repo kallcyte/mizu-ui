@@ -23,8 +23,13 @@ Token rename: `brand-accent` → `brand-ycp`.
 
 ### Changed
 
-- **Token rename** — all `brand-accent` tokens renamed to `brand-ycp` (`--color-brand-ycp`, `--color-brand-ycp-hover`, `--color-brand-ycp-focus`, `--color-brand-ycp-subtle`) across the entire codebase: CSS custom properties, Tailwind utilities, Starlight mappings, documentation, and component styles.
+- **Token rename** — all `brand-accent` tokens renamed to `brand-ycp` (`--color-brand-ycp`, `--color-brand-ycp-hover`, `--color-brand-ycp-focus`, `--color-brand-ycp-subtle`) across the entire codebase: tokens source (`tokens.json`), CSS custom properties, Tailwind utilities, Starlight mappings, documentation, and component styles.
 - **Version bumps** — `@mizu/vue` to `0.15.3`, root to `0.15.3`. Synced all visual version references: `Hero.astro`, `Typography.astro`, `BaseLayout.astro`, `starlight.css`, `README.md`.
+
+### Fixed
+
+- **ColorSection swatches** — updated all prose descriptions from "accent" to "YCP" in `ColorSection.astro` brand swatches; added missing dark-mode `Secondary Hover` (#7BADE0) and `Secondary Focus` (#6A9ED0) entries to `brandsDark` array; fixed `foreground-primary` light swatch to `#001C44`.
+- **Tokens source alignment** — renamed `accent` → `ycp` token keys in `tokens.json` (the canonical source) and rebuilt to regenerate all downstream outputs (`index.ts`, `light.css`, `dark.css`, `tailwind.css`, `starlight.css`).
 
 ## 0.15.2 (2026-07-05)
 

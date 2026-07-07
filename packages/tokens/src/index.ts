@@ -23,14 +23,14 @@ export const COLOR_BRAND_SECONDARY_HOVER = "#101C82" as const;
 export const COLOR_BRAND_SECONDARY_FOCUS = "#0C1561" as const;
 /** Light surface counterpart for secondary branded backgrounds. */
 export const COLOR_BRAND_SECONDARY_SUBTLE = "#E1E7FF" as const;
-/** Deep navy accent for emphasis, dark branded surfaces, and hero sections. */
-export const COLOR_BRAND_ACCENT = "#001C44" as const;
-/** Darker hover state for accent-filled elements. */
-export const COLOR_BRAND_ACCENT_HOVER = "#001636" as const;
-/** Focus ring and outline state for accent elements. */
-export const COLOR_BRAND_ACCENT_FOCUS = "#334969" as const;
-/** Light accent-tinted background for subdued emphasis. */
-export const COLOR_BRAND_ACCENT_SUBTLE = "#CCD2DA" as const;
+/** Deep navy YCP for emphasis, dark branded surfaces, and hero sections. */
+export const COLOR_BRAND_YCP = "#001C44" as const;
+/** Darker hover state for YCP-filled elements. */
+export const COLOR_BRAND_YCP_HOVER = "#001636" as const;
+/** Focus ring and outline state for YCP elements. */
+export const COLOR_BRAND_YCP_FOCUS = "#334969" as const;
+/** Light YCP-tinted background for subdued emphasis. */
+export const COLOR_BRAND_YCP_SUBTLE = "#CCD2DA" as const;
 /** Soft brand-tinted surface for subtle highlights and selected rows. */
 export const COLOR_BRAND_MUTED = "#EDF0FF" as const;
 /** Deep neutral for high-contrast text and key borders. */
@@ -274,10 +274,10 @@ export const tokens: Record<string, Token> = {
   "color/brand/secondary-hover": { value: COLOR_BRAND_SECONDARY_HOVER, type: "color" },
   "color/brand/secondary-focus": { value: COLOR_BRAND_SECONDARY_FOCUS, type: "color" },
   "color/brand/secondary-subtle": { value: COLOR_BRAND_SECONDARY_SUBTLE, type: "color" },
-  "color/brand/accent": { value: COLOR_BRAND_ACCENT, type: "color" },
-  "color/brand/accent-hover": { value: COLOR_BRAND_ACCENT_HOVER, type: "color" },
-  "color/brand/accent-focus": { value: COLOR_BRAND_ACCENT_FOCUS, type: "color" },
-  "color/brand/accent-subtle": { value: COLOR_BRAND_ACCENT_SUBTLE, type: "color" },
+  "color/brand/ycp": { value: COLOR_BRAND_YCP, type: "color" },
+  "color/brand/ycp-hover": { value: COLOR_BRAND_YCP_HOVER, type: "color" },
+  "color/brand/ycp-focus": { value: COLOR_BRAND_YCP_FOCUS, type: "color" },
+  "color/brand/ycp-subtle": { value: COLOR_BRAND_YCP_SUBTLE, type: "color" },
   "color/brand/muted": { value: COLOR_BRAND_MUTED, type: "color" },
   "color/brand/neutral": { value: COLOR_BRAND_NEUTRAL, type: "color" },
   "color/brand/nexus": { value: COLOR_BRAND_NEXUS, type: "color" },
@@ -406,10 +406,10 @@ export const cssVariables: Record<string, string | number | readonly string[]> =
   "--color-brand-secondary-hover": COLOR_BRAND_SECONDARY_HOVER,
   "--color-brand-secondary-focus": COLOR_BRAND_SECONDARY_FOCUS,
   "--color-brand-secondary-subtle": COLOR_BRAND_SECONDARY_SUBTLE,
-  "--color-brand-accent": COLOR_BRAND_ACCENT,
-  "--color-brand-accent-hover": COLOR_BRAND_ACCENT_HOVER,
-  "--color-brand-accent-focus": COLOR_BRAND_ACCENT_FOCUS,
-  "--color-brand-accent-subtle": COLOR_BRAND_ACCENT_SUBTLE,
+  "--color-brand-ycp": COLOR_BRAND_YCP,
+  "--color-brand-ycp-hover": COLOR_BRAND_YCP_HOVER,
+  "--color-brand-ycp-focus": COLOR_BRAND_YCP_FOCUS,
+  "--color-brand-ycp-subtle": COLOR_BRAND_YCP_SUBTLE,
   "--color-brand-muted": COLOR_BRAND_MUTED,
   "--color-brand-neutral": COLOR_BRAND_NEUTRAL,
   "--color-brand-nexus": COLOR_BRAND_NEXUS,
