@@ -16,6 +16,22 @@ This project follows **semantic versioning** (SemVer) during pre-1.0 development
 Changes that require a minor bump: adding a new component, renaming tokens, changing component APIs, adding new packages (e.g. React).
 Changes that keep the patch version: renames, copy edits, styling tweaks, build config changes, favicon updates.
 
+## 0.15.6 (2026-07-07)
+
+Test coverage expansion to Phases 4-5: complex components and Reka UI wrappers (331 tests across 31 files).
+
+### Added
+
+- **Test suite Phases 4-5**: 150 new unit tests across 14 files covering DataTable, Pagination, Breadcrumb, TabsRoot, ToastRoot, AccordionRoot, CollapsibleRoot, SliderRoot, ToggleGroupRoot, TagsInput, DialogRoot, AlertDialogRoot, DropdownMenuRoot, and ComboboxRoot.
+- **Total test coverage**: 331 tests across 16 component files and 1 composable file — all passing in jsdom environment with Vitest.
+
+### Fixed
+
+- **MizuToastRoot tests**: Wrapped in `ToastProvider` stub to satisfy Reka UI's ToastRoot injection dependency.
+- **MizuDialogRoot tests**: Added `defaultOpen: true` to shorthand mode assertion tests.
+- **MizuDropdownMenuRoot tests**: Corrected CSS class selectors to use BEM double-underscore convention (`mizu-dropdown-menu__item` not `mizu-dropdown-menu-item`).
+- **MizuPagination tests**: Adjusted ellipsis rendering test parameters for reliable gap detection.
+
 ## 0.15.5 (2026-07-07)
 
 Convenience API patterns for Tabs and DropdownMenu, plus expanded test coverage (181 tests across 17 files).
