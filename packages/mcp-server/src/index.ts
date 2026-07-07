@@ -471,8 +471,14 @@ function scanTokens(): Record<string, unknown> {
 
 // ─── MCP Server ───────────────────────────────────────────────────────
 
-const scanResult = scanComponents();
-const tokens = scanTokens();
+/** Lazy accessors so the MCP server always reads fresh data from disk */
+function getScanResult(): ScanResult {
+  return scanComponents();
+}
+
+function getTokens(): Record<string, unknown> {
+  return scanTokens();
+}
 
 const server = new Server(
   {
@@ -501,7 +507,7 @@ server.setRequestHandler(ListResourcesRequestSchema, async () => {
   });
 
   // Per-component resources
-  for (const [name, _info] of Object.entries(scanResult.components)) {
+  for (const [name, _info] of Object.entries(getScanResult().components)) {
     resources.push({
       uri: `mizu://components/${name}`,
       name: `Component: ${name}`,
@@ -531,7 +537,7 @@ server.setRequestHandler(ReadResourceRequestSchema, async (request) => {
   const { uri } = request.params;
 
   if (uri === "mizu://components") {
-    const componentList = Object.entries(scanResult.components)
+    const componentList = Object.entries(getScanResult().components)
       .map(([name, info]) => ({
         name,
         category: info.category,
@@ -564,7 +570,7 @@ server.setRequestHandler(ReadResourceRequestSchema, async (request) => {
   const componentMatch = uri.match(/^mizu:\/\/components\/(\w+)(?:\/(source))?$/);
   if (componentMatch) {
     const [, name, sourceFlag] = componentMatch;
-    const info = scanResult.components[name];
+    const info = getScanResult().components[name];
     if (!info) {
       throw new McpError(ErrorCode.InvalidRequest, `Component "${name}" not found`);
     }
@@ -605,8 +611,8 @@ server.setRequestHandler(ReadResourceRequestSchema, async (request) => {
           mimeType: "application/json",
           text: JSON.stringify(
             {
-              total: Object.keys(tokens).length,
-              tokens,
+              total: Object.keys(getTokens()).length,
+              tokens: getTokens(),
               note: "Token values are defined in packages/tokens/",
             },
             null,
@@ -700,7 +706,7 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
       const query = (args?.query as string)?.toLowerCase() || "";
       const category = (args?.category as string)?.toLowerCase() || "";
 
-      const results = Object.values(scanResult.components).filter((info) => {
+      const results = Object.values(getScanResult().components).filter((info) => {
         if (category && info.category.toLowerCase() !== category) return false;
         if (!query) return true;
         return (
@@ -743,7 +749,7 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
         throw new McpError(ErrorCode.InvalidParams, "Component name is required");
       }
 
-      const info = scanResult.components[compName];
+      const info = getScanResult().components[compName];
       if (!info) {
         throw new McpError(
           ErrorCode.InvalidRequest,
@@ -767,7 +773,7 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
         throw new McpError(ErrorCode.InvalidParams, "Component name is required");
       }
 
-      const info = scanResult.components[sourceName];
+      const info = getScanResult().components[sourceName];
       if (!info) {
         throw new McpError(ErrorCode.InvalidRequest, `Component "${sourceName}" not found`);
       }
@@ -789,7 +795,7 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
 
     case "list_components_by_category": {
       const byCategory: Record<string, string[]> = {};
-      for (const info of Object.values(scanResult.components)) {
+      for (const info of Object.values(getScanResult().components)) {
         if (!byCategory[info.category]) byCategory[info.category] = [];
         byCategory[info.category].push(info.name);
       }
@@ -803,7 +809,7 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
             type: "text",
             text: JSON.stringify(
               {
-                total: Object.keys(scanResult.components).length,
+                total: Object.keys(getScanResult().components).length,
                 categories: Object.keys(byCategory).sort(),
                 componentsByCategory: byCategory,
               },
@@ -822,8 +828,8 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
             type: "text",
             text: JSON.stringify(
               {
-                total: Object.keys(tokens).length,
-                tokens,
+                total: Object.keys(getTokens()).length,
+                tokens: getTokens(),
                 note: "Token values are defined in packages/tokens/",
               },
               null,
@@ -844,7 +850,8 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
 async function main() {
   console.error(`Mizu Design System MCP Server`);
   console.error(`Project root: ${PROJECT_ROOT}`);
-  console.error(`Components found: ${Object.keys(scanResult.components).length}`);
+  const startupScan = getScanResult();
+    console.error(`Components found: ${Object.keys(startupScan.components).length}`);
   console.error(`Starting stdio transport...`);
 
   const transport = new StdioServerTransport();

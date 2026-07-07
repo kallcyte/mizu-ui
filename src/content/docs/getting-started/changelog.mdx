@@ -16,6 +16,23 @@ This project follows **semantic versioning** (SemVer) during pre-1.0 development
 Changes that require a minor bump: adding a new component, renaming tokens, changing component APIs, adding new packages (e.g. React).
 Changes that keep the patch version: renames, copy edits, styling tweaks, build config changes, favicon updates.
 
+## 0.15.4 (2026-07-07)
+
+Tooling infrastructure (Vitest, ESLint, Prettier, CI) and MCP server package for AI consumption.
+
+### Added
+
+- **Vitest test suite** — 72 unit tests covering `useMizuField` composable, `MizuInput` (helperText/error state), and `MizuButton` (variants/disabled/loading). Configured with `@vue/test-utils`, jsdom, and V8 coverage. Run with `pnpm --filter @mizu/vue test`.
+- **ESLint v9 flat config** — TypeScript + Vue recommended rules, Prettier integration, globals configuration. Run with `pnpm lint`.
+- **Prettier formatting** — `.prettierrc` and `.prettierignore` applied across the entire codebase (258 files). Run with `pnpm format`.
+- **GitHub Actions CI** — `.github/workflows/ci.yml` runs format → lint → typecheck → test → build on every PR to `master`.
+- **`@mizu/mcp-server` package** — new MCP server exposing 164 components as resources (docs, source) and tools (search, inspect, list). Enables AI-assisted consumption of the design system. See `packages/mcp-server/`.
+
+### Fixed
+
+- **MizuInput** — `helperId` was using the `ComputedRef` object instead of its resolved value (`${inputId}` → `${inputId.value}`), which caused helper text to not link correctly via `aria-describedby`.
+- **MizuDialogRoot** — renamed internal `close()` method to `handleClose()` to avoid collision with the `close` prop on `<form>` elements.
+
 ## 0.15.3 (2026-07-07)
 
 Token rename: `brand-accent` → `brand-ycp`.
