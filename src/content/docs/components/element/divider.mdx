@@ -1,0 +1,106 @@
+---
+title: Divider
+description: A visual separator that divides content into logical groups.
+---
+
+import DividerDemo from '../../../../components/docs/DividerDemo.vue';
+
+A divider is a thin line that separates groups of content. Use it to create visual hierarchy between sections.
+
+## Examples
+
+<DividerDemo client:only="vue" />
+
+```vue
+<template>
+  <!-- Basic horizontal -->
+  <MizuDivider />
+
+  <!-- With label -->
+  <MizuDivider label="OR" />
+
+  <!-- Vertical -->
+  <div style="display: flex; align-items: center; gap: 16px;">
+    <span>Left</span>
+    <MizuDivider orientation="vertical" />
+    <span>Right</span>
+  </div>
+</template>
+```
+
+## API
+
+### Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `orientation` | `'horizontal' \| 'vertical'` | `'horizontal'` | Divider direction |
+| `label` | `string` | `undefined` | Centered text between two lines (horizontal only) |
+
+## Theme
+
+### CSS Custom Properties
+
+| Token | Default | Description |
+|-------|---------|-------------|
+| `--color-surface-muted` | #F3F4F6 / #1E2030 | Divider line color |
+
+### Sizing
+
+| Variant | Orientation | Border | Use Case |
+|---------|-------------|--------|----------|
+| Default | horizontal | top border on `<hr>` | Section breaks in forms, lists, and layouts |
+| Vertical | vertical | left border on `<div>` | Inline separation in horizontal layouts |
+| Labeled | horizontal | two lines flanking centered text | Logical operators (AND/OR) between sections |
+
+#### Horizontal
+
+The default horizontal divider renders as a 1px top border. It spans the full width of its parent container.
+
+#### Labeled
+
+A horizontal divider with a `label` prop renders centered text between two lines. The label sits in the gutter (12px from each line).
+
+#### Vertical
+
+A vertical divider renders as a 1px-wide column that stretches to its parent's height. Use it inside flex or grid layouts to separate inline content.
+
+#### Spacing
+
+| Element | Value |
+|---------|-------|
+| Horizontal margin | 0 (full width) |
+| Label gutter | 12px (line to text) |
+| Vertical height | 100% of parent |
+
+### Accessibility
+
+| Criterion | Implementation |
+|-----------|----------------|
+| Semantic role | `role="separator"` on both horizontal and vertical dividers |
+| Orientation | `aria-orientation="vertical"` on vertical dividers only |
+| Label | Horizontal labeled dividers use `::before`/`::after` pseudo-elements (decorative, not announced) |
+
+```html
+<!-- Horizontal -->
+<hr role="separator" />
+
+<!-- Vertical -->
+<div role="separator" aria-orientation="vertical"></div>
+```
+
+## Anatomy
+
+A divider consists of one part:
+
+| Part | Required | Description |
+|------|----------|-------------|
+| Line | Yes | The visible separator stroke |
+
+## Implementation Notes
+
+1. **Native element** — uses `<hr>` for horizontal and `<div>` for vertical; no Reka UI primitive needed.
+2. **Labeled divider** — horizontal labeled dividers use flexbox with `::before`/`::after` pseudo-elements to draw the two lines flanking the text.
+3. **Class inheritance** — accepts `class` prop via `useAttrs()` for Tailwind overrides.
+4. **Token-based color** — line color uses `var(--color-surface-muted)` for automatic light/dark theme support.
+5. **Tree-shakeable** — exported as ESM + CJS via Vite library mode.

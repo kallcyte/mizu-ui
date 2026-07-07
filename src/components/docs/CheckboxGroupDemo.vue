@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import { MizuCheckboxGroup } from "@mizu/vue";
-import DemoTabs from "./DemoTabs.vue";
+import CodeCollapsible from "./CodeCollapsible.vue";
 
 const notifications = ref(["email"]);
 const notificationOptions = [
@@ -47,59 +47,74 @@ const horizontalCode = `<MizuCheckboxGroup
 </script>
 
 <template>
-  <div class="checkbox-group-demo not-content">
-    <div class="demo-section">
+  <div class="checkbox-group-examples">
+    <section class="example-section">
       <h3>Basic (Vertical)</h3>
-      <DemoTabs :code="basicCode">
-      <MizuCheckboxGroup
-        v-model="notifications"
-        :options="notificationOptions"
-        legend="Notification preferences"
-      />
-      <p class="demo-value">Selected: {{ notifications.join(', ') || 'none' }}</p>
-      </DemoTabs>
-    </div>
+      <CodeCollapsible :code="basicCode">
+        <MizuCheckboxGroup
+          v-model="notifications"
+          :options="notificationOptions"
+          legend="Notification preferences"
+        />
+        <p class="demo-value">Selected: {{ notifications.join(', ') || 'none' }}</p>
+      </CodeCollapsible>
+    </section>
 
-    <div class="demo-section">
+    <section class="example-section">
       <h3>With Disabled Option</h3>
-      <DemoTabs :code="disabledOptionCode">
-      <MizuCheckboxGroup
-        v-model="roles"
-        :options="roleOptions"
-        legend="Assign roles"
-      />
-      <p class="demo-value">Selected: {{ roles.join(', ') || 'none' }}</p>
-      </DemoTabs>
-    </div>
+      <CodeCollapsible :code="disabledOptionCode">
+        <MizuCheckboxGroup
+          v-model="roles"
+          :options="roleOptions"
+          legend="Assign roles"
+        />
+        <p class="demo-value">Selected: {{ roles.join(', ') || 'none' }}</p>
+      </CodeCollapsible>
+    </section>
 
-    <div class="demo-section">
+    <section class="example-section">
       <h3>Horizontal Layout</h3>
-      <DemoTabs :code="horizontalCode">
-      <MizuCheckboxGroup
-        v-model="horizontal"
-        :options="horizontalOptions"
-        orientation="horizontal"
-        legend="Select options"
-      />
-      <p class="demo-value">Selected: {{ horizontal.join(', ') || 'none' }}</p>
-      </DemoTabs>
-    </div>
+      <CodeCollapsible :code="horizontalCode">
+        <MizuCheckboxGroup
+          v-model="horizontal"
+          :options="horizontalOptions"
+          orientation="horizontal"
+          legend="Select options"
+        />
+        <p class="demo-value">Selected: {{ horizontal.join(', ') || 'none' }}</p>
+      </CodeCollapsible>
+    </section>
   </div>
 </template>
 
 <style scoped>
-.checkbox-group-demo {
+.checkbox-group-examples {
   all: revert;
   display: flex;
   flex-direction: column;
-  gap: 24px;
-  padding: 0;
-  background: transparent;
+  gap: 32px;
+  font-family: inherit;
 }
-.checkbox-group-demo :deep(*) { margin: 0; }
-.demo-section { display: flex; flex-direction: column; gap: 12px; }
-.demo-section h3 { font-size: 14px; font-weight: 600; color: var(--sl-color-text); margin-bottom: 0; }
-.demo-section > p { margin-top: 0; }
+
+.checkbox-group-examples :deep(*) {
+  margin: 0;
+}
+
+.example-section {
+  all: revert;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.example-section h3 {
+  all: revert;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--sl-color-text);
+  margin: 0;
+}
+
 .demo-value {
   font-size: 12px;
   color: var(--sl-color-text-light);

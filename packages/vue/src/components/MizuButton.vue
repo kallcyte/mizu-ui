@@ -1,6 +1,18 @@
 <script setup lang="ts">
 import { computed, ref, useAttrs } from "vue";
 
+defineOptions({
+  // Forward all non-prop attributes to the root <button>. Required for
+  // Reka UI `asChild` integration (e.g. MizuCollapsibleTrigger injects
+  // onClick, aria-expanded, aria-controls, data-state, id, ref into the
+  // child). With the default `inheritAttrs: true`, listeners still get
+  // registered on the root, but other attrs (id, ref, data-*) can be
+  // dropped or shadowed by template bindings; opting out gives us full
+  // control via `v-bind="$attrs"`.
+  inheritAttrs: false,
+});
+
+
 export interface ButtonProps {
   variant?: "primary" | "accent" | "ghost" | "outline" | "success" | "warning" | "error" | "info" | "outline-success" | "outline-warning" | "outline-error" | "outline-info";
   size?: "sm" | "md" | "lg";
@@ -26,11 +38,15 @@ const props = withDefaults(defineProps<ButtonProps>(), {
   loadingAuto: false,
 });
 
-const emit = defineEmits<{
-  click: [event: MouseEvent];
-}>();
-
 const attrs = useAttrs();
+
+// Forward all $attrs to the root button EXCEPT `onClick` — we wire that
+// ourselves in `handleClick` to avoid double invocation (once from
+// v-bind + once from the manual call).
+const forwardedAttrs = computed(() => {
+  const { onClick: _onClick, ...rest } = attrs;
+  return rest;
+});
 
 const slots = defineSlots<{
   default: () => unknown;
@@ -44,7 +60,7 @@ const hasDefaultSlot = computed(() => !!slots.default);
 
 const variantColors: Record<string, { bg: string; text: string; border: string }> = {
   primary: { bg: "var(--color-brand-primary)", text: "#fff", border: "transparent" },
-  accent: { bg: "var(--color-brand-accent)", text: "#fff", border: "transparent" },
+  accent: { bg: "var(--color-brand-ycp)", text: "#fff", border: "transparent" },
   success: { bg: "var(--color-feedback-success-base)", text: "var(--color-foreground-inverse)", border: "transparent" },
   warning: { bg: "var(--color-feedback-warning-base)", text: "var(--color-foreground-inverse)", border: "transparent" },
   error: { bg: "var(--color-feedback-error-base)", text: "var(--color-foreground-inverse)", border: "transparent" },
@@ -88,14 +104,21 @@ const buttonClasses = computed(() => {
 
 async function handleClick(event: MouseEvent) {
   if (!props.disabled && !isLoading.value) {
-    const result = emit("click", event);
-    if (props.loadingAuto && (result as unknown) instanceof Promise) {
-      autoLoading.value = true;
-      try {
-        await result;
-      } finally {
-        autoLoading.value = false;
+    const clickHandler = attrs.onClick as ((e: MouseEvent) => unknown) | undefined;
+    if (props.loadingAuto && clickHandler) {
+      const result = clickHandler(event);
+      if (result instanceof Promise) {
+        autoLoading.value = true;
+        try {
+          await result;
+        } finally {
+          autoLoading.value = false;
+        }
       }
+      return;
+    }
+    if (clickHandler) {
+      clickHandler(event);
     }
   }
 }
@@ -103,6 +126,7 @@ async function handleClick(event: MouseEvent) {
 
 <template>
   <button
+    v-bind="forwardedAttrs"
     :type="type"
     :disabled="disabled || isLoading"
     :aria-disabled="disabled"
@@ -152,7 +176,7 @@ async function handleClick(event: MouseEvent) {
   color: var(--mizu-btn-text);
 }
 .mizu-button:focus-visible {
-  @apply outline outline-1 outline-[var(--color-brand-accent)] outline-offset-2;
+  @apply outline outline-1 outline-[var(--color-brand-ycp)] outline-offset-2;
 }
 .mizu-button:active:not(:disabled) {
   @apply scale-[0.98];
@@ -195,7 +219,7 @@ async function handleClick(event: MouseEvent) {
 
 /* Hover states */
 .mizu-primary:hover:not(:disabled) { @apply bg-[var(--color-brand-primary-hover)]; }
-.mizu-accent:hover:not(:disabled) { @apply bg-[var(--color-brand-accent-hover)]; }
+.mizu-accent:hover:not(:disabled) { @apply bg-[var(--color-brand-ycp-hover)]; }
 .mizu-ghost:hover:not(:disabled) { @apply text-[var(--color-brand-primary-hover)]; }
 .mizu-outline:hover:not(:disabled) { @apply bg-[var(--color-surface-subtle)]; }
 .mizu-success:hover:not(:disabled) { @apply bg-[var(--color-feedback-success-hover)]; }
@@ -239,9 +263,48 @@ async function handleClick(event: MouseEvent) {
 
 /* Disabled state */
 .mizu-button--disabled {
-  @apply bg-[var(--color-surface-muted)] text-[var(--color-foreground-tertiary)] border-transparent cursor-not-allowed;
+  @apply cursor-not-allowed;
 }
-.mizu-button--disabled:hover {
+
+/* Solid variants (primary, accent, feedback) */
+.mizu-primary.mizu-button--disabled,
+.mizu-accent.mizu-button--disabled,
+.mizu-success.mizu-button--disabled,
+.mizu-warning.mizu-button--disabled,
+.mizu-error.mizu-button--disabled,
+.mizu-info.mizu-button--disabled {
+  @apply bg-[var(--color-surface-muted)] text-[var(--color-foreground-tertiary)] border-transparent;
+}
+.mizu-primary.mizu-button--disabled:hover,
+.mizu-accent.mizu-button--disabled:hover,
+.mizu-success.mizu-button--disabled:hover,
+.mizu-warning.mizu-button--disabled:hover,
+.mizu-error.mizu-button--disabled:hover,
+.mizu-info.mizu-button--disabled:hover {
   @apply bg-[var(--color-surface-muted)];
+}
+
+/* Outline variants — keep visible border, change text */
+.mizu-outline.mizu-button--disabled,
+.mizu-outline-success.mizu-button--disabled,
+.mizu-outline-warning.mizu-button--disabled,
+.mizu-outline-error.mizu-button--disabled,
+.mizu-outline-info.mizu-button--disabled {
+  @apply bg-transparent text-[var(--color-foreground-tertiary)] border-[var(--color-surface-muted)];
+}
+.mizu-outline.mizu-button--disabled:hover,
+.mizu-outline-success.mizu-button--disabled:hover,
+.mizu-outline-warning.mizu-button--disabled:hover,
+.mizu-outline-error.mizu-button--disabled:hover,
+.mizu-outline-info.mizu-button--disabled:hover {
+  @apply bg-transparent;
+}
+
+/* Ghost variant — text color only, no background/border change */
+.mizu-ghost.mizu-button--disabled {
+  @apply bg-transparent text-[var(--color-foreground-tertiary)];
+}
+.mizu-ghost.mizu-button--disabled:hover {
+  @apply bg-transparent;
 }
 </style>

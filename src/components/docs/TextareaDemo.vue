@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import { MizuTextarea, MizuButton } from "@mizu/vue";
-import DemoTabs from "./DemoTabs.vue";
+import CodeCollapsible from "./CodeCollapsible.vue";
 
 const basic = ref("");
 const withPlaceholder = ref("");
@@ -52,43 +52,43 @@ const formCode = `<MizuTextarea
 </script>
 
 <template>
-  <div class="textarea-demo not-content">
-    <DemoTabs :code="basicCode">
-      <div class="demo-section">
-        <h3>Basic</h3>
+  <div class="textarea-examples">
+    <section class="example-section">
+      <h3>Basic</h3>
+      <CodeCollapsible :code="basicCode">
         <div class="textarea-stack">
           <MizuTextarea v-model="basic" />
           <MizuTextarea v-model="withPlaceholder" placeholder="Enter your message..." />
           <MizuTextarea v-model="withLabel" label="Description" />
         </div>
-      </div>
-    </DemoTabs>
+      </CodeCollapsible>
+    </section>
 
-    <DemoTabs :code="sizesCode">
-      <div class="demo-section">
-        <h3>Sizes</h3>
+    <section class="example-section">
+      <h3>Sizes</h3>
+      <CodeCollapsible :code="sizesCode">
         <div class="textarea-stack">
           <MizuTextarea v-model="sizeSm" size="sm" label="Small" placeholder="Small textarea" />
           <MizuTextarea v-model="sizeMd" size="md" label="Medium" placeholder="Medium textarea" />
           <MizuTextarea v-model="sizeLg" size="lg" label="Large" placeholder="Large textarea" />
         </div>
-      </div>
-    </DemoTabs>
+      </CodeCollapsible>
+    </section>
 
-    <DemoTabs :code="statesCode">
-      <div class="demo-section">
-        <h3>States</h3>
+    <section class="example-section">
+      <h3>States</h3>
+      <CodeCollapsible :code="statesCode">
         <div class="textarea-stack">
           <MizuTextarea v-model="errorValue" label="With Error" error helper-text="This field has an error" />
           <MizuTextarea v-model="disabledValue" label="Disabled" disabled />
           <MizuTextarea v-model="rowsValue" label="Custom Rows (5)" :rows="5" placeholder="5 rows tall" />
         </div>
-      </div>
-    </DemoTabs>
+      </CodeCollapsible>
+    </section>
 
-    <DemoTabs :code="formCode">
-      <div class="demo-section">
-        <h3>Form Example</h3>
+    <section class="example-section">
+      <h3>Form Example</h3>
+      <CodeCollapsible :code="formCode">
         <div class="textarea-stack">
           <MizuTextarea
             v-model="feedback"
@@ -107,43 +107,37 @@ const formCode = `<MizuTextarea
             <MizuButton size="sm" @click="handleSubmit">Submit</MizuButton>
           </div>
         </div>
-      </div>
-    </DemoTabs>
+      </CodeCollapsible>
+    </section>
   </div>
 </template>
 
 <style scoped>
-.textarea-demo {
+.textarea-examples {
   all: revert;
   display: flex;
   flex-direction: column;
-  gap: 24px;
-  padding: 24px;
-  background: transparent;
-
-  border: 1px solid var(--color-surface-muted);
-  border-radius: 8px;
+  gap: 32px;
+  font-family: inherit;
 }
 
-.textarea-demo :deep(*) {
+.textarea-examples :deep(*) {
   margin: 0;
 }
 
-.demo-section {
+.example-section {
+  all: revert;
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 12px;
 }
 
-.demo-section h3 {
+.example-section h3 {
+  all: revert;
   font-size: 14px;
   font-weight: 600;
   color: var(--sl-color-text);
-  margin-bottom: 0;
-  margin-top: 0;
-}
-.demo-section > div {
-  margin-top: 0;
+  margin: 0;
 }
 
 .textarea-stack {

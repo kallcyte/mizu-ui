@@ -6,7 +6,7 @@ import {
   MizuNumberFieldIncrement,
   MizuNumberFieldDecrement,
 } from "@mizu/vue";
-import DemoTabs from "./DemoTabs.vue";
+import CodeCollapsible from "./CodeCollapsible.vue";
 
 const basicCode = `<MizuNumberFieldRoot v-model="age" :min="0" :max="150">
   <div class="number-field-group">
@@ -52,75 +52,73 @@ const percent = ref(0.05);
 </script>
 
 <template>
-  <div class="number-field-demo not-content">
-    <div class="demo-section">
+  <div class="number-field-examples">
+    <section class="example-section">
       <h3>Basic</h3>
-      <DemoTabs :code="basicCode">
-      <MizuNumberFieldRoot v-model="age" :min="0" :max="150">
-        <div class="number-field-group">
-          <MizuNumberFieldDecrement>−</MizuNumberFieldDecrement>
-          <MizuNumberFieldInput />
-          <MizuNumberFieldIncrement>+</MizuNumberFieldIncrement>
-        </div>
-      </MizuNumberFieldRoot>
-      <p class="demo-hint">Value: {{ age }}</p>
-      </DemoTabs>
-    </div>
+      <CodeCollapsible :code="basicCode">
+        <MizuNumberFieldRoot v-model="age" :min="0" :max="150">
+          <div class="number-field-group">
+            <MizuNumberFieldDecrement>−</MizuNumberFieldDecrement>
+            <MizuNumberFieldInput />
+            <MizuNumberFieldIncrement>+</MizuNumberFieldIncrement>
+          </div>
+        </MizuNumberFieldRoot>
+        <p class="demo-hint">Value: {{ age }}</p>
+      </CodeCollapsible>
+    </section>
 
-    <div class="demo-section">
+    <section class="example-section">
       <h3>Currency</h3>
-      <DemoTabs :code="currencyCode">
-      <MizuNumberFieldRoot v-model="price" :min="0" :step="0.01" :format-options="{ style: 'currency', currency: 'USD' }">
-        <div class="number-field-group">
-          <MizuNumberFieldDecrement>−</MizuNumberFieldDecrement>
-          <MizuNumberFieldInput />
-          <MizuNumberFieldIncrement>+</MizuNumberFieldIncrement>
-        </div>
-      </MizuNumberFieldRoot>
-      <p class="demo-hint">Value: {{ price }}</p>
-      </DemoTabs>
-    </div>
+      <CodeCollapsible :code="currencyCode">
+        <MizuNumberFieldRoot v-model="price" :min="0" :step="0.01" :format-options="{ style: 'currency', currency: 'USD' }">
+          <div class="number-field-group">
+            <MizuNumberFieldDecrement>−</MizuNumberFieldDecrement>
+            <MizuNumberFieldInput />
+            <MizuNumberFieldIncrement>+</MizuNumberFieldIncrement>
+          </div>
+        </MizuNumberFieldRoot>
+        <p class="demo-hint">Value: {{ price }}</p>
+      </CodeCollapsible>
+    </section>
 
-    <div class="demo-section">
+    <section class="example-section">
       <h3>Percentage</h3>
-      <DemoTabs :code="percentCode">
-      <MizuNumberFieldRoot v-model="percent" :min="0" :max="1" :step="0.01" :format-options="{ style: 'percent' }">
-        <div class="number-field-group">
-          <MizuNumberFieldDecrement>−</MizuNumberFieldDecrement>
-          <MizuNumberFieldInput />
-          <MizuNumberFieldIncrement>+</MizuNumberFieldIncrement>
-        </div>
-      </MizuNumberFieldRoot>
-      <p class="demo-hint">Value: {{ percent }}</p>
-      </DemoTabs>
-    </div>
+      <CodeCollapsible :code="percentCode">
+        <MizuNumberFieldRoot v-model="percent" :min="0" :max="1" :step="0.01" :format-options="{ style: 'percent' }">
+          <div class="number-field-group">
+            <MizuNumberFieldDecrement>−</MizuNumberFieldDecrement>
+            <MizuNumberFieldInput />
+            <MizuNumberFieldIncrement>+</MizuNumberFieldIncrement>
+          </div>
+        </MizuNumberFieldRoot>
+        <p class="demo-hint">Value: {{ percent }}</p>
+      </CodeCollapsible>
+    </section>
   </div>
 </template>
 
 <style scoped>
-.number-field-demo {
+.number-field-examples {
   all: revert;
   display: flex;
   flex-direction: column;
-  gap: 24px;
-  padding: 16px;
-  background: transparent;
-
-  border: 1px solid var(--color-surface-muted);
-  border-radius: 8px;
+  gap: 32px;
+  font-family: inherit;
 }
 
-.demo-section {
+.number-field-examples :deep(*) {
+  margin: 0;
+}
+
+.example-section {
+  all: revert;
   display: flex;
   flex-direction: column;
   gap: 12px;
 }
 
-.demo-section > * {
-  margin-top: 0;
-}
-
-.demo-section h3 {
+.example-section h3 {
+  all: revert;
   font-size: 14px;
   font-weight: 600;
   color: var(--sl-color-text);

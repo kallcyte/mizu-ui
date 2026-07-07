@@ -64,7 +64,7 @@ MizuNavigationMenuRoot (orientation, modelValue)
 | Trigger hover/open | `surface-subtle` (#F8F9FA) | `foreground-primary` (#001C44) |
 | Link idle | transparent | `foreground-secondary` (#696D7D) |
 | Link hover | `surface-subtle` (#F8F9FA) | `foreground-primary` (#001C44) |
-| Link active | `brand-accent-subtle` | `brand-primary` (#001C44) |
+| Link active | `brand-ycp-subtle` | `brand-primary` (#001C44) |
 | Content panel | `surface-base` (#FFFFFF) | `foreground-primary` (#001C44) |
 | Content border | `surface-muted` (#F3F4F6) | — |
 
@@ -73,9 +73,9 @@ MizuNavigationMenuRoot (orientation, modelValue)
 | Trigger hover bg | `surface-subtle` | #F8F9FA | #141626 |
 | Content panel bg | `surface-base` | #FFFFFF | #1B1B1D |
 | Content border | `surface-muted` | #F3F4F6 | #1E2030 |
-| Active link bg | `brand-accent-subtle` | #E8F0FF | #1A2440 |
+| Active link bg | `brand-ycp-subtle` | #E8F0FF | #1A2440 |
 | Active link text | `brand-primary` | #001C44 | #5C7BFF |
-| Focus ring | `brand-accent` | #305EF0 | #5C7BFF |
+| Focus ring | `brand-ycp` | #305EF0 | #5C7BFF |
 
 ## Transitions
 
@@ -158,7 +158,7 @@ import {
 2. **Hover + click triggers** — content opens on hover after `delayDuration` (200ms) or on click; `disableHoverTrigger` / `disableClickTrigger` toggle each mode.
 3. **Orientation via `data-orientation`** — set on the root and cascaded to the list via CSS descendant selector.
 4. **Content panel animation** — `opacity + translateY` enter animation (200ms), respects `prefers-reduced-motion`.
-5. **Active link styling** — `active` prop adds `brand-accent-subtle` background + `brand-primary` text color.
+5. **Active link styling** — `active` prop adds `brand-ycp-subtle` background + `brand-primary` text color.
 6. **Class inheritance** — all sub-components accept `class` via `useAttrs()` for consumer overrides.
 
 | `vertical` | Column of links, content opens to the side | Sidebar navigation, app shells |

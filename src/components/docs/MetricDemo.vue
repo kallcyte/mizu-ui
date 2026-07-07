@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { MizuMetric } from "@mizu/vue";
-import DemoTabs from "./DemoTabs.vue";
+import CodeCollapsible from "./CodeCollapsible.vue";
 
 const basicCode = `<MizuMetric label="Total Revenue" value="$128,500" />
 <MizuMetric label="Active Users" value="24,521" />
@@ -28,32 +28,32 @@ const dashboardCode = `<MizuMetric label="Total Sales" value="$84,250" trend="up
 </script>
 
 <template>
-  <div class="metric-demo not-content">
-    <DemoTabs :code="basicCode">
-      <div class="demo-section">
-        <h3>Basic</h3>
+  <div class="metric-examples">
+    <section class="example-section">
+      <h3>Basic</h3>
+      <CodeCollapsible :code="basicCode">
         <div class="metric-grid">
           <MizuMetric label="Total Revenue" value="$128,500" />
           <MizuMetric label="Active Users" value="24,521" />
           <MizuMetric label="Conversion Rate" value="3.2%" />
         </div>
-      </div>
-    </DemoTabs>
+      </CodeCollapsible>
+    </section>
 
-    <DemoTabs :code="sizesCode">
-      <div class="demo-section">
-        <h3>Sizes</h3>
+    <section class="example-section">
+      <h3>Sizes</h3>
+      <CodeCollapsible :code="sizesCode">
         <div class="metric-grid">
           <MizuMetric label="Small" value="1,234" size="sm" />
           <MizuMetric label="Medium" value="1,234" size="md" />
           <MizuMetric label="Large" value="1,234" size="lg" />
         </div>
-      </div>
-    </DemoTabs>
+      </CodeCollapsible>
+    </section>
 
-    <DemoTabs :code="variantsCode">
-      <div class="demo-section">
-        <h3>Variants</h3>
+    <section class="example-section">
+      <h3>Variants</h3>
+      <CodeCollapsible :code="variantsCode">
         <div class="metric-grid">
           <MizuMetric label="Default" value="42" variant="default" />
           <MizuMetric label="Primary" value="42" variant="primary" />
@@ -62,23 +62,23 @@ const dashboardCode = `<MizuMetric label="Total Sales" value="$84,250" trend="up
           <MizuMetric label="Warning" value="42" variant="warning" />
           <MizuMetric label="Error" value="42" variant="error" />
         </div>
-      </div>
-    </DemoTabs>
+      </CodeCollapsible>
+    </section>
 
-    <DemoTabs :code="trendCode">
-      <div class="demo-section">
-        <h3>With Trend</h3>
+    <section class="example-section">
+      <h3>With Trend</h3>
+      <CodeCollapsible :code="trendCode">
         <div class="metric-grid">
           <MizuMetric label="Revenue" value="$48,250" trend="up" trend-value="+12.5%" />
           <MizuMetric label="Bounce Rate" value="24.3%" trend="down" trend-value="-3.2%" />
           <MizuMetric label="Impressions" value="142K" trend="neutral" trend-value="0%" />
         </div>
-      </div>
-    </DemoTabs>
+      </CodeCollapsible>
+    </section>
 
-    <DemoTabs :code="dashboardCode">
-      <div class="demo-section">
-        <h3>Dashboard Example</h3>
+    <section class="example-section">
+      <h3>Dashboard Example</h3>
+      <CodeCollapsible :code="dashboardCode">
         <div class="dashboard-grid">
           <div class="dashboard-card">
             <MizuMetric label="Total Sales" value="$84,250" trend="up" trend-value="+8.2%" variant="primary" size="lg" />
@@ -93,43 +93,37 @@ const dashboardCode = `<MizuMetric label="Total Sales" value="$84,250" trend="up
             <MizuMetric label="Avg. Order Value" value="$46.20" trend="up" trend-value="+1.4%" variant="success" />
           </div>
         </div>
-      </div>
-    </DemoTabs>
+      </CodeCollapsible>
+    </section>
   </div>
 </template>
 
 <style scoped>
-.metric-demo {
+.metric-examples {
   all: revert;
   display: flex;
   flex-direction: column;
-  gap: 24px;
-  padding: 24px;
-  background: transparent;
-
-  border: 1px solid var(--color-surface-muted);
-  border-radius: 8px;
+  gap: 32px;
+  font-family: inherit;
 }
 
-.metric-demo :deep(*) {
+.metric-examples :deep(*) {
   margin: 0;
 }
 
-.demo-section {
+.example-section {
+  all: revert;
   display: flex;
   flex-direction: column;
   gap: 12px;
 }
 
-.demo-section h3 {
+.example-section h3 {
+  all: revert;
   font-size: 14px;
   font-weight: 600;
   color: var(--sl-color-text);
-  margin-bottom: 0;
-  margin-top: 0;
-}
-.demo-section > div {
-  margin-top: 0;
+  margin: 0;
 }
 
 .metric-grid {

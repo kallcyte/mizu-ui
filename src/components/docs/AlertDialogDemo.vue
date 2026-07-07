@@ -16,7 +16,7 @@ import {
   MizuButton,
   MizuInput,
 } from "@mizu/vue";
-import DemoTabs from "./DemoTabs.vue";
+import CodeCollapsible from "./CodeCollapsible.vue";
 
 const basicOpen = ref(false);
 const destructiveOpen = ref(false);
@@ -117,10 +117,10 @@ const contentCode = `<MizuAlertDialogRoot v-model:open="open">
 </script>
 
 <template>
-  <div class="alert-dialog-demo not-content">
-    <div class="demo-section">
+  <div class="alert-dialog-examples">
+    <section class="example-section">
       <h3>Basic Confirmation</h3>
-      <DemoTabs :code="basicCode">
+      <CodeCollapsible :code="basicCode">
         <MizuAlertDialogRoot v-model:open="basicOpen">
           <MizuAlertDialogTrigger as-child>
             <MizuButton variant="primary" size="md" class="w-max">Delete Invoice</MizuButton>
@@ -147,12 +147,12 @@ const contentCode = `<MizuAlertDialogRoot v-model:open="open">
             </MizuAlertDialogContent>
           </MizuAlertDialogPortal>
         </MizuAlertDialogRoot>
-      </DemoTabs>
-    </div>
+      </CodeCollapsible>
+    </section>
 
-    <div class="demo-section">
+    <section class="example-section">
       <h3>Destructive Action</h3>
-      <DemoTabs :code="destructiveCode">
+      <CodeCollapsible :code="destructiveCode">
         <MizuAlertDialogRoot v-model:open="destructiveOpen" @update:open="(v: boolean) => { if (v) deleteAccountInput = '' }">
           <MizuAlertDialogTrigger as-child>
             <MizuButton variant="error" size="md" class="w-max">Delete Account</MizuButton>
@@ -184,12 +184,12 @@ const contentCode = `<MizuAlertDialogRoot v-model:open="open">
             </MizuAlertDialogContent>
           </MizuAlertDialogPortal>
         </MizuAlertDialogRoot>
-      </DemoTabs>
-    </div>
+      </CodeCollapsible>
+    </section>
 
-    <div class="demo-section">
+    <section class="example-section">
       <h3>With Additional Content</h3>
-      <DemoTabs :code="contentCode">
+      <CodeCollapsible :code="contentCode">
         <MizuAlertDialogRoot v-model:open="formOpen">
           <MizuAlertDialogTrigger as-child>
             <MizuButton variant="primary" size="md" class="w-max">Discard Changes</MizuButton>
@@ -221,36 +221,32 @@ const contentCode = `<MizuAlertDialogRoot v-model:open="open">
             </MizuAlertDialogContent>
           </MizuAlertDialogPortal>
         </MizuAlertDialogRoot>
-      </DemoTabs>
-    </div>
+      </CodeCollapsible>
+    </section>
   </div>
 </template>
 
 <style scoped>
-.alert-dialog-demo {
+.alert-dialog-examples {
   all: revert;
   display: flex;
   flex-direction: column;
-  gap: 24px;
-  padding: 0;
-  background: transparent;
+  gap: 32px;
+  font-family: inherit;
 }
-
-.demo-section {
+.alert-dialog-examples :deep(*) { margin: 0; }
+.example-section {
+  all: revert;
   display: flex;
   flex-direction: column;
   gap: 12px;
 }
-
-.demo-section h3 {
+.example-section h3 {
+  all: revert;
   font-size: 14px;
   font-weight: 600;
   color: var(--sl-color-text);
-  margin-bottom: 0;
-}
-
-.demo-section > div {
-  margin-top: 0;
+  margin: 0;
 }
 
 .changes-list {

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { MizuDivider } from "@mizu/vue";
-import DemoTabs from "./DemoTabs.vue";
+import CodeCollapsible from "./CodeCollapsible.vue";
 
 const basicCode = `<p>Content above</p>
 <MizuDivider />
@@ -26,83 +26,82 @@ const inContextCode = `<div class="card">
 </script>
 
 <template>
-  <div class="divider-demo not-content">
-    <DemoTabs :code="basicCode">
-    <div class="demo-section">
+  <div class="divider-examples">
+    <section class="example-section">
       <h3>Basic</h3>
-      <p>Content above</p>
-      <MizuDivider />
-      <p>Content below</p>
-    </div>
-    </DemoTabs>
+      <CodeCollapsible :code="basicCode">
+        <p>Content above</p>
+        <MizuDivider />
+        <p>Content below</p>
+      </CodeCollapsible>
+    </section>
 
-    <DemoTabs :code="withLabelCode">
-    <div class="demo-section">
+    <section class="example-section">
       <h3>With Label</h3>
-      <p>Section above</p>
-      <MizuDivider label="OR" />
-      <p>Section below</p>
-    </div>
-    </DemoTabs>
+      <CodeCollapsible :code="withLabelCode">
+        <p>Section above</p>
+        <MizuDivider label="OR" />
+        <p>Section below</p>
+      </CodeCollapsible>
+    </section>
 
-    <DemoTabs :code="verticalCode">
-    <div class="demo-section">
+    <section class="example-section">
       <h3>Vertical</h3>
-      <div class="vertical-row">
-        <span>Left</span>
-        <MizuDivider orientation="vertical" />
-        <span>Center</span>
-        <MizuDivider orientation="vertical" />
-        <span>Right</span>
-      </div>
-    </div>
-    </DemoTabs>
+      <CodeCollapsible :code="verticalCode">
+        <div class="vertical-row">
+          <span>Left</span>
+          <MizuDivider orientation="vertical" />
+          <span>Center</span>
+          <MizuDivider orientation="vertical" />
+          <span>Right</span>
+        </div>
+      </CodeCollapsible>
+    </section>
 
-    <DemoTabs :code="inContextCode">
-    <div class="demo-section">
+    <section class="example-section">
       <h3>In Context</h3>
-      <div class="context-card">
-        <div class="context-header">Header Section</div>
-        <MizuDivider />
-        <div class="context-body">Body content goes here.</div>
-        <MizuDivider />
-        <div class="context-footer">Footer Section</div>
-      </div>
-    </div>
-    </DemoTabs>
+      <CodeCollapsible :code="inContextCode">
+        <div class="context-card">
+          <div class="context-header">Header Section</div>
+          <MizuDivider />
+          <div class="context-body">Body content goes here.</div>
+          <MizuDivider />
+          <div class="context-footer">Footer Section</div>
+        </div>
+      </CodeCollapsible>
+    </section>
   </div>
 </template>
 
 <style scoped>
-.divider-demo {
+.divider-examples {
   all: revert;
-  font-family: var(--font-family-sans);
   display: flex;
   flex-direction: column;
-  gap: 24px;
-  padding: 16px;
-  background: transparent;
-
-  border: 1px solid var(--color-surface-muted);
-  border-radius: 8px;
+  gap: 32px;
+  font-family: inherit;
 }
-.divider-demo :deep(*) { margin: 0; }
 
-.demo-section {
+.divider-examples :deep(*) {
+  margin: 0;
+}
+
+.example-section {
+  all: revert;
   display: flex;
   flex-direction: column;
   gap: 12px;
 }
-.demo-section h3 {
+
+.example-section h3 {
+  all: revert;
   font-size: 14px;
   font-weight: 600;
   color: var(--sl-color-text);
-  margin-bottom: 0;
+  margin: 0;
 }
-.demo-section > div {
-  margin-top: 0;
-}
-.demo-section p {
+
+.example-section p {
   font-size: 13px;
   color: var(--sl-color-text-light);
 }

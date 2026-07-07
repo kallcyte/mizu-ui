@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import { z } from "zod";
-import { useForm, MizuInput, MizuButton, MizuCheckbox, MizuCard, MizuAlert } from "@mizu/vue";
+import { useForm, MizuInput, MizuButton, MizuCheckbox, MizuCard, MizuCardContent, MizuAlert } from "@mizu/vue";
 import { Mail, Lock } from "@lucide/vue";
 
 const loginSchema = z.object({
@@ -36,91 +36,91 @@ const submitHandler = form.handleSubmit(handleLogin);
   <div class="login-demo-wrapper">
     <div class="login-page">
       <div class="login-container">
-        <MizuCard variant="default" class="p-6">
-          <template #header>
+        <MizuCard variant="default">
+          <MizuCardContent>
             <div class="login-header">
               <h2 class="login-title">Welcome Back</h2>
               <p class="login-subtitle">Sign in to your Mizu account</p>
             </div>
-          </template>
 
-          <MizuAlert
-            v-if="loginError"
-            variant="error"
-            title="Login Failed"
-            :closable="true"
-            @close="loginError = undefined"
-          >
-            {{ loginError }}
-          </MizuAlert>
-
-          <MizuAlert
-            v-if="loginSuccess"
-            variant="success"
-            title="Success!"
-          >
-            You have been logged in successfully.
-          </MizuAlert>
-
-          <form @submit="submitHandler" novalidate autocomplete="off" class="login-form">
-            <MizuInput
-              :model-value="form.fields.email.modelValue.value"
-              @update:model-value="form.fields.email.onChange"
-              :error="!!form.fields.email.error.value"
-              :helper-text="form.fields.email.error.value || undefined"
-              label="Email"
-              type="email"
-              placeholder="you@example.com"
-              name="email"
-              required
-              @blur="form.fields.email.onBlur()"
+            <MizuAlert
+              v-if="loginError"
+              variant="error"
+              title="Login Failed"
+              :closable="true"
+              @close="loginError = undefined"
             >
-              <template #leading-icon>
-                <Mail />
-              </template>
-            </MizuInput>
+              {{ loginError }}
+            </MizuAlert>
 
-            <MizuInput
-              :model-value="form.fields.password.modelValue.value"
-              @update:model-value="form.fields.password.onChange"
-              :error="!!form.fields.password.error.value"
-              :helper-text="form.fields.password.error.value || undefined"
-              label="Password"
-              type="password"
-              placeholder="Enter your password"
-              name="password"
-              required
-              show-password
-              @blur="form.fields.password.onBlur()"
+            <MizuAlert
+              v-if="loginSuccess"
+              variant="success"
+              title="Success!"
             >
-              <template #leading-icon>
-                <Lock />
-              </template>
-            </MizuInput>
+              You have been logged in successfully.
+            </MizuAlert>
 
-            <MizuCheckbox
-              :model-value="form.fields.remember.modelValue.value"
-              @update:model-value="form.fields.remember.onChange"
-              label="Remember me"
-            />
+            <form @submit="submitHandler" novalidate autocomplete="off" class="login-form">
+              <MizuInput
+                :model-value="form.fields.email.modelValue.value"
+                @update:model-value="form.fields.email.onChange"
+                :error="!!form.fields.email.error.value"
+                :helper-text="form.fields.email.error.value || undefined"
+                label="Email"
+                type="email"
+                placeholder="you@example.com"
+                name="email"
+                required
+                @blur="form.fields.email.onBlur()"
+              >
+                <template #leading-icon>
+                  <Mail />
+                </template>
+              </MizuInput>
 
-            <MizuButton
-              type="submit"
-              variant="primary"
-              size="lg"
-              :loading="form.isSubmitting.value"
-              :disabled="form.isSubmitting.value"
-              class="login-submit-btn"
-            >
-              {{ form.isSubmitting.value ? "Signing in..." : "Sign In" }}
-            </MizuButton>
-          </form>
+              <MizuInput
+                :model-value="form.fields.password.modelValue.value"
+                @update:model-value="form.fields.password.onChange"
+                :error="!!form.fields.password.error.value"
+                :helper-text="form.fields.password.error.value || undefined"
+                label="Password"
+                type="password"
+                placeholder="Enter your password"
+                name="password"
+                required
+                show-password
+                @blur="form.fields.password.onBlur()"
+              >
+                <template #leading-icon>
+                  <Lock />
+                </template>
+              </MizuInput>
 
-          <div class="login-footer">
-            <p class="login-hint">
-              Demo credentials: <code>admin@mizu.dev</code> / <code>password123</code>
-            </p>
-          </div>
+              <MizuCheckbox
+                :model-value="form.fields.remember.modelValue.value"
+                @update:model-value="form.fields.remember.onChange"
+                label="Remember me"
+              />
+
+              <MizuButton
+                type="submit"
+                variant="primary"
+                size="lg"
+                :loading="form.isSubmitting.value"
+                :disabled="form.isSubmitting.value"
+                class="login-submit-btn"
+              >
+                {{ form.isSubmitting.value ? "Signing in..." : "Sign In" }}
+              </MizuButton>
+            </form>
+
+            <div class="login-footer">
+              <p class="login-hint">
+                Demo credentials: <code>admin@mizu.dev</code> / <code>password123</code>
+              </p>
+            </div>
+          </MizuCardContent>
         </MizuCard>
       </div>
     </div>

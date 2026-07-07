@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { MizuTooltipProvider, MizuTooltipRoot, MizuTooltipTrigger, MizuTooltipContent, MizuButton, MizuTag } from "@mizu/vue";
-import DemoTabs from "./DemoTabs.vue";
+import CodeCollapsible from "./CodeCollapsible.vue";
 
 const basicCode = `<MizuTooltipProvider>
   <MizuTooltipRoot>
@@ -388,10 +388,10 @@ const variantsCode = `<MizuTooltipProvider>
 </script>
 
 <template>
-  <div class="tooltip-demo not-content">
-    <DemoTabs :code="basicCode">
-      <div class="demo-section">
-        <h3>Basic</h3>
+  <div class="tooltip-examples">
+    <section class="example-section">
+      <h3>Basic</h3>
+      <CodeCollapsible :code="basicCode">
         <MizuTooltipProvider>
           <MizuTooltipRoot>
             <MizuTooltipTrigger>
@@ -402,12 +402,12 @@ const variantsCode = `<MizuTooltipProvider>
             </MizuTooltipContent>
           </MizuTooltipRoot>
         </MizuTooltipProvider>
-      </div>
-    </DemoTabs>
+      </CodeCollapsible>
+    </section>
 
-    <DemoTabs :code="textLinkCode">
-      <div class="demo-section">
-        <h3>On Text Link</h3>
+    <section class="example-section">
+      <h3>On Text Link</h3>
+      <CodeCollapsible :code="textLinkCode">
         <p class="demo-text">
           Read the <MizuTooltipProvider>
             <MizuTooltipRoot>
@@ -420,12 +420,12 @@ const variantsCode = `<MizuTooltipProvider>
             </MizuTooltipRoot>
           </MizuTooltipProvider> for more details.
         </p>
-      </div>
-    </DemoTabs>
+      </CodeCollapsible>
+    </section>
 
-    <DemoTabs :code="abbreviationCode">
-      <div class="demo-section">
-        <h3>Abbreviation</h3>
+    <section class="example-section">
+      <h3>Abbreviation</h3>
+      <CodeCollapsible :code="abbreviationCode">
         <p class="demo-text">
           The <MizuTooltipProvider>
             <MizuTooltipRoot>
@@ -438,12 +438,12 @@ const variantsCode = `<MizuTooltipProvider>
             </MizuTooltipRoot>
           </MizuTooltipProvider> system manages core business processes.
         </p>
-      </div>
-    </DemoTabs>
+      </CodeCollapsible>
+    </section>
 
-    <DemoTabs :code="truncatedTextCode">
-      <div class="demo-section">
-        <h3>Truncated Text</h3>
+    <section class="example-section">
+      <h3>Truncated Text</h3>
+      <CodeCollapsible :code="truncatedTextCode">
         <div class="truncated-row">
           <MizuTooltipProvider>
             <MizuTooltipRoot>
@@ -456,12 +456,12 @@ const variantsCode = `<MizuTooltipProvider>
             </MizuTooltipRoot>
           </MizuTooltipProvider>
         </div>
-      </div>
-    </DemoTabs>
+      </CodeCollapsible>
+    </section>
 
-    <DemoTabs :code="statusTooltipCode">
-      <div class="demo-section">
-        <h3>Status with Tooltip</h3>
+    <section class="example-section">
+      <h3>Status with Tooltip</h3>
+      <CodeCollapsible :code="statusTooltipCode">
         <div class="status-row">
           <MizuTooltipProvider>
             <MizuTooltipRoot>
@@ -496,12 +496,12 @@ const variantsCode = `<MizuTooltipProvider>
             </MizuTooltipRoot>
           </MizuTooltipProvider>
         </div>
-      </div>
-    </DemoTabs>
+      </CodeCollapsible>
+    </section>
 
-    <DemoTabs :code="kbdCode">
-      <div class="demo-section">
-        <h3>Keyboard Shortcut</h3>
+    <section class="example-section">
+      <h3>Keyboard Shortcut</h3>
+      <CodeCollapsible :code="kbdCode">
         <MizuTooltipProvider>
           <MizuTooltipRoot>
             <MizuTooltipTrigger>
@@ -517,12 +517,12 @@ const variantsCode = `<MizuTooltipProvider>
             </MizuTooltipContent>
           </MizuTooltipRoot>
         </MizuTooltipProvider>
-      </div>
-    </DemoTabs>
+      </CodeCollapsible>
+    </section>
 
-    <DemoTabs :code="infoLabelCode">
-      <div class="demo-section">
-        <h3>Info Label</h3>
+    <section class="example-section">
+      <h3>Info Label</h3>
+      <CodeCollapsible :code="infoLabelCode">
         <div class="info-row">
           <span class="info-label">Payment Terms</span>
           <MizuTooltipProvider>
@@ -542,12 +542,12 @@ const variantsCode = `<MizuTooltipProvider>
             </MizuTooltipRoot>
           </MizuTooltipProvider>
         </div>
-      </div>
-    </DemoTabs>
+      </CodeCollapsible>
+    </section>
 
-    <DemoTabs :code="formHelpCode">
-      <div class="demo-section">
-        <h3>Form Field Help</h3>
+    <section class="example-section">
+      <h3>Form Field Help</h3>
+      <CodeCollapsible :code="formHelpCode">
         <div class="form-row">
           <label class="form-label">
             Tax ID
@@ -564,12 +564,12 @@ const variantsCode = `<MizuTooltipProvider>
           </label>
           <input type="text" class="form-input" placeholder="XX-XXXXXXX" readonly />
         </div>
-      </div>
-    </DemoTabs>
+      </CodeCollapsible>
+    </section>
 
-    <DemoTabs :code="badgeCode">
-      <div class="demo-section">
-        <h3>Badge Count</h3>
+    <section class="example-section">
+      <h3>Badge Count</h3>
+      <CodeCollapsible :code="badgeCode">
         <div class="badge-row">
           <MizuTooltipProvider>
             <MizuTooltipRoot>
@@ -604,12 +604,12 @@ const variantsCode = `<MizuTooltipProvider>
             </MizuTooltipRoot>
           </MizuTooltipProvider>
         </div>
-      </div>
-    </DemoTabs>
+      </CodeCollapsible>
+    </section>
 
-    <DemoTabs :code="dateDisplayCode">
-      <div class="demo-section">
-        <h3>Date Display</h3>
+    <section class="example-section">
+      <h3>Date Display</h3>
+      <CodeCollapsible :code="dateDisplayCode">
         <MizuTooltipProvider>
           <MizuTooltipRoot>
             <MizuTooltipTrigger as-child>
@@ -620,12 +620,12 @@ const variantsCode = `<MizuTooltipProvider>
             </MizuTooltipContent>
           </MizuTooltipRoot>
         </MizuTooltipProvider>
-      </div>
-    </DemoTabs>
+      </CodeCollapsible>
+    </section>
 
-    <DemoTabs :code="disabledActionCode">
-      <div class="demo-section">
-        <h3>Disabled Action</h3>
+    <section class="example-section">
+      <h3>Disabled Action</h3>
+      <CodeCollapsible :code="disabledActionCode">
         <MizuTooltipProvider>
           <MizuTooltipRoot>
             <MizuTooltipTrigger>
@@ -636,12 +636,12 @@ const variantsCode = `<MizuTooltipProvider>
             </MizuTooltipContent>
           </MizuTooltipRoot>
         </MizuTooltipProvider>
-      </div>
-    </DemoTabs>
+      </CodeCollapsible>
+    </section>
 
-    <DemoTabs :code="placementsCode">
-      <div class="demo-section">
-        <h3>Placements</h3>
+    <section class="example-section">
+      <h3>Placements</h3>
+      <CodeCollapsible :code="placementsCode">
         <div class="placement-grid">
           <MizuTooltipProvider>
             <MizuTooltipRoot>
@@ -687,12 +687,12 @@ const variantsCode = `<MizuTooltipProvider>
             </MizuTooltipRoot>
           </MizuTooltipProvider>
         </div>
-      </div>
-    </DemoTabs>
+      </CodeCollapsible>
+    </section>
 
-    <DemoTabs :code="withoutArrowCode">
-      <div class="demo-section">
-        <h3>Without Arrow</h3>
+    <section class="example-section">
+      <h3>Without Arrow</h3>
+      <CodeCollapsible :code="withoutArrowCode">
         <MizuTooltipProvider>
           <MizuTooltipRoot>
             <MizuTooltipTrigger>
@@ -703,12 +703,12 @@ const variantsCode = `<MizuTooltipProvider>
             </MizuTooltipContent>
           </MizuTooltipRoot>
         </MizuTooltipProvider>
-      </div>
-    </DemoTabs>
+      </CodeCollapsible>
+    </section>
 
-    <DemoTabs :code="customDelayCode">
-      <div class="demo-section">
-        <h3>Custom Delay</h3>
+    <section class="example-section">
+      <h3>Custom Delay</h3>
+      <CodeCollapsible :code="customDelayCode">
         <MizuTooltipProvider :delay-duration="1000">
           <MizuTooltipRoot>
             <MizuTooltipTrigger>
@@ -719,12 +719,12 @@ const variantsCode = `<MizuTooltipProvider>
             </MizuTooltipContent>
           </MizuTooltipRoot>
         </MizuTooltipProvider>
-      </div>
-    </DemoTabs>
+      </CodeCollapsible>
+    </section>
 
-    <DemoTabs :code="onIconCode">
-      <div class="demo-section">
-        <h3>On Icon</h3>
+    <section class="example-section">
+      <h3>On Icon</h3>
+      <CodeCollapsible :code="onIconCode">
         <MizuTooltipProvider>
           <MizuTooltipRoot>
             <MizuTooltipTrigger as-child>
@@ -741,12 +741,12 @@ const variantsCode = `<MizuTooltipProvider>
             </MizuTooltipContent>
           </MizuTooltipRoot>
         </MizuTooltipProvider>
-      </div>
-    </DemoTabs>
+      </CodeCollapsible>
+    </section>
 
-    <DemoTabs :code="richContentCode">
-      <div class="demo-section">
-        <h3>Rich Content</h3>
+    <section class="example-section">
+      <h3>Rich Content</h3>
+      <CodeCollapsible :code="richContentCode">
         <MizuTooltipProvider>
           <MizuTooltipRoot>
             <MizuTooltipTrigger>
@@ -758,12 +758,12 @@ const variantsCode = `<MizuTooltipProvider>
             </MizuTooltipContent>
           </MizuTooltipRoot>
         </MizuTooltipProvider>
-      </div>
-    </DemoTabs>
+      </CodeCollapsible>
+    </section>
 
-    <DemoTabs :code="multiLineCode">
-      <div class="demo-section">
-        <h3>Multi-line</h3>
+    <section class="example-section">
+      <h3>Multi-line</h3>
+      <CodeCollapsible :code="multiLineCode">
         <MizuTooltipProvider>
           <MizuTooltipRoot>
             <MizuTooltipTrigger>
@@ -774,12 +774,12 @@ const variantsCode = `<MizuTooltipProvider>
             </MizuTooltipContent>
           </MizuTooltipRoot>
         </MizuTooltipProvider>
-      </div>
-    </DemoTabs>
+      </CodeCollapsible>
+    </section>
 
-    <DemoTabs :code="coloredTooltipCode">
-      <div class="demo-section">
-        <h3>Colored Tooltip</h3>
+    <section class="example-section">
+      <h3>Colored Tooltip</h3>
+      <CodeCollapsible :code="coloredTooltipCode">
         <div style="display: flex; gap: 8px; flex-wrap: wrap;">
           <MizuTooltipProvider>
             <MizuTooltipRoot>
@@ -849,12 +849,12 @@ const variantsCode = `<MizuTooltipProvider>
             </MizuTooltipRoot>
           </MizuTooltipProvider>
         </div>
-      </div>
-    </DemoTabs>
+      </CodeCollapsible>
+    </section>
 
-    <DemoTabs :code="iconInTooltipCode">
-      <div class="demo-section">
-        <h3>Icon in Tooltip</h3>
+    <section class="example-section">
+      <h3>Icon in Tooltip</h3>
+      <CodeCollapsible :code="iconInTooltipCode">
         <MizuTooltipProvider>
           <MizuTooltipRoot>
             <MizuTooltipTrigger>
@@ -870,12 +870,12 @@ const variantsCode = `<MizuTooltipProvider>
             </MizuTooltipContent>
           </MizuTooltipRoot>
         </MizuTooltipProvider>
-      </div>
-    </DemoTabs>
+      </CodeCollapsible>
+    </section>
 
-    <DemoTabs :code="variantsCode">
-      <div class="demo-section">
-        <h3>Variants</h3>
+    <section class="example-section">
+      <h3>Variants</h3>
+      <CodeCollapsible :code="variantsCode">
         <div style="display: flex; gap: 8px; flex-wrap: wrap;">
           <MizuTooltipProvider>
             <MizuTooltipRoot>
@@ -899,43 +899,37 @@ const variantsCode = `<MizuTooltipProvider>
             </MizuTooltipRoot>
           </MizuTooltipProvider>
         </div>
-      </div>
-    </DemoTabs>
+      </CodeCollapsible>
+    </section>
   </div>
 </template>
 
 <style scoped>
-.tooltip-demo {
+.tooltip-examples {
   all: revert;
   display: flex;
   flex-direction: column;
-  gap: 24px;
-  padding: 16px;
-  background: transparent;
-
-  border: 1px solid var(--color-surface-muted);
-  border-radius: 8px;
+  gap: 32px;
+  font-family: inherit;
 }
 
-.tooltip-demo :deep(*) {
+.tooltip-examples :deep(*) {
   margin: 0;
 }
 
-.demo-section {
+.example-section {
+  all: revert;
   display: flex;
   flex-direction: column;
   gap: 12px;
 }
 
-.demo-section h3 {
+.example-section h3 {
+  all: revert;
   font-size: 14px;
   font-weight: 600;
   color: var(--sl-color-text);
   margin: 0;
-}
-
-.demo-section > div {
-  margin-top: 0;
 }
 
 .placement-grid {

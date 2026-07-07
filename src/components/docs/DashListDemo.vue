@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { MizuDashList } from "@mizu/vue";
-import DemoTabs from "./DemoTabs.vue";
+import CodeCollapsible from "./CodeCollapsible.vue";
 
 const userInfo = [
   { label: "Full Name", value: "Jane Doe" },
@@ -35,75 +35,72 @@ const horizontalCode = `<MizuDashList :items="productSpecs" size="md" orientatio
 </script>
 
 <template>
-  <div class="dashlist-demo not-content">
-    <div class="demo-section">
+  <div class="dashlist-examples">
+    <section class="example-section">
       <h3>Vertical (Default)</h3>
-      <DemoTabs :code="verticalCode">
-      <MizuDashList :items="userInfo" size="md" />
-      </DemoTabs>
-    </div>
+      <CodeCollapsible :code="verticalCode">
+        <MizuDashList :items="userInfo" size="md" />
+      </CodeCollapsible>
+    </section>
 
-    <div class="demo-section">
+    <section class="example-section">
       <h3>Sizes</h3>
-      <DemoTabs :code="sizesCode">
-      <div class="dashlist-grid">
-        <div>
-          <h4>Small</h4>
-          <MizuDashList :items="analyticsData" size="sm" />
+      <CodeCollapsible :code="sizesCode">
+        <div class="dashlist-grid">
+          <div>
+            <h4>Small</h4>
+            <MizuDashList :items="analyticsData" size="sm" />
+          </div>
+          <div>
+            <h4>Medium</h4>
+            <MizuDashList :items="analyticsData" size="md" />
+          </div>
+          <div>
+            <h4>Large</h4>
+            <MizuDashList :items="analyticsData" size="lg" />
+          </div>
         </div>
-        <div>
-          <h4>Medium</h4>
-          <MizuDashList :items="analyticsData" size="md" />
-        </div>
-        <div>
-          <h4>Large</h4>
-          <MizuDashList :items="analyticsData" size="lg" />
-        </div>
-      </div>
-      </DemoTabs>
-    </div>
+      </CodeCollapsible>
+    </section>
 
-    <div class="demo-section">
+    <section class="example-section">
       <h3>Horizontal</h3>
-      <DemoTabs :code="horizontalCode">
-      <MizuDashList :items="productSpecs" size="md" orientation="horizontal" />
-      </DemoTabs>
-    </div>
+      <CodeCollapsible :code="horizontalCode">
+        <MizuDashList :items="productSpecs" size="md" orientation="horizontal" />
+      </CodeCollapsible>
+    </section>
   </div>
 </template>
 
 <style scoped>
-.dashlist-demo {
+.dashlist-examples {
   all: revert;
   display: flex;
   flex-direction: column;
-  gap: 24px;
-  padding: 0;
-  background: transparent;
+  gap: 32px;
+  font-family: inherit;
 }
 
-.dashlist-demo :deep(*) {
+.dashlist-examples :deep(*) {
   margin: 0;
 }
 
-.demo-section {
+.example-section {
+  all: revert;
   display: flex;
   flex-direction: column;
   gap: 12px;
 }
 
-.demo-section h3 {
+.example-section h3 {
+  all: revert;
   font-size: 14px;
   font-weight: 600;
   color: var(--sl-color-text);
-  margin-bottom: 0;
-  margin-top: 0;
-}
-.demo-section > div {
-  margin-top: 0;
+  margin: 0;
 }
 
-.demo-section h4 {
+.example-section h4 {
   font-size: 12px;
   font-weight: 500;
   color: var(--sl-color-text-light);

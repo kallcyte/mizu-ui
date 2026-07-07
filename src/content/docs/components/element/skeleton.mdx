@@ -1,0 +1,217 @@
+---
+title: Skeleton
+description: A loading placeholder that visually represents content while data is being fetched.
+---
+
+import SkeletonDemo from '../../../../components/docs/SkeletonDemo.vue';
+
+A skeleton is a lightweight, non-interactive placeholder used to indicate that content is loading. It mirrors the shape of the eventual content (text, avatars, cards, list items) so the layout stays stable while data fetches.
+
+## Examples
+
+<SkeletonDemo client:only="vue" />
+
+```vue
+<!-- Single line of text -->
+<MizuSkeleton variant="text" />
+
+<!-- Multi-line paragraph placeholder -->
+<MizuSkeleton variant="text" :lines="3" />
+
+<!-- Circle avatar placeholder -->
+<MizuSkeleton variant="circle" :width="48" :height="48" />
+
+<!-- Rectangular thumbnail -->
+<MizuSkeleton variant="rect" :width="200" :height="120" :radius="12" />
+
+<!-- Custom width as string -->
+<MizuSkeleton variant="text" width="60%" />
+
+<!-- Shimmer animation (the default) -->
+<MizuSkeleton variant="rect" :width="100" :height="20" animation="shimmer" />
+
+<!-- Pulse animation (opacity fade) -->
+<MizuSkeleton variant="rect" :width="100" :height="20" animation="pulse" />
+
+<!-- No animation -->
+<MizuSkeleton variant="rect" :width="100" :height="20" animation="none" />
+
+<!-- Combined with v-if for conditional loading -->
+<template>
+  <MizuSkeleton v-if="loading" variant="text" :lines="4" />
+  <p v-else>{{ content }}</p>
+</template>
+```
+
+## API
+
+### Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `variant` | `'text' \| 'circle' \| 'rect'` | `'text'` | Shape variant |
+| `width` | `string \| number` | `undefined` | CSS width (number → `Npx`, string → as-is) |
+| `height` | `string \| number` | `undefined` | CSS height (number → `Npx`, string → as-is) |
+| `radius` | `string \| number` | `undefined` | CSS border-radius override |
+| `animation` | `'shimmer' \| 'pulse' \| 'none'` | `'shimmer'` | Loading animation. `shimmer` sweeps a gradient highlight; `pulse` fades opacity in/out. |
+| `lines` | `number` | `1` | Number of text lines when `variant="text"` (only when >1; renders a stack) |
+
+### Slots
+
+None. Skeleton is a pure placeholder and accepts no content.
+
+### Events
+
+None. Skeleton is non-interactive.
+
+## Theme
+
+### CSS Custom Properties
+
+| Token | Default | Description |
+|-------|---------|-------------|
+| `--color-skeleton-base` (light) | `#E5E7EB` | Placeholder background in light mode |
+| `--color-skeleton-base` (dark) | `#1F2937` | Placeholder background in dark mode (via `[data-theme=dark]`) |
+| `--radius-default` | 6px | Rounded corners on text/rect variants |
+
+The shimmer gradient uses explicit hex colors for the base and highlight so it remains clearly visible across themes. The background color token is reused as the gradient edge stops; only the middle peak is lighter.
+
+Skeletons are intentionally neutral. They do not carry semantic color variants since they do not represent a brand or status — only the absence of content.
+
+#### Variant Color Map
+
+| Element | Token | Light | Dark |
+|---------|-------|-------|------|
+| Placeholder fill | `--color-skeleton-base` | `#E5E7EB` | `#1F2937` |
+| Shimmer highlight | inline gradient | `#F9FAFB` peak on `#E5E7EB` | `#374151` peak on `#1F2937` |
+
+The placeholder fill uses two neutral grays (one per theme) that sit between the page surface and typical content colors so they read as placeholders.
+
+### Sizing
+
+#### Variant Shapes
+
+| Variant | Aspect | Default Size | Use Case |
+|---------|--------|--------------|----------|
+| **Text** | Variable | 100% width, 0.85em height | Paragraph text, headings, labels |
+| **Circle** | 1:1 | width = height prop | Avatars, icons, status dots |
+| **Rect** | Any | width × height props | Thumbnails, cards, buttons, images |
+
+#### Dimensions
+
+| Property | Text | Circle | Rect |
+|----------|------|--------|------|
+| Height | 0.85em (line-height aligned) | = width | explicit `height` prop |
+| Width | 100% (or `width` prop) | explicit `width` prop | explicit `width` prop |
+| Multi-line Stack Gap | 0.5em between lines | — | — |
+| Last-line Width (in stack) | 60% (mimics natural prose) | — | — |
+
+#### Shape
+
+| Mode | Border Radius |
+|------|---------------|
+| `text` | `radius-default` (6px) |
+| `circle` | 9999px |
+| `rect` | `radius-default` (6px) |
+| Custom | any value via `radius` prop |
+
+#### Multi-line Text Layout
+
+```
+┌──────────────────────────────────────┐
+│                                      │  ← line 1 (100%)
+└──────────────────────────────────────┘
+
+┌──────────────────────────────────────┐
+│                                      │  ← line 2 (100%)
+└──────────────────────────────────────┘
+
+┌───────────────────────┐
+│                       │  ← line 3 (60%)
+└───────────────────────┘
+```
+
+| Property | Value |
+|----------|-------|
+| Stack Gap | 0.5em |
+| Last-line Width | 60% |
+
+### Transitions
+
+#### Shimmer Animation
+
+The shimmer renders a gradient highlight band that sweeps horizontally across the placeholder via animated `background-position`. The gradient reuses the skeleton base color at the edges and blends into a lighter peak in the middle, producing a visible moving shine.
+
+| Property | Value |
+|----------|-------|
+| Implementation | `background-image` gradient with `background-size: 200% 100%`; animated via `background-position` |
+| Gradient shape (light) | `#E5E7EB → #F9FAFB (30%) → #E5E7EB` |
+| Gradient shape (dark) | `#1F2937 → #374151 (30%) → #1F2937` |
+| Sweep mechanism | `background-position` animates from `200% 0` (off-screen right) to `-200% 0` (off-screen left) |
+| Cycle duration | **1500ms** |
+| Easing | `ease-in-out` |
+| Iteration | infinite |
+| Honors `prefers-reduced-motion` | Yes — animation disabled, opacity locked to 0.7 |
+
+#### Pulse Animation
+
+The pulse animation fades the skeleton's opacity between 1 and 0.5, matching shadcn's `animate-pulse` pattern. This provides a simpler, more subdued loading indicator that works well in dense layouts.
+
+| Property | Value |
+|----------|-------|
+| Implementation | `opacity` animation on the element itself |
+| Cycle duration | **2000ms** |
+| Easing | `cubic-bezier(0.4, 0, 0.6, 1)` |
+| Iteration | infinite |
+| Honors `prefers-reduced-motion` | Yes — animation disabled, opacity locked to 0.7 |
+
+When `prefers-reduced-motion: reduce` is set, both animations stop and the skeleton renders with a flat 0.7 opacity.
+
+### Accessibility
+
+| Criterion | Implementation |
+|-----------|----------------|
+| Screen Reader | Placeholder is hidden via `aria-hidden="true"` since it carries no semantic information |
+| Non-interactive | Skeleton is not focusable, not keyboard-accessible, and emits no events |
+| Reduced Motion | Shimmer and pulse animations are suppressed when `prefers-reduced-motion: reduce` is set |
+| Color Contrast | Placeholder color is decorative, not informational; no contrast requirement |
+
+```html
+<!-- Single skeleton -->
+<span class="mizu-skeleton mizu-skeleton--text" aria-hidden="true"></span>
+
+<!-- Multi-line stack -->
+<div class="mizu-skeleton-stack" aria-hidden="true">
+  <span class="mizu-skeleton mizu-skeleton--text"></span>
+  <span class="mizu-skeleton mizu-skeleton--text"></span>
+  <span class="mizu-skeleton mizu-skeleton--text"></span>
+</div>
+```
+
+## Anatomy
+
+A skeleton consists of a single styled placeholder element:
+
+| Part | Required | Description |
+|------|----------|-------------|
+| Placeholder | Yes | A `div` or `span` element with a subtle background fill and optional animation |
+
+For multi-line text, a stack wrapper groups `lines` placeholder elements and shrinks the final line to 60% width to mimic natural prose.
+
+## Implementation Notes
+
+1. **Native `<span>` element** — Renders as `<span>` by default for correct inline flow; switches to `<div>` wrapper only for the multi-line `lines > 1` stack so the gap layout works
+2. **No Reka UI needed** — Skeleton is purely presentational and animation-driven; no headless wrapper required
+3. **`font-size` scaling** — The `text` variant uses `height: 0.85em` so it tracks the surrounding text size automatically
+4. **`lines > 1` rendering** — When `lines > 1` and `variant="text"`, a `<div>` stack wraps `lines` placeholder spans; the last span is 60% width to mimic natural prose endings
+5. **Pixel vs string width** — Numeric `width`/`height`/`radius` props are converted to `Npx`; strings are used as-is so consumers can pass `100%`, `12rem`, `var(--something)`, etc.
+6. **Shimmer animation** — Uses a `background-image` gradient with `background-size: 200% 100%`; animated via `background-position` from `200% 0` to `-200% 0`. The gradient reuses the base fill color at the edges and blends into a lighter peak (`#F9FAFB` in light, `#374151` in dark) so the moving band is visible against both themes. This avoids pseudo-elements and is more robust across browsers.
+7. **Pulse animation** — Uses `opacity` keyframes (1 → 0.5 → 1) matching shadcn's `animate-pulse` pattern for a simpler loading indicator.
+8. **Theme-adaptive base color** — Uses `#E5E7EB` in light mode and `#1F2937` in dark mode via `[data-theme=dark]` selector override; both are neutral grays that read clearly against typical content
+9. **`prefers-reduced-motion`** — Both animations are disabled when the user prefers reduced motion; placeholder falls back to a flat 0.7 opacity
+10. **`role="status"` left off intentionally** — Skeleton does not announce itself; it's decorative and hidden from assistive tech via `aria-hidden="true"`
+11. **Tailwind `@apply`** — Component styles use `@apply` with `@reference` for Tailwind v4 compatibility
+12. **Self-contained CSS** — Tailwind utilities are bundled into `dist/index.css` via `@tailwindcss/vite`; consumers do not need Tailwind installed
+13. **Class inheritance** — Accepts `class` prop for overrides via `useAttrs()`
+14. **TypeScript** — Full type safety with `<script setup lang="ts">`
+15. **Tree-shakeable** — Exports as ESM + CJS via Vite library mode

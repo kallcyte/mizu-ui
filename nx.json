@@ -3,7 +3,16 @@
   "targetDefaults": {
     "build": {
       "dependsOn": ["^build"],
-      "outputs": ["{projectRoot}/dist"]
+      "outputs": ["{projectRoot}/dist/**", "{projectRoot}/.astro/**"]
+    },
+    "dev": {
+      "cache": false
+    },
+    "lint": {
+      "dependsOn": ["^build"]
+    },
+    "clean": {
+      "cache": false
     }
   },
   "defaultBase": "main"

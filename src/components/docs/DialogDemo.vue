@@ -16,7 +16,7 @@ import {
   MizuInput,
   MizuTag,
 } from "@mizu/vue";
-import DemoTabs from "./DemoTabs.vue";
+import CodeCollapsible from "./CodeCollapsible.vue";
 
 const basicOpen = ref(false);
 const shorthandOpen = ref(false);
@@ -195,316 +195,312 @@ const complexCode = `<MizuDialogRoot v-model:open="complexOpen">
 </script>
 
 <template>
-  <div class="dialog-demo not-content">
-    <div class="demo-section">
+  <div class="dialog-examples">
+    <section class="example-section">
       <h3>Basic</h3>
-      <DemoTabs :code="basicCode">
-      <MizuDialogRoot v-model:open="basicOpen">
-        <MizuDialogTrigger as-child>
-          <MizuButton variant="accent" size="md" class="w-max">Open Dialog</MizuButton>
-        </MizuDialogTrigger>
-        <MizuDialogPortal>
-          <MizuDialogOverlay />
-          <MizuDialogContent>
-            <MizuDialogHeader>
-              <MizuDialogTitle>Confirm Deletion</MizuDialogTitle>
-            </MizuDialogHeader>
-            <MizuDialogBody>
-              <MizuDialogDescription>
-                Are you sure you want to delete this invoice? This action cannot be undone.
-              </MizuDialogDescription>
-            </MizuDialogBody>
-            <MizuDialogFooter>
-              <MizuButton variant="ghost" size="md" class="w-max" @click="basicOpen = false">Cancel</MizuButton>
-              <MizuButton variant="accent" size="md" class="w-max" @click="basicOpen = false">Delete</MizuButton>
-            </MizuDialogFooter>
-          </MizuDialogContent>
-        </MizuDialogPortal>
-      </MizuDialogRoot>
-      </DemoTabs>
-    </div>
+      <CodeCollapsible :code="basicCode">
+        <MizuDialogRoot v-model:open="basicOpen">
+          <MizuDialogTrigger as-child>
+            <MizuButton variant="accent" size="md" class="w-max">Open Dialog</MizuButton>
+          </MizuDialogTrigger>
+          <MizuDialogPortal>
+            <MizuDialogOverlay />
+            <MizuDialogContent>
+              <MizuDialogHeader>
+                <MizuDialogTitle>Confirm Deletion</MizuDialogTitle>
+              </MizuDialogHeader>
+              <MizuDialogBody>
+                <MizuDialogDescription>
+                  Are you sure you want to delete this invoice? This action cannot be undone.
+                </MizuDialogDescription>
+              </MizuDialogBody>
+              <MizuDialogFooter>
+                <MizuButton variant="ghost" size="md" class="w-max" @click="basicOpen = false">Cancel</MizuButton>
+                <MizuButton variant="accent" size="md" class="w-max" @click="basicOpen = false">Delete</MizuButton>
+              </MizuDialogFooter>
+            </MizuDialogContent>
+          </MizuDialogPortal>
+        </MizuDialogRoot>
+      </CodeCollapsible>
+    </section>
 
-        <div class="demo-section">
-          <h3>Shorthand (title + slots)</h3>
-          <DemoTabs :code="shorthandCode">
-          <MizuDialogRoot
-            v-model:open="shorthandOpen"
-            title="Confirm Deletion"
-            description="This action cannot be undone."
-          >
-            <MizuButton variant="accent" size="md" class="w-max">Shorthand Dialog</MizuButton>
-            <template #body>
-              <p class="body-text">
-                The shorthand API uses <code>title</code> / <code>description</code> props and named
-                slots (<code>#body</code>, <code>#footer</code>) instead of sub-components. The
-                <code>#footer</code> slot receives <code>{ close }</code> scoped data.
-              </p>
-            </template>
-            <template #footer="{ close }">
-              <MizuButton variant="ghost" size="md" class="w-max" @click="close">Cancel</MizuButton>
-              <MizuButton variant="accent" size="md" class="w-max" @click="close">Delete</MizuButton>
-            </template>
-          </MizuDialogRoot>
-          </DemoTabs>
-        </div>
+    <section class="example-section">
+      <h3>Shorthand (title + slots)</h3>
+      <CodeCollapsible :code="shorthandCode">
+        <MizuDialogRoot
+          v-model:open="shorthandOpen"
+          title="Confirm Deletion"
+          description="This action cannot be undone."
+        >
+          <MizuButton variant="accent" size="md" class="w-max">Shorthand Dialog</MizuButton>
+          <template #body>
+            <p class="body-text">
+              The shorthand API uses <code>title</code> / <code>description</code> props and named
+              slots (<code>#body</code>, <code>#footer</code>) instead of sub-components. The
+              <code>#footer</code> slot receives <code>{ close }</code> scoped data.
+            </p>
+          </template>
+          <template #footer="{ close }">
+            <MizuButton variant="ghost" size="md" class="w-max" @click="close">Cancel</MizuButton>
+            <MizuButton variant="accent" size="md" class="w-max" @click="close">Delete</MizuButton>
+          </template>
+        </MizuDialogRoot>
+      </CodeCollapsible>
+    </section>
 
-        <div class="demo-section">
-          <h3>Close Icon</h3>
-      <DemoTabs :code="closeIconCode">
-      <MizuDialogRoot v-model:open="closeIconOpen">
-        <MizuDialogTrigger as-child>
-          <MizuButton variant="accent" size="md" class="w-max">Open with Close Icon</MizuButton>
-        </MizuDialogTrigger>
-        <MizuDialogPortal>
-          <MizuDialogOverlay />
-          <MizuDialogContent>
-            <MizuDialogClose />
-            <MizuDialogHeader>
-              <MizuDialogTitle>Notification Settings</MizuDialogTitle>
-              <MizuDialogDescription>Configure your email notification preferences.</MizuDialogDescription>
-            </MizuDialogHeader>
-            <MizuDialogBody>
-              <p class="body-text">
-                Use <code>MizuDialogClose</code> for an X icon close button. It renders a close button
-                at the top-right corner of the dialog content panel.
-              </p>
-            </MizuDialogBody>
-            <MizuDialogFooter>
-              <MizuButton variant="primary" size="md" class="w-max" @click="closeIconOpen = false">Save Changes</MizuButton>
-            </MizuDialogFooter>
-          </MizuDialogContent>
-        </MizuDialogPortal>
-      </MizuDialogRoot>
-      </DemoTabs>
-    </div>
-
-    <div class="demo-section">
-      <h3>Confirm with Prompt</h3>
-      <DemoTabs :code="confirmCode">
-      <MizuDialogRoot v-model:open="formOpen" @update:open="(v: boolean) => { if (v) deleteInput = '' }">
-        <MizuDialogTrigger as-child>
-          <MizuButton variant="accent" size="md" class="w-max">Delete Invoice</MizuButton>
-        </MizuDialogTrigger>
-        <MizuDialogPortal>
-          <MizuDialogOverlay />
-          <MizuDialogContent>
-            <MizuDialogHeader>
-              <MizuDialogTitle>Delete Invoice</MizuDialogTitle>
-              <MizuDialogDescription>
-                This action permanently removes this invoice and all associated data. Type
-                <strong>delete</strong> to confirm.
-              </MizuDialogDescription>
-            </MizuDialogHeader>
-            <MizuDialogBody>
-              <MizuInput
-                v-model="deleteInput"
-                label='Type "delete" to confirm'
-                placeholder="delete"
-              />
-            </MizuDialogBody>
-            <MizuDialogFooter>
-              <MizuButton variant="ghost" size="md" class="w-max" @click="formOpen = false">Cancel</MizuButton>
-              <MizuButton variant="error" size="md" class="w-max" :disabled="!isDeleteValid" @click="formOpen = false">Delete</MizuButton>
-            </MizuDialogFooter>
-          </MizuDialogContent>
-        </MizuDialogPortal>
-      </MizuDialogRoot>
-      </DemoTabs>
-    </div>
-
-    <div class="demo-section">
-      <h3>Scrollable Content</h3>
-      <DemoTabs :code="scrollableCode">
-      <MizuDialogRoot v-model:open="scrollOpen">
-        <MizuDialogTrigger as-child>
-          <MizuButton variant="accent" size="md" class="w-max">View Details</MizuButton>
-        </MizuDialogTrigger>
-        <MizuDialogPortal>
-          <MizuDialogOverlay />
-          <MizuDialogContent>
-            <MizuDialogHeader>
-              <MizuDialogTitle>Invoice #INV-2026-0042</MizuDialogTitle>
-              <MizuDialogDescription>
-                Full breakdown of charges and payment terms.
-              </MizuDialogDescription>
-            </MizuDialogHeader>
-            <MizuDialogBody style="max-height: 300px;">
-              <div class="detail-row">
-                <span class="detail-label">Item</span>
-                <span class="detail-value">Enterprise License (Annual)</span>
-              </div>
-              <div class="detail-row">
-                <span class="detail-label">Description</span>
-                <span class="detail-value">Full-featured ERP platform including CRM, inventory, accounting, HR, and analytics modules.</span>
-              </div>
-              <div class="detail-row">
-                <span class="detail-label">Quantity</span>
-                <span class="detail-value">1</span>
-              </div>
-              <div class="detail-row">
-                <span class="detail-label">Unit Price</span>
-                <span class="detail-value">$24,000.00</span>
-              </div>
-              <div class="detail-row">
-                <span class="detail-label">Subtotal</span>
-                <span class="detail-value">$24,000.00</span>
-              </div>
-              <div class="detail-row">
-                <span class="detail-label">Tax (8%)</span>
-                <span class="detail-value">$1,920.00</span>
-              </div>
-              <div class="detail-row">
-                <span class="detail-label">Discount</span>
-                <span class="detail-value">-$2,400.00</span>
-              </div>
-              <div class="detail-row detail-total">
-                <span class="detail-label">Total</span>
-                <span class="detail-value">$23,520.00</span>
-              </div>
-              <div class="detail-row">
-                <span class="detail-label">Status</span>
-                <span class="detail-value">
-                  <MizuTag variant="warning" size="sm">Pending</MizuTag>
-                </span>
-              </div>
-              <div class="detail-row">
-                <span class="detail-label">Due Date</span>
-                <span class="detail-value">Jul 15, 2026</span>
-              </div>
-              <div class="detail-row">
-                <span class="detail-label">Payment Terms</span>
-                <span class="detail-value">Net 30</span>
-              </div>
-              <div class="detail-row">
-                <span class="detail-label">Billing Address</span>
-                <span class="detail-value">123 Business Ave, Suite 400, San Francisco, CA 94105</span>
-              </div>
-              <div class="detail-row">
-                <span class="detail-label">Notes</span>
-                <span class="detail-value">Payment via wire transfer. Please reference invoice number in the payment memo.</span>
-              </div>
-            </MizuDialogBody>
-            <MizuDialogFooter>
-              <MizuButton variant="ghost" size="md" class="w-max" @click="scrollOpen = false">Close</MizuButton>
-            </MizuDialogFooter>
-          </MizuDialogContent>
-        </MizuDialogPortal>
-      </MizuDialogRoot>
-      </DemoTabs>
-    </div>
-
-    <div class="demo-section">
-      <h3>Custom Width</h3>
-      <DemoTabs :code="customWidthCode">
-      <MizuDialogRoot v-model:open="sizedOpen">
-        <MizuDialogTrigger as-child>
-          <MizuButton variant="accent" size="md" class="w-max">Large Dialog</MizuButton>
-        </MizuDialogTrigger>
-        <MizuDialogPortal>
-          <MizuDialogOverlay />
-          <MizuDialogContent style="max-width: 600px;">
-            <MizuDialogHeader>
-              <MizuDialogTitle>Order Summary</MizuDialogTitle>
-              <MizuDialogDescription>Review your order before submitting.</MizuDialogDescription>
-            </MizuDialogHeader>
-            <MizuDialogBody>
-              <p class="body-text">
-                The dialog width can be customized via the <code>style</code> prop on <code>MizuDialogContent</code>. This dialog has <code>max-width: 600px</code> instead of the default 450px.
-              </p>
-            </MizuDialogBody>
-            <MizuDialogFooter>
-              <MizuButton variant="ghost" size="md" class="w-max" @click="sizedOpen = false">Cancel</MizuButton>
-              <MizuButton variant="primary" size="md" class="w-max" @click="sizedOpen = false">Submit Order</MizuButton>
-            </MizuDialogFooter>
-          </MizuDialogContent>
-        </MizuDialogPortal>
-      </MizuDialogRoot>
-      </DemoTabs>
-    </div>
-
-    <div class="demo-section">
-      <h3>Complex Content</h3>
-      <DemoTabs :code="complexCode">
-      <MizuDialogRoot v-model:open="complexOpen">
-        <MizuDialogTrigger as-child>
-          <MizuButton variant="accent" size="md" class="w-max">Project Settings</MizuButton>
-        </MizuDialogTrigger>
-        <MizuDialogPortal>
-          <MizuDialogOverlay />
-          <MizuDialogContent style="max-width: 560px;">
-            <MizuDialogClose />
-            <MizuDialogHeader>
-              <MizuDialogTitle>Project Settings</MizuDialogTitle>
-              <MizuDialogDescription>Manage project details, team access, and advanced options.</MizuDialogDescription>
-            </MizuDialogHeader>
-            <MizuDialogBody style="max-height: 400px;">
-              <section class="settings-section">
-                <h4 class="settings-heading">General</h4>
-                <MizuInput label="Project Name" placeholder="e.g. Mizu Design System" model-value="Mizu Design System" />
-                <MizuInput label="Description" placeholder="Brief description of the project" model-value="Enterprise design system and component library" />
-              </section>
-              <div class="settings-divider" />
-              <section class="settings-section">
-                <h4 class="settings-heading">Team Members</h4>
-                <div class="member-row">
-                  <span class="member-name">Alice Chen</span>
-                  <MizuTag variant="info" size="sm">Admin</MizuTag>
-                </div>
-                <div class="member-row">
-                  <span class="member-name">Bob Martinez</span>
-                  <MizuTag variant="primary" size="sm">Editor</MizuTag>
-                </div>
-                <div class="member-row">
-                  <span class="member-name">Carol Johnson</span>
-                  <MizuTag variant="warning" size="sm">Viewer</MizuTag>
-                </div>
-              </section>
-              <div class="settings-divider" />
-              <section class="settings-section">
-                <h4 class="settings-heading">Danger Zone</h4>
-                <p class="settings-hint">
-                  Once you delete this project, there is no going back. Please be certain.
+    <section class="example-section">
+      <h3>Close Icon</h3>
+      <CodeCollapsible :code="closeIconCode">
+        <MizuDialogRoot v-model:open="closeIconOpen">
+          <MizuDialogTrigger as-child>
+            <MizuButton variant="accent" size="md" class="w-max">Open with Close Icon</MizuButton>
+          </MizuDialogTrigger>
+          <MizuDialogPortal>
+            <MizuDialogOverlay />
+            <MizuDialogContent>
+              <MizuDialogClose />
+              <MizuDialogHeader>
+                <MizuDialogTitle>Notification Settings</MizuDialogTitle>
+                <MizuDialogDescription>Configure your email notification preferences.</MizuDialogDescription>
+              </MizuDialogHeader>
+              <MizuDialogBody>
+                <p class="body-text">
+                  Use <code>MizuDialogClose</code> for an X icon close button. It renders a close button
+                  at the top-right corner of the dialog content panel.
                 </p>
-                <MizuButton variant="error" size="md" class="w-max" @click="complexOpen = false">Delete Project</MizuButton>
-              </section>
-            </MizuDialogBody>
-            <MizuDialogFooter>
-              <MizuButton variant="ghost" size="md" class="w-max" @click="complexOpen = false">Cancel</MizuButton>
-              <MizuButton variant="primary" size="md" class="w-max" @click="complexOpen = false">Save Changes</MizuButton>
-            </MizuDialogFooter>
-          </MizuDialogContent>
-        </MizuDialogPortal>
-      </MizuDialogRoot>
-      </DemoTabs>
-    </div>
+              </MizuDialogBody>
+              <MizuDialogFooter>
+                <MizuButton variant="primary" size="md" class="w-max" @click="closeIconOpen = false">Save Changes</MizuButton>
+              </MizuDialogFooter>
+            </MizuDialogContent>
+          </MizuDialogPortal>
+        </MizuDialogRoot>
+      </CodeCollapsible>
+    </section>
+
+    <section class="example-section">
+      <h3>Confirm with Prompt</h3>
+      <CodeCollapsible :code="confirmCode">
+        <MizuDialogRoot v-model:open="formOpen" @update:open="(v: boolean) => { if (v) deleteInput = '' }">
+          <MizuDialogTrigger as-child>
+            <MizuButton variant="accent" size="md" class="w-max">Delete Invoice</MizuButton>
+          </MizuDialogTrigger>
+          <MizuDialogPortal>
+            <MizuDialogOverlay />
+            <MizuDialogContent>
+              <MizuDialogHeader>
+                <MizuDialogTitle>Delete Invoice</MizuDialogTitle>
+                <MizuDialogDescription>
+                  This action permanently removes this invoice and all associated data. Type
+                  <strong>delete</strong> to confirm.
+                </MizuDialogDescription>
+              </MizuDialogHeader>
+              <MizuDialogBody>
+                <MizuInput
+                  v-model="deleteInput"
+                  label='Type "delete" to confirm'
+                  placeholder="delete"
+                />
+              </MizuDialogBody>
+              <MizuDialogFooter>
+                <MizuButton variant="ghost" size="md" class="w-max" @click="formOpen = false">Cancel</MizuButton>
+                <MizuButton variant="error" size="md" class="w-max" :disabled="!isDeleteValid" @click="formOpen = false">Delete</MizuButton>
+              </MizuDialogFooter>
+            </MizuDialogContent>
+          </MizuDialogPortal>
+        </MizuDialogRoot>
+      </CodeCollapsible>
+    </section>
+
+    <section class="example-section">
+      <h3>Scrollable Content</h3>
+      <CodeCollapsible :code="scrollableCode">
+        <MizuDialogRoot v-model:open="scrollOpen">
+          <MizuDialogTrigger as-child>
+            <MizuButton variant="accent" size="md" class="w-max">View Details</MizuButton>
+          </MizuDialogTrigger>
+          <MizuDialogPortal>
+            <MizuDialogOverlay />
+            <MizuDialogContent>
+              <MizuDialogHeader>
+                <MizuDialogTitle>Invoice #INV-2026-0042</MizuDialogTitle>
+                <MizuDialogDescription>
+                  Full breakdown of charges and payment terms.
+                </MizuDialogDescription>
+              </MizuDialogHeader>
+              <MizuDialogBody style="max-height: 300px;">
+                <div class="detail-row">
+                  <span class="detail-label">Item</span>
+                  <span class="detail-value">Enterprise License (Annual)</span>
+                </div>
+                <div class="detail-row">
+                  <span class="detail-label">Description</span>
+                  <span class="detail-value">Full-featured ERP platform including CRM, inventory, accounting, HR, and analytics modules.</span>
+                </div>
+                <div class="detail-row">
+                  <span class="detail-label">Quantity</span>
+                  <span class="detail-value">1</span>
+                </div>
+                <div class="detail-row">
+                  <span class="detail-label">Unit Price</span>
+                  <span class="detail-value">$24,000.00</span>
+                </div>
+                <div class="detail-row">
+                  <span class="detail-label">Subtotal</span>
+                  <span class="detail-value">$24,000.00</span>
+                </div>
+                <div class="detail-row">
+                  <span class="detail-label">Tax (8%)</span>
+                  <span class="detail-value">$1,920.00</span>
+                </div>
+                <div class="detail-row">
+                  <span class="detail-label">Discount</span>
+                  <span class="detail-value">-$2,400.00</span>
+                </div>
+                <div class="detail-row detail-total">
+                  <span class="detail-label">Total</span>
+                  <span class="detail-value">$23,520.00</span>
+                </div>
+                <div class="detail-row">
+                  <span class="detail-label">Status</span>
+                  <span class="detail-value">
+                    <MizuTag variant="warning" size="sm">Pending</MizuTag>
+                  </span>
+                </div>
+                <div class="detail-row">
+                  <span class="detail-label">Due Date</span>
+                  <span class="detail-value">Jul 15, 2026</span>
+                </div>
+                <div class="detail-row">
+                  <span class="detail-label">Payment Terms</span>
+                  <span class="detail-value">Net 30</span>
+                </div>
+                <div class="detail-row">
+                  <span class="detail-label">Billing Address</span>
+                  <span class="detail-value">123 Business Ave, Suite 400, San Francisco, CA 94105</span>
+                </div>
+                <div class="detail-row">
+                  <span class="detail-label">Notes</span>
+                  <span class="detail-value">Payment via wire transfer. Please reference invoice number in the payment memo.</span>
+                </div>
+              </MizuDialogBody>
+              <MizuDialogFooter>
+                <MizuButton variant="ghost" size="md" class="w-max" @click="scrollOpen = false">Close</MizuButton>
+              </MizuDialogFooter>
+            </MizuDialogContent>
+          </MizuDialogPortal>
+        </MizuDialogRoot>
+      </CodeCollapsible>
+    </section>
+
+    <section class="example-section">
+      <h3>Custom Width</h3>
+      <CodeCollapsible :code="customWidthCode">
+        <MizuDialogRoot v-model:open="sizedOpen">
+          <MizuDialogTrigger as-child>
+            <MizuButton variant="accent" size="md" class="w-max">Large Dialog</MizuButton>
+          </MizuDialogTrigger>
+          <MizuDialogPortal>
+            <MizuDialogOverlay />
+            <MizuDialogContent style="max-width: 600px;">
+              <MizuDialogHeader>
+                <MizuDialogTitle>Order Summary</MizuDialogTitle>
+                <MizuDialogDescription>Review your order before submitting.</MizuDialogDescription>
+              </MizuDialogHeader>
+              <MizuDialogBody>
+                <p class="body-text">
+                  The dialog width can be customized via the <code>style</code> prop on <code>MizuDialogContent</code>. This dialog has <code>max-width: 600px</code> instead of the default 450px.
+                </p>
+              </MizuDialogBody>
+              <MizuDialogFooter>
+                <MizuButton variant="ghost" size="md" class="w-max" @click="sizedOpen = false">Cancel</MizuButton>
+                <MizuButton variant="primary" size="md" class="w-max" @click="sizedOpen = false">Submit Order</MizuButton>
+              </MizuDialogFooter>
+            </MizuDialogContent>
+          </MizuDialogPortal>
+        </MizuDialogRoot>
+      </CodeCollapsible>
+    </section>
+
+    <section class="example-section">
+      <h3>Complex Content</h3>
+      <CodeCollapsible :code="complexCode">
+        <MizuDialogRoot v-model:open="complexOpen">
+          <MizuDialogTrigger as-child>
+            <MizuButton variant="accent" size="md" class="w-max">Project Settings</MizuButton>
+          </MizuDialogTrigger>
+          <MizuDialogPortal>
+            <MizuDialogOverlay />
+            <MizuDialogContent style="max-width: 560px;">
+              <MizuDialogClose />
+              <MizuDialogHeader>
+                <MizuDialogTitle>Project Settings</MizuDialogTitle>
+                <MizuDialogDescription>Manage project details, team access, and advanced options.</MizuDialogDescription>
+              </MizuDialogHeader>
+              <MizuDialogBody style="max-height: 400px;">
+                <section class="settings-section">
+                  <h4 class="settings-heading">General</h4>
+                  <MizuInput label="Project Name" placeholder="e.g. Mizu Design System" model-value="Mizu Design System" />
+                  <MizuInput label="Description" placeholder="Brief description of the project" model-value="Enterprise design system and component library" />
+                </section>
+                <div class="settings-divider" />
+                <section class="settings-section">
+                  <h4 class="settings-heading">Team Members</h4>
+                  <div class="member-row">
+                    <span class="member-name">Alice Chen</span>
+                    <MizuTag variant="info" size="sm">Admin</MizuTag>
+                  </div>
+                  <div class="member-row">
+                    <span class="member-name">Bob Martinez</span>
+                    <MizuTag variant="primary" size="sm">Editor</MizuTag>
+                  </div>
+                  <div class="member-row">
+                    <span class="member-name">Carol Johnson</span>
+                    <MizuTag variant="warning" size="sm">Viewer</MizuTag>
+                  </div>
+                </section>
+                <div class="settings-divider" />
+                <section class="settings-section">
+                  <h4 class="settings-heading">Danger Zone</h4>
+                  <p class="settings-hint">
+                    Once you delete this project, there is no going back. Please be certain.
+                  </p>
+                  <MizuButton variant="error" size="md" class="w-max" @click="complexOpen = false">Delete Project</MizuButton>
+                </section>
+              </MizuDialogBody>
+              <MizuDialogFooter>
+                <MizuButton variant="ghost" size="md" class="w-max" @click="complexOpen = false">Cancel</MizuButton>
+                <MizuButton variant="primary" size="md" class="w-max" @click="complexOpen = false">Save Changes</MizuButton>
+              </MizuDialogFooter>
+            </MizuDialogContent>
+          </MizuDialogPortal>
+        </MizuDialogRoot>
+      </CodeCollapsible>
+    </section>
   </div>
 </template>
 
 <style scoped>
-.dialog-demo {
+.dialog-examples {
   all: revert;
   display: flex;
   flex-direction: column;
-  gap: 24px;
-  padding: 0;
-  background: transparent;
+  gap: 32px;
+  font-family: inherit;
 }
-
-.demo-section {
+.dialog-examples :deep(*) { margin: 0; }
+.example-section {
+  all: revert;
   display: flex;
   flex-direction: column;
   gap: 12px;
 }
-
-.demo-section h3 {
+.example-section h3 {
+  all: revert;
   font-size: 14px;
   font-weight: 600;
   color: var(--sl-color-text);
-  margin-bottom: 0;
-}
-
-.demo-section > div {
-  margin-top: 0;
+  margin: 0;
 }
 
 .dialog-form {

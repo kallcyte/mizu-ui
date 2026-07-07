@@ -1,0 +1,289 @@
+---
+title: Card
+description: Displays a card with image, header, content, and footer.
+---
+
+import CardDemo from '../../../../components/docs/CardDemo.vue';
+
+Cards are containers for grouping related content and actions. They provide a clean, organized way to present information with optional visual emphasis.
+
+## Examples
+
+<CardDemo client:only="vue" />
+
+```vue
+<MizuCard>
+  <MizuCardImage src="https://placecats.com/800/400" alt="Kitten" />
+  <MizuCardHeader>
+    <MizuCardTitle>Card Title</MizuCardTitle>
+    <MizuCardDescription>Card description text.</MizuCardDescription>
+    <MizuCardAction>
+      <MizuButton variant="ghost" size="sm">Action</MizuButton>
+    </MizuCardAction>
+  </MizuCardHeader>
+  <MizuCardContent>
+    <p>Main content goes here.</p>
+  </MizuCardContent>
+  <MizuCardFooter>
+    <MizuButton variant="primary" size="sm">Save</MizuButton>
+    <MizuButton variant="ghost" size="sm">Cancel</MizuButton>
+  </MizuCardFooter>
+</MizuCard>
+
+<!-- Compact spacing -->
+<MizuCard spacing="compact">
+  <MizuCardHeader>
+    <MizuCardTitle>Compact</MizuCardTitle>
+    <MizuCardDescription>Tight padding.</MizuCardDescription>
+  </MizuCardHeader>
+  <MizuCardContent>
+    <p>Dense layout.</p>
+  </MizuCardContent>
+</MizuCard>
+
+<!-- Comfortable spacing -->
+<MizuCard spacing="comfortable">
+  <MizuCardHeader>
+    <MizuCardTitle>Spacious</MizuCardTitle>
+    <MizuCardDescription>Ample whitespace.</MizuCardDescription>
+  </MizuCardHeader>
+  <MizuCardContent>
+    <p>Generous padding.</p>
+  </MizuCardContent>
+</MizuCard>
+```
+
+## API
+
+### Props
+
+#### Card
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `spacing` | `'compact' \| 'default' \| 'comfortable'` | `'default'` | Card spacing variant |
+
+#### CardImage
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `src` | `string` | — | Image URL (required) |
+| `alt` | `string` | `''` | Alt text |
+
+#### CardHeader
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `class` | `string` | — | Additional CSS classes |
+
+#### CardTitle
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `class` | `string` | — | Additional CSS classes |
+
+#### CardDescription
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `class` | `string` | — | Additional CSS classes |
+
+#### CardAction
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `class` | `string` | — | Additional CSS classes |
+
+#### CardContent
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `class` | `string` | — | Additional CSS classes |
+
+#### CardFooter
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `class` | `string` | — | Additional CSS classes |
+
+### Slots
+
+| Component | Slot | Description |
+|-----------|------|-------------|
+| Card | `default` | Card child components |
+| CardImage | `default` | No slot, renders `<img>` directly |
+| CardHeader | `default` | Header content (title, description, action) |
+| CardTitle | `default` | Title text |
+| CardDescription | `default` | Description text |
+| CardAction | `default` | Action content |
+| CardContent | `default` | Main content |
+| CardFooter | `default` | Footer content |
+
+## Theme
+
+### CSS Custom Properties
+
+Customize the card appearance with these CSS custom properties:
+
+| Token | Default | Description |
+|-------|---------|-------------|
+| `--color-surface-base` | #FFFFFF | Card + content background |
+| `--color-surface-subtle` | #F9FAFB | Header + footer background |
+| `--color-foreground-tertiary` | #9CA3AF | Card border, separator, description text |
+| `--color-foreground-primary` | #1B1B1D | Title + content text |
+| `--font-size-h3` | 16px | Title font size |
+| `--font-size-caption` | 12px | Description font size |
+| `--font-size-body` | 14px | Content font size |
+| `--line-height-h3` | 1.3 | Title line height |
+| `--line-height-caption` | 1.45 | Description line height |
+| `--line-height-body` | 1.6 | Content line height |
+| `--letter-spacing-tight` | -0.03em | Title letter spacing |
+| `--radius-md` | 6px | Card border radius |
+| `--duration-normal` | 200ms | Border color transition |
+
+### Sizing
+
+Spacing is propagated via CSS custom properties (`--mizu-card-px`, `--mizu-card-py`, `--mizu-card-gap`) set on the card root — child sections inherit automatically.
+
+#### Spacing Variants
+
+| Variant | Section Padding | Header Gap | Use Case |
+|---------|----------------|------------|----------|
+| **compact** | 12px | 4px | Tight layouts, dense UIs |
+| **default** | 16px | 6px | Standard cards |
+| **comfortable** | 24px | 8px | Generous whitespace |
+
+#### Visual Sections
+
+| Section | Background | Separator |
+|---------|-----------|-----------|
+| CardHeader | `surface-subtle` (#F9FAFB) | Bottom border at 25% opacity |
+| CardContent | `surface-base` (#FFFFFF) | — |
+| CardFooter | `surface-subtle` (#F9FAFB) | Top border at 25% opacity |
+
+Separators use `color-mix(in srgb, var(--mizu-color-foreground-tertiary) 25%, transparent)`.
+
+#### Shape
+
+| Property | Value |
+|----------|-------|
+| Border Radius | 6px |
+| Border Width | 1px |
+| Border Color | `foreground-tertiary` (#9CA3AF) |
+
+#### Typography
+
+**CardTitle**
+
+| Property | Token | Value |
+|----------|-------|-------|
+| Text Color | `foreground-primary` | #1B1B1D |
+| Font Size | `font-size-h3` | 16px |
+| Font Weight | `font-weight-semibold` | 600 |
+| Line Height | `line-height-h3` | 1.3 |
+| Letter Spacing | `letter-spacing-tight` | -0.03em |
+
+**CardDescription**
+
+| Property | Token | Value |
+|----------|-------|-------|
+| Text Color | `foreground-tertiary` | #9CA3AF |
+| Font Size | `font-size-caption` | 12px |
+| Font Weight | `font-weight-regular` | 400 |
+| Line Height | `line-height-caption` | 1.45 |
+
+**CardContent Children**
+
+| Property | Token | Value |
+|----------|-------|-------|
+| Text Color | `foreground-primary` | #1B1B1D |
+| Font Size | `font-size-body` | 14px |
+| Font Weight | `font-weight-regular` | 400 |
+| Line Height | `line-height-body` | 1.6 |
+
+#### CardImage
+
+The image section renders a full-width image at the top of the card, clipped by the card's rounded corners.
+
+| Property | Default | Description |
+|----------|---------|-------------|
+| `src` | — | Image URL (required) |
+| `alt` | `""` | Alt text |
+| Aspect Ratio | 2:1 | Controlled via CSS `aspect-ratio` |
+| Fit | `object-fit: cover` | Crops to fill container |
+
+### Transitions
+
+| Property | Duration | Easing |
+|----------|----------|--------|
+| Border Color | 200ms | ease-in-out |
+
+### Accessibility
+
+| Criterion | Implementation |
+|-----------|----------------|
+| Semantic HTML | Use `<article>` or `<section>` for card containers when interactive |
+| Heading Hierarchy | Cards should contain headings for screen reader navigation |
+| Keyboard Navigation | If card is interactive, ensure focusable elements inside are reachable |
+| Color Contrast | Border and background meet 3:1 contrast ratio |
+
+```html
+<!-- Static card -->
+<article class="mizu-card">
+  <div class="mizu-card-image">
+    <img src="https://placecats.com/800/400" alt="Kitten" />
+  </div>
+  <div class="mizu-card-header">
+    <h3 class="mizu-card-title">Card Title</h3>
+    <p class="mizu-card-description">Card description.</p>
+  </div>
+  <div class="mizu-card-content">
+    <p>Card content goes here.</p>
+  </div>
+  <div class="mizu-card-footer">
+    <button>Action</button>
+  </div>
+</article>
+```
+
+## Anatomy
+
+A card consists of up to 8 parts:
+
+| Part | Required | Description |
+|------|----------|-------------|
+| Card | Yes | Root container with border and rounded corners |
+| CardImage | No | Full-width image at the top, flushed to card edges |
+| CardHeader | No | Container for title, description, and action |
+| CardTitle | No | The card's heading |
+| CardDescription | No | Helper text under the title |
+| CardAction | No | Action area in the top-right of the header |
+| CardContent | No | Main body content |
+| CardFooter | No | Actions or secondary content at the bottom |
+
+#### Composition
+
+```
+Card
+├── CardImage (optional, placed before header)
+├── CardHeader
+│   ├── CardTitle
+│   ├── CardDescription
+│   └── CardAction
+├── CardContent
+└── CardFooter
+```
+
+## Implementation Notes
+
+1. **Composition pattern** — Follows shadcn/ui's card structure for consistency
+2. **Native `<div>` elements** — No Reka UI primitives needed; all components are lightweight containers
+3. **Spacing via CSS vars** — `--mizu-card-px`, `--mizu-card-py`, `--mizu-card-gap` are set on the card root and inherited by children
+4. **Section backgrounds** — Header and footer use `surface-subtle`; content uses `surface-base`
+5. **Separators** — Header gets `border-bottom` and footer gets `border-top` at 25% foreground-tertiary opacity
+6. **Image** — Full-width with `aspect-ratio: 2/1` and `object-fit: cover`; clipped by card's `overflow-hidden`
+7. **Typography** — Uses `!important` to override host framework (Starlight) global heading/paragraph styles
+8. **Tailwind `@apply`** — Component styles use `@apply` with `@reference` for Tailwind v4 compatibility
+9. **Class inheritance** — All components accept `class` prop for overrides via `useAttrs()`
+10. **TypeScript** — Full type safety with `<script setup lang="ts">`
+11. **Tree-shakeable** — Export as ESM + CJS via Vite library mode

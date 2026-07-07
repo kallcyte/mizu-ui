@@ -84,7 +84,7 @@ const itemClasses = computed(() => {
 }
 
 .mizu-toggle-group__item:focus-visible {
-  outline: 2px solid var(--color-brand-accent);
+  outline: 2px solid var(--color-brand-ycp);
   outline-offset: 2px;
 }
 

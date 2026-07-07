@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed, ref } from "vue";
 import { MizuCheckbox, MizuButton } from "@mizu/vue";
-import DemoTabs from "./DemoTabs.vue";
+import CodeCollapsible from "./CodeCollapsible.vue";
 
 const basicUnchecked = ref(false);
 const basicChecked = ref(false);
@@ -149,217 +149,214 @@ const loginFormCode = `<MizuCheckbox
 </script>
 
 <template>
-    <div class="checkbox-demo not-content">
-        <div class="demo-section">
-            <h3>Basic</h3>
-            <DemoTabs :code="basicCode">
-            <div class="checkbox-stack">
-                <MizuCheckbox v-model="basicUnchecked" />
-                <MizuCheckbox v-model="basicChecked" label="Subscribe" />
-                <MizuCheckbox v-model="withLabelChecked" label="Remember me" />
-                <MizuCheckbox v-model="disabledUnchecked" disabled label="Disabled unchecked" />
-                <MizuCheckbox v-model="disabledChecked" disabled label="Disabled checked" />
-            </div>
-            </DemoTabs>
+  <div class="checkbox-examples">
+    <section class="example-section">
+      <h3>Basic</h3>
+      <CodeCollapsible :code="basicCode">
+        <div class="checkbox-stack">
+          <MizuCheckbox v-model="basicUnchecked" />
+          <MizuCheckbox v-model="basicChecked" label="Subscribe" />
+          <MizuCheckbox v-model="withLabelChecked" label="Remember me" />
+          <MizuCheckbox v-model="disabledUnchecked" disabled label="Disabled unchecked" />
+          <MizuCheckbox v-model="disabledChecked" disabled label="Disabled checked" />
         </div>
+      </CodeCollapsible>
+    </section>
 
-        <div class="demo-section">
-            <h3>Sizes</h3>
-            <DemoTabs :code="sizesCode">
-            <div class="checkbox-stack">
-                <MizuCheckbox v-model="sizeSm" size="sm" label="Small (16px)" />
-                <MizuCheckbox v-model="sizeMd" size="md" label="Medium (18px)" />
-                <MizuCheckbox v-model="sizeLg" size="lg" label="Large (20px)" />
-            </div>
-            </DemoTabs>
+    <section class="example-section">
+      <h3>Sizes</h3>
+      <CodeCollapsible :code="sizesCode">
+        <div class="checkbox-stack">
+          <MizuCheckbox v-model="sizeSm" size="sm" label="Small (16px)" />
+          <MizuCheckbox v-model="sizeMd" size="md" label="Medium (18px)" />
+          <MizuCheckbox v-model="sizeLg" size="lg" label="Large (20px)" />
         </div>
+      </CodeCollapsible>
+    </section>
 
-        <div class="demo-section">
-            <h3>States</h3>
-            <DemoTabs :code="statesCode">
-            <div class="checkbox-stack">
-                <MizuCheckbox v-model="stateUnchecked" label="Unchecked" />
-                <MizuCheckbox v-model="stateChecked" label="Checked" />
-                <MizuCheckbox v-model="stateIndeterminate" label="Indeterminate" />
-                <MizuCheckbox v-model="stateDisabled" disabled label="Disabled" />
-                <MizuCheckbox v-model="stateDisabledChecked" disabled label="Disabled & checked" />
-            </div>
-            </DemoTabs>
+    <section class="example-section">
+      <h3>States</h3>
+      <CodeCollapsible :code="statesCode">
+        <div class="checkbox-stack">
+          <MizuCheckbox v-model="stateUnchecked" label="Unchecked" />
+          <MizuCheckbox v-model="stateChecked" label="Checked" />
+          <MizuCheckbox v-model="stateIndeterminate" label="Indeterminate" />
+          <MizuCheckbox v-model="stateDisabled" disabled label="Disabled" />
+          <MizuCheckbox v-model="stateDisabledChecked" disabled label="Disabled & checked" />
         </div>
+      </CodeCollapsible>
+    </section>
 
-        <div class="demo-section">
-            <h3>With Form Labels</h3>
-            <DemoTabs :code="formLabelsCode">
-            <div class="checkbox-stack">
-                <MizuCheckbox
-                    v-model="formTerms"
-                    required
-                    label="I accept the terms and conditions"
-                />
-                <MizuCheckbox
-                    v-model="formNewsletter"
-                    required
-                    label="Subscribe to the newsletter"
-                />
-                <MizuCheckbox
-                    v-model="formUpdates"
-                    label="Receive product updates by email"
-                />
-            </div>
-            </DemoTabs>
+    <section class="example-section">
+      <h3>With Form Labels</h3>
+      <CodeCollapsible :code="formLabelsCode">
+        <div class="checkbox-stack">
+          <MizuCheckbox
+            v-model="formTerms"
+            required
+            label="I accept the terms and conditions"
+          />
+          <MizuCheckbox
+            v-model="formNewsletter"
+            required
+            label="Subscribe to the newsletter"
+          />
+          <MizuCheckbox
+            v-model="formUpdates"
+            label="Receive product updates by email"
+          />
         </div>
+      </CodeCollapsible>
+    </section>
 
-        <div class="demo-section">
-            <h3>Indeterminate</h3>
-            <DemoTabs :code="indeterminateCode">
-            <div class="checkbox-stack">
-                <MizuCheckbox
-                    v-model="selectAllState"
-                    label="Select all items in this list"
-                />
-                <p class="demo-text">
-                    State: <code>{{ selectAllState }}</code>
-                </p>
-                <MizuButton size="sm" variant="outline" @click="toggleIndeterminate">
-                    Toggle Indeterminate
-                </MizuButton>
-            </div>
-            </DemoTabs>
+    <section class="example-section">
+      <h3>Indeterminate</h3>
+      <CodeCollapsible :code="indeterminateCode">
+        <div class="checkbox-stack">
+          <MizuCheckbox
+            v-model="selectAllState"
+            label="Select all items in this list"
+          />
+          <p class="demo-text">
+            State: <code>{{ selectAllState }}</code>
+          </p>
+          <MizuButton size="sm" variant="outline" @click="toggleIndeterminate">
+            Toggle Indeterminate
+          </MizuButton>
         </div>
+      </CodeCollapsible>
+    </section>
 
-        <div class="demo-section">
-            <h3>Select All with Children</h3>
-            <DemoTabs :code="selectAllCode">
-            <div class="checkbox-stack">
-                <MizuCheckbox
-                    v-model="channelsParentState"
-                    label="Notification preferences"
-                />
-                <div class="checkbox-children">
-                    <MizuCheckbox
-                        v-model="emailEnabled"
-                        label="EMAIL"
-                    />
-                    <MizuCheckbox
-                        v-model="smsEnabled"
-                        label="SMS"
-                    />
-                    <MizuCheckbox
-                        v-model="pushEnabled"
-                        label="PUSH"
-                    />
-                </div>
-                <p class="demo-text">
-                    Selected: <code>{{ selectedCount }}</code> of
-                    <code>{{ channelRefs.length }}</code>
-                </p>
-            </div>
-            </DemoTabs>
+    <section class="example-section">
+      <h3>Select All with Children</h3>
+      <CodeCollapsible :code="selectAllCode">
+        <div class="checkbox-stack">
+          <MizuCheckbox
+            v-model="channelsParentState"
+            label="Notification preferences"
+          />
+          <div class="checkbox-children">
+            <MizuCheckbox
+              v-model="emailEnabled"
+              label="EMAIL"
+            />
+            <MizuCheckbox
+              v-model="smsEnabled"
+              label="SMS"
+            />
+            <MizuCheckbox
+              v-model="pushEnabled"
+              label="PUSH"
+            />
+          </div>
+          <p class="demo-text">
+            Selected: <code>{{ selectedCount }}</code> of
+            <code>{{ channelRefs.length }}</code>
+          </p>
         </div>
+      </CodeCollapsible>
+    </section>
 
-        <div class="demo-section">
-            <h3>Custom Values</h3>
-            <DemoTabs :code="customValuesCode">
-            <div class="checkbox-stack">
-                <MizuCheckbox
-                    v-model="customString"
-                    true-value="yes"
-                    false-value="no"
-                    label="Accept terms"
-                />
-                <p class="demo-text">
-                    Value: <code>{{ customString }}</code> (resolved boolean: <code>{{ acceptTermsTrue }}</code>)
-                </p>
-                <MizuCheckbox
-                    v-model="customNumber"
-                    :true-value="1"
-                    :false-value="0"
-                    label="Grant permission"
-                />
-                <p class="demo-text">
-                    Value: <code>{{ customNumber }}</code>
-                </p>
-            </div>
-            </DemoTabs>
+    <section class="example-section">
+      <h3>Custom Values</h3>
+      <CodeCollapsible :code="customValuesCode">
+        <div class="checkbox-stack">
+          <MizuCheckbox
+            v-model="customString"
+            true-value="yes"
+            false-value="no"
+            label="Accept terms"
+          />
+          <p class="demo-text">
+            Value: <code>{{ customString }}</code> (resolved boolean: <code>{{ acceptTermsTrue }}</code>)
+          </p>
+          <MizuCheckbox
+            v-model="customNumber"
+            :true-value="1"
+            :false-value="0"
+            label="Grant permission"
+          />
+          <p class="demo-text">
+            Value: <code>{{ customNumber }}</code>
+          </p>
         </div>
+      </CodeCollapsible>
+    </section>
 
-        <div class="demo-section">
-            <h3>Login Form Example</h3>
-            <DemoTabs :code="loginFormCode">
-            <div class="checkbox-stack">
-                <MizuCheckbox
-                    v-model="keepSignedIn"
-                    label="Keep me signed in on this device"
-                />
-                <MizuCheckbox
-                    v-model="agreeToTerms"
-                    required
-                    label="I agree to the Terms of Service and Privacy Policy"
-                />
-            </div>
-            </DemoTabs>
+    <section class="example-section">
+      <h3>Login Form Example</h3>
+      <CodeCollapsible :code="loginFormCode">
+        <div class="checkbox-stack">
+          <MizuCheckbox
+            v-model="keepSignedIn"
+            label="Keep me signed in on this device"
+          />
+          <MizuCheckbox
+            v-model="agreeToTerms"
+            required
+            label="I agree to the Terms of Service and Privacy Policy"
+          />
         </div>
-    </div>
+      </CodeCollapsible>
+    </section>
+  </div>
 </template>
 
 <style scoped>
-.checkbox-demo {
-    all: revert;
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
-    padding: 0;
-    background: transparent;
+.checkbox-examples {
+  all: revert;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  font-family: inherit;
 }
 
-.checkbox-demo :deep(*) {
-    margin: 0;
+.checkbox-examples :deep(*) {
+  margin: 0;
 }
 
-.demo-section {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
+.example-section {
+  all: revert;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 
-.demo-section h3 {
-    font-size: 14px;
-    font-weight: 600;
-    color: var(--sl-color-text);
-    margin-bottom: 0;
-    margin-top: 0;
-}
-.demo-section > div {
-  margin-top: 0;
+.example-section h3 {
+  all: revert;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--sl-color-text);
+  margin: 0;
 }
 
 .checkbox-stack {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: flex-start;
 }
 
 .checkbox-children {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    padding-left: 24px;
-    border-left: 1px solid var(--sl-color-gray-4);
-    margin-left: 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-left: 24px;
+  border-left: 1px solid var(--sl-color-gray-4);
+  margin-left: 4px;
 }
 
 .demo-text {
-    font-size: 12px;
-    color: var(--sl-color-text);
-    margin: 0;
+  font-size: 12px;
+  color: var(--sl-color-text);
+  margin: 0;
 }
 
 .demo-text code {
-    background: var(--sl-color-gray-3);
-    padding: 2px 6px;
-    border-radius: 3px;
-    font-family: var(--sl-font-mono);
-    font-size: 12px;
+  background: var(--sl-color-gray-3);
+  padding: 2px 6px;
+  border-radius: 3px;
+  font-family: var(--sl-font-mono);
+  font-size: 12px;
 }
 </style>

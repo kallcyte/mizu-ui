@@ -48,8 +48,8 @@ content panels, built on Reka UI's `NavigationMenu` primitives.
 
 4. **Re-add the home components card** in `src/components/home/ComponentsSection.astro`:
    ```astro
-   <a href="/components/navigation-menu" class="block p-6 rounded-xl border transition-all duration-200 card-hover border-surface-muted bg-surface-base no-underline group hover:border-brand-accent/30 hover:shadow-[0_0_0_1px_var(--color-brand-accent)]">
-     <h4 class="text-[16px] font-semibold mb-1 group-hover:text-brand-accent transition-colors">NavigationMenu</h4>
+   <a href="/components/navigation-menu" class="block p-6 rounded-xl border transition-all duration-200 card-hover border-surface-muted bg-surface-base no-underline group hover:border-brand-ycp/30 hover:shadow-[0_0_0_1px_var(--color-brand-ycp)]">
+     <h4 class="text-[16px] font-semibold mb-1 group-hover:text-brand-ycp transition-colors">NavigationMenu</h4>
      <p class="text-sm text-foreground-secondary">Horizontal or vertical navigation bar with dropdown content panels.</p>
    </a>
    ```

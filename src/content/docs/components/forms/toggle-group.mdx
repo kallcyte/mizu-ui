@@ -1,0 +1,94 @@
+---
+title: ToggleGroup
+description: A set of toggleable buttons where one or multiple can be active at once.
+---
+
+import ToggleGroupDemo from '../../../../components/docs/ToggleGroupDemo.vue';
+
+A toggle group is a segmented control that lets users choose from a set of mutually exclusive (single) or independent (multiple) options.
+
+## Examples
+
+<ToggleGroupDemo client:only="vue" />
+
+## API
+
+### MizuToggleGroupRoot Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `modelValue` | `string \| string[]` | — | The active value(s). |
+| `type` | `"single" \| "multiple"` | `"single"` | Selection mode. |
+| `size` | `"sm" \| "md" \| "lg"` | `"md"` | Size variant. |
+| `disabled` | `boolean` | `false` | Disables the entire group. |
+
+### MizuToggleGroupItem Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `value` | `string` | — | The value this item represents. |
+| `disabled` | `boolean` | `false` | Disables just this item. |
+
+### Events
+
+| Event | Payload | Description |
+|-------|---------|-------------|
+| `update:modelValue` | `string \| string[]` | Emitted when active value(s) change. |
+
+## Theme
+
+### Sizing
+
+| Size | Container Padding | Item Padding | Font Size | Item Gap |
+|------|------------------|-------------|-----------|----------|
+| sm | 2px | 2px 8px | 12px | 4px |
+| md | 3px | 4px 10px | 13px | 6px |
+| lg | 4px | 6px 14px | 14px | 8px |
+
+### Transitions
+
+| Property | Duration | Easing |
+|----------|----------|--------|
+| color | 150ms | ease |
+| background-color | 150ms | ease |
+
+### Accessibility
+
+| Criterion | Implementation |
+|-----------|---------------|
+| Keyboard navigation | Arrow keys navigate between items; Home/End jump to first/last |
+| Focus management | `focus-visible` ring on focused items |
+| Screen reader | Active state announced via `aria-pressed` on each item |
+
+## Anatomy
+
+A toggle group consists of 2 parts:
+
+| Part | Required | Description |
+|------|----------|-------------|
+| ToggleGroupRoot | Yes | Container that manages the active state and selection mode |
+| ToggleGroupItem | Yes | Individual toggle button with on/off state |
+
+## Composition
+
+```
+MizuToggleGroupRoot (type, modelValue, size)
+  MizuToggleGroupItem (value)
+  MizuToggleGroupItem (value, disabled)
+```
+
+## Type
+
+| Type | Behavior |
+|------|----------|
+| `single` | At most one item can be active. Selecting a new item deselects the previous one. `modelValue` is a `string`. |
+| `multiple` | Any number of items can be active simultaneously. Items toggle independently. `modelValue` is a `string[]`. |
+
+## Implementation Notes
+
+1. **Reka UI ToggleGroup primitive** — wraps `ToggleGroupRoot` + `ToggleGroupItem` for accessible keyboard navigation, ARIA roles, and focus management.
+2. **Segmented control pattern** — container has `surface-muted` background with items that pick up `surface-base` + shadow when active.
+3. **Size via `data-size`** — set on the root and cascaded to items via CSS descendant selector.
+4. **Tailwind `@apply`** with `@reference` for Tailwind v4 compatibility.
+5. **Self-contained CSS** — bundled into `dist/index.css` via `@tailwindcss/vite`.
+6. **Class inheritance** — both Root and Item accept `class` via `useAttrs()`.

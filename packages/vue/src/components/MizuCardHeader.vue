@@ -24,6 +24,6 @@ const classes = computed(() => {
   padding: var(--mizu-card-py) var(--mizu-card-px);
   gap: var(--mizu-card-gap);
   background-color: var(--color-surface-subtle);
-  border-bottom: 1px solid color-mix(in srgb, var(--color-foreground-tertiary) 25%, transparent);
+  border-bottom: 1px solid var(--color-surface-muted);
 }
 </style>

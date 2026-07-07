@@ -66,8 +66,8 @@ const anchorClasses = computed(() => {
 }
 
 .mizu-combobox__anchor:focus-within {
-  border-color: var(--color-brand-accent);
-  box-shadow: 0 0 0 1px var(--color-brand-accent);
+  border-color: var(--color-brand-ycp);
+  box-shadow: 0 0 0 1px var(--color-brand-ycp);
 }
 
 /* Error state */

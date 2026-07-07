@@ -80,7 +80,7 @@ const triggerClasses = computed(() => {
 }
 
 .mizu-accordion__trigger:focus-visible {
-  outline: 2px solid var(--color-brand-accent);
+  outline: 2px solid var(--color-brand-ycp);
   outline-offset: -2px;
 }
 

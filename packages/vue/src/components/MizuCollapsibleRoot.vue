@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, useAttrs } from "vue";
+import { computed } from "vue";
 import { CollapsibleRoot } from "reka-ui";
 
 export interface CollapsibleRootProps {
@@ -22,25 +22,24 @@ const emit = defineEmits<{
   "update:open": [value: boolean];
 }>();
 
-const attrs = useAttrs();
-
-const rootClasses = computed(() => {
-  const classes = ["mizu-collapsible"];
-  if (attrs.class) classes.push(attrs.class as string);
-  return classes.join(" ");
+const collapsibleProps = computed(() => {
+  const bindings: Record<string, unknown> = {
+    class: "mizu-collapsible",
+    "default-open": props.defaultOpen,
+    disabled: props.disabled,
+  };
+  if (props.open !== undefined) bindings.open = props.open;
+  if (props.asChild !== undefined) bindings["as-child"] = props.asChild;
+  if (props.as !== undefined) bindings.as = props.as;
+  return bindings;
 });
 </script>
 
 <template>
   <CollapsibleRoot
-    :class="rootClasses"
-    :open="open"
-    :default-open="defaultOpen"
-    :disabled="disabled"
-    :as-child="asChild"
-    :as="as"
-    @update:open="(value) => emit('update:open', value)"
-  >
+  v-bind="collapsibleProps"
+  @update:open="(value) => emit('update:open', value)"
+>
     <slot />
   </CollapsibleRoot>
 </template>

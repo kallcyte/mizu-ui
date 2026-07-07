@@ -5,6 +5,8 @@ import vue from "@astrojs/vue";
 
 import starlight from "@astrojs/starlight";
 
+import node from "@astrojs/node";
+
 export default defineConfig({
   site: "https://mizu.kall.dev",
   vite: {
@@ -15,7 +17,6 @@ export default defineConfig({
       },
     },
   },
-
   integrations: [
     vue(),
     starlight({
@@ -64,52 +65,99 @@ export default defineConfig({
         {
           label: "Components",
           items: [
-            { label: "Accordion", slug: "components/accordion" },
-            { label: "Alert", slug: "components/alert" },
-            { label: "AlertDialog", slug: "components/alert-dialog" },
-            { label: "Avatar", slug: "components/avatar" },
-            { label: "Avatar Group", slug: "components/avatar-group" },
-            { label: "Breadcrumb", slug: "components/breadcrumb" },
-            { label: "Badge", slug: "components/badge" },
-            { label: "Button", slug: "components/button" },
-            { label: "Card", slug: "components/card" },
-            { label: "Checkbox", slug: "components/checkbox" },
-            { label: "CheckboxGroup", slug: "components/checkbox-group" },
-            { label: "Collapsible", slug: "components/collapsible" },
-            { label: "Combobox", slug: "components/combobox" },
-            { label: "DashList", slug: "components/dashlist" },
-            { label: "Data Table", slug: "components/data-table" },
-            { label: "Dialog", slug: "components/dialog" },
-            { label: "Divider", slug: "components/divider" },
-            { label: "Drawer", slug: "components/drawer" },
-            { label: "DropdownMenu", slug: "components/dropdown-menu" },
-            { label: "Empty", slug: "components/empty" },
-            { label: "Form", slug: "components/form" },
-            { label: "Input", slug: "components/input" },
-            { label: "Kbd", slug: "components/kbd" },
-            { label: "Metric", slug: "components/metric" },
-            { label: "NumberField", slug: "components/number-field" },
-            { label: "Pagination", slug: "components/pagination" },
-            { label: "Popover", slug: "components/popover" },
-            { label: "Progress", slug: "components/progress" },
-            { label: "Quote", slug: "components/quote" },
-            { label: "Radio", slug: "components/radio" },
-            { label: "ScrollArea", slug: "components/scroll-area" },
-            { label: "Select", slug: "components/select" },
-            { label: "Skeleton", slug: "components/skeleton" },
-
-            { label: "Slider", slug: "components/slider" },
-            { label: "Switch", slug: "components/switch" },
-            { label: "Tabs", slug: "components/tabs" },
-            { label: "Tag", slug: "components/tag" },
-            { label: "TagsInput", slug: "components/tags-input" },
-            { label: "Textarea", slug: "components/textarea" },
-            { label: "Toast", slug: "components/toast" },
-            { label: "ToggleGroup", slug: "components/toggle-group" },
-            { label: "Tooltip", slug: "components/tooltip" },
             {
-              label: "Validation Patterns",
-              slug: "components/validation-patterns",
+              label: "Element",
+              items: [
+                { label: "Alert", slug: "components/element/alert" },
+                { label: "Avatar", slug: "components/element/avatar" },
+                {
+                  label: "Avatar Group",
+                  slug: "components/element/avatar-group",
+                },
+                { label: "Badge", slug: "components/element/badge" },
+                { label: "Button", slug: "components/element/button" },
+                { label: "Card", slug: "components/element/card" },
+                {
+                  label: "Collapsible",
+                  slug: "components/element/collapsible",
+                },
+                { label: "Divider", slug: "components/element/divider" },
+                { label: "Kbd", slug: "components/element/kbd" },
+                { label: "Progress", slug: "components/element/progress" },
+                { label: "Skeleton", slug: "components/element/skeleton" },
+                { label: "Tag", slug: "components/element/tag" },
+              ],
+            },
+            {
+              label: "Form",
+              items: [
+                { label: "Checkbox", slug: "components/forms/checkbox" },
+                {
+                  label: "CheckboxGroup",
+                  slug: "components/forms/checkbox-group",
+                },
+                { label: "Combobox", slug: "components/forms/combobox" },
+                { label: "Form", slug: "components/forms/form" },
+                { label: "Input", slug: "components/forms/input" },
+                { label: "NumberField", slug: "components/forms/number-field" },
+                { label: "Radio", slug: "components/forms/radio" },
+                { label: "Select", slug: "components/forms/select" },
+                { label: "Slider", slug: "components/forms/slider" },
+                { label: "Switch", slug: "components/forms/switch" },
+                { label: "TagsInput", slug: "components/forms/tags-input" },
+                { label: "Textarea", slug: "components/forms/textarea" },
+                { label: "ToggleGroup", slug: "components/forms/toggle-group" },
+                {
+                  label: "Validation Patterns",
+                  slug: "components/forms/validation-patterns",
+                },
+              ],
+            },
+            {
+              label: "Data",
+              items: [
+                { label: "Accordion", slug: "components/data/accordion" },
+                { label: "DashList", slug: "components/data/dashlist" },
+                { label: "DataTable", slug: "components/data/data-table" },
+                { label: "Empty", slug: "components/data/empty" },
+                { label: "Metric", slug: "components/data/metric" },
+                { label: "Quote", slug: "components/data/quote" },
+              ],
+            },
+            {
+              label: "Overlay",
+              items: [
+                {
+                  label: "AlertDialog",
+                  slug: "components/overlay/alert-dialog",
+                },
+                { label: "Dialog", slug: "components/overlay/dialog" },
+                { label: "Drawer", slug: "components/overlay/drawer" },
+                {
+                  label: "DropdownMenu",
+                  slug: "components/overlay/dropdown-menu",
+                },
+                { label: "Popover", slug: "components/overlay/popover" },
+                { label: "Toast", slug: "components/overlay/toast" },
+                { label: "Tooltip", slug: "components/overlay/tooltip" },
+              ],
+            },
+            {
+              label: "Layout",
+              items: [
+                { label: "Breadcrumb", slug: "components/layout/breadcrumb" },
+                { label: "ScrollArea", slug: "components/layout/scroll-area" },
+                { label: "Tabs", slug: "components/layout/tabs" },
+              ],
+            },
+            {
+              label: "Navigation",
+              items: [
+                {
+                  label: "Pagination",
+                  slug: "components/navigation/pagination",
+                },
+              ],
             },
           ],
         },

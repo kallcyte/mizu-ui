@@ -149,7 +149,7 @@ const badgeClasses = computed(() => {
   color: #fff;
 }
 .mizu-badge--accent {
-  background-color: var(--color-brand-accent);
+  background-color: var(--color-brand-ycp);
   color: #fff;
 }
 .mizu-badge--success {

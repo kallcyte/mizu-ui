@@ -1,0 +1,204 @@
+---
+title: Tag
+description: Tags are compact labels for categorizing content, showing status, or displaying metadata.
+---
+
+import TagDemo from '../../../../components/docs/TagDemo.vue';
+
+Tags are compact labels for categorizing content, showing status, or displaying metadata. They can be optionally closable to allow user-driven removal.
+
+## Examples
+
+<TagDemo client:only="vue" />
+
+```vue
+<MizuTag variant="primary">Design</MizuTag>
+
+<MizuTag variant="success">Approved</MizuTag>
+
+<MizuTag variant="error" closable @close="removeTag(tag)">
+  Failed Sync
+</MizuTag>
+
+<MizuTag variant="warning">Pending Review</MizuTag>
+```
+
+## API
+
+### Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `variant` | `'primary' \| 'accent' \| 'success' \| 'warning' \| 'error' \| 'info'` | `'primary'` | Visual variant |
+| `closable` | `boolean` | `false` | Shows a close button |
+
+### Slots
+
+| Slot | Description |
+|------|-------------|
+| `default` | Tag label content |
+
+### Events
+
+| Event | Payload | Description |
+|-------|---------|-------------|
+| `close` | none | Emitted when the close button is clicked |
+
+## Theme
+
+### CSS Custom Properties
+
+Customize the tag appearance with these CSS custom properties:
+
+| Token | Default | Description |
+|-------|---------|-------------|
+| `--color-brand-primary` | #0070F2 | Primary variant label color |
+| `--color-brand-primary-subtle` | #CCE2FC | Primary variant background |
+| `--color-brand-ycp` | #001C44 | Accent variant label color |
+| `--color-brand-ycp-subtle` | #CCD2DA | Accent variant background |
+| `--color-feedback-success-base` | #15803D | Success variant label color |
+| `--color-feedback-success-subtle` | #DCFCE7 | Success variant background |
+| `--color-feedback-warning-base` | #D97706 | Warning variant label color |
+| `--color-feedback-warning-subtle` | #FFFBEB | Warning variant background |
+| `--color-feedback-error-base` | #DC2626 | Error variant label color |
+| `--color-feedback-error-subtle` | #FEF2F2 | Error variant background |
+| `--color-feedback-info-base` | #0284C7 | Info variant label color |
+| `--color-feedback-info-subtle` | #F0F9FF | Info variant background |
+| `--duration-fast` | 150ms | Close button opacity transition |
+| `--font-weight-medium` | 500 | Label font weight |
+
+#### Variant Color Map
+
+All variants use a subtle fill with a semi-transparent colored border (25% opacity) that matches the label:
+
+| Variant | Background | Label Color | Border Color | Use Case |
+|---------|------------|-------------|--------------|----------|
+| **Primary** | `brand-primary-subtle` | `brand-primary` | `brand-primary` 25% | Brand emphasis, categories |
+| **Accent** | `brand-ycp-subtle` | `brand-ycp` | `brand-ycp` 25% | Interactive labels, links |
+| **Success** | `feedback-success-subtle` | `feedback-success-base` | `feedback-success-base` 25% | Success states, approvals |
+| **Warning** | `feedback-warning-subtle` | `feedback-warning-base` | `feedback-warning-base` 25% | Warnings, pending states |
+| **Error** | `feedback-error-subtle` | `feedback-error-base` | `feedback-error-base` 25% | Errors, failures |
+| **Info** | `feedback-info-subtle` | `feedback-info-base` | `feedback-info-base` 25% | Informational, neutral status |
+
+#### Status Tag Mappings
+
+Tags are commonly used to represent workflow statuses:
+
+| Status | Variant | Rationale |
+|--------|---------|-----------|
+| **Pending** | `warning` | Awaiting action; caution color draws attention |
+| **Draft** | `info` | Neutral, informational; not yet active |
+| **In Progress** | `accent` | Active work; brand accent for visibility |
+| **Success** | `success` | Completed successfully |
+| **Done** | `primary` | Finalized; brand primary for closure |
+| **Rejected** | `error` | Failed or denied; error signals problems |
+| **Cancelled** | `info` | No longer active; neutral de-emphasis |
+
+```vue
+<MizuTag variant="warning">Pending</MizuTag>
+<MizuTag variant="info">Draft</MizuTag>
+<MizuTag variant="accent">In Progress</MizuTag>
+<MizuTag variant="success">Success</MizuTag>
+<MizuTag variant="primary">Done</MizuTag>
+<MizuTag variant="error">Rejected</MizuTag>
+<MizuTag variant="info">Cancelled</MizuTag>
+```
+
+#### Close Button State
+
+| State | Opacity | Transition |
+|-------|---------|------------|
+| **Default** | 60% | — |
+| **Hovered** | 100% | 150ms opacity |
+
+### Sizing
+
+Tags use a single fixed size:
+
+| Property | Value |
+|----------|-------|
+| Height | 24px |
+| Horizontal Padding | 10px |
+| Font Size | 12px |
+| Border Width | 1px |
+| Border Radius | 9999px (pill) |
+| Label-Close Gap | 4px |
+
+#### Typography
+
+| Property | Value |
+|----------|-------|
+| Font Size | 12px |
+| Font Weight | 500 (medium) |
+| Line Height | 1 |
+| Letter Spacing | 0 |
+
+#### Close Icon
+
+| Property | Value |
+|----------|-------|
+| Container | 12px × 12px |
+| Icon Viewbox | 10px × 10px |
+| Stroke Width | 1.5px |
+
+#### Content Layout
+
+```
+┌──────────────────────────────────────────────────┐
+│←pad→┌─────────┐←gap→┌────┐←pad→│
+│     │  Label  │     │  × │     │
+│     └─────────┘     └────┘     │
+└──────────────────────────────────────────────────┘
+```
+
+| Property | Value |
+|----------|-------|
+| Horizontal Padding | 10px |
+| Label-Close Gap | 4px |
+
+### Transitions
+
+| Property | Duration | Easing |
+|----------|----------|--------|
+| Close Button Opacity | 150ms | linear |
+
+### Accessibility
+
+| Criterion | Implementation |
+|-----------|----------------|
+| Color Contrast | 4.5:1 for label text |
+| Touch Target | Close button minimum 24px × 24px (interactive area) |
+| Screen Reader | Default slot text is announced; close button has `aria-label="Remove tag"` |
+| Non-interactive | Default tag is `<span>`, not focusable; only the close button is interactive |
+
+```html
+<span class="mizu-tag mizu-tag--primary">
+  Design
+  <button aria-label="Remove tag">
+    <svg>...</svg>
+  </button>
+</span>
+```
+
+## Anatomy
+
+A tag consists of up to 3 parts:
+
+| Part | Required | Description |
+|------|----------|-------------|
+| Container | Yes | The tag's background and border |
+| Label | Yes | The tag's text content |
+| Close Button | No | Removes the tag when clicked (requires `closable` prop) |
+
+## Implementation Notes
+
+1. **Native `<span>` element** — No Reka UI primitive needed; the tag is a lightweight inline label
+2. **Single size** — Tags use one fixed dimension; tags are presentational and should not vary in size across the system
+3. **Pill shape** — Fully rounded (`border-radius: 9999px`) for a soft, modern feel
+4. **Semi-transparent border** — All variants use a subtle background with a 1px border at 25% opacity matching the label color
+5. **Tailwind `@apply`** — Component styles use `@apply` with `@reference` for Tailwind v4 compatibility
+6. **CSS Custom Properties** — Colors are resolved at runtime via inline `:style` binding (`--mizu-tag-bg`, `--mizu-tag-text`, `--mizu-tag-border`)
+7. **Self-contained CSS** — Tailwind utilities are bundled into `dist/index.css` via `@tailwindcss/vite`; consumers do not need Tailwind installed
+8. **Class inheritance** — Accept `class` prop for overrides via `useAttrs()`
+9. **TypeScript** — Full type safety with `<script setup lang="ts">`
+10. **Tree-shakeable** — Export as ESM + CJS via Vite library mode

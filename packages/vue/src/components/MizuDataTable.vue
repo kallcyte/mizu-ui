@@ -298,7 +298,7 @@ const totalPages = computed(() => {
   background: var(--color-surface-subtle);
 }
 .mizu-data-table__row--selected {
-  background: var(--color-brand-accent-subtle);
+  background: var(--color-brand-ycp-subtle);
 }
 
 .mizu-data-table__td {

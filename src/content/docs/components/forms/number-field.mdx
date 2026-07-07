@@ -1,0 +1,63 @@
+---
+title: NumberField
+description: Numeric input with increment and decrement controls.
+---
+
+import NumberFieldDemo from '../../../../components/docs/NumberFieldDemo.vue';
+
+A NumberField allows users to enter a numeric value and increment or decrement it using stepper buttons or keyboard shortcuts. It supports formatting for decimals, currencies, and percentages.
+
+## Examples
+
+<NumberFieldDemo client:only="vue" />
+
+## API
+
+### NumberFieldRoot Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `modelValue` | `number` | `undefined` | Controlled value |
+| `defaultValue` | `number` | `undefined` | Default value |
+| `min` | `number` | `undefined` | Minimum value |
+| `max` | `number` | `undefined` | Maximum value |
+| `step` | `number` | `1` | Increment/decrement step |
+| `largeStep` | `number` | `10` | Page Up/Down step |
+| `disabled` | `boolean` | `false` | Disable the input |
+| `formatOptions` | `Intl.NumberFormatOptions` | `undefined` | Formatting options (style, currency, etc.) |
+| `locale` | `string` | `undefined` | Locale for formatting |
+
+### NumberFieldRoot Events
+
+| Event | Payload | Description |
+|-------|---------|-------------|
+| `update:modelValue` | `number` | Emitted on value change |
+
+## Anatomy
+
+A NumberField consists of 4 parts:
+
+| Part | Required | Description |
+|------|----------|-------------|
+| NumberFieldRoot | Yes | Manages value, min/max, step, and format options |
+| NumberFieldInput | Yes | Displays the formatted numeric value |
+| NumberFieldIncrement | Yes | Button to increase the value |
+| NumberFieldDecrement | Yes | Button to decrease the value |
+
+## Composition
+
+```
+MizuNumberFieldRoot
+  MizuNumberFieldDecrement
+  MizuNumberFieldInput
+  MizuNumberFieldIncrement
+```
+
+## Implementation Notes
+
+1. Each `MizuNumberField*` component wraps the corresponding Reka UI `NumberField*` primitive.
+2. The group container (Root > Decrement + Input + Increment) must be styled manually via CSS — the library provides the parts, not the layout.
+3. `formatOptions` accepts any `Intl.NumberFormatOptions`, including `style: "currency"` and `style: "percent"`.
+4. Keyboard shortcuts: Arrow Up/Down (step), Page Up/Down (largeStep × step), Home (min), End (max).
+5. The input is read-only in the sense that users type through the formatted display; Reka UI parses keystrokes into number edits.
+6. Use `@internationalized/number` for custom number parsing in advanced use cases.

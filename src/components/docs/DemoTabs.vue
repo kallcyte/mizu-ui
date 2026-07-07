@@ -1,7 +1,6 @@
 <script setup lang="ts">
-import { ref, computed, shallowRef } from "vue";
+import { ref } from "vue";
 import { MizuTabsRoot, MizuTabsList, MizuTabsTrigger, MizuTabsContent } from "@mizu/vue";
-import { getSingletonHighlighter, type Highlighter } from "shiki";
 
 const props = defineProps<{
   code: string;
@@ -9,23 +8,6 @@ const props = defineProps<{
 
 const activeTab = ref("preview");
 const copied = ref(false);
-
-const highlighter = shallowRef<Highlighter>();
-
-const highlightedCode = computed(() => {
-  if (!highlighter.value) return "";
-  return highlighter.value.codeToHtml(props.code.trim(), {
-    lang: "javascript",
-    theme: "github-dark",
-  });
-});
-
-getSingletonHighlighter({
-  themes: ["github-dark"],
-  langs: ["javascript", "vue"],
-}).then((h) => {
-  highlighter.value = h;
-});
 
 async function copyCode() {
   await navigator.clipboard.writeText(props.code.trim());
@@ -64,8 +46,7 @@ async function copyCode() {
               <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" />
             </svg>
           </button>
-          <div v-if="highlightedCode" class="demo-tabs__code" v-html="highlightedCode" />
-          <pre v-else class="demo-tabs__code-fallback"><code>{{ code }}</code></pre>
+          <pre class="demo-tabs__code-block"><code>{{ code }}</code></pre>
         </div>
       </MizuTabsContent>
     </MizuTabsRoot>
@@ -100,16 +81,18 @@ async function copyCode() {
   margin-top: 0;
 }
 
-/* Prevent Starlight code styles from bleeding into Shiki output */
-.demo-tabs__code-wrapper code {
-  all: unset;
-  font-family: inherit;
-  font-size: inherit;
-  color: inherit;
-  background: none;
-  padding: 0;
-  border: none;
-  border-radius: 0;
+.demo-tabs__code-block {
+  all: revert;
+  margin: 0;
+  padding: 16px;
+  border-radius: 6px;
+  background: var(--color-surface-subtle);
+  color: var(--color-foreground-primary);
+  white-space: pre;
+  overflow-x: auto;
+  font-size: 13px;
+  line-height: 1.6;
+  font-family: "JetBrains Mono", "Fira Code", monospace;
 }
 
 .demo-tabs__copy-btn {
@@ -140,34 +123,5 @@ async function copyCode() {
 .demo-tabs__copy-btn--copied {
   color: var(--color-feedback-success-base, #22c55e);
   border-color: var(--color-feedback-success-base, #22c55e);
-}
-
-.demo-tabs__code {
-  all: revert;
-  margin: 0;
-  border-radius: 6px;
-  overflow-x: auto;
-  font-size: 13px;
-  line-height: 1.6;
-}
-
-.demo-tabs__code pre {
-  margin: 0;
-  padding: 16px;
-  border-radius: 6px;
-  font-family: "JetBrains Mono", "Fira Code", monospace;
-}
-
-.demo-tabs__code-fallback {
-  all: revert;
-  margin: 0;
-  padding: 16px;
-  border-radius: 6px;
-  background: var(--color-surface-subtle);
-  color: var(--color-foreground-primary);
-  white-space: pre;
-  font-size: 13px;
-  line-height: 1.6;
-  font-family: "JetBrains Mono", "Fira Code", monospace;
 }
 </style>

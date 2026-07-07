@@ -39,7 +39,7 @@ Icon:      text-foreground-inverse
 
 ### Accent Button
 ```
-Container: bg-brand-accent
+Container: bg-brand-ycp
 Label:     text-foreground-inverse
 Icon:      text-foreground-inverse
 ```
@@ -102,10 +102,10 @@ All button sizes maintain a minimum touch target of **44px × 44px** for accessi
 
 | State | Primary | Accent | Ghost | Outline |
 |-------|---------|--------|-------|---------|
-| **Enabled** | bg: `brand-primary`<br>fg: `foreground-inverse` | bg: `brand-accent`<br>fg: `foreground-inverse` | bg: transparent<br>fg: `foreground-primary` | bg: transparent<br>border: `surface-muted`<br>fg: `foreground-primary` |
-| **Hovered** | bg: `brand-primary-hover`<br>fg: `foreground-inverse` | bg: `brand-accent-hover`<br>fg: `foreground-inverse` | bg: `surface-subtle`<br>fg: `foreground-primary` | bg: `surface-subtle`<br>border: `surface-muted`<br>fg: `foreground-primary` |
-| **Focused** | bg: `brand-primary-focus`<br>fg: `foreground-inverse`<br>ring: 2px `brand-accent` | bg: `brand-accent-focus`<br>fg: `foreground-inverse`<br>ring: 2px `brand-accent` | bg: `surface-subtle`<br>fg: `foreground-primary`<br>ring: 2px `brand-accent` | bg: `surface-subtle`<br>border: `brand-accent`<br>fg: `foreground-primary`<br>ring: 2px `brand-accent` |
-| **Pressed** | bg: `brand-primary-focus`<br>fg: `foreground-inverse` | bg: `brand-accent-focus`<br>fg: `foreground-inverse` | bg: `surface-muted`<br>fg: `foreground-primary` | bg: `surface-muted`<br>border: `surface-muted`<br>fg: `foreground-primary` |
+| **Enabled** | bg: `brand-primary`<br>fg: `foreground-inverse` | bg: `brand-ycp`<br>fg: `foreground-inverse` | bg: transparent<br>fg: `foreground-primary` | bg: transparent<br>border: `surface-muted`<br>fg: `foreground-primary` |
+| **Hovered** | bg: `brand-primary-hover`<br>fg: `foreground-inverse` | bg: `brand-ycp-hover`<br>fg: `foreground-inverse` | bg: `surface-subtle`<br>fg: `foreground-primary` | bg: `surface-subtle`<br>border: `surface-muted`<br>fg: `foreground-primary` |
+| **Focused** | bg: `brand-primary-focus`<br>fg: `foreground-inverse`<br>ring: 2px `brand-ycp` | bg: `brand-ycp-focus`<br>fg: `foreground-inverse`<br>ring: 2px `brand-ycp` | bg: `surface-subtle`<br>fg: `foreground-primary`<br>ring: 2px `brand-ycp` | bg: `surface-subtle`<br>border: `brand-ycp`<br>fg: `foreground-primary`<br>ring: 2px `brand-ycp` |
+| **Pressed** | bg: `brand-primary-focus`<br>fg: `foreground-inverse` | bg: `brand-ycp-focus`<br>fg: `foreground-inverse` | bg: `surface-muted`<br>fg: `foreground-primary` | bg: `surface-muted`<br>border: `surface-muted`<br>fg: `foreground-primary` |
 | **Disabled** | bg: `surface-muted`<br>fg: `foreground-tertiary` | bg: `surface-muted`<br>fg: `foreground-tertiary` | bg: transparent<br>fg: `foreground-tertiary` | bg: transparent<br>border: `surface-muted`<br>fg: `foreground-tertiary` |
 
 ### Loading State
@@ -166,7 +166,7 @@ All button sizes maintain a minimum touch target of **44px × 44px** for accessi
 
 | Property | Value |
 |----------|-------|
-| Style | `outline: 2px solid var(--color-brand-accent)` |
+| Style | `outline: 2px solid var(--color-brand-ycp)` |
 | Offset | `2px` |
 | Border Radius | Inherit from button |
 
@@ -205,9 +205,9 @@ All button sizes maintain a minimum touch target of **44px × 44px** for accessi
 | `--color-brand-primary` | #0070F2 | Primary button bg |
 | `--color-brand-primary-hover` | #005AC2 | Primary hover bg |
 | `--color-brand-primary-focus` | #338DF5 | Primary focus/pressed bg |
-| `--color-brand-accent` | #001C44 | Accent button bg, focus ring |
-| `--color-brand-accent-hover` | #001636 | Accent hover bg |
-| `--color-brand-accent-focus` | #334969 | Accent focus/pressed bg |
+| `--color-brand-ycp` | #001C44 | Accent button bg, focus ring |
+| `--color-brand-ycp-hover` | #001636 | Accent hover bg |
+| `--color-brand-ycp-focus` | #334969 | Accent focus/pressed bg |
 | `--color-foreground-inverse` | #FFFFFF | Primary/Accent label color |
 | `--color-foreground-primary` | #1B1B1D | Ghost/Outline label color |
 | `--color-foreground-tertiary` | #9CA3AF | Disabled label color |

@@ -1,0 +1,110 @@
+---
+title: Form
+description: Validation-aware form wrapper with field-level error handling.
+---
+
+import FormDemo from '../../../../components/docs/FormDemo.vue';
+
+A Form provides validation lifecycle and error tracking for any set of inputs. Use it to build validated forms without managing error state manually — each field tracks its own touched/error state.
+
+## Examples
+
+<FormDemo client:only="vue" />
+
+## API
+
+### MizuForm Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `state` | `Record<string, unknown>` | `{}` | Reactive form state object — use `reactive()` or `ref()` |
+| `validate` | `(state) => ValidationError[]` | — | Validation function — return array of `{ field, message }` |
+| `submit` | `(state) => Promise<void>` | — | Async submit handler — called with validated state |
+
+### MizuForm Events
+
+| Event | Payload | Description |
+|-------|---------|-------------|
+| `submit` | `Record<string, unknown>` | Emitted after validation passes, before the `submit` prop handler |
+
+### MizuFormField Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `name` | `string` | — | Field name matching a key in the form state |
+| `label` | `string` | — | Label text rendered above the input |
+| `required` | `boolean` | `false` | Adds an asterisk to the label |
+| `help` | `string` | — | Help text below the input (hidden when an error is shown) |
+
+### MizuFormField Slot Props
+
+| Prop | Type | Description |
+|------|------|-------------|
+| `error` | `boolean` | `true` when the field is touched and has a validation error |
+| `helperText` | `string \| undefined` | The error message (if errored) or help text (if not) |
+| `id` | `string` | Auto-generated ID for `label[for]` / `input[id]` pairing |
+| `name` | `string` | The field name (passthrough from the prop) |
+| `required` | `boolean` | Passthrough from the prop |
+| `touched` | `boolean` | Whether the field has been focused and blurred |
+
+### ValidationError
+
+```ts
+interface ValidationError {
+  field: string;
+  message: string;
+}
+```
+
+Return an array of `ValidationError` objects from the `validate` function. Only errors for fields that have been touched (focused then blurred) are displayed.
+
+## Theme
+
+### Accessibility
+
+| Criterion | Implementation |
+|-----------|---------------|
+| Label association | `label[for]` is auto-linked to `input[id]` via the slot `id` prop |
+| Required fields | Asterisk rendered with `aria-hidden="true"`; the label text itself conveys necessity |
+| Error announcement | Error text rendered below the input with high-contrast color |
+| Form submission | Native `<form>` element with `preventDefault` for async handling |
+
+#### ARIA Attributes
+
+```html
+<form novalidate>
+  <label for="mizu-field-email">Email <span aria-hidden="true">*</span></label>
+  <input id="mizu-field-email" aria-invalid="true" aria-describedby="mizu-field-email-error" />
+  <span id="mizu-field-email-error" role="alert">Email is required</span>
+</form>
+```
+
+## Anatomy
+
+A form consists of 2 parts:
+
+| Part | Required | Description |
+|------|----------|-------------|
+| MizuForm | Yes | Wraps all fields, provides validation and submission lifecycle |
+| MizuFormField | Yes (per input) | Renders label, required indicator, and validation error for a single field |
+
+## Composition
+
+```
+MizuForm
+  ├── MizuFormField (name="email")
+  │     └── MizuInput (or any input)
+  ├── MizuFormField (name="password")
+  │     └── MizuInput (or any input)
+  └── MizuButton (type="submit")
+```
+
+## Implementation Notes
+
+1. Uses Vue `provide/inject` for form context — MizuFormField auto-connects to its parent MizuForm
+2. Error tracking is per-field via `touched` flags — errors only show after the field loses focus
+3. `@focusout` on the field wrapper automatically marks fields as touched without manual wiring
+4. The slot scope pattern passes `error`, `id`, and `helperText` to any child input component
+5. Validation runs on form submit and checks all fields against the `validate` function
+6. Submit is prevented when validation fails; the `submit` prop (or `@submit` event) runs on success
+7. All CSS tokens use `var(--color-*)` references from `@mizu/tokens`

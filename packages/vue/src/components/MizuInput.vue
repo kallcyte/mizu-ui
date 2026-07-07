@@ -189,8 +189,8 @@ function togglePassword() {
 }
 .mizu-input::placeholder { @apply text-[var(--color-foreground-tertiary)]; }
 .mizu-input:focus-visible {
-  border-color: var(--color-brand-accent);
-  box-shadow: 0 0 0 1px var(--color-brand-accent);
+  border-color: var(--color-brand-ycp);
+  box-shadow: 0 0 0 1px var(--color-brand-ycp);
 }
 
 .mizu-input--sm { @apply h-[28px] text-[12px]; padding: 0 8px; border-radius: 4px; line-height: 1; }

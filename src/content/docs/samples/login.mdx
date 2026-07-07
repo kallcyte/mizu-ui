@@ -20,7 +20,7 @@ This sample page demonstrates a complete login form using Mizu components and th
 
 Use `admin@mizu.dev` / `password123` to log in successfully. Any other credentials will trigger an error.
 
-<LoginDemo client:load />
+<LoginDemo client:only="vue" />
 
 ## How It Works
 
@@ -32,4 +32,4 @@ The login form uses:
 4. **`MizuInput`'s `error` + `helperText` props** - bind validation error messages to the UI
 5. **`onBlur()`** - marks field as touched and triggers per-field validation
 
-See [Validation Patterns](/components/validation-patterns/) for the full API reference.
+See [Validation Patterns](/components/forms/validation-patterns/) for the full API reference.

@@ -33,7 +33,7 @@ const cardClasses = computed(() => {
 .mizu-card {
   @apply rounded-md border transition-colors duration-200 overflow-hidden;
   background-color: var(--color-surface-base);
-  border-color: var(--color-foreground-tertiary);
+  border-color: var(--color-surface-muted);
   --mizu-card-px: 16px;
   --mizu-card-py: 16px;
   --mizu-card-gap: 6px;

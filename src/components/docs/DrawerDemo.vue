@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref, computed } from "vue";
 import {
   MizuDrawerRoot,
   MizuDrawerPortal,
@@ -15,7 +15,7 @@ import {
   MizuButton,
   MizuSelect,
 } from "@mizu/vue";
-import DemoTabs from "./DemoTabs.vue";
+import CodeCollapsible from "./CodeCollapsible.vue";
 
 const rightOpen = ref(false);
 const leftOpen = ref(false);
@@ -33,6 +33,19 @@ const sizeOptions = [
   { label: "xl", value: "xl" },
   { label: "full", value: "full" },
 ];
+
+const sizeWidth = {
+  sm: "24rem",
+  md: "28rem",
+  lg: "32rem",
+  xl: "36rem",
+} as const;
+
+const sizeDisplay = computed(() =>
+  selectedSize.value === "full"
+    ? "Full-viewport drawer"
+    : `Width: ${sizeWidth[selectedSize.value as keyof typeof sizeWidth] ?? "28rem"}`
+);
 
 const rightCode = `<MizuDrawerRoot v-model:open="open">
   <MizuDrawerTrigger as-child>
@@ -143,12 +156,12 @@ const sizeCode = `<MizuSelect v-model="selectedSize" :options="sizeOptions" plac
   </MizuDrawerTrigger>
   <MizuDrawerPortal>
     <MizuDrawerOverlay />
-    <MizuDrawerContent :size="(selectedSize as 'sm' | 'md' | 'lg' | 'xl' | 'full')">
+    <MizuDrawerContent :size="selectedSize">
       <MizuDrawerClose />
       <MizuDrawerHeader>
         <MizuDrawerTitle>Size: {{ selectedSize }}</MizuDrawerTitle>
         <MizuDrawerDescription>
-          {{ selectedSize === 'full' ? 'Full-viewport drawer' : \`Width: \${({ sm: '24rem', md: '28rem', lg: '32rem', xl: '36rem' } as Record<string, string>)[selectedSize]}\` }}
+          {{ sizeDisplay }}
         </MizuDrawerDescription>
       </MizuDrawerHeader>
       <MizuDrawerBody>
@@ -219,10 +232,10 @@ const navCode = `<MizuDrawerRoot v-model:open="open">
 </script>
 
 <template>
-  <div class="drawer-demo not-content">
-    <DemoTabs :code="rightCode">
-      <div class="demo-section">
-        <h3>Right Drawer</h3>
+  <div class="drawer-examples">
+    <section class="example-section">
+      <h3>Right Drawer</h3>
+      <CodeCollapsible :code="rightCode">
         <MizuDrawerRoot v-model:open="rightOpen">
           <MizuDrawerTrigger as-child>
             <MizuButton variant="accent" size="md" class="w-max">Open Right Drawer</MizuButton>
@@ -248,12 +261,12 @@ const navCode = `<MizuDrawerRoot v-model:open="open">
             </MizuDrawerContent>
           </MizuDrawerPortal>
         </MizuDrawerRoot>
-      </div>
-    </DemoTabs>
+      </CodeCollapsible>
+    </section>
 
-    <DemoTabs :code="leftCode">
-      <div class="demo-section">
-        <h3>Left Drawer</h3>
+    <section class="example-section">
+      <h3>Left Drawer</h3>
+      <CodeCollapsible :code="leftCode">
         <MizuDrawerRoot v-model:open="leftOpen">
           <MizuDrawerTrigger as-child>
             <MizuButton variant="accent" size="md" class="w-max">Open Left Drawer</MizuButton>
@@ -278,12 +291,12 @@ const navCode = `<MizuDrawerRoot v-model:open="open">
             </MizuDrawerContent>
           </MizuDrawerPortal>
         </MizuDrawerRoot>
-      </div>
-    </DemoTabs>
+      </CodeCollapsible>
+    </section>
 
-    <DemoTabs :code="topCode">
-      <div class="demo-section">
-        <h3>Top Drawer</h3>
+    <section class="example-section">
+      <h3>Top Drawer</h3>
+      <CodeCollapsible :code="topCode">
         <MizuDrawerRoot v-model:open="topOpen">
           <MizuDrawerTrigger as-child>
             <MizuButton variant="accent" size="md" class="w-max">Open Top Drawer</MizuButton>
@@ -309,12 +322,12 @@ const navCode = `<MizuDrawerRoot v-model:open="open">
             </MizuDrawerContent>
           </MizuDrawerPortal>
         </MizuDrawerRoot>
-      </div>
-    </DemoTabs>
+      </CodeCollapsible>
+    </section>
 
-    <DemoTabs :code="bottomCode">
-      <div class="demo-section">
-        <h3>Bottom Drawer</h3>
+    <section class="example-section">
+      <h3>Bottom Drawer</h3>
+      <CodeCollapsible :code="bottomCode">
         <MizuDrawerRoot v-model:open="bottomOpen">
           <MizuDrawerTrigger as-child>
             <MizuButton variant="accent" size="md" class="w-max">Open Bottom Drawer</MizuButton>
@@ -339,12 +352,12 @@ const navCode = `<MizuDrawerRoot v-model:open="open">
             </MizuDrawerContent>
           </MizuDrawerPortal>
         </MizuDrawerRoot>
-      </div>
-    </DemoTabs>
+      </CodeCollapsible>
+    </section>
 
-    <DemoTabs :code="sizeCode">
-      <div class="demo-section">
-        <h3>Size Variants</h3>
+    <section class="example-section">
+      <h3>Size Variants</h3>
+      <CodeCollapsible :code="sizeCode">
         <div class="size-row">
           <MizuSelect v-model="selectedSize" :options="sizeOptions" placeholder="md" size="sm" style="width: 120px;" />
           <MizuDrawerRoot v-model:open="sizedOpen">
@@ -353,13 +366,13 @@ const navCode = `<MizuDrawerRoot v-model:open="open">
             </MizuDrawerTrigger>
             <MizuDrawerPortal>
               <MizuDrawerOverlay />
-              <MizuDrawerContent :size="(selectedSize as 'sm' | 'md' | 'lg' | 'xl' | 'full')">
+              <MizuDrawerContent :size="selectedSize">
                 <MizuDrawerClose />
                 <MizuDrawerHeader>
                   <MizuDrawerTitle>Size: {{ selectedSize }}</MizuDrawerTitle>
                   <MizuDrawerDescription>
-                    {{ selectedSize === 'full' ? 'Full-viewport drawer' : `Width: ${({ sm: '24rem', md: '28rem', lg: '32rem', xl: '36rem' } as Record<string, string>)[selectedSize]}` }}
-                  </MizuDrawerDescription>
+                      {{ sizeDisplay }}
+                    </MizuDrawerDescription>
                 </MizuDrawerHeader>
                 <MizuDrawerBody>
                   <p style="color: var(--color-foreground-secondary); font-size: 14px; line-height: 1.6; margin: 0;">
@@ -374,12 +387,12 @@ const navCode = `<MizuDrawerRoot v-model:open="open">
             </MizuDrawerPortal>
           </MizuDrawerRoot>
         </div>
-      </div>
-    </DemoTabs>
+      </CodeCollapsible>
+    </section>
 
-    <DemoTabs :code="nonDismissibleCode">
-      <div class="demo-section">
-        <h3>Non-Dismissible</h3>
+    <section class="example-section">
+      <h3>Non-Dismissible</h3>
+      <CodeCollapsible :code="nonDismissibleCode">
         <MizuDrawerRoot v-model:open="nonDismissibleOpen">
           <MizuDrawerTrigger as-child>
             <MizuButton variant="accent" size="md" class="w-max">Open Non-Dismissible</MizuButton>
@@ -404,12 +417,12 @@ const navCode = `<MizuDrawerRoot v-model:open="open">
             </MizuDrawerContent>
           </MizuDrawerPortal>
         </MizuDrawerRoot>
-      </div>
-    </DemoTabs>
+      </CodeCollapsible>
+    </section>
 
-    <DemoTabs :code="navCode">
-      <div class="demo-section">
-        <h3>Navigation Menu</h3>
+    <section class="example-section">
+      <h3>Navigation Menu</h3>
+      <CodeCollapsible :code="navCode">
         <MizuDrawerRoot v-model:open="navOpen">
           <MizuDrawerTrigger as-child>
             <MizuButton variant="accent" size="md" class="w-max">Open Navigation</MizuButton>
@@ -437,43 +450,35 @@ const navCode = `<MizuDrawerRoot v-model:open="open">
             </MizuDrawerContent>
           </MizuDrawerPortal>
         </MizuDrawerRoot>
-      </div>
-    </DemoTabs>
+      </CodeCollapsible>
+    </section>
   </div>
 </template>
 
 <style scoped>
-.drawer-demo {
+.drawer-examples {
   all: revert;
   display: flex;
   flex-direction: column;
-  gap: 24px;
-  padding: 0;
-  background: transparent;
+  gap: 32px;
+  font-family: inherit;
 }
-
-.drawer-demo .demo-section {
-  margin-top: 0;
-}
-
-.drawer-demo .demo-section > * {
-  margin-top: 0;
-}
-
-.drawer-demo .demo-section h3 {
+.drawer-examples :deep(*) { margin: 0; }
+.example-section {
   all: revert;
-  font-size: 14px;
-  font-weight: 600;
-  color: var(--color-foreground-primary);
-  margin-bottom: 4px;
-}
-
-.demo-section {
   display: flex;
   flex-direction: column;
   gap: 12px;
 }
+.example-section h3 {
+  all: revert;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--sl-color-text);
+  margin: 0;
+}
 
+/* Component-specific styles */
 .size-row {
   display: flex;
   align-items: center;
@@ -505,7 +510,7 @@ const navCode = `<MizuDrawerRoot v-model:open="open">
 
 .nav-item--active {
   background: var(--color-surface-subtle);
-  color: var(--color-brand-accent);
+  color: var(--color-brand-ycp);
   font-weight: 500;
 }
 </style>

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from "vue";
-import DemoTabs from "./DemoTabs.vue";
+import CodeCollapsible from "./CodeCollapsible.vue";
 
 const isPlaying = ref(false);
 const dotRefs = ref<(HTMLElement | null)[]>([]);
@@ -85,9 +85,10 @@ import { EASE_EMPHASIZED } from '@mizu/tokens';
 </script>
 
 <template>
-  <div class="easing-demo not-content">
-    <DemoTabs :code="usageCode">
-      <div class="demo-section">
+  <div class="easing-examples">
+    <section class="example-section">
+      <h3>Easing Curves</h3>
+      <CodeCollapsible :code="usageCode">
         <div class="easing-list">
           <div
             v-for="(easing, i) in easings"
@@ -110,29 +111,35 @@ import { EASE_EMPHASIZED } from '@mizu/tokens';
         <button class="play-button" @click="play" :disabled="isPlaying">
           {{ isPlaying ? "Animating..." : "Play All" }}
         </button>
-      </div>
-    </DemoTabs>
+      </CodeCollapsible>
+    </section>
   </div>
 </template>
 
 <style scoped>
-.easing-demo {
+.easing-examples {
   all: revert;
-  font-family: var(--font-family-sans);
   display: flex;
   flex-direction: column;
-  gap: 24px;
-  padding: 16px;
-  border: 1px solid var(--color-surface-muted);
-  border-radius: 8px;
+  gap: 32px;
+  font-family: inherit;
 }
 
-.easing-demo :deep(*) { margin: 0; }
+.easing-examples :deep(*) { margin: 0; }
 
-.demo-section {
+.example-section {
+  all: revert;
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 12px;
+}
+
+.example-section h3 {
+  all: revert;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--sl-color-text);
+  margin: 0;
 }
 
 .easing-list {
@@ -215,7 +222,7 @@ import { EASE_EMPHASIZED } from '@mizu/tokens';
   cursor: default;
 }
 
-:global(html[data-theme="dark"]) .easing-demo {
+:global(html[data-theme="dark"]) .easing-examples {
   background: transparent;
 }
 :global(html[data-theme="dark"]) .easing-token {

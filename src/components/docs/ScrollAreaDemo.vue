@@ -6,7 +6,7 @@ import {
   MizuScrollAreaThumb,
   MizuScrollAreaCorner,
 } from "@mizu/vue";
-import DemoTabs from "./DemoTabs.vue";
+import CodeCollapsible from "./CodeCollapsible.vue";
 
 const verticalCode = `<MizuScrollAreaRoot :max-height="50" class="sa-card">
   <MizuScrollAreaViewport class="sa-pad">
@@ -66,89 +66,104 @@ const tags = [
 </script>
 
 <template>
-  <div class="scroll-area-demo not-content">
-    <div class="demo-section">
+  <div class="scroll-area-examples">
+    <section class="example-section">
       <h3>Vertical Scroll</h3>
-      <p class="demo-note">Hover to reveal the scrollbar. Content taller than <code>max-height</code> becomes scrollable.</p>
-      <DemoTabs :code="verticalCode">
-      <MizuScrollAreaRoot :max-height="50" class="sa-card">
-        <MizuScrollAreaViewport class="sa-pad">
-          <div class="tag-cloud">
-            <span v-for="t in tags" :key="t" class="tag-chip">{{ t }}</span>
-          </div>
-        </MizuScrollAreaViewport>
-        <MizuScrollAreaScrollbar orientation="vertical">
-          <MizuScrollAreaThumb />
-        </MizuScrollAreaScrollbar>
-      </MizuScrollAreaRoot>
-      </DemoTabs>
-    </div>
+      <CodeCollapsible :code="verticalCode">
+        <p class="demo-note">Hover to reveal the scrollbar. Content taller than <code>max-height</code> becomes scrollable.</p>
+        <MizuScrollAreaRoot :max-height="50" class="sa-card">
+          <MizuScrollAreaViewport class="sa-pad">
+            <div class="tag-cloud">
+              <span v-for="t in tags" :key="t" class="tag-chip">{{ t }}</span>
+            </div>
+          </MizuScrollAreaViewport>
+          <MizuScrollAreaScrollbar orientation="vertical">
+            <MizuScrollAreaThumb />
+          </MizuScrollAreaScrollbar>
+        </MizuScrollAreaRoot>
+      </CodeCollapsible>
+    </section>
 
-    <div class="demo-section">
+    <section class="example-section">
       <h3>Horizontal Scroll</h3>
-      <p class="demo-note">Wide content constrained by <code>max-width</code> — horizontal scrollbar appears.</p>
-      <DemoTabs :code="horizontalCode">
-      <MizuScrollAreaRoot :max-width="360" class="sa-card">
-        <MizuScrollAreaViewport class="sa-pad">
-          <div class="h-scroll-row">
-            <span v-for="t in [...tags, ...tags]" :key="t + Math.random()" class="tag-chip">{{ t }}</span>
-          </div>
-        </MizuScrollAreaViewport>
-        <MizuScrollAreaScrollbar orientation="horizontal">
-          <MizuScrollAreaThumb />
-        </MizuScrollAreaScrollbar>
-      </MizuScrollAreaRoot>
-      </DemoTabs>
-    </div>
+      <CodeCollapsible :code="horizontalCode">
+        <p class="demo-note">Wide content constrained by <code>max-width</code> — horizontal scrollbar appears.</p>
+        <MizuScrollAreaRoot :max-width="360" class="sa-card">
+          <MizuScrollAreaViewport class="sa-pad">
+            <div class="h-scroll-row">
+              <span v-for="t in [...tags, ...tags]" :key="t + Math.random()" class="tag-chip">{{ t }}</span>
+            </div>
+          </MizuScrollAreaViewport>
+          <MizuScrollAreaScrollbar orientation="horizontal">
+            <MizuScrollAreaThumb />
+          </MizuScrollAreaScrollbar>
+        </MizuScrollAreaRoot>
+      </CodeCollapsible>
+    </section>
 
-    <div class="demo-section">
+    <section class="example-section">
       <h3>Both Directions</h3>
-      <p class="demo-note">A large grid constrained in both dimensions — vertical + horizontal scrollbars with a corner.</p>
-      <DemoTabs :code="bothCode">
-      <MizuScrollAreaRoot :max-height="240" :max-width="420" class="sa-card">
-        <MizuScrollAreaViewport class="sa-pad">
-          <div class="grid-content">
-            <div v-for="i in 80" :key="i" class="grid-cell">Cell {{ i }}</div>
-          </div>
-        </MizuScrollAreaViewport>
-        <MizuScrollAreaScrollbar orientation="vertical">
-          <MizuScrollAreaThumb />
-        </MizuScrollAreaScrollbar>
-        <MizuScrollAreaScrollbar orientation="horizontal">
-          <MizuScrollAreaThumb />
-        </MizuScrollAreaScrollbar>
-        <MizuScrollAreaCorner />
-      </MizuScrollAreaRoot>
-      </DemoTabs>
-    </div>
+      <CodeCollapsible :code="bothCode">
+        <p class="demo-note">A large grid constrained in both dimensions — vertical + horizontal scrollbars with a corner.</p>
+        <MizuScrollAreaRoot :max-height="240" :max-width="420" class="sa-card">
+          <MizuScrollAreaViewport class="sa-pad">
+            <div class="grid-content">
+              <div v-for="i in 80" :key="i" class="grid-cell">Cell {{ i }}</div>
+            </div>
+          </MizuScrollAreaViewport>
+          <MizuScrollAreaScrollbar orientation="vertical">
+            <MizuScrollAreaThumb />
+          </MizuScrollAreaScrollbar>
+          <MizuScrollAreaScrollbar orientation="horizontal">
+            <MizuScrollAreaThumb />
+          </MizuScrollAreaScrollbar>
+          <MizuScrollAreaCorner />
+        </MizuScrollAreaRoot>
+      </CodeCollapsible>
+    </section>
 
-    <div class="demo-section">
+    <section class="example-section">
       <h3>Always Visible</h3>
-      <p class="demo-note"><code>type="always"</code> keeps the area open without a scrollbar — scrollbars appear permanently.</p>
-      <DemoTabs :code="alwaysCode">
-      <MizuScrollAreaRoot :max-height="160" type="always" class="sa-card">
-        <MizuScrollAreaViewport class="sa-pad">
-          <div class="tag-cloud">
-            <span v-for="t in tags.slice(0, 8)" :key="t" class="tag-chip">{{ t }}</span>
-          </div>
-        </MizuScrollAreaViewport>
-        <MizuScrollAreaScrollbar orientation="vertical">
-          <MizuScrollAreaThumb />
-        </MizuScrollAreaScrollbar>
-      </MizuScrollAreaRoot>
-      </DemoTabs>
-    </div>
+      <CodeCollapsible :code="alwaysCode">
+        <p class="demo-note"><code>type="always"</code> keeps the area open without a scrollbar — scrollbars appear permanently.</p>
+        <MizuScrollAreaRoot :max-height="160" type="always" class="sa-card">
+          <MizuScrollAreaViewport class="sa-pad">
+            <div class="tag-cloud">
+              <span v-for="t in tags.slice(0, 8)" :key="t" class="tag-chip">{{ t }}</span>
+            </div>
+          </MizuScrollAreaViewport>
+          <MizuScrollAreaScrollbar orientation="vertical">
+            <MizuScrollAreaThumb />
+          </MizuScrollAreaScrollbar>
+        </MizuScrollAreaRoot>
+      </CodeCollapsible>
+    </section>
   </div>
 </template>
 
 <style scoped>
-.scroll-area-demo { all: revert; }
-.scroll-area-demo { display: flex; flex-direction: column; gap: 24px; padding: 24px; background: transparent;
-  border: 1px solid var(--color-surface-muted); border-radius: 8px; }
-.scroll-area-demo :deep(*) { margin: 0; }
-.demo-section { margin-top: 0; display: flex; flex-direction: column; gap: 12px; }
-.demo-section > * { margin-top: 0; }
-.demo-section h3 { all: revert; font-size: 14px; font-weight: 600; color: var(--sl-color-text); margin: 0; }
+.scroll-area-examples {
+  all: revert;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  font-family: inherit;
+}
+.scroll-area-examples :deep(*) { margin: 0; }
+.example-section {
+  all: revert;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.example-section h3 {
+  all: revert;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--sl-color-text);
+  margin: 0;
+}
+
 .demo-note { font-size: 12px; color: var(--sl-color-text-light); margin: 0; }
 .demo-note code { font-size: 11px; }
 .sa-card { border: 1px solid var(--sl-color-hairline-shade); border-radius: 8px; background: var(--sl-color-bg); }

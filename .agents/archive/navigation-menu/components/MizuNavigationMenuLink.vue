@@ -61,12 +61,12 @@ const linkClasses = computed(() => {
 }
 
 .NavigationMenuLink:focus-visible {
-  outline: 2px solid var(--color-brand-accent, #6366f1);
+  outline: 2px solid var(--color-brand-ycp, #6366f1);
   outline-offset: 2px;
 }
 
 .NavigationMenuLink[data-active] {
   color: var(--color-brand-primary, #001c44);
-  background-color: var(--color-brand-accent-subtle, #e8f0ff);
+  background-color: var(--color-brand-ycp-subtle, #e8f0ff);
 }
 </style>

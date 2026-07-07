@@ -26,7 +26,7 @@ const attrs = useAttrs();
   position: absolute;
   height: 100%;
   border-radius: 9999px;
-  background-color: var(--color-brand-accent);
+  background-color: var(--color-brand-ycp);
   font-family: inherit;
 }
 </style>

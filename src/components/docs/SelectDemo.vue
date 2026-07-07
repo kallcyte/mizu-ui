@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import { MizuSelect, MizuButton } from "@mizu/vue";
-import DemoTabs from "./DemoTabs.vue";
+import CodeCollapsible from "./CodeCollapsible.vue";
 
 const basicCode = `<MizuSelect v-model="basicSelected" :options="fruitOptions" />
 <MizuSelect v-model="withPlaceholder" :options="fruitOptions" placeholder="Choose a fruit..." />
@@ -77,101 +77,95 @@ function handleSubmit() {
 </script>
 
 <template>
-  <div class="select-demo not-content">
-    <div class="demo-section">
+  <div class="select-examples">
+    <section class="example-section">
       <h3>Basic</h3>
-      <DemoTabs :code="basicCode">
-      <div class="select-stack">
-        <MizuSelect v-model="basicSelected" :options="fruitOptions" />
-        <MizuSelect v-model="withPlaceholder" :options="fruitOptions" placeholder="Choose a fruit..." />
-        <MizuSelect v-model="withLabel" :options="fruitOptions" label="Favorite fruit" />
-      </div>
-      </DemoTabs>
-    </div>
-
-    <div class="demo-section">
-      <h3>Sizes</h3>
-      <DemoTabs :code="sizesCode">
-      <div class="select-stack">
-        <MizuSelect v-model="sizeSm" :options="sizeOptions" size="sm" label="Small" />
-        <MizuSelect v-model="sizeMd" :options="sizeOptions" size="md" label="Medium" />
-        <MizuSelect v-model="sizeLg" :options="sizeOptions" size="lg" label="Large" />
-      </div>
-      </DemoTabs>
-    </div>
-
-    <div class="demo-section">
-      <h3>States</h3>
-      <DemoTabs :code="statesCode">
-      <div class="select-stack">
-        <MizuSelect v-model="errorSelected" :options="fruitOptions" label="With Error" error helper-text="This field has an error" />
-        <MizuSelect v-model="disabledSelected" :options="countryOptions" label="Disabled" disabled />
-      </div>
-      </DemoTabs>
-    </div>
-
-    <div class="demo-section">
-      <h3>Form Example</h3>
-      <DemoTabs :code="formCode">
-      <div class="select-stack">
-        <MizuSelect
-          v-model="country"
-          :options="countryOptions"
-          label="Country"
-          placeholder="Select your country..."
-          required
-        />
-        <MizuSelect
-          v-model="category"
-          :options="[
-            { value: 'general', label: 'General' },
-            { value: 'support', label: 'Support' },
-            { value: 'billing', label: 'Billing' },
-          ]"
-          label="Category"
-          placeholder="Choose category..."
-        />
-        <div>
-          <MizuButton size="sm" @click="handleSubmit">Submit</MizuButton>
+      <CodeCollapsible :code="basicCode">
+        <div class="select-stack">
+          <MizuSelect v-model="basicSelected" :options="fruitOptions" />
+          <MizuSelect v-model="withPlaceholder" :options="fruitOptions" placeholder="Choose a fruit..." />
+          <MizuSelect v-model="withLabel" :options="fruitOptions" label="Favorite fruit" />
         </div>
-      </div>
-      </DemoTabs>
-    </div>
+      </CodeCollapsible>
+    </section>
+
+    <section class="example-section">
+      <h3>Sizes</h3>
+      <CodeCollapsible :code="sizesCode">
+        <div class="select-stack">
+          <MizuSelect v-model="sizeSm" :options="sizeOptions" size="sm" label="Small" />
+          <MizuSelect v-model="sizeMd" :options="sizeOptions" size="md" label="Medium" />
+          <MizuSelect v-model="sizeLg" :options="sizeOptions" size="lg" label="Large" />
+        </div>
+      </CodeCollapsible>
+    </section>
+
+    <section class="example-section">
+      <h3>States</h3>
+      <CodeCollapsible :code="statesCode">
+        <div class="select-stack">
+          <MizuSelect v-model="errorSelected" :options="fruitOptions" label="With Error" error helper-text="This field has an error" />
+          <MizuSelect v-model="disabledSelected" :options="countryOptions" label="Disabled" disabled />
+        </div>
+      </CodeCollapsible>
+    </section>
+
+    <section class="example-section">
+      <h3>Form Example</h3>
+      <CodeCollapsible :code="formCode">
+        <div class="select-stack">
+          <MizuSelect
+            v-model="country"
+            :options="countryOptions"
+            label="Country"
+            placeholder="Select your country..."
+            required
+          />
+          <MizuSelect
+            v-model="category"
+            :options="[
+              { value: 'general', label: 'General' },
+              { value: 'support', label: 'Support' },
+              { value: 'billing', label: 'Billing' },
+            ]"
+            label="Category"
+            placeholder="Choose category..."
+          />
+          <div>
+            <MizuButton size="sm" @click="handleSubmit">Submit</MizuButton>
+          </div>
+        </div>
+      </CodeCollapsible>
+    </section>
   </div>
 </template>
 
 <style scoped>
-.select-demo {
+.select-examples {
   all: revert;
   display: flex;
   flex-direction: column;
-  gap: 24px;
-  padding: 24px;
-  background: transparent;
-
-  border: 1px solid var(--color-surface-muted);
-  border-radius: 8px;
+  gap: 32px;
+  font-family: inherit;
 }
 
-.select-demo :deep(*) {
+.select-examples :deep(*) {
   margin: 0;
 }
 
-.demo-section {
+.example-section {
+  all: revert;
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 12px;
 }
 
-.demo-section h3 {
+.example-section h3 {
+  all: revert;
   font-size: 14px;
   font-weight: 600;
   color: var(--sl-color-text);
-  margin-bottom: 0;
-  margin-top: 0;
-}
-.demo-section > div {
-  margin-top: 0;
+  margin: 0;
 }
 
 .select-stack {

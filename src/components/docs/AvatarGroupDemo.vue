@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { MizuAvatarGroup } from "@mizu/vue";
-import DemoTabs from "./DemoTabs.vue";
+import CodeCollapsible from "./CodeCollapsible.vue";
 
 const smallGroup = [
   { src: "https://i.pravatar.cc/80?img=1", alt: "Alice", fallback: "A" },
@@ -43,55 +43,62 @@ const sizesCode = `<MizuAvatarGroup :items="group" :max="4" size="sm" />
 </script>
 
 <template>
-  <div class="avatar-group-demo not-content">
-    <DemoTabs :code="basicCode">
-    <div class="demo-section">
+  <div class="avatar-group-examples">
+    <section class="example-section">
       <h3>Basic (3 users)</h3>
-      <MizuAvatarGroup :items="smallGroup" :max="5" />
-    </div>
-    </DemoTabs>
+      <CodeCollapsible :code="basicCode">
+        <MizuAvatarGroup :items="smallGroup" :max="5" />
+      </CodeCollapsible>
+    </section>
 
-    <DemoTabs :code="basicCode">
-    <div class="demo-section">
+    <section class="example-section">
       <h3>Medium (5 users)</h3>
-      <MizuAvatarGroup :items="mediumGroup" :max="5" />
-    </div>
-    </DemoTabs>
+      <CodeCollapsible :code="basicCode">
+        <MizuAvatarGroup :items="mediumGroup" :max="5" />
+      </CodeCollapsible>
+    </section>
 
-    <DemoTabs :code="overflowCode">
-    <div class="demo-section">
+    <section class="example-section">
       <h3>With Overflow (8 users, max 5)</h3>
-      <MizuAvatarGroup :items="overflowGroup" :max="5" />
-    </div>
-    </DemoTabs>
+      <CodeCollapsible :code="overflowCode">
+        <MizuAvatarGroup :items="overflowGroup" :max="5" />
+      </CodeCollapsible>
+    </section>
 
-    <DemoTabs :code="sizesCode">
-    <div class="demo-section">
+    <section class="example-section">
       <h3>Sizes</h3>
-      <div class="size-row">
-        <MizuAvatarGroup :items="mediumGroup" :max="4" size="sm" />
-        <MizuAvatarGroup :items="mediumGroup" :max="4" size="md" />
-        <MizuAvatarGroup :items="mediumGroup" :max="4" size="lg" />
-      </div>
-    </div>
-    </DemoTabs>
+      <CodeCollapsible :code="sizesCode">
+        <div class="size-row">
+          <MizuAvatarGroup :items="mediumGroup" :max="4" size="sm" />
+          <MizuAvatarGroup :items="mediumGroup" :max="4" size="md" />
+          <MizuAvatarGroup :items="mediumGroup" :max="4" size="lg" />
+        </div>
+      </CodeCollapsible>
+    </section>
   </div>
 </template>
 
 <style scoped>
-.avatar-group-demo {
+.avatar-group-examples {
   all: revert;
   display: flex;
   flex-direction: column;
-  gap: 24px;
-  padding: 24px;
-  background: transparent;
-  border: 1px solid var(--color-surface-muted);
-  border-radius: 8px;
+  gap: 32px;
+  font-family: inherit;
 }
-.avatar-group-demo :deep(*) { margin: 0; }
-.demo-section { display: flex; flex-direction: column; gap: 12px; }
-.demo-section h3 { font-size: 14px; font-weight: 600; color: var(--sl-color-text); margin-bottom: 0; }
-.demo-section > div { margin-top: 0; }
+.avatar-group-examples :deep(*) { margin: 0; }
+.example-section {
+  all: revert;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.example-section h3 {
+  all: revert;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--sl-color-text);
+  margin: 0;
+}
 .size-row { display: flex; flex-direction: column; gap: 16px; margin: 0; padding: 0; }
 </style>

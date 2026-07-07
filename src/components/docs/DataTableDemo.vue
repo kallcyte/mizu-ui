@@ -2,7 +2,7 @@
 import { ref, onMounted, onUnmounted, computed, h } from "vue";
 import { MizuDataTable, MizuTag } from "@mizu/vue";
 import type { ColumnDef } from "@tanstack/vue-table";
-import DemoTabs from "./DemoTabs.vue";
+import CodeCollapsible from "./CodeCollapsible.vue";
 
 interface Invoice {
   id: string;
@@ -189,22 +189,22 @@ const emptyCode = `<MizuDataTable
 </script>
 
 <template>
-  <div class="data-table-demo not-content">
-    <DemoTabs :code="basicCode">
-      <div class="demo-section">
-        <h3>Basic</h3>
+  <div class="data-table-examples">
+    <section class="example-section">
+      <h3>Basic</h3>
+      <CodeCollapsible :code="basicCode">
         <MizuDataTable
           :columns="columns"
           :data="allInvoices"
           v-model:page="page1"
           :page-size="5"
         />
-      </div>
-    </DemoTabs>
+      </CodeCollapsible>
+    </section>
 
-    <DemoTabs :code="selectionCode">
-      <div class="demo-section">
-        <h3>With Selection</h3>
+    <section class="example-section">
+      <h3>With Selection</h3>
+      <CodeCollapsible :code="selectionCode">
         <MizuDataTable
           :columns="columns"
           :data="allInvoices"
@@ -212,12 +212,12 @@ const emptyCode = `<MizuDataTable
           :page-size="5"
           :selectable="true"
         />
-      </div>
-    </DemoTabs>
+      </CodeCollapsible>
+    </section>
 
-    <DemoTabs :code="infiniteCode">
-      <div class="demo-section">
-        <h3>Infinite Scroll</h3>
+    <section class="example-section">
+      <h3>Infinite Scroll</h3>
+      <CodeCollapsible :code="infiniteCode">
         <div class="infinite-scroll-wrapper">
           <MizuDataTable
             :columns="columns"
@@ -235,72 +235,70 @@ const emptyCode = `<MizuDataTable
           </div>
         </div>
         <p class="scroll-hint">Scroll down to load more rows</p>
-      </div>
-    </DemoTabs>
+      </CodeCollapsible>
+    </section>
 
-    <DemoTabs :code="multiLineCellsCode">
-      <div class="demo-section">
-        <h3>Multi-line Cells</h3>
+    <section class="example-section">
+      <h3>Multi-line Cells</h3>
+      <CodeCollapsible :code="multiLineCellsCode">
         <MizuDataTable
           :columns="contactColumns"
           :data="contacts"
           :paginated="false"
         />
-      </div>
-    </DemoTabs>
+      </CodeCollapsible>
+    </section>
 
-    <DemoTabs :code="loadingCode">
-      <div class="demo-section">
-        <h3>Loading</h3>
+    <section class="example-section">
+      <h3>Loading</h3>
+      <CodeCollapsible :code="loadingCode">
         <MizuDataTable
           :columns="columns"
           :data="[]"
           :loading="true"
         />
-      </div>
-    </DemoTabs>
+      </CodeCollapsible>
+    </section>
 
-    <DemoTabs :code="emptyCode">
-      <div class="demo-section">
-        <h3>Empty</h3>
+    <section class="example-section">
+      <h3>Empty</h3>
+      <CodeCollapsible :code="emptyCode">
         <MizuDataTable
           :columns="columns"
           :data="[]"
           empty-text="No invoices found"
         />
-      </div>
-    </DemoTabs>
+      </CodeCollapsible>
+    </section>
   </div>
 </template>
 
 <style scoped>
-.data-table-demo {
+.data-table-examples {
   all: revert;
-  font-family: var(--font-family-sans);
   display: flex;
   flex-direction: column;
-  gap: 24px;
-  padding: 16px;
-  background: transparent;
-
-  border: 1px solid var(--color-surface-muted);
-  border-radius: 8px;
+  gap: 32px;
+  font-family: inherit;
 }
 
-.demo-section {
+.data-table-examples :deep(*) {
+  margin: 0;
+}
+
+.example-section {
+  all: revert;
   display: flex;
   flex-direction: column;
   gap: 12px;
 }
-.demo-section h3 {
+
+.example-section h3 {
   all: revert;
   font-size: 14px;
   font-weight: 600;
   color: var(--sl-color-text);
-  margin-bottom: 0;
-}
-.demo-section > div {
-  margin-top: 0;
+  margin: 0;
 }
 
 .infinite-scroll-wrapper {

@@ -188,8 +188,8 @@ function handleBlur(event: FocusEvent) {
   transition: border-color 200ms ease-in-out, box-shadow 200ms ease-in-out;
 }
 .mizu-select:focus-visible {
-  border-color: var(--color-brand-accent);
-  box-shadow: 0 0 0 1px var(--color-brand-accent);
+  border-color: var(--color-brand-ycp);
+  box-shadow: 0 0 0 1px var(--color-brand-ycp);
 }
 
 .mizu-select--sm {

@@ -120,7 +120,7 @@ const trendColor = computed(() => {
   color: var(--color-brand-primary);
 }
 .mizu-metric--accent .mizu-metric__value {
-  color: var(--color-brand-accent);
+  color: var(--color-brand-ycp);
 }
 .mizu-metric--success .mizu-metric__value {
   color: var(--color-feedback-success-base);

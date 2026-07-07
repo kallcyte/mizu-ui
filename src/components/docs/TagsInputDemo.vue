@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed, ref } from "vue";
 import { MizuTagsInput } from "@mizu/vue";
-import DemoTabs from "./DemoTabs.vue";
+import CodeCollapsible from "./CodeCollapsible.vue";
 
 const basicTags = ref<string[]>(["Vue", "TypeScript"]);
 
@@ -108,34 +108,34 @@ const readOnlyCode = `<MizuTagsInput
 </script>
 
 <template>
-  <div class="tags-input-demo not-content">
-    <DemoTabs :code="basicCode">
-      <div class="demo-section">
-        <h3>Basic</h3>
+  <div class="tags-input-examples">
+    <section class="example-section">
+      <h3>Basic</h3>
+      <CodeCollapsible :code="basicCode">
         <p class="demo-hint">Type and press Enter or comma to add a tag:</p>
         <MizuTagsInput
           v-model="basicTags"
           placeholder="Add a tag..."
         />
         <p class="demo-hint">Tags: {{ basicTags.length ? basicTags.join(", ") : "none" }}</p>
-      </div>
-    </DemoTabs>
+      </CodeCollapsible>
+    </section>
 
-    <DemoTabs :code="labelHelperCode">
-      <div class="demo-section">
-        <h3>With Label & Helper</h3>
+    <section class="example-section">
+      <h3>With Label & Helper</h3>
+      <CodeCollapsible :code="labelHelperCode">
         <MizuTagsInput
           v-model="skillsTags"
           label="Skills"
           helper-text="Comma or Enter to add"
           placeholder="Add a skill..."
         />
-      </div>
-    </DemoTabs>
+      </CodeCollapsible>
+    </section>
 
-    <DemoTabs :code="maxTagsCode">
-      <div class="demo-section">
-        <h3>Max Tags</h3>
+    <section class="example-section">
+      <h3>Max Tags</h3>
+      <CodeCollapsible :code="maxTagsCode">
         <MizuTagsInput
           v-model="limitedTags"
           :max-tags="3"
@@ -143,12 +143,12 @@ const readOnlyCode = `<MizuTagsInput
           :helper-text="limitInfo"
           placeholder="Add a role..."
         />
-      </div>
-    </DemoTabs>
+      </CodeCollapsible>
+    </section>
 
-    <DemoTabs :code="variantsCode">
-      <div class="demo-section">
-        <h3>Variants</h3>
+    <section class="example-section">
+      <h3>Variants</h3>
+      <CodeCollapsible :code="variantsCode">
         <div class="demo-stack">
           <MizuTagsInput v-model="categoriesTags" tag-variant="primary" label="Primary" placeholder="Primary variant..." />
           <MizuTagsInput v-model="categoriesTags" tag-variant="accent" label="Accent" placeholder="Accent variant..." />
@@ -157,23 +157,23 @@ const readOnlyCode = `<MizuTagsInput
           <MizuTagsInput v-model="categoriesTags" tag-variant="error" label="Error" placeholder="Error variant..." />
           <MizuTagsInput v-model="categoriesTags" tag-variant="info" label="Info" placeholder="Info variant..." />
         </div>
-      </div>
-    </DemoTabs>
+      </CodeCollapsible>
+    </section>
 
-    <DemoTabs :code="sizesCode">
-      <div class="demo-section">
-        <h3>Sizes</h3>
+    <section class="example-section">
+      <h3>Sizes</h3>
+      <CodeCollapsible :code="sizesCode">
         <div class="demo-stack">
           <MizuTagsInput v-model="basicTags" size="sm" placeholder="Small..." />
           <MizuTagsInput v-model="basicTags" size="md" placeholder="Medium (default)..." />
           <MizuTagsInput v-model="basicTags" size="lg" placeholder="Large..." />
         </div>
-      </div>
-    </DemoTabs>
+      </CodeCollapsible>
+    </section>
 
-    <DemoTabs :code="separatorsCode">
-      <div class="demo-section">
-        <h3>Separators</h3>
+    <section class="example-section">
+      <h3>Separators</h3>
+      <CodeCollapsible :code="separatorsCode">
         <p class="demo-hint">Press Enter, comma, semicolon, or Tab to add:</p>
         <MizuTagsInput
           v-model="separatorTags"
@@ -181,12 +181,12 @@ const readOnlyCode = `<MizuTagsInput
           placeholder="Multi-separator..."
         />
         <p class="demo-hint">Tags: {{ separatorTags.length ? separatorTags.join(", ") : "none" }}</p>
-      </div>
-    </DemoTabs>
+      </CodeCollapsible>
+    </section>
 
-    <DemoTabs :code="customValidationCode">
-      <div class="demo-section">
-        <h3>Custom Validation</h3>
+    <section class="example-section">
+      <h3>Custom Validation</h3>
+      <CodeCollapsible :code="customValidationCode">
         <p class="demo-hint">Only kebab-case lowercase allowed:</p>
         <MizuTagsInput
           v-model="basicTags"
@@ -194,77 +194,71 @@ const readOnlyCode = `<MizuTagsInput
           helper-text="Lowercase letters, numbers, and dashes only"
           placeholder="kebab-case-only..."
         />
-      </div>
-    </DemoTabs>
+      </CodeCollapsible>
+    </section>
 
-    <DemoTabs :code="errorStateCode">
-      <div class="demo-section">
-        <h3>Error State</h3>
+    <section class="example-section">
+      <h3>Error State</h3>
+      <CodeCollapsible :code="errorStateCode">
         <MizuTagsInput
           v-model="withError"
           :error="!!withError.find((t) => t.toLowerCase() === 'spam')"
           label="Tags"
           helper-text="The 'Spam' tag is rejected"
         />
-      </div>
-    </DemoTabs>
+      </CodeCollapsible>
+    </section>
 
-    <DemoTabs :code="disabledCode">
-      <div class="demo-section">
-        <h3>Disabled</h3>
+    <section class="example-section">
+      <h3>Disabled</h3>
+      <CodeCollapsible :code="disabledCode">
         <MizuTagsInput
           v-model="readOnlyTags"
           disabled
           label="Read-only system tags"
         />
-      </div>
-    </DemoTabs>
+      </CodeCollapsible>
+    </section>
 
-    <DemoTabs :code="readOnlyCode">
-      <div class="demo-section">
-        <h3>Read-Only</h3>
+    <section class="example-section">
+      <h3>Read-Only</h3>
+      <CodeCollapsible :code="readOnlyCode">
         <MizuTagsInput
           v-model="readOnlyTags"
           read-only
           label="Tags (read-only)"
         />
-      </div>
-    </DemoTabs>
+      </CodeCollapsible>
+    </section>
   </div>
 </template>
 
 <style scoped>
-.tags-input-demo {
+.tags-input-examples {
   all: revert;
   display: flex;
   flex-direction: column;
-  gap: 24px;
-  padding: 24px;
-  background: transparent;
-
-  border: 1px solid var(--color-surface-muted);
-  border-radius: 8px;
+  gap: 32px;
+  font-family: inherit;
 }
 
-.tags-input-demo :deep(*) {
+.tags-input-examples :deep(*) {
   margin: 0;
 }
 
-.demo-section {
+.example-section {
+  all: revert;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 12px;
 }
 
-.demo-section h3 {
+.example-section h3 {
+  all: revert;
   font-size: 14px;
   font-weight: 600;
   color: var(--sl-color-text);
   margin: 0;
-}
-
-.demo-section > div {
-  margin-top: 0;
 }
 
 .demo-hint {

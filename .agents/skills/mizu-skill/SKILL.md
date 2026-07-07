@@ -99,8 +99,8 @@ Run `pnpm --filter @mizu/vue story:dev` to preview stories locally. Use `pnpm --
    - Add a component card to `src/components/home/ComponentsSection.astro` inside `<div class="comp-grid">`. Use this template:
 
 ```html
-<a href="/components/{slug}" class="block p-6 rounded-xl border transition-all duration-200 card-hover border-surface-muted bg-surface-base no-underline group hover:border-brand-accent/30 hover:shadow-[0_0_0_1px_var(--color-brand-accent)]">
-  <h4 class="text-[16px] font-semibold mb-1 group-hover:text-brand-accent transition-colors">{DisplayName}</h4>
+<a href="/components/{slug}" class="block p-6 rounded-xl border transition-all duration-200 card-hover border-surface-muted bg-surface-base no-underline group hover:border-brand-ycp/30 hover:shadow-[0_0_0_1px_var(--color-brand-ycp)]">
+  <h4 class="text-[16px] font-semibold mb-1 group-hover:text-brand-ycp transition-colors">{DisplayName}</h4>
   <p class="text-sm text-foreground-secondary">{One-line description}.</p>
 </a>
 ```

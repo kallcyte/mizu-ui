@@ -332,8 +332,8 @@ function handleContainerClick(event: MouseEvent) {
 }
 
 .mizu-tags-input.mizu-tags-input--focused {
-  border-color: var(--color-brand-accent);
-  box-shadow: 0 0 0 1px var(--color-brand-accent);
+  border-color: var(--color-brand-ycp);
+  box-shadow: 0 0 0 1px var(--color-brand-ycp);
 }
 
 .mizu-tags-input.mizu-input--error.mizu-tags-input--focused {

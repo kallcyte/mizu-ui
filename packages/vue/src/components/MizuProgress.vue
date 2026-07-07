@@ -97,7 +97,7 @@ const indicatorStyle = computed(() => {
 }
 
 .mizu-progress--accent .mizu-progress__indicator {
-  background-color: var(--color-brand-accent);
+  background-color: var(--color-brand-ycp);
 }
 .mizu-progress--success .mizu-progress__indicator {
   background-color: var(--color-feedback-success-base);

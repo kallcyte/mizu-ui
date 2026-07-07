@@ -88,7 +88,7 @@ const switchClasses = computed(() => {
 }
 
 .mizu-switch {
-  @apply shrink-0 relative rounded-full transition-colors duration-200 ease-in-out;
+  @apply p-0 border-none shrink-0 relative rounded-full transition-colors duration-200 ease-in-out;
   background-color: var(--color-foreground-tertiary);
 }
 
@@ -105,7 +105,7 @@ const switchClasses = computed(() => {
 .mizu-switch--lg { @apply w-[52px] h-[28px]; }
 
 .mizu-switch:focus-visible {
-  box-shadow: 0 0 0 2px var(--color-brand-accent);
+  box-shadow: 0 0 0 2px var(--color-brand-ycp);
 }
 
 .mizu-switch--disabled {

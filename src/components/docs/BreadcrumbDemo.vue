@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { MizuBreadcrumb } from "@mizu/vue";
 import { Home } from "@lucide/vue";
-import DemoTabs from "./DemoTabs.vue";
+import CodeCollapsible from "./CodeCollapsible.vue";
 
 const simpleItems = [
   { label: "", href: "/", icon: Home },
@@ -55,94 +55,87 @@ const sizesCode = `<MizuBreadcrumb :items="items" size="sm" />
 </script>
 
 <template>
-  <div class="breadcrumb-demo not-content">
-    <DemoTabs :code="basicCode">
-    <div class="demo-section">
+  <div class="breadcrumb-examples">
+    <section class="example-section">
       <h3>Basic</h3>
-      <MizuBreadcrumb :items="twoItems" />
-    </div>
-    </DemoTabs>
+      <CodeCollapsible :code="basicCode">
+        <MizuBreadcrumb :items="twoItems" />
+      </CodeCollapsible>
+    </section>
 
-    <DemoTabs :code="multiLevelCode">
-    <div class="demo-section">
+    <section class="example-section">
       <h3>Multi-level</h3>
-      <MizuBreadcrumb :items="simpleItems" />
-    </div>
-    </DemoTabs>
+      <CodeCollapsible :code="multiLevelCode">
+        <MizuBreadcrumb :items="simpleItems" />
+      </CodeCollapsible>
+    </section>
 
-    <DemoTabs :code="deepNestingCode">
-    <div class="demo-section">
+    <section class="example-section">
       <h3>Deep Nesting</h3>
-      <MizuBreadcrumb :items="deepItems" />
-    </div>
-    </DemoTabs>
+      <CodeCollapsible :code="deepNestingCode">
+        <MizuBreadcrumb :items="deepItems" />
+      </CodeCollapsible>
+    </section>
 
-    <DemoTabs :code="separatorsCode">
-    <div class="demo-section">
+    <section class="example-section">
       <h3>Separators</h3>
-      <div class="separator-row">
-        <span class="label">Slash</span>
-        <MizuBreadcrumb :items="simpleItems" separator="/" />
-      </div>
-      <div class="separator-row">
-        <span class="label">Chevron</span>
-        <MizuBreadcrumb :items="simpleItems" separator=">" />
-      </div>
-      <div class="separator-row">
-        <span class="label">Dot</span>
-        <MizuBreadcrumb :items="simpleItems" separator="·" />
-      </div>
-    </div>
-    </DemoTabs>
+      <CodeCollapsible :code="separatorsCode">
+        <div class="separator-row">
+          <span class="label">Slash</span>
+          <MizuBreadcrumb :items="simpleItems" separator="/" />
+        </div>
+        <div class="separator-row">
+          <span class="label">Chevron</span>
+          <MizuBreadcrumb :items="simpleItems" separator=">" />
+        </div>
+        <div class="separator-row">
+          <span class="label">Dot</span>
+          <MizuBreadcrumb :items="simpleItems" separator="·" />
+        </div>
+      </CodeCollapsible>
+    </section>
 
-    <DemoTabs :code="sizesCode">
-    <div class="demo-section">
+    <section class="example-section">
       <h3>Sizes</h3>
-      <div class="size-row">
-        <span class="label">Small</span>
-        <MizuBreadcrumb :items="simpleItems" size="sm" />
-      </div>
-      <div class="size-row">
-        <span class="label">Medium</span>
-        <MizuBreadcrumb :items="simpleItems" size="md" />
-      </div>
-      <div class="size-row">
-        <span class="label">Large</span>
-        <MizuBreadcrumb :items="simpleItems" size="lg" />
-      </div>
-    </div>
-    </DemoTabs>
+      <CodeCollapsible :code="sizesCode">
+        <div class="size-row">
+          <span class="label">Small</span>
+          <MizuBreadcrumb :items="simpleItems" size="sm" />
+        </div>
+        <div class="size-row">
+          <span class="label">Medium</span>
+          <MizuBreadcrumb :items="simpleItems" size="md" />
+        </div>
+        <div class="size-row">
+          <span class="label">Large</span>
+          <MizuBreadcrumb :items="simpleItems" size="lg" />
+        </div>
+      </CodeCollapsible>
+    </section>
   </div>
 </template>
 
 <style scoped>
-.breadcrumb-demo {
+.breadcrumb-examples {
   all: revert;
-  font-family: var(--font-family-sans);
   display: flex;
   flex-direction: column;
-  gap: 24px;
-  padding: 16px;
-  background: transparent;
-  border: 1px solid var(--color-surface-muted);
-  border-radius: 8px;
+  gap: 32px;
+  font-family: inherit;
 }
-.breadcrumb-demo :deep(*) { margin: 0; }
-.breadcrumb-demo :deep(.mizu-breadcrumb__separator) { margin: 0 6px; }
-
-.demo-section {
+.breadcrumb-examples :deep(*) { margin: 0; }
+.example-section {
+  all: revert;
   display: flex;
   flex-direction: column;
   gap: 12px;
 }
-.demo-section h3 {
+.example-section h3 {
+  all: revert;
   font-size: 14px;
   font-weight: 600;
   color: var(--sl-color-text);
-  margin-bottom: 0;
-}
-.demo-section > div {
-  margin-top: 0;
+  margin: 0;
 }
 
 .separator-row,

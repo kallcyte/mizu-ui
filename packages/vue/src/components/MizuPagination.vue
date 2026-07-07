@@ -120,7 +120,7 @@ function handlePageChange(page: number) {
   color: var(--color-foreground-primary);
 }
 .mizu-pagination__btn:focus-visible {
-  outline: 1px solid var(--color-brand-accent);
+  outline: 1px solid var(--color-brand-ycp);
   outline-offset: 1px;
 }
 .mizu-pagination__btn:disabled {

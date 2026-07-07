@@ -7,7 +7,7 @@ import {
   MizuAccordionTrigger,
   MizuAccordionContent,
 } from "@mizu/vue";
-import DemoTabs from "./DemoTabs.vue";
+import CodeCollapsible from "./CodeCollapsible.vue";
 
 const singleValue = ref("item-1");
 const multipleValue = ref(["item-1"]);
@@ -122,11 +122,10 @@ const disabledCode = `<MizuAccordionRoot type="single" collapsible>
 </script>
 
 <template>
-  <div class="accordion-demo not-content">
-    <!-- Single type (default) -->
-    <div class="demo-section">
+  <div class="accordion-examples">
+    <section class="example-section">
       <h3>Single (default)</h3>
-      <DemoTabs :code="singleCode">
+      <CodeCollapsible :code="singleCode">
         <MizuAccordionRoot type="single" collapsible>
           <MizuAccordionItem value="item-1">
             <MizuAccordionHeader>
@@ -153,14 +152,13 @@ const disabledCode = `<MizuAccordionRoot type="single" collapsible>
             </MizuAccordionContent>
           </MizuAccordionItem>
         </MizuAccordionRoot>
-      </DemoTabs>
-    </div>
+      </CodeCollapsible>
+    </section>
 
-    <!-- v-model controlled -->
-    <div class="demo-section">
+    <section class="example-section">
       <h3>Controlled (v-model)</h3>
-      <p class="demo-hint">Currently open: {{ singleValue }}</p>
-      <DemoTabs :code="controlledCode">
+      <CodeCollapsible :code="controlledCode">
+        <p class="demo-hint">Currently open: {{ singleValue }}</p>
         <MizuAccordionRoot v-model="singleValue" type="single" collapsible>
           <MizuAccordionItem value="item-1">
             <MizuAccordionHeader>
@@ -187,14 +185,13 @@ const disabledCode = `<MizuAccordionRoot type="single" collapsible>
             </MizuAccordionContent>
           </MizuAccordionItem>
         </MizuAccordionRoot>
-      </DemoTabs>
-    </div>
+      </CodeCollapsible>
+    </section>
 
-    <!-- Multiple type -->
-    <div class="demo-section">
+    <section class="example-section">
       <h3>Multiple (type="multiple")</h3>
-      <p class="demo-hint">Currently open: {{ multipleValue }}</p>
-      <DemoTabs :code="multipleCode">
+      <CodeCollapsible :code="multipleCode">
+        <p class="demo-hint">Currently open: {{ multipleValue }}</p>
         <MizuAccordionRoot v-model="multipleValue" type="multiple">
           <MizuAccordionItem value="item-1">
             <MizuAccordionHeader>
@@ -221,13 +218,12 @@ const disabledCode = `<MizuAccordionRoot type="single" collapsible>
             </MizuAccordionContent>
           </MizuAccordionItem>
         </MizuAccordionRoot>
-      </DemoTabs>
-    </div>
+      </CodeCollapsible>
+    </section>
 
-    <!-- Disabled items -->
-    <div class="demo-section">
+    <section class="example-section">
       <h3>Disabled items</h3>
-      <DemoTabs :code="disabledCode">
+      <CodeCollapsible :code="disabledCode">
         <MizuAccordionRoot type="single" collapsible>
           <MizuAccordionItem value="item-1">
             <MizuAccordionHeader>
@@ -254,32 +250,32 @@ const disabledCode = `<MizuAccordionRoot type="single" collapsible>
             </MizuAccordionContent>
           </MizuAccordionItem>
         </MizuAccordionRoot>
-      </DemoTabs>
-    </div>
+      </CodeCollapsible>
+    </section>
   </div>
 </template>
 
 <style scoped>
-.accordion-demo {
+.accordion-examples {
   all: revert;
   display: flex;
   flex-direction: column;
-  gap: 24px;
-  padding: 0;
-  background: transparent;
+  gap: 32px;
+  font-family: inherit;
 }
 
-.demo-section {
+.accordion-examples :deep(*) {
+  margin: 0;
+}
+
+.example-section {
+  all: revert;
   display: flex;
   flex-direction: column;
   gap: 12px;
 }
 
-.demo-section > * {
-  margin-top: 0;
-}
-
-.demo-section h3 {
+.example-section h3 {
   all: revert;
   font-size: 14px;
   font-weight: 600;

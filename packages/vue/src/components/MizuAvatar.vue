@@ -195,9 +195,9 @@ const imageAlt = computed(() => {
     border-color: var(--color-brand-primary);
   }
   .mizu-avatar--accent {
-  background-color: var(--color-brand-accent-subtle);
-  color: var(--color-brand-accent);
-  border-color: var(--color-brand-accent-subtle);
+  background-color: var(--color-brand-ycp-subtle);
+  color: var(--color-brand-ycp);
+  border-color: var(--color-brand-ycp-subtle);
 }
 .mizu-avatar--neutral {
   background-color: var(--color-brand-neutral);

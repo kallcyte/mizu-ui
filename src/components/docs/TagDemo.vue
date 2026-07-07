@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { ref } from "vue";
-import { MizuTag } from "@mizu/vue";
+import { MizuTag, MizuButton } from "@mizu/vue";
 import { Plus } from "@lucide/vue";
-import DemoTabs from "./DemoTabs.vue";
+import CodeCollapsible from "./CodeCollapsible.vue";
 
 const initialTags = ["Design", "Engineering", "Production", "Beta", "Deprecated"];
 const tags = ref<string[]>([...initialTags]);
@@ -65,10 +65,10 @@ const interactiveCode = `<MizuTag
 </script>
 
 <template>
-    <div class="tag-demo not-content">
-        <DemoTabs :code="variantsCode">
-            <div class="demo-section">
-                <h3>Variants</h3>
+    <div class="tag-examples">
+        <section class="example-section">
+            <h3>Variants</h3>
+            <CodeCollapsible :code="variantsCode">
                 <div class="tag-row">
                     <MizuTag variant="primary">Primary</MizuTag>
                     <MizuTag variant="accent">Accent</MizuTag>
@@ -77,12 +77,12 @@ const interactiveCode = `<MizuTag
                     <MizuTag variant="error">Error</MizuTag>
                     <MizuTag variant="info">Info</MizuTag>
                 </div>
-            </div>
-        </DemoTabs>
+            </CodeCollapsible>
+        </section>
 
-        <DemoTabs :code="statusCode">
-            <div class="demo-section">
-                <h3>Status</h3>
+        <section class="example-section">
+            <h3>Status</h3>
+            <CodeCollapsible :code="statusCode">
                 <div class="tag-row">
                     <MizuTag variant="warning">Pending</MizuTag>
                     <MizuTag variant="info">Draft</MizuTag>
@@ -92,12 +92,12 @@ const interactiveCode = `<MizuTag
                     <MizuTag variant="error">Rejected</MizuTag>
                     <MizuTag variant="info">Cancelled</MizuTag>
                 </div>
-            </div>
-        </DemoTabs>
+            </CodeCollapsible>
+        </section>
 
-        <DemoTabs :code="closableCode">
-            <div class="demo-section">
-                <h3>Closable</h3>
+        <section class="example-section">
+            <h3>Closable</h3>
+            <CodeCollapsible :code="closableCode">
                 <div class="tag-row">
                     <MizuTag variant="primary" closable>Closable</MizuTag>
                     <MizuTag variant="accent" closable>Draft</MizuTag>
@@ -105,19 +105,21 @@ const interactiveCode = `<MizuTag
                     <MizuTag variant="warning" closable>Pending</MizuTag>
                     <MizuTag variant="error" closable>Failed</MizuTag>
                 </div>
-            </div>
-        </DemoTabs>
+            </CodeCollapsible>
+        </section>
 
-        <DemoTabs :code="interactiveCode">
-            <div class="demo-section">
-                <h3>Interactive</h3>
-                <p class="demo-hint">Click Add to generate a new tag, click × to remove:</p>
+        <section class="example-section">
+            <h3>Interactive</h3>
+            <CodeCollapsible :code="interactiveCode">
+                <p class="demo-hint">Click <strong>Add</strong> to generate a new tag, click the <strong>×</strong> on a tag to remove it.</p>
                 <div class="add-form">
-                    <MizuButton variant="primary" @click="addTag" >
-                        <template #leading-icon><Plus /></template>
+                    <MizuButton variant="primary" @click="addTag">
+                        <template #leading-icon>
+                            <Plus />
+                        </template>
                         Add
                     </MizuButton>
-                    <MizuButton variant="outline" @click="resetTags" >
+                    <MizuButton variant="outline" @click="resetTags">
                         Reset
                     </MizuButton>
                 </div>
@@ -135,45 +137,41 @@ const interactiveCode = `<MizuTag
                         No tags — add one above
                     </MizuTag>
                 </div>
-            </div>
-        </DemoTabs>
+            </CodeCollapsible>
+        </section>
     </div>
 </template>
 
 <style scoped>
-.tag-demo {
+.tag-examples {
     all: revert;
     display: flex;
     flex-direction: column;
-    gap: 24px;
-    padding: 24px;
-    background: transparent;
-
-    border: 1px solid var(--color-surface-muted);
-    border-radius: 8px;
+    gap: 32px;
+    font-family: inherit;
 }
 
-.tag-demo :deep(*) {
+.tag-examples :deep(*) {
     margin: 0;
 }
 
-.demo-section {
+.example-section {
+    all: revert;
     display: flex;
     flex-direction: column;
     gap: 12px;
 }
 
-.demo-section h3 {
+.example-section h3 {
+    all: revert;
     font-size: 14px;
     font-weight: 600;
     color: var(--sl-color-text);
     margin: 0;
 }
-.demo-section > div {
-  margin-top: 0;
-}
 
 .demo-hint {
+    all: revert;
     font-size: 12px;
     color: var(--sl-color-text-light);
     margin: 0;

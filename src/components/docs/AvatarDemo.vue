@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { MizuAvatar } from "@mizu/vue";
-import DemoTabs from "./DemoTabs.vue";
+import CodeCollapsible from "./CodeCollapsible.vue";
 
 const user = {
     name: "Mariko Tanaka",
@@ -111,269 +111,263 @@ const profileHeaderCode = `<MizuAvatar :name="user.name" :src="user.src" size="x
 </script>
 
 <template>
-    <div class="avatar-demo not-content">
-        <DemoTabs :code="basicCode">
-        <div class="demo-section">
+    <div class="avatar-examples">
+        <section class="example-section">
             <h3>Basic</h3>
-            <div class="avatar-row">
-                <MizuAvatar name="Mariko Tanaka" />
-                <MizuAvatar name="Daichi Suzuki" />
-                <MizuAvatar name="Elena Rossi" />
-                <MizuAvatar name="Mateo Alvarez" />
-                <MizuAvatar name="Hina Yamamoto" />
-            </div>
-        </div>
-        </DemoTabs>
+            <CodeCollapsible :code="basicCode">
+                <div class="avatar-row">
+                    <MizuAvatar name="Mariko Tanaka" />
+                    <MizuAvatar name="Daichi Suzuki" />
+                    <MizuAvatar name="Elena Rossi" />
+                    <MizuAvatar name="Mateo Alvarez" />
+                    <MizuAvatar name="Hina Yamamoto" />
+                </div>
+            </CodeCollapsible>
+        </section>
 
-        <DemoTabs :code="withImageCode">
-        <div class="demo-section">
+        <section class="example-section">
             <h3>With Image</h3>
-            <div class="avatar-row">
-                <MizuAvatar
-                    name="Aria Patel"
-                    src="https://i.pravatar.cc/96?img=32"
-                />
-                <MizuAvatar
-                    name="Daichi Suzuki"
-                    src="https://i.pravatar.cc/96?img=12"
-                />
-                <MizuAvatar
-                    name="Elena Rossi"
-                    src="https://i.pravatar.cc/96?img=49"
-                />
-                <MizuAvatar
-                    name="Broken Image"
-                />
-            </div>
-        </div>
-        </DemoTabs>
-
-        <DemoTabs :code="sizesCode">
-        <div class="demo-section">
-            <h3>Sizes</h3>
-            <div class="avatar-row avatar-row--baseline">
-                <MizuAvatar name="Small" size="sm" />
-                <MizuAvatar name="Medium" size="md" />
-                <MizuAvatar name="Large" size="lg" />
-                <MizuAvatar name="Xtra Large" size="xl" />
-            </div>
-        </div>
-        </DemoTabs>
-
-        <DemoTabs :code="sizesWithImageCode">
-        <div class="demo-section">
-            <h3>Sizes With Image</h3>
-            <div class="avatar-row avatar-row--baseline">
-                <MizuAvatar
-                    name="Small"
-                    size="sm"
-                    src="https://i.pravatar.cc/96?img=12"
-                />
-                <MizuAvatar
-                    name="Medium"
-                    size="md"
-                    src="https://i.pravatar.cc/96?img=12"
-                />
-                <MizuAvatar
-                    name="Large"
-                    size="lg"
-                    src="https://i.pravatar.cc/96?img=12"
-                />
-                <MizuAvatar
-                    name="Eli Lin"
-                    size="xl"
-                    src="https://i.pravatar.cc/96?img=12"
-                />
-            </div>
-        </div>
-        </DemoTabs>
-
-        <DemoTabs :code="shapesCode">
-        <div class="demo-section">
-            <h3>Shapes</h3>
-            <div class="avatar-row avatar-row--baseline">
-                <MizuAvatar name="Circle" shape="circle" />
-                <MizuAvatar name="Square" shape="square" />
-                <MizuAvatar name="Circle" shape="circle" size="lg" src="https://i.pravatar.cc/96?img=49" />
-                <MizuAvatar name="Square" shape="square" size="lg" src="https://i.pravatar.cc/96?img=49" />
-            </div>
-        </div>
-        </DemoTabs>
-
-        <DemoTabs :code="colorVariantsCode">
-        <div class="demo-section">
-            <h3>Color Variants</h3>
-            <div class="avatar-row avatar-row--baseline">
-                <MizuAvatar name="Muted" color="muted" />
-                <MizuAvatar name="Primary" color="primary" />
-                <MizuAvatar name="Accent" color="accent" />
-                <MizuAvatar name="Neutral" color="neutral" />
-            </div>
-        </div>
-        </DemoTabs>
-
-        <DemoTabs :code="anonymousCode">
-        <div class="demo-section">
-            <h3>Anonymous (Default Icon)</h3>
-            <div class="avatar-row avatar-row--baseline">
-                <MizuAvatar size="sm" />
-                <MizuAvatar size="md" />
-                <MizuAvatar size="lg" />
-                <MizuAvatar size="xl" />
-            </div>
-        </div>
-        </DemoTabs>
-
-        <DemoTabs :code="customIconSlotCode">
-        <div class="demo-section">
-            <h3>Custom Icon Slot</h3>
-            <div class="avatar-row avatar-row--baseline">
-                <MizuAvatar size="md">
-                    <template #icon>
-                        <svg viewBox="0 0 24 24" fill="none">
-                            <path
-                                d="M12 2L2 7L12 12L22 7L12 2Z"
-                                fill="currentColor"
-                            />
-                            <path
-                                d="M2 17L12 22L22 17"
-                                stroke="currentColor"
-                                stroke-width="1.5"
-                                stroke-linejoin="round"
-                            />
-                            <path
-                                d="M2 12L12 17L22 12"
-                                stroke="currentColor"
-                                stroke-width="1.5"
-                                stroke-linejoin="round"
-                            />
-                        </svg>
-                    </template>
-                </MizuAvatar>
-                <MizuAvatar size="lg" color="primary">
-                    <template #icon>
-                        <svg viewBox="0 0 24 24" fill="none">
-                            <path
-                                d="M9 12L11 14L15 10"
-                                stroke="currentColor"
-                                stroke-width="2"
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                            />
-                            <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.5" />
-                        </svg>
-                    </template>
-                </MizuAvatar>
-                <MizuAvatar size="md" color="accent">
-                    <template #icon>
-                        <svg viewBox="0 0 24 24" fill="none">
-                            <path
-                                d="M12 2L14 8H20L15 12L17 18L12 14L7 18L9 12L4 8H10L12 2Z"
-                                fill="currentColor"
-                            />
-                        </svg>
-                    </template>
-                </MizuAvatar>
-            </div>
-        </div>
-        </DemoTabs>
-
-        <DemoTabs :code="teamListCode">
-        <div class="demo-section">
-            <h3>Team List (Real-world)</h3>
-            <div class="team-list">
-                <div v-for="member in team" :key="member.name || 'anon'" class="team-row">
+            <CodeCollapsible :code="withImageCode">
+                <div class="avatar-row">
                     <MizuAvatar
-                        :name="member.name"
-                        :src="member.src"
+                        name="Aria Patel"
+                        src="https://i.pravatar.cc/96?img=32"
+                    />
+                    <MizuAvatar
+                        name="Daichi Suzuki"
+                        src="https://i.pravatar.cc/96?img=12"
+                    />
+                    <MizuAvatar
+                        name="Elena Rossi"
+                        src="https://i.pravatar.cc/96?img=49"
+                    />
+                    <MizuAvatar
+                        name="Broken Image"
+                    />
+                </div>
+            </CodeCollapsible>
+        </section>
+
+        <section class="example-section">
+            <h3>Sizes</h3>
+            <CodeCollapsible :code="sizesCode">
+                <div class="avatar-row avatar-row--baseline">
+                    <MizuAvatar name="Small" size="sm" />
+                    <MizuAvatar name="Medium" size="md" />
+                    <MizuAvatar name="Large" size="lg" />
+                    <MizuAvatar name="Xtra Large" size="xl" />
+                </div>
+            </CodeCollapsible>
+        </section>
+
+        <section class="example-section">
+            <h3>Sizes With Image</h3>
+            <CodeCollapsible :code="sizesWithImageCode">
+                <div class="avatar-row avatar-row--baseline">
+                    <MizuAvatar
+                        name="Small"
+                        size="sm"
+                        src="https://i.pravatar.cc/96?img=12"
+                    />
+                    <MizuAvatar
+                        name="Medium"
+                        size="md"
+                        src="https://i.pravatar.cc/96?img=12"
+                    />
+                    <MizuAvatar
+                        name="Large"
+                        size="lg"
+                        src="https://i.pravatar.cc/96?img=12"
+                    />
+                    <MizuAvatar
+                        name="Eli Lin"
+                        size="xl"
+                        src="https://i.pravatar.cc/96?img=12"
+                    />
+                </div>
+            </CodeCollapsible>
+        </section>
+
+        <section class="example-section">
+            <h3>Shapes</h3>
+            <CodeCollapsible :code="shapesCode">
+                <div class="avatar-row avatar-row--baseline">
+                    <MizuAvatar name="Circle" shape="circle" />
+                    <MizuAvatar name="Square" shape="square" />
+                    <MizuAvatar name="Circle" shape="circle" size="lg" src="https://i.pravatar.cc/96?img=49" />
+                    <MizuAvatar name="Square" shape="square" size="lg" src="https://i.pravatar.cc/96?img=49" />
+                </div>
+            </CodeCollapsible>
+        </section>
+
+        <section class="example-section">
+            <h3>Color Variants</h3>
+            <CodeCollapsible :code="colorVariantsCode">
+                <div class="avatar-row avatar-row--baseline">
+                    <MizuAvatar name="Muted" color="muted" />
+                    <MizuAvatar name="Primary" color="primary" />
+                    <MizuAvatar name="Accent" color="accent" />
+                    <MizuAvatar name="Neutral" color="neutral" />
+                </div>
+            </CodeCollapsible>
+        </section>
+
+        <section class="example-section">
+            <h3>Anonymous (Default Icon)</h3>
+            <CodeCollapsible :code="anonymousCode">
+                <div class="avatar-row avatar-row--baseline">
+                    <MizuAvatar size="sm" />
+                    <MizuAvatar size="md" />
+                    <MizuAvatar size="lg" />
+                    <MizuAvatar size="xl" />
+                </div>
+            </CodeCollapsible>
+        </section>
+
+        <section class="example-section">
+            <h3>Custom Icon Slot</h3>
+            <CodeCollapsible :code="customIconSlotCode">
+                <div class="avatar-row avatar-row--baseline">
+                    <MizuAvatar size="md">
+                        <template #icon>
+                            <svg viewBox="0 0 24 24" fill="none">
+                                <path
+                                    d="M12 2L2 7L12 12L22 7L12 2Z"
+                                    fill="currentColor"
+                                />
+                                <path
+                                    d="M2 17L12 22L22 17"
+                                    stroke="currentColor"
+                                    stroke-width="1.5"
+                                    stroke-linejoin="round"
+                                />
+                                <path
+                                    d="M2 12L12 17L22 12"
+                                    stroke="currentColor"
+                                    stroke-width="1.5"
+                                    stroke-linejoin="round"
+                                />
+                            </svg>
+                        </template>
+                    </MizuAvatar>
+                    <MizuAvatar size="lg" color="primary">
+                        <template #icon>
+                            <svg viewBox="0 0 24 24" fill="none">
+                                <path
+                                    d="M9 12L11 14L15 10"
+                                    stroke="currentColor"
+                                    stroke-width="2"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                />
+                                <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.5" />
+                            </svg>
+                        </template>
+                    </MizuAvatar>
+                    <MizuAvatar size="md" color="accent">
+                        <template #icon>
+                            <svg viewBox="0 0 24 24" fill="none">
+                                <path
+                                    d="M12 2L14 8H20L15 12L17 18L12 14L7 18L9 12L4 8H10L12 2Z"
+                                    fill="currentColor"
+                                />
+                            </svg>
+                        </template>
+                    </MizuAvatar>
+                </div>
+            </CodeCollapsible>
+        </section>
+
+        <section class="example-section">
+            <h3>Team List (Real-world)</h3>
+            <CodeCollapsible :code="teamListCode">
+                <div class="team-list">
+                    <div v-for="member in team" :key="member.name || 'anon'" class="team-row">
+                        <MizuAvatar
+                            :name="member.name"
+                            :src="member.src"
+                            size="md"
+                        />
+                        <div class="team-info">
+                            <div class="team-name">
+                                {{ member.name || "Anonymous User" }}
+                            </div>
+                            <div class="team-meta">
+                                {{ member.src ? "Has photo" : "No photo" }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </CodeCollapsible>
+        </section>
+
+        <section class="example-section">
+            <h3>Comment Thread</h3>
+            <CodeCollapsible :code="commentThreadCode">
+                <div class="comment">
+                    <MizuAvatar
+                        name="Aria Patel"
+                        src="https://i.pravatar.cc/96?img=32"
                         size="md"
                     />
-                    <div class="team-info">
-                        <div class="team-name">
-                            {{ member.name || "Anonymous User" }}
+                    <div class="comment-body">
+                        <div class="comment-header">
+                            <span class="comment-author">Aria Patel</span>
+                            <span class="comment-time">2 hours ago</span>
                         </div>
-                        <div class="team-meta">
-                            {{ member.src ? "Has photo" : "No photo" }}
-                        </div>
+                        <p class="comment-text">
+                            Pulled the latest design tokens into the shared package — let me know if anything in the dashboard layout feels off.
+                        </p>
                     </div>
                 </div>
-            </div>
-        </div>
-        </DemoTabs>
+            </CodeCollapsible>
+        </section>
 
-        <DemoTabs :code="commentThreadCode">
-        <div class="demo-section">
-            <h3>Comment Thread</h3>
-            <div class="comment">
-                <MizuAvatar
-                    name="Aria Patel"
-                    src="https://i.pravatar.cc/96?img=32"
-                    size="md"
-                />
-                <div class="comment-body">
-                    <div class="comment-header">
-                        <span class="comment-author">Aria Patel</span>
-                        <span class="comment-time">2 hours ago</span>
-                    </div>
-                    <p class="comment-text">
-                        Pulled the latest design tokens into the shared package — let me know if anything in the dashboard layout feels off.
-                    </p>
-                </div>
-            </div>
-        </div>
-        </DemoTabs>
-
-        <DemoTabs :code="profileHeaderCode">
-        <div class="demo-section">
+        <section class="example-section">
             <h3>Profile Header (Large)</h3>
-            <div class="profile">
-                <MizuAvatar
-                    :name="user.name"
-                    :src="user.src"
-                    size="xl"
-                />
-                <div class="profile-info">
-                    <div class="profile-name">{{ user.name }}</div>
-                    <div class="profile-role">{{ user.role }}</div>
+            <CodeCollapsible :code="profileHeaderCode">
+                <div class="profile">
+                    <MizuAvatar
+                        :name="user.name"
+                        :src="user.src"
+                        size="xl"
+                    />
+                    <div class="profile-info">
+                        <div class="profile-name">{{ user.name }}</div>
+                        <div class="profile-role">{{ user.role }}</div>
+                    </div>
                 </div>
-            </div>
-        </div>
-        </DemoTabs>
+            </CodeCollapsible>
+        </section>
     </div>
 </template>
 
 <style scoped>
-.avatar-demo {
+.avatar-examples {
     all: revert;
     display: flex;
     flex-direction: column;
-    gap: 24px;
-    padding: 24px;
-    background: transparent;
-
-    border: 1px solid var(--color-surface-muted);
-    border-radius: 8px;
+    gap: 32px;
+    font-family: inherit;
 }
 
-.avatar-demo :deep(*) {
+.avatar-examples :deep(*) {
     margin: 0;
 }
 
-.demo-section {
+.example-section {
+    all: revert;
     display: flex;
     flex-direction: column;
     gap: 12px;
 }
 
-.demo-section h3 {
+.example-section h3 {
+    all: revert;
     font-size: 14px;
     font-weight: 600;
     color: var(--sl-color-text);
-    margin-bottom: 0;
-    margin-top: 0;
-}
-.demo-section > div {
-  margin-top: 0;
+    margin: 0;
 }
 
 .avatar-row {
@@ -496,7 +490,7 @@ const profileHeaderCode = `<MizuAvatar :name="user.name" :src="user.src" size="x
 }
 
 .profile-name {
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 600;
     color: var(--sl-color-text);
 }

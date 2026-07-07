@@ -23,6 +23,6 @@ const classes = computed(() => {
   @apply flex items-center;
   padding: var(--mizu-card-py) var(--mizu-card-px);
   background-color: var(--color-surface-subtle);
-  border-top: 1px solid color-mix(in srgb, var(--color-foreground-tertiary) 25%, transparent);
+  border-top: 1px solid var(--color-surface-muted);
 }
 </style>

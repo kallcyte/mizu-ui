@@ -64,7 +64,7 @@ const triggerClasses = computed(() => {
 }
 
 .NavigationMenuTrigger:focus-visible {
-  outline: 2px solid var(--color-brand-accent, #6366f1);
+  outline: 2px solid var(--color-brand-ycp, #6366f1);
   outline-offset: 2px;
 }
 

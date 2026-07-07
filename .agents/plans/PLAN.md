@@ -64,7 +64,7 @@ Each color has a light and dark variant. The dark variant path drops the `dark` 
 |---|---|---|
 | Surface colors | `--color-surface-{variant}` | `bg-surface-base`, `border-surface-muted` |
 | Foreground colors | `--color-foreground-{variant}` | `text-foreground-primary`, `text-foreground-secondary` |
-| Brand colors | `--color-brand-{variant}` | `bg-brand-primary`, `text-brand-accent` |
+| Brand colors | `--color-brand-{variant}` | `bg-brand-primary`, `text-brand-ycp` |
 | Feedback colors | `--color-feedback-{type}-{variant}` | `bg-feedback-error-subtle`, `text-feedback-success-base` |
 
 ### Tailwind v4 `@theme` mapping
@@ -383,11 +383,11 @@ CSS variable mapping (one-way adapter):
 |---|---|
 | `--background` / `--foreground` | `surface-base` / `foreground-primary` |
 | `--primary` / `--primary-foreground` | `brand-primary` / `foreground-inverse` |
-| `--accent` / `--accent-foreground` | `brand-accent` / `foreground-inverse` |
+| `--accent` / `--accent-foreground` | `brand-ycp` / `foreground-inverse` |
 | `--secondary` / `--secondary-foreground` | `surface-muted` / `foreground-secondary` |
 | `--muted` / `--muted-foreground` | `surface-subtle` / `foreground-tertiary` |
 | `--destructive` | `feedback-error-base` |
-| `--border` / `--ring` | `surface-muted` / `brand-accent` |
+| `--border` / `--ring` | `surface-muted` / `brand-ycp` |
 | `--radius` | `0.5rem` (8px) |
 
 ## Key Decisions

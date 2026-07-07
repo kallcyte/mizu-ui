@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import { MizuRadio } from "@mizu/vue";
-import DemoTabs from "./DemoTabs.vue";
+import CodeCollapsible from "./CodeCollapsible.vue";
 
 const basicCode = `<MizuRadio
   v-model="basicSelected"
@@ -85,113 +85,111 @@ const horizontalSelected = ref("option-1");
 </script>
 
 <template>
-  <div class="radio-demo not-content">
-    <div class="demo-section">
+  <div class="radio-examples">
+    <section class="example-section">
       <h3>Basic</h3>
-      <DemoTabs :code="basicCode">
-      <MizuRadio
-        v-model="basicSelected"
-        :items="basicOptions"
-        name="basic"
-      />
-      <p class="demo-text">Selected: <code>{{ basicSelected }}</code></p>
-      </DemoTabs>
-    </div>
+      <CodeCollapsible :code="basicCode">
+        <MizuRadio
+          v-model="basicSelected"
+          :items="basicOptions"
+          name="basic"
+        />
+        <p class="demo-text">Selected: <code>{{ basicSelected }}</code></p>
+      </CodeCollapsible>
+    </section>
 
-    <div class="demo-section">
+    <section class="example-section">
       <h3>Sizes</h3>
-      <DemoTabs :code="sizesCode">
-      <MizuRadio
-        v-model="sizeSelected"
-        :items="sizeOptions"
-        size="md"
-        label="Select size"
-        name="sizes"
-      />
-      </DemoTabs>
-    </div>
+      <CodeCollapsible :code="sizesCode">
+        <MizuRadio
+          v-model="sizeSelected"
+          :items="sizeOptions"
+          size="md"
+          label="Select size"
+          name="sizes"
+        />
+      </CodeCollapsible>
+    </section>
 
-    <div class="demo-section">
+    <section class="example-section">
       <h3>With Label</h3>
-      <DemoTabs :code="labelCode">
-      <MizuRadio
-        v-model="colorSelected"
-        :items="colorOptions"
-        label="Favorite color"
-        name="color"
-      />
-      </DemoTabs>
-    </div>
+      <CodeCollapsible :code="labelCode">
+        <MizuRadio
+          v-model="colorSelected"
+          :items="colorOptions"
+          label="Favorite color"
+          name="color"
+        />
+      </CodeCollapsible>
+    </section>
 
-    <div class="demo-section">
+    <section class="example-section">
       <h3>Disabled Item</h3>
-      <DemoTabs :code="disabledCode">
-      <MizuRadio
-        v-model="disabledSelected"
-        :items="disabledOptions"
-        label="Choose an option"
-        name="disabled-test"
-      />
-      </DemoTabs>
-    </div>
+      <CodeCollapsible :code="disabledCode">
+        <MizuRadio
+          v-model="disabledSelected"
+          :items="disabledOptions"
+          label="Choose an option"
+          name="disabled-test"
+        />
+      </CodeCollapsible>
+    </section>
 
-    <div class="demo-section">
+    <section class="example-section">
       <h3>Horizontal Orientation</h3>
-      <DemoTabs :code="horizontalCode">
-      <MizuRadio
-        v-model="horizontalSelected"
-        :items="basicOptions"
-        orientation="horizontal"
-        name="horizontal"
-      />
-      <p class="demo-text">Selected: <code>{{ horizontalSelected }}</code></p>
-      </DemoTabs>
-    </div>
+      <CodeCollapsible :code="horizontalCode">
+        <MizuRadio
+          v-model="horizontalSelected"
+          :items="basicOptions"
+          orientation="horizontal"
+          name="horizontal"
+        />
+        <p class="demo-text">Selected: <code>{{ horizontalSelected }}</code></p>
+      </CodeCollapsible>
+    </section>
 
-    <div class="demo-section">
+    <section class="example-section">
       <h3>Form Example</h3>
-      <DemoTabs :code="formCode">
-      <MizuRadio
-        v-model="fruitSelected"
-        :items="fruitOptions"
-        label="Select a fruit"
-        name="fruit"
-        required
-      />
-      <p class="demo-text">Selected: <code>{{ fruitSelected }}</code></p>
-      </DemoTabs>
-    </div>
+      <CodeCollapsible :code="formCode">
+        <MizuRadio
+          v-model="fruitSelected"
+          :items="fruitOptions"
+          label="Select a fruit"
+          name="fruit"
+          required
+        />
+        <p class="demo-text">Selected: <code>{{ fruitSelected }}</code></p>
+      </CodeCollapsible>
+    </section>
   </div>
 </template>
 
 <style scoped>
-.radio-demo {
+.radio-examples {
   all: revert;
   display: flex;
   flex-direction: column;
-  gap: 24px;
-  padding: 24px;
-  background: transparent;
-  border: 1px solid var(--color-surface-muted);
-  border-radius: 8px;
+  gap: 32px;
+  font-family: inherit;
 }
 
-.radio-demo :deep(*) {
+.radio-examples :deep(*) {
   margin: 0;
 }
 
-.demo-section {
+.example-section {
+  all: revert;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 12px;
 }
 
-.demo-section h3 {
+.example-section h3 {
+  all: revert;
   font-size: 14px;
   font-weight: 600;
   color: var(--sl-color-text);
-  margin-bottom: 0;
-  margin-top: 0;
+  margin: 0;
 }
 
 .demo-text {

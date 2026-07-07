@@ -7,7 +7,7 @@ import {
   MizuButton,
   type ValidationError,
 } from "@mizu/vue";
-import DemoTabs from "./DemoTabs.vue";
+import CodeCollapsible from "./CodeCollapsible.vue";
 
 const basicCode = `<MizuForm
   :state="state"
@@ -70,76 +70,66 @@ async function submitLogin(state: LoginState) {
 </script>
 
 <template>
-  <div class="form-demo not-content">
-    <div class="demo-section">
+  <div class="form-examples">
+    <section class="example-section">
       <h3>Basic Login Form</h3>
-      <DemoTabs :code="basicCode">
-      <MizuForm
-        :state="loginState"
-        :validate="validateLogin"
-        :submit="submitLogin"
-        @submit="(s) => console.log('Submitted:', s)"
-      >
-        <MizuFormField name="email" label="Email" required help="Your work email address">
-          <template #default="{ error, id }">
-            <MizuInput :id="id" name="email" v-model="loginState.email" :error="error" placeholder="you@company.com" />
-          </template>
-        </MizuFormField>
+      <CodeCollapsible :code="basicCode">
+        <MizuForm
+          :state="loginState"
+          :validate="validateLogin"
+          :submit="submitLogin"
+          @submit="(s) => console.log('Submitted:', s)"
+        >
+          <MizuFormField name="email" label="Email" required help="Your work email address">
+            <template #default="{ error, id }">
+              <MizuInput :id="id" name="email" v-model="loginState.email" :error="error" placeholder="you@company.com" />
+            </template>
+          </MizuFormField>
 
-        <MizuFormField name="password" label="Password" required>
-          <template #default="{ error, id }">
-            <MizuInput :id="id" name="password" v-model="loginState.password" type="password" :error="error" placeholder="At least 6 characters" />
-          </template>
-        </MizuFormField>
+          <MizuFormField name="password" label="Password" required>
+            <template #default="{ error, id }">
+              <MizuInput :id="id" name="password" v-model="loginState.password" type="password" :error="error" placeholder="At least 6 characters" />
+            </template>
+          </MizuFormField>
 
-        <MizuButton variant="primary" size="md" type="submit" class="w-max">
-          Log In
-        </MizuButton>
+          <MizuButton variant="primary" size="md" type="submit" class="w-max">
+            Log In
+          </MizuButton>
 
-        <p v-if="loginSuccess" class="success-text">Login successful!</p>
-      </MizuForm>
-      </DemoTabs>
-    </div>
+          <p v-if="loginSuccess" class="success-text">Login successful!</p>
+        </MizuForm>
+      </CodeCollapsible>
+    </section>
   </div>
 </template>
 
 <style scoped>
-.form-demo { all: revert; }
-
-.form-demo .demo-section {
-  margin-top: 0;
-}
-
-.form-demo .demo-section > * {
-  margin-top: 0;
-}
-
-.form-demo .demo-section h3 {
+.form-examples {
   all: revert;
-}
-
-.form-demo {
   display: flex;
   flex-direction: column;
-  gap: 24px;
-  padding: 24px;
-  background: transparent;
-
-  border: 1px solid var(--color-surface-muted);
-  border-radius: 8px;
+  gap: 32px;
+  font-family: inherit;
   max-width: 420px;
 }
 
-.demo-section {
+.form-examples :deep(*) {
+  margin: 0;
+}
+
+.example-section {
+  all: revert;
   display: flex;
   flex-direction: column;
   gap: 12px;
 }
 
-.demo-section h3 {
+.example-section h3 {
+  all: revert;
   font-size: 14px;
   font-weight: 600;
   color: var(--sl-color-text);
+  margin: 0;
 }
 
 .success-text {

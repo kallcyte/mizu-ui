@@ -12,19 +12,26 @@ const props = withDefaults(defineProps<CollapsibleTriggerProps>(), {
   as: undefined,
 });
 
+
 const triggerClass = computed(() => {
   // When asChild is true, the class is forwarded to the child element
   // (e.g., MizuButton), which has its own styling. Skip the class to
   // avoid overriding the child's background, border, and other styles.
   return props.asChild ? undefined : "mizu-collapsible__trigger";
 });
+
+const triggerProps = computed(() => {
+  const bindings: Record<string, unknown> = {};
+  if (props.asChild !== undefined) bindings["as-child"] = props.asChild;
+  if (props.as !== undefined) bindings.as = props.as;
+  return bindings;
+});
 </script>
 
 <template>
   <CollapsibleTrigger
     :class="triggerClass"
-    :as-child="asChild"
-    :as="as"
+    v-bind="triggerProps"
   >
     <slot />
   </CollapsibleTrigger>

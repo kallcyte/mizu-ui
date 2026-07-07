@@ -19,7 +19,7 @@ import {
   MizuTag,
   MizuButton,
 } from "@mizu/vue";
-import DemoTabs from "./DemoTabs.vue";
+import CodeCollapsible from "./CodeCollapsible.vue";
 
 const firstNames = [
   "James", "Mary", "Robert", "Patricia", "Michael", "Jennifer", "David", "Linda",
@@ -328,10 +328,10 @@ const validationCode = `<MizuComboboxRoot v-model="selected" ignore-filter>
 </script>
 
 <template>
-  <div class="combobox-demo not-content">
-    <DemoTabs :code="basicCode">
-      <div class="demo-section">
-        <h3>Basic</h3>
+  <div class="combobox-examples">
+    <section class="example-section">
+      <h3>Basic</h3>
+      <CodeCollapsible :code="basicCode">
         <MizuComboboxRoot v-model="basicSelected" ignore-filter>
           <MizuComboboxAnchor class="combobox-anchor">
             <MizuComboboxInput
@@ -371,12 +371,12 @@ const validationCode = `<MizuComboboxRoot v-model="selected" ignore-filter>
             <span>Show chevron</span>
           </label>
         </div>
-      </div>
-    </DemoTabs>
+      </CodeCollapsible>
+    </section>
 
-    <DemoTabs :code="searchCode">
-      <div class="demo-section">
-        <h3>With Search</h3>
+    <section class="example-section">
+      <h3>With Search</h3>
+      <CodeCollapsible :code="searchCode">
         <MizuComboboxRoot v-model="searchSelected" ignore-filter>
           <MizuComboboxAnchor class="combobox-anchor">
             <MizuComboboxInput
@@ -412,12 +412,12 @@ const validationCode = `<MizuComboboxRoot v-model="selected" ignore-filter>
         <div class="demo-footer">
           <p class="demo-hint">Selected: {{ searchSelected?.name ?? "None" }}</p>
         </div>
-      </div>
-    </DemoTabs>
+      </CodeCollapsible>
+    </section>
 
-    <DemoTabs :code="groupsCode">
-      <div class="demo-section">
-        <h3>With Groups</h3>
+    <section class="example-section">
+      <h3>With Groups</h3>
+      <CodeCollapsible :code="groupsCode">
         <MizuComboboxRoot v-model="groupSelected" ignore-filter>
           <MizuComboboxAnchor class="combobox-anchor">
             <MizuComboboxInput
@@ -469,12 +469,12 @@ const validationCode = `<MizuComboboxRoot v-model="selected" ignore-filter>
         <div class="demo-footer">
           <p class="demo-hint">Selected: {{ groupSelected?.name ?? "None" }}</p>
         </div>
-      </div>
-    </DemoTabs>
+      </CodeCollapsible>
+    </section>
 
-    <DemoTabs :code="multipleCode">
-      <div class="demo-section">
-        <h3>Multiple Selection</h3>
+    <section class="example-section">
+      <h3>Multiple Selection</h3>
+      <CodeCollapsible :code="multipleCode">
         <MizuComboboxRoot v-model="multipleSelected" multiple ignore-filter>
           <MizuComboboxAnchor class="combobox-anchor multi">
             <template v-for="person in multipleSelected" :key="person.id">
@@ -515,12 +515,12 @@ const validationCode = `<MizuComboboxRoot v-model="selected" ignore-filter>
         <div class="demo-footer">
           <p class="demo-hint">Selected: {{ multipleSelected.length ? multipleSelected.map((p: any) => p.name).join(", ") : "None" }}</p>
         </div>
-      </div>
-    </DemoTabs>
+      </CodeCollapsible>
+    </section>
 
-    <DemoTabs :code="lazyCode">
-      <div class="demo-section">
-        <h3>Lazy Load (100 items)</h3>
+    <section class="example-section">
+      <h3>Lazy Load (100 items)</h3>
+      <CodeCollapsible :code="lazyCode">
         <MizuComboboxRoot v-model="lazySelected" ignore-filter>
           <MizuComboboxAnchor class="combobox-anchor">
             <MizuComboboxInput
@@ -564,12 +564,12 @@ const validationCode = `<MizuComboboxRoot v-model="selected" ignore-filter>
         <div class="demo-footer">
           <p class="demo-hint">Selected: {{ lazySelected?.name ?? "None" }}</p>
         </div>
-      </div>
-    </DemoTabs>
+      </CodeCollapsible>
+    </section>
 
-    <DemoTabs :code="validationCode">
-      <div class="demo-section">
-        <h3>Validation</h3>
+    <section class="example-section">
+      <h3>Validation</h3>
+      <CodeCollapsible :code="validationCode">
         <MizuComboboxRoot v-model="validationSelected" ignore-filter>
           <MizuComboboxAnchor
             class="combobox-anchor"
@@ -617,41 +617,37 @@ const validationCode = `<MizuComboboxRoot v-model="selected" ignore-filter>
             </MizuButton>
           </div>
         </div>
-      </div>
-    </DemoTabs>
+      </CodeCollapsible>
+    </section>
   </div>
 </template>
 
 <style scoped>
-.combobox-demo {
+.combobox-examples {
   all: revert;
   display: flex;
   flex-direction: column;
-  gap: 24px;
-  padding: 16px;
-  background: transparent;
-
-  border: 1px solid var(--color-surface-muted);
-  border-radius: 8px;
+  gap: 32px;
+  font-family: inherit;
 }
 
-.demo-section {
+.combobox-examples :deep(*) {
+  margin: 0;
+}
+
+.example-section {
+  all: revert;
   display: flex;
   flex-direction: column;
   gap: 12px;
-  margin-top: 0;
 }
 
-.demo-section > * {
-  margin-top: 0;
-}
-
-.demo-section h3 {
+.example-section h3 {
+  all: revert;
   font-size: 14px;
   font-weight: 600;
   color: var(--sl-color-text);
-  margin-bottom: 0;
-  margin-top: 0;
+  margin: 0;
 }
 
 .demo-toggle {

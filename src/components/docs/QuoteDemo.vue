@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { MizuQuote } from "@mizu/vue";
-import DemoTabs from "./DemoTabs.vue";
+import CodeCollapsible from "./CodeCollapsible.vue";
 
 const basicCode = `<MizuQuote>
   Design is not just what it looks like and feels like. Design is how it works.
@@ -25,79 +25,77 @@ const multiParagraphCode = `<MizuQuote accent cite="APA Style">
 </script>
 
 <template>
-  <div class="quote-demo not-content">
-    <DemoTabs :code="basicCode">
-      <div class="demo-section">
-        <h3>Basic</h3>
+  <div class="quote-examples">
+    <section class="example-section">
+      <h3>Basic</h3>
+      <CodeCollapsible :code="basicCode">
         <MizuQuote>
           Design is not just what it looks like and feels like. Design is how it works.
         </MizuQuote>
-      </div>
-    </DemoTabs>
+      </CodeCollapsible>
+    </section>
 
-    <DemoTabs :code="citeCode">
-      <div class="demo-section">
-        <h3>With Cite</h3>
+    <section class="example-section">
+      <h3>With Cite</h3>
+      <CodeCollapsible :code="citeCode">
         <MizuQuote cite="Steve Jobs">
           Innovation distinguishes between a leader and a follower.
         </MizuQuote>
-      </div>
-    </DemoTabs>
+      </CodeCollapsible>
+    </section>
 
-    <DemoTabs :code="accentCode">
-      <div class="demo-section">
-        <h3>Accent Variant</h3>
+    <section class="example-section">
+      <h3>Accent Variant</h3>
+      <CodeCollapsible :code="accentCode">
         <MizuQuote accent>
           The best design is the simplest one that works.
         </MizuQuote>
-      </div>
-    </DemoTabs>
+      </CodeCollapsible>
+    </section>
 
-    <DemoTabs :code="accentCiteCode">
-      <div class="demo-section">
-        <h3>Accent With Cite</h3>
+    <section class="example-section">
+      <h3>Accent With Cite</h3>
+      <CodeCollapsible :code="accentCiteCode">
         <MizuQuote accent cite="Albert Einstein">
           Imagination is more important than knowledge. Knowledge is limited. Imagination encircles the world.
         </MizuQuote>
-      </div>
-    </DemoTabs>
+      </CodeCollapsible>
+    </section>
 
-    <DemoTabs :code="multiParagraphCode">
-      <div class="demo-section">
-        <h3>Multi-paragraph</h3>
+    <section class="example-section">
+      <h3>Multi-paragraph</h3>
+      <CodeCollapsible :code="multiParagraphCode">
         <MizuQuote accent cite="APA Style">
           <p>A block quote is a paraphrase or direct quotation that is longer than 40 words. It should be formatted as a freestanding block of text that does not use quotation marks.</p>
           <p>Block quotes should start on a new line and be indented from the left margin.</p>
         </MizuQuote>
-      </div>
-    </DemoTabs>
+      </CodeCollapsible>
+    </section>
   </div>
 </template>
 
 <style scoped>
-.quote-demo {
+.quote-examples {
   all: revert;
-  font-family: var(--font-family-sans);
   display: flex;
   flex-direction: column;
-  gap: 24px;
-  padding: 16px;
-  background: transparent;
-
-  border: 1px solid var(--color-surface-muted);
-  border-radius: 8px;
+  gap: 32px;
+  font-family: inherit;
 }
-.quote-demo :deep(*) { margin: 0; }
 
-.demo-section {
+.quote-examples :deep(*) {
+  margin: 0;
+}
+
+.example-section {
+  all: revert;
   display: flex;
   flex-direction: column;
   gap: 12px;
 }
-.demo-section > * {
-  margin-top: 0;
-}
-.demo-section h3 {
+
+.example-section h3 {
+  all: revert;
   font-size: 14px;
   font-weight: 600;
   color: var(--sl-color-text);

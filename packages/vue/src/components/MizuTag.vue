@@ -23,7 +23,7 @@ const attrs = useAttrs();
 
 const variantColors: Record<string, { bg: string; text: string; border: string }> = {
   primary: { bg: "var(--color-brand-primary-subtle)", text: "var(--color-brand-primary)", border: "color-mix(in srgb, var(--color-brand-primary) 25%, transparent)" },
-  accent: { bg: "var(--color-brand-accent-subtle)", text: "var(--color-brand-accent)", border: "color-mix(in srgb, var(--color-brand-accent) 25%, transparent)" },
+  accent: { bg: "var(--color-brand-ycp-subtle)", text: "var(--color-brand-ycp)", border: "color-mix(in srgb, var(--color-brand-ycp) 25%, transparent)" },
   success: { bg: "var(--color-feedback-success-subtle)", text: "var(--color-feedback-success-base)", border: "color-mix(in srgb, var(--color-feedback-success-base) 25%, transparent)" },
   warning: { bg: "var(--color-feedback-warning-subtle)", text: "var(--color-feedback-warning-base)", border: "color-mix(in srgb, var(--color-feedback-warning-base) 25%, transparent)" },
   error: { bg: "var(--color-feedback-error-subtle)", text: "var(--color-feedback-error-base)", border: "color-mix(in srgb, var(--color-feedback-error-base) 25%, transparent)" },

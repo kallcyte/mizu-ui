@@ -137,7 +137,7 @@ const checkboxClasses = computed(() => {
 }
 
 .mizu-checkbox:focus-visible {
-  box-shadow: 0 0 0 2px var(--color-brand-accent);
+  box-shadow: 0 0 0 2px var(--color-brand-ycp);
 }
 
 .mizu-checkbox--checked,

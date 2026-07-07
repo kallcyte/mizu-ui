@@ -27,7 +27,7 @@ const attrs = useAttrs();
   all: revert;
   display: block;
   border-radius: 9999px;
-  background-color: var(--color-brand-accent);
+  background-color: var(--color-brand-ycp);
   border: 2px solid var(--color-surface-base);
   outline: none;
   cursor: pointer;
@@ -51,11 +51,11 @@ const attrs = useAttrs();
 }
 
 .mizu-slider__thumb:hover {
-  box-shadow: 0 0 0 4px color-mix(in srgb, var(--color-brand-accent) 25%, transparent);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--color-brand-ycp) 25%, transparent);
 }
 
 .mizu-slider__thumb:focus-visible {
-  box-shadow: 0 0 0 4px color-mix(in srgb, var(--color-brand-accent) 25%, transparent);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--color-brand-ycp) 25%, transparent);
 }
 
 .mizu-slider__thumb[data-disabled] {

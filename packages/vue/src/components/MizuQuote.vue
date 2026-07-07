@@ -45,8 +45,8 @@ const quoteClasses = computed(() => {
 }
 
 .mizu-quote--accent {
-  border-left-color: var(--color-brand-accent);
-  background-color: var(--color-brand-accent-subtle);
+  border-left-color: var(--color-brand-ycp);
+  background-color: var(--color-brand-ycp-subtle);
 }
 
 .mizu-quote__content {

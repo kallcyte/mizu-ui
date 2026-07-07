@@ -59,11 +59,11 @@ const cellTriggerClasses = computed(() => {
 
 .mizu-date-picker__cell-trigger[data-today] {
   font-weight: 600;
-  border: 1px solid var(--color-brand-accent);
+  border: 1px solid var(--color-brand-ycp);
 }
 
 .mizu-date-picker__cell-trigger[data-selected] {
-  background-color: var(--color-brand-accent);
+  background-color: var(--color-brand-ycp);
   color: #fff;
 }
 

@@ -148,8 +148,8 @@ function handleBlur(event: FocusEvent) {
   @apply text-[var(--color-foreground-tertiary)];
 }
 .mizu-textarea:focus-visible {
-  border-color: var(--color-brand-accent);
-  box-shadow: 0 0 0 1px var(--color-brand-accent);
+  border-color: var(--color-brand-ycp);
+  box-shadow: 0 0 0 1px var(--color-brand-ycp);
 }
 
 .mizu-textarea--sm {

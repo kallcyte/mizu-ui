@@ -5,5 +5,7 @@ dist
 *.local
 .histoire
 dev-*.log
+dev.log
+nul
 .nx/
 

@@ -2,7 +2,7 @@
 import { ref } from "vue";
 import { MizuInput } from "@mizu/vue";
 import { Search, Mail, Lock, User, AlertCircle, CheckCircle } from "@lucide/vue";
-import DemoTabs from "./DemoTabs.vue";
+import CodeCollapsible from "./CodeCollapsible.vue";
 
 const sizesCode = `<MizuInput size="sm" placeholder="Small input" />
 <MizuInput size="md" placeholder="Medium input" />
@@ -75,212 +75,206 @@ const passwordDemoValue = ref("");
 </script>
 
 <template>
-    <div class="input-demo not-content">
-        <div class="demo-section">
-            <h3>Sizes</h3>
-            <DemoTabs :code="sizesCode">
-            <div class="input-row">
-                <MizuInput size="sm" placeholder="Small input" />
-                <MizuInput size="md" placeholder="Medium input" />
-                <MizuInput size="lg" placeholder="Large input" />
-            </div>
-            </DemoTabs>
+  <div class="input-examples">
+    <section class="example-section">
+      <h3>Sizes</h3>
+      <CodeCollapsible :code="sizesCode">
+        <div class="input-row">
+          <MizuInput size="sm" placeholder="Small input" />
+          <MizuInput size="md" placeholder="Medium input" />
+          <MizuInput size="lg" placeholder="Large input" />
         </div>
+      </CodeCollapsible>
+    </section>
 
-        <div class="demo-section">
-            <h3>With Labels</h3>
-            <DemoTabs :code="labelsCode">
-            <div class="input-row">
-                <MizuInput label="Username" placeholder="Enter username" />
-                <MizuInput label="Email" type="email" placeholder="Enter email" />
-            </div>
-            </DemoTabs>
+    <section class="example-section">
+      <h3>With Labels</h3>
+      <CodeCollapsible :code="labelsCode">
+        <div class="input-row">
+          <MizuInput label="Username" placeholder="Enter username" />
+          <MizuInput label="Email" type="email" placeholder="Enter email" />
         </div>
+      </CodeCollapsible>
+    </section>
 
-        <div class="demo-section">
-            <h3>With Icons</h3>
-            <DemoTabs :code="iconsCode">
-            <div class="input-row">
-                <MizuInput v-model="searchValue" placeholder="Search...">
-                    <template #leading-icon>
-                        <Search />
-                    </template>
-                </MizuInput>
-                <MizuInput v-model="emailValue" type="email" placeholder="Email address">
-                    <template #leading-icon>
-                        <Mail />
-                    </template>
-                </MizuInput>
-                <MizuInput v-model="passwordValue" type="password" placeholder="Password">
-                    <template #leading-icon>
-                        <Lock />
-                    </template>
-                </MizuInput>
-            </div>
-            </DemoTabs>
+    <section class="example-section">
+      <h3>With Icons</h3>
+      <CodeCollapsible :code="iconsCode">
+        <div class="input-row">
+          <MizuInput v-model="searchValue" placeholder="Search...">
+            <template #leading-icon>
+              <Search />
+            </template>
+          </MizuInput>
+          <MizuInput v-model="emailValue" type="email" placeholder="Email address">
+            <template #leading-icon>
+              <Mail />
+            </template>
+          </MizuInput>
+          <MizuInput v-model="passwordValue" type="password" placeholder="Password">
+            <template #leading-icon>
+              <Lock />
+            </template>
+          </MizuInput>
         </div>
+      </CodeCollapsible>
+    </section>
 
-        <div class="demo-section">
-            <h3>States</h3>
-            <DemoTabs :code="statesCode">
-            <div class="input-row">
-                <MizuInput
-                    v-model="disabledValue"
-                    label="Username"
-                    disabled
-                    helper-text="This field is locked"
-                >
-                    <template #trailing-icon>
-                        <Lock />
-                    </template>
-                </MizuInput>
-                <MizuInput
-                    v-model="errorValue"
-                    label="Email"
-                    error
-                    helper-text="Please enter a valid email address"
-                />
-                <MizuInput
-                    v-model="successValue"
-                    label="Email"
-                    helper-text="Email is available"
-                />
-            </div>
-            </DemoTabs>
+    <section class="example-section">
+      <h3>States</h3>
+      <CodeCollapsible :code="statesCode">
+        <div class="input-row">
+          <MizuInput
+            v-model="disabledValue"
+            label="Username"
+            disabled
+            helper-text="This field is locked"
+          >
+            <template #trailing-icon>
+              <Lock />
+            </template>
+          </MizuInput>
+          <MizuInput
+            v-model="errorValue"
+            label="Email"
+            error
+            helper-text="Please enter a valid email address"
+          />
+          <MizuInput
+            v-model="successValue"
+            label="Email"
+            helper-text="Email is available"
+          />
         </div>
+      </CodeCollapsible>
+    </section>
 
-        <div class="demo-section">
-            <h3>With Helper Text</h3>
-            <DemoTabs :code="helperCode">
-            <div class="input-row">
-                <MizuInput
-                    v-model="nameValue"
-                    label="Full Name"
-                    placeholder="John Doe"
-                    helper-text="Enter your first and last name"
-                />
-                <MizuInput
-                    label="Password"
-                    type="password"
-                    placeholder="Minimum 8 characters"
-                    helper-text="Must include at least one number"
-                />
-            </div>
-            </DemoTabs>
+    <section class="example-section">
+      <h3>With Helper Text</h3>
+      <CodeCollapsible :code="helperCode">
+        <div class="input-row">
+          <MizuInput
+            v-model="nameValue"
+            label="Full Name"
+            placeholder="John Doe"
+            helper-text="Enter your first and last name"
+          />
+          <MizuInput
+            label="Password"
+            type="password"
+            placeholder="Minimum 8 characters"
+            helper-text="Must include at least one number"
+          />
         </div>
+      </CodeCollapsible>
+    </section>
 
-        <div class="demo-section">
-            <h3>Required</h3>
-            <DemoTabs :code="requiredCode">
-            <div class="input-row">
-                <MizuInput label="Email" type="email" required placeholder="required@example.com" />
-                <MizuInput label="Password" type="password" required placeholder="Enter password" />
-            </div>
-            </DemoTabs>
+    <section class="example-section">
+      <h3>Required</h3>
+      <CodeCollapsible :code="requiredCode">
+        <div class="input-row">
+          <MizuInput label="Email" type="email" required placeholder="required@example.com" />
+          <MizuInput label="Password" type="password" required placeholder="Enter password" />
         </div>
+      </CodeCollapsible>
+    </section>
 
-        <div class="demo-section">
-            <h3>Login Form</h3>
-            <DemoTabs :code="loginCode">
-            <div class="input-row">
-                <MizuInput label="Email" type="email" required placeholder="you@example.com" />
-                <MizuInput label="Password" type="password" required placeholder="Enter password" />
-            </div>
-            </DemoTabs>
+    <section class="example-section">
+      <h3>Login Form</h3>
+      <CodeCollapsible :code="loginCode">
+        <div class="input-row">
+          <MizuInput label="Email" type="email" required placeholder="you@example.com" />
+          <MizuInput label="Password" type="password" required placeholder="Enter password" />
         </div>
+      </CodeCollapsible>
+    </section>
 
-        <div class="demo-section">
-            <h3>Show Password</h3>
-            <DemoTabs :code="showPasswordCode">
-            <div class="input-row">
-                <MizuInput v-model="passwordDemoValue" label="Password" type="password" show-password placeholder="Enter password" />
-                <MizuInput v-model="passwordDemoValue" label="New Password" type="password" show-password placeholder="Create password" helper-text="Click the eye icon to toggle" />
-            </div>
-            </DemoTabs>
+    <section class="example-section">
+      <h3>Show Password</h3>
+      <CodeCollapsible :code="showPasswordCode">
+        <div class="input-row">
+          <MizuInput v-model="passwordDemoValue" label="Password" type="password" show-password placeholder="Enter password" />
+          <MizuInput v-model="passwordDemoValue" label="New Password" type="password" show-password placeholder="Create password" helper-text="Click the eye icon to toggle" />
         </div>
+      </CodeCollapsible>
+    </section>
 
-        <div class="demo-section">
-            <h3>Trailing Icon</h3>
-            <DemoTabs :code="trailingIconCode">
-            <div class="input-row">
-                <MizuInput v-model="nameValue" placeholder="Enter name">
-                    <template #trailing-icon>
-                        <User />
-                    </template>
-                </MizuInput>
-            </div>
-            </DemoTabs>
+    <section class="example-section">
+      <h3>Trailing Icon</h3>
+      <CodeCollapsible :code="trailingIconCode">
+        <div class="input-row">
+          <MizuInput v-model="nameValue" placeholder="Enter name">
+            <template #trailing-icon>
+              <User />
+            </template>
+          </MizuInput>
         </div>
+      </CodeCollapsible>
+    </section>
 
-        <div class="demo-section">
-            <h3>Error with Trailing Icon</h3>
-            <DemoTabs :code="errorTrailingCode">
-            <div class="input-row">
-                <MizuInput
-                    v-model="errorValue"
-                    label="Email"
-                    error
-                    helper-text="Invalid email format"
-                >
-                    <template #trailing-icon>
-                        <AlertCircle />
-                    </template>
-                </MizuInput>
-                <MizuInput
-                    v-model="successValue"
-                    label="Email"
-                    helper-text="Email is valid"
-                >
-                    <template #trailing-icon>
-                        <CheckCircle />
-                    </template>
-                </MizuInput>
-            </div>
-            </DemoTabs>
+    <section class="example-section">
+      <h3>Error with Trailing Icon</h3>
+      <CodeCollapsible :code="errorTrailingCode">
+        <div class="input-row">
+          <MizuInput
+            v-model="errorValue"
+            label="Email"
+            error
+            helper-text="Invalid email format"
+          >
+            <template #trailing-icon>
+              <AlertCircle />
+            </template>
+          </MizuInput>
+          <MizuInput
+            v-model="successValue"
+            label="Email"
+            helper-text="Email is valid"
+          >
+            <template #trailing-icon>
+              <CheckCircle />
+            </template>
+          </MizuInput>
         </div>
-    </div>
+      </CodeCollapsible>
+    </section>
+  </div>
 </template>
 
 <style scoped>
-.input-demo {
-    all: revert;
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
-    padding: 24px;
-    background: transparent;
-
-    border: 1px solid var(--color-surface-muted);
-    border-radius: 8px;
+.input-examples {
+  all: revert;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  font-family: inherit;
 }
 
-.input-demo :deep(*) {
-    margin: 0;
+.input-examples :deep(*) {
+  margin: 0;
 }
 
-.demo-section {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
+.example-section {
+  all: revert;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 
-.demo-section h3 {
-    font-size: 14px;
-    font-weight: 600;
-    color: var(--sl-color-text);
-    margin-bottom: 0;
-    margin-top: 0;
-}
-.demo-section > div {
-  margin-top: 0;
+.example-section h3 {
+  all: revert;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--sl-color-text);
+  margin: 0;
 }
 
 .input-row {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: flex-start;
-    gap: 16px;
-    margin: 0;
-    padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 16px;
+  margin: 0;
+  padding: 0;
 }
 </style>

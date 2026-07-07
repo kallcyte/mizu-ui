@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, useAttrs, ref, onMounted, onUnmounted } from "vue";
+import { computed, ref, onMounted, onUnmounted } from "vue";
 import { CollapsibleContent } from "reka-ui";
 
 export interface CollapsibleContentProps {
@@ -24,21 +24,29 @@ const props = withDefaults(defineProps<CollapsibleContentProps>(), {
   collapsedHeight: undefined,
 });
 
-const attrs = useAttrs();
-
-const contentRef = ref<HTMLElement | null>(null);
+const contentRef = ref<{ $el?: HTMLElement } | null>(null);
 const isClosed = ref(false);
 
 let observer: MutationObserver | null = null;
 
+function getEl(): HTMLElement | null {
+  // Reka UI renders CollapsibleContent as a single root element. When the
+  // ref is bound to the component, Vue gives us the component instance,
+  // and the underlying DOM element is exposed via the standard `$el` property.
+  const instance = contentRef.value as unknown as { $el?: HTMLElement } | null;
+  return instance?.$el ?? null;
+}
+
 onMounted(() => {
-  if (props.collapsedHeight && contentRef.value) {
-    isClosed.value = contentRef.value.dataset.state === "closed";
-    observer = new MutationObserver(() => {
-      isClosed.value = contentRef.value?.dataset.state === "closed";
-    });
-    observer.observe(contentRef.value, { attributes: true, attributeFilter: ["data-state"] });
-  }
+  if (!props.collapsedHeight) return;
+  const el = getEl();
+  if (!el) return;
+  isClosed.value = el.dataset.state === "closed";
+  observer = new MutationObserver(() => {
+    const current = getEl();
+    if (current) isClosed.value = current.dataset.state === "closed";
+  });
+  observer.observe(el, { attributes: true, attributeFilter: ["data-state"] });
 });
 
 onUnmounted(() => {
@@ -48,13 +56,16 @@ onUnmounted(() => {
 const shouldForceMount = computed(() => {
   // When collapsedHeight is set, the content must stay in the DOM
   // so it remains visible at the collapsed size.
-  return props.collapsedHeight ? true : (props.forceMount ?? undefined);
+  if (props.collapsedHeight) return true;
+  // Force-mount by default to prevent SSR/hydration mismatches.
+  // Reka UI's unmountOnHide + Presence can cause DOM diff between
+  // server and client, breaking context injection during hydration.
+  return props.forceMount ?? true;
 });
 
 const contentClasses = computed(() => {
   const classes = ["mizu-collapsible__content"];
   if (props.collapsedHeight) classes.push("mizu-collapsible__content--partial");
-  if (attrs.class) classes.push(attrs.class as string);
   return classes.join(" ");
 });
 

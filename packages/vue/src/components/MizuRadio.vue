@@ -134,7 +134,7 @@ function handleValueChange(value: unknown) {
 }
 
 .mizu-radio {
-  @apply shrink-0 w-[18px] h-[18px] rounded-full border transition-colors duration-200 ease-in-out outline-none inline-flex items-center justify-center;
+  @apply p-0 shrink-0 w-[18px] h-[18px] rounded-full border transition-colors duration-200 ease-in-out outline-none inline-flex items-center justify-center;
   background-color: var(--color-surface-base);
   border-color: var(--color-foreground-tertiary);
 }
@@ -148,7 +148,7 @@ function handleValueChange(value: unknown) {
 }
 
 .mizu-radio:focus-visible {
-  box-shadow: 0 0 0 2px var(--color-brand-accent);
+  box-shadow: 0 0 0 2px var(--color-brand-ycp);
 }
 
 .mizu-radio[data-state="checked"] {

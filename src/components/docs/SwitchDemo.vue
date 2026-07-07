@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import { MizuSwitch } from "@mizu/vue";
-import DemoTabs from "./DemoTabs.vue";
+import CodeCollapsible from "./CodeCollapsible.vue";
 
 const basic = ref(true);
 const unchecked = ref(false);
@@ -42,10 +42,10 @@ const customValuesCode = `<MizuSwitch
 </script>
 
 <template>
-  <div class="switch-demo not-content">
-    <DemoTabs :code="basicCode">
-      <div class="demo-section">
-        <h3>Basic</h3>
+  <div class="switch-examples">
+    <section class="example-section">
+      <h3>Basic</h3>
+      <CodeCollapsible :code="basicCode">
         <div class="switch-stack">
           <MizuSwitch v-model="basic" />
           <MizuSwitch v-model="unchecked" label="Notifications" />
@@ -53,34 +53,34 @@ const customValuesCode = `<MizuSwitch
           <MizuSwitch v-model="disabledUnchecked" disabled label="Disabled" />
           <MizuSwitch v-model="disabledChecked" disabled label="Disabled & checked" />
         </div>
-      </div>
-    </DemoTabs>
+      </CodeCollapsible>
+    </section>
 
-    <DemoTabs :code="sizesCode">
-      <div class="demo-section">
-        <h3>Sizes</h3>
+    <section class="example-section">
+      <h3>Sizes</h3>
+      <CodeCollapsible :code="sizesCode">
         <div class="switch-stack">
           <MizuSwitch v-model="sizeSm" size="sm" label="Small" />
           <MizuSwitch v-model="sizeMd" size="md" label="Medium" />
           <MizuSwitch v-model="sizeLg" size="lg" label="Large" />
         </div>
-      </div>
-    </DemoTabs>
+      </CodeCollapsible>
+    </section>
 
-    <DemoTabs :code="settingsCode">
-      <div class="demo-section">
-        <h3>Settings Example</h3>
+    <section class="example-section">
+      <h3>Settings Example</h3>
+      <CodeCollapsible :code="settingsCode">
         <div class="switch-stack">
           <MizuSwitch v-model="notifications" label="Push notifications" />
           <MizuSwitch v-model="darkMode" label="Dark mode" />
           <MizuSwitch v-model="autoSave" label="Auto-save" />
         </div>
-      </div>
-    </DemoTabs>
+      </CodeCollapsible>
+    </section>
 
-    <DemoTabs :code="customValuesCode">
-      <div class="demo-section">
-        <h3>Custom Values</h3>
+    <section class="example-section">
+      <h3>Custom Values</h3>
+      <CodeCollapsible :code="customValuesCode">
         <div class="switch-stack">
           <MizuSwitch
             v-model="customYes"
@@ -90,43 +90,37 @@ const customValuesCode = `<MizuSwitch
           />
           <p class="demo-text">Value: <code>{{ customYes }}</code></p>
         </div>
-      </div>
-    </DemoTabs>
+      </CodeCollapsible>
+    </section>
   </div>
 </template>
 
 <style scoped>
-.switch-demo {
+.switch-examples {
   all: revert;
   display: flex;
   flex-direction: column;
-  gap: 24px;
-  padding: 24px;
-  background: transparent;
-
-  border: 1px solid var(--color-surface-muted);
-  border-radius: 8px;
+  gap: 32px;
+  font-family: inherit;
 }
 
-.switch-demo :deep(*) {
+.switch-examples :deep(*) {
   margin: 0;
 }
 
-.demo-section {
+.example-section {
+  all: revert;
   display: flex;
   flex-direction: column;
   gap: 12px;
 }
 
-.demo-section h3 {
+.example-section h3 {
+  all: revert;
   font-size: 14px;
   font-weight: 600;
   color: var(--sl-color-text);
-  margin-bottom: 0;
-  margin-top: 0;
-}
-.demo-section > div {
-  margin-top: 0;
+  margin: 0;
 }
 
 .switch-stack {

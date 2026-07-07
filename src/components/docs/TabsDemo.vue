@@ -8,7 +8,7 @@ import {
   MizuButton,
   MizuSelect,
 } from "@mizu/vue";
-import DemoTabs from "./DemoTabs.vue";
+import CodeCollapsible from "./CodeCollapsible.vue";
 
 const activeProfileTab = ref("general");
 
@@ -425,10 +425,10 @@ const asyncContentCode = `<MizuTabsRoot v-model="asyncTab" defaultValue="users">
 </script>
 
 <template>
-  <div class="tabs-demo not-content">
-    <DemoTabs :code="horizontalCode">
-      <div class="demo-section">
-        <h3>Horizontal</h3>
+  <div class="tabs-examples">
+    <section class="example-section">
+      <h3>Horizontal</h3>
+      <CodeCollapsible :code="horizontalCode">
         <MizuTabsRoot default-value="account">
           <MizuTabsList>
             <MizuTabsTrigger value="account">Account</MizuTabsTrigger>
@@ -445,12 +445,12 @@ const asyncContentCode = `<MizuTabsRoot v-model="asyncTab" defaultValue="users">
             <p class="tab-body">Configure application-wide settings.</p>
           </MizuTabsContent>
         </MizuTabsRoot>
-      </div>
-    </DemoTabs>
+      </CodeCollapsible>
+    </section>
 
-    <DemoTabs :code="verticalCode">
-      <div class="demo-section">
-        <h3>Vertical</h3>
+    <section class="example-section">
+      <h3>Vertical</h3>
+      <CodeCollapsible :code="verticalCode">
         <div class="vertical-tabs">
           <MizuTabsRoot default-value="tab1" orientation="vertical">
             <MizuTabsList>
@@ -469,12 +469,12 @@ const asyncContentCode = `<MizuTabsRoot v-model="asyncTab" defaultValue="users">
             </MizuTabsContent>
           </MizuTabsRoot>
         </div>
-      </div>
-    </DemoTabs>
+      </CodeCollapsible>
+    </section>
 
-    <DemoTabs :code="disabledTabCode">
-      <div class="demo-section">
-        <h3>With Disabled Tab</h3>
+    <section class="example-section">
+      <h3>With Disabled Tab</h3>
+      <CodeCollapsible :code="disabledTabCode">
         <MizuTabsRoot default-value="billing">
           <MizuTabsList>
             <MizuTabsTrigger value="billing">Billing</MizuTabsTrigger>
@@ -491,12 +491,12 @@ const asyncContentCode = `<MizuTabsRoot v-model="asyncTab" defaultValue="users">
             <p class="tab-body">This tab is disabled and cannot be accessed.</p>
           </MizuTabsContent>
         </MizuTabsRoot>
-      </div>
-    </DemoTabs>
+      </CodeCollapsible>
+    </section>
 
-    <DemoTabs :code="buttonGroupCode">
-      <div class="demo-section">
-        <h3>Button Group</h3>
+    <section class="example-section">
+      <h3>Button Group</h3>
+      <CodeCollapsible :code="buttonGroupCode">
         <MizuTabsRoot default-value="monthly">
           <MizuTabsList variant="button">
             <MizuTabsTrigger value="daily">Daily</MizuTabsTrigger>
@@ -517,12 +517,12 @@ const asyncContentCode = `<MizuTabsRoot v-model="asyncTab" defaultValue="users">
             <p class="tab-body">Access annual reports and year-over-year comparisons.</p>
           </MizuTabsContent>
         </MizuTabsRoot>
-      </div>
-    </DemoTabs>
+      </CodeCollapsible>
+    </section>
 
-    <DemoTabs :code="sizesUnderlineCode">
-      <div class="demo-section">
-        <h3>Sizes — Underline</h3>
+    <section class="example-section">
+      <h3>Sizes — Underline</h3>
+      <CodeCollapsible :code="sizesUnderlineCode">
         <div class="sizes-stack">
           <div>
             <span class="size-label">Small</span>
@@ -570,12 +570,12 @@ const asyncContentCode = `<MizuTabsRoot v-model="asyncTab" defaultValue="users">
             </MizuTabsRoot>
           </div>
         </div>
-      </div>
-    </DemoTabs>
+      </CodeCollapsible>
+    </section>
 
-    <DemoTabs :code="sizesButtonCode">
-      <div class="demo-section">
-        <h3>Sizes — Button Group</h3>
+    <section class="example-section">
+      <h3>Sizes — Button Group</h3>
+      <CodeCollapsible :code="sizesButtonCode">
         <div class="sizes-stack">
           <div>
             <span class="size-label">Small</span>
@@ -635,12 +635,12 @@ const asyncContentCode = `<MizuTabsRoot v-model="asyncTab" defaultValue="users">
             </MizuTabsRoot>
           </div>
         </div>
-      </div>
-    </DemoTabs>
+      </CodeCollapsible>
+    </section>
 
-    <DemoTabs :code="profileSettingsCode">
-      <div class="demo-section">
-        <h3>Complex — Profile Settings</h3>
+    <section class="example-section">
+      <h3>Complex — Profile Settings</h3>
+      <CodeCollapsible :code="profileSettingsCode">
         <MizuTabsRoot v-model="activeProfileTab">
           <MizuTabsList>
             <MizuTabsTrigger value="general">General</MizuTabsTrigger>
@@ -800,12 +800,12 @@ const asyncContentCode = `<MizuTabsRoot v-model="asyncTab" defaultValue="users">
             </div>
           </MizuTabsContent>
         </MizuTabsRoot>
-      </div>
-    </DemoTabs>
+      </CodeCollapsible>
+    </section>
 
-    <DemoTabs :code="colorVariantsCode">
-      <div class="demo-section">
-        <h3>Color Variants</h3>
+    <section class="example-section">
+      <h3>Color Variants</h3>
+      <CodeCollapsible :code="colorVariantsCode">
         <div class="color-select-row">
           <MizuSelect v-model="selectedColor" :options="colorOptions" label="Color" size="sm" class="color-select" />
         </div>
@@ -825,12 +825,12 @@ const asyncContentCode = `<MizuTabsRoot v-model="asyncTab" defaultValue="users">
             <p class="tab-body">Configure application settings and preferences.</p>
           </MizuTabsContent>
         </MizuTabsRoot>
-      </div>
-    </DemoTabs>
+      </CodeCollapsible>
+    </section>
 
-    <DemoTabs :code="asyncContentCode">
-      <div class="demo-section">
-        <h3>Async Content</h3>
+    <section class="example-section">
+      <h3>Async Content</h3>
+      <CodeCollapsible :code="asyncContentCode">
         <MizuTabsRoot v-model="asyncTab" defaultValue="users">
           <MizuTabsList>
             <MizuTabsTrigger value="users">Users</MizuTabsTrigger>
@@ -859,46 +859,32 @@ const asyncContentCode = `<MizuTabsRoot v-model="asyncTab" defaultValue="users">
             <p v-else class="tab-body">Select this tab to load data.</p>
           </MizuTabsContent>
         </MizuTabsRoot>
-      </div>
-    </DemoTabs>
+      </CodeCollapsible>
+    </section>
   </div>
 </template>
 
 <style scoped>
-.tabs-demo {
+.tabs-examples {
   all: revert;
-  font-family: var(--font-family-sans);
   display: flex;
   flex-direction: column;
-  gap: 24px;
-  padding: 16px;
-  background: transparent;
-
-  border: 1px solid var(--color-surface-muted);
-  border-radius: 8px;
+  gap: 32px;
+  font-family: inherit;
 }
-
-.tabs-demo :deep(*) {
-  margin: 0;
-}
-
-.demo-section {
+.tabs-examples :deep(*) { margin: 0; }
+.example-section {
+  all: revert;
   display: flex;
   flex-direction: column;
   gap: 12px;
-  margin-top: 0;
 }
-
-.demo-section > * {
-  margin-top: 0;
-}
-
-.demo-section h3 {
+.example-section h3 {
+  all: revert;
   font-size: 14px;
   font-weight: 600;
   color: var(--sl-color-text);
-  margin-bottom: 0;
-  margin-top: 0;
+  margin: 0;
 }
 
 .vertical-tabs {

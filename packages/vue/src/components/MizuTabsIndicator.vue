@@ -37,7 +37,7 @@ const indicatorClasses = computed(() => {
   position: absolute;
   bottom: -1px;
   height: 2px;
-  background-color: var(--color-brand-accent);
+  background-color: var(--color-brand-ycp);
   transition: left 200ms ease, width 200ms ease;
 }
 

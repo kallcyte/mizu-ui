@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, onUnmounted } from "vue";
 import { MizuSkeleton, MizuSkeletonTheme, MizuButton, MizuAvatar, MizuCard, MizuCardHeader, MizuCardContent } from "@mizu/vue";
-import DemoTabs from "./DemoTabs.vue";
+import CodeCollapsible from "./CodeCollapsible.vue";
 
 const loading = ref(true);
 const user = ref<{ name: string; role: string; bio: string } | null>(null);
@@ -117,10 +117,10 @@ const listCode = `<div v-for="item in list" :key="item.id">
 </script>
 
 <template>
-    <div class="skeleton-demo not-content">
-        <DemoTabs :code="variantsCode">
-            <div class="demo-section">
-                <h3>Variants</h3>
+    <div class="skeleton-examples">
+        <section class="example-section">
+            <h3>Variants</h3>
+            <CodeCollapsible :code="variantsCode">
                 <div class="row">
                     <div class="col">
                         <span class="demo-label">Text</span>
@@ -135,12 +135,12 @@ const listCode = `<div v-for="item in list" :key="item.id">
                         <MizuSkeleton variant="rect" :width="120" :height="64" />
                     </div>
                 </div>
-            </div>
-        </DemoTabs>
+            </CodeCollapsible>
+        </section>
 
-        <DemoTabs :code="sizesCode">
-            <div class="demo-section">
-                <h3>Sizes</h3>
+        <section class="example-section">
+            <h3>Sizes</h3>
+            <CodeCollapsible :code="sizesCode">
                 <div class="stack">
                     <div class="size-row">
                         <span class="demo-label">Small (80px, 1 line)</span>
@@ -155,23 +155,23 @@ const listCode = `<div v-for="item in list" :key="item.id">
                         <MizuSkeleton variant="text" :width="320" :lines="4" />
                     </div>
                 </div>
-            </div>
-        </DemoTabs>
+            </CodeCollapsible>
+        </section>
 
-        <DemoTabs :code="dimensionsCode">
-            <div class="demo-section">
-                <h3>Custom Dimensions</h3>
+        <section class="example-section">
+            <h3>Custom Dimensions</h3>
+            <CodeCollapsible :code="dimensionsCode">
                 <div class="row gap-12 align-center">
                     <MizuSkeleton variant="rect" :width="200" :height="100" :radius="12" />
                     <MizuSkeleton variant="circle" :width="80" :height="80" />
                     <MizuSkeleton variant="rect" :width="280" :height="20" :radius="10" />
                 </div>
-            </div>
-        </DemoTabs>
+            </CodeCollapsible>
+        </section>
 
-        <DemoTabs :code="animationCode">
-            <div class="demo-section">
-                <h3>Animation</h3>
+        <section class="example-section">
+            <h3>Animation</h3>
+            <CodeCollapsible :code="animationCode">
                 <div class="row gap-12 align-center">
                     <div class="col">
                         <span class="demo-label">Shimmer</span>
@@ -186,12 +186,12 @@ const listCode = `<div v-for="item in list" :key="item.id">
                         <MizuSkeleton variant="rect" :width="100" :height="20" animation="none" />
                     </div>
                 </div>
-            </div>
-        </DemoTabs>
+            </CodeCollapsible>
+        </section>
 
-        <DemoTabs :code="cardPlaceholderCode">
-            <div class="demo-section">
-                <h3>In Card Placeholder</h3>
+        <section class="example-section">
+            <h3>In Card Placeholder</h3>
+            <CodeCollapsible :code="cardPlaceholderCode">
                 <MizuCard>
                     <MizuCardHeader>
                         <div class="profile-row">
@@ -206,21 +206,21 @@ const listCode = `<div v-for="item in list" :key="item.id">
                         <MizuSkeleton variant="text" :lines="3" />
                     </MizuCardContent>
                 </MizuCard>
-            </div>
-        </DemoTabs>
+            </CodeCollapsible>
+        </section>
 
-        <DemoTabs :code="multiLineCode">
-            <div class="demo-section">
-                <h3>Multi-line Text (lines prop)</h3>
+        <section class="example-section">
+            <h3>Multi-line Text (lines prop)</h3>
+            <CodeCollapsible :code="multiLineCode">
                 <div class="stack">
                     <MizuSkeleton variant="text" :lines="5" />
                 </div>
-            </div>
-        </DemoTabs>
+            </CodeCollapsible>
+        </section>
 
-        <DemoTabs :code="loadingCode">
-            <div class="demo-section">
-                <h3>Loading Wrapper</h3>
+        <section class="example-section">
+            <h3>Loading Wrapper</h3>
+            <CodeCollapsible :code="loadingCode">
                 <p class="demo-note">Use <code>loading</code> prop — skeleton wraps content, shows placeholder while loading, reveals content when ready.</p>
                 <div class="row gap-12 align-center" style="margin-bottom: 12px;">
                     <MizuButton type="button" size="sm" :loading-auto="true" @click="simulate">{{ loading ? `Loading... ${elapsed.toFixed(1)}s` : 'Reload' }}</MizuButton>
@@ -248,12 +248,12 @@ const listCode = `<div v-for="item in list" :key="item.id">
                         </MizuSkeleton>
                     </MizuCardContent>
                 </MizuCard>
-            </div>
-        </DemoTabs>
+            </CodeCollapsible>
+        </section>
 
-        <DemoTabs :code="themeCode">
-            <div class="demo-section">
-                <h3>Theme Provider</h3>
+        <section class="example-section">
+            <h3>Theme Provider</h3>
+            <CodeCollapsible :code="themeCode">
                 <p class="demo-note"><code>MizuSkeletonTheme</code> sets default props for all child skeletons — avoids repeating <code>baseColor</code>, <code>highlightColor</code>, etc. on every instance. Individual skeletons can still override by setting the prop directly.</p>
                 <div class="stack">
                     <div class="theme-group">
@@ -282,12 +282,12 @@ const listCode = `<div v-for="item in list" :key="item.id">
                         </MizuSkeletonTheme>
                     </div>
                 </div>
-            </div>
-        </DemoTabs>
+            </CodeCollapsible>
+        </section>
 
-        <DemoTabs :code="listCode">
-            <div class="demo-section">
-                <h3>List Placeholders</h3>
+        <section class="example-section">
+            <h3>List Placeholders</h3>
+            <CodeCollapsible :code="listCode">
                 <div class="stack">
                     <div v-for="item in list" :key="item.id" class="list-item">
                         <MizuSkeleton variant="circle" :width="36" :height="36" />
@@ -296,40 +296,32 @@ const listCode = `<div v-for="item in list" :key="item.id">
                         </div>
                     </div>
                 </div>
-            </div>
-        </DemoTabs>
+            </CodeCollapsible>
+        </section>
     </div>
 </template>
 
 <style scoped>
-.skeleton-demo {
+.skeleton-examples {
     all: revert;
     display: flex;
     flex-direction: column;
-    gap: 24px;
-    padding: 24px;
-    background: transparent;
-
-    border: 1px solid var(--color-surface-muted);
-    border-radius: 8px;
+    gap: 32px;
+    font-family: inherit;
 }
 
-.skeleton-demo :deep(*) {
+.skeleton-examples :deep(*) {
     margin: 0;
 }
 
-.demo-section {
-    margin-top: 0;
+.example-section {
+    all: revert;
     display: flex;
     flex-direction: column;
     gap: 12px;
 }
 
-.demo-section > * {
-    margin-top: 0;
-}
-
-.demo-section h3 {
+.example-section h3 {
     all: revert;
     font-size: 14px;
     font-weight: 600;
@@ -406,19 +398,4 @@ const listCode = `<div v-for="item in list" :key="item.id">
 
 .demo-note { font-size: 12px; color: var(--sl-color-text-light); margin: 0; }
 .demo-note code { font-size: 11px; }
-.trigger-btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: 500;
-    cursor: pointer;
-    border-width: 1px;
-    border-style: solid;
-    border-radius: 6px;
-    padding: 6px 12px;
-    font-size: 12px;
-    background-color: var(--color-brand-primary);
-    color: var(--color-foreground-inverse);
-    border-color: var(--color-brand-primary);
-}
 </style>
