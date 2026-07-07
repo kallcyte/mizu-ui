@@ -312,7 +312,7 @@ export type { TooltipProps } from "./components/MizuTooltipRoot.vue";
 export { default as MizuTooltipTrigger } from "./components/MizuTooltipTrigger.vue";
 export type { TooltipTriggerProps } from "./components/MizuTooltipTrigger.vue";
 export type { SkeletonThemeProps, SkeletonProps } from "./components/skeleton-types.ts";
-export { useToast } from "./composables/useToast"
+export { useToast } from "./composables/useToast";
 export type { ToastItem, ToastContext } from "./composables/useToast";
 export { useForm } from "./composables/useMizuField";
 export type { FieldState, MizuFormResult } from "./composables/useMizuField";
