@@ -16,6 +16,16 @@ This project follows **semantic versioning** (SemVer) during pre-1.0 development
 Changes that require a minor bump: adding a new component, renaming tokens, changing component APIs, adding new packages (e.g. React).
 Changes that keep the patch version: renames, copy edits, styling tweaks, build config changes, favicon updates.
 
+## 0.15.7 (2026-07-07)
+
+Convenience API for ComboboxRoot: declarative items prop with auto-wired input, trigger, content, viewport, and grouped item rendering.
+
+### Added
+
+- **Convenience API for ComboboxRoot**: `MizuComboboxRoot` now accepts an `items` prop (`ComboboxItem[]`) with support for value, label, disabled, and group properties. When `items` is provided, auto-renders MizuComboboxAnchor (with search Input + Trigger chevron), MizuComboboxPortal → MizuComboboxContent → MizuComboboxViewport, and MizuComboboxItem for each item with MizuComboboxItemIndicator for selected state. Items with a `group` property are wrapped in MizuComboboxGroup with MizuComboboxLabel. Falls back to composition mode via slots when no `items` prop is provided.
+- **Placeholder, error, helperText, emptyText props**: New pass-through props on the convenience API for the search input placeholder, validation state, helper text, and empty results message.
+- **339 unit tests**: 8 new items API tests for ComboboxRoot (renders anchor/input/trigger, placeholder, item labels, grouped items, error state, helper text, fallback to composition mode).
+
 ## 0.15.6 (2026-07-07)
 
 Test coverage expansion to Phases 4-5: complex components and Reka UI wrappers (331 tests across 31 files).

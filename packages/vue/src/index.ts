@@ -82,7 +82,7 @@ export type { ComboboxLabelProps } from "./components/MizuComboboxLabel.vue";
 export { default as MizuComboboxPortal } from "./components/MizuComboboxPortal.vue";
 export type { ComboboxPortalProps } from "./components/MizuComboboxPortal.vue";
 export { default as MizuComboboxRoot } from "./components/MizuComboboxRoot.vue";
-export type { ComboboxRootProps } from "./components/MizuComboboxRoot.vue";
+export type { ComboboxItem, ComboboxRootProps } from "./components/MizuComboboxRoot.vue";
 export { default as MizuComboboxSeparator } from "./components/MizuComboboxSeparator.vue";
 export type { ComboboxSeparatorProps } from "./components/MizuComboboxSeparator.vue";
 export { default as MizuComboboxTrigger } from "./components/MizuComboboxTrigger.vue";
