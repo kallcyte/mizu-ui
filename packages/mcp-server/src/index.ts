@@ -202,6 +202,8 @@ function parsePropsInterface(
         // Safety: stop reading after 20 lines
         if (nextLineIndex - i > 20) break;
       }
+      // The reassignment here is consumed by the for-loop's update clause (i++)
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       i = nextLineIndex - 1;
 
       typeStr = typeStr.replace(/;\s*$/, "").replace(/,\s*$/, "").trim();
@@ -507,7 +509,7 @@ server.setRequestHandler(ListResourcesRequestSchema, async () => {
   });
 
   // Per-component resources
-  for (const [name, _info] of Object.entries(getScanResult().components)) {
+  for (const name of Object.keys(getScanResult().components)) {
     resources.push({
       uri: `mizu://components/${name}`,
       name: `Component: ${name}`,
