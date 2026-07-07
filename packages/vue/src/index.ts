@@ -190,7 +190,7 @@ export type { DropdownMenuRadioGroupProps } from "./components/MizuDropdownMenuR
 export { default as MizuDropdownMenuRadioItem } from "./components/MizuDropdownMenuRadioItem.vue";
 export type { DropdownMenuRadioItemProps } from "./components/MizuDropdownMenuRadioItem.vue";
 export { default as MizuDropdownMenuRoot } from "./components/MizuDropdownMenuRoot.vue";
-export type { DropdownMenuRootProps } from "./components/MizuDropdownMenuRoot.vue";
+export type { DropdownMenuItemType, DropdownMenuRootProps } from "./components/MizuDropdownMenuRoot.vue";
 export { default as MizuDropdownMenuSeparator } from "./components/MizuDropdownMenuSeparator.vue";
 export type { DropdownMenuSeparatorProps } from "./components/MizuDropdownMenuSeparator.vue";
 export { default as MizuDropdownMenuShortcut } from "./components/MizuDropdownMenuShortcut.vue";
@@ -276,7 +276,7 @@ export type { TabsIndicatorProps } from "./components/MizuTabsIndicator.vue";
 export { default as MizuTabsList } from "./components/MizuTabsList.vue";
 export type { TabsListProps } from "./components/MizuTabsList.vue";
 export { default as MizuTabsRoot } from "./components/MizuTabsRoot.vue";
-export type { TabsRootProps } from "./components/MizuTabsRoot.vue";
+export type { TabItem, TabsRootProps } from "./components/MizuTabsRoot.vue";
 export { default as MizuTabsTrigger } from "./components/MizuTabsTrigger.vue";
 export type { TabsTriggerProps } from "./components/MizuTabsTrigger.vue";
 export { default as MizuTag } from "./components/MizuTag.vue";
@@ -312,7 +312,7 @@ export type { TooltipProps } from "./components/MizuTooltipRoot.vue";
 export { default as MizuTooltipTrigger } from "./components/MizuTooltipTrigger.vue";
 export type { TooltipTriggerProps } from "./components/MizuTooltipTrigger.vue";
 export type { SkeletonThemeProps, SkeletonProps } from "./components/skeleton-types.ts";
-export { useToast } from "./composables/useToast";
+export { useToast } from "./composables/useToast"
 export type { ToastItem, ToastContext } from "./composables/useToast";
 export { useForm } from "./composables/useMizuField";
 export type { FieldState, MizuFormResult } from "./composables/useMizuField";

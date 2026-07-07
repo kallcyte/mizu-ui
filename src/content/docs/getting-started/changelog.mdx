@@ -16,6 +16,20 @@ This project follows **semantic versioning** (SemVer) during pre-1.0 development
 Changes that require a minor bump: adding a new component, renaming tokens, changing component APIs, adding new packages (e.g. React).
 Changes that keep the patch version: renames, copy edits, styling tweaks, build config changes, favicon updates.
 
+## 0.15.5 (2026-07-07)
+
+Convenience API patterns for Tabs and DropdownMenu, plus expanded test coverage (181 tests across 17 files).
+
+### Added
+
+- **Convenience API patterns**: `MizuTabsRoot` now accepts a `tabs` prop (`TabItem[]`) for declarative tab rendering with internal component wiring (auto-generates MizuTabsList, MizuTabsTrigger, MizuTabsContent). Falls back to composition mode via slots when no `tabs` prop is provided.
+- **Convenience API patterns**: `MizuDropdownMenuRoot` now accepts an `items` prop (`DropdownMenuItemType[]`) with support for `item`, `label`, and `separator` types, plus icon, shortcut, and variant per-item props. Falls back to composition mode via slots when no `items` prop is provided.
+- **Test suite expansion**: 181 unit tests across 17 files covering Phases 1-3 of the testing roadmap: form composable (useMizuField), input, button, select, textarea, checkbox, radio, switch, alert, badge, tag, progress, avatar, divider, quote, dash-list, and metric.
+
+### Changed
+
+- `MizuTabsRoot` exposes `variant`, `size`, `color`, `loop`, and `icon` pass-through props for the items API declarative mode.
+
 ## 0.15.4 (2026-07-07)
 
 Tooling infrastructure (Vitest, ESLint, Prettier, CI) and MCP server package for AI consumption.
