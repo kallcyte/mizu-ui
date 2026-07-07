@@ -851,7 +851,7 @@ async function main() {
   console.error(`Mizu Design System MCP Server`);
   console.error(`Project root: ${PROJECT_ROOT}`);
   const startupScan = getScanResult();
-    console.error(`Components found: ${Object.keys(startupScan.components).length}`);
+  console.error(`Components found: ${Object.keys(startupScan.components).length}`);
   console.error(`Starting stdio transport...`);
 
   const transport = new StdioServerTransport();
