@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted, computed, h } from "vue";
-import { MizuDataTable, MizuTag } from "@mizu/vue";
+import { MizuDataTable } from "@mizu/vue";
 import type { ColumnDef } from "@tanstack/vue-table";
 import CodeCollapsible from "./CodeCollapsible.vue";
 
@@ -143,11 +143,7 @@ const contactColumns: ColumnDef<Contact, unknown>[] = [
     header: "Status",
     cell: ({ row }) => {
       const status = row.getValue("status") as string;
-      return h(
-        MizuTag,
-        { variant: status === "active" ? "success" : "warning", size: "sm" },
-        () => status
-      );
+      return h("span", { class: "status-tag", style: `color: var(--color-feedback-${status === "active" ? "success" : "warning"}-base)` }, status);
     },
   },
   {

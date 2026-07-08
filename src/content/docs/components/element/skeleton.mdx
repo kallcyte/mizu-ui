@@ -3,42 +3,38 @@ title: Skeleton
 description: A loading placeholder that visually represents content while data is being fetched.
 ---
 
-import SkeletonDemo from "../../../../components/docs/SkeletonDemo.vue";
+> **Nuxt UI Migration:** This component now uses Nuxt UI's `USkeleton` component as its base. See [Nuxt UI documentation](https://ui.nuxt.com) for the complete API reference. Mizu provides the theme layer (colors, fonts, spacing) that automatically applies to all Nuxt UI components.
 
 A skeleton is a lightweight, non-interactive placeholder used to indicate that content is loading. It mirrors the shape of the eventual content (text, avatars, cards, list items) so the layout stays stable while data fetches.
 
-## Examples
-
-<SkeletonDemo client:only="vue" />
-
 ```vue
 <!-- Single line of text -->
-<MizuSkeleton variant="text" />
+<USkeleton variant="text" />
 
 <!-- Multi-line paragraph placeholder -->
-<MizuSkeleton variant="text" :lines="3" />
+<USkeleton variant="text" :lines="3" />
 
 <!-- Circle avatar placeholder -->
-<MizuSkeleton variant="circle" :width="48" :height="48" />
+<USkeleton variant="circle" :width="48" :height="48" />
 
 <!-- Rectangular thumbnail -->
-<MizuSkeleton variant="rect" :width="200" :height="120" :radius="12" />
+<USkeleton variant="rect" :width="200" :height="120" :radius="12" />
 
 <!-- Custom width as string -->
-<MizuSkeleton variant="text" width="60%" />
+<USkeleton variant="text" width="60%" />
 
 <!-- Shimmer animation (the default) -->
-<MizuSkeleton variant="rect" :width="100" :height="20" animation="shimmer" />
+<USkeleton variant="rect" :width="100" :height="20" animation="shimmer" />
 
 <!-- Pulse animation (opacity fade) -->
-<MizuSkeleton variant="rect" :width="100" :height="20" animation="pulse" />
+<USkeleton variant="rect" :width="100" :height="20" animation="pulse" />
 
 <!-- No animation -->
-<MizuSkeleton variant="rect" :width="100" :height="20" animation="none" />
+<USkeleton variant="rect" :width="100" :height="20" animation="none" />
 
 <!-- Combined with v-if for conditional loading -->
 <template>
-  <MizuSkeleton v-if="loading" variant="text" :lines="4" />
+  <USkeleton v-if="loading" variant="text" :lines="4" />
   <p v-else>{{ content }}</p>
 </template>
 ```
@@ -201,7 +197,7 @@ For multi-line text, a stack wrapper groups `lines` placeholder elements and shr
 ## Implementation Notes
 
 1. **Native `<span>` element** — Renders as `<span>` by default for correct inline flow; switches to `<div>` wrapper only for the multi-line `lines > 1` stack so the gap layout works
-2. **No Reka UI needed** — Skeleton is purely presentational and animation-driven; no headless wrapper required
+2. **No Nuxt UI needed** — Skeleton is purely presentational and animation-driven; no headless wrapper required
 3. **`font-size` scaling** — The `text` variant uses `height: 0.85em` so it tracks the surrounding text size automatically
 4. **`lines > 1` rendering** — When `lines > 1` and `variant="text"`, a `<div>` stack wraps `lines` placeholder spans; the last span is 60% width to mimic natural prose endings
 5. **Pixel vs string width** — Numeric `width`/`height`/`radius` props are converted to `Npx`; strings are used as-is so consumers can pass `100%`, `12rem`, `var(--something)`, etc.

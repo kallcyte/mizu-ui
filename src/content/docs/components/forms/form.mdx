@@ -3,17 +3,13 @@ title: Form
 description: Validation-aware form wrapper with field-level error handling.
 ---
 
-import FormDemo from "../../../../components/docs/FormDemo.vue";
+> **Nuxt UI Migration:** This component now uses Nuxt UI's `UForm` and `UFormField` components as its base. See [Nuxt UI documentation](https://ui.nuxt.com) for the complete API reference. Mizu provides the theme layer (colors, fonts, spacing) that automatically applies to all Nuxt UI components.
 
 A Form provides validation lifecycle and error tracking for any set of inputs. Use it to build validated forms without managing error state manually — each field tracks its own touched/error state.
 
-## Examples
-
-<FormDemo client:only="vue" />
-
 ## API
 
-### MizuForm Props
+### UForm Props
 
 | Prop       | Type                           | Default | Description                                                |
 | ---------- | ------------------------------ | ------- | ---------------------------------------------------------- |
@@ -21,13 +17,13 @@ A Form provides validation lifecycle and error tracking for any set of inputs. U
 | `validate` | `(state) => ValidationError[]` | —       | Validation function — return array of `{ field, message }` |
 | `submit`   | `(state) => Promise<void>`     | —       | Async submit handler — called with validated state         |
 
-### MizuForm Events
+### UForm Events
 
 | Event    | Payload                   | Description                                                       |
 | -------- | ------------------------- | ----------------------------------------------------------------- |
 | `submit` | `Record<string, unknown>` | Emitted after validation passes, before the `submit` prop handler |
 
-### MizuFormField Props
+### UFormField Props
 
 | Prop       | Type      | Default | Description                                               |
 | ---------- | --------- | ------- | --------------------------------------------------------- |
@@ -36,7 +32,7 @@ A Form provides validation lifecycle and error tracking for any set of inputs. U
 | `required` | `boolean` | `false` | Adds an asterisk to the label                             |
 | `help`     | `string`  | —       | Help text below the input (hidden when an error is shown) |
 
-### MizuFormField Slot Props
+### UFormField Slot Props
 
 | Prop         | Type                  | Description                                                 |
 | ------------ | --------------------- | ----------------------------------------------------------- |
@@ -85,23 +81,23 @@ A form consists of 2 parts:
 
 | Part          | Required        | Description                                                                |
 | ------------- | --------------- | -------------------------------------------------------------------------- |
-| MizuForm      | Yes             | Wraps all fields, provides validation and submission lifecycle             |
-| MizuFormField | Yes (per input) | Renders label, required indicator, and validation error for a single field |
+| UForm         | Yes             | Wraps all fields, provides validation and submission lifecycle             |
+| UFormField    | Yes (per input) | Renders label, required indicator, and validation error for a single field |
 
 ## Composition
 
 ```
-MizuForm
-  ├── MizuFormField (name="email")
-  │     └── MizuInput (or any input)
-  ├── MizuFormField (name="password")
-  │     └── MizuInput (or any input)
-  └── MizuButton (type="submit")
+<UForm
+  ├── UFormField (name="email")
+  │     └── UInput (or any input)
+  ├── UFormField (name="password")
+  │     └── UInput (or any input)
+  └── UButton (type="submit")
 ```
 
 ## Implementation Notes
 
-1. Uses Vue `provide/inject` for form context — MizuFormField auto-connects to its parent MizuForm
+1. Uses Vue `provide/inject` for form context — UFormField auto-connects to its parent UForm
 2. Error tracking is per-field via `touched` flags — errors only show after the field loses focus
 3. `@focusout` on the field wrapper automatically marks fields as touched without manual wiring
 4. The slot scope pattern passes `error`, `id`, and `helperText` to any child input component

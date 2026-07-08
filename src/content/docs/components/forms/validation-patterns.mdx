@@ -3,13 +3,13 @@ title: Validation Patterns
 description: Learn how to validate forms using the useForm composable with Zod schemas.
 ---
 
-import LoginDemo from "../../../../components/docs/LoginDemo.vue";
+> **Nuxt UI Migration:** The form validation patterns shown here now use Nuxt UI's `UInput` and `UButton` components. See [Nuxt UI documentation](https://ui.nuxt.com) for the complete API reference. Mizu provides the theme layer (colors, fonts, spacing) that automatically applies to all Nuxt UI components.
 
-Mizu provides a lightweight `useForm` composable that pairs with [Zod](https://zod.dev) schemas for form validation. It is designed to work with the existing `error` and `helperText` props on `MizuInput` and other form components, keeping validation at the application level rather than baked into the components themselves.
+Mizu provides a lightweight `useForm` composable that pairs with [Zod](https://zod.dev) schemas for form validation. It is designed to work with the existing `error` and `helperText` props on `UInput` and other form components, keeping validation at the application level rather than baked into the components themselves.
 
 ## Why Application-Level Validation?
 
-`MizuInput` accepts an `error` (boolean) and `helperText` (string) prop. You can plug in any validation library without modifying the component. The `useForm` composable is one adapter for Zod schemas.
+`UInput` accepts an `error` (boolean) and `helperText` (string) prop. You can plug in any validation library without modifying the component. The `useForm` composable is one adapter for Zod schemas.
 
 ## Setup
 
@@ -32,7 +32,7 @@ Define a Zod schema and pass it to `useForm`:
 
 ```vue
 <script setup lang="ts">
-import { useForm, MizuInput, MizuButton } from "@mizu/vue";
+import { useForm, UInput, UButton } from "@mizu/vue";
 import { z } from "zod";
 
 const schema = z.object({
@@ -54,7 +54,7 @@ const submitHandler = form.handleSubmit(handleSubmit);
 
 <template>
   <form @submit="submitHandler" novalidate>
-    <MizuInput
+    <UInput
       v-model="form.fields.email.value"
       :error="!!form.fields.email.error.value"
       :helper-text="form.fields.email.error.value"
@@ -63,7 +63,7 @@ const submitHandler = form.handleSubmit(handleSubmit);
       placeholder="you@example.com"
       @blur="form.fields.email.onBlur()"
     />
-    <MizuInput
+    <UInput
       v-model="form.fields.password.value"
       :error="!!form.fields.password.error.value"
       :helper-text="form.fields.password.error.value"
@@ -72,9 +72,9 @@ const submitHandler = form.handleSubmit(handleSubmit);
       placeholder="Enter password"
       @blur="form.fields.password.onBlur()"
     />
-    <MizuButton type="submit" :loading="form.isSubmitting.value">
+    <UButton type="submit" :loading="form.isSubmitting.value">
       {{ form.isSubmitting.value ? "Submitting..." : "Submit" }}
-    </MizuButton>
+    </UButton>
   </form>
 </template>
 ```
@@ -169,16 +169,12 @@ async function handleSubmit(values: Form) {
 
 ## Examples
 
-### Demo: Login Form
-
-<LoginDemo client:only="vue" />
-
 ## Summary
 
 | Concern              | Handled by                               |
 | -------------------- | ---------------------------------------- |
 | Schema definition    | Zod                                      |
 | Reactive state       | `useForm` composable                     |
-| Visual feedback      | `MizuInput` `error` + `helperText` props |
+| Visual feedback      | `UInput` `error` + `helperText` props |
 | Submission lifecycle | `handleSubmit` wrapper                   |
 | Server errors        | `setFieldError` after API call           |

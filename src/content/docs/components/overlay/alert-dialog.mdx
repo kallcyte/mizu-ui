@@ -49,7 +49,7 @@ An AlertDialog is a modal dialog that interrupts the user to confirm a critical 
 | `asChild`                     | `boolean`                      | `undefined` | Render as child element                                                                       |
 | `as`                          | `string`                       | `undefined` | Custom root element                                                                           |
 | `fullscreen`                  | `boolean`                      | `false`     | Dialog fills entire viewport — no border, no shadow, inset 0                                  |
-| `dismissible`                 | `boolean`                      | `true`      | When `false`, prevents close on click-outside / Escape (overrides Reka UI default for safety) |
+| `dismissible`                 | `boolean`                      | `true`      | When `false`, prevents close on click-outside / Escape (overrides Nuxt UI default for safety) |
 | `scrollable`                  | `boolean`                      | `false`     | Content scrolls within the overlay (max-height: 90vh)                                         |
 | `transition`                  | `boolean`                      | `true`      | Enable/disable enter/leave animations                                                         |
 | `size`                        | `'sm' \| 'md' \| 'lg' \| 'xl'` | `'md'`      | Dialog width (sm: 400px, md: 500px, lg: 700px, xl: 900px)                                     |
@@ -65,7 +65,7 @@ An AlertDialog is a modal dialog that interrupts the user to confirm a critical 
 | `openAutoFocus`      | `Event`         | Auto-focus on open                                                    |
 | `closeAutoFocus`     | `Event`         | Auto-focus on close                                                   |
 
-When `dismissible` is `false`, `pointerDownOutside` and `interactOutside` events are prevented (same as Reka UI AlertDialog default behavior). When `dismissible` is `true`, these events fire and the dialog will close on click-outside.
+When `dismissible` is `false`, `pointerDownOutside` and `interactOutside` events are prevented (same as Nuxt UI AlertDialog default behavior). When `dismissible` is `true`, these events fire and the dialog will close on click-outside.
 
 ### AlertDialogTitle Props
 
@@ -126,7 +126,6 @@ import {
   MizuDialogHeader,
   MizuDialogBody,
   MizuDialogFooter,
-  MizuButton,
 } from "@mizu/vue";
 
 const open = ref(false);
@@ -135,7 +134,7 @@ const open = ref(false);
 <template>
   <MizuAlertDialogRoot v-model:open="open">
     <MizuAlertDialogTrigger as-child>
-      <MizuButton variant="accent" size="md" class="w-max">Delete Invoice</MizuButton>
+      <UButton variant="accent" size="md" class="w-max">Delete Invoice</UButton>
     </MizuAlertDialogTrigger>
     <MizuAlertDialogPortal>
       <MizuAlertDialogOverlay />
@@ -151,10 +150,10 @@ const open = ref(false);
         </MizuDialogBody>
         <MizuDialogFooter>
           <MizuAlertDialogCancel as-child>
-            <MizuButton variant="ghost" size="md" class="w-max">Cancel</MizuButton>
+            <UButton variant="ghost" size="md" class="w-max">Cancel</UButton>
           </MizuAlertDialogCancel>
           <MizuAlertDialogAction as-child>
-            <MizuButton variant="accent" size="md" class="w-max">Delete</MizuButton>
+            <UButton variant="accent" size="md" class="w-max">Delete</UButton>
           </MizuAlertDialogAction>
         </MizuDialogFooter>
       </MizuAlertDialogContent>
@@ -191,10 +190,10 @@ const open = ref(false);
 
 | Criterion         | Implementation                                                                                      |
 | ----------------- | --------------------------------------------------------------------------------------------------- |
-| Focus trap        | Reka UI DialogContentModal traps focus within the dialog                                            |
-| Body scroll lock  | Reka UI disables background scrolling when open                                                     |
-| Escape key        | Reka UI closes dialog on Escape key press                                                           |
-| Outside click     | Reka UI AlertDialog prevents closing on outside click (safety)                                      |
+| Focus trap        | Nuxt UI DialogContent traps focus within the dialog                                               |
+| Body scroll lock  | Nuxt UI disables background scrolling when open                                                    |
+| Escape key        | Nuxt UI closes dialog on Escape key press                                                          |
+| Outside click     | Nuxt UI AlertDialog prevents closing on outside click (safety)                                     |
 | ARIA role         | Content has `role="alertdialog"` and `aria-modal="true"`                                            |
 | ARIA labelling    | `aria-labelledby` links to `AlertDialogTitle`; `aria-describedby` links to `AlertDialogDescription` |
 | Focus return      | Focus returns to the trigger element on close                                                       |
@@ -255,9 +254,9 @@ MizuAlertDialogRoot
 ## Implementation Notes
 
 1. **`dismissible` control** — Defaults to `true` (consistent with MizuDialogContent). Set `dismissible` to `false` to prevent Escape/click-outside dismiss. When `false`, `pointerDownOutside` and `escapeKeyDown` events are prevented.
-2. **Cancel receives initial focus** — Reka UI AlertDialogContent auto-focuses the cancel button on open as a safety measure, ensuring the user must actively move to the confirm action.
+2. **Cancel receives initial focus** — Nuxt UI AlertDialogContent auto-focuses the cancel button on open as a safety measure, ensuring the user must actively move to the confirm action.
 3. **Always modal** — Unlike `MizuDialogRoot`, `MizuAlertDialogRoot` has no `modal` prop and is always modal.
-4. **Use `as-child` on Action and Cancel** — Both `MizuAlertDialogAction` and `MizuAlertDialogCancel` accept `as-child` for composition with `MizuButton`. Use `as-child` to apply MizuButton styling while keeping the Reka UI dialog-closing behavior.
+4. **Use `as-child` on Action and Cancel** — Both `MizuAlertDialogAction` and `MizuAlertDialogCancel` accept `as-child` for composition with `UButton`. Use `as-child` to apply UButton styling while keeping the Nuxt UI dialog-closing behavior.
 5. **Reuse Dialog layout components** — `MizuDialogHeader`, `MizuDialogBody`, and `MizuDialogFooter` work identically as structural wrappers for AlertDialog content.
 6. **`fullscreen` mode** — When `fullscreen` is `true`, the alert dialog fills the viewport with `inset: 0`, no border-radius, and no box-shadow.
 7. **`scrollable` mode** — When `scrollable` is `true`, the content area gets `overflow-y: auto` and `max-height: 90vh`.

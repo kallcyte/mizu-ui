@@ -1,0 +1,110 @@
+---
+title: Migration Guide
+description: How to migrate from Mizu v0.15.x (Reka UI) to v0.16.x (Nuxt UI).
+---
+
+## Overview
+
+Mizu v0.16.0 migrates from **Reka UI** to **Nuxt UI v4** as the base component library. Instead of wrapping every UI primitive in a `Mizu*` component, Mizu now acts as a **theme extension layer** — providing design tokens (colors, fonts, spacing, radius) that automatically style Nuxt UI components.
+
+## Quick Start
+
+### 1. Install Nuxt UI
+
+```bash
+npm install @nuxt/ui
+# or
+pnpm add @nuxt/ui
+```
+
+### 2. Update Imports
+
+Replace `Mizu*` component imports with their Nuxt UI equivalents:
+
+| Before (v0.15.x) | After (v0.16.x) |
+|---|---|
+| `<MizuButton>` | `<UButton>` |
+| `<MizuCard>` | `<UCard>` |
+| `<MizuDialog>` | `<UModal>` |
+| `<MizuInput>` | `<UInput>` |
+| `<MizuTextarea>` | `<UTextarea>` |
+| `<MizuSelect>` | `<USelect>` |
+| `<MizuCheckbox>` | `<UCheckbox>` |
+| `<MizuSwitch>` | `<USwitch>` |
+| `<MizuBadge>` | `<UBadge>` |
+| `<MizuAvatar>` | `<UAvatar>` |
+| `<MizuAvatarGroup>` | `<UAvatarGroup>` |
+| `<MizuTabs>` | `<UTabs>` |
+| `<MizuTooltip>` | `<UTooltip>` |
+| `<MizuPopover>` | `<UPopover>` |
+| `<MizuDropdownMenu>` | `<UDropdownMenu>` |
+| `<MizuDrawer>` | `<USlideover>` |
+| `<MizuToast>` | `<UToast>` (*see note below) |
+| `<MizuProgress>` | `<UProgress>` |
+| `<MizuBreadcrumb>` | `<UBreadcrumb>` |
+| `<MizuPagination>` | `<UPagination>` |
+| `<MizuKbd>` | `<UKbd>` |
+| `<MizuCollapsible>` | `<UCollapsible>` |
+| `<MizuDivider>` | `<UDivider>` |
+
+### 3. Update Toast Usage
+
+The `useToast` composable has been removed. Use Nuxt UI's auto-imported `useToast`:
+
+```ts
+// Before
+import { useToast } from "@mizu/vue";
+const toast = useToast();
+toast.show({ title: "Success", description: "Saved!", variant: "success" });
+
+// After
+const toast = useToast();
+toast.add({ title: "Success", description: "Saved!", color: "success" });
+```
+
+### 4. CSS Import
+
+```ts
+// Keep this if you had it
+import "@mizu/vue/style.css";
+```
+
+This bundles Mizu tokens and the Nuxt UI theme. Your Nuxt UI components will automatically use Mizu colors, fonts, and spacing.
+
+## Components That Stayed
+
+These Mizu components are **still available** — they solve unique UI problems not covered by Nuxt UI:
+
+| Component | Description |
+|---|---|
+| `MizuAlertDialog` | Custom alert dialog for destructive/critical actions |
+| `MizuDashList` | Definition list for label-value pairs |
+| `MizuDataTable` | TanStack Table wrapper with sorting, selection, pagination |
+| `MizuMetric` | KPI/stat display with color variants |
+| `MizuQuote` | Blockquote with default and accent variants |
+| `MizuSkeletonTheme` | Skeleton theme engine via provide/inject |
+
+## Composables
+
+| Composable | Status |
+|---|---|
+| `useForm` | Kept — Zod-based form validation |
+| `useToast` | Removed — use Nuxt UI's `useToast` |
+
+## Theme Customization
+
+Mizu maps its design tokens to Nuxt UI's semantic color system. You can customize via CSS custom properties or by setting up a Nuxt UI `app.config.ts`:
+
+```ts
+// app.config.ts
+export default defineAppConfig({
+  ui: {
+    colors: {
+      primary: "brand-primary",
+      neutral: "surface",
+    },
+  },
+});
+```
+
+For full theme customization, see the [Tokens overview](/tokens/overview).

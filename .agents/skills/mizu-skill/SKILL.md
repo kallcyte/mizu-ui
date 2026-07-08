@@ -9,80 +9,38 @@ disable-model-invocation: false
 1. This project follows semantic versioning (SemVer) during pre-1.0 development.
 2. **Always rebuild `@mizu/vue` after adding or modifying components** — run `pnpm --filter @mizu/vue build`. If the dist is stale, new components render as `undefined` and pages crash.
 3. **The `packages/vue/src/index.ts` is auto-generated** by `packages/vue/scripts/generate-index.mjs`. It runs automatically before `vite build` in the `@mizu/vue` build pipeline. Just add `.vue` files to `packages/vue/src/components/` and run `pnpm --filter @mizu/vue build` — the exports are generated for you.
-4. **Demo components must prevent Starlight CSS bleed** — every demo component must include this `<style scoped>` block (adapting the outer wrapper class name as needed):
+4. When you find gaps or missing conventions in this skill, flag them at the end of the session.
 
-```vue
-<style scoped>
-.your-demo {
-  all: revert;
-}
+5. **Prioritize Tailwind CSS v4 utility classes first** when writing styles. Only write raw CSS directives (`property: value`) when Tailwind does not provide an equivalent utility class.
 
-.your-demo .demo-section {
-  margin-top: 0;
-}
-
-.your-demo .demo-section > * {
-  margin-top: 0;
-}
-
-.your-demo .demo-section h3 {
-  all: revert;
-}
-</style>
-```
-
-This resets Starlight's `.sl-markdown-content :not(...) + :not(...)` rule which adds unwanted `margin-top` to elements inside demos.
-
-**For MDX-level bleed prevention**, wrap demo components in a `<div class="not-content">` when mounting them directly in MDX (without a scoped wrapper). Starlight's `.sl-markdown-content` cascade explicitly skips children of `.not-content`:
-
-```mdx
-<div class="not-content">
-  <YourDemo client:load />
-</div>
-```
-
-**For reusable demo wrappers** like `DemoTabs.vue`, the preview slot wrapper should carry the `not-content` class:
-
-```html
-<div class="demo-tabs__preview not-content">
-  <slot />
-</div>
-```
-
-Use `all: revert` in the Vue component's scoped `<style>` first. Add `not-content` as a second line of defense for slotted or MDX-mounted content. Do NOT use `all: revert` on `MizuTabsContent` or other Reka UI content elements — it overrides Reka's `display: none` on inactive panels.
-
-5. When you find gaps or missing conventions in this skill, flag them at the end of the session.
-
-6. **Prioritize Tailwind CSS v4 utility classes first** when writing styles. If a custom class is needed, use `@apply <tailwindcss_utility_classes>` inside `<style>` blocks. Only write raw CSS directives (`property: value`) when Tailwind does not provide an equivalent utility class.
-
-7. **Every component must have a matching Histoire story.** Stories live in `packages/vue/src/stories/{Name}.story.vue`. When adding a new component, create its story file. When modifying a component's API (props, slots, events, variants), update the existing story to reflect the changes. Use this skeleton:
+6. **Every component must have a matching Histoire story.** Stories live in `packages/vue/src/stories/{Name}.story.vue`. When adding a new component, create its story file. When modifying a component's API (props, slots, events, variants), update the existing story to reflect the changes. Use this skeleton:
 
 ```vue
 <script setup lang="ts">
-import MizuComponent from "../components/MizuComponent.vue";
+import UComponent from "../components/UComponent.vue";
 </script>
 
 <template>
   <Story title="ComponentName" :layout="{ type: 'single', width: 400 }">
     <Variant title="Variants">
       <div class="flex flex-wrap gap-3 items-center">
-        <MizuComponent variant="primary" />
-        <MizuComponent variant="secondary" />
+        <UComponent variant="primary" />
+        <UComponent variant="secondary" />
       </div>
     </Variant>
 
     <Variant title="Sizes">
       <div class="flex flex-wrap gap-3 items-center">
-        <MizuComponent size="sm" />
-        <MizuComponent size="md" />
-        <MizuComponent size="lg" />
+        <UComponent size="sm" />
+        <UComponent size="md" />
+        <UComponent size="lg" />
       </div>
     </Variant>
 
     <Variant title="States">
       <div class="flex flex-wrap gap-3 items-center">
-        <MizuComponent disabled />
-        <MizuComponent loading />
+        <UComponent disabled />
+        <UComponent loading />
       </div>
     </Variant>
   </Story>
@@ -93,7 +51,7 @@ Run `pnpm --filter @mizu/vue story:dev` to preview stories locally. Use `pnpm --
 
 ## Documentation
 
-8. After finalizing a new component, **always** complete all three of these documentation steps in the same batch — no exceptions:
+7. After finalizing a new component, **always** complete all three of these documentation steps in the same batch — no exceptions:
    - Create component documentation at `src/content/docs/components/{name}.mdx` following the structure below.
    - Add a component card to `src/components/home/ComponentsSection.astro` inside `<div class="comp-grid">`. Use this template:
 
@@ -112,10 +70,10 @@ Run `pnpm --filter @mizu/vue story:dev` to preview stories locally. Use `pnpm --
 - Add the component to the Starlight sidebar under the "Components" group in `astro.config.mjs`.
 - Verify all three stay in sync: sidebar entries, homepage cards, and docs pages. Compare the sidebar component list in `astro.config.mjs` against `src/components/home/ComponentsSection.astro` and `src/content/docs/components/` after every batch.
 
-9. Before documenting a new component, run `pnpm --filter @mizu/vue build` to regenerate `packages/vue/src/index.ts`, then verify every exported component has a corresponding sidebar entry (`astro.config.mjs`), docs page (`src/content/docs/components/`), and homepage card (`src/components/home/ComponentsSection.astro`). The three must always be in sync — a missing homepage card is a documentation bug.
-10. Create a new changelog entry in `src/content/docs/getting-started/changelog.mdx` before committing.
-11. **Bump the patch version** (e.g., `0.12.0` → `0.12.1`) in `packages/vue/package.json` and `package.json` (root) after adding a new component.
-12. After a version bump, update the version number in:
+8. Before documenting a new component, run `pnpm --filter @mizu/vue build` to regenerate `packages/vue/src/index.ts`, then verify every exported component has a corresponding sidebar entry (`astro.config.mjs`), docs page (`src/content/docs/components/`), and homepage card (`src/components/home/ComponentsSection.astro`). The three must always be in sync — a missing homepage card is a documentation bug.
+9. Create a new changelog entry in `src/content/docs/getting-started/changelog.mdx` before committing.
+10. **Bump the patch version** (e.g., `0.12.0` → `0.12.1`) in `packages/vue/package.json` and `package.json` (root) after adding a new component.
+11. After a version bump, update the version number in:
     - `packages/vue/package.json` (the canonical source of truth)
     - `package.json` (root, keep in sync)
     - `src/components/home/Hero.astro` — search for `Design System · v0.`

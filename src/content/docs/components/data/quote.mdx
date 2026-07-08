@@ -106,7 +106,7 @@ A quote consists of two parts:
 
 ## Implementation Notes
 
-1. **Native element** -- uses `<blockquote>` for semantic correctness; no Reka UI primitive needed.
+1. **Native element** -- uses `<blockquote>` for semantic correctness.
 2. **Citation** -- uses `<footer>` and `<cite>` elements for proper semantic markup and machine-readable source attribution.
 3. **Accent variant** -- toggled via `accent` boolean prop; applies a `brand-ycp` left border and `brand-ycp-subtle` background.
 4. **Class inheritance** -- accepts `class` prop via `useAttrs()` for Tailwind overrides.
