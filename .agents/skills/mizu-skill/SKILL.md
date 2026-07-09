@@ -7,13 +7,45 @@ disable-model-invocation: false
 ## Development
 
 1. This project follows semantic versioning (SemVer) during pre-1.0 development.
-2. **Always rebuild `@mizu/vue` after adding or modifying components** — run `pnpm --filter @mizu/vue build`. If the dist is stale, new components render as `undefined` and pages crash.
+2. **Always rebuild `@mizu/vue` after adding or modifying components, and at the end of every task** — run `pnpm --filter @mizu/vue build`. If the dist is stale, new components render as `undefined` and pages crash. This is the final verification step before declaring a task complete.
 3. **The `packages/vue/src/index.ts` is auto-generated** by `packages/vue/scripts/generate-index.mjs`. It runs automatically before `vite build` in the `@mizu/vue` build pipeline. Just add `.vue` files to `packages/vue/src/components/` and run `pnpm --filter @mizu/vue build` — the exports are generated for you.
 4. When you find gaps or missing conventions in this skill, flag them at the end of the session.
 
-5. **Prioritize Tailwind CSS v4 utility classes first** when writing styles. Only write raw CSS directives (`property: value`) when Tailwind does not provide an equivalent utility class.
+5. **Astro Dev Server** — The docs site (Starlight) can be run in the background for quick visual feedback. Use these agent-level commands:
 
-6. **Every component must have a matching Histoire story.** Stories live in `packages/vue/src/stories/{Name}.story.vue`. When adding a new component, create its story file. When modifying a component's API (props, slots, events, variants), update the existing story to reflect the changes. Use this skeleton:
+   - `astro dev --background` — Starts the Astro+Starlight dev server in the background. Output is piped to `/tmp/astro-dev.log`.
+
+     ```sh
+     nohup astro dev --host > /tmp/astro-dev.log 2>&1 &
+     ```
+
+   - `astro dev stop` — Kills the background Astro dev server:
+
+     ```sh
+     pkill -f "astro dev" 2>/dev/null; pkill -f "astro" 2>/dev/null; rm -f /tmp/astro-dev.log
+     ```
+
+   - `astro dev status` — Checks if the background server is running:
+
+     ```sh
+     pgrep -f "astro dev" > /dev/null 2>&1 && echo "Astro dev server is running" || echo "Astro dev server is NOT running"
+     ```
+
+   - `astro dev logs` — Shows recent output from the background server:
+
+     ```sh
+     cat /tmp/astro-dev.log 2>/dev/null || echo "No logs found"
+     ```
+
+   - **After updating Starlight docs** (MDX files, `astro.config.mjs` sidebar, or demo components under `src/components/docs/`), restart the dev server at the end of the whole process to ensure the changes are picked up:
+     1. `astro dev stop`
+     2. `astro dev --background`
+
+---
+
+7. **Prioritize Tailwind CSS v4 utility classes first** when writing styles. Only write raw CSS directives (`property: value`) when Tailwind does not provide an equivalent utility class.
+
+8. **Every component must have a matching Histoire story.** Stories live in `packages/vue/src/stories/{Name}.story.vue`. When adding a new component, create its story file. When modifying a component's API (props, slots, events, variants), update the existing story to reflect the changes. Use this skeleton:
 
 ```vue
 <script setup lang="ts">
@@ -51,7 +83,7 @@ Run `pnpm --filter @mizu/vue story:dev` to preview stories locally. Use `pnpm --
 
 ## Documentation
 
-7. After finalizing a new component, **always** complete all three of these documentation steps in the same batch — no exceptions:
+9. After finalizing a new component, **always** complete all three of these documentation steps in the same batch — no exceptions:
    - Create component documentation at `src/content/docs/components/{name}.mdx` following the structure below.
    - Add a component card to `src/components/home/ComponentsSection.astro` inside `<div class="comp-grid">`. Use this template:
 
@@ -70,10 +102,10 @@ Run `pnpm --filter @mizu/vue story:dev` to preview stories locally. Use `pnpm --
 - Add the component to the Starlight sidebar under the "Components" group in `astro.config.mjs`.
 - Verify all three stay in sync: sidebar entries, homepage cards, and docs pages. Compare the sidebar component list in `astro.config.mjs` against `src/components/home/ComponentsSection.astro` and `src/content/docs/components/` after every batch.
 
-8. Before documenting a new component, run `pnpm --filter @mizu/vue build` to regenerate `packages/vue/src/index.ts`, then verify every exported component has a corresponding sidebar entry (`astro.config.mjs`), docs page (`src/content/docs/components/`), and homepage card (`src/components/home/ComponentsSection.astro`). The three must always be in sync — a missing homepage card is a documentation bug.
-9. Create a new changelog entry in `src/content/docs/getting-started/changelog.mdx` before committing.
-10. **Bump the patch version** (e.g., `0.12.0` → `0.12.1`) in `packages/vue/package.json` and `package.json` (root) after adding a new component.
-11. After a version bump, update the version number in:
+10. Before documenting a new component, run `pnpm --filter @mizu/vue build` to regenerate `packages/vue/src/index.ts`, then verify every exported component has a corresponding sidebar entry (`astro.config.mjs`), docs page (`src/content/docs/components/`), and homepage card (`src/components/home/ComponentsSection.astro`). The three must always be in sync — a missing homepage card is a documentation bug.
+11. Create a new changelog entry in `src/content/docs/getting-started/changelog.mdx` before committing.
+12. **Bump the patch version** (e.g., `0.12.0` → `0.12.1`) in `packages/vue/package.json` and `package.json` (root) after adding a new component.
+13. After a version bump, update the version number in:
     - `packages/vue/package.json` (the canonical source of truth)
     - `package.json` (root, keep in sync)
     - `src/components/home/Hero.astro` — search for `Design System · v0.`
@@ -86,8 +118,8 @@ Run `pnpm --filter @mizu/vue story:dev` to preview stories locally. Use `pnpm --
 
 ## Release
 
-12. Only commit, push, and release to the repo if requested explicitly.
-13. The release workflow at `.github/workflows/release.yml` triggers on push to `master` and auto-creates a GitHub Release via `gh release create ... --generate-notes`. Since `--generate-notes` only lists commit titles, **always create the release manually with detailed notes:**
+14. Only commit, push, and release to the repo if requested explicitly.
+15. The release workflow at `.github/workflows/release.yml` triggers on push to `master` and auto-creates a GitHub Release via `gh release create ... --generate-notes`. Since `--generate-notes` only lists commit titles, **always create the release manually with detailed notes:**
 
 ```bash
 gh auth login  # if not already authenticated
@@ -111,7 +143,7 @@ gh release create v{VERSION} \
 - Do NOT create phantom version entries (e.g. 0.8.0, 0.9.0) for work that was committed together — consolidate into the actual released version
 - Verify the changelog includes ALL components in the release (check `packages/vue/src/index.ts` exports)
 
-14. **Every GitHub Release must have detailed release notes** — the release notes must mirror the changelog entry in `src/content/docs/getting-started/changelog.mdx`. Never create a release with only auto-generated commit titles. If a changelog entry exists for the version, the GitHub Release must include at minimum: one-line summary, new components list, changes list, and documentation changes. Verify the release notes match the changelog before finalizing.
+16. **Every GitHub Release must have detailed release notes** — the release notes must mirror the changelog entry in `src/content/docs/getting-started/changelog.mdx`. Never create a release with only auto-generated commit titles. If a changelog entry exists for the version, the GitHub Release must include at minimum: one-line summary, new components list, changes list, and documentation changes. Verify the release notes match the changelog before finalizing.
 
 ## Don'ts
 

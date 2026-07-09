@@ -193,36 +193,6 @@ export const LETTERSPACING_SNUG = "-0.02em" as const;
 export const LETTERSPACING_WIDE = "0.05em" as const;
 /** Extra wide for all-caps metadata. */
 export const LETTERSPACING_WIDER = "0.06em" as const;
-/** Inline elements, tight icons. */
-export const SPACING_XS = "4px" as const;
-/** Tag padding, dense layout. */
-export const SPACING_SM = "6px" as const;
-/** Component internals, button padding. */
-export const SPACING_MD = "12px" as const;
-/** Between components, card padding. */
-export const SPACING_LG = "24px" as const;
-/** Section title margins, page gutters. */
-export const SPACING_XL = "48px" as const;
-/** Between major sections. */
-export const SPACING_XXL = "80px" as const;
-/** Default section vertical padding. */
-export const SPACING_SECTION_Y = "80px" as const;
-/** Max content width. */
-export const SPACING_CONTAINER = "1040px" as const;
-/** Navigation bar height. */
-export const SPACING_NAV_H = "56px" as const;
-/** Code inline, tight corners. */
-export const BORDERRADIUS_TIGHT = "4px" as const;
-/** Default button, input. */
-export const BORDERRADIUS_DEFAULT = "8px" as const;
-/** Card, container. */
-export const BORDERRADIUS_CARD = "12px" as const;
-/** Feature card, hero. */
-export const BORDERRADIUS_FEATURE = "16px" as const;
-/** Large container. */
-export const BORDERRADIUS_LARGE = "24px" as const;
-/** Pill / fully rounded. */
-export const BORDERRADIUS_FULL = "9999px" as const;
 /** Border ring for buttons and card hover states. */
 export const SHADOW_RING = "0 0 0 1px #F3F4F6" as const;
 /** Subtle elevation for cards and menus. */
@@ -255,14 +225,6 @@ export const EASE_INTERACTION = "ease-in-out" as const;
 export const EASE_EMPHASIZED = "cubic-bezier(0.34, 1.56, 0.64, 1)" as const;
 /** Decelerated entrance for popover and tooltip reveals. */
 export const EASE_ENTRANCE = "cubic-bezier(0.16, 1, 0.3, 1)" as const;
-/** Small / tablet portrait. */
-export const BREAKPOINT_SM = "640px" as const;
-/** Medium / tablet landscape. */
-export const BREAKPOINT_MD = "768px" as const;
-/** Large / desktop. */
-export const BREAKPOINT_LG = "1024px" as const;
-/** Extra large / wide desktop. */
-export const BREAKPOINT_XL = "1280px" as const;
 
 /** Flat map of all tokens keyed by slash-separated path */
 export const tokens: Record<string, Token> = {
@@ -359,21 +321,6 @@ export const tokens: Record<string, Token> = {
   "letterSpacing/snug": { value: LETTERSPACING_SNUG, type: "dimension" },
   "letterSpacing/wide": { value: LETTERSPACING_WIDE, type: "dimension" },
   "letterSpacing/wider": { value: LETTERSPACING_WIDER, type: "dimension" },
-  "spacing/xs": { value: SPACING_XS, type: "dimension" },
-  "spacing/sm": { value: SPACING_SM, type: "dimension" },
-  "spacing/md": { value: SPACING_MD, type: "dimension" },
-  "spacing/lg": { value: SPACING_LG, type: "dimension" },
-  "spacing/xl": { value: SPACING_XL, type: "dimension" },
-  "spacing/xxl": { value: SPACING_XXL, type: "dimension" },
-  "spacing/section-y": { value: SPACING_SECTION_Y, type: "dimension" },
-  "spacing/container": { value: SPACING_CONTAINER, type: "dimension" },
-  "spacing/nav-h": { value: SPACING_NAV_H, type: "dimension" },
-  "borderRadius/tight": { value: BORDERRADIUS_TIGHT, type: "dimension" },
-  "borderRadius/default": { value: BORDERRADIUS_DEFAULT, type: "dimension" },
-  "borderRadius/card": { value: BORDERRADIUS_CARD, type: "dimension" },
-  "borderRadius/feature": { value: BORDERRADIUS_FEATURE, type: "dimension" },
-  "borderRadius/large": { value: BORDERRADIUS_LARGE, type: "dimension" },
-  "borderRadius/full": { value: BORDERRADIUS_FULL, type: "dimension" },
   "shadow/ring": { value: SHADOW_RING, type: "shadow" },
   "shadow/whisper": { value: SHADOW_WHISPER, type: "shadow" },
   "shadow/dark/ring": { value: SHADOW_DARK_RING, type: "shadow" },
@@ -390,10 +337,6 @@ export const tokens: Record<string, Token> = {
   "ease/interaction": { value: EASE_INTERACTION, type: "easing" },
   "ease/emphasized": { value: EASE_EMPHASIZED, type: "easing" },
   "ease/entrance": { value: EASE_ENTRANCE, type: "easing" },
-  "breakpoint/sm": { value: BREAKPOINT_SM, type: "dimension" },
-  "breakpoint/md": { value: BREAKPOINT_MD, type: "dimension" },
-  "breakpoint/lg": { value: BREAKPOINT_LG, type: "dimension" },
-  "breakpoint/xl": { value: BREAKPOINT_XL, type: "dimension" },
 };
 
 /** Token values mapped to CSS custom property names (light mode only — dark mode overrides live in dark.css) */
@@ -468,21 +411,6 @@ export const cssVariables: Record<string, string | number | readonly string[]> =
   "--letter-spacing-snug": LETTERSPACING_SNUG,
   "--letter-spacing-wide": LETTERSPACING_WIDE,
   "--letter-spacing-wider": LETTERSPACING_WIDER,
-  "--spacing-xs": SPACING_XS,
-  "--spacing-sm": SPACING_SM,
-  "--spacing-md": SPACING_MD,
-  "--spacing-lg": SPACING_LG,
-  "--spacing-xl": SPACING_XL,
-  "--spacing-xxl": SPACING_XXL,
-  "--spacing-section-y": SPACING_SECTION_Y,
-  "--spacing-container": SPACING_CONTAINER,
-  "--spacing-nav-h": SPACING_NAV_H,
-  "--border-radius-tight": BORDERRADIUS_TIGHT,
-  "--border-radius-default": BORDERRADIUS_DEFAULT,
-  "--border-radius-card": BORDERRADIUS_CARD,
-  "--border-radius-feature": BORDERRADIUS_FEATURE,
-  "--border-radius-large": BORDERRADIUS_LARGE,
-  "--border-radius-full": BORDERRADIUS_FULL,
   "--shadow-ring": SHADOW_RING,
   "--shadow-whisper": SHADOW_WHISPER,
   "--sizing-color-swatch-h": SIZING_COLOR_SWATCH_H,
@@ -497,8 +425,4 @@ export const cssVariables: Record<string, string | number | readonly string[]> =
   "--ease-interaction": EASE_INTERACTION,
   "--ease-emphasized": EASE_EMPHASIZED,
   "--ease-entrance": EASE_ENTRANCE,
-  "--breakpoint-sm": BREAKPOINT_SM,
-  "--breakpoint-md": BREAKPOINT_MD,
-  "--breakpoint-lg": BREAKPOINT_LG,
-  "--breakpoint-xl": BREAKPOINT_XL,
 }

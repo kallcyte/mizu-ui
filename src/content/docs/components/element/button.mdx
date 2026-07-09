@@ -1,0 +1,116 @@
+---
+title: Button
+description: A button element that can act as a link or trigger an action.
+---
+
+import ButtonDemo from "../../../../components/docs/ButtonDemo.vue";
+
+> **Nuxt UI Component:** This uses Nuxt UI's `UButton` component. Mizu provides a theme preset (`@mizu/vue/theme`) that overrides sizing, radius, and spacing to match Mizu's design language. See the [Theme](#theme) section for Mizu-specific defaults.
+
+A button triggers an action â€” submitting a form, navigating to a page, or executing a callback. Mizu uses Nuxt UI's `UButton` with custom sizing (28/36/40px) and typography.
+
+## Examples
+
+<ButtonDemo client:only="vue" />
+
+## API
+
+Reference: [Nuxt UI Button](https://ui.nuxt.com/docs/components/button)
+
+### Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `size` | `'xs' \| 'sm' \| 'md' \| 'lg' \| 'xl'` | `'md'` | Button size. Mizu overrides sm/md/lg to 28/36/40px |
+| `color` | `'primary' \| 'secondary' \| 'success' \| 'error' \| 'warning' \| 'info' \| 'neutral'` | `'primary'` | Semantic color |
+| `variant` | `'solid' \| 'outline' \| 'soft' \| 'subtle' \| 'ghost' \| 'link'` | `'solid'` | Visual style |
+| `icon` | `string` (Iconify) | â€” | Icon from Iconify (e.g. `'i-ph-magnifying-glass'`) |
+| `trailing` | `boolean` | `false` | When `true`, icon displays on the right |
+| `loading` | `boolean` | `false` | Show a loading spinner instead of the icon |
+| `disabled` | `boolean` | `false` | Disables interaction |
+| `block` | `boolean` | `false` | Full-width button |
+| `square` | `boolean` | `false` | Equal padding on all sides |
+| `to` / `href` | `string \| RouteLocation` | â€” | Render as a link |
+| `type` | `'button' \| 'submit' \| 'reset'` | `'button'` | Native button type |
+
+### Slots
+
+| Slot | Props | Description |
+|------|-------|-------------|
+| `default` | â€” | Button label/content |
+| `leading` | `{ ui }` | Custom leading content (before label) |
+| `trailing` | `{ ui }` | Custom trailing content (after label) |
+
+## Theme
+
+Mizu overrides Nuxt UI's button sizing to match the Mizu design spec. Consumers apply the theme via `@mizu/vue/theme`:
+
+```ts
+// app.config.ts
+import { mizuTheme } from "@mizu/vue/theme";
+export default defineAppConfig({ ui: mizuTheme });
+```
+
+### Design Specs
+
+| Size | Height | H-Padding | V-Padding | Gap | Radius | Font | Icon |
+|------|--------|-----------|-----------|-----|--------|------|------|
+| **SM** | 28px | 8px | 8px | 4px | 4px (`rounded`) | 10px | 10px (`size-2.5`) |
+| **MD** | 36px | 10px | 10px | 6px | 6px (`rounded-md`) | 12px (`text-xs`) | 16px (`size-4`) |
+| **LG** | 40px | 10px | 10px | 8px | 6px (`rounded-md`) | 14px (`text-sm`) | 20px (`size-5`) |
+
+### Color Map
+
+Mizu maps its design tokens to Nuxt UI color slots:
+
+| Mizu Token | Nuxt UI Color |
+|------------|---------------|
+| `--color-brand-primary` | `primary` |
+| `--color-brand-ycp` | `secondary` |
+| `--color-feedback-success-base` | `success` |
+| `--color-feedback-error-base` | `error` |
+| `--color-feedback-warning-base` | `warning` |
+| `--color-feedback-info-base` | `info` |
+
+### Variant Map
+
+Nuxt UI uses a different variant naming convention than the old MizuButton:
+
+| Old Mizu | Nuxt UI | Description |
+|----------|---------|-------------|
+| `primary` | `solid` + `color="primary"` | Filled background |
+| `accent` | `solid` + `color="secondary"` | Secondary filled |
+| `ghost` | `ghost` | Transparent, hover state |
+| `outline` | `outline` | Border only |
+
+### Typography
+
+| Property | Value |
+|----------|-------|
+| Font Family | DM Sans (`--font-family-sans`) |
+| Font Weight | 500 (medium) |
+| Text Transform | None |
+| Letter Spacing | Normal |
+
+### Transitions
+
+Nuxt UI provides built-in `transition-colors` and `transition-opacity` on interactive states. Mizu does not override these.
+
+## Anatomy
+
+A button is a single element:
+
+| Part | Required | Description |
+|------|----------|-------------|
+| Root | Yes | `<button>` or `<a>` element with styling |
+
+With optional leading icon, label, and trailing icon inline.
+
+## Implementation Notes
+
+1. **Use `<UButton>` directly** â€” No Mizu wrapper needed. Apply the theme preset and Nuxt UI handles the rest.
+2. **Mizu sizing is opt-in via theme** â€” Consumers must import `@mizu/vue/theme` and merge into `app.config.ts`. Without it, Nuxt UI defaults apply.
+3. **Icon naming** â€” Uses Iconify format. Mizu's default collection is Phosphor (`i-ph-*`); other collections like Lucide (`i-lucide-*`) and Heroicons (`i-heroicons-*`) work too. See the [Icons guide](/getting-started/icons) for the full reference.
+4. **`leadingIcon` / `trailingIcon`** â€” The theme preset also overrides icon sizes per button size variant.
+5. **Loading state** â€” Set `loading` to `true` to show a spinner. The `loadingAuto` prop auto-detects async `@click` handlers.
+6. **Link buttons** â€” Use `to` (Nuxt router) or `href` (static URL) to render as an `<a>` tag.

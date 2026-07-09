@@ -436,7 +436,7 @@ function scanComponents(): ScanResult {
   }
 
   const files = readdirSync(COMPONENTS_DIR);
-  // Sort to match the original filter: exclude skeleton-types.ts
+  // Filter to .vue component files only
   for (const file of files.sort()) {
     if (!file.endsWith(".vue")) continue;
     const filePath = join(COMPONENTS_DIR, file);

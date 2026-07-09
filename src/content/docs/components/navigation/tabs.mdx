@@ -1,0 +1,78 @@
+---
+title: Tabs
+description: A tabbed interface for switching between content panels.
+---
+
+import TabsDemo from "../../../../components/docs/TabsDemo.vue";
+
+> **Nuxt UI Component:** This uses Nuxt UI's `UTabs` component. Nuxt UI v4 defaults already match the Mizu design scale, so no sizing overrides are applied.
+
+Tabs organize content into selectable panels. Mizu uses Nuxt UI's `UTabs` with the pill variant and the same sizing scale as buttons and inputs.
+
+## Examples
+
+<TabsDemo client:only="vue" />
+
+## API
+
+Reference: [Nuxt UI Tabs](https://ui.nuxt.com/docs/components/tabs)
+
+### Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `items` | `{ label, icon, disabled }[]` | — | Tab items array |
+| `size` | `'xs' \| 'sm' \| 'md' \| 'lg' \| 'xl'` | `'md'` | Tab size |
+| `color` | `'primary' \| 'secondary' \| 'success' \| 'error' \| 'warning' \| 'info' \| 'neutral'` | `'primary'` | Semantic color for active tab indicator |
+| `variant` | `'pill' \| 'link' \| 'underline' \| 'fill'` | `'pill'` | Visual style |
+| `orientation` | `'horizontal' \| 'vertical'` | `'horizontal'` | Tab layout direction |
+| `disabled` | `boolean \| number[]` | `false` | Disable all or specific tab indexes |
+| `defaultValue` | `number` | `0` | Initial selected tab index |
+| `modelValue` | `number` | — | v-model binding for selected tab index |
+
+### Slots
+
+| Slot | Props | Description |
+|------|-------|-------------|
+| `default` | — | Entire tabs content (triggers + panels) |
+| `content` | `{ selectedIndex }` | Content corresponding to active tab |
+| `leading` | — | Content before the tab triggers |
+| `trailing` | — | Content after the tab triggers |
+
+### Example Usage
+
+```vue
+<UTabs :items="['Account', 'Billing', 'Security']">
+  <template #content="{ selectedIndex }">
+    <div v-if="selectedIndex === 0"><!-- Account content --></div>
+    <div v-else-if="selectedIndex === 1"><!-- Billing content --></div>
+    <div v-else><!-- Security content --></div>
+  </template>
+</UTabs>
+```
+
+## Theme
+
+Nuxt UI v4 tabs defaults are already consistent with Mizu. The pill variant uses rounded-md triggers, and sizes (xs-xl) match the Button/Input sizing scale. No overrides are needed.
+
+Default: `color="primary"`, `variant="pill"`, `size="md"`.
+
+## Anatomy
+
+Tabs consist of:
+
+| Part | Required | Description |
+|------|----------|-------------|
+| Root | Yes | `<div>` wrapper containing triggers and panels |
+| List | Yes | Container for the tab trigger buttons |
+| Trigger | Yes | Individual `<button>` for each tab |
+| Content | No | Panel displaying the active tab's content |
+| Leading | No | Content before triggers (search, filter, etc.) |
+| Trailing | No | Content after triggers (actions, buttons, etc.) |
+
+## Implementation Notes
+
+1. **Use `<UTabs>` directly** — No Mizu wrapper needed.
+2. **Content slot** — Use `#content="{ selectedIndex }"` to conditionally render the active panel. Nuxt UI does not auto-hide inactive panels.
+3. **Items format** — Pass an array of strings for simple labels, or `{ label, icon, disabled }` objects for icons and disabled states.
+4. **Vertical orientation** — Set `orientation="vertical"` for sidebar-style tab navigation.

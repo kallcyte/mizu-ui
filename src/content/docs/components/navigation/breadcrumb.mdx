@@ -1,0 +1,78 @@
+﻿---
+title: Breadcrumb
+description: A navigation trail showing the current page location in a hierarchy.
+---
+
+import BreadcrumbDemo from "../../../../components/docs/BreadcrumbDemo.vue";
+
+> **Nuxt UI Component:** This uses Nuxt UI's `UBreadcrumb` component. Nuxt UI v4 defaults already match the Mizu design scale, so no sizing overrides are applied.
+
+Breadcrumbs show the user's location within a site hierarchy and provide navigation links back to ancestor pages. Mizu uses Nuxt UI's `UBreadcrumb` with text-sm links and size-5 separator icons.
+
+## Examples
+
+<BreadcrumbDemo client:only="vue" />
+
+## API
+
+Reference: [Nuxt UI Breadcrumb](https://ui.nuxt.com/docs/components/breadcrumb)
+
+### Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `items` | `BreadcrumbItem[]` | â€” | Breadcrumb trail items |
+| `separator` | `string` (Iconify) | `'i-ph-caret-right'` | Separator icon between items |
+| `color` | `'primary' \| 'secondary' \| 'success' \| 'error' \| 'warning' \| 'info' \| 'neutral'` | `'primary'` | Color for the current (last) item |
+| `size` | `'xs' \| 'sm' \| 'md' \| 'lg' \| 'xl'` | `'md'` | Text size |
+
+### BreadcrumbItem
+
+| Prop | Type | Description |
+|------|------|-------------|
+| `label` | `string` | Display text |
+| `icon` | `string` (Iconify) | Leading icon |
+| `to` | `string` | Vue Router route |
+| `href` | `string` | External link |
+| `target` | `string` | Link target (e.g. `_blank`) |
+
+### Slots
+
+| Slot | Props | Description |
+|------|-------|-------------|
+| `default` | â€” | Entire breadcrumb (overrides items) |
+| `separator` | `{ ui }` | Custom separator between items |
+
+### Example Usage
+
+```vue
+<UBreadcrumb :items="[
+  { label: 'Home', href: '/' },
+  { label: 'Docs', href: '/docs' },
+  { label: 'Components' }
+]" />
+```
+
+## Theme
+
+Nuxt UI v4 breadcrumb defaults (text-sm links, size-5 separator icons) are already consistent with Mizu. No overrides are needed.
+
+Default: `color="primary"`.
+
+## Anatomy
+
+A breadcrumb consists of:
+
+| Part | Required | Description |
+|------|----------|-------------|
+| Root | Yes | `<nav>` wrapper with role="navigation" |
+| Item | Yes | Link or span for each breadcrumb step |
+| Separator | Yes | Chevron or slash between items |
+| Current | Yes | Last item (non-clickable, shows current page) |
+
+## Implementation Notes
+
+1. **Use `<UBreadcrumb>` directly** â€” No Mizu wrapper needed.
+2. **Links vs. current** â€” The last item in the items array is automatically rendered as a non-clickable current page indicator. All preceding items are links.
+3. **Accessibility** â€” Nuxt UI renders the breadcrumb inside a `<nav>` with `aria-label="Breadcrumb"`. The last item gets `aria-current="page"`.
+4. **Custom separators** â€” Use the `separator` prop to change the icon (e.g. `'i-ph-slash'` for `/` separators).

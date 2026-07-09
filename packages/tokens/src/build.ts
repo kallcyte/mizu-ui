@@ -95,10 +95,6 @@ function toThemeVarName(path: string): string {
       return `--leading-${rest}`;
     case "letterSpacing":
       return `--tracking-${rest}`;
-    case "spacing":
-      return `--spacing-${rest}`;
-    case "borderRadius":
-      return `--radius-${rest}`;
     case "shadow":
       return `--shadow-${rest}`;
     case "sizing":
@@ -109,8 +105,6 @@ function toThemeVarName(path: string): string {
       return `--duration-${rest}`;
     case "ease":
       return `--ease-${rest}`;
-    case "breakpoint":
-      return `--breakpoint-${rest}`;
     default:
       return `--${segments.join("-")}`;
   }
@@ -342,12 +336,12 @@ function generateStarlightCss(flat: Map<string, Token>): string {
   lines.push("  --sl-color-text: var(--color-foreground-primary);");
   lines.push("  --sl-color-text-light: var(--color-foreground-secondary);");
   lines.push("  --sl-color-text-lighter: var(--color-foreground-tertiary);");
-  lines.push("  --sl-color-text-accent: var(--color-brand-ycp);");
+  lines.push("  --sl-color-text-accent: var(--color-brand-primary);");
   lines.push("");
   lines.push("  /* Background */");
   lines.push("  --sl-color-bg: var(--color-surface-base);");
-  lines.push("  --sl-color-bg-nav: var(--color-surface-base);");
-  lines.push("  --sl-color-bg-sidebar: var(--color-surface-base);");
+  lines.push("  --sl-color-bg-nav: var(--color-surface-subtle);");
+  lines.push("  --sl-color-bg-sidebar: var(--color-surface-subtle);");
   lines.push("  --sl-color-bg-inline-code: var(--color-surface-muted);");
   lines.push("  --sl-color-black: #1B1B1D;");
   lines.push("  --sl-color-white: #FFFFFF;");
@@ -363,14 +357,14 @@ function generateStarlightCss(flat: Map<string, Token>): string {
   lines.push("  /* Type scale */");
   lines.push("  --sl-text-h1: 1.5rem;");
   lines.push("  --sl-text-h2: 1.125rem;");
-  lines.push("  --sl-text-h3: 1rem;");
-  lines.push("  --sl-text-h4: 1rem;");
-  lines.push("  --sl-text-h5: 0.75rem;");
-  lines.push("  --sl-text-h6: 0.75rem;");
-  lines.push("  --sl-text-code: 0.75rem;");
-  lines.push("  --sl-text-base: 0.875rem;");
-  lines.push("  --sl-text-sm: 0.875rem;");
-  lines.push("  --sl-text-xs: 0.75rem;");
+  lines.push("  --sl-text-h3: 0.9375rem;");
+  lines.push("  --sl-text-h4: 0.9375rem;");
+  lines.push("  --sl-text-h5: 0.8125rem;");
+  lines.push("  --sl-text-h6: 0.6875rem;");
+  lines.push("  --sl-text-code: 0.8125rem;");
+  lines.push("  --sl-text-base: 0.9375rem;");
+  lines.push("  --sl-text-sm: 0.8125rem;");
+  lines.push("  --sl-text-xs: 0.6875rem;");
   lines.push("  --sl-text-2xs: 0.625rem;");
   lines.push("");
   lines.push("  /* Layout */");
@@ -407,7 +401,7 @@ function generateStarlightCss(flat: Map<string, Token>): string {
   lines.push("  --sl-color-text: var(--color-foreground-primary);");
   lines.push("  --sl-color-text-light: var(--color-foreground-secondary);");
   lines.push("  --sl-color-text-lighter: var(--color-foreground-tertiary);");
-  lines.push("  --sl-color-text-accent: var(--color-brand-ycp);");
+  lines.push("  --sl-color-text-accent: var(--color-brand-primary);");
   lines.push("");
   lines.push("  /* Background */");
   lines.push("  --sl-color-bg: var(--color-surface-base);");
@@ -428,14 +422,14 @@ function generateStarlightCss(flat: Map<string, Token>): string {
   lines.push("  /* Type scale */");
   lines.push("  --sl-text-h1: 1.5rem;");
   lines.push("  --sl-text-h2: 1.125rem;");
-  lines.push("  --sl-text-h3: 1rem;");
-  lines.push("  --sl-text-h4: 1rem;");
-  lines.push("  --sl-text-h5: 0.75rem;");
-  lines.push("  --sl-text-h6: 0.75rem;");
-  lines.push("  --sl-text-code: 0.75rem;");
-  lines.push("  --sl-text-base: 0.875rem;");
-  lines.push("  --sl-text-sm: 0.875rem;");
-  lines.push("  --sl-text-xs: 0.75rem;");
+  lines.push("  --sl-text-h3: 0.9375rem;");
+  lines.push("  --sl-text-h4: 0.9375rem;");
+  lines.push("  --sl-text-h5: 0.8125rem;");
+  lines.push("  --sl-text-h6: 0.6875rem;");
+  lines.push("  --sl-text-code: 0.8125rem;");
+  lines.push("  --sl-text-base: 0.9375rem;");
+  lines.push("  --sl-text-sm: 0.8125rem;");
+  lines.push("  --sl-text-xs: 0.6875rem;");
   lines.push("  --sl-text-2xs: 0.625rem;");
   lines.push("");
   lines.push("  /* Layout */");
@@ -453,6 +447,94 @@ function generateStarlightCss(flat: Map<string, Token>): string {
   lines.push("  --sl-content-width: 45rem;");
   lines.push("}");
   lines.push("");
+
+  // ── Mizu heading typography (per-level weights, tracking, leading) ──
+  lines.push("/* Heading typography — weights, letter-spacing, and per-level line-height */");
+  lines.push(".sl-markdown-content h1 { font-weight: 700; letter-spacing: -0.02em; line-height: 1.2; }");
+  lines.push(".sl-markdown-content h2 { font-weight: 600; line-height: 1.25; }");
+  lines.push(".sl-markdown-content h3 { font-weight: 600; line-height: 1.3; }");
+  lines.push(".sl-markdown-content h4 { font-weight: 600; }");
+  lines.push(".sl-markdown-content h5 { font-weight: 500; }");
+  lines.push(".sl-markdown-content h6 { font-weight: 500; }");
+  lines.push("");
+  lines.push("/* Body text */");
+  lines.push(".sl-markdown-content { font-weight: 400; }");
+  lines.push("");
+
+  // ── Starlight element fixes (white-on-white + sidebar/TOC typography) ──
+  lines.push("/* ── Page title (Starlight defaults to --sl-color-white → invisible in light) ── */");
+  lines.push("h1#_top {");
+  lines.push("  color: var(--sl-color-text) !important;");
+  lines.push("}");
+  lines.push("");
+
+  lines.push("/* ── Sidebar ──────────────────────────────────────── */");
+  lines.push("/* Section labels (e.g. \"Getting Started\", \"Components\") */");
+  lines.push("nav.sidebar-pane summary,");
+  lines.push(".sidebar-pane summary {");
+  lines.push("  font-weight: 600;");
+  lines.push("  font-size: 0.6875rem;      /* text-label: 11px */");
+  lines.push("  text-transform: uppercase;");
+  lines.push("  letter-spacing: 0.06em;     /* tracking-wider */");
+  lines.push("}");
+  lines.push("");
+
+  lines.push("/* Large sidebar labels */");
+  lines.push("nav.sidebar-pane summary .large,");
+  lines.push(".sidebar-pane summary .large,");
+  lines.push("summary .large {");
+  lines.push("  color: var(--sl-color-text) !important;");
+  lines.push("}");
+  lines.push("");
+
+  lines.push("/* Sidebar nav links */");
+  lines.push("nav.sidebar-pane a,");
+  lines.push(".sidebar-pane a {");
+  lines.push("  font-size: 0.8125rem;      /* text-caption: 13px */");
+  lines.push("  font-weight: 400;");
+  lines.push("}");
+  lines.push("");
+
+  lines.push("/* Active sidebar link */");
+  lines.push("nav.sidebar-pane a[aria-current=\"page\"],");
+  lines.push(".sidebar-pane a[aria-current=\"page\"] {");
+  lines.push("  font-weight: 600;");
+  lines.push("}");
+  lines.push("");
+
+  lines.push("/* ── Right sidebar / Table of Contents ───────────── */");
+  lines.push("nav[data-starlight-toc] a,");
+  lines.push(".right-sidebar-panel a {");
+  lines.push("  font-size: 0.8125rem;      /* text-caption: 13px */");
+  lines.push("  font-weight: 400;");
+  lines.push("}");
+  lines.push("");
+
+  lines.push("/* ── Color fixes for elements defaulting to --sl-color-white ── */");
+  lines.push("/* Collapsible sidebar summary arrows */");
+  lines.push(".sidebar-pane summary svg {");
+  lines.push("  color: var(--sl-color-text-light);");
+  lines.push("}");
+  lines.push("");
+
+  lines.push("/* Inline code in sidebar */");
+  lines.push(".sidebar-pane code {");
+  lines.push("  font-size: 0.6875rem;      /* text-label: 11px */");
+  lines.push("}");
+  lines.push("");
+
+  lines.push("/* Aside / callout text */");
+  lines.push("aside,");
+  lines.push(".starlight-aside {");
+  lines.push("  color: var(--sl-color-text);");
+  lines.push("}");
+  lines.push("");
+
+  lines.push("/* Kudos / feedback buttons */");
+  lines.push(".starlight-kudos button,");
+  lines.push(".starlight-kudos a {");
+  lines.push("  color: var(--sl-color-text);");
+  lines.push("}");
 
   return lines.join("\n");
 }

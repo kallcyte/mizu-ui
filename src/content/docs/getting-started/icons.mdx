@@ -1,0 +1,159 @@
+---
+title: Icons
+description: How to use icons in Mizu — Iconify, Phosphor (default), and component integration.
+---
+
+import IconsDemo from "../../../components/docs/IconsDemo.vue";
+
+Mizu uses [Iconify](https://iconify.design/) — an open-source icon framework that bundles **150+ icon collections** (thousands of icons each) and serves them on demand. Icons are rendered by Nuxt UI's `<UIcon>` component, which means **any Iconify collection is supported** without extra dependencies.
+
+## Default collection: Phosphor
+
+Mizu's recommended icon collection is [Phosphor Icons](https://phosphoricons.com/) — a flexible family of 9,072 icons designed by Helena Zhang and Tobias Fried, released under MIT. Phosphor ships in **6 weights** (Thin, Light, Regular, Bold, Fill, Duotone) which makes it a great fit for design systems that need hierarchy.
+
+```html
+<UIcon name="i-ph-magnifying-glass" class="size-5" />
+<UIcon name="i-ph-gear-six" class="size-6 text-brand-primary" />
+<UIcon name="i-ph-floppy-disk" class="size-5" />
+```
+
+The icon format follows the Iconify convention: `i-{collection}-{icon-name}`.
+
+- `i` — Iconify prefix
+- `ph` — collection (Phosphor)
+- `magnifying-glass` — icon name (kebab-case)
+
+Browse and search the [full Phosphor catalog](https://icon-sets.iconify.design/ph/).
+
+## Browse
+
+<IconsDemo client:only="vue" />
+
+## Using icons in components
+
+Most Mizu/Nuxt UI components accept an `icon`, `leadingIcon`, `trailingIcon`, `avatar`, or `loadingIcon` prop. Pass any Iconify string and it just works.
+
+### Button
+
+```vue
+<UButton icon="i-ph-magnifying-glass" label="Search" />
+<UButton icon="i-ph-trash" color="error" label="Delete" />
+<UButton trailing-icon="i-ph-caret-down" label="More" />
+```
+
+### Input
+
+```vue
+<UInput icon="i-ph-magnifying-glass" placeholder="Search..." />
+<UInput icon="i-ph-envelope" placeholder="Email" trailing />
+<UInput leading-icon="i-ph-user" trailing-icon="i-ph-check" placeholder="Username" />
+```
+
+In Mizu, the leading/trailing icon **inherits the input's text color** — so when you use `color="primary"`, the icon is also brand-primary instead of the usual dimmed gray.
+
+### DropdownMenu
+
+```vue
+<UDropdownMenu :items="[
+  { label: 'Edit', icon: 'i-ph-pencil' },
+  { label: 'Duplicate', icon: 'i-ph-copy' },
+  { type: 'separator' },
+  { label: 'Delete', icon: 'i-ph-trash', color: 'error' },
+]">
+  <UButton label="Actions" trailing-icon="i-ph-caret-down" />
+</UDropdownMenu>
+```
+
+### Standalone UIcon
+
+Use `<UIcon>` directly when you need an icon outside of a component slot — for example in headings, list items, or inline with text.
+
+```vue
+<UIcon name="i-ph-magnifying-glass" class="size-5" />
+<UIcon name="i-ph-gear-six" class="size-6 text-brand-primary" />
+```
+
+## Other icon collections
+
+Any Iconify collection works — just change the prefix. Common choices:
+
+| Prefix | Collection | Notes |
+|---|---|---|
+| `i-ph-*` | [Phosphor](https://phosphoricons.com/) | **Mizu default.** 6 weights, MIT. |
+| `i-lucide-*` | [Lucide](https://lucide.dev/) | Crisp 1.5px strokes. Common in shadcn. |
+| `i-heroicons-*` | [Heroicons](https://heroicons.com/) | By the Tailwind CSS team. Outline + solid. |
+| `i-tabler-*` | [Tabler](https://tabler-icons.io/) | 2px stroke, pixel-perfect. |
+| `i-material-symbols-*` | [Material Symbols](https://fonts.google.com/icons) | Google design system, variable axes. |
+
+The full list is at [icon-sets.iconify.design](https://icon-sets.iconify.design/).
+
+```vue
+<UIcon name="i-heroicons-magnifying-glass" />
+<UIcon name="i-tabler-search" />
+<UIcon name="i-material-symbols-search" />
+```
+
+
+## Sizing
+
+Icons are sized with Tailwind's `size-*` utility (which sets both `width` and `height`). Common sizes used in Mizu:
+
+| Class | Pixels | Use case |
+|---|---|---|
+| `size-3` | 12px | Inline with body text |
+| `size-4` | 16px | Inline with small text, button sm |
+| `size-5` | 20px | Button md/lg, input default |
+| `size-6` | 24px | Section headings, empty states |
+| `size-8` | 32px | Large feature blocks |
+
+Components like `<UInput>`, `<UButton>`, and `<UBadge>` size their icons automatically based on the component's `size` variant — you usually don't need to pass a size class when using the component prop.
+
+## Color
+
+Icons inherit the current text color via `currentColor`. Control it with any Tailwind text utility:
+
+```vue
+<UIcon name="i-ph-magnifying-glass" class="size-5 text-brand-primary" />
+<UIcon name="i-ph-magnifying-glass" class="size-5 text-feedback-error-base" />
+<UIcon name="i-ph-magnifying-glass" class="size-5 text-foreground-secondary" />
+```
+
+## Loading icon
+
+Nuxt UI's `<UInput :loading="true">` shows a spinner by default (`i-lucide-loader-circle`). To match Mizu's Phosphor default, pass `loading-icon` per instance:
+
+```vue
+<UInput loading loading-icon="i-ph-circle-notch" placeholder="Loading..." />
+```
+
+## Phosphor weights
+
+Phosphor is unique in that every icon has **6 weights**. To use a non-default weight, append the weight name:
+
+```vue
+<UIcon name="i-ph-magnifying-glass" />          <!-- regular (default) -->
+<UIcon name="i-ph-magnifying-glass-bold" />
+<UIcon name="i-ph-magnifying-glass-fill" />
+<UIcon name="i-ph-magnifying-glass-duotone" />
+```
+
+Available weights: `thin`, `light`, `regular` (default), `bold`, `fill`, `duotone`.
+
+## Why Iconify (not lucide-vue / phosphor-vue)?
+
+Mizu ships **zero extra icon dependencies**. Because Iconify loads icons on demand from a CDN, you only pay for the icons you actually use — there's no 2 MB bundle of 9,000 Phosphor SVGs sitting in your app.
+
+This also means **no font swapping, no tree-shaking pain, no per-icon imports**. The `i-ph-magnifying-glass` string is a key into Iconify's resolver, which fetches the SVG (or a single bundled sprite) at render time.
+
+## Custom icon set
+
+To add a custom Iconify collection (e.g. your company's internal icon set), install `@iconify/vue` and register it:
+
+```ts
+import { addCollection } from "@iconify/vue";
+import mizuIcons from "./icons/mizu-icons.json";
+
+addCollection(mizuIcons);
+```
+
+Then reference icons with your custom prefix: `<UIcon name="i-mizu-logo" />`. See the [Iconify docs](https://iconify.design/docs/iconify/vue/) for more.

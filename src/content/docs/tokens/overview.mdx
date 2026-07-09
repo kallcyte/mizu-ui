@@ -7,7 +7,7 @@ Mizu uses design tokens as the single source of truth for all visual design deci
 
 ## Token Categories
 
-Mizu includes 14 token categories:
+Mizu includes 11 token categories:
 
 | Category          | Description                                 | Examples                                        |
 | ----------------- | ------------------------------------------- | ----------------------------------------------- |
@@ -17,14 +17,11 @@ Mizu includes 14 token categories:
 | **fontWeight**    | Font weight values                          | `regular`, `medium`, `semibold`, `bold`         |
 | **lineHeight**    | Line height scale                           | `display`, `h1`, `body`, `tight`                |
 | **letterSpacing** | Tracking values                             | `tight`, `snug`, `wide`                         |
-| **spacing**       | Spatial values                              | `xs`, `sm`, `md`, `lg`, `xl`, `xxl`             |
-| **borderRadius**  | Corner radius values                        | `tight`, `default`, `card`, `full`              |
 | **shadow**        | Elevation shadows                           | `ring`, `whisper`                               |
 | **sizing**        | Component dimensions                        | `icon-inline`, `card-visual`                    |
 | **zIndex**        | Stack order values                          | `nav`                                           |
 | **duration**      | Animation timing                            | `fast`, `normal`                                |
 | **ease**          | Animation easing curves                     | `default`, `emphasized`, `entrance`             |
-| **breakpoint**    | Responsive breakpoints                      | `sm`, `md`, `lg`, `xl`                          |
 
 ## Color Tokens
 
@@ -139,8 +136,7 @@ element.style.animationTimingFunction = EASE_EMPHASIZED;
 .my-component {
   background: var(--color-surface-base);
   color: var(--color-foreground-primary);
-  border-radius: var(--radius-default);
-  padding: var(--spacing-md);
+  padding: 12px;
 }
 ```
 
@@ -149,13 +145,13 @@ element.style.animationTimingFunction = EASE_EMPHASIZED;
 Mizu tokens are mapped to Tailwind v4 utility classes:
 
 ```html
-<div class="bg-surface-base text-foreground-primary rounded-default p-md">Content</div>
+<div class="bg-surface-base text-foreground-primary rounded-lg p-4">Content</div>
 ```
 
 ### In JavaScript/TypeScript
 
 ```typescript
-import { COLOR_BRAND_PRIMARY, SPACING_MD, RADIUS_DEFAULT } from "@mizu/tokens";
+import { COLOR_BRAND_PRIMARY } from "@mizu/tokens";
 ```
 
 ## Naming Convention

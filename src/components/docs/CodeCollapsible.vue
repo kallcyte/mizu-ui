@@ -189,7 +189,7 @@ async function copyCode() {
   all: revert;
   display: grid;
   grid-template-rows: 0fr;
-  transition: grid-template-rows 250ms ease-out;
+  transition: grid-template-rows 750ms var(--ease-emphasized);
 }
 
 .code-collapsible__code-wrapper--open {

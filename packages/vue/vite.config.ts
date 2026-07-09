@@ -11,7 +11,7 @@ export default defineConfig({
       // Enable auto-imports so Mizu custom components can use U* components directly
       // at build time. Nuxt UI components are externalized (not bundled) — consumers
       // must install @nuxt/ui separately.
-      autoImport: true,
+      //autoImport: true,
       router: false,
       components: {
         resolvers: [],
@@ -25,15 +25,21 @@ export default defineConfig({
   build: {
     cssCodeSplit: false,
     lib: {
-      entry: resolve(__dirname, "src/index.ts"),
+      entry: {
+        index: resolve(__dirname, "src/index.ts"),
+        theme: resolve(__dirname, "src/theme.ts"),
+      },
       formats: ["es", "cjs"],
-      fileName: "index",
     },
     rollupOptions: {
       external: ["vue", "@nuxt/ui"],
       output: {
         globals: {
           vue: "Vue",
+        },
+        assetFileNames: (assetInfo) => {
+          if (assetInfo.names?.some((n) => n.endsWith(".css"))) return "index.css";
+          return "[name].[ext]";
         },
       },
     },

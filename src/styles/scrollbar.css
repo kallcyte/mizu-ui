@@ -1,0 +1,40 @@
+/*
+ * Custom Scrollbar — Mizu Design System
+ * Thin, subtle scrollbar for Starlight docs pages.
+ * Uses Mizu tokens for light/dark theme awareness.
+ */
+
+/* ── Firefox ─────────────────────────────────────────── */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-foreground-tertiary) transparent;
+}
+
+/* ── WebKit (Chrome / Edge / Safari) ────────────────── */
+/* Track */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Thumb */
+::-webkit-scrollbar-thumb {
+  background: var(--color-foreground-tertiary);
+  border-radius: 9999px;
+  border: 1px solid transparent;
+  background-clip: padding-box;
+  transition: background 0.2s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-foreground-secondary);
+}
+
+/* Corner (when both scrollbars are visible) */
+::-webkit-scrollbar-corner {
+  background: transparent;
+}

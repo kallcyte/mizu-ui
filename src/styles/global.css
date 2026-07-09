@@ -1,6 +1,11 @@
-@import "tailwindcss/preflight" layer(base);
-@import "tailwindcss/theme" layer(theme);
-@import "tailwindcss/utilities" layer(utilities);
+@layer base, starlight, theme, components, utilities;
+
+@import '@astrojs/starlight-tailwind';
+@import 'tailwindcss/theme.css' layer(theme);
+@import 'tailwindcss/utilities.css' layer(utilities);
+
+/* Explicit scan paths (Vue files in Astro dev mode need @source) */
+@source "../components/docs/";
 
 @import "./tokens.css";
-@import "./docs.css";
+@import "./scrollbar.css";

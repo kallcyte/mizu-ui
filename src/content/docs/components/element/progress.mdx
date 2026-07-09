@@ -1,0 +1,74 @@
+---
+title: Progress
+description: A horizontal bar indicating task completion or loading.
+---
+
+import ProgressDemo from "../../../../components/docs/ProgressDemo.vue";
+
+> **Nuxt UI Component:** This uses Nuxt UI's `UProgress` component. Nuxt UI v4 defaults already match the Mizu design scale, so no sizing overrides are applied.
+
+A progress bar shows completion percentage, loading status, or indeterminate progress. Mizu uses Nuxt UI's `UProgress` with the default color and size scale.
+
+## Examples
+
+<ProgressDemo client:only="vue" />
+
+## API
+
+Reference: [Nuxt UI Progress](https://ui.nuxt.com/docs/components/progress)
+
+### Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `value` | `number` | — | Current progress value (0-100). Omit for indeterminate |
+| `size` | `'2xs' \| 'xs' \| 'sm' \| 'md' \| 'lg' \| 'xl' \| '2xl'` | `'md'` | Bar height |
+| `color` | `'primary' \| 'secondary' \| 'success' \| 'error' \| 'warning' \| 'info' \| 'neutral'` | `'primary'` | Bar fill color |
+| `variant` | `'outline' \| 'soft' \| 'subtle' \| 'ghost' \| 'none'` | `'outline'` | Visual style |
+| `min` | `number` | `0` | Minimum value |
+| `max` | `number` | `100` | Maximum value |
+| `indeterminate` | `boolean` | `false` | Carousel-style animation for unknown progress |
+| `animation` | `'carousel' \| 'carousel-inverse' \| 'swing' \| 'elastic'` | — | Indeterminate animation style |
+
+### Slots
+
+| Slot | Props | Description |
+|------|-------|-------------|
+| `default` | — | Custom content (overrides the bar) |
+| `indicator` | `{ ui }` | Custom indicator inside the bar |
+
+### Example Usage
+
+```vue
+<!-- Determinate progress -->
+<UProgress :value="60" />
+
+<!-- Indeterminate loading -->
+<UProgress indeterminate />
+
+<!-- Success state -->
+<UProgress :value="100" color="success" />
+```
+
+## Theme
+
+Nuxt UI v4 progress defaults (sizes 2xs-2xl, carousel animation) are already consistent with Mizu. No overrides are needed.
+
+Default: `color="primary"`, `size="md"`.
+
+## Anatomy
+
+A progress bar consists of:
+
+| Part | Required | Description |
+|------|----------|-------------|
+| Root | Yes | `<div>` track container |
+| Bar | Yes | Inner `<div>` that fills the track proportionally |
+| Indicator | No | Optional content inside the bar (e.g., percentage label) |
+
+## Implementation Notes
+
+1. **Use `<UProgress>` directly** — No Mizu wrapper needed.
+2. **Indeterminate state** — Set `indeterminate` to `true` for ongoing operations with unknown duration. The default animation is `carousel`.
+3. **Animation variants** — Choose from `carousel`, `carousel-inverse`, `swing`, or `elastic` for different indeterminate animation styles.
+4. **Custom range** — Use `min` and `max` props for non-percentage scales (e.g., `:min="0" :max="1000"`).

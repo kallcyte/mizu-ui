@@ -1,0 +1,97 @@
+﻿---
+title: Badge
+description: A short text to represent a status or a category.
+---
+
+import BadgeDemo from "../../../../components/docs/BadgeDemo.vue";
+
+> **Nuxt UI Component:** This uses Nuxt UI's `UBadge` component. Mizu provides a theme preset (`@mizu/vue/theme`) that overrides sizing, radius, and spacing to match Mizu's design language. See the [Theme](#theme) section for Mizu-specific defaults.
+
+A badge displays a short label for status, categories, or metadata. Mizu uses Nuxt UI's `UBadge` with compact sizing (16/20px).
+
+## Examples
+
+<BadgeDemo client:only="vue" />
+
+## API
+
+Reference: [Nuxt UI Badge](https://ui.nuxt.com/docs/components/badge)
+
+### Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `size` | `'xs' \| 'sm' \| 'md' \| 'lg' \| 'xl'` | `'md'` | Badge size. Mizu overrides sm/md to 16/20px |
+| `color` | `'primary' \| 'secondary' \| 'success' \| 'error' \| 'warning' \| 'info' \| 'neutral'` | `'primary'` | Semantic color |
+| `variant` | `'solid' \| 'outline' \| 'soft' \| 'subtle'` | `'solid'` | Visual style |
+| `icon` | `string` (Iconify) | â€” | Icon from Iconify (e.g. `'i-ph-check'`) |
+| `trailing` | `boolean` | `false` | When `true`, icon displays on the right |
+| `label` | `string \| number` | â€” | Shorthand for text content |
+| `square` | `boolean` | `false` | Equal padding on all sides |
+
+### Slots
+
+| Slot | Props | Description |
+|------|-------|-------------|
+| `default` | â€” | Badge label/content |
+| `leading` | `{ ui }` | Custom leading content |
+| `trailing` | `{ ui }` | Custom trailing content |
+
+## Theme
+
+Mizu overrides Nuxt UI's badge sizing to match the Mizu design spec. Consumers apply the theme via `@mizu/vue/theme`:
+
+```ts
+// app.config.ts
+import { mizuTheme } from "@mizu/vue/theme";
+export default defineAppConfig({ ui: mizuTheme });
+```
+
+### Design Specs
+
+| Property | SM | MD |
+|----------|----|----|
+| Min Width | 16px | 20px |
+| Height | 16px | 20px |
+| H-Padding | 4px | 6px |
+| Font Size | 10px (`text-[10px]/3`) | 11px (`text-[11px]`) |
+| Radius | 8px (`rounded-lg`) | 10px (`rounded-[10px]`) |
+| Font Weight | 500 | 500 |
+| Icon Size | 12px (`size-3`) | 16px (`size-4`) |
+
+### Color Map
+
+| Mizu Token | Nuxt UI Color |
+|------------|---------------|
+| `--color-brand-primary` | `primary` |
+| `--color-brand-ycp` | `secondary` |
+| `--color-feedback-success-base` | `success` |
+| `--color-feedback-error-base` | `error` |
+| `--color-feedback-warning-base` | `warning` |
+| `--color-feedback-info-base` | `info` |
+
+### Typography
+
+| Property | Value |
+|----------|-------|
+| Font Family | DM Sans (`--font-family-sans`) |
+| Font Weight | 500 (medium) |
+| Text Transform | None |
+| Letter Spacing | Normal |
+
+## Anatomy
+
+A badge is a single inline element:
+
+| Part | Required | Description |
+|------|----------|-------------|
+| Root | Yes | `<span>` element with padding, radius, and color |
+
+With optional leading icon and trailing icon inline.
+
+## Implementation Notes
+
+1. **Use `<UBadge>` directly** â€” No Mizu wrapper needed. Apply the theme preset and Nuxt UI handles the rest.
+2. **Compact scale** â€” Mizu badges are smaller than Nuxt UI defaults. The theme preset overrides sm â†’ 16px, md â†’ 20px.
+3. **Status use** â€” Use `variant="soft"` for status indicators (Online, Away, Offline) with appropriate `color`.
+4. **`label` shorthand** â€” Prefer `<UBadge label="New" />` for simple text-only badges.

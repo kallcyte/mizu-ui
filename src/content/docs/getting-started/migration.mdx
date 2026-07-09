@@ -91,20 +91,68 @@ These Mizu components are **still available** — they solve unique UI problems 
 | `useForm` | Kept — Zod-based form validation |
 | `useToast` | Removed — use Nuxt UI's `useToast` |
 
-## Theme Customization
+## Theme Preset Setup
 
-Mizu maps its design tokens to Nuxt UI's semantic color system. You can customize via CSS custom properties or by setting up a Nuxt UI `app.config.ts`:
+Mizu provides a theme preset (`@mizu/vue/theme`) that overrides Nuxt UI's component defaults — sizing, spacing, radius, and typography — to match Mizu's design language. Apply it once in your app config:
 
 ```ts
 // app.config.ts
+import { mizuTheme } from "@mizu/vue/theme";
+
+export default defineAppConfig({
+  ui: mizuTheme,
+});
+```
+
+With the theme preset applied, components like `<UButton>`, `<UInput>`, `<UBadge>`, and `<UCard>` automatically use Mizu sizing (SM: 28px, MD: 36px, LG: 40px), radius (6px), and spacing without any wrapper components.
+
+### Components with active theme overrides
+
+| Component | Override |
+|---|---|
+| Button | Sizing (28/36/40px), padding, icon sizes, gap |
+| Badge | Sizing (16/20px), padding, font size, radius |
+| Input | Sizing (28/36/40px), padding, gap |
+| Card | Border radius (6px), default outline variant |
+| Modal | Content border radius (6px) |
+| Select | Sizing (28/36/40px), padding, gap |
+| Textarea | Sizing (28/36/40px), padding, gap |
+
+### Components using Nuxt UI defaults
+
+These components match the Mizu design scale without overrides:
+
+| Component | Notes |
+|---|---|
+| Avatar | Sizes 3xs-3xl match Mizu scale |
+| Checkbox | Default indicator sizes match Mizu |
+| Switch | Default track/thumb dimensions match Mizu |
+| Tabs | Pill variant, sizes match button scale |
+| Tooltip | Compact dimensions (6px height) |
+| Popover | Rounded-md panels match Mizu radius |
+| DropdownMenu | Rounded-md, item sizes match Mizu |
+| Kbd | Compact sizes (18/22/26px) |
+| Progress | Sizes 2xs-2xl match Mizu |
+| Breadcrumb | Text-sm, size-5 separator icons |
+| Pagination | Inherits from button/input scale |
+
+## Customizing Colors
+
+Mizu maps its design tokens to Nuxt UI's semantic color system. You can further customize via the `app.config.ts`:
+
+```ts
+// app.config.ts
+import { mizuTheme } from "@mizu/vue/theme";
+
 export default defineAppConfig({
   ui: {
+    ...mizuTheme,
     colors: {
-      primary: "brand-primary",
-      neutral: "surface",
+      primary: "custom-blue",
+      neutral: "custom-gray",
     },
   },
 });
 ```
 
-For full theme customization, see the [Tokens overview](/tokens/overview).
+For full token reference, see the [Tokens overview](/tokens/overview).

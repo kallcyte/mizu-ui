@@ -16,6 +16,22 @@ This project follows **semantic versioning** (SemVer) during pre-1.0 development
 Changes that require a minor bump: adding a new component, renaming tokens, changing component APIs, adding new packages (e.g. React).
 Changes that keep the patch version: renames, copy edits, styling tweaks, build config changes, favicon updates.
 
+## 0.16.1 (2026-07-08)
+
+### Added
+
+- **MizuSkeleton** — new Vue component wrapping the skeleton placeholder with Mizu tokens and built-in shimmer/pulse animations
+- **MizuSkeleton story** — Histoire story (3 variants) for visual regression coverage
+
+### Documentation
+
+- Updated skeleton docs page to reflect the new `MizuSkeleton` component API
+- Skeleton demo now uses `<MizuSkeleton>` instead of plain `<div>` elements
+
+### Internal Changes
+
+- Version bump to `0.16.1`
+
 ## 0.16.0 (2026-07-08)
 
 **Breaking change:** Migrated the base component library from Reka UI to Nuxt UI v4. All `Mizu*` component wrappers have been removed — consumers now use Nuxt UI's `<UComponent>` format directly, with Mizu providing the theme layer (colors, fonts, spacing, container width).

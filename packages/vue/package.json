@@ -1,7 +1,7 @@
 {
   "name": "@mizu/vue",
-  "version": "0.16.0",
-  "type": "module",
+  "version": "0.16.1",
+    "type": "module",
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -11,7 +11,12 @@
       "import": "./dist/index.js",
       "require": "./dist/index.cjs"
     },
-    "./style.css": "./dist/index.css"
+    "./style.css": "./dist/index.css",
+    "./theme": {
+      "types": "./dist/theme.d.ts",
+      "import": "./dist/theme.js",
+      "require": "./dist/theme.cjs"
+    }
   },
   "sideEffects": [
     "*.css"

@@ -3,85 +3,78 @@ title: Skeleton
 description: A loading placeholder that visually represents content while data is being fetched.
 ---
 
-> **Nuxt UI Migration:** This component now uses Nuxt UI's `USkeleton` component as its base. See [Nuxt UI documentation](https://ui.nuxt.com) for the complete API reference. Mizu provides the theme layer (colors, fonts, spacing) that automatically applies to all Nuxt UI components.
+import SkeletonDemo from '../../../../components/docs/SkeletonDemo.vue';
 
 A skeleton is a lightweight, non-interactive placeholder used to indicate that content is loading. It mirrors the shape of the eventual content (text, avatars, cards, list items) so the layout stays stable while data fetches.
 
-```vue
-<!-- Single line of text -->
-<USkeleton variant="text" />
+## Demo
 
-<!-- Multi-line paragraph placeholder -->
-<USkeleton variant="text" :lines="3" />
-
-<!-- Circle avatar placeholder -->
-<USkeleton variant="circle" :width="48" :height="48" />
-
-<!-- Rectangular thumbnail -->
-<USkeleton variant="rect" :width="200" :height="120" :radius="12" />
-
-<!-- Custom width as string -->
-<USkeleton variant="text" width="60%" />
-
-<!-- Shimmer animation (the default) -->
-<USkeleton variant="rect" :width="100" :height="20" animation="shimmer" />
-
-<!-- Pulse animation (opacity fade) -->
-<USkeleton variant="rect" :width="100" :height="20" animation="pulse" />
-
-<!-- No animation -->
-<USkeleton variant="rect" :width="100" :height="20" animation="none" />
-
-<!-- Combined with v-if for conditional loading -->
-<template>
-  <USkeleton v-if="loading" variant="text" :lines="4" />
-  <p v-else>{{ content }}</p>
-</template>
-```
+<SkeletonDemo client:only="vue" />
 
 ## API
 
+MizuSkeleton renders a styled `<div>` element with Mizu tokens. Sizing and shape are controlled via the standard `class` attribute, while animation is selected via the `animation` prop.
+
 ### Props
 
-| Prop        | Type                             | Default     | Description                                                                             |
-| ----------- | -------------------------------- | ----------- | --------------------------------------------------------------------------------------- |
-| `variant`   | `'text' \| 'circle' \| 'rect'`   | `'text'`    | Shape variant                                                                           |
-| `width`     | `string \| number`               | `undefined` | CSS width (number → `Npx`, string → as-is)                                              |
-| `height`    | `string \| number`               | `undefined` | CSS height (number → `Npx`, string → as-is)                                             |
-| `radius`    | `string \| number`               | `undefined` | CSS border-radius override                                                              |
-| `animation` | `'shimmer' \| 'pulse' \| 'none'` | `'shimmer'` | Loading animation. `shimmer` sweeps a gradient highlight; `pulse` fades opacity in/out. |
-| `lines`     | `number`                         | `1`         | Number of text lines when `variant="text"` (only when >1; renders a stack)              |
+| Prop        | Type                                      | Default     | Description                                    |
+| ----------- | ----------------------------------------- | ----------- | ---------------------------------------------- |
+| `animation` | `"shimmer"` \| `"pulse"` \| `"none"`     | `"shimmer"` | Animation style for the placeholder            |
 
-### Slots
+### Layout
 
-None. Skeleton is a pure placeholder and accepts no content.
+Sizing is handled entirely through Tailwind utility classes passed via the `class` attribute:
 
-### Events
+| Aspect         | Class Pattern                     | Example                                    |
+| -------------- | --------------------------------- | ------------------------------------------ |
+| Height         | `h-*` or `h-[*]`                  | `h-3.5`, `h-4`, `h-30`               |
+| Width          | `w-*` or `w-[*]`                  | `w-full`, `w-48`, `w-50`                  |
+| Shape          | `rounded-*`                       | `rounded-md`, `rounded-full`               |
+| Background     | `bg-surface-muted` (applied by default) | —                                     |
 
-None. Skeleton is non-interactive.
+### Multi-line Text
+
+For multi-line text, compose multiple instances inside a flex column:
+
+```vue
+<div class="flex flex-col gap-2">
+  <MizuSkeleton class="h-3.5 w-full rounded-md" />
+  <MizuSkeleton class="h-3.5 w-full rounded-md" />
+  <MizuSkeleton class="h-3.5 w-3/5 rounded-md" />
+</div>
+```
+
+### Content Loading Pattern
+
+Use `v-if`/`v-else` to toggle between skeleton and real content:
+
+```vue
+<template>
+  <MizuSkeleton v-if="loading" class="size-12 rounded-full" />
+  <img v-else src="..." alt="Avatar" />
+</template>
+```
 
 ## Theme
 
-### CSS Custom Properties
+### Placeholder Color
 
-| Token                           | Default   | Description                                                   |
-| ------------------------------- | --------- | ------------------------------------------------------------- |
-| `--color-skeleton-base` (light) | `#E5E7EB` | Placeholder background in light mode                          |
-| `--color-skeleton-base` (dark)  | `#1F2937` | Placeholder background in dark mode (via `[data-theme=dark]`) |
-| `--radius-default`              | 6px       | Rounded corners on text/rect variants                         |
+| Token                | Light      | Dark       |
+| -------------------- | ---------- | ---------- |
+| `--color-surface-muted` | `#F3F4F6` | `#1E2030` |
 
-The shimmer gradient uses explicit hex colors for the base and highlight so it remains clearly visible across themes. The background color token is reused as the gradient edge stops; only the middle peak is lighter.
+The skeleton background uses the Mizu `--color-surface-muted` token via the `bg-surface-muted` utility class. This token automatically switches between light and dark themes.
 
 Skeletons are intentionally neutral. They do not carry semantic color variants since they do not represent a brand or status — only the absence of content.
 
 #### Variant Color Map
 
-| Element           | Token                   | Light                       | Dark                        |
-| ----------------- | ----------------------- | --------------------------- | --------------------------- |
-| Placeholder fill  | `--color-skeleton-base` | `#E5E7EB`                   | `#1F2937`                   |
-| Shimmer highlight | inline gradient         | `#F9FAFB` peak on `#E5E7EB` | `#374151` peak on `#1F2937` |
+| Element           | Token / Implementation           | Light                     | Dark                      |
+| ----------------- | -------------------------------- | ------------------------- | ------------------------- |
+| Placeholder fill  | `bg-surface-muted`               | `#F3F4F6`                | `#1E2030`                 |
+| Shimmer highlight | inline gradient via `::after`    | `rgba(255,255,255,0.45)` | `rgba(255,255,255,0.08)` |
 
-The placeholder fill uses two neutral grays (one per theme) that sit between the page surface and typical content colors so they read as placeholders.
+The placeholder fill uses the Mizu muted surface token, which adapts to both themes automatically. The shimmer highlight is a semi-transparent white overlay that sweeps across the placeholder.
 
 ### Sizing
 
@@ -89,27 +82,29 @@ The placeholder fill uses two neutral grays (one per theme) that sit between the
 
 | Variant    | Aspect   | Default Size              | Use Case                           |
 | ---------- | -------- | ------------------------- | ---------------------------------- |
-| **Text**   | Variable | 100% width, 0.85em height | Paragraph text, headings, labels   |
-| **Circle** | 1:1      | width = height prop       | Avatars, icons, status dots        |
-| **Rect**   | Any      | width × height props      | Thumbnails, cards, buttons, images |
+| **Text**   | Variable | 100% width, 14px height   | Paragraph text, headings, labels   |
+| **Circle** | 1:1      | equal width & height      | Avatars, icons, status dots        |
+| **Rect**   | Any      | explicit w & h via class  | Thumbnails, cards, buttons, images |
 
 #### Dimensions
 
 | Property                   | Text                         | Circle                | Rect                   |
 | -------------------------- | ---------------------------- | --------------------- | ---------------------- |
-| Height                     | 0.85em (line-height aligned) | = width               | explicit `height` prop |
-| Width                      | 100% (or `width` prop)       | explicit `width` prop | explicit `width` prop  |
+| Height                     | 14px (fixed line height)     | = width               | explicit height class  |
+| Width                      | 100% (or explicit class)     | explicit width class  | explicit width class   |
 | Multi-line Stack Gap       | 0.5em between lines          | —                     | —                      |
 | Last-line Width (in stack) | 60% (mimics natural prose)   | —                     | —                      |
 
 #### Shape
 
-| Mode     | Border Radius               |
-| -------- | --------------------------- |
-| `text`   | `radius-default` (6px)      |
-| `circle` | 9999px                      |
-| `rect`   | `radius-default` (6px)      |
-| Custom   | any value via `radius` prop |
+| Mode           | Border Radius               |
+| -------------- | --------------------------- |
+| Default        | `radius-default` (6px) via `mizu-skel-base` |
+| `rounded-md`   | `radius-default` (6px)      |
+| `rounded-full` | 9999px                      |
+| Custom         | any value via `rounded-*` class |
+
+The component applies a default `border-radius: 0.375rem` via the `mizu-skel-base` class in `@layer components`. User-supplied `rounded-*` utility classes (in `@layer utilities`) always override this default.
 
 #### Multi-line Text Layout
 
@@ -134,36 +129,46 @@ The placeholder fill uses two neutral grays (one per theme) that sit between the
 
 ### Transitions
 
+Skeleton provides two animation modes via the `animation` prop.
+
+| Mode    | Prop Value | Default? | CSS Mechanism                                                                 |
+| ------- | ---------- | -------- | ----------------------------------------------------------------------------- |
+| Shimmer | `shimmer`  | Yes      | `::after` pseudo-element with linear-gradient overlay, animated via `transform: translateX()` sweep |
+| Pulse   | `pulse`    | No       | Tailwind's `animate-pulse` (opacity keyframes 1 → 0.5 → 1)                   |
+| None    | `none`     | No       | No animation — renders as static placeholder at reduced opacity               |
+
 #### Shimmer Animation
 
-The shimmer renders a gradient highlight band that sweeps horizontally across the placeholder via animated `background-position`. The gradient reuses the skeleton base color at the edges and blends into a lighter peak in the middle, producing a visible moving shine.
+The shimmer renders a semi-transparent white gradient band that sweeps horizontally across the placeholder via a `::after` pseudo-element with `transform: translateX()`. This approach avoids browser quirks with `background-position` animation and works reliably across all rendering engines.
 
-| Property                        | Value                                                                                             |
-| ------------------------------- | ------------------------------------------------------------------------------------------------- |
-| Implementation                  | `background-image` gradient with `background-size: 200% 100%`; animated via `background-position` |
-| Gradient shape (light)          | `#E5E7EB → #F9FAFB (30%) → #E5E7EB`                                                               |
-| Gradient shape (dark)           | `#1F2937 → #374151 (30%) → #1F2937`                                                               |
-| Sweep mechanism                 | `background-position` animates from `200% 0` (off-screen right) to `-200% 0` (off-screen left)    |
-| Cycle duration                  | **1500ms**                                                                                        |
-| Easing                          | `ease-in-out`                                                                                     |
-| Iteration                       | infinite                                                                                          |
-| Honors `prefers-reduced-motion` | Yes — animation disabled, opacity locked to 0.7                                                   |
+| Property                        | Value                                                         |
+| ------------------------------- | ------------------------------------------------------------- |
+| Implementation                  | `::after` pseudo-element, `linear-gradient`, `transform: translateX()` |
+| Overlay color (light)           | `rgba(255, 255, 255, 0.45)` white shine                      |
+| Overlay color (dark)            | `rgba(255, 255, 255, 0.08)` subtle white sheen               |
+| Sweep                           | `translateX(-100%)` to `translateX(100%)`                    |
+| Cycle duration                  | **1500ms**                                                    |
+| Easing                          | `ease-in-out`                                                 |
+| Iteration                       | infinite                                                      |
+| Honors `prefers-reduced-motion` | Yes — animation disabled                                     |
 
 #### Pulse Animation
 
-The pulse animation fades the skeleton's opacity between 1 and 0.5, matching shadcn's `animate-pulse` pattern. This provides a simpler, more subdued loading indicator that works well in dense layouts.
+The pulse animation fades the skeleton's opacity between 1 and 0.5, matching the standard `animate-pulse` pattern. This provides a simpler, more subdued loading indicator that works well in dense layouts.
 
 | Property                        | Value                                           |
 | ------------------------------- | ----------------------------------------------- |
-| Implementation                  | `opacity` animation on the element itself       |
+| Implementation                  | Tailwind `animate-pulse` class                  |
 | Cycle duration                  | **2000ms**                                      |
 | Easing                          | `cubic-bezier(0.4, 0, 0.6, 1)`                  |
 | Iteration                       | infinite                                        |
-| Honors `prefers-reduced-motion` | Yes — animation disabled, opacity locked to 0.7 |
+| Honors `prefers-reduced-motion` | Yes — animation disabled                        |
 
-When `prefers-reduced-motion: reduce` is set, both animations stop and the skeleton renders with a flat 0.7 opacity.
+When `prefers-reduced-motion: reduce` is set, all animations stop and the skeleton renders with a flat background.
 
-### Accessibility
+## Accessibility
+
+### Requirements
 
 | Criterion       | Implementation                                                                           |
 | --------------- | ---------------------------------------------------------------------------------------- |
@@ -172,17 +177,24 @@ When `prefers-reduced-motion: reduce` is set, both animations stop and the skele
 | Reduced Motion  | Shimmer and pulse animations are suppressed when `prefers-reduced-motion: reduce` is set |
 | Color Contrast  | Placeholder color is decorative, not informational; no contrast requirement              |
 
+### ARIA Attributes
+
 ```html
 <!-- Single skeleton -->
-<span class="mizu-skeleton mizu-skeleton--text" aria-hidden="true"></span>
+<MizuSkeleton class="h-4 w-48 rounded-md" aria-hidden="true" />
+
+<!-- Circle avatar -->
+<MizuSkeleton class="size-12 rounded-full" aria-hidden="true" />
 
 <!-- Multi-line stack -->
-<div class="mizu-skeleton-stack" aria-hidden="true">
-  <span class="mizu-skeleton mizu-skeleton--text"></span>
-  <span class="mizu-skeleton mizu-skeleton--text"></span>
-  <span class="mizu-skeleton mizu-skeleton--text"></span>
+<div class="flex flex-col gap-2">
+  <MizuSkeleton class="h-3.5 w-full rounded-md" />
+  <MizuSkeleton class="h-3.5 w-full rounded-md" />
+  <MizuSkeleton class="h-3.5 w-3/5 rounded-md" />
 </div>
 ```
+
+The component renders with `aria-hidden="true"` to hide the placeholder from assistive technology. Since skeletons carry no semantic information, they should be invisible to screen readers.
 
 ## Anatomy
 
@@ -190,24 +202,75 @@ A skeleton consists of a single styled placeholder element:
 
 | Part        | Required | Description                                                                    |
 | ----------- | -------- | ------------------------------------------------------------------------------ |
-| Placeholder | Yes      | A `div` or `span` element with a subtle background fill and optional animation |
+| Placeholder | Yes      | A `div` element with Mizu background token and optional animation              |
 
-For multi-line text, a stack wrapper groups `lines` placeholder elements and shrinks the final line to 60% width to mimic natural prose.
+For multi-line text, a stack wrapper groups multiple MizuSkeleton instances and shrinks the final line to 60% width to mimic natural prose.
+
+## Vue Component API
+
+### MizuSkeleton Props
+
+| Prop        | Type                                  | Default     | Description                            |
+| ----------- | ------------------------------------- | ----------- | -------------------------------------- |
+| `animation` | `"shimmer"` \| `"pulse"` \| `"none"` | `"shimmer"` | Animation style for the placeholder    |
+
+### Slots
+
+None. The component renders a single `<div>` element.
+
+### Events
+
+None.
+
+### Example Usage
+
+```vue
+<script setup lang="ts">
+import { MizuSkeleton } from "@mizu/vue";
+</script>
+
+<template>
+  <!-- Text line with shimmer (default) -->
+  <MizuSkeleton class="h-3.5 w-full rounded-md" />
+
+  <!-- Circle avatar -->
+  <MizuSkeleton class="size-12 rounded-full" />
+
+  <!-- Rectangle card -->
+  <MizuSkeleton class="h-30 w-50 rounded-md" />
+
+  <!-- Pulse animation -->
+  <MizuSkeleton animation="pulse" class="h-4 w-48 rounded-md" />
+
+  <!-- No animation -->
+  <MizuSkeleton animation="none" class="h-4 w-48 rounded-md" />
+
+  <!-- Multi-line text -->
+  <div class="flex flex-col gap-2">
+    <MizuSkeleton class="h-3.5 w-full rounded-md" />
+    <MizuSkeleton class="h-3.5 w-full rounded-md" />
+    <MizuSkeleton class="h-3.5 w-3/5 rounded-md" />
+  </div>
+
+  <!-- Content loading pattern -->
+  <MizuSkeleton v-if="loading" class="size-12 rounded-full" />
+  <img v-else src="..." alt="Avatar" />
+</template>
+```
 
 ## Implementation Notes
 
-1. **Native `<span>` element** — Renders as `<span>` by default for correct inline flow; switches to `<div>` wrapper only for the multi-line `lines > 1` stack so the gap layout works
-2. **No Nuxt UI needed** — Skeleton is purely presentational and animation-driven; no headless wrapper required
-3. **`font-size` scaling** — The `text` variant uses `height: 0.85em` so it tracks the surrounding text size automatically
-4. **`lines > 1` rendering** — When `lines > 1` and `variant="text"`, a `<div>` stack wraps `lines` placeholder spans; the last span is 60% width to mimic natural prose endings
-5. **Pixel vs string width** — Numeric `width`/`height`/`radius` props are converted to `Npx`; strings are used as-is so consumers can pass `100%`, `12rem`, `var(--something)`, etc.
-6. **Shimmer animation** — Uses a `background-image` gradient with `background-size: 200% 100%`; animated via `background-position` from `200% 0` to `-200% 0`. The gradient reuses the base fill color at the edges and blends into a lighter peak (`#F9FAFB` in light, `#374151` in dark) so the moving band is visible against both themes. This avoids pseudo-elements and is more robust across browsers.
-7. **Pulse animation** — Uses `opacity` keyframes (1 → 0.5 → 1) matching shadcn's `animate-pulse` pattern for a simpler loading indicator.
-8. **Theme-adaptive base color** — Uses `#E5E7EB` in light mode and `#1F2937` in dark mode via `[data-theme=dark]` selector override; both are neutral grays that read clearly against typical content
-9. **`prefers-reduced-motion`** — Both animations are disabled when the user prefers reduced motion; placeholder falls back to a flat 0.7 opacity
-10. **`role="status"` left off intentionally** — Skeleton does not announce itself; it's decorative and hidden from assistive tech via `aria-hidden="true"`
-11. **Tailwind `@apply`** — Component styles use `@apply` with `@reference` for Tailwind v4 compatibility
-12. **Self-contained CSS** — Tailwind utilities are bundled into `dist/index.css` via `@tailwindcss/vite`; consumers do not need Tailwind installed
-13. **Class inheritance** — Accepts `class` prop for overrides via `useAttrs()`
-14. **TypeScript** — Full type safety with `<script setup lang="ts">`
-15. **Tree-shakeable** — Exports as ESM + CJS via Vite library mode
+1. **Component wrapper** — MizuSkeleton is a thin Vue component that renders a `<div>` with Mizu's `bg-surface-muted` token. It does not use Nuxt UI's `USkeleton`.
+2. **Sizing via `class` attribute** — Dimensions are controlled entirely through standard Tailwind utility classes passed via `class` (e.g., `class="h-3.5 w-full rounded-md"`).
+3. **Fixed text height** — Use `h-3.5` (14px) as a reliable default text-line height that renders consistently across contexts.
+4. **Multi-line text** — Compose multiple MizuSkeleton instances inside a flex column with `gap-2`. Set the last child's width to `w-3/5` (60%) to mimic natural prose endings.
+5. **Color via Mizu token** — The `bg-surface-muted` class maps to Mizu's `--color-surface-muted` token (light `#F3F4F6`, dark `#1E2030`), adapting automatically to the active theme.
+6. **Shimmer animation** — Uses a `::after` pseudo-element with a linear-gradient overlay animated via `transform: translateX()` from `-100%` to `100%`. Avoids browser quirks with `background-position` animation.
+7. **Pulse animation** — Tailwind's built-in `animate-pulse` class (opacity keyframes 1 → 0.5 → 1).
+8. **Shimmer is default** — The `animation` prop defaults to `"shimmer"`. Use `animation="pulse"` or `animation="none"` to change.
+9. **`prefers-reduced-motion`** — All animations are disabled when the user prefers reduced motion.
+10. **Default border-radius** — The `mizu-skel-base` class (in `@layer components`) provides a default `border-radius: 0.375rem`. User-supplied `rounded-*` utility classes (in `@layer utilities`) always override it.
+11. **ARIA** — The component renders with `aria-hidden="true"`. Skeletons carry no semantic information and should be hidden from assistive technology.
+12. **Shimmer is purely CSS** — No JavaScript runtime cost. The animation is driven entirely by CSS keyframes on the `::after` pseudo-element.
+13. **Tailwind v4 compatible** — All sizing utilities (`h-*`, `w-*`, `size-*`, `rounded-*`) are standard Tailwind v4 classes.
+14. **Tree-shakeable** — Import `MizuSkeleton` from `@mizu/vue`; unused components are tree-shaken by your bundler.

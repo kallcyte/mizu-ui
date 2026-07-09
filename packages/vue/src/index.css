@@ -14,6 +14,9 @@
   --font-family-sans: var(--font-family-sans);
   --font-family-mono: var(--font-family-mono);
   --font-family-serif: var(--font-family-serif);
+  --font-sans: var(--font-family-sans);
+  --font-mono: var(--font-family-mono);
+  --font-serif: var(--font-family-serif);
 }
 
 /*
@@ -44,7 +47,15 @@
   --color-secondary-focus: var(--color-brand-ycp-focus);
   --color-secondary-subtle: var(--color-brand-ycp-subtle);
 
-  /* Surface / Foreground mapped to neutral */
+  /* Surface / Foreground — mapped to Nuxt UI's semantic layer */
+  --color-default: var(--color-surface-base);
+  --color-elevated: var(--color-surface-subtle);
+  --color-accented: var(--color-surface-muted);
+  --color-highlighted: var(--color-foreground-primary);
+  --color-dimmed: var(--color-foreground-tertiary);
+  --color-inverted: var(--color-foreground-inverse);
+
+  /* Surface / Foreground — also available as utility aliases */
   --color-surface-base: var(--color-surface-base);
   --color-surface-subtle: var(--color-surface-subtle);
   --color-surface-muted: var(--color-surface-muted);
@@ -74,3 +85,73 @@
   --color-info-focus: var(--color-feedback-info-focus);
   --color-info-subtle: var(--color-feedback-info-subtle);
 }
+
+/*
+ * Global defaults — focus ring, transition presets, shadow mapping.
+ * These set the baseline for all Nuxt UI interactive components.
+ */
+
+/*
+ * Nuxt UI semantic layer → Mizu token overrides.
+ *
+ * Nuxt UI utility classes (bg-default, text-highlighted, border-accented,
+ * placeholder:text-dimmed, etc.) resolve to --ui-* CSS variables which
+ * default to Nuxt UI's own neutral color scale.  We remap every surface,
+ * foreground, and border variable to the corresponding Mizu design token.
+ *
+ * Unlayered :root beats Nuxt UI's @layer theme defaults per cascade rules.
+ * Because every value is a var() reference to a Mizu token (e.g.
+ * --color-surface-base), light vs dark mode switching happens automatically
+ * — the token CSS in @mizu/tokens already handles [data-theme="dark"].
+ */
+:root {
+  /* ── Surface backgrounds ──────────────────────────────── */
+  --ui-bg:            var(--color-surface-base);
+  --ui-bg-muted:      var(--color-surface-subtle);
+  --ui-bg-elevated:   var(--color-surface-subtle);
+  --ui-bg-accented:   var(--color-surface-muted);
+  --ui-bg-inverted:   var(--color-foreground-primary);
+
+  /* ── Borders ──────────────────────────────────────────── */
+  --ui-border:         var(--color-surface-muted);
+  --ui-border-muted:   var(--color-surface-muted);
+  --ui-border-accented:var(--color-surface-muted);
+  --ui-border-inverted:var(--color-foreground-primary);
+
+  /* ── Foreground / text ────────────────────────────────── */
+  --ui-text:           var(--color-foreground-primary);
+  --ui-text-highlighted:var(--color-foreground-primary);
+  --ui-text-toned:     var(--color-foreground-secondary);
+  --ui-text-muted:     var(--color-foreground-secondary);
+  --ui-text-dimmed:    var(--color-foreground-tertiary);
+  --ui-text-inverted:  var(--color-foreground-inverse);
+
+  /* ── Focus ring — uses Mizu brand-primary + surface-base offset ── */
+  --ui-ring-color: var(--color-brand-primary, #0070F2);
+  --ui-ring-offset: 2px;
+  --ui-ring-offset-color: var(--color-surface-base, #fff);
+
+  /* ── Transition — uses Mizu duration/easing tokens ───── */
+  --ui-transition-duration: var(--duration-fast, 200ms);
+  --ui-transition-easing: var(--ease-interaction, ease-out);
+
+  /* ── Shadows ──────────────────────────────────────────── */
+  --ui-overlay-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+  --ui-popover-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+}
+
+/*
+ * Hide Microsoft Edge password reveal and text clear icons.
+ * These native controls conflict with Mizu's custom input styling.
+ */
+input::-ms-reveal,
+input::-ms-clear {
+  display: none;
+}
+
+/* Focus border: use --input-border-color fallback to brand-primary when unset */
+[data-slot="base"]:focus-within {
+  border-color: var(--input-border-color, var(--color-brand-primary));
+}
+
+

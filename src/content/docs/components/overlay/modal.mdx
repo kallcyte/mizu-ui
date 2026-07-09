@@ -1,0 +1,119 @@
+---
+title: Modal
+description: An overlay dialog for focused tasks and confirmations.
+---
+
+import ModalDemo from "../../../../components/docs/ModalDemo.vue";
+
+> **Nuxt UI Component:** This uses Nuxt UI's `UModal` component. Mizu provides a theme preset (`@mizu/vue/theme`) that overrides the content radius to match Mizu's design language. See the [Theme](#theme) section for Mizu-specific defaults.
+
+A modal is an overlay dialog that focuses the user on a single task or confirmation. Mizu uses Nuxt UI's `UModal` with a rounded-md (6px) content panel radius.
+
+## Examples
+
+<ModalDemo client:only="vue" />
+
+## API
+
+Reference: [Nuxt UI Modal](https://ui.nuxt.com/docs/components/modal)
+
+### Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `size` | `'sm' \| 'md' \| 'lg' \| 'xl'` | `'md'` | Modal width (sm: 400px, md: 500px, lg: 700px, xl: 900px) |
+| `title` | `string` | — | Modal title text |
+| `description` | `string` | — | Modal description text |
+| `fullscreen` | `boolean` | `false` | Fills entire viewport with no border radius |
+| `scrollable` | `boolean` | `false` | Content scrolls within the overlay (max-height: calc(100dvh - 2rem)) |
+| `dismissible` | `boolean` | `true` | When `false`, prevents close on click-outside and Escape |
+| `close` | `{ color, variant, icon, size, onClick }` | — | Close button configuration |
+| `transition` | `boolean` | `true` | Enable/disable enter/leave animations |
+| `modelValue` | `boolean` | — | v-model binding for open state |
+| `defaultOpen` | `boolean` | — | Initial open state (uncontrolled) |
+
+### Slots
+
+| Slot | Props | Description |
+|------|-------|-------------|
+| `default` | — | Entire modal content (custom layout) |
+| `header` | `{ ui }` | Custom header (defaults to title + description + close button) |
+| `body` | `{ ui }` | Scrollable body content |
+| `footer` | `{ ui }` | Footer for actions (buttons) |
+| `content` | `{ ui }` | Content wrapper (title, description, body, footer) |
+| `close` | `{ ui }` | Custom close button |
+| `trigger` | — | Custom trigger element |
+
+### Example Usage
+
+```vue
+<UModal v-model:open="open" title="Edit Profile" description="Make changes to your profile.">
+  <template #body>
+    <UFormField label="Name">
+      <UInput placeholder="Your name" />
+    </UFormField>
+  </template>
+  <template #footer>
+    <UButton label="Cancel" color="neutral" variant="ghost" @click="open = false" />
+    <UButton label="Save" color="primary" @click="save" />
+  </template>
+</UModal>
+```
+
+## Theme
+
+Mizu overrides the modal content panel to use rounded-md (6px) for consistent radius across the design system.
+
+```ts
+// app.config.ts
+import { mizuTheme } from "@mizu/vue/theme";
+export default defineAppConfig({ ui: mizuTheme });
+```
+
+### Design Specs
+
+| Property | Value |
+|----------|-------|
+| Content Radius | 6px (`rounded-md`) |
+| Overlay Background | rgba(0, 0, 0, 0.5) |
+| Content Shadow | `0 20px 25px -5px rgba(0,0,0,0.1), 0 8px 10px -6px rgba(0,0,0,0.1)` |
+| Header/Footer Divider | 1px solid `--color-surface-muted` |
+
+### Color Map
+
+| Mizu Token | Usage |
+|------------|-------|
+| `--color-surface-base` | Content background |
+| `--color-surface-muted` | Header/footer border |
+| `--color-foreground-primary` | Title text |
+| `--color-foreground-secondary` | Description and body text |
+
+### Transitions
+
+| Property | Duration | Easing |
+|----------|----------|--------|
+| Overlay opacity | 200ms in / 150ms out | ease-out / ease-in |
+| Content opacity + scale | 200ms in / 150ms out | ease-out / ease-in |
+
+## Anatomy
+
+A modal consists of:
+
+| Part | Required | Description |
+|------|----------|-------------|
+| Overlay | Yes | Semi-transparent backdrop covering the viewport |
+| Content | Yes | Centered panel with header, body, and footer |
+| Header | Yes | Title, description, and close button |
+| Body | Yes | Scrollable content area |
+| Footer | No | Action buttons (save, cancel, etc.) |
+| Close Button | No | X button in the header (shown by default) |
+| Trigger | No | Element that opens the modal |
+
+## Implementation Notes
+
+1. **Use `<UModal>` directly** — No Mizu wrapper needed. Apply the theme preset.
+2. **Controlled vs. uncontrolled** — Use `v-model:open` for controlled state. Use `defaultOpen` for uncontrolled.
+3. **Dismissible control** — Set `dismissible` to `false` to prevent closing on click-outside or Escape. Useful for confirmation dialogs that require an explicit action.
+4. **Fullscreen mode** — Set `fullscreen` to `true` for modals that fill the viewport. Ideal for mobile layouts or immersive workflows.
+5. **Scrollable body** — Set `scrollable` to `true` when the content may exceed the viewport height. The body gets `overflow-y: auto` and a max-height constraint.
+6. **Transition toggle** — Set `transition` to `false` to disable enter/leave animations for reduced-motion preferences.

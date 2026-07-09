@@ -1,0 +1,109 @@
+---
+title: Select
+description: A dropdown menu for choosing from a list of options.
+---
+
+import SelectDemo from "../../../../components/docs/SelectDemo.vue";
+
+> **Nuxt UI Component:** This uses Nuxt UI's `USelect` component. Mizu provides a theme preset (`@mizu/vue/theme`) that overrides sizing, padding, and spacing to match Mizu's design language. See the [Theme](#theme) section for Mizu-specific defaults.
+
+A select component lets users pick a single value from a list. Mizu uses Nuxt UI's `USelect` with the same height scale as inputs and buttons (28/36/40px) for visual alignment in forms.
+
+## Examples
+
+<SelectDemo client:only="vue" />
+
+## API
+
+Reference: [Nuxt UI Select](https://ui.nuxt.com/docs/components/select)
+
+### Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `size` | `'xs' \| 'sm' \| 'md' \| 'lg' \| 'xl'` | `'md'` | Select size. Mizu overrides sm/md/lg to 28/36/40px |
+| `color` | `'primary' \| 'secondary' \| 'success' \| 'error' \| 'warning' \| 'info' \| 'neutral'` | `'primary'` | Semantic color for focus ring |
+| `variant` | `'outline' \| 'soft' \| 'subtle' \| 'ghost' \| 'none'` | `'outline'` | Visual style |
+| `items` | `string[] \| { label, value }[]` | — | Options array |
+| `valueKey` | `string` | — | Property name to use as value |
+| `labelKey` | `string` | — | Property name to use as label |
+| `multiple` | `boolean` | `false` | Allow multiple selections |
+| `placeholder` | `string` | — | Placeholder text |
+| `icon` | `string` (Iconify) | — | Leading icon |
+| `trailingIcon` | `string` (Iconify) | — | Trailing icon |
+| `disabled` | `boolean` | `false` | Disables interaction |
+| `required` | `boolean` | `false` | Marks the field as required |
+| `modelValue` | `string \| number \| object \| array` | — | v-model binding |
+
+### Slots
+
+| Slot | Props | Description |
+|------|-------|-------------|
+| `default` | — | Default slot (not typically used) |
+| `leading` | `{ ui }` | Custom leading content |
+| `trailing` | `{ ui }` | Custom trailing content |
+
+### Form Integration
+
+Use `UFormField` to add labels, helper text, and error messages:
+
+```vue
+<UFormField label="Country" helper="Select your country of residence">
+  <USelect :items="['US', 'UK', 'CA']" placeholder="Choose a country" />
+</UFormField>
+```
+
+## Theme
+
+Mizu overrides Nuxt UI's select sizing to match the same height scale as inputs and buttons.
+
+```ts
+// app.config.ts
+import { mizuTheme } from "@mizu/vue/theme";
+export default defineAppConfig({ ui: mizuTheme });
+```
+
+### Design Specs
+
+| Size | Height | H-Padding | V-Padding | Radius | Gap |
+|------|--------|-----------|-----------|--------|-----|
+| **SM** | 28px | 8px (`px-2`) | 4px (`py-1`) | 4px (`rounded`) | 4px |
+| **MD** | 36px | 10px (`px-2.5`) | 6px (`py-1.5`) | 6px | 6px |
+| **LG** | 40px | 10px (`px-2.5`) | 8px (`py-2`) | 6px | 8px |
+
+### Typography
+
+| Property | Value |
+|----------|-------|
+| Font Family | DM Sans (`--font-family-sans`) |
+| Font Size (SM) | 14px (`text-sm/4`) |
+| Font Size (MD/LG) | 16px (`text-base/5`) |
+
+### Color Map
+
+| Mizu Token | Nuxt UI Color |
+|------------|---------------|
+| `--color-brand-primary` | `primary` (focus ring) |
+| `--color-brand-ycp` | `secondary` |
+| `--color-feedback-error-base` | `error` (validation) |
+
+## Anatomy
+
+A select consists of:
+
+| Part | Required | Description |
+|------|----------|-------------|
+| Root | Yes | `<div>` wrapper with trigger button |
+| Trigger | Yes | `<button>` that opens the menu |
+| Trailing Icon | Yes | Chevron icon indicating dropdown |
+| Content | Yes | `<ul>` list of options (rendered in a portal) |
+| Item | Yes | `<li>` option with label text |
+| Leading | No | Icon or avatar before the trigger text |
+
+## Implementation Notes
+
+1. **Use `<USelect>` directly** — No Mizu wrapper needed. Apply the theme preset.
+2. **Same height as inputs and buttons** — SM (28px), MD (36px), LG (40px) aligns with `UInput` and `UButton` for form row consistency.
+3. **Item format** — Pass strings for simple options. Use `{ label, value }` objects when the display label differs from the value. Use `{ label, value, disabled }` to disable specific options.
+4. **Multiple selection** — Set `multiple` to `true` for multi-select. The component renders selected items as badges inside the trigger.
+5. **Searchable** — Set `searchable` to `true` to add a search input that filters options.

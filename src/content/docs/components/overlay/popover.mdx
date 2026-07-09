@@ -1,0 +1,69 @@
+---
+title: Popover
+description: A floating card triggered by click, with a title and content.
+---
+
+import PopoverDemo from "../../../../components/docs/PopoverDemo.vue";
+
+> **Nuxt UI Component:** This uses Nuxt UI's `UPopover` component. Nuxt UI v4 defaults already match the Mizu design scale, so no sizing overrides are applied.
+
+A popover is a floating card that appears on click, useful for contextual actions, filters, or supplementary information. Mizu uses Nuxt UI's `UPopover` with rounded-md panels.
+
+## Examples
+
+<PopoverDemo client:only="vue" />
+
+## API
+
+Reference: [Nuxt UI Popover](https://ui.nuxt.com/docs/components/popover)
+
+### Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `title` | `string` | — | Popover title text |
+| `description` | `string` | — | Popover description text |
+| `content` | `{ align, side, alignOffset, sideOffset, collisionPadding }` | — | Popper positioning options |
+| `closeDelay` | `number` | `0` | Delay before hiding (ms) |
+| `forceMount` | `boolean` | `false` | Always mount in DOM |
+| `disabled` | `boolean` | `false` | Disable popover |
+| `defaultOpen` | `boolean` | — | Initial open state |
+| `modelValue` | `boolean` | — | v-model binding for controlled state |
+
+### Slots
+
+| Slot | Props | Description |
+|------|-------|-------------|
+| `default` | — | The trigger element |
+| `content` | `{ ui }` | Popover content (overrides title/description) |
+
+### Example Usage
+
+```vue
+<UPopover title="Notifications">
+  <template #content>
+    <p>You have 3 new notifications.</p>
+  </template>
+  <UButton label="Open" />
+</UPopover>
+```
+
+## Theme
+
+Nuxt UI v4 popover defaults already use rounded-md (6px) — matching Mizu's default border radius. No overrides are needed.
+
+## Anatomy
+
+A popover consists of:
+
+| Part | Required | Description |
+|------|----------|-------------|
+| Trigger | Yes | Button or element that opens the popover |
+| Content | Yes | Floating card with title, description, and custom content |
+
+## Implementation Notes
+
+1. **Use `<UPopover>` directly** — No Mizu wrapper needed.
+2. **Click trigger** — Unlike tooltips (hover), popovers open on click. Use for interactive content like forms, filters, or action menus.
+3. **Title and description** — Use the `title` and `description` props for simple headers. Use the `content` slot for full control over the popover body.
+4. **Positioning** — Use the `content` prop to control popper placement and alignment.

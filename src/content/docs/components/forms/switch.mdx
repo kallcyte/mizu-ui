@@ -1,0 +1,102 @@
+﻿---
+title: Switch
+description: A toggle control for enabling or disabling a setting.
+---
+
+import SwitchDemo from "../../../../components/docs/SwitchDemo.vue";
+
+> **Nuxt UI Component:** This uses Nuxt UI's `USwitch` component. Nuxt UI v4 defaults already match the Mizu form scale, so no sizing overrides are applied. See the [Theme](#theme) section for details.
+
+A switch toggles a binary setting on or off. Unlike checkboxes (selection), switches are used for immediate-effect settings like enabling notifications. Mizu uses Nuxt UI's `USwitch` with the default size scale.
+
+## Examples
+
+<SwitchDemo client:only="vue" />
+
+## API
+
+Reference: [Nuxt UI Switch](https://ui.nuxt.com/docs/components/switch)
+
+### Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `size` | `'xs' \| 'sm' \| 'md' \| 'lg' \| 'xl'` | `'md'` | Switch size |
+| `color` | `'primary' \| 'secondary' \| 'success' \| 'error' \| 'warning' \| 'info' \| 'neutral'` | `'primary'` | Semantic color for on state |
+| `variant` | `'outline' \| 'soft' \| 'subtle' \| 'ghost' \| 'none'` | `'outline'` | Visual style |
+| `label` | `string` | â€” | Label text |
+| `description` | `string` | â€” | Secondary description text below the label |
+| `checkedIcon` | `string` (Iconify) | â€” | Icon displayed when checked |
+| `uncheckedIcon` | `string` (Iconify) | â€” | Icon displayed when unchecked |
+| `loading` | `boolean` | `false` | Show a loading spinner on the thumb |
+| `required` | `boolean` | `false` | Marks the field as required |
+| `disabled` | `boolean` | `false` | Disables interaction |
+| `defaultValue` | `boolean` | â€” | Initial state |
+| `modelValue` | `boolean` | â€” | v-model binding |
+
+### Slots
+
+| Slot | Props | Description |
+|------|-------|-------------|
+| `default` | â€” | Default slot (not typically used) |
+| `label` | `{ ui }` | Custom label content |
+| `description` | `{ ui }` | Custom description content |
+
+### Example Usage
+
+```vue
+<USwitch label="Enable notifications" v-model="notifications" />
+
+<USwitch label="Dark mode" :default-value="true" :checked-icon="'i-ph-moon'" :unchecked-icon="'i-ph-sun'" />
+
+<USwitch disabled label="Airplane mode" />
+```
+
+## Theme
+
+Nuxt UI v4 switch defaults already match the Mizu form scale, so no sizing overrides are applied. The default track is 36px x 20px with a 16px thumb.
+
+### Design Specs
+
+| Property | Value |
+|----------|-------|
+| Track Width | 36px |
+| Track Height | 20px |
+| Thumb Size | 16px |
+| Track Radius | 9999px (full pill) |
+| Transition | 150ms |
+
+### Color Map
+
+| Mizu Token | Nuxt UI Color |
+|------------|---------------|
+| `--color-brand-primary` | `primary` (on state) |
+| `--color-surface-muted` | Track background (off state) |
+| `--color-brand-ycp` | `secondary` |
+
+### Typography
+
+| Property | Value |
+|----------|-------|
+| Font Family | DM Sans (`--font-family-sans`) |
+| Font Size | 14px (`text-sm`) |
+
+## Anatomy
+
+A switch consists of:
+
+| Part | Required | Description |
+|------|----------|-------------|
+| Root | Yes | `<label>` wrapping the track and thumb |
+| Track | Yes | Pill-shaped background that changes color on toggle |
+| Thumb | Yes | Circular knob that slides left/right |
+| Label | Yes | Text label describing the setting |
+| Description | No | Secondary text below the label |
+
+## Implementation Notes
+
+1. **Use `<USwitch>` directly** â€” No Mizu wrapper needed. Nuxt UI defaults match the Mizu design spec.
+2. **Switch vs. Checkbox** â€” Use a Switch for immediate-effect settings (notifications, dark mode). Use a Checkbox for selections that require a submit action (terms agreement, item selection).
+3. **Custom icons** â€” Use `checkedIcon` and `uncheckedIcon` to display contextual icons inside the thumb.
+4. **Loading state** â€” Set `loading` to `true` to show a spinner in the thumb while the setting change is being processed.
+5. **Form integration** â€” Switch works inside `UFormField` for structured form layouts, though switches are typically standalone settings controls.

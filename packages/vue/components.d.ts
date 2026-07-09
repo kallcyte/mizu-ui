@@ -11,21 +11,9 @@ export {}
 /* prettier-ignore */
 declare module 'vue' {
   export interface GlobalComponents {
-    MizuAlertDialogAction: typeof import('./src/components/MizuAlertDialogAction.vue')['default']
-    MizuAlertDialogCancel: typeof import('./src/components/MizuAlertDialogCancel.vue')['default']
-    MizuAlertDialogContent: typeof import('./src/components/MizuAlertDialogContent.vue')['default']
-    MizuAlertDialogDescription: typeof import('./src/components/MizuAlertDialogDescription.vue')['default']
-    MizuAlertDialogOverlay: typeof import('./src/components/MizuAlertDialogOverlay.vue')['default']
-    MizuAlertDialogPortal: typeof import('./src/components/MizuAlertDialogPortal.vue')['default']
-    MizuAlertDialogRoot: typeof import('./src/components/MizuAlertDialogRoot.vue')['default']
-    MizuAlertDialogTitle: typeof import('./src/components/MizuAlertDialogTitle.vue')['default']
-    MizuAlertDialogTrigger: typeof import('./src/components/MizuAlertDialogTrigger.vue')['default']
     MizuDashList: typeof import('./src/components/MizuDashList.vue')['default']
-    MizuDataTable: typeof import('./src/components/MizuDataTable.vue')['default']
     MizuMetric: typeof import('./src/components/MizuMetric.vue')['default']
     MizuQuote: typeof import('./src/components/MizuQuote.vue')['default']
-    MizuSkeletonTheme: typeof import('./src/components/MizuSkeletonTheme.vue')['default']
-    UCheckbox: typeof import('./../../node_modules/.pnpm/@nuxt+ui@4.9.0_patch_hash=9_7fdffa59719f109c3a32b247fddfb573/node_modules/@nuxt/ui/dist/runtime/components/Checkbox.vue')['default']
-    UPagination: typeof import('./../../node_modules/.pnpm/@nuxt+ui@4.9.0_patch_hash=9_7fdffa59719f109c3a32b247fddfb573/node_modules/@nuxt/ui/dist/runtime/components/Pagination.vue')['default']
+    MizuSkeleton: typeof import('./src/components/MizuSkeleton.vue')['default']
   }
 }

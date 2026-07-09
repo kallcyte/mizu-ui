@@ -1,0 +1,149 @@
+﻿---
+title: Input
+description: An input element to enter text.
+---
+
+import InputDemo from "../../../../components/docs/InputDemo.vue";
+
+> **Nuxt UI Component:** This uses Nuxt UI's `UInput` component. Mizu provides a theme preset (`@mizu/vue/theme`) that overrides sizing, padding, and spacing to match Mizu's design language. See the [Theme](#theme) section for Mizu-specific defaults.
+
+An input field allows users to enter and edit text. Mizu uses Nuxt UI's `UInput` with the same height scale as buttons (28/36/40px) for visual alignment in forms.
+
+## Examples
+
+<InputDemo client:only="vue" />
+
+## API
+
+Reference: [Nuxt UI Input](https://ui.nuxt.com/docs/components/input)
+
+### Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `size` | `'xs' \| 'sm' \| 'md' \| 'lg' \| 'xl'` | `'md'` | Input size. Mizu overrides sm/md/lg to 28/36/40px |
+| `color` | `'primary' \| 'secondary' \| 'success' \| 'error' \| 'warning' \| 'info' \| 'neutral'` | `'primary'` | Semantic color for focus ring |
+| `variant` | `'outline' \| 'soft' \| 'subtle' \| 'ghost' \| 'none'` | `'outline'` | Visual style |
+| `highlight` | `boolean` | `false` | Force the focus ring to be visible (used for validation) |
+| `placeholder` | `string` | — | Placeholder text |
+| `type` | `'text' \| 'email' \| 'password' \| 'number' \| ...` | `'text'` | HTML input type |
+| `icon` | `string` (Iconify) | — | Icon from Iconify (e.g. `'i-ph-magnifying-glass'`) |
+| `leading` | `boolean` | `false` | When `true`, icon displays on the left |
+| `trailing` | `boolean` | `false` | When `true`, icon displays on the right |
+| `leadingIcon` | `string` (Iconify) | — | Different icon for the leading position |
+| `trailingIcon` | `string` (Iconify) | — | Different icon for the trailing position |
+| `loading` | `boolean` | `false` | Show a loading spinner on the trailing side |
+| `loadingIcon` | `string` (Iconify) | `'i-ph-circle-notch'` | Customize the loading icon |
+| `disabled` | `boolean` | `false` | Disables interaction |
+| `readonly` | `boolean` | `false` | Read-only mode |
+| `required` | `boolean` | `false` | Marks the field as required |
+| `modelValue` | `string \| number` | — | v-model binding |
+
+### Slots
+
+| Slot | Props | Description |
+|------|-------|-------------|
+| `default` | — | Default slot (not typically used) |
+| `leading` | `{ ui }` | Custom leading content (before input) |
+| `trailing` | `{ ui }` | Custom trailing content (after input) |
+
+### Form Integration
+
+Use `UFormField` to add labels, helper text, and error messages:
+
+```vue
+<UFormField label="Email" helper="Enter your email address">
+  <UInput placeholder="you@example.com" />
+</UFormField>
+```
+
+## Theme
+
+Mizu overrides Nuxt UI's input sizing to match the Mizu design spec. Inputs share the same height scale as buttons for form alignment.
+
+```ts
+// app.config.ts
+import { mizuTheme } from "@mizu/vue/theme";
+export default defineAppConfig({ ui: mizuTheme });
+```
+
+### Design Specs
+
+| Size | Height | H-Padding | V-Padding | Radius | Gap |
+|------|--------|-----------|-----------|--------|-----|
+| **SM** | 28px | 8px (`px-2`) | 4px (`py-1`) | 4px (`rounded`) | 4px |
+| **MD** | 36px | 10px (`px-2.5`) | 6px (`py-1.5`) | 6px | 6px |
+| **LG** | 40px | 10px (`px-2.5`) | 8px (`py-2`) | 6px | 8px |
+
+### Typography
+
+| Property | Value |
+|----------|-------|
+| Font Family | DM Sans (`--font-family-sans`) |
+| Font Size (SM) | 14px (`text-sm/4`) |
+| Font Size (MD/LG) | 16px (`text-base/5`) |
+
+### Token Mapping
+
+Mizu maps its design tokens to Nuxt UI's theme layer via `@theme` aliases in `@mizu/vue/index.css`. This two-layer mapping ensures all components — including Input — automatically use Mizu colors in both light and dark modes.
+
+#### Semantic Layer (Nuxt UI internal)
+
+Nuxt UI uses these semantic color classes for component internals. Mizu maps them to surface/foreground tokens:
+
+| Nuxt UI class | Mizu Token | Light | Dark |
+|---------------|------------|-------|------|
+| `bg-default` | `surface-base` | #FFFFFF | #0F1117 |
+| `bg-elevated` | `surface-subtle` | #F9FAFB | #161822 |
+| `ring-accented` | `surface-muted` | #F3F4F6 | #1E2030 |
+| `text-highlighted` | `foreground-primary` | #001C44 | #F1F5F9 |
+| `text-dimmed` | `foreground-tertiary` | #9CA3AF | #64748B |
+| `ring-inverted` | `foreground-inverse` | #FFFFFF | #0F1117 |
+
+#### Color Prop Map
+
+The `color` prop maps to Mizu's brand/feedback tokens, used for focus rings and validation states:
+
+| Mizu Token | Nuxt UI Color | Usage |
+|------------|---------------|-------|
+| `brand-primary` (#0070F2) | `primary` | Focus ring, highlight ring |
+| `brand-ycp` (#001C44) | `secondary` | Secondary focus ring |
+| `feedback-success-base` (#15803D) | `success` | Valid field ring |
+| `feedback-error-base` (#DC2626) | `error` | Validation error ring |
+| `feedback-warning-base` (#D97706) | `warning` | Validation warning ring |
+| `feedback-info-base` (#0284C7) | `info` | Info state ring |
+| `foreground-inverse` | `neutral` | Neutral focus ring |
+
+#### Variant Tokens
+
+| Variant | Background | Border | Text | States |
+|---------|-----------|--------|------|--------|
+| `outline` | `surface-base` | `surface-muted` | `foreground-primary` | Focus ring uses `color` prop token |
+| `soft` | `surface-subtle` | None | `foreground-primary` | Hover/focus darkens to `surface-subtle` |
+| `subtle` | `surface-subtle` | `surface-muted` | `foreground-primary` | |
+| `ghost` | Transparent | None | `foreground-primary` | Hover/focus adds `surface-subtle` bg |
+| `none` | Transparent | None | `foreground-primary` | Minimal |
+
+### Focus Ring
+
+Nuxt UI provides a built-in focus ring. When focused, Mizu uses the semantic color from the `color` prop, which maps to the corresponding Mizu token. Use the `highlight` prop to force the focus ring to be visible without actual focus — useful for displaying validation states (error, success) before the user interacts with the field.
+
+## Anatomy
+
+An input consists of:
+
+| Part | Required | Description |
+|------|----------|-------------|
+| Root | Yes | `<div>` wrapper |
+| Base | Yes | `<input>` element |
+| Leading | No | Icon or content before the input |
+| Trailing | No | Icon or content after the input |
+
+## Implementation Notes
+
+1. **Use `<UInput>` directly** — No Mizu wrapper needed. Apply the theme preset.
+2. **Same height as buttons** — SM (28px), MD (36px), LG (40px) aligns with `UButton` for form row consistency.
+3. **Label and validation** — Use `UFormField` for labels, helper text, and error messages. The old Mizu `label`/`helperText`/`error` props are replaced by Nuxt UI's form field pattern.
+4. **Icon** — Use the `icon` prop for a single leading/trailing icon, or `leadingIcon`/`trailingIcon` for explicit control. Combine with `leading` or `trailing` to set position.
+5. **Loading state** — Set `loading` to show a spinner on the trailing side. Use `loadingIcon` to customize the spinner icon (default: `i-ph-circle-notch`).
+6. **File input** — Use `type="file"` for file uploads. Nuxt UI applies consistent styling via `file:` pseudo-element utilities.

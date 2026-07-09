@@ -1,0 +1,85 @@
+﻿---
+title: DropdownMenu
+description: A menu of actions triggered by a button click.
+---
+
+import DropdownMenuDemo from "../../../../components/docs/DropdownMenuDemo.vue";
+
+> **Nuxt UI Component:** This uses Nuxt UI's `UDropdownMenu` component. Nuxt UI v4 defaults already match the Mizu design scale, so no sizing overrides are applied.
+
+A dropdown menu presents a list of actions or options when a trigger button is clicked. Mizu uses Nuxt UI's `UDropdownMenu` with rounded-md panels and compact item sizing.
+
+## Examples
+
+<DropdownMenuDemo client:only="vue" />
+
+## API
+
+Reference: [Nuxt UI DropdownMenu](https://ui.nuxt.com/docs/components/dropdown-menu)
+
+### Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `items` | `DropdownMenuItem[]` | â€” | Menu items array |
+| `size` | `'xs' \| 'sm' \| 'md' \| 'lg' \| 'xl'` | `'md'` | Item size |
+| `content` | `{ align, side, alignOffset, sideOffset, collisionPadding }` | â€” | Popper positioning options |
+| `disabled` | `boolean` | `false` | Disable the dropdown |
+| `defaultOpen` | `boolean` | â€” | Initial open state |
+| `modelValue` | `boolean` | â€” | v-model binding for controlled state |
+
+### DropdownMenuItem
+
+| Prop | Type | Description |
+|------|------|-------------|
+| `label` | `string` | Item text |
+| `icon` | `string` (Iconify) | Leading icon |
+| `trailingIcon` | `string` (Iconify) | Trailing icon |
+| `color` | `string` | Semantic color (e.g. `error` for destructive actions) |
+| `disabled` | `boolean` | Disable this item |
+| `children` | `DropdownMenuItem[]` | Nested submenu items |
+| `indicator` | `boolean` | Show a checkmark indicator for selected state |
+
+### Slots
+
+| Slot | Props | Description |
+|------|-------|-------------|
+| `default` | â€” | The trigger element |
+| `content` | `{ ui }` | Custom content (overrides items) |
+
+### Example Usage
+
+```vue
+<UDropdownMenu :items="[
+  { label: 'Edit', icon: 'i-ph-pencil' },
+  { label: 'Duplicate', icon: 'i-ph-copy' },
+  { type: 'separator' },
+  { label: 'Delete', icon: 'i-ph-trash', color: 'error' }
+]">
+  <UButton label="Actions" trailing-icon="i-ph-caret-down" />
+</UDropdownMenu>
+```
+
+## Theme
+
+Nuxt UI v4 dropdown menu defaults already use rounded-md panels with well-sized items (xs-xl) and proper leading/trailing icon sizing. No overrides are needed.
+
+## Anatomy
+
+A dropdown menu consists of:
+
+| Part | Required | Description |
+|------|----------|-------------|
+| Trigger | Yes | Button or element that opens the menu |
+| Content | Yes | Floating menu panel with items |
+| Item | Yes | Individual action or option |
+| Separator | No | Horizontal divider between item groups |
+| Submenu | No | Nested child menu triggered by hovering an item |
+
+## Implementation Notes
+
+1. **Use `<UDropdownMenu>` directly** â€” No Mizu wrapper needed.
+2. **Items as array** â€” Use the `items` prop for declarative menus. Each item is an object with `label`, `icon`, `color`, etc.
+3. **Destructive actions** â€” Set `color: 'error'` on delete/remove items for red styling.
+4. **Separators** â€” Add `{ type: 'separator' }` between groups to visually separate item clusters.
+5. **Controlled state** â€” Use `v-model:open` for programmatic open/close control.
