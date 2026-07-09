@@ -21,28 +21,30 @@ Reference: [Nuxt UI Modal](https://ui.nuxt.com/docs/components/modal)
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `size` | `'sm' \| 'md' \| 'lg' \| 'xl'` | `'md'` | Modal width (sm: 400px, md: 500px, lg: 700px, xl: 900px) |
 | `title` | `string` | — | Modal title text |
 | `description` | `string` | — | Modal description text |
 | `fullscreen` | `boolean` | `false` | Fills entire viewport with no border radius |
-| `scrollable` | `boolean` | `false` | Content scrolls within the overlay (max-height: calc(100dvh - 2rem)) |
+| `scrollable` | `boolean` | `false` | Content scrolls within the overlay |
 | `dismissible` | `boolean` | `true` | When `false`, prevents close on click-outside and Escape |
 | `close` | `{ color, variant, icon, size, onClick }` | — | Close button configuration |
 | `transition` | `boolean` | `true` | Enable/disable enter/leave animations |
-| `modelValue` | `boolean` | — | v-model binding for open state |
+| `open` | `boolean` | — | v-model:open binding for controlled open state |
 | `defaultOpen` | `boolean` | — | Initial open state (uncontrolled) |
+| `overlay` | `boolean` | `true` | Show/hide the backdrop overlay |
 
 ### Slots
 
 | Slot | Props | Description |
 |------|-------|-------------|
 | `default` | — | Entire modal content (custom layout) |
-| `header` | `{ ui }` | Custom header (defaults to title + description + close button) |
+| `header` | `{ ui }` | Custom header |
 | `body` | `{ ui }` | Scrollable body content |
-| `footer` | `{ ui }` | Footer for actions (buttons) |
-| `content` | `{ ui }` | Content wrapper (title, description, body, footer) |
+| `footer` | `{ ui }` | Footer for action buttons |
+| `title` | — | Custom title content |
+| `description` | — | Custom description content |
+| `actions` | — | Custom action buttons area |
+| `content` | `{ ui }` | Content wrapper |
 | `close` | `{ ui }` | Custom close button |
-| `trigger` | — | Custom trigger element |
 
 ### Example Usage
 

@@ -106,28 +106,28 @@
  */
 :root {
   /* ── Surface backgrounds ──────────────────────────────── */
-  --ui-bg:            var(--color-surface-base);
-  --ui-bg-muted:      var(--color-surface-subtle);
-  --ui-bg-elevated:   var(--color-surface-subtle);
-  --ui-bg-accented:   var(--color-surface-muted);
-  --ui-bg-inverted:   var(--color-foreground-primary);
+  --ui-bg: var(--color-surface-base);
+  --ui-bg-muted: var(--color-surface-subtle);
+  --ui-bg-elevated: var(--color-surface-subtle);
+  --ui-bg-accented: var(--color-surface-muted);
+  --ui-bg-inverted: var(--color-foreground-primary);
 
   /* ── Borders ──────────────────────────────────────────── */
-  --ui-border:         var(--color-surface-muted);
-  --ui-border-muted:   var(--color-surface-muted);
-  --ui-border-accented:var(--color-surface-muted);
-  --ui-border-inverted:var(--color-foreground-primary);
+  --ui-border: var(--color-surface-muted);
+  --ui-border-muted: var(--color-surface-muted);
+  --ui-border-accented: var(--color-surface-muted);
+  --ui-border-inverted: var(--color-foreground-primary);
 
   /* ── Foreground / text ────────────────────────────────── */
-  --ui-text:           var(--color-foreground-primary);
-  --ui-text-highlighted:var(--color-foreground-primary);
-  --ui-text-toned:     var(--color-foreground-secondary);
-  --ui-text-muted:     var(--color-foreground-secondary);
-  --ui-text-dimmed:    var(--color-foreground-tertiary);
-  --ui-text-inverted:  var(--color-foreground-inverse);
+  --ui-text: var(--color-foreground-primary);
+  --ui-text-highlighted: var(--color-foreground-primary);
+  --ui-text-toned: var(--color-foreground-secondary);
+  --ui-text-muted: var(--color-foreground-secondary);
+  --ui-text-dimmed: var(--color-foreground-tertiary);
+  --ui-text-inverted: var(--color-foreground-inverse);
 
   /* ── Focus ring — uses Mizu brand-primary + surface-base offset ── */
-  --ui-ring-color: var(--color-brand-primary, #0070F2);
+  --ui-ring-color: var(--color-foreground-tertiary);
   --ui-ring-offset: 2px;
   --ui-ring-offset-color: var(--color-surface-base, #fff);
 
@@ -150,8 +150,6 @@ input::-ms-clear {
 }
 
 /* Focus border: use --input-border-color fallback to brand-primary when unset */
-[data-slot="base"]:focus-within {
-  border-color: var(--input-border-color, var(--color-brand-primary));
-}
-
-
+/*[data-slot="base"]:focus-within {
+  border-color: var(--input-border-color, var(--color-surface-muted));
+}*/

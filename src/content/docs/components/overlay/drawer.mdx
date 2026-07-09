@@ -1,0 +1,105 @@
+---
+title: Drawer
+description: A drawer that smoothly slides in and out of the screen.
+---
+
+import DrawerDemo from "../../../../components/docs/DrawerDemo.vue";
+
+> **Nuxt UI Component:** This uses Nuxt UI's `UDrawer` component built on Vaul. Mizu provides a theme preset (`@mizu/vue/theme`) for consistent styling. See the [Theme](#theme) section for Mizu-specific defaults.
+
+A drawer is a panel that slides in from any edge of the screen, commonly used for mobile-friendly sheets, settings panels, or navigation. Mizu uses Nuxt UI's `UDrawer` with support for snap points, drag gestures, and nested drawers.
+
+## Examples
+
+<DrawerDemo client:only="vue" />
+
+## API
+
+Reference: [Nuxt UI Drawer](https://ui.nuxt.com/docs/components/drawer)
+
+### Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `title` | `string` | — | Drawer title text |
+| `description` | `string` | — | Drawer description text |
+| `direction` | `'top' \| 'bottom' \| 'left' \| 'right'` | `'bottom'` | Slide-in direction |
+| `open` / `defaultOpen` | `boolean` | — | Controlled / uncontrolled open state |
+| `modal` | `boolean` | `true` | When `false`, allows interaction with elements outside |
+| `dismissible` | `boolean` | `true` | When `false`, prevents close on drag, click-outside, or Escape |
+| `overlay` | `boolean` | `true` | Render a backdrop behind the drawer |
+| `handle` | `boolean` | `true` | Render a drag handle |
+| `close` | `boolean \| ButtonProps` | `false` | Close button config |
+| `closeIcon` | `string` (Iconify) | `appConfig.ui.icons.close` | Close button icon |
+| `portal` | `boolean \| string \| HTMLElement` | `true` | Render in a portal |
+| `inset` | `boolean` | `false` | Inset from edges |
+| `nested` | `boolean` | `false` | Whether nested in another drawer |
+| `snapPoints` | `(string \| number)[]` | — | Snap points as % of screen (e.g. `[0.2, 0.5, 0.8]`) |
+| `closeThreshold` | `number` | `0.25` | Drag threshold ratio before auto-close |
+| `handleOnly` | `boolean` | `false` | Only allow drag by the handle |
+| `fixed` | `boolean` | `false` | Keep height fixed when keyboard opens |
+| `shouldScaleBackground` | `boolean` | — | Scale background when open |
+| `scrollLockTimeout` | `number` | `500` | Drag lock duration after scroll (ms) |
+| `noBodyStyles` | `boolean` | — | Don't set body styles |
+
+### Slots
+
+| Slot | Props | Description |
+|------|-------|-------------|
+| `default` | — | Entire drawer content (custom layout) |
+| `content` | — | Content wrapper |
+| `header` | — | Custom header area |
+| `title` | — | Custom title |
+| `description` | — | Custom description |
+| `actions` | — | Header action buttons |
+| `close` | `{ ui }` | Custom close button |
+| `body` | — | Scrollable body content |
+| `footer` | — | Footer for action buttons |
+
+### Example Usage
+
+```vue
+<script setup>
+const open = ref(false);
+</script>
+
+<template>
+  <UButton label="Open Drawer" @click="open = true" />
+
+  <UDrawer v-model:open="open" title="Settings" direction="bottom">
+    <template #body>
+      <UFormField label="Notifications">
+        <USwitch />
+      </UFormField>
+    </template>
+    <template #footer>
+      <UButton variant="ghost" label="Cancel" @click="open = false" />
+      <UButton color="primary" label="Save" @click="open = false" />
+    </template>
+  </UDrawer>
+</template>
+```
+
+## Anatomy
+
+A drawer consists of:
+
+| Part | Required | Description |
+|------|----------|-------------|
+| Overlay | No | Semi-transparent backdrop (shown by default unless `overlay: false`) |
+| Content | Yes | Sliding panel positioned at the specified edge |
+| Handle | No | Drag handle for gesture-based dismissal (shown by default) |
+| Header | No | Title, description, and close button area |
+| Body | Yes | Scrollable content area |
+| Footer | No | Action buttons pinned at the bottom |
+| Close Button | No | X button (hidden by default; set `close: true` to show) |
+
+## Implementation Notes
+
+1. **Use `<UDrawer>` directly** — No Mizu wrapper needed. Apply the theme preset.
+2. **Direction control** — Set `direction` to `'bottom'`, `'top'`, `'left'`, or `'right'`. Bottom is the default and most common for mobile sheets.
+3. **Snap points** — Use `snapPoints` to define intermediate positions between fully closed and fully open. Values are ratios of screen height (e.g. `[0.2, 0.5, 0.8]`).
+4. **Drag gestures** — Drawers close when dragged past `closeThreshold` (default 0.25 = 25% of drawer height). Set `handleOnly: true` to restrict drag to the handle element only.
+5. **Nested drawers** — Set `nested: true` when opening a drawer from within another drawer. The background scales down to create depth.
+6. **Non-modal mode** — Set `modal: false` to allow interaction with elements behind the drawer without closing it. Useful for persistent side panels.
+7. **vs. Slideover** — Use Drawer for mobile-first, gesture-driven panels with snap points. Use Slideover for desktop-focused side panels without drag gestures.

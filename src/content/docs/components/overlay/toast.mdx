@@ -1,0 +1,81 @@
+---
+title: Toast
+description: A succinct message to provide information or feedback.
+---
+
+import ToastDemo from "../../../../components/docs/ToastDemo.vue";
+
+> **Nuxt UI Component:** This uses Nuxt UI's `UToast` component. Mizu provides a theme preset (`@mizu/vue/theme`) that applies consistent typography and spacing. See the [Theme](#theme) section for Mizu-specific defaults.
+
+A toast is a non-disruptive notification that appears temporarily to provide feedback or information. Mizu uses Nuxt UI's `UToast` with configurable colors, actions, and auto-dismiss.
+
+## Examples
+
+<ToastDemo client:only="vue" />
+
+## API
+
+Reference: [Nuxt UI Toast](https://ui.nuxt.com/docs/components/toast)
+
+### Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `title` | `string \| VNode` | — | Toast title text |
+| `description` | `string \| VNode` | — | Toast description text |
+| `icon` | `string` (Iconify) | — | Leading icon |
+| `avatar` | `AvatarProps` | — | Leading avatar configuration |
+| `color` | `'primary' \| 'secondary' \| 'success' \| 'error' \| 'warning' \| 'info' \| 'neutral'` | `'primary'` | Semantic color |
+| `orientation` | `'vertical' \| 'horizontal'` | `'vertical'` | Layout between content and actions |
+| `close` | `boolean \| ButtonProps` | `true` | Close button config. Set `false` to hide |
+| `closeIcon` | `string` (Iconify) | `appConfig.ui.icons.close` | Close button icon |
+| `actions` | `ButtonProps[]` | — | Action buttons below content |
+| `duration` | `number` | `5000` | Auto-close timeout in ms. Set `0` to disable |
+| `progress` | `boolean \| ProgressProps` | `true` | Progress bar showing remaining duration |
+| `type` | `'foreground' \| 'background'` | — | Accessibility sensitivity |
+
+### Slots
+
+| Slot | Props | Description |
+|------|-------|-------------|
+| `leading` | `{ ui }` | Custom leading content (icon/avatar area) |
+| `title` | — | Custom title content |
+| `description` | — | Custom description content |
+| `actions` | — | Custom action buttons |
+| `close` | `{ ui }` | Custom close button |
+
+### Example Usage
+
+```vue
+<template>
+  <UToast
+    title="File saved"
+    description="Your changes have been saved successfully."
+    color="success"
+    :actions="[{ label: 'Undo', color: 'neutral', variant: 'ghost' }]"
+  />
+</template>
+```
+
+## Anatomy
+
+A toast consists of:
+
+| Part | Required | Description |
+|------|----------|-------------|
+| Root | Yes | `<li>` element positioned in the toast viewport |
+| Icon / Avatar | No | Leading visual indicator for the toast color |
+| Title | Yes | Primary label text |
+| Description | No | Secondary detail text |
+| Actions | No | One or more action buttons |
+| Close Button | No | X button to manually dismiss (shown by default) |
+| Progress Bar | No | Visual countdown indicator (shown by default) |
+
+## Implementation Notes
+
+1. **Use `<UToast>` directly** — No Mizu wrapper needed. Apply the theme preset.
+2. **Toasts render in a portal** — Positioned in a fixed viewport overlay. No need to manage mounting.
+3. **Auto-dismiss** — Default duration is 5000ms. Set `duration` to `0` for persistent toasts that require manual dismissal.
+4. **Color variants** — Use `color` to set semantic meaning: `success` for confirmations, `error` for failures, `info` for neutral messages, `warning` for cautions.
+5. **Actions** — Pass an array of button configs to `actions`. Buttons render below content in vertical orientation, or beside the close button in horizontal orientation.
+6. **Progress tracking** — The `progress` prop (default `true`) renders a countdown bar. Pass `{ color: 'neutral' }` to customize, or `false` to hide.

@@ -1,0 +1,86 @@
+---
+title: EditorMentionMenu
+description: A mention menu that displays user suggestions when typing a trigger character in the editor.
+---
+
+import EditorMentionMenuDemo from "../../../../components/docs/EditorMentionMenuDemo.vue";
+
+> **Nuxt UI Component:** This uses Nuxt UI's `UEditorMentionMenu` component. Mizu provides a theme preset (`@mizu/vue/theme`) that applies consistent typography and spacing. See the [Theme](#theme) section for Mizu-specific defaults.
+
+A mention menu that displays user suggestions when typing a trigger character. Mizu uses Nuxt UI's `UEditorMentionMenu` inside an editor's scoped slot to provide @-mention autocomplete with avatar, label, and description for each item.
+
+## Examples
+
+<EditorMentionMenuDemo client:only="vue" />
+
+## API
+
+Reference: [Nuxt UI EditorMentionMenu](https://ui.nuxt.com/docs/components/editor-mention-menu)
+
+### Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `editor` | `Editor` | — | **Required.** The TipTap editor instance. |
+| `items` | `T[] \| T[][]` | — | Array of mention items (or nested arrays for groups). |
+| `char` | `string` | `"@"` | The trigger character that opens the mention menu. |
+| `pluginKey` | `string` | `"mentionMenu"` | Unique key to identify this menu plugin. |
+| `filterFields` | `string[]` | `["label"]` | Fields to filter items by as the user types. |
+| `limit` | `number` | `42` | Maximum number of items to display. |
+| `options` | `FloatingUIOptions` | — | Floating UI positioning options (placement, offset, etc.). |
+| `ignoreFilter` | `boolean` | `false` | When `true`, skips built-in filtering (for custom/async filtering). |
+| `searchTerm` | `string` | `""` | The current search term used when `ignoreFilter` is `true`. |
+| `size` | `'xs' \| 'sm' \| 'md' \| 'lg' \| 'xl'` | — | Menu item size. |
+| `suggestion` | `Partial<SuggestionOptions>` | — | TipTap Suggestion matching options (allowedPrefixes, etc.). |
+| `appendTo` | `HTMLElement \| (() => HTMLElement)` | — | DOM element to append the menu to. |
+
+### Item Properties
+
+Each item in the `items` array supports:
+
+| Property | Type | Description |
+|----------|------|-------------|
+| `label` | `string` | Display name for the mention. |
+| `avatar` | `AvatarProps` | Avatar configuration (src, alt, text). |
+| `icon` | `string` (Iconify) | Leading icon. |
+| `description` | `string` | Secondary text shown below the label. |
+| `disabled` | `boolean` | Disable the item. |
+
+### Slots
+
+The component uses item configs (avatar, label, description) and provides no custom slots. Rendering is driven by the item data shape.
+
+### Example Usage
+
+```vue
+<script setup>
+const users = [
+  { label: "Sarah Chen", avatar: { text: "SC" }, description: "sarah@example.com" },
+  { label: "Marcus Rivera", avatar: { text: "MR" }, description: "marcus@example.com" },
+  { label: "Aiko Tanaka", avatar: { text: "AT" }, description: "aiko@example.com" },
+];
+</script>
+
+<template>
+  <UEditor v-slot="{ editor }" v-model="value">
+    <UEditorMentionMenu :editor="editor" :items="users" />
+  </UEditor>
+</template>
+```
+
+## Anatomy
+
+| Part | Required | Description |
+|------|----------|-------------|
+| Editor context | Yes | Must be inside a `UEditor` scoped slot to access the `editor` instance. |
+| Menu content | Yes | Floating menu panel that appears when the trigger character is typed. |
+| Item | Yes | Individual suggestion with avatar/icon, label, and optional description. |
+| Group | No | Visual grouping of related items (when using nested arrays). |
+
+## Implementation Notes
+
+1. **Must be inside `<UEditor>` scoped slot** — The component requires the `editor` instance from the scoped slot props.
+2. **Trigger character** — Defaults to `@`. Change via the `char` prop (e.g., `char="#"` for channel mentions).
+3. **Multiple menus** — Use different `pluginKey` values to run multiple mention menus in the same editor with different trigger characters.
+4. **Item filtering** — By default, items are filtered by the `label` field. Customize with `filterFields` or set `ignoreFilter: true` for async filtering.
+5. **Avatar support** — Items with `avatar` render an avatar alongside the label. Use `icon` for icon-only items instead.

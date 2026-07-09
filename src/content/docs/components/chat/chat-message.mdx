@@ -1,0 +1,73 @@
+---
+title: ChatMessage
+description: Display a chat message with icon, avatar, and actions.
+---
+
+import ChatMessageDemo from "../../../../components/docs/ChatMessageDemo.vue";
+
+> **Nuxt UI Component:** This uses Nuxt UI's `UChatMessage` component. Mizu provides a theme preset (`@mizu/vue/theme`) that applies consistent typography and spacing. See the [Theme](#theme) section for Mizu-specific defaults.
+
+A chat message renders a single message bubble in an AI chat interface. Mizu uses Nuxt UI's `UChatMessage` for consistent message rendering with support for user and assistant roles, avatars, and action buttons.
+
+## Examples
+
+<ChatMessageDemo client:only="vue" />
+
+## API
+
+Reference: [Nuxt UI ChatMessage](https://ui.nuxt.com/docs/components/chat-message)
+
+### Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `id` | `string` | — | **Required.** Unique identifier for the message. |
+| `role` | `'system' \| 'user' \| 'assistant'` | — | **Required.** The role of the message sender. |
+| `parts` | `UIMessagePart[]` | — | **Required.** Array of message parts (text, tool calls, etc.). |
+| `variant` | `'solid' \| 'outline' \| 'soft' \| 'subtle' \| 'naked'` | `'naked'` | Visual variant of the message bubble. |
+| `color` | `'primary' \| 'secondary' \| 'success' \| 'error' \| 'warning' \| 'info' \| 'neutral'` | `'neutral'` | Semantic color for the message. |
+| `side` | `'left' \| 'right'` | `'left'` | Which side the message aligns to. |
+| `icon` | `string` (Iconify) | — | Icon displayed in the message header. |
+| `avatar` | `{ src?: string, alt?: string, text?: string }` | — | Avatar configuration for the message sender. |
+| `actions` | `ButtonProps[]` | — | Action buttons to display on the message. |
+| `compact` | `boolean` | `false` | Compact mode with reduced padding and spacing. |
+
+### Slots
+
+| Slot | Props | Description |
+|------|-------|-------------|
+| `header` | — | Custom header content (above the message). |
+| `leading` | — | Leading content before the message body. |
+| `files` | — | File attachments area. |
+| `body` | — | Main message body content. |
+| `content` | — | Custom content replacing the default text rendering. |
+| `actions` | — | Custom action buttons area. |
+
+### Example Usage
+
+```vue
+<UChatMessage
+  id="msg-1"
+  role="user"
+  :parts="[{ type: 'text', text: 'Hello, how can I help?' }]"
+  side="right"
+  variant="soft"
+/>
+```
+
+## Anatomy
+
+| Part | Required | Description |
+|------|----------|-------------|
+| Root | Yes | The container element wrapping the message. |
+| Avatar | No | Optional avatar image or fallback. |
+| Message bubble | Yes | The styled bubble containing message content. |
+| Actions | No | Optional action buttons (copy, retry, etc.). |
+
+## Implementation Notes
+
+1. **Use `<UChatMessage>` directly** — No Mizu wrapper needed. Apply the theme preset and Nuxt UI handles the rest.
+2. **`parts` array** — Messages are composed of parts (text, tool invocations, etc.) following the Vercel AI SDK `UIMessage` format.
+3. **Role-based styling** — Use `side` and `variant` to visually distinguish user messages (`side="right"`, `variant="soft"`) from assistant messages (`side="left"`).
+4. **Actions** — Pass an array of button props to `actions` to render action buttons (like copy or regenerate) on each message.
+5. **Compact mode** — Enable `compact` for dense chat UIs with reduced spacing between messages.

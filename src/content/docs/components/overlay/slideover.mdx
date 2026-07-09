@@ -1,0 +1,96 @@
+---
+title: Slideover
+description: A dialog that slides in from any side of the screen.
+---
+
+import SlideoverDemo from "../../../../components/docs/SlideoverDemo.vue";
+
+> **Nuxt UI Component:** This uses Nuxt UI's `USlideover` component. Mizu provides a theme preset (`@mizu/vue/theme`) that applies consistent styling. See the [Theme](#theme) section for Mizu-specific defaults.
+
+A slideover is a dialog panel that slides in from any edge of the screen, ideal for detail views, settings forms, or filter panels. Mizu uses Nuxt UI's `USlideover` with support for all four directions and portal rendering.
+
+## Examples
+
+<SlideoverDemo client:only="vue" />
+
+## API
+
+Reference: [Nuxt UI Slideover](https://ui.nuxt.com/docs/components/slideover)
+
+### Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `title` | `string` | — | Slideover title text |
+| `description` | `string` | — | Slideover description text |
+| `side` | `'top' \| 'bottom' \| 'left' \| 'right'` | `'right'` | Slide-in direction |
+| `open` / `defaultOpen` | `boolean` | — | Controlled / uncontrolled open state |
+| `modal` | `boolean` | `true` | When `false`, allows interaction with elements outside |
+| `dismissible` | `boolean` | `true` | When `false`, prevents close on click-outside or Escape |
+| `overlay` | `boolean` | `true` | Render a backdrop behind the slideover |
+| `transition` | `boolean` | `true` | Enable/disable enter/leave animations |
+| `close` | `boolean \| ButtonProps` | `true` | Close button config |
+| `closeIcon` | `string` (Iconify) | `appConfig.ui.icons.close` | Close button icon |
+| `portal` | `boolean \| string \| HTMLElement` | `true` | Render in a portal |
+| `inset` | `boolean` | `false` | Inset from edges |
+| `unmountOnHide` | `boolean` | `true` | Unmount content when closed (vs. CSS hide) |
+
+### Slots
+
+| Slot | Props | Description |
+|------|-------|-------------|
+| `default` | `{ open }` | Entire slideover content (custom layout) |
+| `content` | `{ close }` | Content wrapper |
+| `header` | `{ close }` | Custom header (defaults to title + description + close) |
+| `title` | — | Custom title |
+| `description` | — | Custom description |
+| `actions` | — | Header action buttons |
+| `close` | `{ ui }` | Custom close button |
+| `body` | `{ close }` | Scrollable body content |
+| `footer` | `{ close }` | Footer for action buttons |
+
+### Example Usage
+
+```vue
+<script setup>
+const open = ref(false);
+</script>
+
+<template>
+  <UButton label="Open Slideover" @click="open = true" />
+
+  <USlideover v-model:open="open" title="Details" side="right">
+    <template #body>
+      <p>Detailed information and controls go here.</p>
+    </template>
+    <template #footer>
+      <UButton variant="ghost" label="Cancel" @click="open = false" />
+      <UButton color="primary" label="Confirm" @click="open = false" />
+    </template>
+  </USlideover>
+</template>
+```
+
+## Anatomy
+
+A slideover consists of:
+
+| Part | Required | Description |
+|------|----------|-------------|
+| Overlay | No | Semi-transparent backdrop (shown by default unless `overlay: false`) |
+| Content | Yes | Sliding panel positioned at the specified side |
+| Header | No | Title, description, and close button area |
+| Body | Yes | Scrollable content area |
+| Footer | No | Action buttons pinned at the bottom |
+| Close Button | No | X button in the header (shown by default) |
+
+## Implementation Notes
+
+1. **Use `<USlideover>` directly** — No Mizu wrapper needed. Apply the theme preset.
+2. **Side control** — Set `side` to `'right'`, `'left'`, `'top'`, or `'bottom'`. Right is the default.
+3. **Dismissible control** — Set `dismissible: false` to require an explicit action to close. Useful for forms that shouldn't lose state on accidental click-outside.
+4. **Portal rendering** — The slideover renders in a portal by default (`portal: true`) to avoid clipping and z-index issues from parent containers.
+5. **Transition toggle** — Set `transition: false` to skip animations. Useful for reduced-motion preferences or when slideover is used as a persistent panel.
+6. **Unmount on hide** — Default behavior unmounts the content when closed. Set `unmountOnHide: false` to keep content in the DOM (hidden via CSS) for SEO or performance.
+7. **vs. Drawer** — Use Slideover for desktop-focused side panels (settings, details, filters). Use Drawer for mobile-first, gesture-driven panels with snap points and drag-to-dismiss.
+8. **vs. Modal** — Use Slideover when the panel should feel like part of the page (sliding from the edge). Use Modal for centered dialogs that demand full attention.

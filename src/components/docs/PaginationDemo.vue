@@ -52,6 +52,7 @@ const currentPage = ref(1);
   all: revert;
   display: flex;
   flex-direction: column;
+  width: max-content;
   gap: 8px;
 }
 </style>

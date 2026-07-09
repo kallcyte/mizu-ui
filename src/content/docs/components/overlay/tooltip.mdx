@@ -21,21 +21,19 @@ Reference: [Nuxt UI Tooltip](https://ui.nuxt.com/docs/components/tooltip)
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `text` | `string` | â€” | Tooltip text content |
-| `content` | `{ align, side, alignOffset, sideOffset, collisionPadding }` | â€” | Popper positioning options |
-| `openDelay` | `number` | `500` | Delay before showing (ms) |
-| `closeDelay` | `number` | `0` | Delay before hiding (ms) |
-| `forceMount` | `boolean` | `false` | Always mount tooltip in DOM |
+| `text` | `string` | — | Tooltip text content |
+| `content` | `{ align, side, alignOffset, sideOffset, collisionPadding }` | — | Popper positioning options |
+| `delayDuration` | `number` | `700` | Delay before showing (ms) |
 | `disabled` | `boolean` | `false` | Disable tooltip |
-| `defaultOpen` | `boolean` | â€” | Initial open state |
-| `modelValue` | `boolean` | â€” | v-model binding for controlled state |
+| `defaultOpen` | `boolean` | — | Initial open state |
+| `open` | `boolean` | — | v-model:open binding for controlled state |
 
 ### Slots
 
 | Slot | Props | Description |
 |------|-------|-------------|
-| `default` | â€” | The trigger element |
-| `text` | `{ ui }` | Custom tooltip content (overrides `text` prop) |
+| `default` | — | The trigger element |
+| `content` | `{ ui }` | Custom tooltip content (overrides `text` prop) |
 
 ### Example Usage
 
@@ -44,7 +42,7 @@ Reference: [Nuxt UI Tooltip](https://ui.nuxt.com/docs/components/tooltip)
   <UButton icon="i-ph-floppy-disk" />
 </UTooltip>
 
-<UTooltip text="Delete" :popper="{ placement: 'top' }">
+<UTooltip text="Delete" :content="{ placement: 'top' }">
   <UButton color="error" icon="i-ph-trash" />
 </UTooltip>
 ```
@@ -65,6 +63,6 @@ A tooltip consists of:
 ## Implementation Notes
 
 1. **Use `<UTooltip>` directly** â€” No Mizu wrapper needed.
-2. **Text vs. slot** â€” Use the `text` prop for simple strings. Use the `text` slot for rich content or custom formatting.
+2. **Text vs. slot** — Use the `text` prop for simple strings. Use the `content` slot for rich content or custom formatting.
 3. **Positioning** â€” Use the `content` prop (popper options) to control placement. Default is `top`.
 4. **Keyboard accessibility** â€” Tooltips are shown on `:focus` as well as `:hover`, meeting WCAG keyboard requirements.

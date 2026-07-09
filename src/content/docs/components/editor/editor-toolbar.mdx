@@ -1,0 +1,109 @@
+---
+title: EditorToolbar
+description: A customizable toolbar for editor actions with fixed, bubble, or floating layouts.
+---
+
+import EditorToolbarDemo from "../../../../components/docs/EditorToolbarDemo.vue";
+
+> **Nuxt UI Component:** This uses Nuxt UI's `UEditorToolbar` component. It must be used inside a `UEditor` default slot to access the editor instance.
+
+A toolbar of formatting buttons that automatically sync their active state with the editor content. Mizu uses Nuxt UI's `UEditorToolbar` which supports fixed, bubble (selection), and floating (empty line) layouts.
+
+## Examples
+
+<EditorToolbarDemo client:only="vue" />
+
+## API
+
+Reference: [Nuxt UI EditorToolbar](https://ui.nuxt.com/docs/components/editor-toolbar)
+
+### Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `editor` | `Editor` | — | **Required.** TipTap editor instance from the `UEditor` scoped slot. |
+| `items` | `EditorToolbarItem[] \| EditorToolbarItem[][]` | `[]` | Array of toolbar items. Nested arrays create separated groups. |
+| `layout` | `"fixed" \| "bubble" \| "floating"` | `"fixed"` | Display mode: always visible, on text selection, or on empty lines. |
+| `color` | `"primary" \| "secondary" \| "success" \| "info" \| "warning" \| "error" \| "neutral"` | `"neutral"` | Button color for toolbar controls. |
+| `variant` | `"solid" \| "outline" \| "soft" \| "subtle" \| "ghost" \| "link"` | `"ghost"` | Button variant for toolbar controls. |
+| `activeColor` | `"primary" \| "secondary" \| "success" \| "info" \| "warning" \| "error" \| "neutral"` | `"primary"` | Button color when active/toggled. |
+| `activeVariant` | `"solid" \| "outline" \| "soft" \| "subtle" \| "ghost" \| "link"` | `"soft"` | Button variant when active/toggled. |
+| `size` | `"xs" \| "sm" \| "md" \| "lg" \| "xl"` | `"sm"` | Button size for toolbar controls. |
+| `options` | `FloatingUIOptions` | — | Positioning options for bubble/floating layouts. |
+| `shouldShow` | `(ctx) => boolean` | — | Custom function controlling bubble/floating visibility. |
+| `pluginKey` | `string` | — | Plugin key for the floating/bubble menu. |
+
+### Slots
+
+| Slot | Props | Description |
+|------|-------|-------------|
+| `item` | `{ item, editor }` | Custom rendering for individual toolbar items. |
+
+### Toolbar Item Properties
+
+Each item in the `items` array accepts:
+
+| Property | Type | Description |
+|----------|------|-------------|
+| `kind` | `string` | Handler kind from the editor's handlers (e.g., `"mark"`, `"heading"`). |
+| `mark` | `string` | For `kind: "mark"`, the mark name (`"bold"`, `"italic"`, etc.). |
+| `level` | `1 \| 2 \| 3 \| 4 \| 5 \| 6` | For `kind: "heading"`, the heading level. |
+| `align` | `"left" \| "center" \| "right" \| "justify"` | For `kind: "textAlign"`, the alignment. |
+| `icon` | `string` | Iconify icon name (e.g., `"i-lucide-bold"`). |
+| `label` | `string` | Text label for the button. |
+| `color` | `ButtonColor` | Per-item color override. |
+| `variant` | `ButtonVariant` | Per-item variant override. |
+| `size` | `ButtonSize` | Per-item size override. |
+| `disabled` | `boolean` | Whether the item is disabled. |
+| `loading` | `boolean` | Show a loading spinner. |
+| `tooltip` | `TooltipProps` | Tooltip configuration for the item. |
+| `items` | `EditorToolbarItem[] \| EditorToolbarItem[][]` | Nested items for dropdown menus. |
+| `slot` | `string` | Named slot for custom content. |
+| `onClick` | `(e: MouseEvent) => void` | Click handler (called before the handler's `execute`). |
+
+### Example Usage
+
+```vue
+<script setup lang="ts">
+import { ref } from "vue";
+import type { EditorToolbarItem } from "@nuxt/ui";
+
+const content = ref("<p>Select text to format.</p>");
+
+const items: EditorToolbarItem[] = [
+  { kind: "mark", mark: "bold", icon: "i-lucide-bold" },
+  { kind: "mark", mark: "italic", icon: "i-lucide-italic" },
+  { kind: "mark", mark: "strike", icon: "i-lucide-strikethrough" },
+  { kind: "heading", level: 1, icon: "i-lucide-heading-1" },
+  { kind: "heading", level: 2, icon: "i-lucide-heading-2" },
+  { kind: "blockquote", icon: "i-lucide-quote" },
+  { kind: "bulletList", icon: "i-lucide-list" },
+  { kind: "orderedList", icon: "i-lucide-list-ordered" },
+  { kind: "undo", icon: "i-lucide-undo" },
+  { kind: "redo", icon: "i-lucide-redo" },
+];
+</script>
+
+<template>
+  <UEditor v-slot="{ editor }" v-model="content">
+    <UEditorToolbar :editor="editor" :items="items" />
+  </UEditor>
+</template>
+```
+
+## Anatomy
+
+| Part | Required | Description |
+|------|----------|-------------|
+| Root | Yes | Wrapper `<div>` containing the toolbar buttons. |
+| Group | No | Visual groups of toolbar items (from nested arrays). |
+| Separator | No | Visual divider between item groups. |
+
+## Implementation Notes
+
+1. **Must be inside `UEditor`'s default slot** — The toolbar requires the editor instance via the `{ editor }` scoped slot prop.
+2. **Handler integration** — Items use the `kind` property to reference handlers defined on the parent `UEditor`. Active states sync automatically.
+3. **Layout modes** — `bubble` uses TipTap's BubbleMenu (appears on text selection), `floating` uses FloatingMenu (appears on empty lines), and `fixed` is always visible.
+4. **Nested arrays** — Passing `EditorToolbarItem[][]` creates separated groups with visual dividers.
+5. **Dropdown menus** — Items with an `items` sub-array render as dropdown menus using `UDropdownMenu`.
+6. **Custom rendering** — Use the `item` slot for complete control over item rendering. Use `slot` on an item to target a specific named slot.

@@ -1,0 +1,71 @@
+---
+title: EditorDragHandle
+description: A draggable handle for reordering and selecting blocks in the editor.
+---
+
+import EditorDragHandleDemo from "../../../../components/docs/EditorDragHandleDemo.vue";
+
+> **Nuxt UI Component:** This uses Nuxt UI's `UEditorDragHandle` component. Mizu provides a theme preset (`@mizu/vue/theme`) that applies consistent typography and spacing. See the [Theme](#theme) section for Mizu-specific defaults.
+
+A draggable handle for reordering and selecting blocks in the editor. Mizu uses Nuxt UI's `UEditorDragHandle` inside an editor's scoped slot, providing drag-and-drop block reordering powered by the `@tiptap/extension-drag-handle-vue-3` package.
+
+## Examples
+
+<EditorDragHandleDemo client:only="vue" />
+
+## API
+
+Reference: [Nuxt UI EditorDragHandle](https://ui.nuxt.com/docs/components/editor-drag-handle)
+
+### Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `editor` | `Editor` | — | **Required.** The TipTap editor instance. |
+| `icon` | `string` (Iconify) | `appConfig.ui.icons.drag` | Icon displayed on the drag handle. |
+| `color` | `'primary' \| 'secondary' \| 'success' \| 'error' \| 'warning' \| 'info' \| 'neutral'` | `"neutral"` | Semantic color of the handle button. |
+| `variant` | `'solid' \| 'outline' \| 'soft' \| 'subtle' \| 'ghost' \| 'link'` | `"ghost"` | Visual variant of the handle button. |
+| `options` | `FloatingUIOptions` | `{ placement: "left-start" }` | Floating UI positioning options. |
+| `nested` | `boolean \| NestedOptions` | — | Enable drag handles for nested content (list items, blockquotes, etc.). |
+| `size` | `'xs' \| 'sm' \| 'md' \| 'lg' \| 'xl'` | `"sm"` | Size of the handle button. |
+| `disabled` | `boolean` | `false` | Disable the drag handle. |
+| `pluginKey` | `string \| PluginKey` | — | Custom plugin key for the drag handle extension. |
+
+### Slots
+
+| Slot | Props | Description |
+|------|-------|-------------|
+| `default` | `{ ui }` | Custom content for the drag handle button. |
+
+### Emits
+
+| Event | Payload | Description |
+|-------|---------|-------------|
+| `nodeChange` | `{ node: JSONContent, pos: number }` | Emitted when a node is moved via drag-and-drop. |
+| `hover` | `{ node: JSONContent, pos: number }` | Emitted when hovering over a node with the drag handle. |
+
+### Example Usage
+
+```vue
+<template>
+  <UEditor v-slot="{ editor }" v-model="value" placeholder="Write something...">
+    <UEditorDragHandle :editor="editor" />
+  </UEditor>
+</template>
+```
+
+## Anatomy
+
+| Part | Required | Description |
+|------|----------|-------------|
+| Editor context | Yes | Must be inside a `UEditor` scoped slot to access the `editor` instance. |
+| Handle button | Yes | A small button that appears on hover near the start of each block. |
+| Icon | Yes | Visual indicator (default: grip icon) inside the handle button. |
+
+## Implementation Notes
+
+1. **Must be inside `<UEditor>` scoped slot** — The component requires the `editor` instance from the scoped slot props.
+2. **Extends Button** — The drag handle is built on `UButton`, so you can pass any button props (`color`, `variant`, `size`, etc.).
+3. **Automatic positioning** — The offset is automatically calculated to center the handle for small blocks and align to the top for taller blocks.
+4. **Nested support** — Enable `nested` to show drag handles on nested content like list items and blockquotes, not just top-level blocks.
+5. **Hover visibility** — The drag handle appears on hover near block edges and disappears when the cursor moves away.

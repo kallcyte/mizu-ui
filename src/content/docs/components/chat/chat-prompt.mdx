@@ -1,0 +1,76 @@
+---
+title: ChatPrompt
+description: An enhanced Textarea for submitting prompts in AI chat interfaces.
+---
+
+import ChatPromptDemo from "../../../../components/docs/ChatPromptDemo.vue";
+
+> **Nuxt UI Component:** This uses Nuxt UI's `UChatPrompt` component. Mizu provides a theme preset (`@mizu/vue/theme`) that applies consistent typography and spacing. See the [Theme](#theme) section for Mizu-specific defaults.
+
+A chat prompt is an enhanced textarea for composing and submitting messages in AI chat interfaces. Mizu uses Nuxt UI's `UChatPrompt` which supports auto-resize, submit-on-enter, and icon/avatar decorations.
+
+## Examples
+
+<ChatPromptDemo client:only="vue" />
+
+## API
+
+Reference: [Nuxt UI ChatPrompt](https://ui.nuxt.com/docs/components/chat-prompt)
+
+### Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `placeholder` | `string` | — | Placeholder text shown when the prompt is empty. |
+| `variant` | `'outline' \| 'soft' \| 'subtle' \| 'naked'` | `'outline'` | Visual variant of the prompt container. |
+| `submitOnEnter` | `boolean` | `true` | Whether pressing Enter submits the prompt. |
+| `modelValue` | `string` | `''` | The bound prompt text (v-model). |
+| `disabled` | `boolean` | `false` | Disables input and interaction. |
+| `autofocus` | `boolean` | `true` | Automatically focus the textarea on mount. |
+| `autoresize` | `boolean` | `true` | Automatically resize the textarea as content grows. |
+| `rows` | `number` | — | Initial number of visible text rows. |
+| `maxrows` | `number` | — | Maximum number of rows before scrolling. |
+| `icon` | `string` (Iconify) | — | Icon displayed in the leading slot. |
+| `avatar` | `{ src?: string, alt?: string, text?: string }` | — | Avatar displayed in the leading slot. |
+| `loading` | `boolean` | `false` | Show a loading state on the prompt. |
+
+### Slots
+
+| Slot | Props | Description |
+|------|-------|-------------|
+| `header` | — | Content above the textarea. |
+| `footer` | — | Content below the textarea. |
+| `leading` | — | Content before the textarea (icon, avatar). |
+| `default` | — | Custom textarea replacement. |
+| `trailing` | — | Content after the textarea (submit button). |
+
+### Example Usage
+
+```vue
+<UChatPrompt
+  v-model="prompt"
+  placeholder="Ask a question..."
+  icon="i-lucide-message-circle"
+>
+  <template #trailing>
+    <UChatPromptSubmit status="ready" />
+  </template>
+</UChatPrompt>
+```
+
+## Anatomy
+
+| Part | Required | Description |
+|------|----------|-------------|
+| Root | Yes | Container element with variant styling. |
+| Leading slot | No | Icon or avatar before the textarea. |
+| Textarea | Yes | The auto-resizing text input area. |
+| Trailing slot | No | Submit button or other controls after the textarea. |
+
+## Implementation Notes
+
+1. **Use `<UChatPrompt>` directly** — No Mizu wrapper needed. Apply the theme preset and Nuxt UI handles the rest.
+2. **Submit button pairing** — Typically used with a `<UChatPromptSubmit>` in the `#trailing` slot for a complete chat input.
+3. **Auto-resize** — The textarea grows vertically up to `maxrows`. Disable with `:autoresize="false"` for a fixed-height input.
+4. **Enter to submit** — `submitOnEnter` is enabled by default. Hold Shift+Enter to insert a newline instead.
+5. **Focus management** — `autofocus` provides a good default for chat UIs, automatically focusing the input on mount.

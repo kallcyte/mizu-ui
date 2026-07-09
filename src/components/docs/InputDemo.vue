@@ -153,16 +153,16 @@ const floatingLabelCode = `<UInput placeholder="Full name">
   </template>
 </UInput>`;
 
-const formFieldCode = `<UFormField label="Email" help="Enter your email address">
-  <UInput placeholder="you@example.com" />
+const formFieldCode = `<UFormField label="Email" help="Enter your email address" class="w-full">
+  <UInput class="w-full" placeholder="you@example.com" />
 </UFormField>`;
 
 
-const requiredFieldCode = `<UFormField>
+const requiredFieldCode = `<UFormField class="w-full">
   <template #label>
     Full name <span class="text-red-500">*</span>
   </template>
-  <UInput placeholder="Enter your full name" required />
+  <UInput class="w-full" placeholder="Enter your full name" required />
 </UFormField>`;
 const fieldGroupCode = `<UFieldGroup>
   <UInput placeholder="First name" />
@@ -399,7 +399,7 @@ const phoneNumberCode = `<UFieldGroup>
       <CodeCollapsible :code="formFieldCode">
         <div class="demo-col">
           <UFormField label="Email" help="Enter your email address" class="w-full">
-            <UInput v-model="formFieldValue" placeholder="you@example.com" />
+            <UInput v-model="formFieldValue" class="w-full" placeholder="you@example.com" />
           </UFormField>
         </div>
       </CodeCollapsible>
@@ -413,7 +413,7 @@ const phoneNumberCode = `<UFieldGroup>
             <template #label>
               Full name <span class="text-red-500">*</span>
             </template>
-            <UInput v-model="requiredFieldValue" placeholder="Enter your full name" required />
+            <UInput v-model="requiredFieldValue" class="w-full" placeholder="Enter your full name" required />
           </UFormField>
         </div>
       </CodeCollapsible>
@@ -475,6 +475,7 @@ const phoneNumberCode = `<UFieldGroup>
   all: revert;
   display: flex;
   flex-direction: column;
+  width: max-content;
   gap: 8px;
   max-width: 320px;
 }

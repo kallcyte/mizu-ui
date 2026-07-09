@@ -1,0 +1,99 @@
+---
+title: InputRating
+description: A component to display and collect ratings from users.
+---
+
+import InputRatingDemo from "../../../../components/docs/InputRatingDemo.vue";
+
+> **Nuxt UI Component:** This uses Nuxt UI's `UInputRating` component. Mizu provides a theme preset (`@mizu/vue/theme`) for consistent styling. See the [Theme](#theme) section for Mizu-specific defaults.
+
+A rating input lets users provide feedback by selecting from a configurable number of icons — typically stars. Mizu uses Nuxt UI's `UInputRating` with support for fractional steps, hover preview, and clearing.
+
+## Examples
+
+<InputRatingDemo client:only="vue" />
+
+## API
+
+Reference: [Nuxt UI InputRating](https://ui.nuxt.com/docs/components/input-rating)
+
+### Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `modelValue` | `number` | — | v-model binding for the rating value |
+| `defaultValue` | `number` | `0` | Initial value (uncontrolled) |
+| `length` | `number` | `5` | Number of rating items to render |
+| `step` | `1 \| 0.5 \| 0.25 \| 0.1` | `1` | Granularity of each rating item |
+| `size` | `'xs' \| 'sm' \| 'md' \| 'lg' \| 'xl'` | `'md'` | Icon size scale |
+| `color` | `'primary' \| 'secondary' \| 'success' \| 'error' \| 'warning' \| 'info' \| 'neutral'` | `'primary'` | Semantic color for filled icons |
+| `icon` | `string` (Iconify) | `'i-ph-star'` | Icon used for filled rating items |
+| `emptyIcon` | `string` (Iconify) | — | Icon used for empty rating items (defaults to `icon`) |
+| `readonly` | `boolean` | `false` | Display-only mode, no interaction |
+| `disabled` | `boolean` | `false` | Disables interaction |
+| `clearable` | `boolean` | `false` | Allow clearing the rating by clicking the current value again |
+| `hoverable` | `boolean` | `false` | Preview the rating value under the pointer on hover |
+| `orientation` | `'horizontal' \| 'vertical'` | `'horizontal'` | Layout direction of the rating items |
+| `required` | `boolean` | `false` | Marks the field as required |
+| `name` | `string` | — | Field name for form submission |
+| `id` | `string` | — | HTML `id` attribute |
+
+### Slots
+
+| Slot | Props | Description |
+|------|-------|-------------|
+| `item` | `{ index, filled }` | Rendered for each rating item. `filled` is `false` for the empty background and `true` for the filled overlay |
+
+### Example Usage
+
+```vue
+<script setup lang="ts">
+import { ref } from "vue";
+
+const rating = ref(3);
+const detailed = ref(4.5);
+const hover = ref(0);
+</script>
+
+<template>
+  <!-- Basic 5-star rating -->
+  <UInputRating v-model="rating" />
+
+  <!-- Half-step rating -->
+  <UInputRating v-model="detailed" :step="0.5" />
+
+  <!-- Hoverable with clear -->
+  <UInputRating v-model="hover" hoverable clearable />
+
+  <!-- Custom length and color -->
+  <UInputRating v-model="rating" :length="10" color="warning" />
+
+  <!-- Read-only display -->
+  <UInputRating :default-value="4" readonly />
+
+  <!-- Custom icons -->
+  <UInputRating v-model="rating" icon="i-ph-heart" empty-icon="i-ph-heart" color="error" />
+</template>
+```
+
+## Anatomy
+
+An input rating consists of:
+
+| Part | Required | Description |
+|------|----------|-------------|
+| Root | Yes | Wrapper element containing all rating items |
+| Item | Yes | Individual rating slot rendered `length` times |
+| Indicator | Yes | Overlay element within each item, sized proportionally to the filled amount |
+| Filled Icon | Yes | The `icon` displayed for the filled portion |
+| Empty Icon | Yes | The `emptyIcon` (or `icon`) displayed as the background |
+
+## Implementation Notes
+
+1. **Use `<UInputRating>` directly** — No Mizu wrapper needed. Apply the theme preset.
+2. **Fractional steps** — Set `step` to `0.5`, `0.25`, or `0.1` to allow partial ratings. The indicator width is clipped proportionally to show partial fill.
+3. **Hover preview** — Set `hoverable` to preview the candidate value as the pointer moves over the items. The value only commits on click.
+4. **Clearable** — Set `clearable` to let users reset the rating to `0` by clicking the currently selected item again.
+5. **Custom icons** — Use `icon` and `emptyIcon` with any Iconify icon. Perfect for non-star ratings like hearts, thumbs-up, or custom shapes.
+6. **Orientation** — Set `orientation="vertical"` for a vertical stacking layout. Arrow key navigation respects the orientation.
+7. **Form integration** — Wrap with `UFormField` for labels and error messages. The component participates in native form submission via `name` and `required`.

@@ -1,0 +1,113 @@
+---
+title: ContextMenu
+description: A menu to display actions when right-clicking on an element.
+---
+
+import ContextMenuDemo from "../../../../components/docs/ContextMenuDemo.vue";
+
+> **Nuxt UI Component:** This uses Nuxt UI's `UContextMenu` component. Mizu provides a theme preset (`@mizu/vue/theme`) that applies consistent styling to menu items. See the [Theme](#theme) section for Mizu-specific defaults.
+
+A context menu displays a list of actions when the user right-clicks on a target element. Mizu uses Nuxt UI's `UContextMenu` with items defined as a nested array configuration.
+
+## Examples
+
+<ContextMenuDemo client:only="vue" />
+
+## API
+
+Reference: [Nuxt UI ContextMenu](https://ui.nuxt.com/docs/components/context-menu)
+
+### Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `items` | `NestedItem<T>[][]` | — | Nested array of menu item groups |
+| `size` | `'xs' \| 'sm' \| 'md' \| 'lg' \| 'xl'` | `'md'` | Menu item size |
+| `disabled` | `boolean` | `false` | Disable the entire menu |
+| `modal` | `boolean` | `true` | Disable interaction with outside elements |
+| `portal` | `boolean \| string \| HTMLElement` | `true` | Render in a portal |
+| `labelKey` | `string` | `'label'` | Key used to get the label from items |
+| `descriptionKey` | `string` | `'description'` | Key used to get the description from items |
+| `checkedIcon` | `string` (Iconify) | `appConfig.ui.icons.check` | Icon for checked items |
+| `loadingIcon` | `string` (Iconify) | `appConfig.ui.icons.loading` | Icon for loading items |
+| `externalIcon` | `boolean \| string` | `true` | External link indicator icon |
+| `pressOpenDelay` | `number` | `700` | Delay before opening on press (ms) |
+
+### Slots
+
+| Slot | Props | Description |
+|------|-------|-------------|
+| `default` | — | Trigger element that opens the menu on right-click |
+| `item` | `{ item, active, index, ui }` | Custom item rendering |
+| `item-leading` | `{ item, active, index, ui }` | Custom leading content per item |
+| `item-label` | `{ item, active, index }` | Custom label per item |
+| `item-description` | `{ item, active, index }` | Custom description per item |
+| `item-trailing` | `{ item, active, index, ui }` | Custom trailing content per item |
+| `content-top` | `{ sub }` | Content before menu items |
+| `content-bottom` | `{ sub }` | Content after menu items |
+
+### Item Properties
+
+Each item in the `items` array supports:
+
+| Property | Type | Description |
+|----------|------|-------------|
+| `label` | `string` | Display text |
+| `icon` | `string` (Iconify) | Leading icon |
+| `description` | `string` | Secondary text below label |
+| `type` | `'label' \| 'separator'` | Item type (default: clickable action) |
+| `disabled` | `boolean` | Disable the item |
+| `checked` | `boolean` | Show a checkmark |
+| `loading` | `boolean` | Show a loading spinner |
+| `kbd` / `kbds` | `string \| string[]` | Keyboard shortcut hint |
+| `href` / `to` | `string` | Render as a link |
+| `children` | `NestedItem[][]` | Nested submenu |
+| `onSelect` | `(e: Event) => void` | Click handler |
+
+### Example Usage
+
+```vue
+<script setup>
+const items = [
+  [
+    { label: "Edit", icon: "i-lucide-pencil", onSelect: () => edit() },
+    { label: "Duplicate", icon: "i-lucide-copy" },
+    { label: "Delete", icon: "i-lucide-trash", color: "error" },
+  ],
+  [
+    { label: "Archive", icon: "i-lucide-archive" },
+    { label: "Move", icon: "i-lucide-folder-input", children: [
+      [{ label: "Folder A" }, { label: "Folder B" }],
+    ]},
+  ],
+];
+</script>
+
+<template>
+  <UContextMenu :items="items">
+    <div>Right-click here</div>
+  </UContextMenu>
+</template>
+```
+
+## Anatomy
+
+A context menu consists of:
+
+| Part | Required | Description |
+|------|----------|-------------|
+| Trigger | Yes | The element that the user right-clicks to open the menu |
+| Content | Yes | Floating panel positioned at the cursor |
+| Group | No | Visual grouping of related items (separated by dividers) |
+| Item | Yes | Individual action with label, optional icon, description, and keyboard shortcut |
+| Separator | No | Divider between groups |
+| Submenu | No | Nested menu triggered by hovering an item with `children` |
+
+## Implementation Notes
+
+1. **Use `<UContextMenu>` directly** — No Mizu wrapper needed. Apply the theme preset.
+2. **Items are a nested array** — Each top-level array is a group separated by a divider. Nested `children` create submenus.
+3. **Item types** — Set `type: 'label'` for non-interactive headings and `type: 'separator'` for explicit dividers.
+4. **Keyboard navigation** — Arrow keys navigate items, Enter selects, Escape closes. Submenus open on Arrow Right / Space.
+5. **Portal rendering** — The menu renders in a portal by default (`portal: true`) to avoid clipping from parent containers.
+6. **Modal behavior** — When `modal: true` (default), interaction with outside elements is blocked while the menu is open.

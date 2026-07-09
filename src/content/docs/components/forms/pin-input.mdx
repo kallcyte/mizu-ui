@@ -1,0 +1,88 @@
+---
+title: PinInput
+description: An input element to enter a pin.
+---
+
+import PinInputDemo from "../../../../components/docs/PinInputDemo.vue";
+
+> **Nuxt UI Component:** This uses Nuxt UI's `UPinInput` component. Mizu provides a theme preset (`@mizu/vue/theme`) that overrides sizing, padding, and spacing to match Mizu's design language. See the [Theme](#theme) section for Mizu-specific defaults.
+
+A pin input component for entering one-time passwords (OTP), verification codes, and PINs. Mizu uses Nuxt UI's `UPinInput` with the same sizing and style variants as other form inputs.
+
+## Examples
+
+<PinInputDemo client:only="vue" />
+
+## API
+
+Reference: [Nuxt UI PinInput](https://ui.nuxt.com/docs/components/pin-input)
+
+### Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `modelValue` | `string[]` | — | v-model binding for the pin digits array |
+| `defaultValue` | `string[]` | — | Initial pin value (uncontrolled) |
+| `length` | `string \| number` | `5` | Number of input fields |
+| `color` | `'primary' \| 'secondary' \| 'success' \| 'error' \| 'warning' \| 'info' \| 'neutral'` | `'primary'` | Semantic color for focus ring |
+| `variant` | `'outline' \| 'soft' \| 'subtle' \| 'ghost' \| 'none'` | `'outline'` | Visual style of the input fields |
+| `size` | `'xs' \| 'sm' \| 'md' \| 'lg' \| 'xl'` | `'md'` | Input size aligned with other form elements |
+| `mask` | `boolean` | `false` | Mask the input values like a password field |
+| `otp` | `boolean` | `false` | Enable native OTP autofill on mobile devices |
+| `placeholder` | `string` | — | Placeholder character for empty inputs |
+| `type` | `'text' \| 'number'` | `'text'` | Input type for the underlying fields |
+| `separator` | `number \| number[]` | — | Insert a visual separator after every Nth input, or at specific positions |
+| `autofocus` | `boolean` | `false` | Automatically focus the first input on mount |
+| `autofocusDelay` | `number` | `0` | Delay in ms before autofocusing |
+| `disabled` | `boolean` | `false` | Disables interaction |
+| `required` | `boolean` | `false` | Marks the field as required |
+| `name` | `string` | — | Native `name` attribute for form submissions |
+| `id` | `string` | — | Native `id` attribute for the first input |
+| `highlight` | `boolean` | `false` | Force the focus ring to be visible |
+| `fixed` | `boolean` | `false` | Keep the mobile text size on all breakpoints |
+
+### Slots
+
+| Slot | Props | Description |
+|------|-------|-------------|
+| `separator` | `{ index }` | Custom separator content between inputs at the given position |
+
+### Example Usage
+
+```vue
+<!-- Basic 5-digit pin -->
+<UPinInput v-model="pin" :length="5" placeholder="·" />
+
+<!-- Masked 6-digit OTP with native autofill -->
+<UPinInput v-model="otp" :length="6" mask otp placeholder="·" />
+
+<!-- With a separator after the first 3 digits -->
+<UPinInput v-model="pin" :length="6" :separator="3" placeholder="·" />
+
+<!-- Custom separator slot -->
+<UPinInput v-model="pin" :length="8" :separator="4">
+  <template #separator="{ index }">
+    <span class="text-foreground-tertiary">-</span>
+  </template>
+</UPinInput>
+```
+
+## Anatomy
+
+A pin input consists of:
+
+| Part | Required | Description |
+|------|----------|-------------|
+| Root | Yes | Wrapper element containing all input fields |
+| Base | Yes | Flex container holding the input fields and separators |
+| Input | Yes | Individual `<input>` field for a single digit/character |
+| Separator | No | Visual separator (e.g., dash) between groups of inputs |
+
+## Implementation Notes
+
+1. **Use `<UPinInput>` directly** — No Mizu wrapper needed. Apply the theme preset.
+2. **v-model is a string array** — Each digit is a separate string in the array. Use `pin.join('')` to get the full code as a single string for submission.
+3. **Mobile OTP autofill** — Set `otp` to `true` to enable native OTP detection from SMS messages or clipboard on supported mobile devices. Combine with `mask` for privacy.
+4. **Masking** — Set `mask` to `true` to hide input values with dots (similar to a password field). Each character is masked individually as the user types.
+5. **Separators** — Pass a number to insert a separator after every Nth input (e.g., `:separator="3"` for `###-###`). Pass an array of numbers to insert at specific positions (e.g., `:separator="[3, 6]"` for `###-##-###`).
+6. **Autofocus behavior** — Set `autofocus` to `true` to focus the first input on mount. Use `autofocusDelay` to add a delay (useful when the pin input is inside a modal that animates in).

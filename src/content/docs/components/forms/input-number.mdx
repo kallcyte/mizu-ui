@@ -1,0 +1,102 @@
+---
+title: InputNumber
+description: An input for numerical values with a customizable range.
+---
+
+import InputNumberDemo from "../../../../components/docs/InputNumberDemo.vue";
+
+> **Nuxt UI Component:** This uses Nuxt UI's `UInputNumber` component. Mizu provides a theme preset (`@mizu/vue/theme`) that overrides sizing and padding to match Mizu's design language. See the [Theme](#theme) section for Mizu-specific defaults.
+
+A number input lets users enter or adjust numeric values with increment and decrement stepper buttons. Mizu uses Nuxt UI's `UInputNumber` with the same height scale as inputs and buttons for form row consistency.
+
+## Examples
+
+<InputNumberDemo client:only="vue" />
+
+## API
+
+Reference: [Nuxt UI InputNumber](https://ui.nuxt.com/docs/components/input-number)
+
+### Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `modelValue` | `number` | — | v-model binding for the numeric value |
+| `defaultValue` | `number` | — | Initial value (uncontrolled) |
+| `min` | `number` | — | Minimum allowed value |
+| `max` | `number` | — | Maximum allowed value |
+| `step` | `number` | — | Increment/decrement step amount |
+| `placeholder` | `string` | — | Placeholder text when empty |
+| `color` | `'primary' \| 'secondary' \| 'success' \| 'info' \| 'warning' \| 'error' \| 'neutral'` | `'primary'` | Focus ring color |
+| `variant` | `'outline' \| 'soft' \| 'subtle' \| 'ghost' \| 'none'` | `'outline'` | Visual style |
+| `size` | `'xs' \| 'sm' \| 'md' \| 'lg' \| 'xl'` | `'md'` | Input height scale |
+| `orientation` | `'horizontal' \| 'vertical'` | `'horizontal'` | Layout of the stepper buttons |
+| `increment` | `boolean \| ButtonProps` | `true` | Increment button config or `false` to hide |
+| `decrement` | `boolean \| ButtonProps` | `true` | Decrement button config or `false` to hide |
+| `incrementIcon` | `string` | — | Custom icon for the increment button |
+| `decrementIcon` | `string` | — | Custom icon for the decrement button |
+| `incrementDisabled` | `boolean` | `false` | Disables only the increment button |
+| `decrementDisabled` | `boolean` | `false` | Disables only the decrement button |
+| `highlight` | `boolean` | `false` | Highlight the focus ring color permanently |
+| `disabled` | `boolean` | `false` | Disables the entire input |
+| `required` | `boolean` | `false` | Marks the field as required |
+| `formatOptions` | `Intl.NumberFormatOptions` | — | Locale-aware number formatting |
+| `locale` | `string` | — | Locale for number formatting |
+| `disableWheelChange` | `boolean` | `false` | Prevents value change on mouse wheel |
+| `readonly` | `boolean` | `false` | Makes the input read-only |
+| `stepSnapping` | `boolean` | `true` | Snaps value to nearest step on blur |
+| `name` | `string` | — | Field name for form submission |
+| `id` | `string` | — | Element ID |
+
+### Slots
+
+| Slot | Props | Description |
+|------|-------|-------------|
+| `increment` | — | Custom increment button content |
+| `decrement` | — | Custom decrement button content |
+
+### Example Usage
+
+```vue
+<script setup lang="ts">
+const quantity = ref(1);
+const percentage = ref(50);
+</script>
+
+<template>
+  <UInputNumber v-model="quantity" />
+
+  <UInputNumber v-model="percentage" :min="0" :max="100" :step="5" />
+
+  <UInputNumber
+    v-model="quantity"
+    :increment="{ color: 'neutral', variant: 'solid', size: 'xs' }"
+    :decrement="{ color: 'neutral', variant: 'solid', size: 'xs' }"
+  />
+
+  <UFormField label="Quantity" help="Enter a number between 1 and 99.">
+    <UInputNumber v-model="quantity" :min="1" :max="99" />
+  </UFormField>
+</template>
+```
+
+## Anatomy
+
+A number input consists of:
+
+| Part | Required | Description |
+|------|----------|-------------|
+| Root | Yes | `<div>` wrapper containing the input and stepper buttons |
+| Base | Yes | The `<input>` element for direct numeric entry |
+| Increment | Yes | Button to increase the value by one step |
+| Decrement | Yes | Button to decrease the value by one step |
+| Label (via FormField) | No | External label via `UFormField` |
+
+## Implementation Notes
+
+1. **Use `<UInputNumber>` directly** — No Mizu wrapper needed. Apply the theme preset.
+2. **Same height as inputs** — The component uses the same `xs`–`xl` size scale as `UInput` and `UButton`, ensuring alignment in form rows.
+3. **Custom stepper buttons** — Pass a `ButtonProps` object to `increment`/`decrement` to customize the button style, or set to `false` to hide a button entirely.
+4. **Range constraints** — When `min` or `max` is set, the corresponding stepper button is automatically disabled when the boundary is reached.
+5. **Locale formatting** — Use `formatOptions` with `locale` to display numbers in the user's locale (e.g., currency, percentage). Relies on `@internationalized/number`.
+6. **Keyboard interaction** — Arrow Up/Down keys adjust the value by one step. Shift + Arrow Up/Down adjusts by 10 steps. The wheel can be disabled with `disableWheelChange`.

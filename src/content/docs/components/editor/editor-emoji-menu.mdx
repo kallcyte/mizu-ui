@@ -1,0 +1,84 @@
+---
+title: EditorEmojiMenu
+description: "An emoji picker menu that displays emoji suggestions when typing the : character in the editor."
+---
+
+import EditorEmojiMenuDemo from "../../../../components/docs/EditorEmojiMenuDemo.vue";
+
+> **Nuxt UI Component:** This uses Nuxt UI's `UEditorEmojiMenu` component. Mizu provides a theme preset (`@mizu/vue/theme`) that applies consistent typography and spacing. See the [Theme](#theme) section for Mizu-specific defaults.
+
+An emoji picker menu that displays emoji suggestions when typing the `:` character. Mizu uses Nuxt UI's `UEditorEmojiMenu` inside an editor's scoped slot, working alongside the `@tiptap/extension-emoji` package to provide emoji autocomplete.
+
+## Examples
+
+<EditorEmojiMenuDemo client:only="vue" />
+
+## API
+
+Reference: [Nuxt UI EditorEmojiMenu](https://ui.nuxt.com/docs/components/editor-emoji-menu)
+
+### Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `editor` | `Editor` | — | **Required.** The TipTap editor instance. |
+| `items` | `T[] \| T[][]` | — | Array of emoji items (or nested arrays for groups). |
+| `char` | `string` | `":"` | The trigger character that opens the emoji menu. |
+| `pluginKey` | `string` | `"emojiMenu"` | Unique key to identify this menu plugin. |
+| `filterFields` | `string[]` | `["name", "shortcodes", "tags"]` | Fields to filter items by as the user types. |
+| `limit` | `number` | `42` | Maximum number of items to display. |
+| `options` | `FloatingUIOptions` | — | Floating UI positioning options (placement, offset, etc.). |
+| `size` | `'xs' \| 'sm' \| 'md' \| 'lg' \| 'xl'` | — | Menu item size. |
+| `suggestion` | `Partial<SuggestionOptions>` | — | TipTap Suggestion matching options (allowedPrefixes, etc.). |
+| `appendTo` | `HTMLElement \| (() => HTMLElement)` | — | DOM element to append the menu to. |
+
+### Item Properties
+
+Each item in the `items` array supports:
+
+| Property | Type | Description |
+|----------|------|-------------|
+| `name` | `string` | Display name for the emoji. |
+| `emoji` | `string` | The emoji character to insert. |
+| `shortcodes` | `string[]` | Array of shortcodes (e.g., `[":smile:", ":happy:"]`). |
+| `tags` | `string[]` | Search tags for filtering. |
+| `group` | `string` | Category/group name for the emoji. |
+| `fallbackImage` | `string` | Fallback image URL if the emoji doesn't render. |
+
+### Slots
+
+The component uses item configs and provides no custom slots. Rendering is driven by the item data shape.
+
+### Example Usage
+
+```vue
+<script setup>
+const emojis = [
+  { name: "Smile", emoji: "😊", shortcodes: [":smile:"], tags: ["happy"] },
+  { name: "Heart", emoji: "❤️", shortcodes: [":heart:"], tags: ["love"] },
+  { name: "Rocket", emoji: "🚀", shortcodes: [":rocket:"], tags: ["space"] },
+];
+</script>
+
+<template>
+  <UEditor v-slot="{ editor }" v-model="value">
+    <UEditorEmojiMenu :editor="editor" :items="emojis" />
+  </UEditor>
+</template>
+```
+
+## Anatomy
+
+| Part | Required | Description |
+|------|----------|-------------|
+| Editor context | Yes | Must be inside a `UEditor` scoped slot to access the `editor` instance. |
+| Menu content | Yes | Floating menu panel that appears when the `:` trigger character is typed. |
+| Item | Yes | Individual suggestion showing the emoji character and its name. |
+
+## Implementation Notes
+
+1. **Must be inside `<UEditor>` scoped slot** — The component requires the `editor` instance from the scoped slot props.
+2. **Requires `@tiptap/extension-emoji`** — Install this package separately to enable emoji support in the editor.
+3. **Trigger character** — Defaults to `:`. Change via the `char` prop if needed.
+4. **Filtering** — Items are searched by `name`, `shortcodes`, and `tags` by default. Customize with `filterFields`.
+5. **Shortcode matching** — Typing `:smile` matches items whose `shortcodes` or `name` contain "smile".

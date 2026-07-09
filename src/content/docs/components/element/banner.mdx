@@ -1,0 +1,120 @@
+---
+title: Banner
+description: Display a banner at the top of your website to inform users about important information.
+---
+
+import BannerDemo from "../../../../components/docs/BannerDemo.vue";
+
+> **Nuxt UI Component:** This uses Nuxt UI's `UBanner` component. Mizu provides a theme preset (`@mizu/vue/theme`) that applies consistent spacing and color tokens. See the [Theme](#theme) section for Mizu-specific defaults.
+
+A banner displays a prominent announcement at the top of the page, ideal for important messages, alerts, or calls to action. Mizu uses Nuxt UI's `UBanner` with dismiss persistence and action support.
+
+## Examples
+
+<BannerDemo client:only="vue" />
+
+## API
+
+Reference: [Nuxt UI Banner](https://ui.nuxt.com/docs/components/banner)
+
+### Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `id` | `string` | — | Unique ID for localStorage dismiss persistence |
+| `icon` | `string` (Iconify) | — | Icon displayed next to the title |
+| `title` | `string` | — | Banner message text |
+| `actions` | `ButtonProps[]` | — | Array of action button configs |
+| `to` | `string` | — | Makes the banner a clickable link (NuxtLink) |
+| `target` | `'_blank' \| '_parent' \| '_self' \| '_top'` | — | Link target when `to` is set |
+| `color` | `'primary' \| 'secondary' \| 'success' \| 'info' \| 'warning' \| 'error' \| 'neutral'` | `'primary'` | Semantic color |
+| `close` | `boolean \| ButtonProps` | — | Show a dismiss close button |
+| `closeIcon` | `string` (Iconify) | `'i-lucide-x'` | Custom icon for the close button |
+
+### Slots
+
+| Slot | Props | Description |
+|------|-------|-------------|
+| `leading` | — | Custom leading content (before icon) |
+| `title` | — | Custom title content (overrides `title` prop) |
+| `actions` | — | Custom actions content (overrides `actions` prop) |
+| `close` | — | Custom close button content |
+
+### Example Usage
+
+```vue
+<!-- Simple banner -->
+<UBanner title="This is an important announcement." />
+
+<!-- With icon and color -->
+<UBanner
+  icon="i-lucide-info"
+  color="primary"
+  title="New features are available!"
+/>
+
+<!-- Closable with persistence -->
+<UBanner
+  id="welcome-banner"
+  title="Welcome to Mizu!"
+  close
+/>
+
+<!-- With actions -->
+<UBanner
+  icon="i-lucide-info"
+  title="We've updated our terms."
+  :actions="[
+    { label: 'Review', variant: 'outline' },
+    { label: 'Accept' }
+  ]"
+/>
+
+<!-- Link banner -->
+<UBanner
+  to="https://example.com"
+  target="_blank"
+  title="Learn more about the new release →"
+  color="primary"
+/>
+```
+
+## Theme
+
+Mizu applies its design tokens to Nuxt UI's banner via `@mizu/vue/theme`:
+
+```ts
+// app.config.ts
+import { mizuTheme } from "@mizu/vue/theme";
+export default defineAppConfig({ ui: mizuTheme });
+```
+
+### Color Map
+
+| Mizu Token | Nuxt UI Color |
+|------------|---------------|
+| `--color-brand-primary` | `primary` |
+| `--color-brand-ycp` | `secondary` |
+| `--color-feedback-success-base` | `success` |
+| `--color-feedback-error-base` | `error` |
+| `--color-feedback-warning-base` | `warning` |
+| `--color-feedback-info-base` | `info` |
+
+## Anatomy
+
+A banner consists of a single horizontal bar:
+
+| Part | Required | Description |
+|------|----------|-------------|
+| Root | Yes | `<div>` container spanning full width |
+| Left | No | Leading slot + icon |
+| Center | Yes | Title text or slot |
+| Right | No | Actions + close button |
+
+## Implementation Notes
+
+1. **Use `<UBanner>` directly** — No Mizu wrapper needed. Apply the theme preset.
+2. **Dismiss persistence** — Always provide an `id` prop when using `close`. The dismiss state is saved to `localStorage` under `banner-{id}`. Without an `id`, the banner reappears on page reload.
+3. **Action buttons** — Actions default to `color="neutral"` and `size="xs"`. Pass custom `ButtonProps` to override.
+4. **Link behavior** — When `to` is set, the entire banner becomes clickable and navigates to the given URL. Use with `target="_blank"` for external links.
+5. **Placement** — The banner renders inline where placed. For a full-width top banner, place it at the top of your layout, outside the main content container.

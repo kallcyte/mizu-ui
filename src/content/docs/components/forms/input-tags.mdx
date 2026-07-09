@@ -1,0 +1,108 @@
+---
+title: InputTags
+description: An input element that displays interactive tags.
+---
+
+import InputTagsDemo from "../../../../components/docs/InputTagsDemo.vue";
+
+> **Nuxt UI Component:** This uses Nuxt UI's `UInputTags` component. Mizu provides a theme preset (`@mizu/vue/theme`) that overrides sizing, padding, and spacing to match Mizu's design language. See the [Theme](#theme) section for Mizu-specific defaults.
+
+A token-style input that allows users to add, view, and remove tags. Mizu uses Nuxt UI's `UInputTags` with the same height and color system as other form inputs.
+
+## Examples
+
+<InputTagsDemo client:only="vue" />
+
+## API
+
+Reference: [Nuxt UI InputTags](https://ui.nuxt.com/docs/components/input-tags)
+
+### Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `modelValue` | `T[]` | `[]` | v-model binding for the array of tags |
+| `defaultValue` | `T[]` | `[]` | Initial value (uncontrolled) |
+| `placeholder` | `string` | — | Placeholder text in the input field |
+| `maxLength` | `number` | — | Maximum number of characters per tag |
+| `size` | `'xs' \| 'sm' \| 'md' \| 'lg' \| 'xl'` | `'md'` | Input size aligned with other form elements |
+| `color` | `'primary' \| 'secondary' \| 'success' \| 'error' \| 'warning' \| 'info' \| 'neutral'` | `'primary'` | Semantic color for focus ring |
+| `variant` | `'outline' \| 'soft' \| 'subtle' \| 'ghost' \| 'none'` | `'outline'` | Visual style |
+| `max` | `number` | — | Maximum number of tags allowed |
+| `delimiter` | `string \| RegExp` | — | Character or pattern that triggers tag creation (e.g. `','` or `/\s+/`) |
+| `duplicate` | `boolean` | `true` | Allow duplicate tags |
+| `addOnPaste` | `boolean` | `true` | Parse pasted text into separate tags |
+| `addOnTab` | `boolean` | `true` | Add the current input value as a tag on Tab key |
+| `addOnBlur` | `boolean` | `false` | Add the current input value as a tag on blur |
+| `autofocus` | `boolean` | `false` | Automatically focus the input on mount |
+| `disabled` | `boolean` | `false` | Disables interaction |
+| `required` | `boolean` | `false` | Marks the field as required |
+| `convertValue` | `(value: string) => T` | — | Function to convert raw input text to a tag value |
+| `displayValue` | `(value: T) => string` | — | Function to render a tag value as display text |
+| `icon` | `string` (Iconify) | — | Icon displayed on the leading side |
+| `leadingIcon` | `string` (Iconify) | — | Explicit leading icon |
+| `trailingIcon` | `string` (Iconify) | — | Explicit trailing icon |
+| `deleteIcon` | `string` (Iconify) | — | Custom icon for the delete button on each tag |
+| `name` | `string` | — | Native `name` attribute for form submissions |
+| `highlight` | `boolean` | `false` | Force the focus ring to be visible |
+| `fixed` | `boolean` | `false` | Use `position: fixed` instead of `position: absolute` |
+
+### Slots
+
+| Slot | Props | Description |
+|------|-------|-------------|
+| `leading` | — | Content before the tags and input |
+| `default` | — | Default slot (not typically used) |
+| `trailing` | — | Content after the tags and input |
+| `item-text` | `{ item }` | Custom text rendering for each tag |
+| `item-delete` | `{ item }` | Custom delete button for each tag |
+
+### Example Usage
+
+```vue
+<UInputTags
+  v-model="tags"
+  placeholder="Add a tag and press Enter..."
+  add-on-tab
+  add-on-blur
+/>
+
+<!-- With object items and custom display -->
+<UInputTags
+  v-model="tags"
+  :items="[
+    { value: 'Vue' },
+    { value: 'React' },
+    { value: 'Svelte' },
+  ]"
+  value-key="value"
+  placeholder="Select frameworks..."
+/>
+```
+
+## Anatomy
+
+An input tags component consists of:
+
+| Part | Required | Description |
+|------|----------|-------------|
+| Root | Yes | Wrapper element that contains tags and the input |
+| Tags Container | Yes | Flex container holding all tag chips |
+| Tag | Yes | Individual chip showing a selected value with a delete button |
+| Tag Text | Yes | Display text for the tag value |
+| Tag Delete | No | Button to remove the tag |
+| Input | Yes | Inline text input for typing new tag values |
+| Suggestions Menu | No | Dropdown with suggested items (when `items` prop is provided) |
+| Leading | No | Content before the tags |
+| Trailing | No | Content after the input |
+
+## Implementation Notes
+
+1. **Use `<UInputTags>` directly** — No Mizu wrapper needed. Apply the theme preset.
+2. **Tag creation triggers** — By default, pressing Enter creates a tag. Enable `addOnTab` for Tab support and `addOnBlur` to add on focus loss. Use `delimiter` to split on specific characters.
+3. **Pasting multiple values** — When `addOnPaste` is `true` (default), pasting comma- or space-separated text creates multiple tags at once.
+4. **Preventing duplicates** — Set `duplicate` to `false` to prevent the same tag from being added twice. Compare behavior depends on the `by` prop or value identity.
+5. **Custom value conversion** — Use `convertValue` to transform raw input text and `displayValue` to control how tags are rendered. Useful when tags are objects with complex shapes.
+6. **Limiting tags** — Use `max` to cap the number of tags and `maxLength` to cap the character count per tag.
+7. **Suggestions** — Provide an `items` array for autocomplete-style suggestions. The menu appears as the user types and filters against the input value.
+8. **Read-only tags with suggestions** — When `items` is provided without free-text entry, the component behaves like a multi-select. Use this pattern for constrained tag sets like categories or labels.

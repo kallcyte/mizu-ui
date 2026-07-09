@@ -1,0 +1,97 @@
+---
+title: FooterColumns
+description: A list of links as columns to display in your Footer.
+---
+
+import FooterColumnsDemo from "../../../../components/docs/FooterColumnsDemo.vue";
+
+> **Nuxt UI Component:** This uses Nuxt UI's `UFooterColumns` component. Nuxt UI v4 defaults already match the Mizu design scale, so no sizing overrides are applied.
+
+FooterColumns renders a grid of link columns, typically used within a page footer to organize navigation, resources, or legal links. Mizu uses Nuxt UI's `UFooterColumns` for structured multi-column footer layouts.
+
+## Examples
+
+<FooterColumnsDemo client:only="vue" />
+
+## API
+
+Reference: [Nuxt UI FooterColumns](https://ui.nuxt.com/docs/components/footer-columns)
+
+### Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `columns` | `FooterColumn[]` | — | Array of column definitions |
+
+### FooterColumn
+
+| Prop | Type | Description |
+|------|------|-------------|
+| `label` | `string` | Column heading text |
+| `children` | `FooterColumnLink[]` | Nested links within the column |
+
+### FooterColumnLink
+
+| Prop | Type | Description |
+|------|------|-------------|
+| `label` | `string` | Link display text |
+| `to` | `string` | Vue Router route |
+| `href` | `string` | External URL |
+| `icon` | `string` (Iconify) | Leading icon for the link |
+| `target` | `string` | Link target (e.g. `_blank`) |
+
+### Slots
+
+| Slot | Props | Description |
+|------|-------|-------------|
+| `left` | — | Content before the columns grid |
+| `default` | — | Entire columns (overrides columns prop) |
+| `right` | — | Content after the columns grid |
+| `column-label` | `{ col, index }` | Custom column heading |
+| `link` | `{ link, col, colIndex, index }` | Entire link content |
+| `link-leading` | `{ link, col, colIndex, index }` | Content before link label |
+| `link-label` | `{ link, col, colIndex, index }` | Custom link label |
+| `link-trailing` | `{ link, col, colIndex, index }` | Content after link label |
+
+### Example Usage
+
+```vue
+<UFooterColumns
+  :columns="[
+    {
+      label: 'Product',
+      children: [
+        { label: 'Features', to: '/features' },
+        { label: 'Pricing', to: '/pricing' },
+      ],
+    },
+    {
+      label: 'Company',
+      children: [
+        { label: 'About', to: '/about' },
+        { label: 'Blog', to: '/blog' },
+      ],
+    },
+  ]"
+/>
+```
+
+## Anatomy
+
+A FooterColumns consists of:
+
+| Part | Required | Description |
+|------|----------|-------------|
+| Root | Yes | Grid wrapper for the columns |
+| Column | Yes | Individual column with heading and links |
+| Heading | Yes | Column title/label |
+| Link | Yes | Individual navigation link |
+| Icon | No | Optional leading icon on links |
+
+## Implementation Notes
+
+1. **Use `<UFooterColumns>` directly** — No Mizu wrapper needed.
+2. **Columns structure** — Each column needs a `label` (heading) and `children` array of links. Links use `to` for internal routes or `href` for external URLs.
+3. **Layout** — Columns are automatically arranged in a responsive grid. Use the `left` and `right` slots for additional content around the column grid.
+4. **Icons** — Add `icon` to any link to display a leading icon (e.g. social media logos, external link indicators).
+5. **Custom rendering** — Use the slot system (e.g. `#link`, `#link-label`) to customize individual link or column rendering.

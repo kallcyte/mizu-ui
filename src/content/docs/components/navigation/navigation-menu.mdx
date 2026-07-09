@@ -1,0 +1,94 @@
+---
+title: NavigationMenu
+description: A list of links that can be displayed horizontally or vertically with nested items.
+---
+
+import NavigationMenuDemo from "../../../../components/docs/NavigationMenuDemo.vue";
+
+> **Nuxt UI Component:** This uses Nuxt UI's `UNavigationMenu` component. Nuxt UI v4 defaults already match the Mizu design scale, so no sizing overrides are applied.
+
+NavigationMenu renders a list of links with support for nested sub-items, tooltips, and popover expansion. Mizu uses Nuxt UI's `UNavigationMenu` with pill variant links and horizontal orientation for top-level navigation.
+
+## Examples
+
+<NavigationMenuDemo client:only="vue" />
+
+## API
+
+Reference: [Nuxt UI NavigationMenu](https://ui.nuxt.com/docs/components/navigation-menu)
+
+### Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `items` | `NavigationMenuItem[]` | — | Nested array of navigation items |
+| `modelValue` | `string` | — | v-model binding for selected value |
+| `defaultValue` | `string` | — | Initial selected value (uncontrolled) |
+| `color` | `'primary' \| 'secondary' \| 'success' \| 'error' \| 'warning' \| 'info' \| 'neutral'` | `'primary'` | Active item color |
+| `variant` | `'pill' \| 'link'` | `'pill'` | Visual style for items |
+| `orientation` | `'horizontal' \| 'vertical'` | `'horizontal'` | Layout direction |
+| `type` | `'single' \| 'multiple'` | `'single'` | Selection mode |
+| `collapsed` | `boolean` | `false` | Collapse sub-items by default |
+| `tooltip` | `boolean` | `false` | Show tooltips on collapsed items |
+| `popover` | `boolean` | `false` | Show sub-items in a popover |
+| `highlight` | `boolean` | `false` | Highlight currently active path |
+| `highlightColor` | `string` | — | Color for highlight indicator |
+| `arrow` | `boolean` | `false` | Show arrow on active item |
+| `contentOrientation` | `'horizontal' \| 'vertical'` | — | Orientation for sub-item content |
+| `trailingIcon` | `string` (Iconify) | — | Icon shown after item labels |
+| `externalIcon` | `string` (Iconify) | — | Icon shown on external links |
+| `valueKey` | `string` | `'value'` | Key to use as item value |
+| `labelKey` | `string` | `'label'` | Key to use as item label |
+| `delayDuration` | `number` | `0` | Delay before showing/hiding (ms) |
+| `skipDelayDuration` | `number` | `300` | Delay to skip when moving between items (ms) |
+| `disabled` | `boolean` | `false` | Disable entire menu |
+| `collapsible` | `boolean` | `true` | Allow collapsing expanded items |
+| `unmountOnHide` | `boolean` | `true` | Unmount hidden content from DOM |
+| `disableClickTrigger` | `boolean` | `false` | Disable click to expand/collapse |
+| `disableHoverTrigger` | `boolean` | `false` | Disable hover to expand/collapse |
+| `disablePointerLeaveClose` | `boolean` | `false` | Disable closing on pointer leave |
+
+### Slots
+
+| Slot | Props | Description |
+|------|-------|-------------|
+| `item` | `{ item, index }` | Custom render for an entire item |
+| `item-leading` | `{ item, index }` | Content before the item label |
+| `item-label` | `{ item, index }` | Custom item label content |
+| `item-trailing` | `{ item, index }` | Content after the item label |
+| `item-content` | `{ item, index }` | Content area within an item |
+| `list-leading` | — | Content before the item list |
+| `list-trailing` | — | Content after the item list |
+
+### Example Usage
+
+```vue
+<UNavigationMenu :items="[
+  { label: 'Home', to: '/' },
+  { label: 'Products', children: [
+    { label: 'Software', to: '/products/software' },
+    { label: 'Hardware', to: '/products/hardware' },
+  ]},
+  { label: 'About', to: '/about' },
+]" />
+```
+
+## Anatomy
+
+A NavigationMenu consists of:
+
+| Part | Required | Description |
+|------|----------|-------------|
+| Root | Yes | `<nav>` wrapper containing the menu items |
+| Item | Yes | Each top-level navigation item |
+| Sub-item | No | Nested items within a parent, shown on expand |
+| Label | Yes | Display text for each item |
+| Icon | No | Optional leading or trailing icon per item |
+
+## Implementation Notes
+
+1. **Use `<UNavigationMenu>` directly** — No Mizu wrapper needed.
+2. **Items structure** — Items accept `label`, `to`/`href`, `icon`, and `children` (nested sub-items). Use `children` for dropdowns.
+3. **Orientation** — Use `orientation="vertical"` for sidebar navigation. Default `horizontal` is for top navigation bars.
+4. **Selection** — Set `type="multiple"` to allow expanding multiple sub-menus simultaneously. Default `single` collapses others on open.
+5. **Popovers** — Set `popover` on nested items to display children in a floating panel instead of inline expansion.

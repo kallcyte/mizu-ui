@@ -1,0 +1,85 @@
+---
+title: Separator
+description: Separates content horizontally or vertically.
+---
+
+import SeparatorDemo from "../../../../components/docs/SeparatorDemo.vue";
+
+> **Nuxt UI Component:** This uses Nuxt UI's `USeparator` component. Mizu provides a theme preset (`@mizu/vue/theme`) that applies Mizu's design tokens for colors and sizing.
+
+A separator is a visual divider that separates content sections either horizontally or vertically. It supports labels, icons, and avatars positioned along the line. Mizu uses Nuxt UI's `USeparator`.
+
+## Examples
+
+<SeparatorDemo client:only="vue" />
+
+## API
+
+Reference: [Nuxt UI Separator](https://ui.nuxt.com/docs/components/separator)
+
+### Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `label` | `string` | — | Text label displayed on the separator |
+| `icon` | `string` (Iconify) | — | Icon displayed on the separator |
+| `avatar` | `AvatarProps` | — | Avatar displayed on the separator |
+| `color` | `'primary' \| 'secondary' \| 'success' \| 'info' \| 'warning' \| 'error' \| 'neutral'` | `'neutral'` | Separator color |
+| `size` | `'xs' \| 'sm' \| 'md' \| 'lg' \| 'xl'` | `'xs'` | Thickness of the separator line |
+| `type` | `'solid' \| 'dashed' \| 'dotted'` | `'solid'` | Line style |
+| `orientation` | `'horizontal' \| 'vertical'` | `'horizontal'` | Direction of the separator |
+| `position` | `'center' \| 'start' \| 'end'` | `'center'` | Position of label/icon/avatar along the line |
+| `decorative` | `boolean` | — | When `true`, hides from accessibility tree |
+
+### Slots
+
+| Slot | Props | Description |
+|------|-------|-------------|
+| `default` | — | Custom content displayed on the separator |
+
+### Example Usage
+
+```vue
+<!-- Basic horizontal separator -->
+<USeparator />
+
+<!-- With label and position -->
+<USeparator label="Section Title" position="start" />
+
+<!-- With icon -->
+<USeparator icon="i-simple-icons-nuxtdotjs" />
+
+<!-- Vertical separator -->
+<div class="flex items-center gap-4 h-12">
+  <span>Left</span>
+  <USeparator orientation="vertical" />
+  <span>Right</span>
+</div>
+
+<!-- Different types and sizes -->
+<USeparator type="dashed" size="sm" />
+<USeparator type="dotted" size="lg" />
+
+<!-- With avatar -->
+<USeparator :avatar="{ src: 'https://github.com/nuxt.png' }" />
+```
+
+## Anatomy
+
+A separator consists of up to 3 parts:
+
+| Part | Required | Description |
+|------|----------|-------------|
+| Line | Yes | The visual divider line (or lines when content is present) |
+| Container | No | Wrapper around the optional label/icon/avatar content |
+| Content | No | The label text, icon, or avatar displayed on the separator |
+
+When no label, icon, or avatar is set, the separator renders as a simple line. With content, two lines are drawn on either side of the centered content.
+
+## Implementation Notes
+
+1. **Use `<USeparator>` directly** — No Mizu wrapper needed. Apply the theme preset.
+2. **Vertical separators** — Set `orientation="vertical"` and provide an explicit height (e.g. `class="h-8"`). The separator expands to fill the available vertical space.
+3. **Accessibility** — Use `decorative` for purely visual separators. Without it, the separator is treated as a `<div>` in the accessibility tree.
+4. **Label positioning** — `position="start"` and `position="end"` offset the content from center. Useful for section headers.
+5. **Size scale** — `xs` through `xl` controls line thickness, from a hairline to a prominent divider. Default `xs` is suitable for most UI separators.

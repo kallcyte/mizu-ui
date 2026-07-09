@@ -21,33 +21,35 @@ Reference: [Nuxt UI Progress](https://ui.nuxt.com/docs/components/progress)
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `value` | `number` | — | Current progress value (0-100). Omit for indeterminate |
+| `modelValue` | `number \| null` | — | Current progress value (0–max). Set to `null` for indeterminate |
 | `size` | `'2xs' \| 'xs' \| 'sm' \| 'md' \| 'lg' \| 'xl' \| '2xl'` | `'md'` | Bar height |
 | `color` | `'primary' \| 'secondary' \| 'success' \| 'error' \| 'warning' \| 'info' \| 'neutral'` | `'primary'` | Bar fill color |
-| `variant` | `'outline' \| 'soft' \| 'subtle' \| 'ghost' \| 'none'` | `'outline'` | Visual style |
-| `min` | `number` | `0` | Minimum value |
 | `max` | `number` | `100` | Maximum value |
-| `indeterminate` | `boolean` | `false` | Carousel-style animation for unknown progress |
 | `animation` | `'carousel' \| 'carousel-inverse' \| 'swing' \| 'elastic'` | — | Indeterminate animation style |
+| `inverted` | `boolean` | `false` | Invert the animation direction |
+| `status` | `boolean` | `false` | Show percentage label inside the bar |
 
 ### Slots
 
 | Slot | Props | Description |
 |------|-------|-------------|
 | `default` | — | Custom content (overrides the bar) |
-| `indicator` | `{ ui }` | Custom indicator inside the bar |
+| `status` | `{ percent }` | Custom percentage label inside the bar |
 
 ### Example Usage
 
 ```vue
 <!-- Determinate progress -->
-<UProgress :value="60" />
+<UProgress :model-value="60" />
 
 <!-- Indeterminate loading -->
-<UProgress indeterminate />
+<UProgress :model-value="null" />
 
 <!-- Success state -->
-<UProgress :value="100" color="success" />
+<UProgress :model-value="100" color="success" />
+
+<!-- With percentage label -->
+<UProgress :model-value="75" status />
 ```
 
 ## Theme
@@ -64,11 +66,11 @@ A progress bar consists of:
 |------|----------|-------------|
 | Root | Yes | `<div>` track container |
 | Bar | Yes | Inner `<div>` that fills the track proportionally |
-| Indicator | No | Optional content inside the bar (e.g., percentage label) |
+| Status | No | Optional percentage label inside the bar |
 
 ## Implementation Notes
 
 1. **Use `<UProgress>` directly** — No Mizu wrapper needed.
-2. **Indeterminate state** — Set `indeterminate` to `true` for ongoing operations with unknown duration. The default animation is `carousel`.
+2. **Indeterminate state** — Set `modelValue` to `null` for ongoing operations with unknown duration. The default animation is `carousel`.
 3. **Animation variants** — Choose from `carousel`, `carousel-inverse`, `swing`, or `elastic` for different indeterminate animation styles.
-4. **Custom range** — Use `min` and `max` props for non-percentage scales (e.g., `:min="0" :max="1000"`).
+4. **Custom range** — Use the `max` prop for non-percentage scales (e.g., `:max="1000"`).

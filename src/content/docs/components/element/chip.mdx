@@ -1,0 +1,102 @@
+---
+title: Chip
+description: An indicator of a numeric value or a state.
+---
+
+import ChipDemo from "../../../../components/docs/ChipDemo.vue";
+
+> **Nuxt UI Component:** This uses Nuxt UI's `UChip` component. Mizu provides a theme preset (`@mizu/vue/theme`) that applies consistent sizing and color tokens. See the [Theme](#theme) section for Mizu-specific defaults.
+
+A chip displays a small indicator badge on top of any component, useful for showing notification counts, status indicators, or alerts. Mizu uses Nuxt UI's `UChip` with the default size scale (3xs–3xl).
+
+## Examples
+
+<ChipDemo client:only="vue" />
+
+## API
+
+Reference: [Nuxt UI Chip](https://ui.nuxt.com/docs/components/chip)
+
+### Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `text` | `string \| number` | — | Text or number displayed inside the chip |
+| `color` | `'primary' \| 'secondary' \| 'success' \| 'info' \| 'warning' \| 'error' \| 'neutral'` | — | Semantic color |
+| `size` | `'3xs' \| '2xs' \| 'xs' \| 'sm' \| 'md' \| 'lg' \| 'xl' \| '2xl' \| '3xl'` | `'md'` | Chip size |
+| `position` | `'top-right' \| 'bottom-right' \| 'top-left' \| 'bottom-left'` | `'top-right'` | Position relative to the wrapped element |
+| `inset` | `boolean` | `false` | Keep the chip inside the component for rounded elements |
+| `standalone` | `boolean` | `false` | Render the chip independently without a parent wrapper |
+| `show` | `boolean` | `true` | Toggle chip visibility |
+
+### Slots
+
+| Slot | Props | Description |
+|------|-------|-------------|
+| `default` | — | The component the chip wraps around |
+| `content` | — | Custom chip content (overrides `text` prop) |
+
+### Example Usage
+
+```vue
+<!-- With a button -->
+<UChip text="5" color="primary">
+  <UButton icon="i-lucide-mail" color="neutral" variant="subtle" />
+</UChip>
+
+<!-- Inset with avatar -->
+<UChip inset text="3">
+  <UAvatar src="https://i.pravatar.cc/80" alt="User" />
+</UChip>
+
+<!-- Standalone -->
+<UChip standalone text="99+" color="error" />
+
+<!-- Positioned -->
+<UChip position="bottom-left" text="New">
+  <UButton label="Profile" />
+</UChip>
+```
+
+## Theme
+
+Mizu applies its design tokens to Nuxt UI's chip via `@mizu/vue/theme`:
+
+```ts
+// app.config.ts
+import { mizuTheme } from "@mizu/vue/theme";
+export default defineAppConfig({ ui: mizuTheme });
+```
+
+### Design Specs
+
+| Property | Value |
+|----------|-------|
+| Default Size | `md` |
+| Default Position | `top-right` |
+| Font Size | Inherited from size scale |
+| Font Weight | 500 (medium) |
+
+### Typography
+
+| Property | Value |
+|----------|-------|
+| Font Family | DM Sans (`--font-family-sans`) |
+| Font Weight | 500 (medium) |
+
+## Anatomy
+
+A chip wraps a parent component and positions itself in one corner:
+
+| Part | Required | Description |
+|------|----------|-------------|
+| Root | Yes | `<span>` wrapping both the parent slot and the chip content |
+| Indicator | Yes | Absolutely positioned span with text or slot content |
+
+## Implementation Notes
+
+1. **Use `<UChip>` directly** — No Mizu wrapper needed. Apply the theme preset and Nuxt UI handles the rest.
+2. **Position awareness** — The chip defaults to `top-right`. Use `position` to move it to other corners.
+3. **Inset for rounded elements** — Use `inset` when wrapping avatars or other rounded components to keep the chip visually inside.
+4. **Standalone** — Use `standalone` when you need a chip without wrapping a parent (e.g., in lists or table cells).
+5. **Show/hide** — Toggle `show` to conditionally display the chip based on state (e.g., hide when count is zero).

@@ -1,0 +1,144 @@
+---
+title: Table
+description: A responsive table element to display data in rows and columns.
+---
+
+import TableDemo from "../../../../components/docs/TableDemo.vue";
+
+> **Nuxt UI Component:** This uses Nuxt UI's `UTable` component, powered by TanStack Table. Mizu provides a theme preset (`@mizu/vue/theme`) that applies Mizu's design tokens.
+
+A table displays structured data in rows and columns with built-in support for sorting, selection, pagination, and virtualization. Use it for data grids, admin panels, and any tabular data. Mizu uses Nuxt UI's `UTable` backed by TanStack Table.
+
+## Examples
+
+<TableDemo client:only="vue" />
+
+## API
+
+Reference: [Nuxt UI Table](https://ui.nuxt.com/docs/components/table)
+
+### Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `data` | `T[]` | — | Array of data objects to display as rows |
+| `columns` | `TableColumn[]` | — | Column definitions. Minimum: `{ header: string, accessorKey: string }` |
+| `caption` | `string` | — | Table caption rendered as `<caption>` |
+| `loading` | `boolean` | `false` | Show loading state overlay |
+| `loadingColor` | `'primary' \| 'secondary' \| 'success' \| 'info' \| 'warning' \| 'error' \| 'neutral'` | — | Color of the loading indicator |
+| `loadingAnimation` | `'carousel' \| 'carousel-inverse' \| 'swing' \| 'elastic'` | — | Animation style for the loading indicator |
+| `sticky` | `boolean \| 'header' \| 'footer'` | — | Sticky header and/or footer |
+| `virtualize` | `boolean \| VirtualizerOptions` | `false` | Enable row virtualization for large datasets |
+| `empty` | `string` | — | Text displayed when the table has no data |
+| `globalFilter` | `string` | — | Global filter value for client-side filtering |
+| `sorting` | `SortingState` | — | Controlled sorting state |
+| `columnFilters` | `ColumnFiltersState` | — | Controlled column filter state |
+| `pagination` | `PaginationState` | — | Controlled pagination state |
+| `rowSelection` | `RowSelectionState` | — | Controlled row selection state |
+| `expanded` | `ExpandedState` | — | Controlled row expansion state |
+| `onSelect` | `(e: Event, row: TableRow<T>) => void` | — | Callback when a row is clicked |
+| `onHover` | `(e: Event, row: TableRow<T> \| null) => void` | — | Callback when a row is hovered |
+| `onContextmenu` | `(e: Event, row: TableRow<T>) => void` | — | Callback when a row is right-clicked |
+
+> **Note:** `UTable` supports all TanStack Table options through dedicated props (e.g., `sortingOptions`, `paginationOptions`, `rowSelectionOptions`). See the [TanStack Table docs](https://tanstack.com/table/latest) for advanced configuration.
+
+### Slots
+
+| Slot | Description |
+|------|-------------|
+| `expanded` | Custom content for expanded rows |
+| `empty` | Custom empty state content |
+| `loading` | Custom loading state overlay |
+| `caption` | Custom caption content |
+| `body-top` | Content inserted before table body rows |
+| `body-bottom` | Content inserted after table body rows |
+
+### Expose
+
+| Name | Type | Description |
+|------|------|-------------|
+| `tableRef` | `Ref<HTMLTableElement \| null>` | Reference to the table DOM element |
+| `tableApi` | `Table<T>` | TanStack Table API instance for programmatic control |
+
+### Example Usage
+
+```vue
+<template>
+  <!-- Basic table -->
+  <UTable :data="people" :columns="columns" />
+
+  <!-- With caption -->
+  <UTable :data="people" :columns="columns" caption="Team members" />
+
+  <!-- With sorting -->
+  <UTable
+    :data="people"
+    :columns="columns"
+    :sorting="[{ id: 'name', desc: false }]"
+  />
+
+  <!-- With pagination -->
+  <UTable
+    :data="people"
+    :columns="columns"
+    :pagination="{ pageIndex: 0, pageSize: 10 }"
+  />
+
+  <!-- With row selection -->
+  <UTable
+    :data="people"
+    :columns="columns"
+    :row-selection-options="{ enableRowSelection: true }"
+  />
+
+  <!-- Loading state -->
+  <UTable :data="people" :columns="columns" loading />
+
+  <!-- Empty state -->
+  <UTable :data="[]" :columns="columns" empty="No results found." />
+
+  <!-- Controlled via v-model -->
+  <UTable
+    v-model:sorting="sorting"
+    v-model:pagination="pagination"
+    :data="people"
+    :columns="columns"
+  />
+</template>
+
+<script setup>
+const columns = [
+  { header: "Name", accessorKey: "name" },
+  { header: "Title", accessorKey: "title" },
+  { header: "Email", accessorKey: "email" },
+  { header: "Role", accessorKey: "role" },
+];
+
+const people = [
+  { id: 1, name: "Lindsay Walton", title: "Front-end Developer", email: "lindsay.walton@example.com", role: "Member" },
+];
+</script>
+```
+
+## Anatomy
+
+A table consists of several parts:
+
+| Part | Required | Description |
+|------|----------|-------------|
+| Caption | No | Describes the table purpose (accessibility) |
+| Header | No | Column headers rendered in `<thead>` |
+| Body | Yes | Data rows rendered in `<tbody>` |
+| Footer | No | Summary row rendered in `<tfoot>` |
+| Empty | No | Placeholder shown when `data` is empty |
+| Loading | No | Overlay shown when `loading` is `true` |
+
+## Implementation Notes
+
+1. **Use `<UTable>` directly** — No Mizu wrapper needed. Apply the theme preset.
+2. **TanStack Table** — `UTable` is built on TanStack Table v8, providing headless table logic. All TanStack features (sorting, filtering, pagination, grouping, virtualization) are exposed via props.
+3. **Columns** — At minimum, each column needs `header` (display name) and `accessorKey` (the property name in the data object). Columns support custom `cell` render functions for rich content.
+4. **Two-way binding** — Use `v-model:sorting`, `v-model:pagination`, `v-model:rowSelection`, etc. for controlled state management.
+5. **Performance** — Enable `virtualize` for datasets with thousands of rows. Use `watchOptions` to control reactivity depth.
+6. **Native attributes** — Supports all native `<table>` HTML attributes (`cellpadding`, `cellspacing`, `summary`, `width`, etc.).
+7. **Programmatic access** — Access the TanStack Table API via `useTemplateRef('table').tableApi` for imperative operations like `toggleAllRowsSelected()`.

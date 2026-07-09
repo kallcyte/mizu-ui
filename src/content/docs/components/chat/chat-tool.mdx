@@ -1,0 +1,82 @@
+---
+title: ChatTool
+description: Display a collapsible AI tool invocation status.
+---
+
+import ChatToolDemo from "../../../../components/docs/ChatToolDemo.vue";
+
+> **Nuxt UI Component:** This uses Nuxt UI's `UChatTool` component. Mizu provides a theme preset (`@mizu/vue/theme`) that applies consistent typography and spacing. See the [Theme](#theme) section for Mizu-specific defaults.
+
+ChatTool displays a collapsible block showing the status of an AI tool invocation. Mizu uses Nuxt UI's `UChatTool` to surface tool calls, file operations, and approval flows in chat interfaces.
+
+## Examples
+
+<ChatToolDemo client:only="vue" />
+
+## API
+
+Reference: [Nuxt UI ChatTool](https://ui.nuxt.com/docs/components/chat-tool)
+
+### Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `text` | `string` | — | The text content to display |
+| `suffix` | `string` | — | Suffix text displayed after the main text |
+| `icon` | `string` (Iconify) | — | Icon displayed next to the trigger |
+| `loading` | `boolean` | `false` | Whether the tool is in a loading state |
+| `loadingIcon` | `string` (Iconify) | — | Icon displayed when loading |
+| `streaming` | `boolean` | `false` | Whether the tool content is currently streaming |
+| `variant` | `"inline" \| "card"` | `"inline"` | Visual variant of the tool display |
+| `chevron` | `"leading" \| "trailing"` | `"trailing"` | Position of the chevron icon |
+| `chevronIcon` | `string` (Iconify) | — | Custom chevron icon |
+| `shimmer` | `Partial<ChatShimmerProps>` | — | Customize the ChatShimmer when streaming |
+| `actions` | `ButtonProps[]` | — | Action buttons below the trigger (e.g., approve/deny) |
+| `open` | `boolean` | — | Controlled open state (v-model) |
+| `defaultOpen` | `boolean` | — | Initially open |
+| `disabled` | `boolean` | `false` | Prevent user interaction |
+| `unmountOnHide` | `boolean` | `false` | Unmount content when closed |
+
+### Slots
+
+| Slot | Props | Description |
+|------|-------|-------------|
+| `default` | `{ open: boolean }` | The collapsible content body |
+| `actions` | — | Custom action buttons (overrides `actions` prop) |
+
+### Example Usage
+
+```vue
+<!-- Loading state -->
+<UChatTool text="Searching files..." loading />
+
+<!-- Completed with content -->
+<UChatTool text="Read file" suffix="app.ts" default-open>
+  <pre>export default defineAppConfig({ ... })</pre>
+</UChatTool>
+
+<!-- Card variant with actions -->
+<UChatTool
+  variant="card"
+  text="Delete file?"
+  suffix="config.json"
+  :actions="[{ label: 'Approve', color: 'primary' }, { label: 'Deny', color: 'error' }]"
+/>
+```
+
+## Anatomy
+
+| Part | Required | Description |
+|------|----------|-------------|
+| Root | Yes | Collapsible wrapper (inline or card) |
+| Trigger | Yes | Clickable header with icon, label, suffix, and chevron |
+| Content | No | Expandable body showing tool output |
+| Actions | No | Action buttons for approval flows |
+
+## Implementation Notes
+
+1. **Use `<UChatTool>` directly** — No Mizu wrapper needed.
+2. **Variants** — Use `variant="inline"` for inline tool calls within a message stream, and `variant="card"` for standalone tool results with borders.
+3. **Loading state** — Set `loading` to show a spinner while the tool is executing. Combine with `loadingIcon` for a custom spinner icon.
+4. **Actions** — The `actions` prop accepts an array of `ButtonProps`. Use this for approve/deny flows. For full control, use the `actions` slot instead.
+5. **Streaming** — When `streaming` is true, a shimmer effect is applied to the text. Customize via the `shimmer` prop.

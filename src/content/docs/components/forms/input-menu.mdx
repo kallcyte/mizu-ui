@@ -1,0 +1,128 @@
+---
+title: InputMenu
+description: An autocomplete input with real-time suggestions.
+---
+
+import InputMenuDemo from "../../../../components/docs/InputMenuDemo.vue";
+
+> **Nuxt UI Component:** This uses Nuxt UI's `UInputMenu` component. Mizu provides a theme preset (`@mizu/vue/theme`) that overrides sizing, padding, and spacing to match Mizu's design language. See the [Theme](#theme) section for Mizu-specific defaults.
+
+An autocomplete combobox that shows real-time suggestions as the user types. Mizu uses Nuxt UI's `UInputMenu` with the same height scale as other form inputs (28/36/40px) for visual alignment.
+
+## Examples
+
+<InputMenuDemo client:only="vue" />
+
+## API
+
+Reference: [Nuxt UI InputMenu](https://ui.nuxt.com/docs/components/input-menu)
+
+### Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `items` | `T[] \| Promise<T[]>` | `[]` | Array of items or async function returning items |
+| `modelValue` | `T \| T[]` | — | v-model binding. Type depends on `multiple` |
+| `defaultValue` | `T \| T[]` | — | Initial value (uncontrolled) |
+| `multiple` | `boolean` | `false` | Allow multiple selections |
+| `placeholder` | `string` | — | Placeholder text when nothing is selected |
+| `size` | `'xs' \| 'sm' \| 'md' \| 'lg' \| 'xl'` | `'md'` | Input size aligned with other form elements |
+| `color` | `'primary' \| 'secondary' \| 'success' \| 'error' \| 'warning' \| 'info' \| 'neutral'` | `'primary'` | Semantic color for focus ring |
+| `variant` | `'outline' \| 'soft' \| 'subtle' \| 'ghost' \| 'none'` | `'outline'` | Visual style |
+| `mode` | `'combobox' \| 'autocomplete'` | `'autocomplete'` | `combobox` allows free-text input; `autocomplete` restricts to items |
+| `createItem` | `boolean \| ((search: string) => T \| string)` | `false` | Allow creating new items that aren't in the list |
+| `filterFields` | `string[]` | — | Object keys to filter items against (e.g. `['label', 'category']`) |
+| `ignoreFilter` | `boolean` | `false` | Disable built-in filtering (use when items are pre-filtered) |
+| `loading` | `boolean` | `false` | Show loading state while async items resolve |
+| `disabled` | `boolean` | `false` | Disables interaction |
+| `open` | `boolean` | — | v-model binding for controlled open state |
+| `openOnClick` | `boolean` | `true` | Open the menu on click |
+| `openOnFocus` | `boolean` | `true` | Open the menu on focus |
+| `valueKey` | `string` | `'value'` | Object property used as the value |
+| `labelKey` | `string` | `'label'` | Object property used as the display label |
+| `descriptionKey` | `string` | `'description'` | Object property for item descriptions |
+| `searchTerm` | `string \| boolean` | `false` | Controlled search term or `true` to enable the built-in search input |
+| `resetSearchTermOnBlur` | `boolean` | `true` | Reset search term when the menu loses focus |
+| `resetSearchTermOnSelect` | `boolean` | `true` | Reset search term when an item is selected |
+| `highlightOnHover` | `boolean` | `true` | Highlight item under cursor |
+| `by` | `string \| ((item: T) => any)` | — | Key or function to uniquely identify items |
+| `icon` | `string` (Iconify) | — | Icon displayed on the leading side |
+| `leadingIcon` | `string` (Iconify) | — | Explicit leading icon |
+| `trailingIcon` | `string` (Iconify) | — | Explicit trailing icon (overrides dropdown chevron) |
+| `clear` | `boolean` | `false` | Show a clear button to reset the value |
+| `portal` | `boolean` | `true` | Render the menu in a portal (outside the DOM tree) |
+| `virtualize` | `boolean` | `true` | Use virtual scrolling for large item lists |
+| `arrow` | `boolean` | `false` | Show an arrow pointing from the trigger to the menu |
+| `highlight` | `boolean` | `false` | Force the focus ring to be visible |
+| `fixed` | `boolean` | `false` | Use `position: fixed` instead of `position: absolute` |
+| `name` | `string` | — | Native `name` attribute for form submissions |
+
+### Slots
+
+| Slot | Props | Description |
+|------|-------|-------------|
+| `leading` | — | Content before the input |
+| `trailing` | — | Content after the input (before the chevron) |
+| `empty` | — | Content shown when no items match the search |
+| `item` | `{ item, index, active }` | Full control over item rendering |
+| `item-leading` | `{ item, index, active }` | Leading content within each item |
+| `item-label` | `{ item, index, active }` | Label content within each item |
+| `item-description` | `{ item, index, active }` | Description content within each item |
+| `item-trailing` | `{ item, index, active }` | Trailing content within each item |
+| `tags-item-text` | `{ item }` | Custom text rendering for selected tags (multiple mode) |
+| `tags-item-delete` | `{ item }` | Custom delete button for selected tags (multiple mode) |
+| `content-top` | — | Content inserted at the top of the dropdown |
+| `content-bottom` | — | Content inserted at the bottom of the dropdown |
+| `create-item-label` | — | Label shown for the "create item" option |
+
+### Example Usage
+
+```vue
+<UInputMenu
+  v-model="selected"
+  :items="people"
+  value-key="id"
+  label-key="name"
+  placeholder="Search a person..."
+>
+  <template #item="{ item }">
+    <div class="flex items-center gap-3">
+      <UAvatar :text="item.name" size="sm" />
+      <div>
+        <p class="text-sm font-medium">{{ item.name }}</p>
+        <p class="text-xs text-dimmed">{{ item.role }}</p>
+      </div>
+    </div>
+  </template>
+</UInputMenu>
+```
+
+## Anatomy
+
+An input menu consists of:
+
+| Part | Required | Description |
+|------|----------|-------------|
+| Root | Yes | Wrapper element |
+| Trigger | Yes | Clickable/focusable input that opens the menu |
+| Menu | Yes | Floating dropdown with the list of items |
+| Search Input | No | Built-in search field within the menu (enabled via `searchTerm`) |
+| List | Yes | Scrollable list of filtered items |
+| Item | Yes | Individual selectable option |
+| Item Leading | No | Leading icon, avatar, or content within an item |
+| Item Description | No | Secondary text below the item label |
+| Empty State | No | Message when no items match the search |
+| Create Item | No | Option to create a new item not in the list |
+| Tags | No | Displayed chips for selected values (multiple mode) |
+| Clear Button | No | Button to reset the selection |
+
+## Implementation Notes
+
+1. **Use `<UInputMenu>` directly** — No Mizu wrapper needed. Apply the theme preset.
+2. **Autocomplete vs combobox** — Use `mode="autocomplete"` (default) to restrict selection to list items. Use `mode="combobox"` to allow free-text input with optional suggestions.
+3. **Custom item rendering** — Use the `item` slot for full control, or combine `item-leading`, `item-label`, and `item-description` for a structured layout.
+4. **Multiple selection** — Set `multiple` to `true` to allow selecting multiple items. Selected items appear as tags inside the input.
+5. **Async data** — Pass a `Promise` to `items` for async or search-backed data. Use `loading` to show a spinner while data is fetched.
+6. **Create new items** — Set `createItem` to `true` or provide a function to allow users to add new items that aren't in the list.
+7. **Search term control** — Use `searchTerm` as a string for controlled search input, or `searchTerm` as `true` to enable the built-in search input within the dropdown.
+8. **Virtual scrolling** — Enabled by default (`virtualize`). Disable it if you have a small fixed list or experience rendering issues.

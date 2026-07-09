@@ -1,0 +1,81 @@
+---
+title: AvatarGroup
+description: Stack multiple avatars in a group.
+---
+
+import AvatarGroupDemo from "../../../../components/docs/AvatarGroupDemo.vue";
+
+> **Nuxt UI Component:** This uses Nuxt UI's `UAvatarGroup` component. Nuxt UI v4 defaults already match the Mizu design scale, so no sizing overrides are applied.
+
+An avatar group stacks multiple avatars with overlapping spacing. Mizu uses Nuxt UI's `UAvatarGroup` to wrap `UAvatar` children with consistent overlap and truncation.
+
+## Examples
+
+<AvatarGroupDemo client:only="vue" />
+
+## API
+
+Reference: [Nuxt UI AvatarGroup](https://ui.nuxt.com/docs/components/avatar-group)
+
+### Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `size` | `'3xs' \| '2xs' \| 'xs' \| 'sm' \| 'md' \| 'lg' \| 'xl' \| '2xl' \| '3xl'` | `'md'` | Size for all avatars in the group |
+| `color` | `'primary' \| 'secondary' \| 'success' \| 'info' \| 'warning' \| 'error' \| 'neutral'` | `'neutral'` | Color for all avatars (v4.8+) |
+| `max` | `string \| number` | — | Maximum visible avatars; extras show as `+N` |
+
+### Slots
+
+| Slot | Props | Description |
+|------|-------|-------------|
+| `default` | — | Wrap `UAvatar` children inside the group |
+
+### Example Usage
+
+```vue
+<!-- Default group -->
+<UAvatarGroup>
+  <UAvatar src="https://i.pravatar.cc/80?img=1" alt="User 1" />
+  <UAvatar src="https://i.pravatar.cc/80?img=2" alt="User 2" />
+  <UAvatar src="https://i.pravatar.cc/80?img=3" alt="User 3" />
+</UAvatarGroup>
+
+<!-- Sized group -->
+<UAvatarGroup size="lg">
+  <UAvatar src="..." alt="User 1" />
+  <UAvatar src="..." alt="User 2" />
+</UAvatarGroup>
+
+<!-- Truncated group -->
+<UAvatarGroup :max="3">
+  <UAvatar src="..." alt="User 1" />
+  <UAvatar src="..." alt="User 2" />
+  <UAvatar src="..." alt="User 3" />
+  <UAvatar src="..." alt="User 4" />
+  <UAvatar src="..." alt="User 5" />
+</UAvatarGroup>
+```
+
+## Theme
+
+Nuxt UI v4 avatar group defaults are already consistent with the Mizu design scale. No overrides are needed.
+
+Default: `size="md"`, `color="neutral"`.
+
+## Anatomy
+
+An avatar group is a single container:
+
+| Part | Required | Description |
+|------|----------|-------------|
+| Root | Yes | `<div>` with flex layout and negative margin overlap |
+
+Each child `<UAvatar>` is stacked with `-ms-N` margin for overlapping. When `max` is set, a `+N` overflow avatar is rendered automatically.
+
+## Implementation Notes
+
+1. **Use `<UAvatarGroup>` directly** — No Mizu wrapper needed.
+2. **Size propagates** — The `size` prop on `UAvatarGroup` applies to all child avatars automatically.
+3. **Truncation** — Use `max` to limit visible avatars and show a count of remaining members.
+4. **Color inheritance** — The `color` prop on the group acts as a default for all child avatars (v4.8+). Individual avatars can override it.

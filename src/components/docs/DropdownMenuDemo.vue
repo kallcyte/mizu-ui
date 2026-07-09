@@ -55,6 +55,8 @@ const items = [
   all: revert;
   display: flex;
   flex-direction: column;
+  width: max-content;
   gap: 8px;
+  width: max-content;
 }
 </style>

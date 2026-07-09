@@ -1,0 +1,68 @@
+---
+title: ChatReasoning
+description: Display a collapsible AI reasoning or thinking process.
+---
+
+import ChatReasoningDemo from "../../../../components/docs/ChatReasoningDemo.vue";
+
+> **Nuxt UI Component:** This uses Nuxt UI's `UChatReasoning` component. Mizu provides a theme preset (`@mizu/vue/theme`) that applies consistent typography and spacing. See the [Theme](#theme) section for Mizu-specific defaults.
+
+ChatReasoning displays a collapsible block showing the AI's internal reasoning or thinking process. Mizu uses Nuxt UI's `UChatReasoning` to surface model thought chains in chat interfaces.
+
+## Examples
+
+<ChatReasoningDemo client:only="vue" />
+
+## API
+
+Reference: [Nuxt UI ChatReasoning](https://ui.nuxt.com/docs/components/chat-reasoning)
+
+### Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `text` | `string` | — | The reasoning text content to display |
+| `streaming` | `boolean` | `false` | Whether the reasoning content is currently streaming |
+| `duration` | `number` | Auto-calculated | Duration in seconds the AI spent reasoning |
+| `icon` | `string` (Iconify) | — | Icon displayed next to the trigger |
+| `chevron` | `"leading" \| "trailing"` | `"trailing"` | Position of the chevron icon |
+| `chevronIcon` | `string` (Iconify) | — | Custom chevron icon |
+| `autoCloseDelay` | `number` | `500` | Delay in ms before auto-closing when streaming ends. Set to `0` to disable |
+| `shimmer` | `Partial<ChatShimmerProps>` | — | Customize the ChatShimmer when streaming |
+| `open` | `boolean` | — | Controlled open state (v-model) |
+| `defaultOpen` | `boolean` | — | Initially open |
+| `disabled` | `boolean` | `false` | Prevent user interaction |
+| `unmountOnHide` | `boolean` | `false` | Unmount content when closed |
+
+### Slots
+
+| Slot | Props | Description |
+|------|-------|-------------|
+| `default` | `{ open: boolean }` | The collapsible content body |
+
+### Example Usage
+
+```vue
+<UChatReasoning
+  text="Analyzing the query requires breaking it down into several steps..."
+  streaming
+  auto-close-delay="0"
+/>
+```
+
+## Anatomy
+
+| Part | Required | Description |
+|------|----------|-------------|
+| Root | Yes | Collapsible wrapper containing trigger and content |
+| Trigger | Yes | Clickable header with icon, label, and chevron |
+| Content | Yes | Expandable body showing the reasoning text |
+| Shimmer | No | Animated text shimmer shown during streaming |
+
+## Implementation Notes
+
+1. **Use `<UChatReasoning>` directly** — No Mizu wrapper needed. Apply the theme preset and Nuxt UI handles the rest.
+2. **Auto-close** — When `streaming` transitions to `false`, the panel auto-closes after `autoCloseDelay` ms. Set `autoCloseDelay` to `0` to keep it open.
+3. **Duration** — If not provided explicitly, the duration is auto-calculated based on streaming time. Useful for displaying "Thought for 3s".
+4. **Shimmer** — During streaming, a `ChatShimmer` effect is applied. Customize it via the `shimmer` prop to adjust duration or spread.
+5. **Controlled state** — Bind `v-model:open` to programmatically control the collapsible state.

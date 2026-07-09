@@ -1,0 +1,186 @@
+---
+title: Tree
+description: A tree view component to display and interact with hierarchical data structures.
+---
+
+import TreeDemo from "../../../../components/docs/TreeDemo.vue";
+
+A tree view displays hierarchical data with expandable nodes. Use it for file browsers, navigation trees, organization charts, and any nested data that benefits from a collapsible structure.
+
+## Examples
+
+<TreeDemo client:only="vue" />
+
+## API
+
+### Props
+
+| Prop | Type | Default | Description |
+| ---- | ---- | ------- | ----------- |
+| `items` | `TreeItem[]` | `[]` | Array of hierarchical items with `label`, `icon`, `children`, `disabled`, `defaultExpanded`, `slot` |
+| `modelValue` | `T \| T[]` | `undefined` | Controlled selected item(s). Supports `v-model` |
+| `defaultValue` | `T \| T[]` | `undefined` | Default selected item(s) when not controlled |
+| `multiple` | `boolean` | `false` | Allow multiple item selections |
+| `expanded` | `string[]` | `undefined` | Controlled expanded items. Supports `v-model` |
+| `defaultExpanded` | `string[]` | `undefined` | Default expanded items when not controlled |
+| `color` | `'primary' \| 'secondary' \| 'success' \| 'info' \| 'warning' \| 'error' \| 'neutral'` | `'primary'` | Color variant for selected items |
+| `size` | `'xs' \| 'sm' \| 'md' \| 'lg' \| 'xl'` | `'md'` | Controls typography and spacing |
+| `labelKey` | `string` | `'label'` | Property key used to get the label from each item |
+| `getKey` | `(item: T) => string` | `undefined` | Function returning a unique key for each item |
+| `trailingIcon` | `string` | `'i-lucide-chevron-down'` | Icon displayed on the right side of parent nodes |
+| `expandedIcon` | `string` | `'i-lucide-folder-open'` | Icon displayed when a parent node is expanded |
+| `collapsedIcon` | `string` | `'i-lucide-folder'` | Icon displayed when a parent node is collapsed |
+| `nested` | `boolean` | `true` | Use nested DOM structure vs flat list |
+| `virtualize` | `boolean \| { estimateSize, overscan }` | `false` | Enable virtualization for large lists |
+| `selectionBehavior` | `'replace' \| 'toggle'` | `undefined` | How multiple selection behaves |
+| `propagateSelect` | `boolean` | `false` | Selecting a parent also selects descendants. Requires `multiple` |
+| `bubbleSelect` | `boolean` | `false` | Selecting children updates parent state. Requires `multiple` |
+| `disabled` | `boolean` | `false` | Prevent all user interaction with the tree |
+| `onSelect` | `(e: SelectEvent, item: T) => void` | `undefined` | Callback when an item is selected |
+| `onToggle` | `(e: ToggleEvent, item: T) => void` | `undefined` | Callback when a parent node is toggled |
+
+### TreeItem Properties
+
+| Property | Type | Description |
+| -------- | ---- | ----------- |
+| `label` | `string` | Display text for the item |
+| `icon` | `string` | Leading icon name |
+| `trailingIcon` | `string` | Trailing icon override for this item |
+| `defaultExpanded` | `boolean` | Start this item in expanded state |
+| `disabled` | `boolean` | Disable this specific item |
+| `slot` | `string` | Name for custom slot rendering |
+| `children` | `TreeItem[]` | Nested child items |
+
+### Slots
+
+| Slot | Props | Description |
+| ---- | ----- | ----------- |
+| `item-wrapper` | `{ item }` | Wraps each tree item |
+| `item` | `{ item }` | Full item content |
+| `item-leading` | `{ item }` | Leading area (icon/checkbox) |
+| `item-label` | `{ item }` | Label text area |
+| `item-trailing` | `{ item }` | Trailing area (chevron/badge) |
+
+### Events
+
+| Event | Payload | Description |
+| ----- | ------- | ----------- |
+| `update:modelValue` | `T \| T[]` | Emitted when selection changes |
+| `update:expanded` | `string[]` | Emitted when expanded items change |
+
+### Example Usage
+
+```vue
+<template>
+  <!-- Basic tree -->
+  <UTree :items="items" />
+
+  <!-- Multiple selection with v-model -->
+  <UTree v-model="selected" :items="items" multiple />
+
+  <!-- Custom icons and color -->
+  <UTree
+    :items="items"
+    color="neutral"
+    expanded-icon="i-lucide-book-open"
+    collapsed-icon="i-lucide-book"
+  />
+
+  <!-- With checkbox items -->
+  <UTree
+    :items="items"
+    multiple
+    propagate-select
+    bubble-select
+  >
+    <template #item-leading="{ item }">
+      <UCheckbox
+        :model-value="selected.includes(item)"
+        @update:model-value="toggleItem(item)"
+      />
+    </template>
+  </UTree>
+
+  <!-- Virtualized for large lists -->
+  <UTree
+    :items="items"
+    :virtualize="{ estimateSize: 32, overscan: 12 }"
+  />
+</template>
+```
+
+## Theme
+
+### CSS Custom Properties
+
+| Token | Default | Description |
+| ----- | ------- | ----------- |
+| `--color-foreground-primary` | `#1B1B1D` (light) / `#F9FAFB` (dark) | Item text color |
+| `--color-foreground-secondary` | `#4B5563` (light) / `#9CA3AF` (dark) | Muted item text |
+| `--color-brand-primary` | `#001C44` | Primary selected color |
+| `--color-brand-ycp` | `#007FFF` | Accent selected color |
+| `--color-surface-elevated` | `#FFFFFF` (light) / `#1E2030` (dark) | Selected item background |
+| `--color-surface-muted` | `#F3F4F6` (light) / `#1E2030` (dark) | Nesting border |
+
+### Variants
+
+| Variant | Behavior | Use Case |
+| ------- | -------- | -------- |
+| Default | Single select, nested DOM | File browsers, navigation |
+| Multiple | Checkbox-style selection | Permission trees, bulk actions |
+| Virtualized | Flat list with windowing | Large datasets (1000+ items) |
+| Flat | `nested="false"` | Drag and drop, sorted lists |
+
+### Sizing
+
+| Size | Padding X | Padding Y | Font Size | Icon Size | Gap |
+| ---- | --------- | --------- | --------- | --------- | --- |
+| **XS** | 8px | 4px | 12px | 16px | 4px |
+| **SM** | 10px | 6px | 12px | 16px | 6px |
+| **MD** | 10px | 6px | 14px | 20px | 6px |
+| **LG** | 12px | 8px | 14px | 20px | 8px |
+| **XL** | 12px | 8px | 16px | 24px | 8px |
+
+### Accessibility
+
+| Criterion | Implementation |
+| --------- | -------------- |
+| Keyboard navigation | Arrow keys navigate items; Enter/Space selects; Left/Right collapses/expands |
+| ARIA tree pattern | Uses `role="tree"`, `role="treeitem"`, `aria-expanded`, `aria-selected` |
+| Focus management | `tabindex="0"` on active item; roving tabindex within tree |
+| Screen reader | Announces item label, depth level, and expanded/selected state |
+
+```html
+<ul role="tree">
+  <li role="treeitem" aria-expanded="true" aria-selected="false" tabindex="0">
+    <span>app/</span>
+    <ul role="group">
+      <li role="treeitem" aria-selected="false">
+        <span>composables/</span>
+      </li>
+    </ul>
+  </li>
+</ul>
+```
+
+## Anatomy
+
+A tree consists of items organized in a parent-child hierarchy:
+
+| Part | Required | Description |
+| ---- | -------- | ----------- |
+| Root | Yes | The `<ul>` container with `role="tree"` |
+| Item | Yes | Each row rendered as `<li>` with `role="treeitem"` |
+| Icon | No | Leading icon before the label |
+| Label | Yes | The item text content |
+| Trailing icon | No | Chevron or action icon for parent nodes |
+| Children | No | Nested `<ul role="group">` for child items |
+
+## Implementation Notes
+
+1. **Nuxt UI component** -- This is a first-party Nuxt UI component, styled automatically by Mizu's theme tokens.
+2. **Unique keys required** -- Each item needs a unique identifier. Provide `getKey` or ensure `label` values are unique.
+3. **Selection events** -- Use `onSelect` and `onToggle` to intercept selection/toggle behavior (e.g., prevent selection on parent click).
+4. **TreeItem type** -- Import `TreeItem` from `@nuxt/ui` for TypeScript support.
+5. **Virtualization** -- When `virtualize` is enabled, the tree structure is flattened (equivalent to `nested="false"`).
+6. **Custom slots** -- Use the `slot` property on items for targeted customization via named slots.

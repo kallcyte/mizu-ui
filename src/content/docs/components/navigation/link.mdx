@@ -1,0 +1,85 @@
+---
+title: Link
+description: A wrapper around NuxtLink with extra props for navigation and external links.
+---
+
+import LinkDemo from "../../../../components/docs/LinkDemo.vue";
+
+> **Nuxt UI Component:** This uses Nuxt UI's `ULink` component. Nuxt UI v4 defaults already match the Mizu design scale, so no sizing overrides are applied.
+
+Link is a wrapper around Vue Router's `<NuxtLink>` that provides additional props for controlling active states, prefetching, external links, and accessibility. Mizu uses Nuxt UI's `ULink` directly with its sensible defaults for anchor coloring (primary) and underline behavior.
+
+## Examples
+
+<LinkDemo client:only="vue" />
+
+## API
+
+Reference: [Nuxt UI Link](https://ui.nuxt.com/docs/components/link)
+
+### Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `to` | `RouteLocationRaw` | — | Vue Router route object or path |
+| `href` | `string` | — | External URL (renders `<a>` instead of `<NuxtLink>`) |
+| `target` | `string` | — | Link target attribute (e.g. `_blank`) |
+| `rel` | `string` | — | Relationship attribute (e.g. `noopener`) |
+| `active` | `boolean` | — | Force active state |
+| `activeClass` | `string` | — | CSS class when link is active |
+| `inactiveClass` | `string` | — | CSS class when link is inactive |
+| `exact` | `boolean` | `false` | Match route exactly for active state |
+| `exactQuery` | `boolean` | `false` | Match query params exactly |
+| `exactHash` | `boolean` | `false` | Match hash exactly |
+| `exactActiveClass` | `string` | — | CSS class for exact active match |
+| `disabled` | `boolean` | `false` | Disable link interaction |
+| `raw` | `boolean` | `false` | Skip wrapping with a Nuxt UI link primitive |
+| `external` | `boolean` | `false` | Force external link behavior |
+| `type` | `string` | — | Link type attribute (e.g. `submit`) |
+| `prefetch` | `boolean` | — | Prefetch the linked page |
+| `prefetchOn` | `'interaction' \| 'visibility'` | — | When to trigger prefetch |
+| `replace` | `boolean` | `false` | Replace current history entry instead of pushing |
+| `ariaCurrentValue` | `string` | — | Value for `aria-current` attribute |
+| `custom` | `boolean` | `false` | Whether `<NuxtLink>` should wrap its children |
+| `locale` | `string` | — | Locale for the link |
+| `viewTransition` | `boolean` | `false` | Enable view transitions |
+| `name` | `string` | — | Named route |
+| `download` | `string` | — | Download attribute for file links |
+
+### Slots
+
+| Slot | Props | Description |
+|------|-------|-------------|
+| `default` | `{ active }` | Link content — receives `active` boolean from router |
+
+### Example Usage
+
+```vue
+<ULink to="/dashboard">
+  Dashboard
+</ULink>
+
+<ULink href="https://github.com" target="_blank" rel="noopener">
+  GitHub
+</ULink>
+
+<ULink to="/settings" custom v-slot="{ active }">
+  <span :class="{ 'font-bold': active }">Settings</span>
+</ULink>
+```
+
+## Anatomy
+
+A Link consists of:
+
+| Part | Required | Description |
+|------|----------|-------------|
+| Root | Yes | `<NuxtLink>` or `<a>` element depending on `to` vs `href` |
+
+## Implementation Notes
+
+1. **Use `<ULink>` directly** — No Mizu wrapper needed.
+2. **`to` vs `href`** — Use `to` for internal Vue Router navigation, `href` for external URLs.
+3. **Active state** — Nuxt UI automatically applies active classes based on the current route. Use the `active` prop or `v-slot` to customize.
+4. **Default Nuxt UI styling** — ULink uses Nuxt UI's internal `link` primitive which inherits `color="primary"` and subtle underline on hover.
+5. **Security** — When using `target="_blank"`, always add `rel="noopener noreferrer"` for security.

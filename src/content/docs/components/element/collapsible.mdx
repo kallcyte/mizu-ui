@@ -1,0 +1,93 @@
+---
+title: Collapsible
+description: A collapsible element to toggle visibility of its content.
+---
+
+import CollapsibleDemo from "../../../../components/docs/CollapsibleDemo.vue";
+
+> **Nuxt UI Component:** This uses Nuxt UI's `UCollapsible` component. Mizu provides a theme preset (`@mizu/vue/theme`) that applies Mizu's design tokens.
+
+A collapsible is a container that toggles the visibility of its content section. Use it for accordions, expandable panels, and disclosure widgets. Mizu uses Nuxt UI's `UCollapsible`.
+
+## Examples
+
+<CollapsibleDemo client:only="vue" />
+
+## API
+
+Reference: [Nuxt UI Collapsible](https://ui.nuxt.com/docs/components/collapsible)
+
+### Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `open` | `boolean` | — | Controlled open state. Use with `v-model` |
+| `defaultOpen` | `boolean` | — | Initial open state when uncontrolled |
+| `disabled` | `boolean` | `false` | Prevent user interaction |
+| `unmountOnHide` | `boolean` | `true` | Unmount content DOM when closed |
+
+### Slots
+
+| Slot | Props | Description |
+|------|-------|-------------|
+| `default` | `{ open }` | Trigger element (e.g. a button to toggle) |
+| `content` | — | Content revealed when open |
+
+### Events
+
+| Event | Payload | Description |
+|-------|---------|-------------|
+| `update:open` | `[value: boolean]` | Emitted when open state changes |
+
+### Example Usage
+
+```vue
+<UCollapsible class="flex flex-col gap-2">
+  <UButton
+    label="Toggle"
+    color="neutral"
+    variant="subtle"
+    trailing-icon="i-lucide-chevron-down"
+    block
+  />
+
+  <template #content>
+    <Placeholder class="h-48" />
+  </template>
+</UCollapsible>
+
+<!-- Controlled with v-model -->
+<UCollapsible v-model="isOpen" class="flex flex-col gap-2">
+  <UButton label="Toggle" color="neutral" variant="subtle" block />
+  <template #content>
+    <p>Controlled content</p>
+  </template>
+</UCollapsible>
+
+<!-- Keep content mounted when closed -->
+<UCollapsible :unmount-on-hide="false" class="flex flex-col gap-2">
+  <UButton label="Toggle" color="neutral" variant="subtle" block />
+  <template #content>
+    <p>Always in DOM</p>
+  </template>
+</UCollapsible>
+```
+
+## Anatomy
+
+A collapsible consists of 2 parts:
+
+| Part | Required | Description |
+|------|----------|-------------|
+| Root | Yes | Container element with transition support |
+| Content | Yes | The panel revealed/collapsed when toggled |
+
+The default slot provides the trigger (usually a button), and the `#content` slot provides the expandable content.
+
+## Implementation Notes
+
+1. **Use `<UCollapsible>` directly** — No Mizu wrapper needed. Apply the theme preset.
+2. **`unmountOnHide`** — Defaults to `true`. Set to `false` to keep content in the DOM even when closed (useful for preserving component state).
+3. **Trigger flexibility** — The default slot receives an `{ open }` prop, so you can render different trigger content based on open state. Any interactive element in the default slot toggles the collapsible.
+4. **Accordion patterns** — Combine multiple `UCollapsible` components with shared state management for accordion behavior. Unlike a dedicated accordion, you control which panels are open yourself.
+5. **Animation** — Collapsible uses CSS transitions for smooth expand/collapse. The content wrapper handles height animation automatically.

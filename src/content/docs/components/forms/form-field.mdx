@@ -1,0 +1,86 @@
+---
+title: FormField
+description: A wrapper for form elements that provides validation and error handling.
+---
+
+import FormFieldDemo from "../../../../components/docs/FormFieldDemo.vue";
+
+> **Nuxt UI Component:** This uses Nuxt UI's `UFormField` component. Mizu provides a theme preset (`@mizu/vue/theme`) for consistent styling. See the [Theme](#theme) section for Mizu-specific defaults.
+
+A form field wraps any form control with a label, description, help text, and error display. Mizu uses Nuxt UI's `UFormField` to provide consistent validation and error handling across all form elements.
+
+## Examples
+
+<FormFieldDemo client:only="vue" />
+
+## API
+
+Reference: [Nuxt UI FormField](https://ui.nuxt.com/docs/components/form-field)
+
+### Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `name` | `string` | — | Field name for form error matching |
+| `label` | `string` | — | Label text for the form control |
+| `description` | `string` | — | Descriptive text below the label |
+| `help` | `string` | — | Help text below the form control |
+| `error` | `string \| boolean` | — | Error message (takes precedence over `help`) |
+| `hint` | `string` | — | Hint text displayed next to the label |
+| `size` | `'xs' \| 'sm' \| 'md' \| 'lg' \| 'xl'` | `'md'` | Proxied to the child form control |
+| `required` | `boolean` | `false` | Adds an asterisk next to the label |
+| `eagerValidation` | `boolean` | `false` | Validate on input instead of on blur |
+| `validateOnInputDelay` | `number` | — | Debounce delay (ms) for input validation |
+| `orientation` | `'vertical' \| 'horizontal'` | `'vertical'` | Label and control layout direction |
+| `errorPattern` | `RegExp` | — | Regex to match form error names (useful for arrays) |
+
+### Slots
+
+| Slot | Props | Description |
+|------|-------|-------------|
+| `default` | — | The form control to wrap |
+| `label` | — | Custom label content (overrides `label` prop) |
+| `hint` | — | Custom hint content (overrides `hint` prop) |
+| `description` | — | Custom description (overrides `description` prop) |
+| `help` | — | Custom help text (overrides `help` prop) |
+| `error` | — | Custom error display (overrides `error` prop) |
+
+### Example Usage
+
+```vue
+<UFormField label="Email" description="We'll never share your email." required>
+  <UInput placeholder="Enter your email" class="w-full" />
+</UFormField>
+
+<UFormField label="Bio" hint="Optional" help="Tell us a bit about yourself.">
+  <UTextarea placeholder="Write something..." class="w-full" />
+</UFormField>
+
+<UFormField label="Email" :error="formErrors.email">
+  <UInput placeholder="Enter your email" class="w-full" />
+</UFormField>
+```
+
+## Anatomy
+
+A form field consists of:
+
+| Part | Required | Description |
+|------|----------|-------------|
+| Root | Yes | `<div>` wrapper for the entire field |
+| Label Wrapper | Yes | Container holding the label, hint, and description |
+| Label | No | `<label>` associated with the form control via `for`/`id` |
+| Hint | No | Small text next to the label (e.g., "Optional") |
+| Description | No | Subtext below the label |
+| Container | Yes | Wrapper for the form control and help/error text |
+| Help | No | Guidance text below the control (hidden when `error` is set) |
+| Error | No | Error message below the control (takes priority over `help`) |
+
+## Implementation Notes
+
+1. **Use `<UFormField>` directly** — No Mizu wrapper needed. Apply the theme preset.
+2. **Error takes priority** — When both `error` and `help` are provided, only the error message is displayed. Use this pattern for form validation feedback.
+3. **Size proxying** — The `size` prop is automatically passed to the child form control, ensuring consistent sizing.
+4. **Horizontal layout** — Set `orientation="horizontal"` to place the label and control side by side. Useful for inline form layouts.
+5. **Form integration** — When used inside a `<UForm>`, the `error` prop is automatically set based on validation results. Use `name` to match field errors.
+6. **Custom labels** — Use the `label` slot (with a `<template #label>`) when you need rich formatting, icons, or required indicators in the label.

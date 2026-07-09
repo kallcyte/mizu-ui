@@ -1,0 +1,136 @@
+---
+title: SelectMenu
+description: An advanced searchable dropdown for selecting from a list of options.
+---
+
+import SelectMenuDemo from "../../../../components/docs/SelectMenuDemo.vue";
+
+> **Nuxt UI Component:** This uses Nuxt UI's `USelectMenu` component. Mizu provides a theme preset (`@mizu/vue/theme`) that overrides sizing, padding, and spacing to match Mizu's design language — sharing the same height scale as inputs and buttons. See the [Theme](#theme) section for Mizu-specific defaults.
+
+A select menu is an advanced dropdown that supports searching, multiple selection, and rich item rendering. Use it over `USelect` when you need searchable options, object-based items, or multiple selection.
+
+## Examples
+
+<SelectMenuDemo client:only="vue" />
+
+## API
+
+Reference: [Nuxt UI SelectMenu](https://ui.nuxt.com/docs/components/select-menu)
+
+### Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `size` | `'xs' \| 'sm' \| 'md' \| 'lg' \| 'xl'` | `'md'` | Select size. Mizu overrides sm/md/lg to 28/36/40px |
+| `color` | `'primary' \| 'secondary' \| 'success' \| 'error' \| 'warning' \| 'info' \| 'neutral'` | `'primary'` | Semantic color for focus ring |
+| `variant` | `'outline' \| 'soft' \| 'subtle' \| 'ghost' \| 'none'` | `'outline'` | Visual style |
+| `placeholder` | `string` | — | Placeholder text when empty |
+| `items` | `string[] \| SelectMenuItem[]` | — | Array of strings or objects with `label`, `value`, `icon`, `disabled`, etc. |
+| `valueKey` | `string` | — | When items are objects, the property to use as the bound value |
+| `labelKey` | `string` | `'label'` | When items are objects, the property to use as the display label |
+| `multiple` | `boolean` | `false` | Allow multiple selections |
+| `searchInput` | `boolean \| InputProps` | `true` | Show a search input. Pass `false` to hide, or an object to customize |
+| `icon` | `string` (Iconify) | — | Leading icon on the trigger |
+| `trailingIcon` | `string` (Iconify) | `'i-ph-caret-down'` | Trailing icon on the trigger |
+| `selectedIcon` | `string` (Iconify) | `'i-ph-check'` | Icon shown on selected items |
+| `loading` | `boolean` | `false` | Show a loading indicator |
+| `disabled` | `boolean` | `false` | Disables interaction |
+| `highlight` | `boolean` | `false` | Force focus ring visibility |
+| `clear` | `boolean` | `false` | Show a clear button when a value is selected |
+| `createItem` | `boolean \| 'always'` | `false` | Allow creating new items that don't exist in the list |
+| `modelValue` | `string \| object \| array` | — | v-model binding |
+
+### Slots
+
+| Slot | Props | Description |
+|------|-------|-------------|
+| `default` | — | Default slot (not typically used) |
+| `leading` | `{ ui }` | Custom leading content |
+| `trailing` | `{ ui }` | Custom trailing content |
+| `item` | `{ item }` | Custom item rendering |
+| `item-leading` | `{ item }` | Custom leading content per item |
+| `item-trailing` | `{ item }` | Custom trailing content per item |
+| `empty` | — | Content shown when no items match search |
+| `create-item-label` | — | Label for the create-item button |
+
+### Form Integration
+
+Use `UFormField` to add labels, helper text, and error messages:
+
+```vue
+<UFormField label="Country" help="Select your country of residence">
+  <USelectMenu class="w-full" :items="['US', 'UK', 'CA']" placeholder="Choose a country" />
+</UFormField>
+```
+
+## Theme
+
+Mizu overrides Nuxt UI's SelectMenu sizing, color, variant, and border styling to match the Input spec. SelectMenu shares the same height scale as inputs and buttons (28/36/40px).
+
+```ts
+// app.config.ts
+import { mizuTheme } from "@mizu/vue/theme";
+export default defineAppConfig({ ui: mizuTheme });
+```
+
+### Design Specs
+
+| Size | Height | H-Padding | V-Padding | Radius | Gap |
+|------|--------|-----------|-----------|--------|-----|
+| **SM** | 28px | 8px (`px-2`) | 4px (`py-1`) | 4px (`rounded`) | 4px |
+| **MD** | 36px | 10px (`px-2.5`) | 6px (`py-1.5`) | 6px | 6px |
+| **LG** | 40px | 10px (`px-2.5`) | 8px (`py-2`) | 6px | 8px |
+
+### Typography
+
+| Property | Value |
+|----------|-------|
+| Font Family | DM Sans (`--font-family-sans`) |
+| Font Size (SM) | 14px (`text-sm/4`) |
+| Font Size (MD/LG) | 16px (`text-base/5`) |
+
+### Color Map
+
+| Mizu Token | Nuxt UI Color | Usage |
+|------------|---------------|-------|
+| `--color-brand-primary` | `primary` | Focus ring |
+| `--color-brand-ycp` | `secondary` | Secondary focus ring |
+| `--color-feedback-error-base` | `error` | Validation error ring |
+| `--color-feedback-success-base` | `success` | Valid field ring |
+| `--color-feedback-warning-base` | `warning` | Validation warning ring |
+| `--color-feedback-info-base` | `info` | Info state ring |
+
+### Variant Tokens
+
+| Variant | Background | Border | Text | States |
+|---------|-----------|--------|------|--------|
+| `outline` | `surface-base` | `surface-muted` | `foreground-primary` | Focus ring uses `color` prop token |
+| `soft` | `surface-subtle` | None | `foreground-primary` | Hover/focus darkens to `surface-subtle` |
+| `subtle` | `surface-subtle` | `surface-muted` | `foreground-primary` | |
+| `ghost` | Transparent | None | `foreground-primary` | Hover/focus adds `surface-subtle` bg |
+| `none` | Transparent | None | `foreground-primary` | Minimal |
+
+## Anatomy
+
+A select menu consists of:
+
+| Part | Required | Description |
+|------|----------|-------------|
+| Root | Yes | `<button>` trigger element |
+| Trailing Icon | Yes | Chevron icon indicating dropdown |
+| Content | Yes | Floating menu panel with search and items |
+| Search Input | Yes | Text input inside the menu for filtering items |
+| Item | Yes | Clickable option with optional icon and trailing content |
+| Leading | No | Icon or avatar before the trigger text |
+| Separator | No | Horizontal divider between item groups |
+| Label | No | Section label within the item list |
+
+## Implementation Notes
+
+1. **Use `<USelectMenu>` directly** — No Mizu wrapper needed. Apply the theme preset.
+2. **Same height as inputs and buttons** — SM (28px), MD (36px), LG (40px) aligns with `UInput` and `UButton` for form row and FieldGroup consistency.
+3. **Search is built-in** — Unlike `USelect`, SelectMenu includes a search input by default. Set `search-input="false"` to disable.
+4. **Object items** — Use `value-key` when binding a single property of objects. Without `value-key`, the entire object is bound to v-model.
+5. **Multiple selection** — Set `multiple` to `true`. Pass an array to v-model. Selected items display as comma-separated text in the trigger.
+6. **Create custom items** — Set `create-item` to allow users to add values not in the predefined options. Listen for the `@create` event.
+7. **Works with FieldGroup** — `USelectMenu` respects the `size` provided by a parent `UFieldGroup` via provide/inject.

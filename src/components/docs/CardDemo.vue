@@ -94,6 +94,7 @@ import CodeCollapsible from "./CodeCollapsible.vue";
   all: revert;
   display: flex;
   flex-direction: column;
+  width: max-content;
   gap: 8px;
 }
 </style>

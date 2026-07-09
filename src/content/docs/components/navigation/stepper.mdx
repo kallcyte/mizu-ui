@@ -1,0 +1,89 @@
+---
+title: Stepper
+description: A set of steps to indicate progress through a multi-step process.
+---
+
+import StepperDemo from "../../../../components/docs/StepperDemo.vue";
+
+> **Nuxt UI Component:** This uses Nuxt UI's `UStepper` component. Nuxt UI v4 defaults already match the Mizu design scale, so no sizing overrides are applied.
+
+Stepper provides a visual indicator of progress through a sequence of steps, commonly used in multi-step forms, onboarding flows, or checkout processes. Mizu uses Nuxt UI's `UStepper` with linear progression enabled by default.
+
+## Examples
+
+<StepperDemo client:only="vue" />
+
+## API
+
+Reference: [Nuxt UI Stepper](https://ui.nuxt.com/docs/components/stepper)
+
+### Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `items` | `T[]` | *required* | Array of step items |
+| `modelValue` | `number` | — | v-model binding for current step index |
+| `defaultValue` | `number` | — | Initial step index |
+| `color` | `'primary' \| 'secondary' \| 'success' \| 'error' \| 'warning' \| 'info' \| 'neutral'` | `'primary'` | Color for active/completed steps |
+| `size` | `'xs' \| 'sm' \| 'md' \| 'lg' \| 'xl'` | `'md'` | Step indicator size |
+| `orientation` | `'horizontal' \| 'vertical'` | `'horizontal'` | Layout direction |
+| `linear` | `boolean` | `true` | Require steps to be completed in order |
+| `disabled` | `boolean` | `false` | Disable the stepper |
+| `valueKey` | `string` | `'value'` | Key to use as step value |
+
+### Slots
+
+| Slot | Props | Description |
+|------|-------|-------------|
+| `indicator` | `{ step, index, isActive, isCompleted }` | Custom step indicator (number circle) |
+| `wrapper` | `{ step, index, isActive, isCompleted }` | Wrapper around each step |
+| `title` | `{ step, index, isActive, isCompleted }` | Step title content |
+| `description` | `{ step, index, isActive, isCompleted }` | Step description content |
+| `content` | `{ step, index }` | Content panel for the active step |
+
+### Example Usage
+
+```vue
+<UStepper
+  :items="[
+    { title: 'Account', description: 'Create your account' },
+    { title: 'Profile', description: 'Set up your profile' },
+    { title: 'Confirm', description: 'Review and submit' },
+  ]"
+  v-model:step="currentStep"
+>
+  <template #content="{ step }">
+    <div v-if="step.title === 'Account'">
+      <!-- Account form -->
+    </div>
+    <div v-else-if="step.title === 'Profile'">
+      <!-- Profile form -->
+    </div>
+    <div v-else>
+      <!-- Confirmation -->
+    </div>
+  </template>
+</UStepper>
+```
+
+## Anatomy
+
+A Stepper consists of:
+
+| Part | Required | Description |
+|------|----------|-------------|
+| Root | Yes | `<div>` wrapper containing all steps |
+| Step | Yes | Individual step with indicator + content |
+| Indicator | Yes | Numbered circle showing step index |
+| Connector | Yes | Line connecting consecutive steps |
+| Title | No | Heading text for the step |
+| Description | No | Supporting text below the title |
+| Content | No | Panel displaying active step content |
+
+## Implementation Notes
+
+1. **Use `<UStepper>` directly** — No Mizu wrapper needed.
+2. **Linear mode** — Default `linear` ensures users complete steps in order. Set `linear={false}` for non-sequential navigation.
+3. **Content slot** — Use `#content="{ step, index }"` to render content for the active step. Only the active step's content is shown.
+4. **State management** — Use `v-model:step` to track the current step programmatically. Each step item can store metadata (e.g. validation state).
+5. **Orientation** — Use `orientation="vertical"` for sidebar-style progress indicators common in checkout flows.

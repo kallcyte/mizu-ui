@@ -1,0 +1,64 @@
+---
+title: Icon
+description: A component to display any icon from Iconify or another component.
+---
+
+import IconDemo from "../../../../components/docs/IconDemo.vue";
+
+> **Nuxt UI Component:** This uses Nuxt UI's `UIcon` component. Icons inherit Mizu's design tokens for sizing and color automatically.
+
+An icon renders any icon from the Iconify ecosystem using a simple name-based API. Mizu uses Nuxt UI's `UIcon` to display icons from Lucide, Phosphor, Simple Icons, and thousands of other collections.
+
+## Examples
+
+<IconDemo client:only="vue" />
+
+## API
+
+Reference: [Nuxt UI Icon](https://ui.nuxt.com/docs/components/icon)
+
+### Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `name` | `string` | — | Icon name in Iconify format (e.g. `'i-lucide-lightbulb'`). **Required.** |
+| `mode` | `'svg' \| 'css'` | `'svg'` | Render mode. `'svg'` inlines the SVG; `'css'` uses background-image |
+| `size` | `string \| number` | — | Icon size override |
+| `customize` | `boolean \| IconifyIconCustomizeCallback` | — | Customize SVG content; useful for changing colors dynamically |
+
+### Example Usage
+
+```vue
+<!-- Basic usage -->
+<UIcon name="i-lucide-lightbulb" class="size-5" />
+
+<!-- Different collections -->
+<UIcon name="i-lucide-heart" class="size-5" />
+<UIcon name="i-ph-smiley" class="size-5" />
+<UIcon name="i-simple-icons-nuxtdotjs" class="size-5" />
+
+<!-- CSS mode for background-image rendering -->
+<UIcon name="i-lucide-zap" mode="css" class="size-5" />
+
+<!-- Size control -->
+<UIcon name="i-lucide-star" class="size-4" />
+<UIcon name="i-lucide-star" class="size-6" />
+<UIcon name="i-lucide-star" class="size-8" />
+```
+
+## Anatomy
+
+An icon is a single inline element:
+
+| Part | Required | Description |
+|------|----------|-------------|
+| Inline SVG | Yes | An `<svg>` element (or CSS pseudo-element in `css` mode) displaying the icon |
+
+## Implementation Notes
+
+1. **Use `<UIcon>` directly** — No Mizu wrapper needed.
+2. **Iconify format** — Names follow the `i-{collection}-{name}` convention. Browse collections at [icones.js.org](https://icones.js.org).
+3. **SVG mode by default** — `mode="svg"` (default) inlines the SVG element, allowing color inheritance via `currentColor` and dynamic styling with Tailwind classes.
+4. **CSS mode** — `mode="css"` renders via `background-image` + mask. Useful when SVG DOM manipulation is undesirable.
+5. **Size via Tailwind** — Use `size-N` or `w-N h-N` classes to control icon dimensions. The `size` prop provides a shorthand for pixel-based sizes.
+6. **`customize` callback** — Use to dynamically recolor parts of the SVG (e.g., replacing `currentColor` with specific hex values per path).

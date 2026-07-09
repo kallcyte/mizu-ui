@@ -1,0 +1,106 @@
+---
+title: Alert
+description: A callout to draw user's attention.
+---
+
+import AlertDemo from "../../../../components/docs/AlertDemo.vue";
+
+> **Nuxt UI Component:** This uses Nuxt UI's `UAlert` component. Mizu provides a theme preset (`@mizu/vue/theme`) that applies Mizu's design tokens for colors, spacing, and typography.
+
+An alert is a callout banner for displaying contextual feedback messages, warnings, or success notifications. Mizu uses Nuxt UI's `UAlert` with support for multiple colors, variants, orientations, and action buttons.
+
+## Examples
+
+<AlertDemo client:only="vue" />
+
+## API
+
+Reference: [Nuxt UI Alert](https://ui.nuxt.com/docs/components/alert)
+
+### Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `title` | `string` | — | Alert title text |
+| `description` | `string` | — | Alert description text |
+| `icon` | `string` (Iconify) | — | Leading icon from Iconify (e.g. `'i-lucide-terminal'`) |
+| `avatar` | `AvatarProps` | — | Leading avatar |
+| `color` | `'primary' \| 'secondary' \| 'success' \| 'info' \| 'warning' \| 'error' \| 'neutral'` | `'primary'` | Semantic color |
+| `variant` | `'solid' \| 'outline' \| 'soft' \| 'subtle'` | `'solid'` | Visual style |
+| `orientation` | `'vertical' \| 'horizontal'` | `'vertical'` | Layout direction between content and actions |
+| `actions` | `ButtonProps[]` | — | Action buttons displayed below the content or beside close button |
+| `close` | `boolean \| ButtonProps` | `false` | Show a close button. Pass ButtonProps to customize |
+| `closeIcon` | `string` (Iconify) | `'i-lucide-x'` | Custom icon for the close button |
+
+### Slots
+
+| Slot | Props | Description |
+|------|-------|-------------|
+| `leading` | — | Custom leading content (overrides `icon` and `avatar`) |
+| `title` | — | Custom title content |
+| `description` | — | Custom description content |
+| `actions` | — | Custom actions content |
+| `close` | — | Custom close button content |
+
+### Events
+
+| Event | Payload | Description |
+|-------|---------|-------------|
+| `update:open` | `[value: boolean]` | Emitted when the close button is clicked |
+
+### Example Usage
+
+```vue
+<UAlert
+  title="Heads up!"
+  description="You can change the primary color in your app config."
+/>
+
+<UAlert
+  title="Success!"
+  description="Operation completed successfully."
+  color="success"
+  variant="subtle"
+  icon="i-lucide-check-circle"
+/>
+
+<UAlert
+  title="Warning"
+  description="Your session will expire soon."
+  color="warning"
+  variant="outline"
+  :actions="[
+    { label: 'Extend', color: 'primary' },
+    { label: 'Dismiss', color: 'neutral', variant: 'subtle' }
+  ]"
+/>
+
+<UAlert
+  title="Error"
+  description="Something went wrong."
+  color="error"
+  variant="soft"
+  close
+/>
+```
+
+## Anatomy
+
+An alert consists of up to 6 parts:
+
+| Part | Required | Description |
+|------|----------|-------------|
+| Root | Yes | `<div>` container with background, border, and padding |
+| Leading | No | Icon or avatar displayed before the title |
+| Title | No | Bold heading text |
+| Description | No | Supporting body text |
+| Actions | No | One or more button actions |
+| Close | No | Close/dismiss button |
+
+## Implementation Notes
+
+1. **Use `<UAlert>` directly** — No Mizu wrapper needed. Apply the theme preset and Nuxt UI handles the rest.
+2. **Close emits `update:open`** — When the close button is clicked, an `update:open` event fires with `false`. Use `v-model:open` or handle the event to control visibility.
+3. **Color + variant combos** — `solid` variant uses the full color background. `outline`/`soft`/`subtle` are best for `neutral`-colored alerts. `solid` works well for high-emphasis feedback colors like `error` and `success`.
+4. **Orientation** — `vertical` (default) stacks actions below the description. `horizontal` places actions beside the close button inline.
+5. **`actions` format** — Pass an array of `ButtonProps` objects. `size` defaults to `'xs'` in alerts.

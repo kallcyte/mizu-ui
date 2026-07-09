@@ -1,0 +1,138 @@
+---
+title: Carousel
+description: A carousel with motion and swipe built using Embla.
+---
+
+import CarouselDemo from "../../../../components/docs/CarouselDemo.vue";
+
+> **Nuxt UI Component:** This uses Nuxt UI's `UCarousel` component powered by [Embla](https://www.embla-carousel.com/). Mizu provides a theme preset (`@mizu/vue/theme`) that applies its design tokens automatically. See Nuxt UI's [Carousel docs](https://ui.nuxt.com/docs/components/carousel) for full API details.
+
+A carousel displays a collection of items that users can swipe or drag through. Built on Embla, it supports autoplay, looping, fade transitions, wheel gestures, and both horizontal and vertical orientations.
+
+## Examples
+
+<CarouselDemo client:only="vue" />
+
+## API
+
+Reference: [Nuxt UI Carousel](https://ui.nuxt.com/docs/components/carousel)
+
+### Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `items` | `T[]` | — | Array of items to display in the carousel |
+| `arrows` | `boolean` | `false` | Display prev and next buttons |
+| `dots` | `boolean` | `false` | Display dot indicators for each slide |
+| `prev` | `ButtonProps` | — | Customize the prev button with any Button props |
+| `next` | `ButtonProps` | — | Customize the next button with any Button props |
+| `prevIcon` | `string` | `i-lucide-arrow-left` | Icon for the prev button |
+| `nextIcon` | `string` | `i-lucide-arrow-right` | Icon for the next button |
+| `orientation` | `'horizontal' \| 'vertical'` | `'horizontal'` | Carousel orientation |
+| `autoplay` | `boolean \| AutoplayOptions` | `false` | Enable autoplay with optional delay and stop-on-interaction |
+| `autoScroll` | `boolean \| AutoScrollOptions` | `false` | Enable continuous auto-scrolling |
+| `autoHeight` | `boolean \| AutoHeightOptions` | `false` | Adjust carousel height to the current slide |
+| `fade` | `boolean \| FadeOptions` | `false` | Fade between slides instead of sliding |
+| `wheelGestures` | `boolean \| WheelGesturesOptions` | `false` | Enable mouse wheel navigation |
+| `loop` | `boolean` | `false` | Loop infinitely through slides |
+| `align` | `'start' \| 'center' \| 'end'` | `'center'` | Slide alignment within the viewport |
+| `slidesToScroll` | `number \| 'auto'` | `1` | Number of slides to scroll per movement |
+| `dragFree` | `boolean` | `false` | Allow free-form dragging without snapping |
+| `duration` | `number` | `25` | Scroll animation duration in ms |
+| `startIndex` | `number` | `0` | Index of the initial slide |
+| `dragThreshold` | `number` | `10` | Drag distance threshold (px) before scrolling |
+| `containScroll` | `string` | `'trimSnaps'` | Constrain scroll to prevent empty space at edges |
+
+### Slots
+
+| Slot | Props | Description |
+|------|-------|-------------|
+| `default` | `{ item, index }` | Renders each item in the carousel |
+
+### Events
+
+| Event | Payload | Description |
+|-------|---------|-------------|
+| `select` | `selectedIndex: number` | Emitted when the current slide changes |
+
+### Expose
+
+You can access the component instance via `useTemplateRef`:
+
+| Name | Type | Description |
+|------|------|-------------|
+| `emblaRef` | `Ref<HTMLElement \| null>` | The Embla container element ref |
+| `emblaApi` | `Ref<EmblaCarouselType \| null>` | The Embla API instance for programmatic control |
+
+### Example Usage
+
+```vue
+<script setup lang="ts">
+const carousel = useTemplateRef('carousel');
+
+const items = [
+  { title: 'Slide 1', color: 'bg-blue-500' },
+  { title: 'Slide 2', color: 'bg-green-500' },
+  { title: 'Slide 3', color: 'bg-purple-500' },
+];
+</script>
+
+<template>
+  <!-- Basic carousel -->
+  <UCarousel :items="items" class="w-full max-w-lg">
+    <template #default="{ item }">
+      <div class="h-40 rounded-xl flex items-center justify-center" :class="item.color">
+        {{ item.title }}
+      </div>
+    </template>
+  </UCarousel>
+
+  <!-- With arrows and dots -->
+  <UCarousel :items="items" arrows dots class="w-full max-w-lg">
+    <template #default="{ item }">
+      <div class="h-40 rounded-xl flex items-center justify-center" :class="item.color">
+        {{ item.title }}
+      </div>
+    </template>
+  </UCarousel>
+
+  <!-- Autoplay with loop -->
+  <UCarousel :items="items" autoplay loop arrows class="w-full max-w-lg">
+    <template #default="{ item }">
+      <div class="h-40 rounded-xl flex items-center justify-center" :class="item.color">
+        {{ item.title }}
+      </div>
+    </template>
+  </UCarousel>
+
+  <!-- Vertical orientation -->
+  <UCarousel :items="items" orientation="vertical" arrows class="h-80 w-full max-w-xs">
+    <template #default="{ item }">
+      <div class="h-full rounded-xl flex items-center justify-center" :class="item.color">
+        {{ item.title }}
+      </div>
+    </template>
+  </UCarousel>
+</template>
+```
+
+## Anatomy
+
+A carousel consists of:
+
+| Part | Required | Description |
+|------|----------|-------------|
+| Root | Yes | The outer `<div>` wrapper |
+| Viewport | Yes | The scrollable container (`overflow-hidden`) |
+| Container | Yes | The flex container that holds all slides |
+| Item | Yes | Each individual slide (default slot) |
+| Controls | No | Arrows, dots, or custom navigation |
+
+## Implementation Notes
+
+1. **Use `<UCarousel>` directly** — No Mizu wrapper needed. Apply the theme preset via `app.config.ts`.
+2. **Built on Embla** — The carousel uses [Embla Carousel](https://www.embla-carousel.com/) for smooth, hardware-accelerated scrolling and touch/swipe support.
+3. **Access the API** — Use `useTemplateRef` to get the `emblaApi` instance for programmatic control (scrollTo, scrollPrev, scrollNext).
+4. **Item sizing** — Control how many items are visible using Tailwind `basis` or `width` classes on each item (e.g., `basis-1/3` for 3 visible slides).
+5. **Vertical orientation** — Requires an explicit `height` on the carousel container.
+6. **Autoplay options** — Pass an object to `autoplay` to configure delay, stop-on-interaction, and play-on-init behavior.

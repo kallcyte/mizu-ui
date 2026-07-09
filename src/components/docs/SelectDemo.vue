@@ -44,12 +44,12 @@ const countries = ["United States", "Canada", "United Kingdom", "Australia"];
     </section>
     <section class="example-section">
       <h3>With label and help text</h3>
-      <CodeCollapsible :code="`<UFormField label=&quot;Country&quot; help=&quot;Select your country of residence&quot;>
-  <USelect :items=&quot;['United States', 'Canada', 'United Kingdom']&quot; placeholder=&quot;Choose a country&quot; />
+      <CodeCollapsible :code="`<UFormField label=&quot;Country&quot; help=&quot;Select your country of residence&quot; class=&quot;w-full&quot;>
+  <USelect class=&quot;w-full&quot; :items=&quot;['United States', 'Canada', 'United Kingdom']&quot; placeholder=&quot;Choose a country&quot; />
 </UFormField>`">
         <div class="demo-col">
           <UFormField label="Country" help="Select your country of residence" class="w-full">
-            <USelect v-model="countryValue" :items="countries" placeholder="Choose a country" />
+            <USelect v-model="countryValue" class="w-full" :items="countries" placeholder="Choose a country" />
           </UFormField>
         </div>
       </CodeCollapsible>
@@ -61,14 +61,14 @@ const countries = ["United States", "Canada", "United Kingdom", "Australia"];
   <template #label>
     Role <span class=&quot;text-red-500&quot;>*</span>
   </template>
-  <USelect :items=&quot;['Admin', 'Editor', 'Viewer']&quot; placeholder=&quot;Select a role&quot; required />
+  <USelect class=&quot;w-full&quot; :items=&quot;['Admin', 'Editor', 'Viewer']&quot; placeholder=&quot;Select a role&quot; required />
 </UFormField>`">
         <div class="demo-col">
           <UFormField class="w-full">
             <template #label>
               Role <span class="text-red-500">*</span>
             </template>
-            <USelect v-model="requiredCountryValue" :items="['Admin', 'Editor', 'Viewer']" placeholder="Select a role" required />
+            <USelect v-model="requiredCountryValue" class="w-full" :items="['Admin', 'Editor', 'Viewer']" placeholder="Select a role" required />
           </UFormField>
         </div>
       </CodeCollapsible>
@@ -102,6 +102,7 @@ const countries = ["United States", "Canada", "United Kingdom", "Australia"];
   all: revert;
   display: flex;
   flex-direction: column;
+  width: max-content;
   gap: 8px;
   max-width: 280px;
 }

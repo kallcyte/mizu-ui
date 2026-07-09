@@ -1,0 +1,76 @@
+---
+title: Slider
+description: An input to select a numeric value within a range.
+---
+
+import SliderDemo from "../../../../components/docs/SliderDemo.vue";
+
+> **Nuxt UI Component:** This uses Nuxt UI's `USlider` component. Mizu provides a theme preset (`@mizu/vue/theme`) for consistent styling. See the [Theme](#theme) section for Mizu-specific defaults.
+
+A slider lets users select a numeric value or range by dragging a thumb along a track. Mizu uses Nuxt UI's `USlider` with support for single and multi-thumb ranges.
+
+## Examples
+
+<SliderDemo client:only="vue" />
+
+## API
+
+Reference: [Nuxt UI Slider](https://ui.nuxt.com/docs/components/slider)
+
+### Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `modelValue` | `number \| number[]` | — | v-model binding for the slider value(s) |
+| `defaultValue` | `number \| number[]` | — | Initial value (uncontrolled) |
+| `min` | `number` | `0` | Minimum value of the range |
+| `max` | `number` | `100` | Maximum value of the range |
+| `step` | `number` | `1` | Increment step between values |
+| `size` | `'xs' \| 'sm' \| 'md' \| 'lg' \| 'xl'` | `'md'` | Slider track and thumb size |
+| `color` | `'primary' \| 'secondary' \| 'success' \| 'info' \| 'warning' \| 'error' \| 'neutral'` | `'primary'` | Semantic color of the filled track |
+| `orientation` | `'horizontal' \| 'vertical'` | `'horizontal'` | Layout direction of the slider |
+| `tooltip` | `boolean \| TooltipProps` | `false` | Show a tooltip with the current thumb value |
+| `disabled` | `boolean` | `false` | Disables interaction |
+| `inverted` | `boolean` | `false` | Visually inverts the filled/unfilled track |
+| `name` | `string` | — | Field name for form submission |
+| `minStepsBetweenThumbs` | `number` | — | Minimum step distance between multiple thumbs |
+
+### Example Usage
+
+```vue
+<script setup lang="ts">
+const volume = ref(50);
+const priceRange = ref([25, 75]);
+</script>
+
+<template>
+  <USlider v-model="volume" />
+
+  <USlider v-model="volume" tooltip color="neutral" />
+
+  <USlider v-model="priceRange" :min-steps-between-thumbs="5" />
+
+  <USlider :default-value="30" inverted />
+</template>
+```
+
+## Anatomy
+
+A slider consists of:
+
+| Part | Required | Description |
+|------|----------|-------------|
+| Root | Yes | `<span>` wrapper containing the track and thumb(s) |
+| Track | Yes | The horizontal/vertical bar representing the value range |
+| Range | Yes | The filled portion of the track between start and thumb |
+| Thumb | Yes | Draggable handle(s) indicating the current value |
+| Tooltip | No | Popup showing the current value when dragging |
+
+## Implementation Notes
+
+1. **Use `<USlider>` directly** — No Mizu wrapper needed. Apply the theme preset.
+2. **Single vs. range** — Pass a `number` for a single thumb. Pass a `number[]` with two or more values for multi-thumb range sliders.
+3. **Tooltip display** — Set `tooltip` to `true` to show the current value above the thumb while dragging. Pass a `TooltipProps` object to customize positioning and behavior.
+4. **Step constraints** — Use `minStepsBetweenThumbs` to enforce a minimum gap between range thumbs, preventing overlap.
+5. **Vertical orientation** — Set `orientation="vertical"` and add a height class (e.g., `class="h-48"`) for a vertical slider.
+6. **Accessibility** — The slider uses arrow keys for keyboard navigation. Home/End jump to min/max. PageUp/PageDown move by 10 steps.

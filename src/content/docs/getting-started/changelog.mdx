@@ -16,6 +16,21 @@ This project follows **semantic versioning** (SemVer) during pre-1.0 development
 Changes that require a minor bump: adding a new component, renaming tokens, changing component APIs, adding new packages (e.g. React).
 Changes that keep the patch version: renames, copy edits, styling tweaks, build config changes, favicon updates.
 
+## 0.16.2 (2026-07-10)
+
+### Fixed
+
+- **Accordion — chevron positioning** — added `w-full` to both `header` and `trigger` slots in the Mizu theme preset so the chevron sits at the far right edge and each accordion title spans full width
+- **Accordion — custom slots demo** — `UIcon` now renders properly in the Custom Slots example; items include `icon` properties and the demo uses both `#leading` and `#body` slots
+
+### Documentation
+
+- **Accordion demo expanded** — added 4 new examples: Unmount on Hide, Control Active Items (v-model), Trailing Icon (custom #trailing slot), and Content Slot
+
+### Internal Changes
+
+- Version bump to `0.16.2`
+
 ## 0.16.1 (2026-07-08)
 
 ### Added

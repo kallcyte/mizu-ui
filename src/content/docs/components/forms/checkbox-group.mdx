@@ -1,0 +1,76 @@
+---
+title: CheckboxGroup
+description: A set of checkboxes for selecting multiple options from a list.
+---
+
+import CheckboxGroupDemo from "../../../../components/docs/CheckboxGroupDemo.vue";
+
+> **Nuxt UI Component:** This uses Nuxt UI's `UCheckboxGroup` component. Mizu provides a theme preset (`@mizu/vue/theme`) that applies checkbox styling (border, ring, outline) matching the Input design language.
+
+A checkbox group renders a list of checkboxes from an `items` array, with support for legends, descriptions, multiple variants, and horizontal/vertical layouts.
+
+## Examples
+
+<CheckboxGroupDemo client:only="vue" />
+
+## API
+
+Reference: [Nuxt UI CheckboxGroup](https://ui.nuxt.com/docs/components/checkbox-group)
+
+### Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `items` | `string[] \| CheckboxGroupItem[]` | — | Array of strings or objects |
+| `modelValue` | `any[]` | — | v-model binding for selected values |
+| `defaultValue` | `any[]` | — | Initial selected values |
+| `size` | `'xs' \| 'sm' \| 'md' \| 'lg' \| 'xl'` | `'md'` | Checkbox size |
+| `color` | `'primary' \| 'secondary' \| 'success' \| 'error' \| 'warning' \| 'info' \| 'neutral'` | `'primary'` | Semantic color |
+| `variant` | `'list' \| 'card' \| 'table'` | `'list'` | Visual style |
+| `orientation` | `'horizontal' \| 'vertical'` | `'vertical'` | Layout direction |
+| `indicator` | `'start' \| 'end' \| 'hidden'` | `'start'` | Indicator position |
+| `legend` | `string` | — | Fieldset legend text |
+| `valueKey` | `string` | `'value'` | Property to use as value when items are objects |
+| `labelKey` | `string` | `'label'` | Property to use as label |
+| `descriptionKey` | `string` | `'description'` | Property to use as description |
+| `disabled` | `boolean` | `false` | Disables all checkboxes |
+| `required` | `boolean` | `false` | Marks the field as required |
+
+### CheckboxGroupItem
+
+| Prop | Type | Description |
+|------|------|-------------|
+| `label` | `string` | Item label text |
+| `description` | `string` | Item description text |
+| `value` | `any` | Item value (used in v-model array) |
+| `disabled` | `boolean` | Disable this specific item |
+
+### Slots
+
+| Slot | Props | Description |
+|------|-------|-------------|
+| `legend` | — | Custom legend content |
+| `label` | `{ item, index }` | Custom label per item |
+| `description` | `{ item, index }` | Custom description per item |
+
+### Example Usage
+
+```vue
+<UCheckboxGroup
+  v-model="selected"
+  legend="Theme"
+  :items="[
+    'System',
+    { label: 'Light', description: 'Always use light mode.', value: 'light' },
+    'Dark'
+  ]"
+/>
+```
+
+## Implementation Notes
+
+1. **Use `<UCheckboxGroup>` directly** — No Mizu wrapper needed. Apply the theme preset.
+2. **Item format** — Pass strings for simple options. Use objects with `{ label, value, description }` when labels differ from values or descriptions are needed.
+3. **Value binding** — The `v-model` is always an array of selected values. For object items, the `value` property (or `valueKey`) is used.
+4. **Legend** — Uses an HTML `<fieldset>` with `<legend>` for proper accessibility semantics.
+5. **Variant `table`** — Renders items as connected blocks with border merging, similar to FieldGroup behavior.

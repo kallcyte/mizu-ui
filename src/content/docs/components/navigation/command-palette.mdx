@@ -1,0 +1,114 @@
+---
+title: CommandPalette
+description: A command palette with full-text search powered by Fuse.js for fuzzy filtering.
+---
+
+import CommandPaletteDemo from "../../../../components/docs/CommandPaletteDemo.vue";
+
+> **Nuxt UI Component:** This uses Nuxt UI's `UCommandPalette` component. Nuxt UI v4 defaults already match the Mizu design scale, so no sizing overrides are applied.
+
+CommandPalette provides an accessible, keyboard-driven search interface with fuzzy matching via Fuse.js. Mizu uses Nuxt UI's `UCommandPalette` for quick actions, page navigation, and command menus.
+
+## Examples
+
+<CommandPaletteDemo client:only="vue" />
+
+## API
+
+Reference: [Nuxt UI CommandPalette](https://ui.nuxt.com/docs/components/command-palette)
+
+### Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `groups` | `CommandPaletteGroup[]` | — | Groups of searchable items |
+| `modelValue` | `T \| T[]` | — | v-model binding for selected item(s) |
+| `defaultValue` | `T \| T[]` | — | Initial selected value |
+| `multiple` | `boolean` | `false` | Allow multiple selection |
+| `icon` | `string` (Iconify) | — | Leading icon in the input |
+| `trailingIcon` | `string` (Iconify) | — | Trailing icon in the input |
+| `selectedIcon` | `string` (Iconify) | — | Icon shown on selected items |
+| `childrenIcon` | `string` (Iconify) | — | Icon shown on expandable items |
+| `placeholder` | `string` | — | Placeholder text for search input |
+| `autofocus` | `boolean` | `true` | Autofocus the search input on mount |
+| `close` | `boolean` | — | Controlled close state |
+| `closeIcon` | `string` (Iconify) | — | Icon for the close button |
+| `back` | `boolean` | — | Controlled back navigation state |
+| `backIcon` | `string` (Iconify) | — | Icon for the back button |
+| `input` | `boolean` | — | Controlled input visibility |
+| `size` | `'xs' \| 'sm' \| 'md' \| 'lg' \| 'xl'` | — | Sizing preset |
+| `fuse` | `IFuseOptions` | — | Fuse.js configuration options |
+| `virtualize` | `boolean` | `false` | Enable virtualization for large lists |
+| `valueKey` | `string` | `'id'` | Key to use as item value |
+| `labelKey` | `string` | `'label'` | Key to use as item label |
+| `descriptionKey` | `string` | `'description'` | Key to use as item description |
+| `loading` | `boolean` | `false` | Show loading state |
+| `disabled` | `boolean` | `false` | Disable the palette |
+| `highlightOnHover` | `boolean` | `true` | Highlight item on hover |
+| `selectionBehavior` | `string` | — | Selection behavior |
+| `by` | `string` | — | Compare function identifier |
+| `preserveGroupOrder` | `boolean` | `false` | Keep group order when filtering |
+| `searchDelay` | `number` | `0` | Debounce delay for search (ms) |
+| `searchTerm` | `string` | — | Controlled search term |
+
+### Slots
+
+| Slot | Props | Description |
+|------|-------|-------------|
+| `empty` | — | Content shown when no results match |
+| `footer` | — | Footer area below the results |
+| `back` | — | Back navigation button override |
+| `close` | — | Close button override |
+| `item` | `{ item, index }` | Custom render for a result item |
+| `item-leading` | `{ item, index }` | Content before the item label |
+| `item-label` | `{ item, index }` | Custom item label |
+| `item-description` | `{ item, index }` | Custom item description |
+| `item-trailing` | `{ item, index }` | Content after the item description |
+| `group-label` | `{ group, index }` | Custom group heading |
+
+### Example Usage
+
+```vue
+<UCommandPalette
+  :groups="[
+    {
+      key: 'actions',
+      label: 'Actions',
+      items: [
+        { id: 'new', label: 'New File' },
+        { id: 'search', label: 'Search' },
+      ],
+    },
+    {
+      key: 'files',
+      label: 'Recent Files',
+      items: [
+        { id: 'readme', label: 'README.md' },
+        { id: 'config', label: 'config.ts' },
+      ],
+    },
+  ]"
+  @update:model-value="handleSelect"
+/>
+```
+
+## Anatomy
+
+A CommandPalette consists of:
+
+| Part | Required | Description |
+|------|----------|-------------|
+| Root | Yes | Container wrapping search input + results |
+| Input | Yes | Search field for fuzzy filtering |
+| Group | No | Logical grouping of items with a heading |
+| Item | Yes | Each searchable/selectable result |
+| Icon | No | Optional icon for each item |
+| Description | No | Secondary text (e.g. path, shortcut) |
+
+## Implementation Notes
+
+1. **Use `<UCommandPalette>` directly** — No Mizu wrapper needed.
+2. **Fuse.js** — Search is powered by Fuse.js for fuzzy matching. Pass options via the `fuse` prop to tune search behavior (threshold, distance, keys, etc.).
+3. **Selection** — Listen to `@update:model-value` to handle selection events. With `multiple` enabled, the value is an array.
+4. **Loading** — Use the `loading` prop to show a loading spinner while fetching items asynchronously.
+5. **Virtualization** — Enable `virtualize` for large datasets to improve scroll performance.

@@ -99,6 +99,7 @@ const feedbackValue = ref("");
   all: revert;
   display: flex;
   flex-direction: column;
+  width: max-content;
   gap: 8px;
   max-width: 400px;
 }

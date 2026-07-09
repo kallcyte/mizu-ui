@@ -1,0 +1,65 @@
+---
+title: ColorPicker
+description: A component to select a color.
+---
+
+import ColorPickerDemo from "../../../../components/docs/ColorPickerDemo.vue";
+
+> **Nuxt UI Component:** This uses Nuxt UI's `UColorPicker` component. Mizu provides a theme preset (`@mizu/vue/theme`) that overrides sizing, padding, and spacing to match Mizu's design language. See the [Theme](#theme) section for Mizu-specific defaults.
+
+A color picker that lets users pick or enter a color value. Mizu uses Nuxt UI's `UColorPicker` with the same height scale as other form inputs (28/36/40px) for visual alignment in forms.
+
+## Examples
+
+<ColorPickerDemo client:only="vue" />
+
+## API
+
+Reference: [Nuxt UI ColorPicker](https://ui.nuxt.com/docs/components/color-picker)
+
+### Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `modelValue` | `string` | — | v-model binding for the selected color (hex string by default) |
+| `defaultValue` | `string` | `"#FFFFFF"` | Initial color value (uncontrolled) |
+| `format` | `'hex' \| 'rgb' \| 'hsl' \| 'cmyk' \| 'lab'` | `'hex'` | Output format of the color value |
+| `size` | `'xs' \| 'sm' \| 'md' \| 'lg' \| 'xl'` | `'md'` | Picker size aligned with other form elements |
+| `disabled` | `boolean` | `false` | Disables interaction |
+| `throttle` | `number` | `50` | Throttle time in ms for the color picker updates |
+
+### Example Usage
+
+```vue
+<UColorPicker v-model="color" />
+
+<!-- With a specific format -->
+<UColorPicker v-model="color" format="rgb" />
+
+<!-- Disabled -->
+<UColorPicker v-model="color" disabled />
+```
+
+## Anatomy
+
+A color picker consists of:
+
+| Part | Required | Description |
+|------|----------|-------------|
+| Root | Yes | Wrapper element containing the trigger and picker |
+| Trigger | Yes | Button that displays the current color and opens the picker |
+| Swatch | Yes | Filled circle showing the currently selected color |
+| Picker | Yes | Dropdown panel with the color selection UI |
+| Selector | Yes | Interactive gradient area for picking hue and saturation |
+| Selector Thumb | Yes | Draggable indicator on the gradient area |
+| Track | Yes | Hue slider bar for adjusting the base color |
+| Track Thumb | Yes | Draggable indicator on the hue track |
+| Hex Input | No | Text input field for entering a hex color value directly |
+
+## Implementation Notes
+
+1. **Use `<UColorPicker>` directly** — No Mizu wrapper needed. Apply the theme preset.
+2. **Color formats** — The `format` prop controls the output string format. Use `'hex'` for CSS-compatible values (default), or `'rgb'`, `'hsl'`, `'cmyk'`, `'lab'` for programmatic color manipulation.
+3. **Throttling updates** — The `throttle` prop (default 50ms) limits how often `modelValue` updates while dragging. Increase it for performance when the color value drives expensive computations.
+4. **Default to white** — The `defaultValue` defaults to `"#FFFFFF"`, so the picker always starts with a visible color rather than transparent.
+5. **Same height as other inputs** — SM (28px), MD (36px), LG (40px) aligns with `UInput` and `UButton` for form row consistency.

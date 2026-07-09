@@ -1,0 +1,114 @@
+---
+title: Editor
+description: A rich text editor component based on TipTap with support for markdown, HTML, and JSON content.
+---
+
+import EditorDemo from "../../../../components/docs/EditorDemo.vue";
+
+> **Nuxt UI Component:** This uses Nuxt UI's `UEditor` component. Mizu provides a theme preset (`@mizu/vue/theme`) that applies consistent typography and spacing. See the [Theme](#theme) section for Mizu-specific defaults.
+
+A rich text editor built on TipTap. Mizu uses Nuxt UI's `UEditor` which supports multiple content formats (JSON, HTML, Markdown), customizable toolbars, extensible architecture, and built-in handlers for common formatting actions.
+
+## Examples
+
+<EditorDemo client:only="vue" />
+
+## API
+
+Reference: [Nuxt UI Editor](https://ui.nuxt.com/docs/components/editor)
+
+### Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `modelValue` | `null \| string \| JSONContent \| JSONContent[]` | — | The editor content, two-way bound via `v-model`. Type determines format. |
+| `contentType` | `"json" \| "html" \| "markdown"` | auto-detected | Explicit content format. Strings default to `html`, objects to `json`. |
+| `starterKit` | `Partial<StarterKitOptions>` | `{}` | TipTap StarterKit options (bold, italic, headings, lists, etc.). |
+| `placeholder` | `string \| PlaceholderOptions & { mode?: "firstLine" \| "everyLine" }` | — | Placeholder text for empty paragraphs. |
+| `markdown` | `Partial<MarkdownExtensionOptions>` | `{}` | Markdown extension options for markdown parsing/serialization. |
+| `image` | `boolean \| Partial<ImageOptions>` | `true` | Image extension options. Set `false` to disable. |
+| `mention` | `boolean \| Partial<MentionOptions>` | `true` | Mention extension options. Set `false` to disable. |
+| `handlers` | `EditorCustomHandlers` | `{}` | Custom handlers to extend/override the default item handlers. |
+| `extensions` | `Extensions` | `[]` | Additional TipTap extensions to register. |
+| `autofocus` | `FocusPosition` | — | Initial focus position for the editor. |
+| `editable` | `boolean` | `true` | Whether the editor is editable. |
+| `injectCSS` | `boolean` | — | Whether to inject base CSS styles. |
+| `editorProps` | `EditorProps` | — | TipTap editor props (attributes, etc.). |
+| `enableContentCheck` | `boolean` | `false` | Check content for errors on initialization. |
+| `textDirection` | `"ltr" \| "rtl" \| "auto"` | — | Default text direction for all content. |
+
+### Slots
+
+| Slot | Props | Description |
+|------|-------|-------------|
+| `default` | `{ editor, handlers }` | Scoped slot providing the TipTap editor instance and handler functions. |
+
+### Events
+
+| Event | Parameters | Description |
+|-------|------------|-------------|
+| `update:modelValue` | `value` | Emitted when the editor content changes. |
+| `focus` | `{ editor, event }` | Emitted when the editor gains focus. |
+| `blur` | `{ editor, event }` | Emitted when the editor loses focus. |
+| `contentError` | `{ editor, error }` | Emitted when invalid content is encountered (requires `enableContentCheck`). |
+
+### Handlers
+
+The `UEditor` provides default handlers that toolbar and suggestion menu items reference via `kind`:
+
+| Handler | Description | Required item properties |
+|---------|-------------|--------------------------|
+| `mark` | Toggle text marks (bold, italic, strike, code, underline) | `mark` |
+| `heading` | Toggle heading levels (1–6) | `level` |
+| `textAlign` | Set text alignment | `align` |
+| `link` | Add/edit/remove links | — |
+| `image` | Insert images | — |
+| `blockquote` | Toggle blockquotes | — |
+| `bulletList` | Toggle bullet lists | — |
+| `orderedList` | Toggle ordered lists | — |
+| `taskList` | Toggle task lists | — |
+| `codeBlock` | Toggle code blocks | — |
+| `horizontalRule` | Insert horizontal rules | — |
+| `paragraph` | Set paragraph format | — |
+| `undo` | Undo last change | — |
+| `redo` | Redo last undone change | — |
+| `clearFormatting` | Remove all formatting | — |
+| `duplicate` | Duplicate a node | `pos` |
+| `delete` | Delete a node | `pos` |
+| `moveUp` | Move a node up | `pos` |
+| `moveDown` | Move a node down | `pos` |
+| `suggestion` | Trigger suggestion menu | — |
+| `mention` | Trigger mention menu | — |
+| `emoji` | Trigger emoji picker | — |
+
+### Example Usage
+
+```vue
+<script setup lang="ts">
+import { ref } from "vue";
+
+const content = ref("<h1>Hello World</h1>\n<p>This is a rich text editor.</p>");
+</script>
+
+<template>
+  <UEditor v-model="content" placeholder="Start writing..." class="w-full min-h-48" />
+</template>
+```
+
+## Anatomy
+
+| Part | Required | Description |
+|------|----------|-------------|
+| Root | Yes | Outer `<div>` wrapper with editor styling |
+| Content | Yes | The TipTap editor instance rendering area |
+
+The editor renders inline as a contenteditable element. When wrapped with `UEditorToolbar` or `UEditorSuggestionMenu`, those components must be placed inside the editor's default slot.
+
+## Implementation Notes
+
+1. **Use `<UEditor>` directly** — No Mizu wrapper needed. Apply the theme preset and Nuxt UI handles the rest.
+2. **Content type is auto-detected** — Strings are treated as `html`, objects as `json`. Use `content-type` to override.
+3. **Scoped slot pattern** — Child components (`UEditorToolbar`, `UEditorSuggestionMenu`) require the editor instance. Use `v-slot="{ editor }"` on `UEditor` to expose it.
+4. **ProseMirror dependencies** — If you encounter `Adding different instances of a keyed plugin` errors, add prosemirror packages to `vite.optimizeDeps.include` in `nuxt.config.ts`.
+5. **Custom handlers** — Use the `handlers` prop to extend or override the 21 built-in handlers. Each handler implements `canExecute`, `execute`, `isActive`, and optional `isDisabled`.
+6. **Extensions** — Default extensions include StarterKit, Placeholder, Image, Mention, and Markdown. Additional TipTap extensions can be added via the `extensions` prop.

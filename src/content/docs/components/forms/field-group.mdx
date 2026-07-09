@@ -1,0 +1,83 @@
+---
+title: FieldGroup
+description: Group multiple form elements with shared sizing and connected borders.
+---
+
+import FieldGroupDemo from "../../../../components/docs/FieldGroupDemo.vue";
+
+> **Nuxt UI Component:** This uses Nuxt UI's `UFieldGroup` component. Mizu provides a theme preset (`@mizu/vue/theme`) that applies the design language. See the [Theme](#theme) section for Mizu-specific defaults.
+
+A field group connects multiple form elements — inputs, buttons, selects, badges — into a single visual unit with shared sizing and merged borders. Use it for input groups, segmented controls, phone number inputs, and button groups.
+
+## Examples
+
+<FieldGroupDemo client:only="vue" />
+
+## API
+
+Reference: [Nuxt UI FieldGroup](https://ui.nuxt.com/docs/components/field-group)
+
+### Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `size` | `'xs' \| 'sm' \| 'md' \| 'lg' \| 'xl'` | `'md'` | Propagates size to all child components via provide/inject |
+| `orientation` | `'horizontal' \| 'vertical'` | `'horizontal'` | Layout direction. Horizontal uses `inline-flex -space-x-px`, vertical uses `flex flex-col -space-y-px` |
+| `as` | `string \| Component` | `'div'` | The element or component to render as |
+| `class` | `any` | — | Additional CSS classes on the root element |
+| `ui` | `{ base?: any }` | — | Override the root element's base class |
+
+### Slots
+
+| Slot | Props | Description |
+|------|-------|-------------|
+| `default` | — | Child elements (inputs, buttons, selects, badges, etc.) |
+
+### Form Integration
+
+Use `UFormField` to wrap a `UFieldGroup` with label and helper text:
+
+```vue
+<UFormField label="Phone number" help="Enter your phone number">
+  <UFieldGroup class="w-full">
+    <USelectMenu :items="countries" value-key="code" placeholder="+1" size="md" />
+    <UInput class="flex-1" placeholder="Phone number" />
+  </UFieldGroup>
+</UFormField>
+```
+
+## Theme
+
+Mizu does not override Nuxt UI's FieldGroup theme. The component uses Nuxt UI's default styling, which handles the negative space between elements via `-space-x-px` (horizontal) or `-space-y-px` (vertical) to create connected borders.
+
+```ts
+// app.config.ts
+import { mizuTheme } from "@mizu/vue/theme";
+export default defineAppConfig({ ui: mizuTheme });
+```
+
+### Design Specs
+
+The FieldGroup itself has no intrinsic dimensions. It inherits sizing from its children. When a `size` prop is set, children that respect the field group context (inputs, buttons, selects) will use that size as their default.
+
+| Orientation | Layout | Border Merge |
+|-------------|--------|-------------|
+| `horizontal` | `inline-flex -space-x-px` | Negative margin on X axis connects adjacent borders |
+| `vertical` | `flex flex-col -space-y-px` | Negative margin on Y axis connects adjacent borders |
+
+## Anatomy
+
+A field group consists of:
+
+| Part | Required | Description |
+|------|----------|-------------|
+| Root | Yes | Wrapper element that provides size/orientation context to children |
+| Children | Yes | Two or more form elements (inputs, buttons, selects, etc.) |
+
+## Implementation Notes
+
+1. **Use `<UFieldGroup>` directly** — No Mizu wrapper needed. Apply the theme preset.
+2. **Size propagation** — The `size` prop is forwarded to child components via Vue's provide/inject. Children that don't set their own `size` will inherit the group's size.
+3. **Connected borders** — Adjacent elements share borders via negative margins (`-space-x-px` / `-space-y-px`), creating a seamless visual connection.
+4. **Compatible children** — Works with `UInput`, `UButton`, `USelectMenu`, `UBadge`, `UTooltip`, `UDropdownMenu`, and any component that renders a bordered element.
+5. **Use `FieldGroupReset` to break context** — If a child should not inherit the group's size, wrap it in a `<UFieldGroupReset>` component to reset the provide/inject chain.

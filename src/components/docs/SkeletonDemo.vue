@@ -147,6 +147,7 @@ import CodeCollapsible from "./CodeCollapsible.vue";
 .demo-col {
   display: flex;
   flex-direction: column;
+  width: max-content;
   gap: 12px;
 }
 .demo-row {

@@ -8,38 +8,27 @@ disable-model-invocation: false
 
 1. This project follows semantic versioning (SemVer) during pre-1.0 development.
 2. **Always rebuild `@mizu/vue` after adding or modifying components, and at the end of every task** — run `pnpm --filter @mizu/vue build`. If the dist is stale, new components render as `undefined` and pages crash. This is the final verification step before declaring a task complete.
+
+   **After the build, restart the docs dev server** so changes are picked up:
+
+   ```sh
+   pnpm run dev:bg
+   ```
 3. **The `packages/vue/src/index.ts` is auto-generated** by `packages/vue/scripts/generate-index.mjs`. It runs automatically before `vite build` in the `@mizu/vue` build pipeline. Just add `.vue` files to `packages/vue/src/components/` and run `pnpm --filter @mizu/vue build` — the exports are generated for you.
 4. When you find gaps or missing conventions in this skill, flag them at the end of the session.
 
-5. **Astro Dev Server** — The docs site (Starlight) can be run in the background for quick visual feedback. Use these agent-level commands:
+5. **Astro Dev Server** — The docs site (Starlight) can be run in the background for quick visual feedback. Use these pnpm scripts:
 
-   - `astro dev --background` — Starts the Astro+Starlight dev server in the background. Output is piped to `/tmp/astro-dev.log`.
+   - `pnpm run dev:docs --background` — Starts the Astro+Starlight dev server in the background.
 
-     ```sh
-     nohup astro dev --host > /tmp/astro-dev.log 2>&1 &
-     ```
+   - `pnpm run dev:docs stop` — Kills the background Astro dev server.
 
-   - `astro dev stop` — Kills the background Astro dev server:
+   - `pnpm run dev:docs status` — Checks if the background server is running.
 
-     ```sh
-     pkill -f "astro dev" 2>/dev/null; pkill -f "astro" 2>/dev/null; rm -f /tmp/astro-dev.log
-     ```
+   - `pnpm run dev:docs logs` — Shows recent output from the background server.
 
-   - `astro dev status` — Checks if the background server is running:
-
-     ```sh
-     pgrep -f "astro dev" > /dev/null 2>&1 && echo "Astro dev server is running" || echo "Astro dev server is NOT running"
-     ```
-
-   - `astro dev logs` — Shows recent output from the background server:
-
-     ```sh
-     cat /tmp/astro-dev.log 2>/dev/null || echo "No logs found"
-     ```
-
-   - **After updating Starlight docs** (MDX files, `astro.config.mjs` sidebar, or demo components under `src/components/docs/`), restart the dev server at the end of the whole process to ensure the changes are picked up:
-     1. `astro dev stop`
-     2. `astro dev --background`
+   - **After updating Starlight docs** (MDX files, `astro.config.mjs` sidebar, or demo components under `src/components/docs/`), restart the dev server:
+     `pnpm run dev:bg`
 
 ---
 

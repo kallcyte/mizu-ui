@@ -1,0 +1,128 @@
+---
+title: Listbox
+description: A selectable list of items with search, virtualization, and rich item rendering.
+---
+
+import ListboxDemo from "../../../../components/docs/ListboxDemo.vue";
+
+> **Nuxt UI Component:** This uses Nuxt UI's `UListbox` component. Mizu provides a theme preset (`@mizu/vue/theme`) for consistent styling. See the [Theme](#theme) section for Mizu-specific defaults.
+
+A listbox is a selectable list that supports searching, multiple selection, and rich item rendering. Unlike a dropdown menu, the listbox renders its items inline — ideal for selection panels, transfer lists, and filterable pickers where items are always visible.
+
+## Examples
+
+<ListboxDemo client:only="vue" />
+
+## API
+
+Reference: [Nuxt UI Listbox](https://ui.nuxt.com/docs/components/listbox)
+
+### Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `items` | `T[]` | — | Array of items to display (strings or objects) |
+| `modelValue` | `T \| T[]` | — | v-model binding for the selected item(s) |
+| `defaultValue` | `T \| T[]` | — | Initial value (uncontrolled) |
+| `multiple` | `boolean` | `false` | Allow multiple selections |
+| `valueKey` | `string` | — | When items are objects, the property to use as the bound value |
+| `labelKey` | `string` | `'label'` | When items are objects, the property to use as the display label |
+| `descriptionKey` | `string` | `'description'` | When items are objects, the property to use as the description |
+| `size` | `'xs' \| 'sm' \| 'md' \| 'lg' \| 'xl'` | `'md'` | Item size scale |
+| `color` | `'primary' \| 'secondary' \| 'success' \| 'error' \| 'warning' \| 'info' \| 'neutral'` | `'primary'` | Semantic color for selection highlight |
+| `loading` | `boolean` | `false` | Show a loading state |
+| `loadingIcon` | `string` (Iconify) | — | Custom loading icon |
+| `filter` | `boolean \| InputProps` | `false` | Show a filter input above the list. Pass an object to customize |
+| `filterFields` | `string[]` | `[labelKey]` | Object fields to search against when filtering |
+| `ignoreFilter` | `boolean` | `false` | Disable built-in filtering (use for server-side search) |
+| `virtualize` | `boolean \| { overscan, estimateSize }` | `false` | Enable virtualization for large lists |
+| `selectedIcon` | `string` (Iconify) | — | Icon shown on selected items |
+| `highlight` | `boolean` | `false` | Force focus ring visibility |
+| `highlightOnHover` | `boolean` | `true` | Highlight items on hover |
+| `orientation` | `'vertical' \| 'horizontal'` | `'vertical'` | Layout direction (affects arrow key navigation) |
+| `selectionBehavior` | `'toggle' \| 'replace'` | `'toggle'` | How selection behaves: toggle individual items or replace |
+| `by` | `string \| ((a, b) => boolean)` | — | Compare objects by a field or custom comparator |
+| `disabled` | `boolean` | `false` | Disables the entire listbox |
+| `name` | `string` | — | Field name for form submission |
+| `required` | `boolean` | `false` | Marks the field as required |
+| `searchTerm` | `string` | `''` | Controlled search term value |
+
+### Slots
+
+| Slot | Props | Description |
+|------|-------|-------------|
+| `loading` | — | Content shown while loading |
+| `empty` | `{ searchTerm }` | Content shown when no items match the search |
+| `item` | `{ item, index, ui }` | Custom item rendering (overrides the default structure) |
+| `item-leading` | `{ item, index, ui }` | Leading icon, avatar, or chip per item |
+| `item-label` | `{ item, index }` | Custom label content per item |
+| `item-description` | `{ item, index }` | Custom description content per item |
+| `item-trailing` | `{ item, index, ui }` | Trailing content per item (e.g. check icon) |
+
+### Example Usage
+
+```vue
+<script setup lang="ts">
+import { ref } from "vue";
+
+const fruit = ref("");
+const fruits = ref<string[]>([]);
+const country = ref<{ name: string; code: string } | null>(null);
+
+const items = ["Apple", "Banana", "Blueberry", "Cherry", "Grapes"];
+
+const countries = [
+  { name: "United States", code: "US" },
+  { name: "Canada", code: "CA" },
+  { name: "United Kingdom", code: "UK" },
+];
+</script>
+
+<template>
+  <!-- Basic listbox -->
+  <UListbox v-model="fruit" :items="items" placeholder="Pick a fruit" />
+
+  <!-- Multiple selection -->
+  <UListbox v-model="fruits" :items="items" multiple placeholder="Pick fruits" />
+
+  <!-- Object items with value-key -->
+  <UListbox
+    v-model="country"
+    :items="countries"
+    value-key="code"
+    label-key="name"
+    placeholder="Select a country"
+  />
+
+  <!-- With search filter -->
+  <UListbox v-model="fruit" :items="items" filter placeholder="Search fruit..." />
+
+  <!-- Virtualized for large lists -->
+  <UListbox v-model="fruit" :items="largeList" virtualize filter />
+</template>
+```
+
+## Anatomy
+
+A listbox consists of:
+
+| Part | Required | Description |
+|------|----------|-------------|
+| Root | Yes | Wrapper element containing the filter and list |
+| Filter Input | No | Search input shown when `filter` is enabled |
+| List | Yes | Scrollable container for the items |
+| Item | Yes | Clickable row with label, optional description, and leading/trailing content |
+| Selected Icon | No | Checkmark shown on the trailing side of selected items |
+| Loading | No | Spinner shown when `loading` is `true` |
+| Empty State | No | Message shown when filter yields no results |
+
+## Implementation Notes
+
+1. **Use `<UListbox>` directly** — No Mizu wrapper needed. Apply the theme preset.
+2. **Inline rendering** — Unlike `USelectMenu` which opens a popover, `UListbox` renders items inline. Use it when you need a selection panel that is always visible.
+3. **Search and filter** — Enable `filter` to show a search input. Customize with `{ placeholder: 'Search...', variant: 'none' }`. Use `ignoreFilter` when performing server-side filtering.
+4. **Virtualization** — Set `virtualize` for large lists (hundreds or thousands of items). Pass an object with `{ overscan: 12, estimateSize: 32 }` to tune performance.
+5. **Rich items** — Use `item-leading`, `item-label`, `item-description`, and `item-trailing` slots for custom layouts. Or replace the entire item with the `item` slot.
+6. **Multiple selection** — Set `multiple` to `true`. The v-model becomes an array. Use `selectionBehavior="replace"` to deselect others when a new item is clicked.
+7. **Object comparison** — Use `by` to specify how objects are compared for equality. Pass a field name string (e.g., `"id"`) or a custom comparator function.
+8. **Form integration** — Wrap with `UFormField` for labels and error messages. The component participates in native form submission via `name`.

@@ -1,0 +1,170 @@
+---
+title: User
+description: Display user information with name, description and avatar.
+---
+
+import UserDemo from "../../../../components/docs/UserDemo.vue";
+
+The User component displays a person's identity with their name, description, avatar, and optional status chip. Use it in comment sections, profile cards, assignee lists, mentions, and anywhere user identity needs to be shown.
+
+## Examples
+
+<UserDemo client:only="vue" />
+
+## API
+
+### Props
+
+| Prop | Type | Default | Description |
+| ---- | ---- | ------- | ----------- |
+| `name` | `string` | `undefined` | The user's display name |
+| `description` | `string` | `undefined` | Secondary text (role, email, status) |
+| `avatar` | `AvatarProps` | `undefined` | Avatar configuration (see Avatar component) |
+| `chip` | `boolean \| ChipProps` | `undefined` | Status chip overlay on the avatar |
+| `size` | `'3xs' \| '2xs' \| 'xs' \| 'sm' \| 'md' \| 'lg' \| 'xl' \| '2xl' \| '3xl'` | `'md'` | Controls avatar size and text scale |
+| `orientation` | `'horizontal' \| 'vertical'` | `'horizontal'` | Layout direction of avatar and text |
+| `to` | `string` | `undefined` | When set, renders as a link (NuxtLink/router-link) |
+| `target` | `'_blank' \| '_parent' \| '_self' \| '_top'` | `undefined` | Link target attribute |
+| `onClick` | `(event: MouseEvent) => void` | `undefined` | Click handler |
+
+### Avatar Props (subset)
+
+| Prop | Type | Default | Description |
+| ---- | ---- | ------- | ----------- |
+| `src` | `string` | `undefined` | Image URL for the avatar |
+| `alt` | `string` | `undefined` | Alt text for the avatar image |
+| `icon` | `string` | `undefined` | Fallback icon when no image |
+| `text` | `string` | `undefined` | Fallback text (initials) when no image |
+
+### Slots
+
+| Slot | Props | Description |
+| ---- | ----- | ----------- |
+| `default` | — | Override the entire content |
+| `avatar` | — | Custom avatar rendering |
+| `name` | — | Custom name rendering |
+| `description` | — | Custom description rendering |
+
+### Example Usage
+
+```vue
+<template>
+  <!-- Basic -->
+  <UUser name="John Doe" />
+
+  <!-- With description and avatar -->
+  <UUser
+    name="John Doe"
+    description="Software Engineer"
+    :avatar="{ src: 'https://i.pravatar.cc/150?u=john-doe' }"
+  />
+
+  <!-- With status chip -->
+  <UUser
+    name="Jane Smith"
+    description="Online"
+    :avatar="{ src: 'https://i.pravatar.cc/150?u=jane-smith' }"
+    :chip="{ color: 'success', position: 'top-right' }"
+  />
+
+  <!-- Vertical orientation -->
+  <UUser
+    name="John Doe"
+    description="Product Designer"
+    orientation="vertical"
+    size="xl"
+    :avatar="{ src: 'https://i.pravatar.cc/150?u=john-doe' }"
+  />
+
+  <!-- As a link -->
+  <UUser
+    name="Benjamin Canac"
+    description="Creator"
+    to="https://github.com/benjamincanac"
+    target="_blank"
+    :avatar="{ src: 'https://github.com/benjamincanac.png' }"
+  />
+
+  <!-- Sizes -->
+  <UUser name="John" size="3xs" />
+  <UUser name="John" size="md" />
+  <UUser name="John" size="3xl" />
+</template>
+```
+
+## Theme
+
+### CSS Custom Properties
+
+| Token | Default | Description |
+| ----- | ------- | ----------- |
+| `--color-foreground-primary` | `#1B1B1D` (light) / `#F9FAFB` (dark) | Name text color (non-link) |
+| `--color-foreground-secondary` | `#4B5563` (light) / `#9CA3AF` (dark) | Description text color |
+| `--color-brand-primary` | `#001C44` | Link hover name color |
+| `--color-surface-muted` | `#F3F4F6` (light) / `#1E2030` (dark) | Link focus outline |
+
+### Variants
+
+| Variant | Layout | Use Case |
+| ------- | ------ | -------- |
+| Horizontal | Avatar and text side by side | Lists, inline mentions, table cells |
+| Vertical | Avatar above text, centered | Profile cards, hero sections, modals |
+| Link | Renders as anchor/router-link | Clickable user profiles, navigation |
+
+### Sizing
+
+| Size | Name Font | Description Font | Avatar Size | Gap |
+| ---- | --------- | ---------------- | ----------- | --- |
+| **3XS** | 12px | 12px | 16px | 4px |
+| **2XS** | 12px | 12px | 20px | 6px |
+| **XS** | 12px | 12px | 24px | 6px |
+| **SM** | 12px | 12px | 28px | 8px |
+| **MD** | 14px | 12px | 32px | 8px |
+| **LG** | 14px | 14px | 40px | 10px |
+| **XL** | 16px | 14px | 48px | 10px |
+| **2XL** | 16px | 16px | 56px | 12px |
+| **3XL** | 18px | 16px | 64px | 12px |
+
+### Accessibility
+
+| Criterion | Implementation |
+| --------- | -------------- |
+| Semantic structure | Uses `<div>` with descriptive roles |
+| Link behavior | Renders as `<a>` when `to` prop is set; supports keyboard activation |
+| Avatar alt text | `alt` prop passed through to `<img>` for screen readers |
+| Focus visible | Link variant shows focus outline via `has-focus-visible` |
+
+```html
+<!-- Non-link -->
+<div>
+  <img src="avatar.jpg" alt="John Doe" />
+  <span>John Doe</span>
+  <span>Software Engineer</span>
+</div>
+
+<!-- Link variant -->
+<a href="/profile/john-doe" target="_blank">
+  <img src="avatar.jpg" alt="John Doe" />
+  <span>John Doe</span>
+  <span>Software Engineer</span>
+</a>
+```
+
+## Anatomy
+
+A user display consists of up to three parts:
+
+| Part | Required | Description |
+| ---- | -------- | ----------- |
+| Avatar | No | Image, icon, or text fallback representing the user |
+| Name | No | Primary text identifying the user |
+| Description | No | Secondary text for role, status, or email |
+
+## Implementation Notes
+
+1. **Nuxt UI component** -- This is a first-party Nuxt UI component, styled automatically by Mizu's theme tokens.
+2. **Avatar integration** -- The `avatar` prop accepts `AvatarProps` from Nuxt UI. Import `AvatarProps` from `@nuxt/ui` for TypeScript.
+3. **Chip integration** -- The `chip` prop accepts `ChipProps` for status indicators (online, busy, notifications).
+4. **Link mode** -- When `to` is set, the component renders as a link with hover/focus transitions on the avatar (scale up) and name (color change).
+5. **Orientation** -- `vertical` stacks elements for card-style layouts; `horizontal` places them inline for lists.
+6. **Slots** -- All three visual parts (avatar, name, description) can be overridden via slots for custom rendering.

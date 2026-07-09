@@ -1,0 +1,117 @@
+---
+title: InputTime
+description: An input for selecting a time.
+---
+
+import InputTimeDemo from "../../../../components/docs/InputTimeDemo.vue";
+
+> **Nuxt UI Component:** This uses Nuxt UI's `UInputTime` component. Mizu provides a theme preset (`@mizu/vue/theme`) that overrides sizing, padding, and spacing to match Mizu's design language. See the [Theme](#theme) section for Mizu-specific defaults.
+
+A time picker input that lets users select a time or time range. Mizu uses Nuxt UI's `UInputTime` with consistent form sizing and the Mizu color palette. Values use `@internationalized/date` objects.
+
+## Examples
+
+<InputTimeDemo client:only="vue" />
+
+## API
+
+Reference: [Nuxt UI InputTime](https://ui.nuxt.com/docs/components/input-time)
+
+### Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `modelValue` | `Time \| CalendarDateTime \| ZonedDateTime \| TimeRange` | — | v-model binding for the selected time(s) |
+| `defaultValue` | `Time \| CalendarDateTime \| ZonedDateTime \| TimeRange` | — | Initial value (uncontrolled) |
+| `range` | `boolean` | `false` | Enable time range selection (modelValue becomes `TimeRange`) |
+| `size` | `'xs' \| 'sm' \| 'md' \| 'lg' \| 'xl'` | `'md'` | Input size aligned with other form elements |
+| `color` | `'primary' \| 'secondary' \| 'success' \| 'error' \| 'warning' \| 'info' \| 'neutral'` | `'primary'` | Semantic color for focus ring |
+| `variant` | `'outline' \| 'soft' \| 'subtle' \| 'ghost' \| 'none'` | `'outline'` | Visual style |
+| `placeholder` | `string` | — | Placeholder text |
+| `disabled` | `boolean` | `false` | Disables interaction |
+| `readonly` | `boolean` | `false` | Read-only mode |
+| `required` | `boolean` | `false` | Marks the field as required |
+| `granularity` | `'hour' \| 'minute' \| 'second'` | `'minute'` | Smallest unit of time to display and select |
+| `hourCycle` | `12 \| 24` | — | 12-hour or 24-hour clock for time display |
+| `step` | `number \| { hour, minute, second }` | `1` | Step interval for time fields |
+| `stepSnapping` | `boolean` | `false` | Snap input to the nearest step value |
+| `hideTimeZone` | `boolean` | `false` | Hide the timezone display |
+| `minValue` | `Time \| CalendarDateTime \| ZonedDateTime` | — | Earliest selectable time |
+| `maxValue` | `Time \| CalendarDateTime \| ZonedDateTime` | — | Latest selectable time |
+| `locale` | `string` | — | Locale for time formatting (e.g. `'en-US'`) |
+| `icon` | `string` (Iconify) | — | Icon displayed on the leading side |
+| `leadingIcon` | `string` (Iconify) | — | Explicit leading icon |
+| `trailingIcon` | `string` (Iconify) | — | Explicit trailing icon |
+| `separatorIcon` | `string` (Iconify) | — | Custom icon between start and end times (range mode) |
+| `isTimeUnavailable` | `(time: DateValue) => boolean` | — | Function to mark specific times as unavailable |
+| `highlight` | `boolean` | `false` | Force the focus ring to be visible |
+| `fixed` | `boolean` | `false` | Keep the mobile text size on all breakpoints |
+| `name` | `string` | — | Native `name` attribute for form submissions |
+| `id` | `string` | — | HTML `id` attribute |
+
+### Slots
+
+| Slot | Props | Description |
+|------|-------|-------------|
+| `leading` | `{ ui }` | Content before the time input |
+| `default` | `{ ui }` | Default slot (not typically used) |
+| `trailing` | `{ ui }` | Content after the time input |
+| `separator` | `{ ui }` | Custom separator element between start and end times (range mode) |
+
+### Example Usage
+
+```vue
+<script setup lang="ts">
+import { ref } from "vue";
+import { Time, type TimeValue } from "@internationalized/date";
+
+interface TimeRange {
+  start: TimeValue;
+  end: TimeValue;
+}
+
+const time = ref(new Time(14, 30));
+const range = ref<TimeRange>({
+  start: new Time(9, 0),
+  end: new Time(17, 0),
+});
+</script>
+
+<template>
+  <!-- Single time -->
+  <UInputTime v-model="time" placeholder="Select a time" />
+
+  <!-- Time range -->
+  <UInputTime v-model="range" range placeholder="Select a time range" />
+
+  <!-- 12-hour format with 15-minute steps -->
+  <UInputTime v-model="time" hour-cycle="12" :step="{ minute: 15 }" />
+
+  <!-- With min/max constraints -->
+  <UInputTime v-model="time" :min-value="new Time(9, 0)" :max-value="new Time(17, 0)" />
+</template>
+```
+
+## Anatomy
+
+An input time consists of:
+
+| Part | Required | Description |
+|------|----------|-------------|
+| Root | Yes | Wrapper element containing the time field |
+| Segment | Yes | Individual editable time segment (hour, minute, second) |
+| Separator | No | Colon between time segments, or dash between start/end (range mode) |
+| Leading | No | Icon or content before the time input |
+| Trailing | No | Icon or content after the time input |
+| Time Zone | No | Display of the current timezone (hidden by default) |
+
+## Implementation Notes
+
+1. **Use `<UInputTime>` directly** — No Mizu wrapper needed. Apply the theme preset.
+2. **Time values use `@internationalized/date`** — Model values must be `Time`, `CalendarDateTime`, or `ZonedDateTime` from `@internationalized/date`. This is Nuxt UI's standard time handling.
+3. **Range selection** — Set `range` to `true`. The model value becomes a `TimeRange` object with `start` and `end` properties.
+4. **Granularity** — Defaults to `'minute'`. Set to `'hour'` for hour-only selection or `'second'` to include seconds. Controls which editable segments appear.
+5. **Hour cycle** — Use `hour-cycle="12"` for 12-hour display with AM/PM, or `hour-cycle="24"` for 24-hour format. Defaults to the locale preference.
+6. **Custom time steps** — Use `step` to control increment behavior. For example, `{ minute: 15 }` restricts minute selection to 0, 15, 30, 45. Combine with `stepSnapping` to enforce the value snaps on blur.
+7. **Time constraints** — Use `minValue` and `maxValue` to bound the selectable range. Use `isTimeUnavailable` for custom per-time logic (e.g. blocking business hours).
+8. **Form integration** — Wrap with `UFormField` for labels, helper text, and error messages. The component integrates with native form validation via `required` and `name`.

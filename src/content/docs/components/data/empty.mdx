@@ -1,0 +1,118 @@
+---
+title: Empty
+description: A component to display an empty state.
+---
+
+import EmptyDemo from "../../../../components/docs/EmptyDemo.vue";
+
+> **Nuxt UI Component:** This uses Nuxt UI's `UEmpty` component. Mizu provides a theme preset (`@mizu/vue/theme`) that applies Mizu's design tokens.
+
+An empty state placeholder communicates that a view has no data, search results, or content yet. Use it to guide users toward creating their first item or to explain why a list is empty. Mizu uses Nuxt UI's `UEmpty`.
+
+## Examples
+
+<EmptyDemo client:only="vue" />
+
+## API
+
+Reference: [Nuxt UI Empty](https://ui.nuxt.com/docs/components/empty)
+
+### Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `icon` | `string` | — | Icon name displayed above the title |
+| `avatar` | `AvatarProps` | — | Avatar configuration displayed instead of the icon |
+| `title` | `string` | — | Primary heading text |
+| `description` | `string` | — | Secondary descriptive text |
+| `actions` | `ButtonProps[]` | — | Array of button configurations rendered in the body |
+| `variant` | `'outline' \| 'solid' \| 'soft' \| 'subtle' \| 'naked'` | `'outline'` | Visual style variant |
+| `size` | `'xs' \| 'sm' \| 'md' \| 'lg' \| 'xl'` | `'md'` | Controls overall sizing and spacing |
+
+### Slots
+
+| Slot | Description |
+|------|-------------|
+| `header` | Content displayed in the header area |
+| `leading` | Visual element (icon or avatar) area |
+| `title` | Override the title text |
+| `description` | Override the description text |
+| `body` | Main content between header and actions |
+| `actions` | Override the action buttons |
+| `footer` | Content displayed below the actions |
+
+### Example Usage
+
+```vue
+<template>
+  <!-- Basic with icon -->
+  <UEmpty
+    icon="i-lucide-inbox"
+    title="No items"
+    description="There are no items in this collection yet."
+  />
+
+  <!-- With action buttons -->
+  <UEmpty
+    icon="i-lucide-folder-open"
+    title="No projects"
+    description="Get started by creating a new project."
+    :actions="[{ label: 'New Project', color: 'primary' }]"
+  />
+
+  <!-- With avatar -->
+  <UEmpty
+    :avatar="{ src: 'https://github.com/nuxt.png', alt: 'Nuxt' }"
+    title="Welcome"
+    description="Explore the component library."
+  />
+
+  <!-- Variants -->
+  <UEmpty
+    variant="solid"
+    icon="i-lucide-search"
+    title="No results"
+    description="Try adjusting your search."
+  />
+  <UEmpty
+    variant="soft"
+    icon="i-lucide-search"
+    title="No results"
+    description="Try adjusting your search."
+  />
+
+  <!-- Custom slots -->
+  <UEmpty icon="i-lucide-database" title="No data">
+    <template #description>
+      <span class="text-brand-ycp">Custom description slot.</span>
+    </template>
+    <template #actions>
+      <UButton label="Import" color="neutral" variant="outline" />
+      <UButton label="Create" color="primary" />
+    </template>
+  </UEmpty>
+</template>
+```
+
+## Anatomy
+
+An empty state consists of up to 5 parts:
+
+| Part | Required | Description |
+|------|----------|-------------|
+| Header | No | Top section with icon or avatar |
+| Title | No | Primary heading text |
+| Description | No | Secondary explanatory text |
+| Body | No | Main content area between header and actions |
+| Actions | No | One or more call-to-action buttons |
+
+All parts are optional; you can compose a minimal empty state with just a title and description, or a rich one with icon, body content, and multiple actions.
+
+## Implementation Notes
+
+1. **Use `<UEmpty>` directly** — No Mizu wrapper needed. Apply the theme preset.
+2. **Icon vs Avatar** — Use `icon` for simple iconography or `avatar` for user/profile imagery. They occupy the same visual space (the leading slot).
+3. **Actions** — The `actions` prop accepts an array of `ButtonProps` objects. For custom action layouts, use the `#actions` slot instead.
+4. **Variants** — `outline` adds a bordered container; `solid` uses a filled background; `soft` provides a tinted background; `subtle` is minimal; `naked` removes all chrome.
+5. **Sizes** — Controls padding, font sizes, and icon dimensions across all elements proportionally.
+6. **All slots optional** — Every slot has a sensible default when the corresponding prop is provided. Slots override props when both are used.

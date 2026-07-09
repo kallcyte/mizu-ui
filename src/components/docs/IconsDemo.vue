@@ -90,7 +90,7 @@ const sizeExample = `<UIcon name="i-ph-magnifying-glass" class="size-4" />
         </select>
       </div>
       <div class="icons-demo__grid">
-        <div v-for="icon in filtered" :key="icon.collection + ''-'' + icon.name" class="icons-demo__cell">
+        <div v-for="icon in filtered" :key="icon.collection + '-' + icon.name" class="icons-demo__cell">
           <UIcon :name="`i-${icon.collection}-${icon.name}`" class="icons-demo__icon" />
           <code class="icons-demo__name">i-{{ icon.collection }}-{{ icon.name }}</code>
         </div>
@@ -177,10 +177,10 @@ const sizeExample = `<UIcon name="i-ph-magnifying-glass" class="size-4" />
       <CodeCollapsible :code="dropdownExample">
         <div class="demo-row">
           <UDropdownMenu :items="[
-            { label: ''Edit'', icon: ''i-ph-pencil'' },
-            { label: ''Duplicate'', icon: ''i-ph-copy'' },
-            { type: ''separator'' },
-            { label: ''Delete'', icon: ''i-ph-trash'', color: ''error'' }
+            { label: 'Edit', icon: 'i-ph-pencil' },
+            { label: 'Duplicate', icon: 'i-ph-copy' },
+            { type: 'separator' },
+            { label: 'Delete', icon: 'i-ph-trash', color: 'error' }
           ]">
             <UButton label="Actions" trailing-icon="i-ph-caret-down" />
           </UDropdownMenu>
@@ -251,5 +251,5 @@ const sizeExample = `<UIcon name="i-ph-magnifying-glass" class="size-4" />
 .icons-demo__cell-row { all: revert; display: flex; align-items: center; gap: 8px; }
 .icons-demo__cell-row code { all: revert; font-family: var(--font-family-mono, monospace); font-size: 12px; color: var(--color-foreground-primary, #001c44); }
 .demo-row { all: revert; display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
-.demo-col { all: revert; display: flex; flex-direction: column; gap: 8px; max-width: 320px; }
+.demo-col { all: revert; display: flex; flex-direction: column; width: max-content; gap: 8px; max-width: 320px; }
 </style>

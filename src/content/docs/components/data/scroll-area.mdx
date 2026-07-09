@@ -1,0 +1,131 @@
+---
+title: ScrollArea
+description: A flexible scroll container with virtualization support.
+---
+
+import ScrollAreaDemo from "../../../../components/docs/ScrollAreaDemo.vue";
+
+> **Nuxt UI Component:** This uses Nuxt UI's `UScrollArea` component powered by [TanStack Virtual](https://tanstack.com/virtual/latest). Mizu provides a theme preset (`@mizu/vue/theme`) that applies its design tokens automatically. See Nuxt UI's [ScrollArea docs](https://ui.nuxt.com/docs/components/scroll-area) for full API details.
+
+A scroll area creates scrollable containers with optional virtualization for performant rendering of large datasets. Use it for lists, grids, masonry layouts, and any content that needs to scroll within a constrained space.
+
+## Examples
+
+<ScrollAreaDemo client:only="vue" />
+
+## API
+
+Reference: [Nuxt UI ScrollArea](https://ui.nuxt.com/docs/components/scroll-area)
+
+### Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `items` | `T[]` | — | Array of items to render. When omitted, use the default slot for custom content |
+| `orientation` | `'vertical' \| 'horizontal'` | `'vertical'` | Scroll direction |
+| `virtualize` | `boolean \| VirtualizeOptions` | `false` | Enable TanStack Virtual for large lists. Pass an object for advanced options |
+| `shadow` | `boolean \| { size?: number }` | `false` | Display fade shadows on scrollable edges. Pass `{ size }` to configure fade size (px) |
+
+#### Virtualize Options
+
+| Option | Type | Default | Description |
+|--------|------|---------|-------------|
+| `estimateSize` | `number` | — | Estimated item size in px for the virtualizer |
+| `lanes` | `number` | `1` | Number of columns (masonry/grid layout) |
+| `overscan` | `number` | — | Number of items to render outside the visible area |
+| `gap` | `number` | — | Gap between items in px |
+| `paddingStart` | `number` | — | Padding at the start of the list in px |
+| `paddingEnd` | `number` | — | Padding at the end of the list in px |
+| `skipMeasurement` | `boolean` | `false` | Skip per-item DOM measurement for uniform lists (performance boost) |
+| `getScrollElement` | `() => HTMLElement` | — | External scroll container for virtualizing against an ancestor |
+| `scrollMargin` | `number` | — | Offset from the scroll element's start (used with `getScrollElement`) |
+
+### Slots
+
+| Slot | Props | Description |
+|------|-------|-------------|
+| `default` | `{ item, index, virtualItem? }` | Renders each item when `items` is provided, or custom content when used standalone |
+
+### Events
+
+| Event | Payload | Description |
+|-------|---------|-------------|
+| `scroll` | `isScrolling: boolean` | Emitted while the user is actively scrolling |
+
+### Expose
+
+You can access the component instance via `useTemplateRef`:
+
+| Name | Type | Description |
+|------|------|-------------|
+| `$el` | `HTMLElement` | The root element |
+| `virtualizer` | `Ref<Virtualizer \| undefined>` | The TanStack Virtual instance for programmatic scroll control |
+
+### Example Usage
+
+```vue
+<script setup lang="ts">
+const scrollArea = useTemplateRef('scrollArea');
+
+const items = Array.from({ length: 100 }, (_, i) => ({
+  id: i + 1,
+  label: `Item ${i + 1}`,
+}));
+
+function scrollToTop() {
+  scrollArea.value?.virtualizer?.scrollToIndex(0, { align: 'start' });
+}
+</script>
+
+<template>
+  <!-- Basic scrollable list -->
+  <UScrollArea :items="items" class="h-64 w-full max-w-xs border rounded-lg">
+    <template #default="{ item }">
+      <div class="px-4 py-3 border-b text-sm">{{ item.label }}</div>
+    </template>
+  </UScrollArea>
+
+  <!-- Virtualized (5,000 items) -->
+  <UScrollArea :items="largeItems" virtualize class="h-64 w-full max-w-xs border rounded-lg">
+    <template #default="{ item }">
+      <div class="px-4 py-3 border-b text-sm">{{ item.label }}</div>
+    </template>
+  </UScrollArea>
+
+  <!-- Horizontal scroll -->
+  <UScrollArea :items="items" orientation="horizontal" class="w-full max-w-lg">
+    <template #default="{ item }">
+      <div class="px-4 py-3 border-r text-sm whitespace-nowrap">{{ item.label }}</div>
+    </template>
+  </UScrollArea>
+
+  <!-- Custom content without items -->
+  <UScrollArea class="h-64 w-full max-w-xs border rounded-lg p-4">
+    <p class="text-sm">Custom content goes here.</p>
+    <div v-for="i in 10" :key="i" class="p-3 mb-2 bg-surface-subtle rounded">
+      Block {{ i }}
+    </div>
+  </UScrollArea>
+</template>
+```
+
+## Anatomy
+
+A scroll area consists of:
+
+| Part | Required | Description |
+|------|----------|-------------|
+| Root | Yes | The outer `<div>` wrapper with `overflow-hidden` |
+| Viewport | Yes | The scrollable container |
+| Item | No | Each item rendered via the default slot (when `items` is provided) |
+| Shadow | No | Fade gradients on the scroll edges when `shadow` is enabled |
+
+## Implementation Notes
+
+1. **Use `<UScrollArea>` directly** — No Mizu wrapper needed. Apply the theme preset via `app.config.ts`.
+2. **Built on TanStack Virtual** — Virtualization uses [TanStack Virtual](https://tanstack.com/virtual/latest) for efficient rendering of large lists.
+3. **Virtualize for performance** — Enable `virtualize` when rendering 100+ items. Only visible items (plus overscan) are rendered in the DOM.
+4. **Skip measurement for uniform lists** — If all items have the same height, set `virtualize: { skipMeasurement: true, estimateSize: 48 }` for maximum performance.
+5. **Masonry layouts** — Set `lanes` to 2+ in the `virtualize` options for Pinterest-style multi-column layouts.
+6. **External scroll container** — Use the `getScrollElement` option in `virtualize` to virtualize against an ancestor scroll element instead of the component's viewport.
+7. **Shadow** — Shows fade gradients when content overflows, automatically following the `orientation`. Configure size via `{ size: 48 }`.

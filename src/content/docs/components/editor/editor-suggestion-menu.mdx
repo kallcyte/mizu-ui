@@ -1,0 +1,136 @@
+---
+title: EditorSuggestionMenu
+description: A command menu that displays formatting and action suggestions when typing the / character.
+---
+
+import EditorSuggestionMenuDemo from "../../../../components/docs/EditorSuggestionMenuDemo.vue";
+
+> **Nuxt UI Component:** This uses Nuxt UI's `UEditorSuggestionMenu` component. It must be used inside a `UEditor` default slot to access the editor instance.
+
+A slash command menu that displays formatting and action suggestions when typing the `/` character in the editor. Mizu uses Nuxt UI's `UEditorSuggestionMenu` built on TipTap's Suggestion utility with keyboard navigation and item filtering.
+
+## Examples
+
+<EditorSuggestionMenuDemo client:only="vue" />
+
+## API
+
+Reference: [Nuxt UI EditorSuggestionMenu](https://ui.nuxt.com/docs/components/editor-suggestion-menu)
+
+### Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `editor` | `Editor` | — | **Required.** TipTap editor instance from the `UEditor` scoped slot. |
+| `items` | `EditorSuggestionMenuItem[] \| EditorSuggestionMenuItem[][]` | `[]` | Array of menu items. Nested arrays create separated groups. |
+| `char` | `string` | `"/"` | The trigger character that opens the menu. |
+| `pluginKey` | `string` | `"suggestionMenu"` | Plugin key to identify this menu instance. |
+| `filterFields` | `string[]` | — | Fields to filter items by (e.g., `["label", "description"]`). |
+| `limit` | `number` | `42` | Maximum number of items to display. |
+| `options` | `FloatingUIOptions` | — | Positioning options for the floating menu. |
+| `suggestion` | `Partial<SuggestionOptions>` | — | TipTap Suggestion matching options (e.g., `allowedPrefixes`). |
+| `size` | `"xs" \| "sm" \| "md" \| "lg" \| "xl"` | — | Size of the menu items. |
+| `appendTo` | `HTMLElement \| (() => HTMLElement)` | — | DOM element to append the menu to. |
+
+### Slots
+
+This component has no scoped slots. Item display is configured entirely through item properties.
+
+### Suggestion Menu Item Properties
+
+Each item in the `items` array accepts:
+
+| Property | Type | Description |
+|----------|------|-------------|
+| `kind` | `string` | Handler kind from the editor's handlers (e.g., `"heading"`, `"bulletList"`). |
+| `label` | `string` | Display name shown in the menu. |
+| `description` | `string` | Secondary description text. |
+| `icon` | `string` | Iconify icon name (e.g., `"i-lucide-heading-2"`). |
+| `type` | `"label" \| "separator"` | Render as a section header or visual divider instead of an action. |
+| `level` | `1 \| 2 \| 3 \| 4 \| 5 \| 6` | For `kind: "heading"`, the heading level. |
+| `align` | `"left" \| "center" \| "right" \| "justify"` | For `kind: "textAlign"`, the alignment. |
+| `disabled` | `boolean` | Whether the item is disabled. |
+
+### Example Usage
+
+```vue
+<script setup lang="ts">
+import { ref } from "vue";
+import type { EditorSuggestionMenuItem } from "@nuxt/ui";
+
+const content = ref("<p>Type / to open the menu.</p>");
+
+const items: EditorSuggestionMenuItem[] = [
+  {
+    kind: "heading",
+    level: 2,
+    label: "Heading 2",
+    description: "Large section heading",
+    icon: "i-lucide-heading-2",
+  },
+  {
+    kind: "heading",
+    level: 3,
+    label: "Heading 3",
+    description: "Medium section heading",
+    icon: "i-lucide-heading-3",
+  },
+  {
+    kind: "bulletList",
+    label: "Bullet List",
+    description: "Create a simple bullet list",
+    icon: "i-lucide-list",
+  },
+  {
+    kind: "orderedList",
+    label: "Ordered List",
+    description: "Create a numbered list",
+    icon: "i-lucide-list-ordered",
+  },
+  {
+    kind: "blockquote",
+    label: "Blockquote",
+    description: "Insert a blockquote",
+    icon: "i-lucide-quote",
+  },
+  {
+    kind: "codeBlock",
+    label: "Code Block",
+    description: "Insert a code block",
+    icon: "i-lucide-code-xml",
+  },
+  {
+    kind: "horizontalRule",
+    label: "Divider",
+    description: "Insert a horizontal divider",
+    icon: "i-lucide-minus",
+  },
+];
+</script>
+
+<template>
+  <UEditor v-slot="{ editor }" v-model="content">
+    <UEditorSuggestionMenu :editor="editor" :items="items" />
+  </UEditor>
+</template>
+```
+
+## Anatomy
+
+| Part | Required | Description |
+|------|----------|-------------|
+| Content | Yes | The floating menu container (CommandPalette-style). |
+| Viewport | No | Scrollable area when items exceed visible space. |
+| Group | No | Visual groups of items (from nested arrays). |
+| Label | No | Section header rendered via `type: "label"`. |
+| Separator | No | Visual divider rendered via `type: "separator"`. |
+| Item | Yes | Individual menu items with icon, label, and optional description. |
+
+## Implementation Notes
+
+1. **Must be inside `UEditor`'s default slot** — The menu requires the editor instance via the `{ editor }` scoped slot prop.
+2. **Trigger character** — Defaults to `/`. Type the character in an empty paragraph (or after a space) to open the menu.
+3. **Keyboard navigation** — Use arrow keys to navigate, Enter to select, and Escape to close. Typing filters items in real time.
+4. **Handler integration** — Items use the `kind` property to reference handlers defined on the parent `UEditor`. Selecting an item executes the corresponding handler.
+5. **Organizing items** — Use `type: "label"` for section headers and `type: "separator"` for visual dividers. Pass `EditorMenuItem[][]` to create grouped sections.
+6. **Custom trigger** — Use the `char` prop to change the trigger (e.g., `">"` or `":"`). Use the `suggestion` prop to customize matching behavior (e.g., `allowedPrefixes: null` for no whitespace requirement).

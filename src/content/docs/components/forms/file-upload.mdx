@@ -1,0 +1,128 @@
+---
+title: FileUpload
+description: An input element to upload files.
+---
+
+import FileUploadDemo from "../../../../components/docs/FileUploadDemo.vue";
+
+> **Nuxt UI Component:** This uses Nuxt UI's `UFileUpload` component. Mizu provides a theme preset (`@mizu/vue/theme`) that overrides sizing, padding, and spacing to match Mizu's design language. See the [Theme](#theme) section for Mizu-specific defaults.
+
+A file upload component with drag-and-drop support and configurable display layout. Mizu uses Nuxt UI's `UFileUpload` with the same sizing scale as other form elements for visual alignment in forms.
+
+## Examples
+
+<FileUploadDemo client:only="vue" />
+
+## API
+
+Reference: [Nuxt UI FileUpload](https://ui.nuxt.com/docs/components/file-upload)
+
+### Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `modelValue` | `File \| File[]` | — | v-model binding for the selected file(s) |
+| `multiple` | `boolean` | `false` | Allow multiple file selection |
+| `accept` | `string` | `"*"` | Allowed file types (MIME types or extensions, e.g. `"image/png,.jpg"`) |
+| `icon` | `string` (Iconify) | — | Icon displayed in the upload area |
+| `label` | `string` | — | Primary label text |
+| `description` | `string` | — | Secondary description text |
+| `color` | `'primary' \| 'secondary' \| 'success' \| 'error' \| 'warning' \| 'info' \| 'neutral'` | `'primary'` | Semantic color for focus ring and button |
+| `variant` | `'area' \| 'button'` | `'area'` | Visual style — area for drag-drop zone, button for compact trigger |
+| `size` | `'xs' \| 'sm' \| 'md' \| 'lg' \| 'xl'` | `'md'` | Size aligned with other form elements |
+| `layout` | `'list' \| 'grid'` | `'grid'` | File display layout (only works with `variant="area"`) |
+| `position` | `'inside' \| 'outside'` | `'outside'` | File list position relative to drop zone (area variant, list layout) |
+| `dropzone` | `boolean` | `true` | Enable drag-and-drop file upload |
+| `interactive` | `boolean` | `true` | Make the dropzone interactive (click to browse) |
+| `reset` | `boolean` | `false` | Reset the file input when the dialog is opened |
+| `preview` | `boolean` | `true` | Show file preview/list after upload |
+| `fileIcon` | `string` (Iconify) | — | Custom icon shown for each file |
+| `fileImage` | `boolean` | `true` | Preview images as thumbnails (otherwise shows `fileIcon`) |
+| `fileDelete` | `boolean \| ButtonProps` | `true` | Configure or hide the delete button per file |
+| `fileDeleteIcon` | `string` (Iconify) | — | Custom icon for the file delete button |
+| `highlight` | `boolean` | `false` | Force the focus ring to be visible |
+| `disabled` | `boolean` | `false` | Disables interaction |
+| `required` | `boolean` | `false` | Marks the field as required |
+| `name` | `string` | — | Native `name` attribute for form submissions |
+| `id` | `string` | — | Native `id` attribute for the input |
+
+### Slots
+
+| Slot | Props | Description |
+|------|-------|-------------|
+| `default` | — | Content inside the upload area below the icon and label |
+| `leading` | — | Content before the upload area |
+| `label` | — | Override the label text |
+| `description` | — | Override the description text |
+| `actions` | — | Action buttons area |
+| `files` | — | Override the entire file list |
+| `files-top` | — | Content above the file list |
+| `files-bottom` | — | Content below the file list |
+| `file` | — | Override the entire file item rendering |
+| `file-leading` | — | Content before the file name |
+| `file-name` | — | Override the file name display |
+| `file-size` | — | Override the file size display |
+| `file-trailing` | — | Content after the file name (before delete) |
+
+### Example Usage
+
+```vue
+<!-- Drop zone with drag and drop -->
+<UFileUpload
+  v-model="file"
+  label="Upload a file"
+  description="Drag and drop or click to browse"
+  icon="i-lucide-cloud-upload"
+/>
+
+<!-- Button variant for single file -->
+<UFileUpload
+  v-model="file"
+  variant="button"
+  label="Choose file"
+  icon="i-lucide-folder-open"
+/>
+
+<!-- Multiple files with grid layout -->
+<UFileUpload
+  v-model="files"
+  multiple
+  label="Upload images"
+  accept="image/*"
+  layout="grid"
+/>
+
+<!-- Custom file rendering with slots -->
+<UFileUpload v-model="file" label="Upload document">
+  <template #file-name="{ file }">
+    {{ file.name.replace(/\.[^/.]+$/, '') }}
+  </template>
+</UFileUpload>
+```
+
+## Anatomy
+
+A file upload component consists of:
+
+| Part | Required | Description |
+|------|----------|-------------|
+| Root | Yes | Wrapper element containing the upload area and file list |
+| Base | Yes | The dropzone or button trigger area |
+| Icon | No | Upload icon inside the dropzone |
+| Label | No | Primary instructional text |
+| Description | No | Secondary explanatory text |
+| Actions | No | Additional action buttons |
+| File List | No | Container showing uploaded files in grid or list layout |
+| File Item | No | Individual file entry with name, size, and delete button |
+| File Preview | No | Thumbnail image for image files |
+| File Icon | No | Fallback icon for non-image files |
+| File Delete | No | Button to remove a file from the list |
+
+## Implementation Notes
+
+1. **Use `<UFileUpload>` directly** — No Mizu wrapper needed. Apply the theme preset.
+2. **Area vs button variant** — Use `variant="area"` for a prominent drag-and-drop zone with full label and description. Use `variant="button"` for a compact single-file trigger that looks like a button.
+3. **Single vs multiple files** — When `multiple` is `false`, `modelValue` is a single `File` or `null`. When `true`, it's a `File[]`. The button variant only works when `multiple` is `false`.
+4. **File type filtering** — Use the `accept` prop to restrict uploads (e.g., `"image/*"`, `".pdf,.docx"`, `"image/png,image/jpeg"`). This also signals the OS file picker to filter.
+5. **Drag and drop** — Enabled by default via `dropzone`. Set `interactive` to `false` to disable click-to-browse but keep drag-and-drop. Set both to `false` to require programmatic file handling.
+6. **Grid vs list layout** — `layout="grid"` (default) shows files as cards with previews. `layout="list"` shows files in a compact row format. The grid layout only applies to `variant="area"`.

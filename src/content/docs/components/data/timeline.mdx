@@ -1,0 +1,117 @@
+---
+title: Timeline
+description: A sequence of events with dates, titles, icons or avatars.
+---
+
+import TimelineDemo from "../../../../components/docs/TimelineDemo.vue";
+
+> **Nuxt UI Component:** This uses Nuxt UI's `UTimeline` component. Mizu provides a theme preset (`@mizu/vue/theme`) that applies Mizu's design tokens.
+
+A timeline displays a sequence of events in chronological order with configurable indicators, dates, and descriptions. Use it for changelogs, project milestones, order tracking, and version histories. Mizu uses Nuxt UI's `UTimeline`.
+
+## Examples
+
+<TimelineDemo client:only="vue" />
+
+## API
+
+Reference: [Nuxt UI Timeline](https://ui.nuxt.com/docs/components/timeline)
+
+### Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `items` | `T[]` | *required* | Array of timeline items |
+| `modelValue` | `string \| number` | — | Controlled active item value. Use with `v-model` |
+| `defaultValue` | `string \| number` | — | Initial active item when uncontrolled |
+| `color` | `'primary' \| 'secondary' \| 'success' \| 'info' \| 'warning' \| 'error' \| 'neutral'` | — | Color of the indicator dots and connecting line |
+| `size` | `'3xs' \| '2xs' \| 'xs' \| 'sm' \| 'md' \| 'lg' \| 'xl' \| '2xl' \| '3xl'` | `'md'` | Controls the overall size and spacing |
+| `orientation` | `'vertical' \| 'horizontal'` | `'vertical'` | Layout direction of the timeline |
+| `reverse` | `boolean` | `false` | Reverse the display order of items |
+| `valueKey` | `string` | `'value'` | Key used to get the active value from each item |
+
+### Slots
+
+| Slot | Props | Description |
+|------|-------|-------------|
+| `indicator` | `{ item }` | Custom indicator element (replaces the default dot) |
+| `wrapper` | `{ item }` | Content wrapper for each item |
+| `date` | `{ item }` | Date or time label for each item |
+| `title` | `{ item }` | Title text for each item |
+| `description` | `{ item }` | Description text for each item |
+
+### Events
+
+| Event | Payload | Description |
+|-------|---------|-------------|
+| `update:modelValue` | `[value: string \| number]` | Emitted when the active item changes |
+| `select` | `[event: Event, item: T]` | Emitted when an item is clicked |
+
+### Example Usage
+
+```vue
+<template>
+  <!-- Basic vertical timeline -->
+  <UTimeline :items="milestones" />
+
+  <!-- Horizontal layout -->
+  <UTimeline :items="milestones" orientation="horizontal" />
+
+  <!-- Colored indicators -->
+  <UTimeline :items="milestones" color="primary" />
+  <UTimeline :items="milestones" color="success" />
+
+  <!-- Size variants -->
+  <UTimeline :items="milestones" size="sm" />
+  <UTimeline :items="milestones" size="md" />
+  <UTimeline :items="milestones" size="lg" />
+
+  <!-- Reversed order -->
+  <UTimeline :items="milestones" reverse />
+
+  <!-- Controlled active item -->
+  <UTimeline v-model="activeStep" :items="milestones" />
+
+  <!-- Custom slots -->
+  <UTimeline :items="milestones">
+    <template #indicator="{ item }">
+      <UIcon :name="item.icon" class="size-5" />
+    </template>
+    <template #date="{ item }">
+      <span class="text-brand-ycp font-semibold">{{ item.date }}</span>
+    </template>
+  </UTimeline>
+</template>
+
+<script setup>
+const activeStep = ref("design");
+
+const milestones = [
+  { label: "Research", description: "User research phase.", date: "Jan 2024", value: "research" },
+  { label: "Design", description: "UI/UX design completed.", date: "Mar 2024", value: "design" },
+  { label: "Development", description: "Core features built.", date: "Jun 2024", value: "development" },
+  { label: "Launch", description: "Product released.", date: "Sep 2024", value: "launch" },
+];
+</script>
+```
+
+## Anatomy
+
+A timeline consists of repeating segments, each with up to 4 parts:
+
+| Part | Required | Description |
+|------|----------|-------------|
+| Indicator | Yes | The dot or icon marking each event |
+| Connecting line | Yes | The line connecting indicators (vertical or horizontal) |
+| Date | No | Timestamp or label for the event |
+| Content | No | Title and description for the event |
+
+## Implementation Notes
+
+1. **Use `<UTimeline>` directly** — No Mizu wrapper needed. Apply the theme preset.
+2. **`items` is required** — Each item needs at least a `label`, `description`, and `date` for proper rendering. The `value` key is used for active state tracking.
+3. **Orientation** — `vertical` stacks events top-to-bottom with a vertical line; `horizontal` lays them left-to-right with a horizontal line.
+4. **Color** — Applied to the indicator dots and the connecting line. Defaults to the neutral theme color when not set.
+5. **Active state** — Use `v-model` or `modelValue` to track which item is active. The active indicator gets emphasized styling.
+6. **Reverse** — Flips the display order without changing the underlying item array order.
+7. **Custom indicators** — Use the `#indicator` slot to replace dots with custom icons, avatars, or any component.

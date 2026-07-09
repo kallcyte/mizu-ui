@@ -1,0 +1,72 @@
+---
+title: ChatPromptSubmit
+description: A Button for submitting chat prompts with automatic status handling.
+---
+
+import ChatPromptSubmitDemo from "../../../../components/docs/ChatPromptSubmitDemo.vue";
+
+> **Nuxt UI Component:** This uses Nuxt UI's `UChatPromptSubmit` component. Mizu provides a theme preset (`@mizu/vue/theme`) that applies consistent typography and spacing. See the [Theme](#theme) section for Mizu-specific defaults.
+
+A chat prompt submit button provides a status-aware submit control for chat interfaces. Mizu uses Nuxt UI's `UChatPromptSubmit` which automatically adjusts its icon, color, and variant based on the current chat status.
+
+## Examples
+
+<ChatPromptSubmitDemo client:only="vue" />
+
+## API
+
+Reference: [Nuxt UI ChatPromptSubmit](https://ui.nuxt.com/docs/components/chat-prompt-submit)
+
+### Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `status` | `'submitted' \| 'streaming' \| 'ready' \| 'error'` | `'ready'` | Current chat status. Controls icon, color, and variant. |
+| `icon` | `string` (Iconify) | `'i-lucide-arrow-up'` | Default icon when status is `'ready'`. |
+| `color` | `'primary' \| 'secondary' \| ...` | `'primary'` | Default color when status is `'ready'`. |
+| `variant` | `'solid' \| 'outline' \| 'soft' \| 'subtle' \| 'ghost' \| 'link'` | `'solid'` | Default variant when status is `'ready'`. |
+| `streamingIcon` | `string` (Iconify) | — | Icon override when status is `'streaming'`. |
+| `streamingColor` | `string` | — | Color override when status is `'streaming'`. |
+| `streamingVariant` | `string` | — | Variant override when status is `'streaming'`. |
+| `submittedIcon` | `string` (Iconify) | — | Icon override when status is `'submitted'`. |
+| `submittedColor` | `string` | — | Color override when status is `'submitted'`. |
+| `submittedVariant` | `string` | — | Variant override when status is `'submitted'`. |
+| `errorIcon` | `string` (Iconify) | — | Icon override when status is `'error'`. |
+| `errorColor` | `string` | — | Color override when status is `'error'`. |
+| `errorVariant` | `string` | — | Variant override when status is `'error'`. |
+
+### Slots
+
+| Slot | Props | Description |
+|------|-------|-------------|
+| `leading` | `{ ui }` | Custom leading content (before icon). |
+| `default` | — | Custom button label/content. |
+| `trailing` | `{ ui }` | Custom trailing content (after icon). |
+
+### Example Usage
+
+```vue
+<UChatPromptSubmit status="streaming" />
+
+<!-- Custom status overrides -->
+<UChatPromptSubmit
+  status="streaming"
+  streaming-icon="i-lucide-loader-circle"
+  streaming-color="info"
+  streaming-variant="soft"
+/>
+```
+
+## Anatomy
+
+| Part | Required | Description |
+|------|----------|-------------|
+| Root | Yes | A `<button>` element with status-driven styling. |
+| Icon | Yes | Icon that changes based on `status` (arrow up → stop → check → retry). |
+
+## Implementation Notes
+
+1. **Status-driven appearance** — The component automatically switches icon, color, and variant based on the `status` prop. No manual styling needed for common states.
+2. **Custom per-status overrides** — Use `streamingIcon`, `streamingColor`, etc. to customize appearance for specific statuses while keeping defaults for others.
+3. **Pair with ChatPrompt** — Place inside a `<UChatPrompt>` `#trailing` slot for a complete chat input experience.
+4. **Accessible** — The icon changes convey state visually. For screen readers, ensure the surrounding form provides appropriate context.

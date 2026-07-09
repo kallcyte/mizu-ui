@@ -1,0 +1,65 @@
+---
+title: ChatMessages
+description: Display a list of chat messages, designed to work seamlessly with Vercel AI SDK.
+---
+
+import ChatMessagesDemo from "../../../../components/docs/ChatMessagesDemo.vue";
+
+> **Nuxt UI Component:** This uses Nuxt UI's `UChatMessages` component. Mizu provides a theme preset (`@mizu/vue/theme`) that applies consistent typography and spacing. See the [Theme](#theme) section for Mizu-specific defaults.
+
+A chat messages list renders a scrollable conversation. Mizu uses Nuxt UI's `UChatMessages` which is designed to work with the Vercel AI SDK's `useChat` composable.
+
+## Examples
+
+<ChatMessagesDemo client:only="vue" />
+
+## API
+
+Reference: [Nuxt UI ChatMessages](https://ui.nuxt.com/docs/components/chat-messages)
+
+### Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `messages` | `UIMessage[]` | `[]` | Array of chat messages to render. |
+| `status` | `'submitted' \| 'streaming' \| 'ready' \| 'error'` | `'ready'` | Current chat status for loading indicators. |
+| `shouldAutoScroll` | `boolean` | — | Whether to automatically scroll to the latest message. |
+| `autoScroll` | `boolean \| ButtonProps` | — | Configuration for the auto-scroll button. |
+| `user` | `Partial<UChatMessageProps>` | `{ side: 'right', variant: 'soft' }` | Default props applied to user messages. |
+| `assistant` | `Partial<UChatMessageProps>` | `{ side: 'left', variant: 'naked' }` | Default props applied to assistant messages. |
+
+### Slots
+
+| Slot | Props | Description |
+|------|-------|-------------|
+| `default` | `{ messages, status }` | Custom rendering for the entire message list. |
+| `indicator` | — | Custom loading/status indicator shown while streaming. |
+| `viewport` | — | Custom scrollable viewport wrapper. |
+
+Plus all delegated `UChatMessage` slots (`header`, `leading`, `files`, `body`, `content`, `actions`).
+
+### Example Usage
+
+```vue
+<UChatMessages
+  :messages="messages"
+  status="streaming"
+  :user="{ variant: 'soft', color: 'primary' }"
+/>
+```
+
+## Anatomy
+
+| Part | Required | Description |
+|------|----------|-------------|
+| Viewport | Yes | Scrollable container for the message list. |
+| Messages | Yes | List of `UChatMessage` components rendered from the `messages` prop. |
+| Indicator | No | Streaming indicator shown while the assistant is generating a response. |
+| Auto-scroll button | No | Button to scroll to the latest message when not auto-scrolling. |
+
+## Implementation Notes
+
+1. **Vercel AI SDK integration** — `UChatMessages` is designed to receive `messages` and `status` directly from `useChat()`.
+2. **Auto-scrolling** — Enabled by default. Set `shouldAutoScroll` to `false` and configure `autoScroll` to show a manual scroll button instead.
+3. **Per-role defaults** — Use `user` and `assistant` props to set default appearance for each role. Individual messages can override these.
+4. **Status handling** — The component shows an animated indicator when `status` is `'streaming'` or `'submitted'`, and reflects error state appropriately.

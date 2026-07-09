@@ -1,0 +1,110 @@
+---
+title: Accordion
+description: A stacked set of collapsible panels.
+---
+
+import AccordionDemo from "../../../../components/docs/AccordionDemo.vue";
+
+> **Nuxt UI Component:** This uses Nuxt UI's `UAccordion` component. Mizu provides a theme preset (`@mizu/vue/theme`) that applies Mizu's design tokens.
+
+An accordion displays a stacked set of collapsible panels, allowing users to show or hide content sections. Use it for FAQs, settings panels, and progressive disclosure. Mizu uses Nuxt UI's `UAccordion`.
+
+## Examples
+
+<AccordionDemo client:only="vue" />
+
+## API
+
+Reference: [Nuxt UI Accordion](https://ui.nuxt.com/docs/components/accordion)
+
+### Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `items` | `T[]` | — | Array of items to render as accordion panels |
+| `modelValue` | `string \| string[]` | — | Controlled active item(s). Use with `v-model` |
+| `defaultValue` | `string \| string[]` | — | Initial active item(s) when uncontrolled |
+| `type` | `'single' \| 'multiple'` | `'single'` | Whether one or multiple items can be open at a time |
+| `collapsible` | `boolean` | `true` | When `type="single"`, allows closing the open item |
+| `disabled` | `boolean` | `false` | Prevent user interaction with all items |
+| `unmountOnHide` | `boolean` | `true` | Unmount item content from DOM when closed |
+| `trailingIcon` | `string` | — | Custom icon for the trigger chevron |
+| `valueKey` | `string` | `'value'` | Key used to get the value from each item |
+| `labelKey` | `string` | `'label'` | Key used to get the label from each item |
+
+### Slots
+
+| Slot | Props | Description |
+|------|-------|-------------|
+| `default` | `{ item, index, open }` | Entire panel content for each item |
+| `leading` | `{ item, index, open }` | Icon or content before the trigger label |
+| `trailing` | `{ item, index, open }` | Content after the trigger label (replaces default chevron) |
+| `content` | `{ item, index, open }` | Content wrapper revealed when open |
+| `body` | `{ item, index, open }` | Body content inside the expanded panel |
+
+### Events
+
+| Event | Payload | Description |
+|-------|---------|-------------|
+| `update:modelValue` | `[value: string \| string[]]` | Emitted when active item(s) change |
+
+### Example Usage
+
+```vue
+<template>
+  <!-- Basic single accordion -->
+  <UAccordion :items="faqItems" />
+
+  <!-- Multiple panels open at once -->
+  <UAccordion type="multiple" :items="faqItems" />
+
+  <!-- Default open item -->
+  <UAccordion :items="faqItems" default-value="item-1" />
+
+  <!-- Prevent collapsing the open panel -->
+  <UAccordion :items="faqItems" :collapsible="false" />
+
+  <!-- Controlled with v-model -->
+  <UAccordion v-model="activeItems" type="multiple" :items="faqItems" />
+
+  <!-- Custom body content via slots -->
+  <UAccordion :items="faqItems">
+    <template #body="{ item }">
+      <p>{{ item.content }}</p>
+    </template>
+  </UAccordion>
+
+  <!-- Disabled state -->
+  <UAccordion :items="faqItems" disabled />
+</template>
+
+<script setup>
+const activeItems = ref(["item-1"]);
+const faqItems = [
+  { label: "Getting Started", content: "Learn the basics...", value: "item-1" },
+  { label: "Configuration", content: "Configure your app...", value: "item-2" },
+  { label: "Deployment", content: "Deploy to production...", value: "item-3" },
+];
+</script>
+```
+
+## Anatomy
+
+An accordion consists of multiple collapsible panels, each with up to 3 parts:
+
+| Part | Required | Description |
+|------|----------|-------------|
+| Trigger | Yes | The clickable header that toggles the panel |
+| Trailing icon | No | The chevron indicator on the right side |
+| Content | No | The expandable body revealed when open |
+
+The `items` prop drives the panels, and slots allow customizing the trigger, icon, and body content per item.
+
+## Implementation Notes
+
+1. **Use `<UAccordion>` directly** — No Mizu wrapper needed. Apply the theme preset.
+2. **`type` prop** — `single` ensures only one panel is open at a time; `multiple` allows independent toggling. The prop overrides the inferred type from `modelValue`/`defaultValue`.
+3. **`collapsible`** — When `true` (default), clicking an open panel closes it. When `false`, at least one panel stays open in single mode.
+4. **`unmountOnHide`** — Defaults to `true`. Set to `false` to keep content in the DOM when closed, preserving internal state.
+5. **Item-driven** — The `items` prop is the primary API. Each item needs at least a `label` and `value` (configurable via `labelKey`/`valueKey`).
+6. **Accessibility** — The accordion follows the WAI-ARIA accordion pattern with proper `role`, `aria-expanded`, and keyboard navigation support.

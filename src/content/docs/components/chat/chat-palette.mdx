@@ -1,0 +1,67 @@
+---
+title: ChatPalette
+description: A chat palette to create a chatbot interface inside an overlay.
+---
+
+import ChatPaletteDemo from "../../../../components/docs/ChatPaletteDemo.vue";
+
+> **Nuxt UI Component:** This uses Nuxt UI's `UChatPalette` component. Mizu provides a theme preset (`@mizu/vue/theme`) that applies consistent typography and spacing. See the [Theme](#theme) section for Mizu-specific defaults.
+
+ChatPalette provides a chat interface inside an overlay, combining a message area with a prompt input. Mizu uses Nuxt UI's `UChatPalette` for chatbot overlays, command-style chat, and AI assistant panels.
+
+## Examples
+
+<ChatPaletteDemo client:only="vue" />
+
+## API
+
+Reference: [Nuxt UI ChatPalette](https://ui.nuxt.com/docs/components/chat-palette)
+
+### Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `ui` | `SlotClass` | — | Slot class configuration for root, prompt, close, and content |
+| `as` | `string \| Component` | — | The element or component to render as |
+
+### Slots
+
+| Slot | Props | Description |
+|------|-------|-------------|
+| `default` | — | The chat message area content |
+| `prompt` | — | The input area at the bottom of the palette |
+
+### Example Usage
+
+```vue
+<UChatPalette>
+  <div class="flex flex-col gap-2">
+    <div class="self-start rounded-lg bg-surface-muted px-3 py-2 text-sm">
+      Hello! How can I help you today?
+    </div>
+  </div>
+  <template #prompt>
+    <div class="flex gap-2">
+      <UInput placeholder="Type a message..." class="flex-1" />
+      <UButton label="Send" size="sm" />
+    </div>
+  </template>
+</UChatPalette>
+```
+
+## Anatomy
+
+| Part | Required | Description |
+|------|----------|-------------|
+| Root | Yes | The overlay container with backdrop |
+| Content | Yes | Scrollable message display area |
+| Prompt | Yes | Fixed input area at the bottom |
+| Close | No | Optional close button for the overlay |
+
+## Implementation Notes
+
+1. **Use `<UChatPalette>` directly** — No Mizu wrapper needed.
+2. **Two-slot layout** — The `default` slot renders the message area, and the `prompt` slot renders the input area. Both are required for a functional chat interface.
+3. **Message rendering** — Messages are rendered entirely by the consumer. Use flexbox with `self-start`/`self-end` to align assistant and user messages.
+4. **Keyboard support** — Bind `@keyup.enter` to the input for keyboard-driven message submission.
+5. **UI customization** — Use the `ui` prop to customize slot classes for root, prompt, close button, and content area.

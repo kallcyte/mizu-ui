@@ -1,0 +1,92 @@
+---
+title: RadioGroup
+description: A set of radio buttons to select a single option from a list.
+---
+
+import RadioGroupDemo from "../../../../components/docs/RadioGroupDemo.vue";
+
+> **Nuxt UI Component:** This uses Nuxt UI's `URadioGroup` component. Mizu provides a theme preset (`@mizu/vue/theme`) for consistent styling. See the [Theme](#theme) section for Mizu-specific defaults.
+
+A radio group presents a set of mutually exclusive options. Mizu uses Nuxt UI's `URadioGroup` with support for list, card, and table variants.
+
+## Examples
+
+<RadioGroupDemo client:only="vue" />
+
+## API
+
+Reference: [Nuxt UI RadioGroup](https://ui.nuxt.com/docs/components/radio-group)
+
+### Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `legend` | `string` | — | Fieldset legend text |
+| `items` | `string[] \| RadioGroupItem[]` | — | Array of options |
+| `modelValue` | `string \| number` | — | v-model binding for the selected value |
+| `defaultValue` | `string \| number` | — | Initial value (uncontrolled) |
+| `valueKey` | `string` | `'value'` | Object property to use as the value |
+| `labelKey` | `string` | `'label'` | Object property to use as the label |
+| `descriptionKey` | `string` | `'description'` | Object property to use as the description |
+| `size` | `'xs' \| 'sm' \| 'md' \| 'lg' \| 'xl'` | `'md'` | Radio button size |
+| `variant` | `'card' \| 'list' \| 'table'` | — | Visual style of the group |
+| `color` | `'primary' \| 'secondary' \| 'success' \| 'info' \| 'warning' \| 'error' \| 'neutral'` | `'primary'` | Semantic color |
+| `orientation` | `'horizontal' \| 'vertical'` | `'vertical'` | Layout direction of radio items |
+| `indicator` | `'start' \| 'end' \| 'hidden'` | `'start'` | Position of the radio indicator |
+| `highlight` | `boolean` | `false` | Highlight the ring color like a focus state |
+| `disabled` | `boolean` | `false` | Disables all radio items |
+| `loop` | `boolean` | `false` | Keyboard navigation loops from last to first |
+| `name` | `string` | — | Field name for form submission |
+| `required` | `boolean` | `false` | Marks the field as required |
+
+### Slots
+
+| Slot | Props | Description |
+|------|-------|-------------|
+| `legend` | — | Custom legend content (overrides `legend` prop) |
+| `label` | — | Custom label for individual items |
+| `description` | — | Custom description for individual items |
+
+### Example Usage
+
+```vue
+<script setup lang="ts">
+const theme = ref("System");
+const themes = ["System", "Light", "Dark"];
+
+const plan = ref("startup");
+const plans = [
+  { label: "Pro", value: "pro", description: "For solo founders." },
+  { label: "Startup", value: "startup", description: "For small teams." },
+  { label: "Enterprise", value: "enterprise", description: "For organizations." },
+];
+</script>
+
+<template>
+  <URadioGroup v-model="theme" legend="Theme" :items="themes" />
+
+  <URadioGroup v-model="plan" variant="card" :items="plans" />
+</template>
+```
+
+## Anatomy
+
+A radio group consists of:
+
+| Part | Required | Description |
+|------|----------|-------------|
+| Fieldset | Yes | `<fieldset>` wrapper with accessibility semantics |
+| Legend | No | `<legend>` describing the group |
+| Item | Yes | Individual radio option (container + indicator + label) |
+| Indicator | Yes | The circular radio button |
+| Label | Yes | Text label for the option |
+| Description | No | Secondary text below the label (card/table variants) |
+
+## Implementation Notes
+
+1. **Use `<URadioGroup>` directly** — No Mizu wrapper needed. Apply the theme preset.
+2. **Items format** — Pass strings for simple options. Use `{ label, value, description }` objects for rich options with descriptions. Use the `valueKey` prop if your objects use a different property name.
+3. **Variant choice** — Use `variant="list"` for standard vertical lists, `variant="card"` for selectable cards with descriptions, and `variant="table"` for tabular layouts.
+4. **Orientation** — Set `orientation="horizontal"` to lay out radio items in a row. Combine with `variant="list"` for a compact inline group.
+5. **Disabling individual items** — Set `disabled: true` on an individual item object to disable only that option while keeping others interactive.
+6. **Form integration** — Wrap in `<UFormField>` with a `legend` for a label, or use inside `<UForm>` for automatic validation integration.

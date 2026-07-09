@@ -1,0 +1,95 @@
+---
+title: Marquee
+description: A component to create infinite scrolling content.
+---
+
+import MarqueeDemo from "../../../../components/docs/MarqueeDemo.vue";
+
+> **Nuxt UI Component:** This uses Nuxt UI's `UMarquee` component. Mizu provides a theme preset (`@mizu/vue/theme`) that applies its design tokens automatically. See Nuxt UI's [Marquee docs](https://ui.nuxt.com/docs/components/marquee) for full API details.
+
+A marquee creates an infinite scrolling animation for any content placed in its default slot. Use it for logo carousels, testimonials, announcement tickers, or any continuously scrolling content.
+
+## Examples
+
+<MarqueeDemo client:only="vue" />
+
+## API
+
+Reference: [Nuxt UI Marquee](https://ui.nuxt.com/docs/components/marquee)
+
+### Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `pauseOnHover` | `boolean` | `false` | Pause the animation when the user hovers over the content |
+| `reverse` | `boolean` | `false` | Reverse the scroll direction |
+| `orientation` | `'horizontal' \| 'vertical'` | `'horizontal'` | Scrolling direction |
+| `repeat` | `number` | `4` | Number of times the content should be repeated to fill the animation |
+| `overlay` | `boolean` | `true` | Display gradient overlays on the edges of the marquee |
+
+### Slots
+
+| Slot | Props | Description |
+|------|-------|-------------|
+| `default` | — | The content to be infinitely scrolled |
+
+### Example Usage
+
+```vue
+<template>
+  <!-- Basic icon marquee -->
+  <UMarquee>
+    <UIcon name="i-simple-icons-github" class="size-10 shrink-0" />
+    <UIcon name="i-simple-icons-discord" class="size-10 shrink-0" />
+    <UIcon name="i-simple-icons-figma" class="size-10 shrink-0" />
+    <UIcon name="i-simple-icons-vercel" class="size-10 shrink-0" />
+    <UIcon name="i-simple-icons-linear" class="size-10 shrink-0" />
+  </UMarquee>
+
+  <!-- Pause on hover -->
+  <UMarquee pause-on-hover>
+    <UIcon name="i-simple-icons-github" class="size-10 shrink-0" />
+    <UIcon name="i-simple-icons-discord" class="size-10 shrink-0" />
+    <!-- ... -->
+  </UMarquee>
+
+  <!-- Reverse direction -->
+  <UMarquee reverse>
+    <UIcon name="i-simple-icons-github" class="size-10 shrink-0" />
+    <!-- ... -->
+  </UMarquee>
+
+  <!-- Vertical scrolling -->
+  <UMarquee orientation="vertical" class="h-48">
+    <UIcon name="i-simple-icons-github" class="size-10 shrink-0" />
+    <!-- ... -->
+  </UMarquee>
+
+  <!-- Text ticker -->
+  <UMarquee pause-on-hover class="py-2">
+    <span class="text-sm font-medium whitespace-nowrap">New release available</span>
+    <UIcon name="i-ph-sparkle" class="size-4 shrink-0" />
+    <span class="text-sm font-medium whitespace-nowrap">Dark mode now supported</span>
+    <UIcon name="i-ph-sparkle" class="size-4 shrink-0" />
+  </UMarquee>
+</template>
+```
+
+## Anatomy
+
+A marquee consists of:
+
+| Part | Required | Description |
+|------|----------|-------------|
+| Root | Yes | The outer `<div>` wrapper with `overflow-hidden` |
+| Content | Yes | The flex container that holds the repeated content |
+| Overlay | No | Gradient masks on the edges (enabled by default) |
+
+## Implementation Notes
+
+1. **Use `<UMarquee>` directly** — No Mizu wrapper needed. Apply the theme preset via `app.config.ts`.
+2. **CSS animation** — The infinite scroll is powered by pure CSS animations for smooth, GPU-accelerated performance.
+3. **Vertical orientation** — Requires an explicit `height` on the marquee container via class or style.
+4. **Overlay** — Enabled by default with gradient masks. Disable with `:overlay="false"` for a clean edge-to-edge look.
+5. **Repeat** — Controls how many copies of the content are rendered to fill the animation loop. Increase for longer content or wider containers.
+6. **Content must be shrink-0** — Items inside the marquee should include `shrink-0` to prevent flex shrinking during the animation.
