@@ -51,7 +51,6 @@ export default defineConfig({
           label: "Getting Started",
           items: [
             { label: "Introduction", slug: "getting-started/introduction" },
-            { label: "Migration Guide", slug: "getting-started/migration" },
             { label: "Changelog", slug: "getting-started/changelog" },
           ],
         },
@@ -63,25 +62,104 @@ export default defineConfig({
           label: "Components",
           items: [
             {
+              label: "Element",
+              items: [
+                { label: "Alert", slug: "components/element/alert" },
+                { label: "Avatar", slug: "components/element/avatar" },
+                {
+                  label: "Avatar Group",
+                  slug: "components/element/avatar-group",
+                },
+                { label: "Badge", slug: "components/element/badge" },
+                { label: "Button", slug: "components/element/button" },
+                { label: "Card", slug: "components/element/card" },
+                {
+                  label: "Collapsible",
+                  slug: "components/element/collapsible",
+                },
+                { label: "Divider", slug: "components/element/divider" },
+                { label: "Kbd", slug: "components/element/kbd" },
+                { label: "Progress", slug: "components/element/progress" },
+                { label: "Skeleton", slug: "components/element/skeleton" },
+                { label: "Tag", slug: "components/element/tag" },
+              ],
+            },
+            {
+              label: "Form",
+              items: [
+                { label: "Checkbox", slug: "components/forms/checkbox" },
+                {
+                  label: "CheckboxGroup",
+                  slug: "components/forms/checkbox-group",
+                },
+                { label: "Combobox", slug: "components/forms/combobox" },
+                { label: "Form", slug: "components/forms/form" },
+                { label: "Input", slug: "components/forms/input" },
+                { label: "NumberField", slug: "components/forms/number-field" },
+                { label: "Radio", slug: "components/forms/radio" },
+                { label: "Select", slug: "components/forms/select" },
+                { label: "Slider", slug: "components/forms/slider" },
+                { label: "Switch", slug: "components/forms/switch" },
+                { label: "TagsInput", slug: "components/forms/tags-input" },
+                { label: "Textarea", slug: "components/forms/textarea" },
+                { label: "ToggleGroup", slug: "components/forms/toggle-group" },
+                {
+                  label: "Validation Patterns",
+                  slug: "components/forms/validation-patterns",
+                },
+              ],
+            },
+            {
               label: "Data",
               items: [
+                { label: "Accordion", slug: "components/data/accordion" },
                 { label: "DashList", slug: "components/data/dashlist" },
                 { label: "DataTable", slug: "components/data/data-table" },
+                { label: "Empty", slug: "components/data/empty" },
                 { label: "Metric", slug: "components/data/metric" },
                 { label: "Quote", slug: "components/data/quote" },
               ],
             },
             {
-              label: "Element",
+              label: "Overlay",
               items: [
-                { label: "Skeleton", slug: "components/element/skeleton" },
+                {
+                  label: "AlertDialog",
+                  slug: "components/overlay/alert-dialog",
+                },
+                { label: "Dialog", slug: "components/overlay/dialog" },
+                { label: "Drawer", slug: "components/overlay/drawer" },
+                {
+                  label: "DropdownMenu",
+                  slug: "components/overlay/dropdown-menu",
+                },
+                { label: "Popover", slug: "components/overlay/popover" },
+                { label: "Toast", slug: "components/overlay/toast" },
+                { label: "Tooltip", slug: "components/overlay/tooltip" },
               ],
             },
             {
-              label: "AlertDialog",
-              slug: "components/overlay/alert-dialog",
+              label: "Layout",
+              items: [
+                { label: "Breadcrumb", slug: "components/layout/breadcrumb" },
+                { label: "ScrollArea", slug: "components/layout/scroll-area" },
+                { label: "Tabs", slug: "components/layout/tabs" },
+              ],
+            },
+            {
+              label: "Navigation",
+              items: [
+                {
+                  label: "Pagination",
+                  slug: "components/navigation/pagination",
+                },
+              ],
             },
           ],
+        },
+        {
+          label: "Samples",
+          items: [{ label: "Login", slug: "samples/login" }],
         },
       ],
     }),

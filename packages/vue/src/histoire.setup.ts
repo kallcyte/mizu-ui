@@ -1,9 +1,10 @@
-import "./histoire.css";
+import "./index.css";
+import type { App } from "vue";
 
-export function setupVue3(_ctx: { app: unknown; story: unknown; variant: unknown }) {
-  // Nuxt UI vue-plugin not loaded here to avoid #imports resolution issues.
-  // Mizu components kept in the library use their own styles and do not depend
-  // on globally registered U* components at the story level.
+export function setupVue3({ app }: { app: App; story: any; variant: any }) {
+  // App-level setup for Vue 3
+  // Register global plugins or components here if needed
+  // e.g. app.use(SomePlugin)
 }
 
 export function setupVanilla() {

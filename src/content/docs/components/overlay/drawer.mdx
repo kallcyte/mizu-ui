@@ -1,0 +1,351 @@
+---
+title: Drawer
+description: Edge-mounted panel that slides in for navigation, filters, and bottom sheets.
+---
+
+import DrawerDemo from "../../../../components/docs/DrawerDemo.vue";
+
+A Drawer is a panel that slides in from the edge of the screen, built on the same Reka UI Dialog foundation as `MizuDialog`. It overlays the main content without fully blocking the page.
+
+## Examples
+
+<DrawerDemo client:only="vue" />
+
+## API
+
+### DrawerRoot Props
+
+| Prop          | Type      | Default     | Description                                               |
+| ------------- | --------- | ----------- | --------------------------------------------------------- |
+| `open`        | `boolean` | `undefined` | Controlled open state (v-model)                           |
+| `defaultOpen` | `boolean` | `false`     | Uncontrolled initial open state                           |
+| `modal`       | `boolean` | `true`      | When `true`, renders as modal with overlay and focus trap |
+
+### DrawerRoot Events
+
+| Event         | Payload   | Description                     |
+| ------------- | --------- | ------------------------------- |
+| `update:open` | `boolean` | Emitted when open state changes |
+
+### DrawerPortal Props
+
+| Prop         | Type                    | Default  | Description                    |
+| ------------ | ----------------------- | -------- | ------------------------------ |
+| `to`         | `string \| HTMLElement` | `"body"` | Target element for teleport    |
+| `disabled`   | `boolean`               | `false`  | Disable teleport rendering     |
+| `forceMount` | `boolean`               | `false`  | Always render even if not open |
+
+### DrawerOverlay Props
+
+| Prop         | Type      | Default     | Description                   |
+| ------------ | --------- | ----------- | ----------------------------- |
+| `forceMount` | `boolean` | `undefined` | Always mount overlay          |
+| `transition` | `boolean` | `true`      | Enable/disable fade animation |
+
+### DrawerContent Props
+
+| Prop          | Type                                     | Default     | Description                                                                 |
+| ------------- | ---------------------------------------- | ----------- | --------------------------------------------------------------------------- |
+| `side`        | `"left" \| "right" \| "top" \| "bottom"` | `"right"`   | Which edge the drawer slides from                                           |
+| `size`        | `"sm" \| "md" \| "lg" \| "xl" \| "full"` | `"md"`      | Width (left/right) or height (top/bottom)                                   |
+| `dismissible` | `boolean`                                | `true`      | When `false`, prevents close on click-outside/Escape and hides close button |
+| `transition`  | `boolean`                                | `true`      | Enable/disable slide animation                                              |
+| `forceMount`  | `boolean`                                | `undefined` | Always mount content                                                        |
+| `asChild`     | `boolean`                                | `undefined` | Merge props onto child element                                              |
+| `as`          | `string`                                 | `undefined` | Override the rendered element tag                                           |
+
+### DrawerContent Events
+
+| Event                | Payload         | Description                           |
+| -------------------- | --------------- | ------------------------------------- |
+| `escapeKeyDown`      | `KeyboardEvent` | Emitted on Escape key press           |
+| `pointerDownOutside` | `Event`         | Emitted on click outside              |
+| `focusOutside`       | `Event`         | Emitted when focus moves outside      |
+| `interactOutside`    | `Event`         | Emitted on any interaction outside    |
+| `openAutoFocus`      | `Event`         | Emitted when drawer auto-focuses      |
+| `closeAutoFocus`     | `Event`         | Emitted when focus returns to trigger |
+
+### DrawerHeader Props
+
+No props — renders a `<div>` with bottom border.
+
+### DrawerBody Props
+
+No props — renders a `<div>` with flex: 1 and overflow-y: auto.
+
+### DrawerFooter Props
+
+No props — renders a `<div>` with top border and right-aligned content.
+
+### DrawerTitle Props
+
+| Prop      | Type      | Default     | Description               |
+| --------- | --------- | ----------- | ------------------------- |
+| `asChild` | `boolean` | `undefined` | Merge props onto child    |
+| `as`      | `string`  | `undefined` | Override rendered element |
+
+### DrawerDescription Props
+
+| Prop      | Type      | Default     | Description               |
+| --------- | --------- | ----------- | ------------------------- |
+| `asChild` | `boolean` | `undefined` | Merge props onto child    |
+| `as`      | `string`  | `undefined` | Override rendered element |
+
+### DrawerClose Props
+
+| Prop      | Type      | Default     | Description               |
+| --------- | --------- | ----------- | ------------------------- |
+| `asChild` | `boolean` | `undefined` | Merge props onto child    |
+| `as`      | `string`  | `undefined` | Override rendered element |
+
+### DrawerTrigger Props
+
+| Prop      | Type      | Default     | Description               |
+| --------- | --------- | ----------- | ------------------------- |
+| `asChild` | `boolean` | `undefined` | Merge props onto child    |
+| `as`      | `string`  | `undefined` | Override rendered element |
+
+### Slots
+
+| Slot                          | Scope | Description                                   |
+| ----------------------------- | ----- | --------------------------------------------- |
+| `default` (DrawerRoot)        | —     | Compound mode: pass child components directly |
+| `default` (DrawerTrigger)     | —     | Trigger element content                       |
+| `default` (DrawerContent)     | —     | Header, body, footer, and close button        |
+| `default` (DrawerHeader)      | —     | Title and description                         |
+| `default` (DrawerBody)        | —     | Main content area                             |
+| `default` (DrawerFooter)      | —     | Action buttons                                |
+| `default` (DrawerTitle)       | —     | Title text                                    |
+| `default` (DrawerDescription) | —     | Description text                              |
+| `default` (DrawerClose)       | —     | Custom close icon (when `asChild` is used)    |
+
+### Example Usage
+
+```vue
+<script setup lang="ts">
+import { ref } from "vue";
+import {
+  MizuDrawerRoot,
+  MizuDrawerPortal,
+  MizuDrawerOverlay,
+  MizuDrawerContent,
+  MizuDrawerHeader,
+  MizuDrawerBody,
+  MizuDrawerFooter,
+  MizuDrawerTitle,
+  MizuDrawerDescription,
+  MizuDrawerClose,
+  MizuDrawerTrigger,
+  MizuButton,
+} from "@mizu/vue";
+
+const open = ref(false);
+</script>
+
+<template>
+  <MizuDrawerRoot v-model:open="open">
+    <MizuDrawerTrigger as-child>
+      <MizuButton variant="accent" size="md" class="w-max">Open Drawer</MizuButton>
+    </MizuDrawerTrigger>
+    <MizuDrawerPortal>
+      <MizuDrawerOverlay />
+      <MizuDrawerContent side="right" size="md">
+        <MizuDrawerClose />
+        <MizuDrawerHeader>
+          <MizuDrawerTitle>Settings</MizuDrawerTitle>
+          <MizuDrawerDescription>Manage your preferences.</MizuDrawerDescription>
+        </MizuDrawerHeader>
+        <MizuDrawerBody>
+          <p>Drawer content goes here.</p>
+        </MizuDrawerBody>
+        <MizuDrawerFooter>
+          <MizuButton variant="ghost" size="md" class="w-max" @click="open = false"
+            >Cancel</MizuButton
+          >
+          <MizuButton variant="accent" size="md" class="w-max" @click="open = false"
+            >Save</MizuButton
+          >
+        </MizuDrawerFooter>
+      </MizuDrawerContent>
+    </MizuDrawerPortal>
+  </MizuDrawerRoot>
+</template>
+```
+
+## Theme
+
+### CSS Custom Properties
+
+| Token                          | Default           | Description                   |
+| ------------------------------ | ----------------- | ----------------------------- |
+| `--color-surface-base`         | #FFFFFF / #0F1117 | Content background            |
+| `--color-surface-muted`        | #E2E8F0 / #2A2D3E | Header/footer border          |
+| `--color-surface-subtle`       | #F1F5F9 / #1E2030 | Close button hover            |
+| `--color-foreground-primary`   | #001C44 / #F1F5F9 | Title, body text, close hover |
+| `--color-foreground-secondary` | #4B5563 / #94A3B8 | Description, close default    |
+
+### Overlay
+
+| Token                | Value  | Usage              |
+| -------------------- | ------ | ------------------ |
+| `rgba(0, 0, 0, 0.5)` | inline | Overlay background |
+
+### Close Button
+
+| Token                          | Value                            | Usage              |
+| ------------------------------ | -------------------------------- | ------------------ |
+| `--color-foreground-secondary` | #4B5563 (light) / #94A3B8 (dark) | Default icon color |
+| `--color-surface-subtle`       | #F1F5F9 (light) / #1E2030 (dark) | Hover background   |
+| `--color-foreground-primary`   | #001C44 (light) / #F1F5F9 (dark) | Hover icon color   |
+
+### Sizing
+
+#### Side: Left / Right
+
+| Size   | Width         | Equivalent          |
+| ------ | ------------- | ------------------- |
+| `sm`   | 24rem (384px) | —                   |
+| `md`   | 28rem (448px) | Default             |
+| `lg`   | 32rem (512px) | —                   |
+| `xl`   | 36rem (576px) | —                   |
+| `full` | 100vw         | Full viewport width |
+
+#### Side: Top / Bottom
+
+| Size   | Height | Equivalent           |
+| ------ | ------ | -------------------- |
+| `sm`   | 30vh   | —                    |
+| `md`   | 50vh   | Default              |
+| `lg`   | 70vh   | —                    |
+| `xl`   | 85vh   | —                    |
+| `full` | 100vh  | Full viewport height |
+
+### Transitions
+
+| Property        | Duration             | Easing             |
+| --------------- | -------------------- | ------------------ |
+| Overlay opacity | 200ms in / 150ms out | ease-out / ease-in |
+| Content slide   | 200ms in / 150ms out | ease-out / ease-in |
+
+#### Animation Details
+
+Each side uses its own `@keyframes` animation:
+
+- **Right**: `translateX(100%)` → `translateX(0)`
+- **Left**: `translateX(-100%)` → `translateX(0)`
+- **Top**: `translateY(-100%)` → `translateY(0)`
+- **Bottom**: `translateY(100%)` → `translateY(0)`
+
+Set `:transition="false"` on `MizuDrawerContent` to disable animations.
+
+### Accessibility
+
+| Criterion        | Implementation                                                                        |
+| ---------------- | ------------------------------------------------------------------------------------- |
+| Focus trap       | Reka UI DialogContentModal traps focus within the drawer                              |
+| Body scroll lock | Reka UI disables background scrolling                                                 |
+| Escape key       | Closes drawer (unless `dismissible` is `false`)                                       |
+| Outside click    | Closes drawer (unless `dismissible` is `false`)                                       |
+| ARIA role        | Drawer content has `role="dialog"` and `aria-modal="true"`                            |
+| ARIA labelling   | `aria-labelledby` links to DrawerTitle; `aria-describedby` links to DrawerDescription |
+| Focus return     | Focus returns to the trigger when drawer closes                                       |
+
+#### ARIA Attributes
+
+```html
+<div role="dialog" aria-modal="true" aria-labelledby="drawer-title" aria-describedby="drawer-desc">
+  <h2 id="drawer-title">Navigation</h2>
+  <p id="drawer-desc">Browse sections and settings.</p>
+</div>
+```
+
+## Anatomy
+
+A drawer consists of up to 11 parts:
+
+| Part              | Required | Description                                                 |
+| ----------------- | -------- | ----------------------------------------------------------- |
+| DrawerRoot        | Yes      | Controls open state and modal behavior                      |
+| DrawerPortal      | Yes      | Teleports overlay and content to `body`                     |
+| DrawerOverlay     | Yes      | Semi-transparent backdrop behind the drawer                 |
+| DrawerContent     | Yes      | The slide-in panel, positioned at a screen edge             |
+| DrawerHeader      | Yes      | Header section with title, description, and a bottom border |
+| DrawerBody        | No       | Flexible content area, scrollable when content overflows    |
+| DrawerFooter      | No       | Action buttons container at the bottom, with a top border   |
+| DrawerTitle       | Yes      | Accessible heading for the drawer                           |
+| DrawerDescription | No       | Optional description, placed in the header                  |
+| DrawerClose       | No       | Close button (X icon), positioned top-right of the content  |
+| DrawerTrigger     | Yes      | Button or element that opens the drawer                     |
+
+## Composition
+
+`MizuDrawerClose` is positioned absolutely at the top-right of `MizuDrawerContent`. When `dismissible` is `false`, the close button is hidden.
+
+```
+MizuDrawerRoot
+  MizuDrawerTrigger
+  MizuDrawerPortal
+    MizuDrawerOverlay
+    MizuDrawerContent
+      MizuDrawerClose
+      MizuDrawerHeader
+        MizuDrawerTitle
+        MizuDrawerDescription
+      MizuDrawerBody
+        ... (content, navigation, forms)
+      MizuDrawerFooter
+        ... (action buttons)
+```
+
+### MizuDrawerRoot
+
+Wrapper around `DialogRoot`. Controls open state, modality, and the drawer side and size.
+
+### MizuDrawerPortal
+
+Teleports overlay and content to `document.body` by default.
+
+### MizuDrawerOverlay
+
+Semi-transparent backdrop (`rgba(0, 0, 0, 0.5)`) with a fade-in/out animation driven by `data-state`.
+
+### MizuDrawerContent
+
+The slide-in panel. Positioned at the screen edge specified by the `side` prop. Uses flexbox column layout for header-body-footer. Animates in and out with `translate` transitions.
+
+### MizuDrawerHeader
+
+Header section with title, description, and a bottom border separator. Padding is 16px.
+
+### MizuDrawerBody
+
+Flexible content area between header and footer. Scrolls vertically (`overflow-y: auto`) when content exceeds available space.
+
+### MizuDrawerFooter
+
+Action buttons container at the bottom. Right-aligned with 8px gap between buttons and a top border separator.
+
+### MizuDrawerTitle
+
+Renders as an `<h2>` by default. 18px semi-bold. Linked via `aria-labelledby`.
+
+### MizuDrawerDescription
+
+Renders as a `<p>` by default. 14px secondary text. Linked via `aria-describedby`.
+
+### MizuDrawerClose
+
+Close button with X icon. Positioned absolutely at top: 16px, right: 16px. Hidden when `dismissible` is `false`.
+
+### MizuDrawerTrigger
+
+Renders as a `<button>` by default. Sets `aria-haspopup="dialog"` and `aria-expanded`.
+
+## Implementation Notes
+
+1. **Built on Reka UI Dialog**: `MizuDrawer` reuses `DialogRoot`, `DialogPortal`, `DialogOverlay`, and `DialogContent` from Reka UI — the same foundation as `MizuDialog`.
+2. **CSS-only side and size**: Side positioning and size dimensions are driven entirely by CSS classes (`mizu-drawer__content--right`, `mizu-drawer__content--md`, etc.) — no JavaScript layout calculations.
+3. **Dismissible control**: The `dismissible` prop is injected from `MizuDrawerContent` into `MizuDrawerClose` via Vue's `provide/inject`. When `false`, the close button is hidden (`v-if`) and click-outside/Escape events are prevented.
+4. **Per-side animations**: Each side has dedicated `@keyframes` (e.g., `drawerInRight`, `drawerOutRight`) triggered by Reka UI's `data-state="open"` / `data-state="closed"` attributes.
+5. **No shorthand mode**: Unlike `MizuDialog`, the drawer does not support a shorthand API with `title`/`description` props. Always use the compound component API.
+6. **Header/body/footer layout**: Uses CSS flexbox with `flex: 1` on the body for automatic space distribution, matching the `MizuDialog` layout pattern.

@@ -16,51 +16,6 @@ This project follows **semantic versioning** (SemVer) during pre-1.0 development
 Changes that require a minor bump: adding a new component, renaming tokens, changing component APIs, adding new packages (e.g. React).
 Changes that keep the patch version: renames, copy edits, styling tweaks, build config changes, favicon updates.
 
-## 0.16.0 (2026-07-08)
-
-**Breaking change:** Migrated the base component library from Reka UI to Nuxt UI v4. All `Mizu*` component wrappers have been removed — consumers now use Nuxt UI's `<UComponent>` format directly, with Mizu providing the theme layer (colors, fonts, spacing, container width).
-
-### Breaking Changes
-
-- **All `Mizu*` wrappers removed** — ~148 components deleted. Use Nuxt UI equivalents:
-  - `MizuButton` → `UButton`, `MizuDialog` → `UModal`, `MizuCard` → `UCard`, `MizuInput` → `UInput`, etc.
-  - Refer to [Nuxt UI documentation](https://ui.nuxt.com) for the complete component API reference
-  - Most component docs pages have been removed — the remaining docs cover Mizu-specific additions only
-- **`@nuxt/ui` is now a peer dependency** — consumers must install `@nuxt/ui` v4 separately
-- **CSS entry point** — import `@mizu/vue/style.css` which bundles Mizu tokens + Nuxt UI theme
-- **`useToast` removed** — consumers use Nuxt UI's auto-imported `useToast` instead
-
-### Kept Components (14)
-
-- `MizuAlertDialog` (9 sub-components) — custom alert dialog based on Reka UI
-- `MizuDashList` — key-value data display
-- `MizuDataTable` — TanStack Table wrapper
-- `MizuMetric` — metric/stat display with color variants
-- `MizuQuote` — blockquote with default and accent variants
-- `MizuSkeletonTheme` — skeleton theme engine via `provide/inject`
-
-### Kept Composables
-
-- `useForm` — Zod-based form validation, independent of UI layer
-
-### Cleanup
-
-- Removed `@tailwindcss/vite` and `tailwindcss` from `@mizu/vue` devDependencies (Nuxt UI provides its own Tailwind integration)
-- Removed `@lucide/vue` and `reka-ui` from root dependencies
-- Deleted 32 stale component docs pages for removed components
-- Added `MizuSkeletonTheme` to documentation sidebar
-- Version bump to `0.16.0` (breaking change)
-
-### Internal Changes
-
-- `@nuxt/ui/vite` plugin handles Tailwind and auto-imports (`autoImport: true`, `router: false`)
-- `@nuxt/ui` externalized in Rollup build
-- Container width: `--ui-container: 1040px` (Mizu default, overrides Nuxt UI's 1280px)
-- Full color palette mapped via `@theme` to Nuxt UI's semantic color system
-- CSS: `@import "tailwindcss"` before `@import "@nuxt/ui"` for component `@reference` directives
-- 6 Histoire stories (22 variants) covering all kept components
-- pnpm patch applied to `@nuxt/ui` for Histoire SSR compatibility
-
 ## 0.15.7 (2026-07-07)
 
 Convenience API for ComboboxRoot: declarative items prop with auto-wired input, trigger, content, viewport, and grouped item rendering.

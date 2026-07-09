@@ -54,10 +54,12 @@ for (const file of tsFiles) {
   }
 }
 
-// Non-component exports (composables, types)
+// Non-component exports (composables) — appended at the end
+lines.push('export { useToast } from "./composables/useToast"');
+lines.push('export type { ToastItem, ToastContext } from "./composables/useToast";');
 lines.push('export { useForm } from "./composables/useMizuField";');
 lines.push('export type { FieldState, MizuFormResult } from "./composables/useMizuField";');
 lines.push("");
 
 writeFileSync(indexFile, lines.join("\n"));
-console.log(`Generated ${indexFile} — ${files.length} components, ${tsFiles.length} type files`);
+console.log(`Generated ${indexFile} — ${files.length} components`);

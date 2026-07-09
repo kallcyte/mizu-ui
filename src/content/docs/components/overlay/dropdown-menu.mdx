@@ -1,0 +1,330 @@
+---
+title: DropdownMenu
+description: Contextual menu triggered by a button or element.
+---
+
+import DropdownMenuDemo from "../../../../components/docs/DropdownMenuDemo.vue";
+
+A DropdownMenu displays a list of actions or options triggered by a button. It supports items with icons and shortcuts, labels, separators, checkboxes, radio groups, destructive actions, and nested submenus.
+
+## Examples
+
+<DropdownMenuDemo client:only="vue" />
+
+## API
+
+### DropdownMenuRoot Props
+
+| Prop          | Type      | Default     | Description           |
+| ------------- | --------- | ----------- | --------------------- |
+| `open`        | `boolean` | `undefined` | Controlled open state |
+| `defaultOpen` | `boolean` | `false`     | Default open state    |
+| `modal`       | `boolean` | `true`      | Whether menu is modal |
+
+### DropdownMenuRoot Events
+
+| Event         | Payload   | Description                     |
+| ------------- | --------- | ------------------------------- |
+| `update:open` | `boolean` | Emitted when open state changes |
+
+### DropdownMenuTrigger Props
+
+| Prop      | Type      | Default     | Description                   |
+| --------- | --------- | ----------- | ----------------------------- |
+| `asChild` | `boolean` | `undefined` | Merge with child element      |
+| `as`      | `string`  | `undefined` | Render as a different element |
+
+### DropdownMenuContent Props
+
+| Prop               | Type                                     | Default     | Description                        |
+| ------------------ | ---------------------------------------- | ----------- | ---------------------------------- |
+| `side`             | `"top" \| "right" \| "bottom" \| "left"` | `"bottom"`  | Preferred content side             |
+| `sideOffset`       | `number`                                 | `4`         | Offset from trigger                |
+| `align`            | `"start" \| "center" \| "end"`           | `"start"`   | Alignment relative to trigger      |
+| `alignOffset`      | `number`                                 | `0`         | Offset from alignment edge         |
+| `avoidCollisions`  | `boolean`                                | `true`      | Prevent viewport overflow          |
+| `collisionPadding` | `number`                                 | `8`         | Padding from viewport edge         |
+| `sticky`           | `"partial" \| "always"`                  | `"partial"` | Stick to preferred side            |
+| `hideWhenDetached` | `boolean`                                | `false`     | Hide when trigger is scrolled away |
+
+### DropdownMenuContent Events
+
+| Event                | Payload         | Description                 |
+| -------------------- | --------------- | --------------------------- |
+| `escapeKeyDown`      | `KeyboardEvent` | Escape key pressed          |
+| `pointerDownOutside` | `unknown`       | Click outside content       |
+| `focusOutside`       | `unknown`       | Focus outside content       |
+| `interactOutside`    | `unknown`       | Interaction outside content |
+| `openAutoFocus`      | `unknown`       | Auto-focus on open          |
+| `closeAutoFocus`     | `unknown`       | Auto-focus on close         |
+
+### DropdownMenuItem Props
+
+| Prop       | Type                         | Default     | Description      |
+| ---------- | ---------------------------- | ----------- | ---------------- |
+| `disabled` | `boolean`                    | `false`     | Disable the item |
+| `variant`  | `"default" \| "destructive"` | `"default"` | Visual variant   |
+
+### DropdownMenuItem Events
+
+| Event    | Payload | Description                |
+| -------- | ------- | -------------------------- |
+| `select` | `Event` | Emitted on item activation |
+
+### DropdownMenuCheckboxItem Props
+
+| Prop         | Type      | Default     | Description              |
+| ------------ | --------- | ----------- | ------------------------ |
+| `modelValue` | `boolean` | `undefined` | Controlled checked state |
+| `checked`    | `boolean` | `undefined` | Alias for `modelValue`   |
+| `disabled`   | `boolean` | `false`     | Disable the item         |
+
+### DropdownMenuCheckboxItem Events
+
+| Event               | Payload   | Description                          |
+| ------------------- | --------- | ------------------------------------ |
+| `update:modelValue` | `boolean` | Emitted when checked changes         |
+| `update:checked`    | `boolean` | Emitted when checked changes (alias) |
+
+### DropdownMenuRadioGroup Props
+
+| Prop         | Type              | Default     | Description      |
+| ------------ | ----------------- | ----------- | ---------------- |
+| `modelValue` | `AcceptableValue` | `undefined` | Controlled value |
+
+### DropdownMenuRadioGroup Events
+
+| Event               | Payload           | Description             |
+| ------------------- | ----------------- | ----------------------- |
+| `update:modelValue` | `AcceptableValue` | Emitted on value change |
+
+### DropdownMenuRadioItem Props
+
+| Prop       | Type      | Default | Description             |
+| ---------- | --------- | ------- | ----------------------- |
+| `value`    | `string`  | —       | Unique value (required) |
+| `disabled` | `boolean` | `false` | Disable the item        |
+
+### DropdownMenuShortcut Props
+
+| Prop      | Type      | Default     | Description                   |
+| --------- | --------- | ----------- | ----------------------------- |
+| `asChild` | `boolean` | `undefined` | Merge with child element      |
+| `as`      | `string`  | `undefined` | Render as a different element |
+
+### DropdownMenuSub Props
+
+| Prop          | Type      | Default     | Description           |
+| ------------- | --------- | ----------- | --------------------- |
+| `open`        | `boolean` | `undefined` | Controlled open state |
+| `defaultOpen` | `boolean` | `false`     | Default open state    |
+
+### DropdownMenuSub Events
+
+| Event         | Payload   | Description                     |
+| ------------- | --------- | ------------------------------- |
+| `update:open` | `boolean` | Emitted when open state changes |
+
+### Example Usage
+
+```vue
+<script setup lang="ts">
+import { ref } from "vue";
+import { Check, User, CreditCard, Settings, Trash2 } from "@lucide/vue";
+import {
+  MizuDropdownMenuRoot,
+  MizuDropdownMenuTrigger,
+  MizuDropdownMenuPortal,
+  MizuDropdownMenuContent,
+  MizuDropdownMenuItem,
+  MizuDropdownMenuGroup,
+  MizuDropdownMenuLabel,
+  MizuDropdownMenuCheckboxItem,
+  MizuDropdownMenuItemIndicator,
+  MizuDropdownMenuRadioGroup,
+  MizuDropdownMenuRadioItem,
+  MizuDropdownMenuSeparator,
+  MizuDropdownMenuShortcut,
+  MizuButton,
+} from "@mizu/vue";
+
+const bookmarks = ref(true);
+const format = ref("json");
+</script>
+
+<template>
+  <MizuDropdownMenuRoot>
+    <MizuDropdownMenuTrigger as-child>
+      <MizuButton variant="outline" size="md">Open</MizuButton>
+    </MizuDropdownMenuTrigger>
+    <MizuDropdownMenuPortal>
+      <MizuDropdownMenuContent>
+        <MizuDropdownMenuLabel>My Account</MizuDropdownMenuLabel>
+        <MizuDropdownMenuSeparator />
+        <MizuDropdownMenuItem @select="() => console.log('profile')">
+          <User :size="16" />
+          Profile
+          <MizuDropdownMenuShortcut>⇧⌘P</MizuDropdownMenuShortcut>
+        </MizuDropdownMenuItem>
+        <MizuDropdownMenuItem @select="() => console.log('billing')">
+          <CreditCard :size="16" />
+          Billing
+        </MizuDropdownMenuItem>
+        <MizuDropdownMenuItem @select="() => console.log('settings')">
+          <Settings :size="16" />
+          Settings
+        </MizuDropdownMenuItem>
+        <MizuDropdownMenuSeparator />
+        <MizuDropdownMenuCheckboxItem v-model="bookmarks">
+          <MizuDropdownMenuItemIndicator>
+            <Check :size="14" />
+          </MizuDropdownMenuItemIndicator>
+          Include Bookmarks
+        </MizuDropdownMenuCheckboxItem>
+        <MizuDropdownMenuSeparator />
+        <MizuDropdownMenuRadioGroup v-model="format">
+          <MizuDropdownMenuRadioItem value="json">
+            <MizuDropdownMenuItemIndicator>
+              <Check :size="14" />
+            </MizuDropdownMenuItemIndicator>
+            JSON
+          </MizuDropdownMenuRadioItem>
+          <MizuDropdownMenuRadioItem value="csv">
+            <MizuDropdownMenuItemIndicator>
+              <Check :size="14" />
+            </MizuDropdownMenuItemIndicator>
+            CSV
+          </MizuDropdownMenuRadioItem>
+        </MizuDropdownMenuRadioGroup>
+        <MizuDropdownMenuSeparator />
+        <MizuDropdownMenuItem @select="() => console.log('delete')" variant="destructive">
+          <Trash2 :size="16" />
+          Delete
+          <MizuDropdownMenuShortcut>⌘⌫</MizuDropdownMenuShortcut>
+        </MizuDropdownMenuItem>
+      </MizuDropdownMenuContent>
+    </MizuDropdownMenuPortal>
+  </MizuDropdownMenuRoot>
+</template>
+```
+
+## Theme
+
+### CSS Custom Properties
+
+| Token                           | Default           | Description              |
+| ------------------------------- | ----------------- | ------------------------ |
+| `--color-surface-base`          | #FFFFFF / #0F1117 | Content panel background |
+| `--color-surface-hover`         | #F4F5F7 / #1D1F28 | Item highlighted state   |
+| `--color-surface-muted`         | #F3F4F6 / #1E2030 | Separator line           |
+| `--color-foreground-primary`    | #001C44 / #EDEDED | Default text color       |
+| `--color-foreground-secondary`  | #4A5568 / #A0AEC0 | Secondary text           |
+| `--color-foreground-tertiary`   | #696D7D / #9DA0AD | Label text               |
+| `--color-foreground-disabled`   | #8B8FA3 / #5C5F6E | Disabled text            |
+| `--color-feedback-error-base`   | #DC3545 / #F87171 | Destructive text         |
+| `--color-feedback-error-subtle` | #FFF1F2 / #2D1B1E | Destructive highlight    |
+
+### Destructive Variant
+
+| Token                           | Value                            | Usage                              |
+| ------------------------------- | -------------------------------- | ---------------------------------- |
+| `--color-feedback-error-base`   | #DC3545 (light) / #F87171 (dark) | Destructive text color             |
+| `--color-feedback-error-subtle` | #FFF1F2 (light) / #2D1B1E (dark) | Destructive highlighted background |
+
+### Sizing
+
+| Property              | Value |
+| --------------------- | ----- |
+| Content border-radius | `8px` |
+| Item border-radius    | `6px` |
+| Separator height      | `1px` |
+
+### Transitions
+
+| Property                | Duration | Easing   |
+| ----------------------- | -------- | -------- |
+| Content open animation  | 150ms    | ease-out |
+| Content close animation | 100ms    | ease-in  |
+
+### Accessibility
+
+| Criterion                                                                            | Implementation                                              |
+| ------------------------------------------------------------------------------------ | ----------------------------------------------------------- |
+| [Menu Button WAI-ARIA pattern](https://www.w3.org/WAI/ARIA/apg/patterns/menu-button) | Reka UI manages focus and keyboard navigation automatically |
+| Roving tabindex                                                                      | Arrow keys navigate between items                           |
+| `role="menu"`                                                                        | Applied to content by Reka UI                               |
+
+#### Keyboard Interactions
+
+| Key                    | Description                                               |
+| ---------------------- | --------------------------------------------------------- |
+| Enter / Space          | Opens menu and focuses first item; activates focused item |
+| ArrowDown              | Opens menu on trigger; moves focus to next item           |
+| ArrowUp                | Moves focus to previous item                              |
+| ArrowRight / ArrowLeft | Opens/closes submenu                                      |
+| Esc                    | Closes menu and refocuses trigger                         |
+
+## Anatomy
+
+A DropdownMenu consists of 17 parts:
+
+| Part                      | Required | Description                                       |
+| ------------------------- | -------- | ------------------------------------------------- |
+| DropdownMenuRoot          | Yes      | Controls open state and modal behavior            |
+| DropdownMenuTrigger       | Yes      | Button that toggles the menu                      |
+| DropdownMenuPortal        | No       | Teleports content to `body` (default)             |
+| DropdownMenuContent       | Yes      | The pop-out menu panel                            |
+| DropdownMenuArrow         | No       | Optional arrow pointing to the trigger            |
+| DropdownMenuItem          | No       | A menu item with select event                     |
+| DropdownMenuGroup         | No       | Groups multiple items together                    |
+| DropdownMenuLabel         | No       | Non-focusable section label                       |
+| DropdownMenuCheckboxItem  | No       | Item that can be toggled                          |
+| DropdownMenuRadioGroup    | No       | Groups radio items                                |
+| DropdownMenuRadioItem     | No       | Item with single-select                           |
+| DropdownMenuItemIndicator | No       | Renders when parent item is checked               |
+| DropdownMenuSeparator     | No       | Visual divider between items                      |
+| DropdownMenuShortcut      | No       | Keyboard shortcut hint                            |
+| DropdownMenuSub           | No       | Nested submenu container                          |
+| DropdownMenuSubTrigger    | No       | Item that opens a submenu (includes chevron icon) |
+| DropdownMenuSubContent    | No       | The submenu pop-out panel                         |
+
+## Composition
+
+```
+MizuDropdownMenuRoot
+  MizuDropdownMenuTrigger
+  MizuDropdownMenuPortal
+    MizuDropdownMenuContent
+      MizuDropdownMenuArrow (optional)
+      MizuDropdownMenuLabel (optional)
+      MizuDropdownMenuItem
+        MizuDropdownMenuShortcut (optional)
+      MizuDropdownMenuCheckboxItem
+        MizuDropdownMenuItemIndicator
+      MizuDropdownMenuSeparator (optional)
+      MizuDropdownMenuRadioGroup
+        MizuDropdownMenuRadioItem
+          MizuDropdownMenuItemIndicator
+      MizuDropdownMenuSub
+        MizuDropdownMenuSubTrigger
+        MizuDropdownMenuPortal
+          MizuDropdownMenuSubContent
+            MizuDropdownMenuItem
+```
+
+## Implementation Notes
+
+1. Each `MizuDropdownMenu*` component is a thin wrapper around the corresponding Reka UI `DropdownMenu*` primitive.
+2. CSS follows the Mizu convention of `mizu-dropdown-menu__*` BEM classes applied via computed property, appending user `class` from `useAttrs()`.
+3. Components with positioning (Content, SubContent) accept `side`, `sideOffset`, `align`, `alignOffset`, `avoidCollisions`, `collisionPadding`, and `sticky` props.
+4. `MizuDropdownMenuContent` includes open/close animations driven by `data-state` and `data-side` attributes.
+5. `MizuDropdownMenuPortal` teleports content to `body` by default. Wrap Content in Portal to escape parent stacking contexts.
+6. Submenus require their own `MizuDropdownMenuPortal` + `MizuDropdownMenuSubContent` inside `MizuDropdownMenuSub`.
+7. `MizuDropdownMenuSubTrigger` includes a built-in chevron-right SVG icon.
+8. Use `as-child` on Trigger to merge behavior into an existing element (e.g., `MizuButton`).
+9. Checkbox and Radio items must be wrapped in `MizuDropdownMenuItemIndicator` to show the checked indicator.
+10. `MizuDropdownMenuLabel` is not focusable via arrow keys — use it as a section header only.
+11. Use `variant="destructive"` on `MizuDropdownMenuItem` for dangerous actions like delete.
+12. `MizuDropdownMenuShortcut` displays keyboard shortcut hints aligned to the right of the item.
+13. The `@select` event on `MizuDropdownMenuItem` fires on click or keyboard activation.
+14. `MizuDropdownMenuCheckboxItem` accepts both `modelValue` and `checked` props, emitting both `update:modelValue` and `update:checked` events.

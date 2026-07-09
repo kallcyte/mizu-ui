@@ -1,0 +1,88 @@
+---
+title: Textarea
+description: A multi-line text input for longer-form content.
+---
+
+import TextareaDemo from "../../../../components/docs/TextareaDemo.vue";
+
+A textarea is a multi-line text input for collecting longer-form content. Use it for messages, descriptions, biographies, and other free-text input.
+
+## Examples
+
+<TextareaDemo client:only="vue" />
+
+## API
+
+### Props
+
+| Prop          | Type                   | Default     | Description                     |
+| ------------- | ---------------------- | ----------- | ------------------------------- |
+| `modelValue`  | `string`               | `''`        | v-model value                   |
+| `placeholder` | `string`               | `''`        | Placeholder hint text           |
+| `disabled`    | `boolean`              | `false`     | Disables the textarea           |
+| `error`       | `boolean`              | `false`     | Shows error state               |
+| `size`        | `'sm' \| 'md' \| 'lg'` | `'md'`      | Controls typography and spacing |
+| `name`        | `string`               | `undefined` | Form field name                 |
+| `required`    | `boolean`              | `false`     | Required form validation        |
+| `label`       | `string`               | `undefined` | Visible label text              |
+| `helperText`  | `string`               | `undefined` | Helper or error message text    |
+| `rows`        | `number`               | `3`         | Number of visible text rows     |
+
+### Events
+
+| Event               | Payload      | Description                         |
+| ------------------- | ------------ | ----------------------------------- |
+| `update:modelValue` | `string`     | Emitted on input with current value |
+| `focus`             | `FocusEvent` | Emitted on focus                    |
+| `blur`              | `FocusEvent` | Emitted on blur                     |
+
+## Theme
+
+### CSS Custom Properties
+
+| Token                          | Value             | Usage                          |
+| ------------------------------ | ----------------- | ------------------------------ |
+| `--color-surface-muted`        | #F3F4F6 / #1E2030 | Border and disabled background |
+| `--color-surface-base`         | #FFFFFF / #0D0E12 | Input background               |
+| `--color-foreground-primary`   | #1B1B1D / #F9FAFB | Text color                     |
+| `--color-foreground-tertiary`  | #9CA3AF           | Placeholder text               |
+| `--color-brand-ycp`            | #001C44           | Focus border and shadow        |
+| `--color-feedback-error-base`  | #DC2626           | Error state border             |
+| `--color-foreground-secondary` | #4B5563           | Helper text                    |
+
+### Sizing
+
+| Size | Padding (top/bottom) | Padding (left/right) | Border Radius |
+| ---- | -------------------- | -------------------- | ------------- |
+| SM   | 6px                  | 8px                  | 4px           |
+| MD   | 8px                  | 10px                 | 6px           |
+| LG   | 10px                 | 12px                 | 6px           |
+
+### Accessibility
+
+| Criterion | Implementation                                             |
+| --------- | ---------------------------------------------------------- |
+| Role      | Native `<textarea>` element                                |
+| Label     | `<label>` with `for`/`id` association                      |
+| Required  | `aria-required` + visible `*` indicator                    |
+| Error     | `aria-invalid` + `aria-describedby` linking to helper text |
+| Disabled  | `aria-disabled` attribute                                  |
+
+## Anatomy
+
+A textarea consists of up to four parts:
+
+| Part               | Required | Description                                         |
+| ------------------ | -------- | --------------------------------------------------- |
+| Label              | No       | Descriptive text above the textarea                 |
+| Textarea           | Yes      | The native `<textarea>` element                     |
+| Helper text        | No       | Contextual help or error message below the textarea |
+| Required indicator | No       | Asterisk `*` on the label when required             |
+
+## Implementation Notes
+
+1. **Native element** -- Uses the native `<textarea>` HTML element; no Reka UI primitive needed.
+2. **Resizable** -- `resize-y` is enabled for vertical resizing.
+3. **Size matching** -- Sizes match MizuInput for consistent forms.
+4. **Class inheritance** -- Accepts `class` prop via `useAttrs()` for Tailwind overrides.
+5. **Tree-shakeable** -- Exported as ESM + CJS via Vite library mode.

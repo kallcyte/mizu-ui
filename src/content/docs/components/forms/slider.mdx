@@ -1,0 +1,132 @@
+---
+title: Slider
+description: Numeric range input for selecting a value or range within a bounded interval.
+---
+
+import SliderDemo from "../../../../components/docs/SliderDemo.vue";
+
+A Slider lets users pick a numeric value or range by dragging a thumb along a track. Use it for bounded inputs like volume, price range, or opacity.
+
+## Examples
+
+<SliderDemo client:only="vue" />
+
+## API
+
+### SliderRoot Props
+
+| Prop           | Type                         | Default        | Description                                            |
+| -------------- | ---------------------------- | -------------- | ------------------------------------------------------ |
+| `modelValue`   | `number \| number[]`         | `undefined`    | Controlled value (single number or `[min, max]` range) |
+| `defaultValue` | `number \| number[]`         | `undefined`    | Default uncontrolled value                             |
+| `min`          | `number`                     | `0`            | Minimum allowed value                                  |
+| `max`          | `number`                     | `100`          | Maximum allowed value                                  |
+| `step`         | `number`                     | `1`            | Step increment                                         |
+| `orientation`  | `"horizontal" \| "vertical"` | `"horizontal"` | Slider orientation                                     |
+| `disabled`     | `boolean`                    | `false`        | Disable the slider                                     |
+| `size`         | `"sm" \| "md" \| "lg"`       | `"md"`         | Controls track height and thumb size                   |
+| `inverted`     | `boolean`                    | `false`        | Invert the value direction                             |
+| `dir`          | `"ltr" \| "rtl"`             | `undefined`    | Reading direction                                      |
+
+### SliderRoot Events
+
+| Event               | Payload              | Description                |
+| ------------------- | -------------------- | -------------------------- |
+| `update:modelValue` | `number \| number[]` | Emitted when value changes |
+
+### SliderTrack Props
+
+| Prop      | Type      | Default     | Description                    |
+| --------- | --------- | ----------- | ------------------------------ |
+| `as`      | `string`  | `undefined` | Custom element for the track   |
+| `asChild` | `boolean` | `undefined` | Merge props onto child element |
+
+### SliderRange Props
+
+| Prop      | Type      | Default     | Description                    |
+| --------- | --------- | ----------- | ------------------------------ |
+| `as`      | `string`  | `undefined` | Custom element for the range   |
+| `asChild` | `boolean` | `undefined` | Merge props onto child element |
+
+### SliderThumb Props
+
+| Prop      | Type      | Default     | Description                    |
+| --------- | --------- | ----------- | ------------------------------ |
+| `as`      | `string`  | `undefined` | Custom element for the thumb   |
+| `asChild` | `boolean` | `undefined` | Merge props onto child element |
+
+## Theme
+
+### CSS Custom Properties
+
+| Token                         | Value             | Usage                                    |
+| ----------------------------- | ----------------- | ---------------------------------------- |
+| `--color-surface-muted`       | #F3F4F6 / #1E2030 | Track background                         |
+| `--color-brand-ycp`           | #305EF0 / #5C7BFF | Range fill, thumb fill, hover/focus ring |
+| `--color-surface-base`        | #FFFFFF / #0F111D | Thumb border                             |
+| `--color-foreground-tertiary` | #696D7D / #9DA0AD | Disabled thumb fill                      |
+
+### Sizing
+
+| Size | Track Height | Thumb Size |
+| ---- | ------------ | ---------- |
+| `sm` | 4px          | 14px       |
+| `md` | 6px          | 18px       |
+| `lg` | 8px          | 22px       |
+
+All sizes use `border-radius: 9999px` (fully rounded) for both track and thumb.
+
+### Transitions
+
+| Property                   | Duration | Easing      |
+| -------------------------- | -------- | ----------- |
+| Thumb shadow (hover/focus) | 200ms    | ease-in-out |
+
+### Focus Ring
+
+On `:focus-visible`, the thumb displays a `0 0 0 4px color-mix(in srgb, var(--color-brand-ycp) 25%, transparent)` box-shadow ring. The same ring appears on `:hover`.
+
+### Accessibility
+
+| Criterion                                                                              | Implementation                                                                                                                              |
+| -------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
+| [Slider WAI-ARIA pattern](https://www.w3.org/WAI/ARIA/apg/patterns/slider-multithumb/) | Reka UI manages `role="slider"`, `aria-valuemin`, `aria-valuemax`, `aria-valuenow`, `aria-orientation`, `tabindex`, and keyboard navigation |
+| Keyboard navigation                                                                    | Arrow keys or Up/Down adjust value by step. Home/End jump to min/max                                                                        |
+| Touch-friendly                                                                         | Container has `touch-action: none` to prevent scroll interference on touch devices                                                          |
+| Disabled state                                                                         | `aria-disabled="true"` when disabled; thumb also uses `data-disabled` attribute                                                             |
+
+## Anatomy
+
+A MizuSlider consists of 4 parts:
+
+| Part        | Required | Description                                                    |
+| ----------- | -------- | -------------------------------------------------------------- |
+| SliderRoot  | Yes      | Container that manages the value state                         |
+| SliderTrack | Yes      | The horizontal or vertical track that defines the drag range   |
+| SliderRange | No       | Filled portion of the track representing the selected interval |
+| SliderThumb | Yes      | Draggable handle that users interact with                      |
+
+## Composition
+
+```
+MizuSliderRoot (modelValue, min, max, step, orientation, size, disabled)
+  MizuSliderTrack
+    MizuSliderRange
+  MizuSliderThumb
+  MizuSliderThumb  (optional, for range slider)
+```
+
+For a range slider, add a second `MizuSliderThumb`. The component treats a single number as a single-thumb slider and a two-element array as a range slider.
+
+## Implementation Notes
+
+1. Each `MizuSlider*` component is a thin wrapper around the corresponding Reka UI `Slider*` primitive.
+2. CSS follows the Mizu convention of `mizu-slider__*` BEM classes applied via computed property.
+3. The `modelValue` prop accepts `number | number[]` for user convenience and converts to/from Reka UI's `number[]` representation internally. A single number is treated as a single-thumb slider; a two-element array is treated as a range slider.
+4. Size variations are driven by `mizu-slider--sm` / `mizu-slider--md` / `mizu-slider--lg` classes on the Root, with descendant selectors targeting `mizu-slider__track` and `mizu-slider__thumb`.
+5. Orientation is driven by `mizu-slider--horizontal` / `mizu-slider--vertical` classes on the Root, with descendant selectors adjusting track direction and container dimensions.
+6. The container (`mizu-slider`) is a flex row in horizontal mode and flex column in vertical mode with `touch-action: none` to prevent scroll interference.
+7. Thumb hover and focus-visible share the same 4px box-shadow ring using `color-mix(in srgb, var(--color-brand-ycp) 25%, transparent)`.
+8. Disabled state applies `opacity: 0.5`, `cursor: not-allowed`, and `pointer-events: none` to the Root, with the thumb fill switching to `--color-foreground-tertiary`.
+9. All sub-component props (`SliderRangeProps`, `SliderTrackProps`, `SliderThumbProps`) are exported and tree-shakeable.
+10. Track height and thumb size are controlled by the `size` prop on Root — there are no independent size controls on sub-components.

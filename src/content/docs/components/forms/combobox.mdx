@@ -1,0 +1,134 @@
+---
+title: Combobox
+description: Searchable list input with text filtering and single/multi selection.
+---
+
+import ComboboxDemo from "../../../../components/docs/ComboboxDemo.vue";
+
+A Combobox combines a text input with a dropdown list, letting users filter and select from a set of options. It supports single and multiple selection, groups, labels, and custom filtering.
+
+## Examples
+
+<ComboboxDemo client:only="vue" />
+
+## API
+
+### ComboboxRoot Props
+
+| Prop           | Type                                   | Default     | Description                |
+| -------------- | -------------------------------------- | ----------- | -------------------------- |
+| `modelValue`   | `AcceptableValue \| AcceptableValue[]` | `undefined` | Selected value(s)          |
+| `multiple`     | `boolean`                              | `false`     | Enable multi-select        |
+| `open`         | `boolean`                              | `undefined` | Controlled open state      |
+| `disabled`     | `boolean`                              | `false`     | Disable the combobox       |
+| `ignoreFilter` | `boolean`                              | `false`     | Disable built-in filtering |
+
+### ComboboxRoot Events
+
+| Event               | Payload                                             | Description                     |
+| ------------------- | --------------------------------------------------- | ------------------------------- |
+| `update:modelValue` | `AcceptableValue \| AcceptableValue[] \| undefined` | Emitted on selection change     |
+| `update:open`       | `boolean`                                           | Emitted when open state changes |
+
+### ComboboxInput Props
+
+| Prop           | Type                        | Default     | Description                                        |
+| -------------- | --------------------------- | ----------- | -------------------------------------------------- |
+| `size`         | `"sm" \| "md" \| "lg"`      | `"md"`      | Input font-size and padding (matches Input sizing) |
+| `displayValue` | `(item: unknown) => string` | `undefined` | Maps value to display text                         |
+| `placeholder`  | `string`                    | `undefined` | Input placeholder                                  |
+| `modelValue`   | `string`                    | `undefined` | Search term                                        |
+
+### ComboboxAnchor Props
+
+| Prop         | Type                   | Default     | Description                                            |
+| ------------ | ---------------------- | ----------- | ------------------------------------------------------ |
+| `size`       | `"sm" \| "md" \| "lg"` | `"md"`      | Anchor height and border-radius (matches Input sizing) |
+| `error`      | `boolean`              | `false`     | Show error state (red border and focus ring)           |
+| `disabled`   | `boolean`              | `false`     | Disabled state (muted background)                      |
+| `helperText` | `string`               | `undefined` | Helper text displayed below the anchor                 |
+
+### ComboboxItem Props
+
+| Prop       | Type              | Default | Description           |
+| ---------- | ----------------- | ------- | --------------------- |
+| `value`    | `AcceptableValue` | —       | Item value (required) |
+| `disabled` | `boolean`         | `false` | Disable the item      |
+
+### ComboboxItem Events
+
+| Event    | Payload | Description               |
+| -------- | ------- | ------------------------- |
+| `select` | `Event` | Emitted on item selection |
+
+### ComboboxContent Props
+
+| Prop         | Type                                     | Default    | Description                  |
+| ------------ | ---------------------------------------- | ---------- | ---------------------------- |
+| `position`   | `"popper" \| "inline"`                   | `"inline"` | Positioning mode             |
+| `side`       | `"top" \| "bottom" \| "left" \| "right"` | `"bottom"` | Preferred side (popper)      |
+| `sideOffset` | `number`                                 | `4`        | Offset from trigger (popper) |
+| `align`      | `"start" \| "center" \| "end"`           | `"start"`  | Alignment (popper)           |
+
+## Theme
+
+### Transitions
+
+| Property                | Duration | Easing   |
+| ----------------------- | -------- | -------- |
+| Content open animation  | 150ms    | ease-out |
+| Content close animation | 100ms    | ease-in  |
+
+## Anatomy
+
+A Combobox consists of up to 15 parts:
+
+| Part                  | Required | Description                          |
+| --------------------- | -------- | ------------------------------------ |
+| ComboboxRoot          | Yes      | Manages value, open state, filtering |
+| ComboboxAnchor        | No       | Wraps input + trigger + cancel       |
+| ComboboxInput         | Yes      | Text input for searching/display     |
+| ComboboxTrigger       | No       | Button to toggle the dropdown        |
+| ComboboxCancel        | No       | Button to clear the search term      |
+| ComboboxPortal        | No       | Teleports content to `body`          |
+| ComboboxContent       | Yes      | The dropdown panel                   |
+| ComboboxViewport      | No       | Scrollable viewport for items        |
+| ComboboxEmpty         | No       | Shown when no items match            |
+| ComboboxItem          | Yes      | Selectable option                    |
+| ComboboxItemIndicator | No       | Checkmark when item is selected      |
+| ComboboxGroup         | No       | Groups items with a label            |
+| ComboboxLabel         | No       | Group heading                        |
+| ComboboxSeparator     | No       | Visual divider                       |
+| ComboboxArrow         | No       | Optional arrow (popper mode)         |
+
+## Composition
+
+```
+MizuComboboxRoot
+  MizuComboboxAnchor
+    MizuComboboxInput
+    MizuComboboxTrigger (optional)
+    MizuComboboxCancel (optional)
+  MizuComboboxPortal
+    MizuComboboxContent
+      MizuComboboxViewport
+        MizuComboboxEmpty (optional)
+        MizuComboboxGroup (optional)
+          MizuComboboxLabel
+          MizuComboboxItem
+            MizuComboboxItemIndicator
+        MizuComboboxSeparator (optional)
+      MizuComboboxArrow (optional)
+```
+
+## Implementation Notes
+
+1. Each `MizuCombobox*` component wraps the corresponding Reka UI `Combobox*` primitive.
+2. Use `position="popper"` on `MizuComboboxContent` for floating dropdown behavior with collision detection.
+3. `MizuComboboxAnchor` wraps `Input`, `Trigger`, and `Cancel` to provide positioning context for popper mode.
+4. `displayValue` prop on `MizuComboboxInput` maps the selected object to a display string.
+5. Set `ignoreFilter` on Root and provide your own `v-model` on Input for custom filtering logic.
+6. The `MizuComboboxEmpty` component is shown when no items match the current filter.
+7. Groups use `MizuComboboxGroup` + `MizuComboboxLabel` for accessible section headings.
+8. Use `@select.prevent` on `MizuComboboxItem` to prevent selection and closure.
+9. **Anchor styling** — `MizuComboboxAnchor` provides its own border, background, focus ring, and error/disabled states matching `MizuInput`. No consumer CSS is needed for the anchor wrapper.

@@ -1,0 +1,170 @@
+---
+title: Collapsible
+description: A toggleable panel that shows and hides content with animated transitions.
+---
+
+import CollapsibleDemo from "../../../../components/docs/CollapsibleDemo.vue";
+
+Collapsible is a compound component that provides a toggleable panel for showing and hiding content. It is useful for progressive disclosure patterns where secondary content is hidden until the user requests it.
+
+## Collapsible vs Accordion
+
+|                     | Collapsible                                                        | Accordion                                                              |
+| ------------------- | ------------------------------------------------------------------ | ---------------------------------------------------------------------- |
+| **Structure**       | Single expandable section                                          | Multiple sections stacked                                              |
+| **Sub-components**  | Root, Trigger, Content                                             | Root, Item, Header, Trigger, Content                                   |
+| **Multiple open?**  | Yes — each is independent                                          | By default only one item open (`type="single"`)                        |
+| **Item management** | Manual (controlled via `open` prop)                                | Built-in item tracking (Root manages open items by `value`)            |
+| **Wrapping**        | You would manually wrap multiple collapsibles for multi-section UI | Designed for multi-section UI out of the box                           |
+| **Use case**        | Single expand/collapse region (e.g., a filter panel, FAQ item)     | Group of related sections (e.g., settings page, product details, FAQs) |
+
+Use **Collapsible** when you need a single toggle region. Use **Accordion** when you have multiple related expandable sections that should coordinate with each other.
+
+## Examples
+
+<CollapsibleDemo client:only="vue" />
+
+```vue
+<MizuCollapsibleRoot v-model:open="isOpen">
+  <MizuCollapsibleTrigger as-child>
+    <MizuButton variant="primary">Toggle details</MizuButton>
+  </MizuCollapsibleTrigger>
+  <MizuCollapsibleContent background="#FAFAFA">
+    This content is toggleable.
+  </MizuCollapsibleContent>
+</MizuCollapsibleRoot>
+```
+
+### Partial collapse
+
+```vue
+<MizuCollapsibleRoot>
+  <MizuCollapsibleTrigger as-child>
+    <MizuButton variant="primary">Show more</MizuButton>
+  </MizuCollapsibleTrigger>
+  <MizuCollapsibleContent collapsed-height="80px">
+    <p>This content is partially visible when collapsed.</p>
+    <p>Click to expand and read the full text.</p>
+  </MizuCollapsibleContent>
+</MizuCollapsibleRoot>
+```
+
+## API
+
+### Props
+
+#### CollapsibleRoot
+
+| Prop          | Type      | Default     | Description                          |
+| ------------- | --------- | ----------- | ------------------------------------ |
+| `open`        | `boolean` | `undefined` | Controlled open state (v-model:open) |
+| `defaultOpen` | `boolean` | `false`     | Initial open state (uncontrolled)    |
+| `disabled`    | `boolean` | `false`     | Disables the collapsible             |
+| `asChild`     | `boolean` | `undefined` | Merge props onto child element       |
+| `as`          | `string`  | `undefined` | Render as a different element        |
+
+#### CollapsibleTrigger
+
+| Prop      | Type      | Default     | Description                    |
+| --------- | --------- | ----------- | ------------------------------ |
+| `asChild` | `boolean` | `undefined` | Merge props onto child element |
+| `as`      | `string`  | `undefined` | Render as a different element  |
+
+#### CollapsibleContent
+
+| Prop              | Type      | Default     | Description                                                                                                                                                       |
+| ----------------- | --------- | ----------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `forceMount`      | `boolean` | `undefined` | Always render content (for animation control)                                                                                                                     |
+| `asChild`         | `boolean` | `undefined` | Merge props onto child element                                                                                                                                    |
+| `as`              | `string`  | `undefined` | Render as a different element                                                                                                                                     |
+| `background`      | `string`  | `''`        | Background color for the content panel. Accepts any valid CSS color value (hex, rgb, hsl, etc.)                                                                   |
+| `collapsedHeight` | `string`  | `undefined` | Height to maintain when collapsed (e.g. `"80px"`, `"50%"`). Creates a partial collapse / "show more" pattern. Content outside the collapsed region becomes inert. |
+
+### Slots
+
+All three sub-components expose a `default` slot.
+
+### Events
+
+| Event         | Payload   | Component | Description                     |
+| ------------- | --------- | --------- | ------------------------------- |
+| `update:open` | `boolean` | Root      | Emitted when open state changes |
+
+## Theme
+
+### CSS Custom Properties
+
+| Token                          | Default | Description        |
+| ------------------------------ | ------- | ------------------ |
+| `--color-foreground-secondary` | #4B5563 | Content text color |
+
+#### Color State Map
+
+| State    | Content BG  | Content Text           |
+| -------- | ----------- | ---------------------- |
+| Enabled  | transparent | `foreground-secondary` |
+| Hovered  | transparent | `foreground-secondary` |
+| Focused  | transparent | `foreground-secondary` |
+| Disabled | transparent | `foreground-tertiary`  |
+
+### Transitions
+
+| Property        | Duration | Easing   |
+| --------------- | -------- | -------- |
+| Content height  | 200ms    | ease-out |
+| Content opacity | 200ms    | ease-out |
+
+When `collapsedHeight` is set, the content animates to that height instead of 0px. The `--collapsed-height` CSS variable is used as the animation endpoint.
+
+### Accessibility
+
+| Criterion | Implementation                                                         |
+| --------- | ---------------------------------------------------------------------- |
+| Keyboard  | Enter/Space toggles content                                            |
+| ARIA      | `aria-expanded` on trigger, `aria-controls` linking trigger to content |
+| Focus     | Visible focus ring (2px `brand-ycp`) on keyboard focus                 |
+| Disabled  | `aria-disabled="true"`, `pointer-events: none`                         |
+
+```html
+<button aria-expanded="false" aria-controls="content-id">Toggle content</button>
+<div id="content-id" role="region">Hidden content</div>
+```
+
+## Anatomy
+
+A collapsible consists of 3 parts:
+
+| Part    | Required | Description                                 |
+| ------- | -------- | ------------------------------------------- |
+| Root    | Yes      | Container that manages the open/close state |
+| Trigger | Yes      | Button that toggles the content visibility  |
+| Content | Yes      | Panel that shows or hides based on state    |
+
+#### Composition
+
+```
+MizuCollapsibleRoot
+├── MizuCollapsibleTrigger
+└── MizuCollapsibleContent
+```
+
+#### CollapsibleRoot
+
+The root container that manages the open/close state. Wraps Reka UI's `CollapsibleRoot`.
+
+#### CollapsibleTrigger
+
+A thin wrapper around Reka UI's `CollapsibleTrigger`. Use `as-child` to slot in a `MizuButton` (or any element) as the toggle.
+
+#### CollapsibleContent
+
+The collapsible panel. Uses CSS `overflow: hidden` and height animation driven by `--reka-collapsible-content-height`. Set `collapsed-height` to create a partial collapse pattern where the panel remains visible at a fixed height when closed. Wraps Reka UI's `CollapsibleContent`.
+
+## Implementation Notes
+
+1. **Reka UI primitive** — wraps `CollapsibleRoot`, `CollapsibleTrigger`, and `CollapsibleContent` from `reka-ui`
+2. **CSS var animation** — content height animation uses `--reka-collapsible-content-height` set by Reka UI at runtime. When `collapsedHeight` is set, `--collapsed-height` is also used as the animation endpoint for the collapsed state.
+3. **Thin trigger wrapper** — `MizuCollapsibleTrigger` is a minimal passthrough around Reka UI's `CollapsibleTrigger`. Use `as-child` with `MizuButton` for styled triggers.
+4. **Class inheritance** — accepts `class` prop via `useAttrs()` for Tailwind overrides
+5. **Self-contained CSS** — styles are bundled into `dist/index.css` via `@tailwindcss/vite`; consumers do not need Tailwind installed
+6. **Tree-shakeable** — exported as ESM + CJS via Vite library mode

@@ -1,0 +1,147 @@
+---
+title: Pagination
+description: A navigation component for navigating between pages of data.
+---
+
+import PaginationDemo from "../../../../components/docs/PaginationDemo.vue";
+
+A pagination component displays data in paged format and provides navigation between pages. Use it for tables, lists, or any content that spans multiple pages.
+
+## Examples
+
+<PaginationDemo client:only="vue" />
+
+## API
+
+### Props
+
+| Prop           | Type                   | Default  | Description                     |
+| -------------- | ---------------------- | -------- | ------------------------------- |
+| `page`         | `number`               | required | Current page (v-model:page)     |
+| `total`        | `number`               | required | Total number of pages           |
+| `siblingCount` | `number`               | `1`      | Number of sibling pages to show |
+| `showEdges`    | `boolean`              | `false`  | Show first/last page buttons    |
+| `size`         | `'sm' \| 'md' \| 'lg'` | `'md'`   | Size variant                    |
+
+### Slots
+
+None. Pagination renders page buttons from the `page` and `total` props.
+
+### Events
+
+| Event         | Payload  | Description               |
+| ------------- | -------- | ------------------------- |
+| `update:page` | `number` | Emitted when page changes |
+
+### Example Usage
+
+```vue
+<script setup>
+import { ref } from "vue";
+import { MizuPagination } from "@mizu/vue";
+
+const page = ref(1);
+</script>
+
+<template>
+  <!-- Basic -->
+  <MizuPagination v-model:page="page" :total="10" />
+
+  <!-- With edges and more siblings -->
+  <MizuPagination
+    v-model:page="page"
+    :total="100"
+    :sibling-count="2"
+    :show-edges="true"
+    size="lg"
+  />
+</template>
+```
+
+## Theme
+
+### CSS Custom Properties
+
+| Token                          | Default           | Description             |
+| ------------------------------ | ----------------- | ----------------------- |
+| `--color-surface-base`         | #FFFFFF / #0F1117 | Button background       |
+| `--color-surface-subtle`       | #F9FAFB / #1A1D2E | Button hover background |
+| `--color-surface-muted`        | #F3F4F6 / #1E2030 | Button border           |
+| `--color-foreground-primary`   | #111827 / #F1F5F9 | Hover text              |
+| `--color-foreground-secondary` | #4B5563 / #9CA3B8 | Default text            |
+| `--color-foreground-tertiary`  | #9CA3AF / #64748B | Ellipsis color          |
+| `--color-foreground-inverse`   | #FFFFFF / #111827 | Selected text           |
+| `--color-brand-primary`        | #001C44 / #60A5FA | Selected background     |
+| `--color-brand-ycp`            | -                 | Focus ring color        |
+
+### Color Specifications
+
+| Element     | State          | Token                  | Light   | Dark    |
+| ----------- | -------------- | ---------------------- | ------- | ------- |
+| Page Button | Default        | `surface-base`         | #FFFFFF | #0F1117 |
+| Page Button | Default text   | `foreground-secondary` | #4B5563 | #9CA3B8 |
+| Page Button | Default border | `surface-muted`        | #F3F4F6 | #1E2030 |
+| Page Button | Hover          | `surface-subtle`       | #F9FAFB | #1A1D2E |
+| Page Button | Hover text     | `foreground-primary`   | #111827 | #F1F5F9 |
+| Page Button | Selected       | `brand-primary`        | #001C44 | #60A5FA |
+| Page Button | Selected text  | `foreground-inverse`   | #FFFFFF | #111827 |
+| Nav Button  | Hover          | `surface-subtle`       | #F9FAFB | #1A1D2E |
+| Nav Button  | Disabled       | opacity 0.4            | -       | -       |
+| Ellipsis    | Default        | `foreground-tertiary`  | #9CA3AF | #64748B |
+
+### Variants
+
+| Variant    | Edges   | Siblings | Use Case                         |
+| ---------- | ------- | -------- | -------------------------------- |
+| Basic      | hidden  | 1        | Simple pagination with few pages |
+| With Edges | visible | 1        | Quick access to first/last pages |
+| Extended   | visible | 2+       | Large datasets with many pages   |
+
+### Sizing
+
+| Size | Height | Min Width | Font Size | Font Weight   | Line Height | Border Radius |
+| ---- | ------ | --------- | --------- | ------------- | ----------- | ------------- |
+| `sm` | 28px   | 28px      | 12px      | 400 (regular) | 1           | 4px           |
+| `md` | 36px   | 36px      | 14px      | 400 (regular) | 1           | 6px           |
+| `lg` | 40px   | 40px      | 16px      | 400 (regular) | 1           | 6px           |
+
+### Accessibility
+
+| Criterion           | Implementation                                           |
+| ------------------- | -------------------------------------------------------- |
+| Navigation landmark | `<nav>` wrapper with `aria-label="Pagination"`           |
+| Current page        | Page buttons use `data-selected="true"` attribute        |
+| Keyboard            | Tab to navigate between buttons, Enter/Space to activate |
+| Disabled state      | Previous/Next buttons disabled at boundaries             |
+
+```html
+<nav aria-label="Pagination">
+  <ul>
+    <li><button type="button" aria-label="Previous page">...</button></li>
+    <li><button type="button" data-selected="true">1</button></li>
+    <li><button type="button">2</button></li>
+    <li><button type="button">3</button></li>
+    <li><button type="button" aria-label="Next page">...</button></li>
+  </ul>
+</nav>
+```
+
+## Anatomy
+
+A pagination consists of five parts:
+
+| Part      | Required | Description                             |
+| --------- | -------- | --------------------------------------- |
+| Previous  | Yes      | Button to navigate to the previous page |
+| Page List | Yes      | Numbered page buttons                   |
+| Next      | Yes      | Button to navigate to the next page     |
+| First     | No       | Button to navigate to the first page    |
+| Last      | No       | Button to navigate to the last page     |
+
+## Implementation Notes
+
+1. **Reka UI primitive** -- wraps `PaginationRoot`, `PaginationList`, `PaginationListItem`, `PaginationEllipsis`, `PaginationFirst`, `PaginationPrev`, `PaginationNext`, `PaginationLast` for full accessibility.
+2. **Controlled component** -- uses `v-model:page` for two-way binding; emits `update:page` on navigation.
+3. **Class inheritance** -- accepts `class` prop via `useAttrs()` for Tailwind overrides.
+4. **Token-based colors** -- button backgrounds, text, and borders use CSS custom properties for automatic light/dark theme support.
+5. **Tree-shakeable** -- exported as ESM + CJS via Vite library mode.

@@ -10,6 +10,11 @@ import {
   MizuAlertDialogAction,
   MizuAlertDialogCancel,
   MizuAlertDialogTrigger,
+  MizuDialogHeader,
+  MizuDialogBody,
+  MizuDialogFooter,
+  MizuButton,
+  MizuInput,
 } from "@mizu/vue";
 import CodeCollapsible from "./CodeCollapsible.vue";
 
@@ -21,91 +26,91 @@ const isDeleteAccountValid = computed(() => deleteAccountInput.value === "delete
 
 const basicCode = `<MizuAlertDialogRoot v-model:open="open">
   <MizuAlertDialogTrigger as-child>
-    <button variant="primary" size="md" class="w-max">Delete Invoice</button>
+    <MizuButton variant="primary" size="md" class="w-max">Delete Invoice</MizuButton>
   </MizuAlertDialogTrigger>
   <MizuAlertDialogPortal>
     <MizuAlertDialogOverlay />
     <MizuAlertDialogContent>
-      <div class="demo-header">
+      <MizuDialogHeader>
         <MizuAlertDialogTitle>Confirm Deletion</MizuAlertDialogTitle>
-      </div>
-      <div class="demo-body">
+      </MizuDialogHeader>
+      <MizuDialogBody>
         <MizuAlertDialogDescription>
           Are you sure you want to delete this invoice? This action cannot be undone.
         </MizuAlertDialogDescription>
-      </div>
-      <div class="demo-footer">
+      </MizuDialogBody>
+      <MizuDialogFooter>
         <MizuAlertDialogCancel as-child>
-          <button variant="ghost" size="md" class="w-max">Cancel</button>
+          <MizuButton variant="ghost" size="md" class="w-max">Cancel</MizuButton>
         </MizuAlertDialogCancel>
         <MizuAlertDialogAction as-child>
-          <button variant="primary" size="md" class="w-max">Delete</button>
+          <MizuButton variant="primary" size="md" class="w-max">Delete</MizuButton>
         </MizuAlertDialogAction>
-      </div>
+      </MizuDialogFooter>
     </MizuAlertDialogContent>
   </MizuAlertDialogPortal>
 </MizuAlertDialogRoot>`;
 
 const destructiveCode = `<MizuAlertDialogRoot v-model:open="open" @update:open="(v: boolean) => { if (v) deleteAccountInput = '' }">
   <MizuAlertDialogTrigger as-child>
-    <button variant="error" size="md" class="w-max">Delete Account</button>
+    <MizuButton variant="error" size="md" class="w-max">Delete Account</MizuButton>
   </MizuAlertDialogTrigger>
   <MizuAlertDialogPortal>
     <MizuAlertDialogOverlay />
     <MizuAlertDialogContent>
-      <div class="demo-header">
+      <MizuDialogHeader>
         <MizuAlertDialogTitle>Delete Account</MizuAlertDialogTitle>
         <MizuAlertDialogDescription>
           This permanently removes your account and all associated data. Type <strong>delete</strong> to confirm.
         </MizuAlertDialogDescription>
-      </div>
-      <div class="demo-body">
-        <input
+      </MizuDialogHeader>
+      <MizuDialogBody>
+        <MizuInput
           v-model="deleteAccountInput"
           label='Type "delete" to confirm'
           placeholder="delete"
         />
-      </div>
-      <div class="demo-footer">
+      </MizuDialogBody>
+      <MizuDialogFooter>
         <MizuAlertDialogCancel as-child>
-          <button variant="ghost" size="md" class="w-max">Cancel</button>
+          <MizuButton variant="ghost" size="md" class="w-max">Cancel</MizuButton>
         </MizuAlertDialogCancel>
         <MizuAlertDialogAction as-child>
-          <button variant="error" size="md" class="w-max" :disabled="!isDeleteAccountValid">Delete Account</button>
+          <MizuButton variant="error" size="md" class="w-max" :disabled="!isDeleteAccountValid">Delete Account</MizuButton>
         </MizuAlertDialogAction>
-      </div>
+      </MizuDialogFooter>
     </MizuAlertDialogContent>
   </MizuAlertDialogPortal>
 </MizuAlertDialogRoot>`;
 
 const contentCode = `<MizuAlertDialogRoot v-model:open="open">
   <MizuAlertDialogTrigger as-child>
-    <button variant="primary" size="md" class="w-max">Discard Changes</button>
+    <MizuButton variant="primary" size="md" class="w-max">Discard Changes</MizuButton>
   </MizuAlertDialogTrigger>
   <MizuAlertDialogPortal>
     <MizuAlertDialogOverlay />
     <MizuAlertDialogContent>
-      <div class="demo-header">
+      <MizuDialogHeader>
         <MizuAlertDialogTitle>Discard unsaved changes?</MizuAlertDialogTitle>
         <MizuAlertDialogDescription>
           You have unsaved changes that will be lost if you leave this page.
         </MizuAlertDialogDescription>
-      </div>
-      <div class="demo-body">
+      </MizuDialogHeader>
+      <MizuDialogBody>
         <ul class="changes-list">
           <li>Updated invoice #INV-2026-0042 line items</li>
           <li>Modified client billing address</li>
           <li>Added new tax rate (9.5%)</li>
         </ul>
-      </div>
-      <div class="demo-footer">
+      </MizuDialogBody>
+      <MizuDialogFooter>
         <MizuAlertDialogCancel as-child>
-          <button variant="primary" size="md" class="w-max">Keep Editing</button>
+          <MizuButton variant="primary" size="md" class="w-max">Keep Editing</MizuButton>
         </MizuAlertDialogCancel>
         <MizuAlertDialogAction as-child>
-          <button variant="ghost" size="md" class="w-max">Discard</button>
+          <MizuButton variant="ghost" size="md" class="w-max">Discard</MizuButton>
         </MizuAlertDialogAction>
-      </div>
+      </MizuDialogFooter>
     </MizuAlertDialogContent>
   </MizuAlertDialogPortal>
 </MizuAlertDialogRoot>`;
@@ -118,27 +123,27 @@ const contentCode = `<MizuAlertDialogRoot v-model:open="open">
       <CodeCollapsible :code="basicCode">
         <MizuAlertDialogRoot v-model:open="basicOpen">
           <MizuAlertDialogTrigger as-child>
-            <button variant="primary" size="md" class="w-max">Delete Invoice</button>
+            <MizuButton variant="primary" size="md" class="w-max">Delete Invoice</MizuButton>
           </MizuAlertDialogTrigger>
           <MizuAlertDialogPortal>
             <MizuAlertDialogOverlay />
             <MizuAlertDialogContent>
-              <div class="demo-header">
+              <MizuDialogHeader>
                 <MizuAlertDialogTitle>Confirm Deletion</MizuAlertDialogTitle>
-              </div>
-              <div class="demo-body">
+              </MizuDialogHeader>
+              <MizuDialogBody>
                 <MizuAlertDialogDescription>
                   Are you sure you want to delete this invoice? This action cannot be undone.
                 </MizuAlertDialogDescription>
-              </div>
-              <div class="demo-footer">
+              </MizuDialogBody>
+              <MizuDialogFooter>
                 <MizuAlertDialogCancel as-child>
-                  <button variant="ghost" size="md" class="w-max">Cancel</button>
+                  <MizuButton variant="ghost" size="md" class="w-max">Cancel</MizuButton>
                 </MizuAlertDialogCancel>
                 <MizuAlertDialogAction as-child>
-                  <button variant="primary" size="md" class="w-max">Delete</button>
+                  <MizuButton variant="primary" size="md" class="w-max">Delete</MizuButton>
                 </MizuAlertDialogAction>
-              </div>
+              </MizuDialogFooter>
             </MizuAlertDialogContent>
           </MizuAlertDialogPortal>
         </MizuAlertDialogRoot>
@@ -157,39 +162,39 @@ const contentCode = `<MizuAlertDialogRoot v-model:open="open">
           "
         >
           <MizuAlertDialogTrigger as-child>
-            <button variant="error" size="md" class="w-max">Delete Account</button>
+            <MizuButton variant="error" size="md" class="w-max">Delete Account</MizuButton>
           </MizuAlertDialogTrigger>
           <MizuAlertDialogPortal>
             <MizuAlertDialogOverlay />
             <MizuAlertDialogContent>
-              <div class="demo-header">
+              <MizuDialogHeader>
                 <MizuAlertDialogTitle>Delete Account</MizuAlertDialogTitle>
                 <MizuAlertDialogDescription>
                   This permanently removes your account and all associated data. Type
                   <strong>delete</strong> to confirm.
                 </MizuAlertDialogDescription>
-              </div>
-              <div class="demo-body">
-                <input
+              </MizuDialogHeader>
+              <MizuDialogBody>
+                <MizuInput
                   v-model="deleteAccountInput"
                   label='Type "delete" to confirm'
                   placeholder="delete"
                 />
-              </div>
-              <div class="demo-footer">
+              </MizuDialogBody>
+              <MizuDialogFooter>
                 <MizuAlertDialogCancel as-child>
-                  <button variant="ghost" size="md" class="w-max">Cancel</button>
+                  <MizuButton variant="ghost" size="md" class="w-max">Cancel</MizuButton>
                 </MizuAlertDialogCancel>
                 <MizuAlertDialogAction as-child>
-                  <button
+                  <MizuButton
                     variant="error"
                     size="md"
                     class="w-max"
                     :disabled="!isDeleteAccountValid"
-                    >Delete Account</button
+                    >Delete Account</MizuButton
                   >
                 </MizuAlertDialogAction>
-              </div>
+              </MizuDialogFooter>
             </MizuAlertDialogContent>
           </MizuAlertDialogPortal>
         </MizuAlertDialogRoot>
@@ -201,32 +206,32 @@ const contentCode = `<MizuAlertDialogRoot v-model:open="open">
       <CodeCollapsible :code="contentCode">
         <MizuAlertDialogRoot v-model:open="formOpen">
           <MizuAlertDialogTrigger as-child>
-            <button variant="primary" size="md" class="w-max">Discard Changes</button>
+            <MizuButton variant="primary" size="md" class="w-max">Discard Changes</MizuButton>
           </MizuAlertDialogTrigger>
           <MizuAlertDialogPortal>
             <MizuAlertDialogOverlay />
             <MizuAlertDialogContent>
-              <div class="demo-header">
+              <MizuDialogHeader>
                 <MizuAlertDialogTitle>Discard unsaved changes?</MizuAlertDialogTitle>
                 <MizuAlertDialogDescription>
                   You have unsaved changes that will be lost if you leave this page.
                 </MizuAlertDialogDescription>
-              </div>
-              <div class="demo-body">
+              </MizuDialogHeader>
+              <MizuDialogBody>
                 <ul class="changes-list">
                   <li>Updated invoice #INV-2026-0042 line items</li>
                   <li>Modified client billing address</li>
                   <li>Added new tax rate (9.5%)</li>
                 </ul>
-              </div>
-              <div class="demo-footer">
+              </MizuDialogBody>
+              <MizuDialogFooter>
                 <MizuAlertDialogCancel as-child>
-                  <button variant="primary" size="md" class="w-max">Keep Editing</button>
+                  <MizuButton variant="primary" size="md" class="w-max">Keep Editing</MizuButton>
                 </MizuAlertDialogCancel>
                 <MizuAlertDialogAction as-child>
-                  <button variant="ghost" size="md" class="w-max">Discard</button>
+                  <MizuButton variant="ghost" size="md" class="w-max">Discard</MizuButton>
                 </MizuAlertDialogAction>
-              </div>
+              </MizuDialogFooter>
             </MizuAlertDialogContent>
           </MizuAlertDialogPortal>
         </MizuAlertDialogRoot>
