@@ -1,11 +1,11 @@
-﻿---
+---
 title: DropdownMenu
 description: A menu of actions triggered by a button click.
 ---
 
 import DropdownMenuDemo from "../../../../components/docs/DropdownMenuDemo.vue";
 
-> **Nuxt UI Component:** This uses Nuxt UI's `UDropdownMenu` component. Nuxt UI v4 defaults already match the Mizu design scale, so no sizing overrides are applied.
+<span style="display:inline-flex;margin-bottom:16px;padding:1px 8px;border-radius:9999px;font-size:11px;font-weight:500;background:#FFFBEB;color:#D97706;">Pending</span>
 
 A dropdown menu presents a list of actions or options when a trigger button is clicked. Mizu uses Nuxt UI's `UDropdownMenu` with rounded-md panels and compact item sizing.
 
@@ -21,12 +21,12 @@ Reference: [Nuxt UI DropdownMenu](https://ui.nuxt.com/docs/components/dropdown-m
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `items` | `DropdownMenuItem[]` | â€” | Menu items array |
+| `items` | `DropdownMenuItem[]` | "” | Menu items array |
 | `size` | `'xs' \| 'sm' \| 'md' \| 'lg' \| 'xl'` | `'md'` | Item size |
-| `content` | `{ align, side, alignOffset, sideOffset, collisionPadding }` | â€” | Popper positioning options |
+| `content` | `{ align, side, alignOffset, sideOffset, collisionPadding }` | "” | Popper positioning options |
 | `disabled` | `boolean` | `false` | Disable the dropdown |
-| `defaultOpen` | `boolean` | â€” | Initial open state |
-| `modelValue` | `boolean` | â€” | v-model binding for controlled state |
+| `defaultOpen` | `boolean` | "” | Initial open state |
+| `modelValue` | `boolean` | "” | v-model binding for controlled state |
 
 ### DropdownMenuItem
 
@@ -44,7 +44,7 @@ Reference: [Nuxt UI DropdownMenu](https://ui.nuxt.com/docs/components/dropdown-m
 
 | Slot | Props | Description |
 |------|-------|-------------|
-| `default` | â€” | The trigger element |
+| `default` | "” | The trigger element |
 | `content` | `{ ui }` | Custom content (overrides items) |
 
 ### Example Usage
@@ -78,8 +78,8 @@ A dropdown menu consists of:
 
 ## Implementation Notes
 
-1. **Use `<UDropdownMenu>` directly** â€” No Mizu wrapper needed.
-2. **Items as array** â€” Use the `items` prop for declarative menus. Each item is an object with `label`, `icon`, `color`, etc.
-3. **Destructive actions** â€” Set `color: 'error'` on delete/remove items for red styling.
-4. **Separators** â€” Add `{ type: 'separator' }` between groups to visually separate item clusters.
-5. **Controlled state** â€” Use `v-model:open` for programmatic open/close control.
+1. **Use `<UDropdownMenu>` directly** "” No Mizu wrapper needed.
+2. **Items as array** "” Use the `items` prop for declarative menus. Each item is an object with `label`, `icon`, `color`, etc.
+3. **Destructive actions** "” Set `color: 'error'` on delete/remove items for red styling.
+4. **Separators** "” Add `{ type: 'separator' }` between groups to visually separate item clusters.
+5. **Controlled state** "” Use `v-model:open` for programmatic open/close control.

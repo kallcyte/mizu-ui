@@ -1,11 +1,11 @@
-﻿---
+---
 title: Avatar
 description: A user image with fallback for initials or placeholder.
 ---
 
 import AvatarDemo from "../../../../components/docs/AvatarDemo.vue";
 
-> **Nuxt UI Component:** This uses Nuxt UI's `UAvatar` component. Nuxt UI v4 defaults already match the Mizu design scale, so no sizing overrides are applied.
+<span style="display:inline-flex;margin-bottom:16px;padding:1px 8px;border-radius:9999px;font-size:11px;font-weight:500;background:#FFFBEB;color:#D97706;">Pending</span>
 
 An avatar displays a user's photo, initials, or a placeholder. Mizu uses Nuxt UI's `UAvatar` with the default size scale (3xs-3xl).
 
@@ -22,17 +22,17 @@ Reference: [Nuxt UI Avatar](https://ui.nuxt.com/docs/components/avatar)
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `size` | `'3xs' \| '2xs' \| 'xs' \| 'sm' \| 'md' \| 'lg' \| 'xl' \| '2xl' \| '3xl'` | `'md'` | Avatar size |
-| `src` | `string` | â€” | Image source URL |
-| `alt` | `string` | â€” | Alt text for the image. Used to generate initials when no image is available |
-| `text` | `string` | â€” | Fallback text (overrides auto-generated initials) |
-| `icon` | `string` (Iconify) | â€” | Fallback icon when no image is available |
+| `src` | `string` | "” | Image source URL |
+| `alt` | `string` | "” | Alt text for the image. Used to generate initials when no image is available |
+| `text` | `string` | "” | Fallback text (overrides auto-generated initials) |
+| `icon` | `string` (Iconify) | "” | Fallback icon when no image is available |
 | `loading` | `boolean` | `false` | Show a loading skeleton while the image loads |
 
 ### Slots
 
 | Slot | Props | Description |
 |------|-------|-------------|
-| `default` | â€” | Default slot (overrides image, text, and icon) |
+| `default` | "” | Default slot (overrides image, text, and icon) |
 
 ### Example Usage
 
@@ -66,7 +66,7 @@ When an image is provided, it renders an `<img>` inside. Otherwise, it shows fal
 
 ## Implementation Notes
 
-1. **Use `<UAvatar>` directly** â€” No Mizu wrapper needed.
-2. **Automatic initials** â€” When `alt` is provided without `text` or `src`, Nuxt UI auto-generates initials from the alt text.
-3. **Avatar groups** â€” Use multiple `<UAvatar>` elements with negative margin stacking (`-ms-2`) for group layouts.
-4. **Loading state** â€” Set `loading` to `true` to show a skeleton placeholder while images load.
+1. **Use `<UAvatar>` directly** "” No Mizu wrapper needed.
+2. **Automatic initials** "” When `alt` is provided without `text` or `src`, Nuxt UI auto-generates initials from the alt text.
+3. **Avatar groups** "” Use multiple `<UAvatar>` elements with negative margin stacking (`-ms-2`) for group layouts.
+4. **Loading state** "” Set `loading` to `true` to show a skeleton placeholder while images load.

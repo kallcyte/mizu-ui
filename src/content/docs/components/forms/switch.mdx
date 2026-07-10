@@ -1,11 +1,11 @@
-﻿---
+---
 title: Switch
 description: A toggle control for enabling or disabling a setting.
 ---
 
 import SwitchDemo from "../../../../components/docs/SwitchDemo.vue";
 
-> **Nuxt UI Component:** This uses Nuxt UI's `USwitch` component. Nuxt UI v4 defaults already match the Mizu form scale, so no sizing overrides are applied. See the [Theme](#theme) section for details.
+<span style="display:inline-flex;margin-bottom:16px;padding:1px 8px;border-radius:9999px;font-size:11px;font-weight:500;background:#FFFBEB;color:#D97706;">Pending</span>
 
 A switch toggles a binary setting on or off. Unlike checkboxes (selection), switches are used for immediate-effect settings like enabling notifications. Mizu uses Nuxt UI's `USwitch` with the default size scale.
 
@@ -24,21 +24,21 @@ Reference: [Nuxt UI Switch](https://ui.nuxt.com/docs/components/switch)
 | `size` | `'xs' \| 'sm' \| 'md' \| 'lg' \| 'xl'` | `'md'` | Switch size |
 | `color` | `'primary' \| 'secondary' \| 'success' \| 'error' \| 'warning' \| 'info' \| 'neutral'` | `'primary'` | Semantic color for on state |
 | `variant` | `'outline' \| 'soft' \| 'subtle' \| 'ghost' \| 'none'` | `'outline'` | Visual style |
-| `label` | `string` | â€” | Label text |
-| `description` | `string` | â€” | Secondary description text below the label |
-| `checkedIcon` | `string` (Iconify) | â€” | Icon displayed when checked |
-| `uncheckedIcon` | `string` (Iconify) | â€” | Icon displayed when unchecked |
+| `label` | `string` | "” | Label text |
+| `description` | `string` | "” | Secondary description text below the label |
+| `checkedIcon` | `string` (Iconify) | "” | Icon displayed when checked |
+| `uncheckedIcon` | `string` (Iconify) | "” | Icon displayed when unchecked |
 | `loading` | `boolean` | `false` | Show a loading spinner on the thumb |
 | `required` | `boolean` | `false` | Marks the field as required |
 | `disabled` | `boolean` | `false` | Disables interaction |
-| `defaultValue` | `boolean` | â€” | Initial state |
-| `modelValue` | `boolean` | â€” | v-model binding |
+| `defaultValue` | `boolean` | "” | Initial state |
+| `modelValue` | `boolean` | "” | v-model binding |
 
 ### Slots
 
 | Slot | Props | Description |
 |------|-------|-------------|
-| `default` | â€” | Default slot (not typically used) |
+| `default` | "” | Default slot (not typically used) |
 | `label` | `{ ui }` | Custom label content |
 | `description` | `{ ui }` | Custom description content |
 
@@ -95,8 +95,8 @@ A switch consists of:
 
 ## Implementation Notes
 
-1. **Use `<USwitch>` directly** â€” No Mizu wrapper needed. Nuxt UI defaults match the Mizu design spec.
-2. **Switch vs. Checkbox** â€” Use a Switch for immediate-effect settings (notifications, dark mode). Use a Checkbox for selections that require a submit action (terms agreement, item selection).
-3. **Custom icons** â€” Use `checkedIcon` and `uncheckedIcon` to display contextual icons inside the thumb.
-4. **Loading state** â€” Set `loading` to `true` to show a spinner in the thumb while the setting change is being processed.
-5. **Form integration** â€” Switch works inside `UFormField` for structured form layouts, though switches are typically standalone settings controls.
+1. **Use `<USwitch>` directly** "” No Mizu wrapper needed. Nuxt UI defaults match the Mizu design spec.
+2. **Switch vs. Checkbox** "” Use a Switch for immediate-effect settings (notifications, dark mode). Use a Checkbox for selections that require a submit action (terms agreement, item selection).
+3. **Custom icons** "” Use `checkedIcon` and `uncheckedIcon` to display contextual icons inside the thumb.
+4. **Loading state** "” Set `loading` to `true` to show a spinner in the thumb while the setting change is being processed.
+5. **Form integration** "” Switch works inside `UFormField` for structured form layouts, though switches are typically standalone settings controls.

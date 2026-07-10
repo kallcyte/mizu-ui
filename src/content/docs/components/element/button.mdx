@@ -5,13 +5,43 @@ description: A button element that can act as a link or trigger an action.
 
 import ButtonDemo from "../../../../components/docs/ButtonDemo.vue";
 
-> **Nuxt UI Component:** This uses Nuxt UI's `UButton` component. Mizu provides a theme preset (`@mizu/vue/theme`) that overrides sizing, radius, and spacing to match Mizu's design language. See the [Theme](#theme) section for Mizu-specific defaults.
+<span style="display:inline-flex;margin-bottom:16px;padding:1px 8px;border-radius:9999px;font-size:11px;font-weight:500;background:#DCFCE7;color:#15803D;">Ready</span>
 
 A button triggers an action â€” submitting a form, navigating to a page, or executing a callback. Mizu uses Nuxt UI's `UButton` with custom sizing (28/36/40px) and typography.
 
 ## Examples
 
-<ButtonDemo client:only="vue" />
+<ButtonDemo section="patterns" client:only="vue" />
+
+### Sizes
+<ButtonDemo section="sizes" client:only="vue" />
+
+### Colors
+<ButtonDemo section="colors" client:only="vue" />
+
+### Variants
+<ButtonDemo section="variants" client:only="vue" />
+
+### With Icons
+<ButtonDemo section="icons" client:only="vue" />
+
+### Disabled
+<ButtonDemo section="disabled" client:only="vue" />
+
+### Loading
+<ButtonDemo section="loading" client:only="vue" />
+
+### Link
+<ButtonDemo section="link" client:only="vue" />
+
+### Block & Square
+<ButtonDemo section="block" client:only="vue" />
+
+### Label Prop
+<ButtonDemo section="label" client:only="vue" />
+
+### Avatar
+<ButtonDemo section="avatar" client:only="vue" />
 
 ## API
 
@@ -22,7 +52,7 @@ Reference: [Nuxt UI Button](https://ui.nuxt.com/docs/components/button)
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `size` | `'xs' \| 'sm' \| 'md' \| 'lg' \| 'xl'` | `'md'` | Button size. Mizu overrides sm/md/lg to 28/36/40px |
-| `color` | `'primary' \| 'secondary' \| 'success' \| 'error' \| 'warning' \| 'info' \| 'neutral'` | `'primary'` | Semantic color |
+| `color` | `'primary' \| 'secondary' \| 'nexus' \| 'ycp' \| 'success' \| 'error' \| 'warning' \| 'info' \| 'neutral'` | `'primary'` | Semantic color |
 | `variant` | `'solid' \| 'outline' \| 'soft' \| 'subtle' \| 'ghost' \| 'link'` | `'solid'` | Visual style |
 | `icon` | `string` (Iconify) | â€” | Icon from Iconify (e.g. `'i-ph-magnifying-glass'`) |
 | `trailing` | `boolean` | `false` | When `true`, icon displays on the right |
@@ -66,7 +96,8 @@ Mizu maps its design tokens to Nuxt UI color slots:
 | Mizu Token | Nuxt UI Color |
 |------------|---------------|
 | `--color-brand-primary` | `primary` |
-| `--color-brand-ycp` | `secondary` |
+| `--color-brand-secondary` | `secondary` |
+| `--color-scale-nexus-500` | `nexus` |
 | `--color-feedback-success-base` | `success` |
 | `--color-feedback-error-base` | `error` |
 | `--color-feedback-warning-base` | `warning` |
@@ -94,7 +125,7 @@ Nuxt UI uses a different variant naming convention than the old MizuButton:
 
 ### Transitions
 
-Nuxt UI provides built-in `transition-colors` and `transition-opacity` on interactive states. Mizu does not override these.
+Mizu overrides Nuxt UI button transitions with `transition-all duration-300` using the `ease-emphasized` curve for smooth hover, focus, and active state animations.
 
 ## Anatomy
 

@@ -30,23 +30,22 @@ const brands: ColorCard[] = [
 ];
 
 const brandsDark: ColorCard[] = [
-  { hex: "#D6E4FF", name: "YCP", desc: "Lighter YCP for readability on dark backgrounds." },
-  { hex: "#60A5FA", name: "Primary", desc: "Lighter primary for interactive states on dark." },
-  { hex: "#93C5FD", name: "Secondary", desc: "Lighter secondary for charts and emphasis on dark." },
-  { hex: "#7BADE0", name: "Secondary Hover", desc: "Darker hover for secondary elements on dark." },
-  { hex: "#6A9ED0", name: "Secondary Focus", desc: "Focus ring for secondary elements on dark." },
-  { hex: "#1E2A3A", name: "Muted", desc: "Subtle brand tint on dark surfaces." },
-  { hex: "#F1F5F9", name: "Neutral", desc: "High-emphasis text on dark backgrounds." },
-  { hex: "#338DF5", name: "Primary Focus", desc: "Focus ring color for primary elements on dark." },
-  { hex: "#CCE2FC", name: "Primary Subtle", desc: "Light-tinted primary surface on dark." },
-  { hex: "#B0C4E0", name: "YCP Hover", desc: "Darker hover for YCP elements on dark." },
-  { hex: "#7A9ECB", name: "YCP Focus", desc: "Focus ring for YCP elements on dark." },
-  { hex: "#CCD2DA", name: "YCP Subtle", desc: "Subtle YCP background on dark." },
-  { hex: "#1A2245", name: "Secondary Subtle", desc: "Subtle secondary background on dark." },
-  { hex: "#8B7FE8", name: "Nexus", desc: "Lighter nexus for emphasis on dark backgrounds." },
-  { hex: "#6A5DD6", name: "Nexus Hover", desc: "Darker hover for nexus elements on dark." },
-  { hex: "#A99FF0", name: "Nexus Focus", desc: "Focus ring for nexus elements on dark." },
-  { hex: "#2A1F5E", name: "Nexus Subtle", desc: "Subtle nexus background on dark." },
+  { hex: "#F1F5F9", name: "YCP (fg-primary)", desc: "Dark mode high-emphasis text (WCAG AA on #0F1117)." },
+  { hex: "#338DF5", name: "Primary (scale-300)", desc: "Light primary for interactive states on dark. Matches focus token." },
+  { hex: "#5A71F5", name: "Secondary (scale-300)", desc: "Light secondary for charts and emphasis on dark." },
+  { hex: "#9BACFC", name: "Secondary (scale-200)", desc: "Lighter secondary variant for hover states on dark." },
+  { hex: "#E1E7FF", name: "Secondary (scale-100)", desc: "Subtle secondary background on dark. Matches subtle token." },
+  { hex: "#1E2030", name: "Muted (surface-muted)", desc: "Dark mode tertiary surface for subtle brand-tinted zones." },
+  { hex: "#F1F5F9", name: "Neutral (fg-primary)", desc: "High-emphasis neutral text on dark backgrounds." },
+  { hex: "#80B7F8", name: "Primary (scale-200)", desc: "Lighter primary hover for interactive elements on dark." },
+  { hex: "#CCE2FC", name: "Primary (scale-100)", desc: "Light-tinted primary surface on dark. Matches subtle token." },
+  { hex: "#758CAC", name: "YCP (scale-200)", desc: "Lighter YCP for hover states on dark." },
+  { hex: "#334969", name: "YCP (scale-300)", desc: "YCP focus ring on dark. Matches focus token." },
+  { hex: "#CCD2DA", name: "YCP (scale-100)", desc: "Subtle YCP background on dark. Matches subtle token." },
+  { hex: "#A290EB", name: "Nexus (scale-200)", desc: "Lighter nexus for emphasis on dark backgrounds." },
+  { hex: "#6A4DE0", name: "Nexus (scale-300)", desc: "Nexus focus ring on dark. Matches focus token." },
+  { hex: "#5635DE", name: "Nexus (scale-400)", desc: "Nexus hover emphasis on dark." },
+  { hex: "#DAD3F7", name: "Nexus (scale-100)", desc: "Subtle nexus background on dark. Matches subtle token." },
 ];
 
 const backgrounds: ColorCard[] = [
@@ -77,30 +76,183 @@ const textsDark: ColorCard[] = [
 
 const feedbacks: ColorCard[] = [
   { hex: "#15803D", name: "Success Base", desc: "Primary success for confirmed positive status and badges." },
+  { hex: "#166534", name: "Success Hover", desc: "Darker hover for success-filled elements." },
+  { hex: "#14532D", name: "Success Focus", desc: "Deepest success for focus-visible outlines." },
   { hex: "#DCFCE7", name: "Success Subtle", desc: "Light success background for banners and highlights." },
   { hex: "#DC2626", name: "Error Base", desc: "Primary error for critical statuses and destructive actions." },
+  { hex: "#B91C1C", name: "Error Hover", desc: "Darker hover for error-filled elements." },
+  { hex: "#991B1B", name: "Error Focus", desc: "Deepest error for focus-visible outlines." },
   { hex: "#FEF2F2", name: "Error Subtle", desc: "Light error background for error banners and toast backgrounds." },
   { hex: "#D97706", name: "Warning Base", desc: "Primary warning for caution states and pending indicators." },
+  { hex: "#B45309", name: "Warning Hover", desc: "Darker hover for warning-filled elements." },
+  { hex: "#92400E", name: "Warning Focus", desc: "Deepest warning for focus-visible outlines." },
   { hex: "#FFFBEB", name: "Warning Subtle", desc: "Light amber background for warning banners." },
   { hex: "#0284C7", name: "Info Base", desc: "Primary info for on-progress and processing states." },
+  { hex: "#0369A1", name: "Info Hover", desc: "Darker hover for info-filled elements." },
+  { hex: "#075985", name: "Info Focus", desc: "Deepest info for focus-visible outlines." },
   { hex: "#F0F9FF", name: "Info Subtle", desc: "Light sky background for info banners." },
 ];
 
 const feedbacksDark: ColorCard[] = [
   { hex: "#4ADE80", name: "Success Base", desc: "Lighter green for success on dark backgrounds." },
+  { hex: "#86EFAC", name: "Success Hover", desc: "Lighter success hover on dark backgrounds." },
+  { hex: "#BBF7D0", name: "Success Focus", desc: "Lightest success focus on dark backgrounds." },
   { hex: "#14532D", name: "Success Subtle", desc: "Dark success background for banners on dark." },
   { hex: "#F87171", name: "Error Base", desc: "Lighter red for errors on dark backgrounds." },
+  { hex: "#FCA5A5", name: "Error Hover", desc: "Lighter error hover on dark backgrounds." },
+  { hex: "#FECACA", name: "Error Focus", desc: "Lightest error focus on dark backgrounds." },
   { hex: "#7F1D1D", name: "Error Subtle", desc: "Dark error background for banners on dark." },
   { hex: "#FBBF24", name: "Warning Base", desc: "Lighter amber for warnings on dark backgrounds." },
+  { hex: "#FCD34D", name: "Warning Hover", desc: "Lighter warning hover on dark backgrounds." },
+  { hex: "#FDE68A", name: "Warning Focus", desc: "Lightest warning focus on dark backgrounds." },
   { hex: "#78350F", name: "Warning Subtle", desc: "Dark amber background for warning banners on dark." },
   { hex: "#38BDF8", name: "Info Base", desc: "Lighter sky for info on dark backgrounds." },
+  { hex: "#7DD3FC", name: "Info Hover", desc: "Lighter info hover on dark backgrounds." },
+  { hex: "#BAE6FD", name: "Info Focus", desc: "Lightest info focus on dark backgrounds." },
   { hex: "#1E3A5F", name: "Info Subtle", desc: "Dark sky background for info banners on dark." },
 ];
+
+const scaleFamilies = [
+  {
+    name: "Primary",
+    shades: [
+      { hex: "#E8F2FE" },
+      { hex: "#CCE2FC", match: "primary-subtle" },
+      { hex: "#80B7F8" },
+      { hex: "#338DF5", match: "primary-focus" },
+      { hex: "#147EF9" },
+      { hex: "#0070F2", match: "primary" },
+      { hex: "#0065DA" },
+      { hex: "#005AC2", match: "primary-hover" },
+      { hex: "#004FAA" },
+      { hex: "#004492" },
+      { hex: "#003675" },
+    ],
+  },
+  {
+    name: "Secondary",
+    shades: [
+      { hex: "#F2F4FF" },
+      { hex: "#E1E7FF", match: "secondary-subtle" },
+      { hex: "#9BACFC" },
+      { hex: "#5A71F5" },
+      { hex: "#1C36EA" },
+      { hex: "#1524A9", match: "secondary" },
+      { hex: "#122096" },
+      { hex: "#101C82", match: "secondary-hover" },
+      { hex: "#0E1971" },
+      { hex: "#0C1561", match: "secondary-focus" },
+      { hex: "#0A114E" },
+    ],
+  },
+  {
+    name: "YCP",
+    shades: [
+      { hex: "#E8EBEE" },
+      { hex: "#CCD2DA", match: "ycp-subtle" },
+      { hex: "#758CAC" },
+      { hex: "#334969", match: "ycp-focus" },
+      { hex: "#12315E" },
+      { hex: "#001C44", match: "ycp" },
+      { hex: "#00193D" },
+      { hex: "#001636", match: "ycp-hover" },
+      { hex: "#00132F" },
+      { hex: "#001028" },
+      { hex: "#000D20" },
+    ],
+  },
+  {
+    name: "Nexus",
+    shades: [
+      { hex: "#EEEBFB" },
+      { hex: "#DAD3F7", match: "nexus-subtle" },
+      { hex: "#A290EB" },
+      { hex: "#6A4DE0", match: "nexus-focus" },
+      { hex: "#5635DE" },
+      { hex: "#4521D8", match: "nexus" },
+      { hex: "#3E1DC3" },
+      { hex: "#371AAD", match: "nexus-hover" },
+      { hex: "#301797" },
+      { hex: "#291382" },
+      { hex: "#210F68" },
+    ],
+  },
+  {
+    name: "Success",
+    shades: [
+      { hex: "#EFFEF4" },
+      { hex: "#DCFCE7", match: "success-subtle" },
+      { hex: "#93F4B5" },
+      { hex: "#4DE985" },
+      { hex: "#1DC95C" },
+      { hex: "#15803D", match: "success-base" },
+      { hex: "#166534", match: "success-hover" },
+      { hex: "#14532D", match: "success-focus" },
+      { hex: "#114225" },
+      { hex: "#0E311D" },
+      { hex: "#0B2717" },
+    ],
+  },
+  {
+    name: "Error",
+    shades: [
+      { hex: "#FFF9F9" },
+      { hex: "#FEF2F2", match: "error-subtle" },
+      { hex: "#F9BCBC" },
+      { hex: "#F18888" },
+      { hex: "#E85656" },
+      { hex: "#DC2626", match: "error-base" },
+      { hex: "#B91C1C", match: "error-hover" },
+      { hex: "#991B1B", match: "error-focus" },
+      { hex: "#7A1919" },
+      { hex: "#5D1515" },
+      { hex: "#4A1111" },
+    ],
+  },
+  {
+    name: "Warning",
+    shades: [
+      { hex: "#FFFDF6" },
+      { hex: "#FFFBEB", match: "warning-subtle" },
+      { hex: "#FEE8A9" },
+      { hex: "#FDCB68" },
+      { hex: "#FBA627" },
+      { hex: "#D97706", match: "warning-base" },
+      { hex: "#B45309", match: "warning-hover" },
+      { hex: "#92400E", match: "warning-focus" },
+      { hex: "#723011" },
+      { hex: "#552311" },
+      { hex: "#441C0E" },
+    ],
+  },
+  {
+    name: "Info",
+    shades: [
+      { hex: "#F8FCFF" },
+      { hex: "#F0F9FF", match: "info-subtle" },
+      { hex: "#A7DDFF" },
+      { hex: "#5EC3FE" },
+      { hex: "#15ABFD" },
+      { hex: "#0284C7", match: "info-base" },
+      { hex: "#0369A1", match: "info-hover" },
+      { hex: "#075985", match: "info-focus" },
+      { hex: "#09496B" },
+      { hex: "#0A3952" },
+      { hex: "#082E42" },
+    ],
+  },
+];
+
+const shadeLabels = ["50","100","200","300","400","500","600","700","800","900","950"];
 
 function swatchStyle(c: ColorCard) {
   let s = `background: ${c.hex};`;
   if (c.border) s += 'border:1px solid var(--color-surface-muted);';
   return s;
+}
+
+function shadeSwatchStyle(hex: string) {
+  return `background:${hex};`;
 }
 ---
 
@@ -219,6 +371,30 @@ function swatchStyle(c: ColorCard) {
         </div>
       ))}
     </div>
+
+    <h3 class="text-lg font-semibold mb-2 mt-8 text-foreground-secondary">Scale (Nuxt UI)</h3>
+    <p class="text-sm text-foreground-tertiary mb-4">Full 50–950 color ramps for Nuxt UI v4's component color pipeline. Each family has 11 shades.</p>
+    <div class="color-grid" style="grid-template-columns:1fr;">
+      {scaleFamilies.map(f => (
+        <div class="rounded-xl overflow-hidden border border-surface-muted bg-surface-base">
+          <div class="p-3 pb-2 flex items-center gap-3">
+            <span class="text-sm font-semibold whitespace-nowrap min-w-16">{f.name}</span>
+            <div class="flex flex-1 gap-1 overflow-x-auto">
+              {f.shades.map((shade, i) => (
+                <div class="flex-1 min-w-14 rounded-md overflow-hidden">
+                  <div class="h-12 flex items-end justify-center p-1" style={shadeSwatchStyle(shade.hex)}>
+                    <span class="text-[9px] font-mono font-semibold px-1 py-px rounded" style={`background:rgba(0,0,0,0.5);color:#fff;`}>{shade.hex}</span>
+                  </div>
+                  <div class="text-[10px] text-center text-foreground-tertiary mt-1 font-mono">{shadeLabels[i]}</div>
+                  {shade.match && <div class="text-[9px] text-center text-brand-primary font-medium leading-tight mt-0.5">({shade.match})</div>}
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+
   </div>
 </section>
 

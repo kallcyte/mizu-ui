@@ -135,6 +135,182 @@ export const COLOR_DARK_FEEDBACK_INFO_HOVER = "#7DD3FC" as const;
 export const COLOR_DARK_FEEDBACK_INFO_FOCUS = "#BAE6FD" as const;
 /** Dark mode info subtle — deep sky background. */
 export const COLOR_DARK_FEEDBACK_INFO_SUBTLE = "#1E3A5F" as const;
+/** Nuxt UI primary scale, shade 50. */
+export const COLOR_SCALE_PRIMARY_50 = "#E8F2FE" as const;
+/** Nuxt UI primary scale, shade 100. Matches original subtle token. */
+export const COLOR_SCALE_PRIMARY_100 = "#CCE2FC" as const;
+/** Nuxt UI primary scale, shade 200. */
+export const COLOR_SCALE_PRIMARY_200 = "#80B7F8" as const;
+/** Nuxt UI primary scale, shade 300. Matches original focus token. */
+export const COLOR_SCALE_PRIMARY_300 = "#338DF5" as const;
+/** Nuxt UI primary scale, shade 400. */
+export const COLOR_SCALE_PRIMARY_400 = "#147EF9" as const;
+/** Nuxt UI primary scale, shade 500. Matches original base token. */
+export const COLOR_SCALE_PRIMARY_500 = "#0070F2" as const;
+/** Nuxt UI primary scale, shade 600. */
+export const COLOR_SCALE_PRIMARY_600 = "#0065DA" as const;
+/** Nuxt UI primary scale, shade 700. Matches original hover token. */
+export const COLOR_SCALE_PRIMARY_700 = "#005AC2" as const;
+/** Nuxt UI primary scale, shade 800. */
+export const COLOR_SCALE_PRIMARY_800 = "#004FAA" as const;
+/** Nuxt UI primary scale, shade 900. */
+export const COLOR_SCALE_PRIMARY_900 = "#004492" as const;
+/** Nuxt UI primary scale, shade 950. */
+export const COLOR_SCALE_PRIMARY_950 = "#003675" as const;
+/** Nuxt UI secondary scale, shade 50. */
+export const COLOR_SCALE_SECONDARY_50 = "#F2F4FF" as const;
+/** Nuxt UI secondary scale, shade 100. Matches original subtle token. */
+export const COLOR_SCALE_SECONDARY_100 = "#E1E7FF" as const;
+/** Nuxt UI secondary scale, shade 200. */
+export const COLOR_SCALE_SECONDARY_200 = "#9BACFC" as const;
+/** Nuxt UI secondary scale, shade 300. */
+export const COLOR_SCALE_SECONDARY_300 = "#5A71F5" as const;
+/** Nuxt UI secondary scale, shade 400. */
+export const COLOR_SCALE_SECONDARY_400 = "#1C36EA" as const;
+/** Nuxt UI secondary scale, shade 500. Matches original base token. */
+export const COLOR_SCALE_SECONDARY_500 = "#1524A9" as const;
+/** Nuxt UI secondary scale, shade 600. */
+export const COLOR_SCALE_SECONDARY_600 = "#122096" as const;
+/** Nuxt UI secondary scale, shade 700. Matches original hover token. */
+export const COLOR_SCALE_SECONDARY_700 = "#101C82" as const;
+/** Nuxt UI secondary scale, shade 800. */
+export const COLOR_SCALE_SECONDARY_800 = "#0E1971" as const;
+/** Nuxt UI secondary scale, shade 900. Matches original focus token. */
+export const COLOR_SCALE_SECONDARY_900 = "#0C1561" as const;
+/** Nuxt UI secondary scale, shade 950. */
+export const COLOR_SCALE_SECONDARY_950 = "#0A114E" as const;
+/** Nuxt UI ycp (custom) scale, shade 50. */
+export const COLOR_SCALE_YCP_50 = "#E8EBEE" as const;
+/** Nuxt UI ycp (custom) scale, shade 100. Matches original subtle token. */
+export const COLOR_SCALE_YCP_100 = "#CCD2DA" as const;
+/** Nuxt UI ycp (custom) scale, shade 200. */
+export const COLOR_SCALE_YCP_200 = "#758CAC" as const;
+/** Nuxt UI ycp (custom) scale, shade 300. Matches original focus token. */
+export const COLOR_SCALE_YCP_300 = "#334969" as const;
+/** Nuxt UI ycp (custom) scale, shade 400. */
+export const COLOR_SCALE_YCP_400 = "#12315E" as const;
+/** Nuxt UI ycp (custom) scale, shade 500. Matches original base token. */
+export const COLOR_SCALE_YCP_500 = "#001C44" as const;
+/** Nuxt UI ycp (custom) scale, shade 600. */
+export const COLOR_SCALE_YCP_600 = "#00193D" as const;
+/** Nuxt UI ycp (custom) scale, shade 700. Matches original hover token. */
+export const COLOR_SCALE_YCP_700 = "#001636" as const;
+/** Nuxt UI ycp (custom) scale, shade 800. */
+export const COLOR_SCALE_YCP_800 = "#00132F" as const;
+/** Nuxt UI ycp (custom) scale, shade 900. */
+export const COLOR_SCALE_YCP_900 = "#001028" as const;
+/** Nuxt UI ycp (custom) scale, shade 950. */
+export const COLOR_SCALE_YCP_950 = "#000D20" as const;
+/** Nuxt UI nexus (custom) scale, shade 50. */
+export const COLOR_SCALE_NEXUS_50 = "#EEEBFB" as const;
+/** Nuxt UI nexus (custom) scale, shade 100. Matches original subtle token. */
+export const COLOR_SCALE_NEXUS_100 = "#DAD3F7" as const;
+/** Nuxt UI nexus (custom) scale, shade 200. */
+export const COLOR_SCALE_NEXUS_200 = "#A290EB" as const;
+/** Nuxt UI nexus (custom) scale, shade 300. Matches original focus token. */
+export const COLOR_SCALE_NEXUS_300 = "#6A4DE0" as const;
+/** Nuxt UI nexus (custom) scale, shade 400. */
+export const COLOR_SCALE_NEXUS_400 = "#5635DE" as const;
+/** Nuxt UI nexus (custom) scale, shade 500. Matches original base token. */
+export const COLOR_SCALE_NEXUS_500 = "#4521D8" as const;
+/** Nuxt UI nexus (custom) scale, shade 600. */
+export const COLOR_SCALE_NEXUS_600 = "#3E1DC3" as const;
+/** Nuxt UI nexus (custom) scale, shade 700. Matches original hover token. */
+export const COLOR_SCALE_NEXUS_700 = "#371AAD" as const;
+/** Nuxt UI nexus (custom) scale, shade 800. */
+export const COLOR_SCALE_NEXUS_800 = "#301797" as const;
+/** Nuxt UI nexus (custom) scale, shade 900. */
+export const COLOR_SCALE_NEXUS_900 = "#291382" as const;
+/** Nuxt UI nexus (custom) scale, shade 950. */
+export const COLOR_SCALE_NEXUS_950 = "#210F68" as const;
+/** Nuxt UI success scale, shade 50. */
+export const COLOR_SCALE_SUCCESS_50 = "#EFFEF4" as const;
+/** Nuxt UI success scale, shade 100. Matches original subtle token. */
+export const COLOR_SCALE_SUCCESS_100 = "#DCFCE7" as const;
+/** Nuxt UI success scale, shade 200. */
+export const COLOR_SCALE_SUCCESS_200 = "#93F4B5" as const;
+/** Nuxt UI success scale, shade 300. */
+export const COLOR_SCALE_SUCCESS_300 = "#4DE985" as const;
+/** Nuxt UI success scale, shade 400. */
+export const COLOR_SCALE_SUCCESS_400 = "#1DC95C" as const;
+/** Nuxt UI success scale, shade 500. Matches original base token. */
+export const COLOR_SCALE_SUCCESS_500 = "#15803D" as const;
+/** Nuxt UI success scale, shade 600. Matches original hover token. */
+export const COLOR_SCALE_SUCCESS_600 = "#166534" as const;
+/** Nuxt UI success scale, shade 700. Matches original focus token. */
+export const COLOR_SCALE_SUCCESS_700 = "#14532D" as const;
+/** Nuxt UI success scale, shade 800. */
+export const COLOR_SCALE_SUCCESS_800 = "#114225" as const;
+/** Nuxt UI success scale, shade 900. */
+export const COLOR_SCALE_SUCCESS_900 = "#0E311D" as const;
+/** Nuxt UI success scale, shade 950. */
+export const COLOR_SCALE_SUCCESS_950 = "#0B2717" as const;
+/** Nuxt UI error scale, shade 50. */
+export const COLOR_SCALE_ERROR_50 = "#FFF9F9" as const;
+/** Nuxt UI error scale, shade 100. Matches original subtle token. */
+export const COLOR_SCALE_ERROR_100 = "#FEF2F2" as const;
+/** Nuxt UI error scale, shade 200. */
+export const COLOR_SCALE_ERROR_200 = "#F9BCBC" as const;
+/** Nuxt UI error scale, shade 300. */
+export const COLOR_SCALE_ERROR_300 = "#F18888" as const;
+/** Nuxt UI error scale, shade 400. */
+export const COLOR_SCALE_ERROR_400 = "#E85656" as const;
+/** Nuxt UI error scale, shade 500. Matches original base token. */
+export const COLOR_SCALE_ERROR_500 = "#DC2626" as const;
+/** Nuxt UI error scale, shade 600. Matches original hover token. */
+export const COLOR_SCALE_ERROR_600 = "#B91C1C" as const;
+/** Nuxt UI error scale, shade 700. Matches original focus token. */
+export const COLOR_SCALE_ERROR_700 = "#991B1B" as const;
+/** Nuxt UI error scale, shade 800. */
+export const COLOR_SCALE_ERROR_800 = "#7A1919" as const;
+/** Nuxt UI error scale, shade 900. */
+export const COLOR_SCALE_ERROR_900 = "#5D1515" as const;
+/** Nuxt UI error scale, shade 950. */
+export const COLOR_SCALE_ERROR_950 = "#4A1111" as const;
+/** Nuxt UI warning scale, shade 50. */
+export const COLOR_SCALE_WARNING_50 = "#FFFDF6" as const;
+/** Nuxt UI warning scale, shade 100. Matches original subtle token. */
+export const COLOR_SCALE_WARNING_100 = "#FFFBEB" as const;
+/** Nuxt UI warning scale, shade 200. */
+export const COLOR_SCALE_WARNING_200 = "#FEE8A9" as const;
+/** Nuxt UI warning scale, shade 300. */
+export const COLOR_SCALE_WARNING_300 = "#FDCB68" as const;
+/** Nuxt UI warning scale, shade 400. */
+export const COLOR_SCALE_WARNING_400 = "#FBA627" as const;
+/** Nuxt UI warning scale, shade 500. Matches original base token. */
+export const COLOR_SCALE_WARNING_500 = "#D97706" as const;
+/** Nuxt UI warning scale, shade 600. Matches original hover token. */
+export const COLOR_SCALE_WARNING_600 = "#B45309" as const;
+/** Nuxt UI warning scale, shade 700. Matches original focus token. */
+export const COLOR_SCALE_WARNING_700 = "#92400E" as const;
+/** Nuxt UI warning scale, shade 800. */
+export const COLOR_SCALE_WARNING_800 = "#723011" as const;
+/** Nuxt UI warning scale, shade 900. */
+export const COLOR_SCALE_WARNING_900 = "#552311" as const;
+/** Nuxt UI warning scale, shade 950. */
+export const COLOR_SCALE_WARNING_950 = "#441C0E" as const;
+/** Nuxt UI info scale, shade 50. */
+export const COLOR_SCALE_INFO_50 = "#F8FCFF" as const;
+/** Nuxt UI info scale, shade 100. Matches original subtle token. */
+export const COLOR_SCALE_INFO_100 = "#F0F9FF" as const;
+/** Nuxt UI info scale, shade 200. */
+export const COLOR_SCALE_INFO_200 = "#A7DDFF" as const;
+/** Nuxt UI info scale, shade 300. */
+export const COLOR_SCALE_INFO_300 = "#5EC3FE" as const;
+/** Nuxt UI info scale, shade 400. */
+export const COLOR_SCALE_INFO_400 = "#15ABFD" as const;
+/** Nuxt UI info scale, shade 500. Matches original base token. */
+export const COLOR_SCALE_INFO_500 = "#0284C7" as const;
+/** Nuxt UI info scale, shade 600. Matches original hover token. */
+export const COLOR_SCALE_INFO_600 = "#0369A1" as const;
+/** Nuxt UI info scale, shade 700. Matches original focus token. */
+export const COLOR_SCALE_INFO_700 = "#075985" as const;
+/** Nuxt UI info scale, shade 800. */
+export const COLOR_SCALE_INFO_800 = "#09496B" as const;
+/** Nuxt UI info scale, shade 900. */
+export const COLOR_SCALE_INFO_900 = "#0A3952" as const;
+/** Nuxt UI info scale, shade 950. */
+export const COLOR_SCALE_INFO_950 = "#082E42" as const;
 /** Primary sans-serif typeface for UI and headings. */
 export const FONTFAMILY_SANS: string[] = ["DM Sans","-apple-system","BlinkMacSystemFont","Segoe UI","Roboto","Helvetica Neue","Arial","sans-serif"];
 /** Monospace typeface for code and technical content. */
@@ -292,6 +468,94 @@ export const tokens: Record<string, Token> = {
   "color/dark/feedback/info/hover": { value: COLOR_DARK_FEEDBACK_INFO_HOVER, type: "color" },
   "color/dark/feedback/info/focus": { value: COLOR_DARK_FEEDBACK_INFO_FOCUS, type: "color" },
   "color/dark/feedback/info/subtle": { value: COLOR_DARK_FEEDBACK_INFO_SUBTLE, type: "color" },
+  "color/scale/primary/50": { value: COLOR_SCALE_PRIMARY_50, type: "color" },
+  "color/scale/primary/100": { value: COLOR_SCALE_PRIMARY_100, type: "color" },
+  "color/scale/primary/200": { value: COLOR_SCALE_PRIMARY_200, type: "color" },
+  "color/scale/primary/300": { value: COLOR_SCALE_PRIMARY_300, type: "color" },
+  "color/scale/primary/400": { value: COLOR_SCALE_PRIMARY_400, type: "color" },
+  "color/scale/primary/500": { value: COLOR_SCALE_PRIMARY_500, type: "color" },
+  "color/scale/primary/600": { value: COLOR_SCALE_PRIMARY_600, type: "color" },
+  "color/scale/primary/700": { value: COLOR_SCALE_PRIMARY_700, type: "color" },
+  "color/scale/primary/800": { value: COLOR_SCALE_PRIMARY_800, type: "color" },
+  "color/scale/primary/900": { value: COLOR_SCALE_PRIMARY_900, type: "color" },
+  "color/scale/primary/950": { value: COLOR_SCALE_PRIMARY_950, type: "color" },
+  "color/scale/secondary/50": { value: COLOR_SCALE_SECONDARY_50, type: "color" },
+  "color/scale/secondary/100": { value: COLOR_SCALE_SECONDARY_100, type: "color" },
+  "color/scale/secondary/200": { value: COLOR_SCALE_SECONDARY_200, type: "color" },
+  "color/scale/secondary/300": { value: COLOR_SCALE_SECONDARY_300, type: "color" },
+  "color/scale/secondary/400": { value: COLOR_SCALE_SECONDARY_400, type: "color" },
+  "color/scale/secondary/500": { value: COLOR_SCALE_SECONDARY_500, type: "color" },
+  "color/scale/secondary/600": { value: COLOR_SCALE_SECONDARY_600, type: "color" },
+  "color/scale/secondary/700": { value: COLOR_SCALE_SECONDARY_700, type: "color" },
+  "color/scale/secondary/800": { value: COLOR_SCALE_SECONDARY_800, type: "color" },
+  "color/scale/secondary/900": { value: COLOR_SCALE_SECONDARY_900, type: "color" },
+  "color/scale/secondary/950": { value: COLOR_SCALE_SECONDARY_950, type: "color" },
+  "color/scale/ycp/50": { value: COLOR_SCALE_YCP_50, type: "color" },
+  "color/scale/ycp/100": { value: COLOR_SCALE_YCP_100, type: "color" },
+  "color/scale/ycp/200": { value: COLOR_SCALE_YCP_200, type: "color" },
+  "color/scale/ycp/300": { value: COLOR_SCALE_YCP_300, type: "color" },
+  "color/scale/ycp/400": { value: COLOR_SCALE_YCP_400, type: "color" },
+  "color/scale/ycp/500": { value: COLOR_SCALE_YCP_500, type: "color" },
+  "color/scale/ycp/600": { value: COLOR_SCALE_YCP_600, type: "color" },
+  "color/scale/ycp/700": { value: COLOR_SCALE_YCP_700, type: "color" },
+  "color/scale/ycp/800": { value: COLOR_SCALE_YCP_800, type: "color" },
+  "color/scale/ycp/900": { value: COLOR_SCALE_YCP_900, type: "color" },
+  "color/scale/ycp/950": { value: COLOR_SCALE_YCP_950, type: "color" },
+  "color/scale/nexus/50": { value: COLOR_SCALE_NEXUS_50, type: "color" },
+  "color/scale/nexus/100": { value: COLOR_SCALE_NEXUS_100, type: "color" },
+  "color/scale/nexus/200": { value: COLOR_SCALE_NEXUS_200, type: "color" },
+  "color/scale/nexus/300": { value: COLOR_SCALE_NEXUS_300, type: "color" },
+  "color/scale/nexus/400": { value: COLOR_SCALE_NEXUS_400, type: "color" },
+  "color/scale/nexus/500": { value: COLOR_SCALE_NEXUS_500, type: "color" },
+  "color/scale/nexus/600": { value: COLOR_SCALE_NEXUS_600, type: "color" },
+  "color/scale/nexus/700": { value: COLOR_SCALE_NEXUS_700, type: "color" },
+  "color/scale/nexus/800": { value: COLOR_SCALE_NEXUS_800, type: "color" },
+  "color/scale/nexus/900": { value: COLOR_SCALE_NEXUS_900, type: "color" },
+  "color/scale/nexus/950": { value: COLOR_SCALE_NEXUS_950, type: "color" },
+  "color/scale/success/50": { value: COLOR_SCALE_SUCCESS_50, type: "color" },
+  "color/scale/success/100": { value: COLOR_SCALE_SUCCESS_100, type: "color" },
+  "color/scale/success/200": { value: COLOR_SCALE_SUCCESS_200, type: "color" },
+  "color/scale/success/300": { value: COLOR_SCALE_SUCCESS_300, type: "color" },
+  "color/scale/success/400": { value: COLOR_SCALE_SUCCESS_400, type: "color" },
+  "color/scale/success/500": { value: COLOR_SCALE_SUCCESS_500, type: "color" },
+  "color/scale/success/600": { value: COLOR_SCALE_SUCCESS_600, type: "color" },
+  "color/scale/success/700": { value: COLOR_SCALE_SUCCESS_700, type: "color" },
+  "color/scale/success/800": { value: COLOR_SCALE_SUCCESS_800, type: "color" },
+  "color/scale/success/900": { value: COLOR_SCALE_SUCCESS_900, type: "color" },
+  "color/scale/success/950": { value: COLOR_SCALE_SUCCESS_950, type: "color" },
+  "color/scale/error/50": { value: COLOR_SCALE_ERROR_50, type: "color" },
+  "color/scale/error/100": { value: COLOR_SCALE_ERROR_100, type: "color" },
+  "color/scale/error/200": { value: COLOR_SCALE_ERROR_200, type: "color" },
+  "color/scale/error/300": { value: COLOR_SCALE_ERROR_300, type: "color" },
+  "color/scale/error/400": { value: COLOR_SCALE_ERROR_400, type: "color" },
+  "color/scale/error/500": { value: COLOR_SCALE_ERROR_500, type: "color" },
+  "color/scale/error/600": { value: COLOR_SCALE_ERROR_600, type: "color" },
+  "color/scale/error/700": { value: COLOR_SCALE_ERROR_700, type: "color" },
+  "color/scale/error/800": { value: COLOR_SCALE_ERROR_800, type: "color" },
+  "color/scale/error/900": { value: COLOR_SCALE_ERROR_900, type: "color" },
+  "color/scale/error/950": { value: COLOR_SCALE_ERROR_950, type: "color" },
+  "color/scale/warning/50": { value: COLOR_SCALE_WARNING_50, type: "color" },
+  "color/scale/warning/100": { value: COLOR_SCALE_WARNING_100, type: "color" },
+  "color/scale/warning/200": { value: COLOR_SCALE_WARNING_200, type: "color" },
+  "color/scale/warning/300": { value: COLOR_SCALE_WARNING_300, type: "color" },
+  "color/scale/warning/400": { value: COLOR_SCALE_WARNING_400, type: "color" },
+  "color/scale/warning/500": { value: COLOR_SCALE_WARNING_500, type: "color" },
+  "color/scale/warning/600": { value: COLOR_SCALE_WARNING_600, type: "color" },
+  "color/scale/warning/700": { value: COLOR_SCALE_WARNING_700, type: "color" },
+  "color/scale/warning/800": { value: COLOR_SCALE_WARNING_800, type: "color" },
+  "color/scale/warning/900": { value: COLOR_SCALE_WARNING_900, type: "color" },
+  "color/scale/warning/950": { value: COLOR_SCALE_WARNING_950, type: "color" },
+  "color/scale/info/50": { value: COLOR_SCALE_INFO_50, type: "color" },
+  "color/scale/info/100": { value: COLOR_SCALE_INFO_100, type: "color" },
+  "color/scale/info/200": { value: COLOR_SCALE_INFO_200, type: "color" },
+  "color/scale/info/300": { value: COLOR_SCALE_INFO_300, type: "color" },
+  "color/scale/info/400": { value: COLOR_SCALE_INFO_400, type: "color" },
+  "color/scale/info/500": { value: COLOR_SCALE_INFO_500, type: "color" },
+  "color/scale/info/600": { value: COLOR_SCALE_INFO_600, type: "color" },
+  "color/scale/info/700": { value: COLOR_SCALE_INFO_700, type: "color" },
+  "color/scale/info/800": { value: COLOR_SCALE_INFO_800, type: "color" },
+  "color/scale/info/900": { value: COLOR_SCALE_INFO_900, type: "color" },
+  "color/scale/info/950": { value: COLOR_SCALE_INFO_950, type: "color" },
   "fontFamily/sans": { value: FONTFAMILY_SANS, type: "fontFamily" },
   "fontFamily/mono": { value: FONTFAMILY_MONO, type: "fontFamily" },
   "fontFamily/serif": { value: FONTFAMILY_SERIF, type: "fontFamily" },
@@ -382,6 +646,94 @@ export const cssVariables: Record<string, string | number | readonly string[]> =
   "--color-feedback-info-hover": COLOR_FEEDBACK_INFO_HOVER,
   "--color-feedback-info-focus": COLOR_FEEDBACK_INFO_FOCUS,
   "--color-feedback-info-subtle": COLOR_FEEDBACK_INFO_SUBTLE,
+  "--color-scale-primary-50": COLOR_SCALE_PRIMARY_50,
+  "--color-scale-primary-100": COLOR_SCALE_PRIMARY_100,
+  "--color-scale-primary-200": COLOR_SCALE_PRIMARY_200,
+  "--color-scale-primary-300": COLOR_SCALE_PRIMARY_300,
+  "--color-scale-primary-400": COLOR_SCALE_PRIMARY_400,
+  "--color-scale-primary-500": COLOR_SCALE_PRIMARY_500,
+  "--color-scale-primary-600": COLOR_SCALE_PRIMARY_600,
+  "--color-scale-primary-700": COLOR_SCALE_PRIMARY_700,
+  "--color-scale-primary-800": COLOR_SCALE_PRIMARY_800,
+  "--color-scale-primary-900": COLOR_SCALE_PRIMARY_900,
+  "--color-scale-primary-950": COLOR_SCALE_PRIMARY_950,
+  "--color-scale-secondary-50": COLOR_SCALE_SECONDARY_50,
+  "--color-scale-secondary-100": COLOR_SCALE_SECONDARY_100,
+  "--color-scale-secondary-200": COLOR_SCALE_SECONDARY_200,
+  "--color-scale-secondary-300": COLOR_SCALE_SECONDARY_300,
+  "--color-scale-secondary-400": COLOR_SCALE_SECONDARY_400,
+  "--color-scale-secondary-500": COLOR_SCALE_SECONDARY_500,
+  "--color-scale-secondary-600": COLOR_SCALE_SECONDARY_600,
+  "--color-scale-secondary-700": COLOR_SCALE_SECONDARY_700,
+  "--color-scale-secondary-800": COLOR_SCALE_SECONDARY_800,
+  "--color-scale-secondary-900": COLOR_SCALE_SECONDARY_900,
+  "--color-scale-secondary-950": COLOR_SCALE_SECONDARY_950,
+  "--color-scale-ycp-50": COLOR_SCALE_YCP_50,
+  "--color-scale-ycp-100": COLOR_SCALE_YCP_100,
+  "--color-scale-ycp-200": COLOR_SCALE_YCP_200,
+  "--color-scale-ycp-300": COLOR_SCALE_YCP_300,
+  "--color-scale-ycp-400": COLOR_SCALE_YCP_400,
+  "--color-scale-ycp-500": COLOR_SCALE_YCP_500,
+  "--color-scale-ycp-600": COLOR_SCALE_YCP_600,
+  "--color-scale-ycp-700": COLOR_SCALE_YCP_700,
+  "--color-scale-ycp-800": COLOR_SCALE_YCP_800,
+  "--color-scale-ycp-900": COLOR_SCALE_YCP_900,
+  "--color-scale-ycp-950": COLOR_SCALE_YCP_950,
+  "--color-scale-nexus-50": COLOR_SCALE_NEXUS_50,
+  "--color-scale-nexus-100": COLOR_SCALE_NEXUS_100,
+  "--color-scale-nexus-200": COLOR_SCALE_NEXUS_200,
+  "--color-scale-nexus-300": COLOR_SCALE_NEXUS_300,
+  "--color-scale-nexus-400": COLOR_SCALE_NEXUS_400,
+  "--color-scale-nexus-500": COLOR_SCALE_NEXUS_500,
+  "--color-scale-nexus-600": COLOR_SCALE_NEXUS_600,
+  "--color-scale-nexus-700": COLOR_SCALE_NEXUS_700,
+  "--color-scale-nexus-800": COLOR_SCALE_NEXUS_800,
+  "--color-scale-nexus-900": COLOR_SCALE_NEXUS_900,
+  "--color-scale-nexus-950": COLOR_SCALE_NEXUS_950,
+  "--color-scale-success-50": COLOR_SCALE_SUCCESS_50,
+  "--color-scale-success-100": COLOR_SCALE_SUCCESS_100,
+  "--color-scale-success-200": COLOR_SCALE_SUCCESS_200,
+  "--color-scale-success-300": COLOR_SCALE_SUCCESS_300,
+  "--color-scale-success-400": COLOR_SCALE_SUCCESS_400,
+  "--color-scale-success-500": COLOR_SCALE_SUCCESS_500,
+  "--color-scale-success-600": COLOR_SCALE_SUCCESS_600,
+  "--color-scale-success-700": COLOR_SCALE_SUCCESS_700,
+  "--color-scale-success-800": COLOR_SCALE_SUCCESS_800,
+  "--color-scale-success-900": COLOR_SCALE_SUCCESS_900,
+  "--color-scale-success-950": COLOR_SCALE_SUCCESS_950,
+  "--color-scale-error-50": COLOR_SCALE_ERROR_50,
+  "--color-scale-error-100": COLOR_SCALE_ERROR_100,
+  "--color-scale-error-200": COLOR_SCALE_ERROR_200,
+  "--color-scale-error-300": COLOR_SCALE_ERROR_300,
+  "--color-scale-error-400": COLOR_SCALE_ERROR_400,
+  "--color-scale-error-500": COLOR_SCALE_ERROR_500,
+  "--color-scale-error-600": COLOR_SCALE_ERROR_600,
+  "--color-scale-error-700": COLOR_SCALE_ERROR_700,
+  "--color-scale-error-800": COLOR_SCALE_ERROR_800,
+  "--color-scale-error-900": COLOR_SCALE_ERROR_900,
+  "--color-scale-error-950": COLOR_SCALE_ERROR_950,
+  "--color-scale-warning-50": COLOR_SCALE_WARNING_50,
+  "--color-scale-warning-100": COLOR_SCALE_WARNING_100,
+  "--color-scale-warning-200": COLOR_SCALE_WARNING_200,
+  "--color-scale-warning-300": COLOR_SCALE_WARNING_300,
+  "--color-scale-warning-400": COLOR_SCALE_WARNING_400,
+  "--color-scale-warning-500": COLOR_SCALE_WARNING_500,
+  "--color-scale-warning-600": COLOR_SCALE_WARNING_600,
+  "--color-scale-warning-700": COLOR_SCALE_WARNING_700,
+  "--color-scale-warning-800": COLOR_SCALE_WARNING_800,
+  "--color-scale-warning-900": COLOR_SCALE_WARNING_900,
+  "--color-scale-warning-950": COLOR_SCALE_WARNING_950,
+  "--color-scale-info-50": COLOR_SCALE_INFO_50,
+  "--color-scale-info-100": COLOR_SCALE_INFO_100,
+  "--color-scale-info-200": COLOR_SCALE_INFO_200,
+  "--color-scale-info-300": COLOR_SCALE_INFO_300,
+  "--color-scale-info-400": COLOR_SCALE_INFO_400,
+  "--color-scale-info-500": COLOR_SCALE_INFO_500,
+  "--color-scale-info-600": COLOR_SCALE_INFO_600,
+  "--color-scale-info-700": COLOR_SCALE_INFO_700,
+  "--color-scale-info-800": COLOR_SCALE_INFO_800,
+  "--color-scale-info-900": COLOR_SCALE_INFO_900,
+  "--color-scale-info-950": COLOR_SCALE_INFO_950,
   "--font-family-sans": FONTFAMILY_SANS,
   "--font-family-mono": FONTFAMILY_MONO,
   "--font-family-serif": FONTFAMILY_SERIF,

@@ -38,10 +38,10 @@ Label:     text-foreground-inverse
 Icon:      text-foreground-inverse
 ```
 
-### Accent Button
+### Accent / Secondary Button
 
 ```
-Container: bg-brand-ycp
+Container: bg-brand-secondary
 Label:     text-foreground-inverse
 Icon:      text-foreground-inverse
 ```
@@ -69,7 +69,7 @@ Icon:      text-foreground-primary
 
 | Size   | Height | Horizontal Padding | Vertical Padding | Gap (icon↔label) | Border Radius |
 | ------ | ------ | ------------------ | ---------------- | ---------------- | ------------- |
-| **SM** | 22px   | 6px                | 6px              | 4px              | 4px           |
+| **SM** | 28px   | 8px                | 8px              | 4px              | 4px           |
 | **MD** | 36px   | 10px               | 10px             | 6px              | 6px           |
 | **LG** | 40px   | 10px               | 10px             | 8px              | 6px           |
 
@@ -204,11 +204,11 @@ All button sizes maintain a minimum touch target of **44px × 44px** for accessi
 | `--color-brand-primary`       | #0070F2 | Primary button bg            |
 | `--color-brand-primary-hover` | #005AC2 | Primary hover bg             |
 | `--color-brand-primary-focus` | #338DF5 | Primary focus/pressed bg     |
-| `--color-brand-ycp`           | #001C44 | Accent button bg, focus ring |
-| `--color-brand-ycp-hover`     | #001636 | Accent hover bg              |
-| `--color-brand-ycp-focus`     | #334969 | Accent focus/pressed bg      |
+| `--color-brand-secondary`     | #1524A9 | Secondary button bg         |
+| `--color-brand-secondary-hover` | #101C82 | Secondary hover bg           |
+| `--color-brand-secondary-focus` | #5A71F5 | Secondary focus/pressed bg   |
 | `--color-foreground-inverse`  | #FFFFFF | Primary/Accent label color   |
-| `--color-foreground-primary`  | #1B1B1D | Ghost/Outline label color    |
+| `--color-foreground-primary`  | #001C44 | Ghost/Outline label color    |
 | `--color-foreground-tertiary` | #9CA3AF | Disabled label color         |
 | `--color-surface-subtle`      | #F9FAFB | Ghost hover bg               |
 | `--color-surface-muted`       | #F3F4F6 | Outline border, disabled bg  |

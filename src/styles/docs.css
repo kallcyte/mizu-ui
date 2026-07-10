@@ -200,3 +200,23 @@ section:last-of-type {
     grid-template-columns: 1fr;
   }
 }
+
+/* Status badges for component docs */
+.sl-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 1px 8px;
+  border-radius: 9999px;
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 1.6;
+}
+.sl-badge.success {
+  background: var(--color-feedback-success-subtle);
+  color: var(--color-feedback-success-base);
+}
+.sl-badge.warning {
+  background: var(--color-feedback-warning-subtle);
+  color: var(--color-feedback-warning-base);
+}

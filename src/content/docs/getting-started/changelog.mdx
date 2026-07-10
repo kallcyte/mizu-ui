@@ -16,6 +16,35 @@ This project follows **semantic versioning** (SemVer) during pre-1.0 development
 Changes that require a minor bump: adding a new component, renaming tokens, changing component APIs, adding new packages (e.g. React).
 Changes that keep the patch version: renames, copy edits, styling tweaks, build config changes, favicon updates.
 
+## 0.17.0 (2026-07-10)
+
+### Added
+
+- **Nuxt UI color scales** — Added `color.scale` section to `tokens.json` with full 50–950 color ramps for primary, secondary, ycp, nexus, success, error, warning, and info. Nuxt UI components now use complete color pipelines via `@mizu/vue/style.css` `@theme` mappings.
+- **Custom Mizu colors** — Registered `nexus` (#4521D8 purple) and `ycp` (#001C44 navy) as first-class Nuxt UI colors with compoundVariants for solid, outline, ghost, and soft variants.
+- **Button — nexus variant** — `color="nexus"` available on all Nuxt UI components with full variant styling.
+- **Button — link variant** — Added dashed underline styling (`decoration-dashed underline-offset-2`) to the link variant.
+- **Button — scale interaction** — Added `active:scale-95` press feedback with `ease-emphasized` spring easing.
+- **Button — transition** — Overrides Nuxt UI defaults with `transition-all duration-300 ease-emphasized` for smooth hover/active state animations.
+- **Button — icon-only square sizing** — Icon-only buttons now share the same vertical padding as labeled buttons (not auto-squashed), keeping height consistent at 28/36/40px.
+- **ButtonDemo** — Reorganized into 11 independently-callable sections via `section` prop, each with TOC-indexed `###` headings and descriptions. Added Common Patterns, Loading, Link, Block & Square, Label Prop, and Avatar examples.
+- **Status badges** — `Ready`/`Pending` badges on all component doc pages indicating Mizu theme coverage.
+- **ColorSection** — Nuxt UI scale ramps displayed as compact horizontal swatch strips with semantic token annotations.
+
+### Changed
+
+- **Secondary color** — Nuxt UI `secondary` now maps to `--color-scale-secondary-500` (#1524A9) instead of ycp (#001C44). YCP remains available as `color="ycp"`.
+- **Button docs** — Color Map updated with scale tokens, nexus added, transitions section updated, blockquotes removed.
+- **overview.mdx** — Updated to reflect 14 token categories, scale tokens, dark mode section, fixed `foreground-primary` to #001C44.
+
+### Disabled
+
+- **Dark mode** — Postponed project-wide. `@mizu/tokens/dark.css` import commented out in vue package and histoire. Homepage theme toggle removed. Starlight ThemeSelect overridden. Dark tokens preserved in source for future re-enable.
+
+### Fixed
+
+- **Button mojibake** — Fixed double-encoded UTF-8 em-dashes across all doc files.
+
 ## 0.16.2 (2026-07-10)
 
 ### Fixed

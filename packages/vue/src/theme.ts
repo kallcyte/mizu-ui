@@ -23,7 +23,7 @@ export const mizuTheme = {
   // See: old MizuButton docs (git history)
   button: {
     slots: {
-      base: "cursor-pointer",
+      base: "cursor-pointer enabled:active:scale-95 transition-all duration-300 ease-emphasized",
     },
     variants: {
       size: {
@@ -47,6 +47,24 @@ export const mizuTheme = {
         },
       },
     },
+    compoundVariants: [
+      // Icon-only buttons: keep same vertical padding as labeled buttons
+      { size: "sm", square: true, class: "py-2 px-2" },
+      { size: "md", square: true, class: "py-2.5 px-2.5" },
+      { size: "lg", square: true, class: "py-2.5 px-2.5" },
+      // Link variant: dashed underline with tight offset
+      { variant: "link", class: "underline decoration-dashed underline-offset-2" },
+      // Custom Mizu colors — solid variant
+      { color: "nexus", variant: "solid", class: "text-inverted bg-nexus-500 hover:bg-nexus-600 active:bg-nexus-600 disabled:bg-nexus-500 aria-disabled:bg-nexus-500 outline-nexus-500/25 focus-visible:outline-3" },
+      { color: "ycp", variant: "solid", class: "text-inverted bg-ycp-500 hover:bg-ycp-600 active:bg-ycp-600 disabled:bg-ycp-500 aria-disabled:bg-ycp-500 outline-ycp-500/25 focus-visible:outline-3" },
+      // Custom Mizu colors — outline, ghost, soft
+      { color: "nexus", variant: "outline", class: "ring ring-inset ring-nexus-500/25 text-nexus-500 bg-transparent hover:bg-nexus-500/10 active:bg-nexus-500/10 outline-nexus-500/25 focus-visible:outline-3" },
+      { color: "ycp", variant: "outline", class: "ring ring-inset ring-ycp-500/25 text-ycp-500 bg-transparent hover:bg-ycp-500/10 active:bg-ycp-500/10 outline-ycp-500/25 focus-visible:outline-3" },
+      { color: "nexus", variant: "ghost", class: "text-nexus-500 hover:bg-nexus-500/10 active:bg-nexus-500/10 outline-nexus-500/25 focus-visible:outline-3" },
+      { color: "ycp", variant: "ghost", class: "text-ycp-500 hover:bg-ycp-500/10 active:bg-ycp-500/10 outline-ycp-500/25 focus-visible:outline-3" },
+      { color: "nexus", variant: "soft", class: "text-nexus-500 bg-nexus-500/10 hover:bg-nexus-500/15 active:bg-nexus-500/15 outline-nexus-500/25 focus-visible:outline-3" },
+      { color: "ycp", variant: "soft", class: "text-ycp-500 bg-ycp-500/10 hover:bg-ycp-500/15 active:bg-ycp-500/15 outline-ycp-500/25 focus-visible:outline-3" },
+    ],
   },
 
   // --- Badge ---

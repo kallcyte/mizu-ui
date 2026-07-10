@@ -7,11 +7,13 @@ Mizu uses design tokens as the single source of truth for all visual design deci
 
 ## Token Categories
 
-Mizu includes 11 token categories:
+Mizu includes 14 token categories:
 
 | Category          | Description                                 | Examples                                        |
 | ----------------- | ------------------------------------------- | ----------------------------------------------- |
 | **color**         | Brand, surface, foreground, feedback colors | `brand-primary`, `surface-base`, `error-subtle` |
+| **color.scale**   | Nuxt UI 50–950 color ramps                 | `primary-500`, `success-100`, `nexus-700`       |
+| **color.dark**    | Dark mode color overrides                  | `dark-surface-base`, `dark-foreground-primary`  |
 | **fontFamily**    | Typeface definitions                        | `sans`, `mono`, `serif`                         |
 | **fontSize**      | Type scale values                           | `display`, `h1`, `body`, `caption`              |
 | **fontWeight**    | Font weight values                          | `regular`, `medium`, `semibold`, `bold`         |
@@ -45,6 +47,8 @@ Mizu includes 11 token categories:
 | `brand-nexus-hover`      | #371AAD | Nexus hover state                 |
 | `brand-nexus-focus`      | #6A4DE0 | Nexus focus state                 |
 | `brand-nexus-subtle`     | #DAD3F7 | Light nexus background            |
+| `brand-muted`            | #EDF0FF | Soft brand-tinted surface         |
+| `brand-neutral`          | #1B1B1D | Deep neutral for text and borders |
 
 ### Surface Colors
 
@@ -58,7 +62,7 @@ Mizu includes 11 token categories:
 
 | Token                  | Value   | Usage                    |
 | ---------------------- | ------- | ------------------------ |
-| `foreground-primary`   | #1B1B1D | High-emphasis text       |
+| `foreground-primary`   | #001C44 | High-emphasis text       |
 | `foreground-secondary` | #4B5563 | Supporting text          |
 | `foreground-tertiary`  | #9CA3AF | Low-emphasis text        |
 | `foreground-inverse`   | #FFFFFF | Text on dark backgrounds |
@@ -71,6 +75,49 @@ Mizu includes 11 token categories:
 | **error**   | #DC2626 | #B91C1C | #991B1B | #FEF2F2 |
 | **warning** | #D97706 | #B45309 | #92400E | #FFFBEB |
 | **info**    | #0284C7 | #0369A1 | #075985 | #F0F9FF |
+
+### Scale Colors (Nuxt UI)
+
+Full 50–950 color ramps for Nuxt UI v4's component color pipeline. Each family has 11 shades.
+
+| Family       | 50      | 100     | 200     | 300     | 400     | 500     | 600     | 700     | 800     | 900     | 950     |
+| ------------ | ------- | ------- | ------- | ------- | ------- | ------- | ------- | ------- | ------- | ------- | ------- |
+| **primary**  | #E8F2FE | #CCE2FC | #80B7F8 | #338DF5 | #147EF9 | #0070F2 | #0065DA | #005AC2 | #004FAA | #004492 | #003675 |
+| **secondary**| #F2F4FF | #E1E7FF | #9BACFC | #5A71F5 | #1C36EA | #1524A9 | #122096 | #101C82 | #0E1971 | #0C1561 | #0A114E |
+| **ycp**      | #E8EBEE | #CCD2DA | #758CAC | #334969 | #12315E | #001C44 | #00193D | #001636 | #00132F | #001028 | #000D20 |
+| **nexus**    | #EEEBFB | #DAD3F7 | #A290EB | #6A4DE0 | #5635DE | #4521D8 | #3E1DC3 | #371AAD | #301797 | #291382 | #210F68 |
+| **success**  | #EFFEF4 | #DCFCE7 | #93F4B5 | #4DE985 | #1DC95C | #15803D | #166534 | #14532D | #114225 | #0E311D | #0B2717 |
+| **error**    | #FFF9F9 | #FEF2F2 | #F9BCBC | #F18888 | #E85656 | #DC2626 | #B91C1C | #991B1B | #7A1919 | #5D1515 | #4A1111 |
+| **warning**  | #FFFDF6 | #FFFBEB | #FEE8A9 | #FDCB68 | #FBA627 | #D97706 | #B45309 | #92400E | #723011 | #552311 | #441C0E |
+| **info**     | #F8FCFF | #F0F9FF | #A7DDFF | #5EC3FE | #15ABFD | #0284C7 | #0369A1 | #075985 | #09496B | #0A3952 | #082E42 |
+
+Shade conventions follow Nuxt UI v4:
+- **50–100** — Subtle backgrounds
+- **200–300** — Focus rings, light emphasis
+- **400–500** — Base fill, default state
+- **600–700** — Hover state
+- **800–950** — Pressed state, deep backgrounds
+
+
+## Dark Mode
+
+All color tokens have dark-mode counterparts under `color.dark.*`. These override the light values when `[data-theme="dark"]` is set.
+
+| Category    | Token           | Light    | Dark     |
+| ----------- | --------------- | -------- | -------- |
+| Surface     | `base`          | #FFFFFF  | #0F1117  |
+| Surface     | `subtle`        | #F9FAFB  | #161822  |
+| Surface     | `muted`         | #F3F4F6  | #1E2030  |
+| Foreground  | `primary`       | #001C44  | #F1F5F9  |
+| Foreground  | `secondary`     | #4B5563  | #94A3B8  |
+| Foreground  | `tertiary`      | #9CA3AF  | #64748B  |
+| Foreground  | `inverse`       | #FFFFFF  | #0F1117  |
+| Success     | `base`          | #15803D  | #4ADE80  |
+| Error       | `base`          | #DC2626  | #F87171  |
+| Warning     | `base`          | #D97706  | #FBBF24  |
+| Info        | `base`          | #0284C7  | #38BDF8  |
+
+Dark feedback colors also include `hover`, `focus`, and `subtle` variants. See the full token spec in `tokens.json`.
 
 ## Easing Tokens
 
@@ -163,4 +210,6 @@ Tokens follow a consistent naming pattern:
 | Surface colors    | `--color-surface-{variant}`    | `bg-surface-base`         |
 | Foreground colors | `--color-foreground-{variant}` | `text-foreground-primary` |
 | Brand colors      | `--color-brand-{variant}`      | `bg-brand-primary`        |
-| Feedback colors   | `--color-{type}-{variant}`     | `bg-error-subtle`         |
+| Feedback colors   | `--color-feedback-{type}-{state}`| `bg-feedback-error-subtle`  |
+| Scale colors      | `--color-{family}-{shade}`       | `bg-primary-500`            |
+| Dark colors       | `--color-dark-{category}-{key}`  | `text-dark-foreground-pri`  |

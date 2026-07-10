@@ -2,7 +2,7 @@
 @import "@nuxt/ui";
 
 @import "@mizu/tokens/light.css" layer(base);
-@import "@mizu/tokens/dark.css" layer(base);
+/* @import "@mizu/tokens/dark.css" layer(base); -- dark mode postponed */
 
 /*
  * Mizu font aliases.
@@ -17,6 +17,7 @@
   --font-sans: var(--font-family-sans);
   --font-mono: var(--font-family-mono);
   --font-serif: var(--font-family-serif);
+  --ease-emphasized: cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 /*
@@ -35,17 +36,18 @@
  * automatically use Mizu colors.
  */
 @theme {
-  /* Primary - Mizu brand-blue */
-  --color-primary: var(--color-brand-primary);
-  --color-primary-hover: var(--color-brand-primary-hover);
-  --color-primary-focus: var(--color-brand-primary-focus);
-  --color-primary-subtle: var(--color-brand-primary-subtle);
+  /* ── Nuxt UI semantic color aliases (backward compatible) ── */
+  /* Primary - Mizu brand-blue (scale-500 = base) */
+  --color-primary: var(--color-scale-primary-500);
+  --color-primary-hover: var(--color-scale-primary-700);
+  --color-primary-focus: var(--color-scale-primary-300);
+  --color-primary-subtle: var(--color-scale-primary-100);
 
-  /* Secondary - Mizu ycp (deep navy) */
-  --color-secondary: var(--color-brand-ycp);
-  --color-secondary-hover: var(--color-brand-ycp-hover);
-  --color-secondary-focus: var(--color-brand-ycp-focus);
-  --color-secondary-subtle: var(--color-brand-ycp-subtle);
+  /* Secondary - Mizu secondary brand blue (scale-500 = base) */
+  --color-secondary: var(--color-scale-secondary-500);
+  --color-secondary-hover: var(--color-scale-secondary-700);
+  --color-secondary-focus: var(--color-scale-secondary-300);
+  --color-secondary-subtle: var(--color-scale-secondary-100);
 
   /* Surface / Foreground — mapped to Nuxt UI's semantic layer */
   --color-default: var(--color-surface-base);
@@ -64,26 +66,124 @@
   --color-foreground-tertiary: var(--color-foreground-tertiary);
   --color-foreground-inverse: var(--color-foreground-inverse);
 
-  /* Feedback colors */
-  --color-success: var(--color-feedback-success-base);
-  --color-success-hover: var(--color-feedback-success-hover);
-  --color-success-focus: var(--color-feedback-success-focus);
-  --color-success-subtle: var(--color-feedback-success-subtle);
+  /* Feedback colors — semantic aliases (scale-500 = base) */
+  --color-success: var(--color-scale-success-500);
+  --color-success-hover: var(--color-scale-success-600);
+  --color-success-focus: var(--color-scale-success-700);
+  --color-success-subtle: var(--color-scale-success-100);
 
-  --color-error: var(--color-feedback-error-base);
-  --color-error-hover: var(--color-feedback-error-hover);
-  --color-error-focus: var(--color-feedback-error-focus);
-  --color-error-subtle: var(--color-feedback-error-subtle);
+  --color-error: var(--color-scale-error-500);
+  --color-error-hover: var(--color-scale-error-600);
+  --color-error-focus: var(--color-scale-error-700);
+  --color-error-subtle: var(--color-scale-error-100);
 
-  --color-warning: var(--color-feedback-warning-base);
-  --color-warning-hover: var(--color-feedback-warning-hover);
-  --color-warning-focus: var(--color-feedback-warning-focus);
-  --color-warning-subtle: var(--color-feedback-warning-subtle);
+  --color-warning: var(--color-scale-warning-500);
+  --color-warning-hover: var(--color-scale-warning-600);
+  --color-warning-focus: var(--color-scale-warning-700);
+  --color-warning-subtle: var(--color-scale-warning-100);
 
-  --color-info: var(--color-feedback-info-base);
-  --color-info-hover: var(--color-feedback-info-hover);
-  --color-info-focus: var(--color-feedback-info-focus);
-  --color-info-subtle: var(--color-feedback-info-subtle);
+  --color-info: var(--color-scale-info-500);
+  --color-info-hover: var(--color-scale-info-600);
+  --color-info-focus: var(--color-scale-info-700);
+  --color-info-subtle: var(--color-scale-info-100);
+
+  /* ── Nuxt UI full 50–950 color scales (from tokens-v2 color.scale) ── */
+  --color-primary-50: var(--color-scale-primary-50);
+  --color-primary-100: var(--color-scale-primary-100);
+  --color-primary-200: var(--color-scale-primary-200);
+  --color-primary-300: var(--color-scale-primary-300);
+  --color-primary-400: var(--color-scale-primary-400);
+  --color-primary-500: var(--color-scale-primary-500);
+  --color-primary-600: var(--color-scale-primary-600);
+  --color-primary-700: var(--color-scale-primary-700);
+  --color-primary-800: var(--color-scale-primary-800);
+  --color-primary-900: var(--color-scale-primary-900);
+  --color-primary-950: var(--color-scale-primary-950);
+
+  --color-secondary-50: var(--color-scale-secondary-50);
+  --color-secondary-100: var(--color-scale-secondary-100);
+  --color-secondary-200: var(--color-scale-secondary-200);
+  --color-secondary-300: var(--color-scale-secondary-300);
+  --color-secondary-400: var(--color-scale-secondary-400);
+  --color-secondary-500: var(--color-scale-secondary-500);
+  --color-secondary-600: var(--color-scale-secondary-600);
+  --color-secondary-700: var(--color-scale-secondary-700);
+  --color-secondary-800: var(--color-scale-secondary-800);
+  --color-secondary-900: var(--color-scale-secondary-900);
+  --color-secondary-950: var(--color-scale-secondary-950);
+
+  --color-success-50: var(--color-scale-success-50);
+  --color-success-100: var(--color-scale-success-100);
+  --color-success-200: var(--color-scale-success-200);
+  --color-success-300: var(--color-scale-success-300);
+  --color-success-400: var(--color-scale-success-400);
+  --color-success-500: var(--color-scale-success-500);
+  --color-success-600: var(--color-scale-success-600);
+  --color-success-700: var(--color-scale-success-700);
+  --color-success-800: var(--color-scale-success-800);
+  --color-success-900: var(--color-scale-success-900);
+  --color-success-950: var(--color-scale-success-950);
+
+  --color-error-50: var(--color-scale-error-50);
+  --color-error-100: var(--color-scale-error-100);
+  --color-error-200: var(--color-scale-error-200);
+  --color-error-300: var(--color-scale-error-300);
+  --color-error-400: var(--color-scale-error-400);
+  --color-error-500: var(--color-scale-error-500);
+  --color-error-600: var(--color-scale-error-600);
+  --color-error-700: var(--color-scale-error-700);
+  --color-error-800: var(--color-scale-error-800);
+  --color-error-900: var(--color-scale-error-900);
+  --color-error-950: var(--color-scale-error-950);
+
+  --color-warning-50: var(--color-scale-warning-50);
+  --color-warning-100: var(--color-scale-warning-100);
+  --color-warning-200: var(--color-scale-warning-200);
+  --color-warning-300: var(--color-scale-warning-300);
+  --color-warning-400: var(--color-scale-warning-400);
+  --color-warning-500: var(--color-scale-warning-500);
+  --color-warning-600: var(--color-scale-warning-600);
+  --color-warning-700: var(--color-scale-warning-700);
+  --color-warning-800: var(--color-scale-warning-800);
+  --color-warning-900: var(--color-scale-warning-900);
+  --color-warning-950: var(--color-scale-warning-950);
+
+  --color-info-50: var(--color-scale-info-50);
+  --color-info-100: var(--color-scale-info-100);
+  --color-info-200: var(--color-scale-info-200);
+  --color-info-300: var(--color-scale-info-300);
+  --color-info-400: var(--color-scale-info-400);
+  --color-info-500: var(--color-scale-info-500);
+  --color-info-600: var(--color-scale-info-600);
+  --color-info-700: var(--color-scale-info-700);
+  --color-info-800: var(--color-scale-info-800);
+  --color-info-900: var(--color-scale-info-900);
+  --color-info-950: var(--color-scale-info-950);
+
+  /* Custom Mizu color families */
+  --color-ycp-50: var(--color-scale-ycp-50);
+  --color-ycp-100: var(--color-scale-ycp-100);
+  --color-ycp-200: var(--color-scale-ycp-200);
+  --color-ycp-300: var(--color-scale-ycp-300);
+  --color-ycp-400: var(--color-scale-ycp-400);
+  --color-ycp-500: var(--color-scale-ycp-500);
+  --color-ycp-600: var(--color-scale-ycp-600);
+  --color-ycp-700: var(--color-scale-ycp-700);
+  --color-ycp-800: var(--color-scale-ycp-800);
+  --color-ycp-900: var(--color-scale-ycp-900);
+  --color-ycp-950: var(--color-scale-ycp-950);
+
+  --color-nexus-50: var(--color-scale-nexus-50);
+  --color-nexus-100: var(--color-scale-nexus-100);
+  --color-nexus-200: var(--color-scale-nexus-200);
+  --color-nexus-300: var(--color-scale-nexus-300);
+  --color-nexus-400: var(--color-scale-nexus-400);
+  --color-nexus-500: var(--color-scale-nexus-500);
+  --color-nexus-600: var(--color-scale-nexus-600);
+  --color-nexus-700: var(--color-scale-nexus-700);
+  --color-nexus-800: var(--color-scale-nexus-800);
+  --color-nexus-900: var(--color-scale-nexus-900);
+  --color-nexus-950: var(--color-scale-nexus-950);
 }
 
 /*
