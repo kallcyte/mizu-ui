@@ -7,7 +7,7 @@ import ButtonDemo from "../../../../components/docs/ButtonDemo.vue";
 
 <span style="display:inline-flex;margin-bottom:16px;padding:1px 8px;border-radius:9999px;font-size:11px;font-weight:500;background:#DCFCE7;color:#15803D;">Ready</span>
 
-A button triggers an action ”” submitting a form, navigating to a page, or executing a callback. Mizu uses Nuxt UI's `UButton` with custom sizing (28/36/40px) and typography.
+A button triggers an action — submitting a form, navigating to a page, or executing a callback. Mizu uses Nuxt UI's `UButton` with custom sizing (28/36/40px) and typography.
 
 ## Examples
 
@@ -54,20 +54,20 @@ Reference: [Nuxt UI Button](https://ui.nuxt.com/docs/components/button)
 | `size` | `'xs' \| 'sm' \| 'md' \| 'lg' \| 'xl'` | `'md'` | Button size. Mizu overrides sm/md/lg to 28/36/40px |
 | `color` | `'primary' \| 'secondary' \| 'nexus' \| 'ycp' \| 'success' \| 'error' \| 'warning' \| 'info' \| 'neutral'` | `'primary'` | Semantic color |
 | `variant` | `'solid' \| 'outline' \| 'soft' \| 'subtle' \| 'ghost' \| 'link'` | `'solid'` | Visual style |
-| `icon` | `string` (Iconify) | ”” | Icon from Iconify (e.g. `'i-ph-magnifying-glass'`) |
+| `icon` | `string` (Iconify) | — | Icon from Iconify (e.g. `'i-ph-magnifying-glass'`) |
 | `trailing` | `boolean` | `false` | When `true`, icon displays on the right |
 | `loading` | `boolean` | `false` | Show a loading spinner instead of the icon |
 | `disabled` | `boolean` | `false` | Disables interaction |
 | `block` | `boolean` | `false` | Full-width button |
 | `square` | `boolean` | `false` | Equal padding on all sides |
-| `to` / `href` | `string \| RouteLocation` | ”” | Render as a link |
+| `to` / `href` | `string \| RouteLocation` | — | Render as a link |
 | `type` | `'button' \| 'submit' \| 'reset'` | `'button'` | Native button type |
 
 ### Slots
 
 | Slot | Props | Description |
 |------|-------|-------------|
-| `default` | ”” | Button label/content |
+| `default` | — | Button label/content |
 | `leading` | `{ ui }` | Custom leading content (before label) |
 | `trailing` | `{ ui }` | Custom trailing content (after label) |
 
@@ -139,9 +139,9 @@ With optional leading icon, label, and trailing icon inline.
 
 ## Implementation Notes
 
-1. **Use `<UButton>` directly** ”” No Mizu wrapper needed. Apply the theme preset and Nuxt UI handles the rest.
-2. **Mizu sizing is opt-in via theme** ”” Consumers must import `@mizu/vue/theme` and merge into `app.config.ts`. Without it, Nuxt UI defaults apply.
-3. **Icon naming** ”” Uses Iconify format. Mizu's default collection is Phosphor (`i-ph-*`); other collections like Lucide (`i-lucide-*`) and Heroicons (`i-heroicons-*`) work too. See the [Icons guide](/getting-started/icons) for the full reference.
-4. **`leadingIcon` / `trailingIcon`** ”” The theme preset also overrides icon sizes per button size variant.
-5. **Loading state** ”” Set `loading` to `true` to show a spinner. The `loadingAuto` prop auto-detects async `@click` handlers.
-6. **Link buttons** ”” Use `to` (Nuxt router) or `href` (static URL) to render as an `<a>` tag.
+1. **Use `<UButton>` directly** — No Mizu wrapper needed. Apply the theme preset and Nuxt UI handles the rest.
+2. **Mizu sizing is opt-in via theme** — Consumers must import `@mizu/vue/theme` and merge into `app.config.ts`. Without it, Nuxt UI defaults apply.
+3. **Icon naming** — Uses Iconify format. Mizu's default collection is Phosphor (`i-ph-*`); other collections like Lucide (`i-lucide-*`) and Heroicons (`i-heroicons-*`) work too. See the [Icons guide](/getting-started/icons) for the full reference.
+4. **`leadingIcon` / `trailingIcon`** — The theme preset also overrides icon sizes per button size variant.
+5. **Loading state** — Set `loading` to `true` to show a spinner. The `loadingAuto` prop auto-detects async `@click` handlers.
+6. **Link buttons** — Use `to` (Nuxt router) or `href` (static URL) to render as an `<a>` tag.
