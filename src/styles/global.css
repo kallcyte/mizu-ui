@@ -27,3 +27,8 @@
     --sl-font-weight-semibold: 600;
   }
 }
+/* Force Mizu body text size */
+body { font-size: 15px; line-height: 1.6; }
+.sl-markdown-content { font-size: 15px; line-height: 1.6; }
+.sl-markdown-content p { font-size: 15px; line-height: 1.6; }
+.sl-container main { font-size: 15px; }
