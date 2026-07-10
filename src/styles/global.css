@@ -9,3 +9,21 @@
 
 @import "./tokens.css";
 @import "./scrollbar.css";
+
+
+/* Mizu typography overrides for Starlight */
+@layer starlight {
+  :root {
+    --sl-font: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    --sl-font-mono: 'JetBrains Mono', 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
+    --sl-text-h1: 24px;
+    --sl-text-h2: 18px;
+    --sl-text-h3: 15px;
+    --sl-text-base: 15px;
+    --sl-text-sm: 13px;
+    --sl-line-height: 1.6;
+    --sl-line-height-headings: 1.2;
+    --sl-font-weight-bold: 700;
+    --sl-font-weight-semibold: 600;
+  }
+}
