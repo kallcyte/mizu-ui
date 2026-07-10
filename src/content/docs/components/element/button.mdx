@@ -11,36 +11,59 @@ A button triggers an action — submitting a form, navigating to a page, or exec
 
 ## Examples
 
+### Common Patterns
+Real-world button combinations showing the recommended pairing of color, variant, and icon for common actions in both md and sm sizes.
+
 <ButtonDemo section="patterns" client:only="vue" />
 
 ### Sizes
+Mizu overrides three sizes: sm (28px), md (36px), and lg (40px).
+
 <ButtonDemo section="sizes" client:only="vue" />
 
 ### Colors
+Eight semantic colors including Mizu custom families nexus and ycp.
+
 <ButtonDemo section="colors" client:only="vue" />
 
 ### Variants
+Four core variants: solid, outline, ghost, and link. Soft and subtle are also available via Nuxt UI but are not part of the core Mizu design system.
+
 <ButtonDemo section="variants" client:only="vue" />
 
 ### With Icons
+Icons can appear on the leading side, trailing side, or both. Icon-only buttons auto-square and share the same height as labeled buttons.
+
 <ButtonDemo section="icons" client:only="vue" />
 
 ### Disabled
+Prevent interaction with the disabled attribute. Disabled buttons have reduced opacity and no pointer events.
+
 <ButtonDemo section="disabled" client:only="vue" />
 
 ### Loading
+Show a loading spinner to indicate an in-progress action. Supports a custom icon via the loading-icon prop.
+
 <ButtonDemo section="loading" client:only="vue" />
 
 ### Link
+Render as an anchor tag using to (router) or href (URL). The link variant applies a dashed underline with tight offset.
+
 <ButtonDemo section="link" client:only="vue" />
 
 ### Block & Square
+Block fills the full container width. Square gives equal horizontal and vertical padding for icon-only buttons.
+
 <ButtonDemo section="block" client:only="vue" />
 
 ### Label Prop
+Use the label prop as a shorthand for simple text-only buttons instead of the default slot.
+
 <ButtonDemo section="label" client:only="vue" />
 
 ### Avatar
+Embed an avatar inside a button for user profile actions. Control the avatar size independently from the button size.
+
 <ButtonDemo section="avatar" client:only="vue" />
 
 ## API
