@@ -16,6 +16,22 @@ This project follows **semantic versioning** (SemVer) during pre-1.0 development
 Changes that require a minor bump: adding a new component, renaming tokens, changing component APIs, adding new packages (e.g. React).
 Changes that keep the patch version: renames, copy edits, styling tweaks, build config changes, favicon updates.
 
+## 0.17.1 (2026-07-14)
+
+### Changed
+
+- **Input — height fixes** — Corrected input heights to hit exact spec: SM 28px, MD 36px, LG 40px. Theme uses `py-[5px]`/`py-[7px]`/`py-[9px]` to account for the 1px border on the outline variant.
+- **Input — avatar sizing** — `leadingAvatarSize` changed from `2xs` (6px) to `3xs` (4px) for md/lg, with `leadingAvatar: "size-3.5"` (14px) slot override for proportional fit in compact inputs.
+- **Input — selectMenu** — Same height and avatar fixes applied to `selectMenu` for consistent form alignment.
+
+### Added
+
+- **Input — new demo sections** — Avatar, Loading Icon, and expanded Sizes (with height labels) added to InputDemo.
+- **Input — mask demo** — Three live masked inputs: phone (`###-###-####`), currency (`#*` with `number: { fraction: 2 }`), and credit card (`####-####-####-####`) using maska v3.
+- **Input — keyboard shortcut demo** — `Ctrl+/` global keydown listener that focuses a search input, demonstrating the `inputRef` expose.
+- **Input — required field validation** — Demo with blur-triggered validation, error highlight ring, and success help text.
+- **Input — API docs** — Added `avatar` prop, Emits table (`update:modelValue`, `change`, `blur`), and Expose table (`inputRef`) to input.mdx.
+
 ## 0.17.0 (2026-07-10)
 
 ### Added

@@ -1,11 +1,11 @@
----
+﻿---
 title: Input
 description: An input element to enter text.
 ---
 
 import InputDemo from "../../../../components/docs/InputDemo.vue";
 
-<span style="display:inline-flex;margin-bottom:16px;padding:1px 8px;border-radius:9999px;font-size:11px;font-weight:500;background:#FFFBEB;color:#D97706;">Pending</span>
+<span style="display:inline-flex;margin-bottom:16px;padding:1px 8px;border-radius:9999px;font-size:11px;font-weight:500;background:#ECFDF5;color:#059669;">Ready</span>
 
 An input field allows users to enter and edit text. Mizu uses Nuxt UI's `UInput` with the same height scale as buttons (28/36/40px) for visual alignment in forms.
 
@@ -32,6 +32,7 @@ Reference: [Nuxt UI Input](https://ui.nuxt.com/docs/components/input)
 | `trailing` | `boolean` | `false` | When `true`, icon displays on the right |
 | `leadingIcon` | `string` (Iconify) | — | Different icon for the leading position |
 | `trailingIcon` | `string` (Iconify) | — | Different icon for the trailing position |
+| `avatar` | `{ src?: string, alt?: string, text?: string }` | — | Avatar to display inside the input |
 | `loading` | `boolean` | `false` | Show a loading spinner on the trailing side |
 | `loadingIcon` | `string` (Iconify) | `'i-ph-circle-notch'` | Customize the loading icon |
 | `disabled` | `boolean` | `false` | Disables interaction |
@@ -46,6 +47,20 @@ Reference: [Nuxt UI Input](https://ui.nuxt.com/docs/components/input)
 | `default` | — | Default slot (not typically used) |
 | `leading` | `{ ui }` | Custom leading content (before input) |
 | `trailing` | `{ ui }` | Custom trailing content (after input) |
+
+### Emits
+
+| Emit | Payload | Description |
+|------|---------|-------------|
+| `update:modelValue` | `string \| number \| null` | Emitted when the value changes |
+| `change` | `Event` | Emitted on native change event |
+| `blur` | `Event` | Emitted when the input loses focus |
+
+### Expose
+
+| Name | Type | Description |
+|------|------|-------------|
+| `inputRef` | `Ref<HTMLInputElement \| null>` | Reference to the underlying `<input>` element. Use `.focus()`, `.blur()`, `.select()` to programmatically control the input. |
 
 ### Form Integration
 
@@ -71,9 +86,9 @@ export default defineAppConfig({ ui: mizuTheme });
 
 | Size | Height | H-Padding | V-Padding | Radius | Gap |
 |------|--------|-----------|-----------|--------|-----|
-| **SM** | 28px | 8px (`px-2`) | 4px (`py-1`) | 4px (`rounded`) | 4px |
-| **MD** | 36px | 10px (`px-2.5`) | 6px (`py-1.5`) | 6px | 6px |
-| **LG** | 40px | 10px (`px-2.5`) | 8px (`py-2`) | 6px | 8px |
+| **SM** | 28px | 8px (`px-2`) | 5px (`py-[5px]`) | 4px (`rounded`) | 4px |
+| **MD** | 36px | 10px (`px-2.5`) | 7px (`py-[7px]`) | 6px (`rounded-md`) | 6px |
+| **LG** | 40px | 10px (`px-2.5`) | 9px (`py-[9px]`) | 6px (`rounded-md`) | 8px |
 
 ### Typography
 
@@ -110,7 +125,7 @@ The `color` prop maps to Mizu's brand/feedback tokens, used for focus rings and 
 | `brand-ycp` (#001C44) | `secondary` | Secondary focus ring |
 | `feedback-success-base` (#15803D) | `success` | Valid field ring |
 | `feedback-error-base` (#DC2626) | `error` | Validation error ring |
-| `feedback-warning-base` (#D97706) | `warning` | Validation warning ring |
+| `feedback-warning-base` (#059669) | `warning` | Validation warning ring |
 | `feedback-info-base` (#0284C7) | `info` | Info state ring |
 | `foreground-inverse` | `neutral` | Neutral focus ring |
 

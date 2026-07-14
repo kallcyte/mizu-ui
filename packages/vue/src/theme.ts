@@ -107,12 +107,13 @@ export const mizuTheme = {
     slots: {
       base: "rounded-md appearance-none disabled:cursor-not-allowed disabled:opacity-75 disabled:bg-[var(--color-surface-muted)] transition-colors placeholder:text-[var(--input-placeholder-color,var(--color-foreground-secondary))]/80 !ring-0 !outline-none focus-visible:!outline-none",
       leadingIcon: "shrink-0 text-[var(--input-text-color,var(--color-foreground-primary))]",
+      leadingAvatar: "size-3.5",
       trailingIcon: "shrink-0 text-[var(--input-text-color,var(--color-foreground-primary))]",
     },
     variants: {
       size: {
         sm: {
-          base: "px-2 py-1 text-sm/4 gap-1 rounded",
+          base: "px-2 py-[5px] text-sm/4 gap-1 rounded",
           leading: "ps-2",
           trailing: "pe-2",
           leadingIcon: "size-4",
@@ -120,19 +121,19 @@ export const mizuTheme = {
           trailingIcon: "size-4",
         },
         md: {
-          base: "px-2.5 py-1.5 text-base/5 gap-1.5",
+          base: "px-2.5 py-[7px] text-base/5 gap-1.5",
           leading: "ps-2.5",
           trailing: "pe-2.5",
           leadingIcon: "size-5",
-          leadingAvatarSize: "2xs",
+          leadingAvatarSize: "3xs",
           trailingIcon: "size-5",
         },
         lg: {
-          base: "px-2.5 py-2 text-base/5 gap-2",
+          base: "px-2.5 py-[9px] text-base/5 gap-2",
           leading: "ps-2.5",
           trailing: "pe-2.5",
           leadingIcon: "size-5",
-          leadingAvatarSize: "2xs",
+          leadingAvatarSize: "3xs",
           trailingIcon: "size-5",
         },
       },
@@ -196,11 +197,12 @@ export const mizuTheme = {
       leadingIcon: "shrink-0 text-[var(--input-text-color,var(--color-foreground-primary))]",
       trailingIcon:
         "shrink-0 text-[var(--input-text-color,var(--color-foreground-primary))] cursor-pointer",
+      leadingAvatar: "size-3.5",
     },
     variants: {
       size: {
         sm: {
-          base: "px-2 py-1 text-sm/4 gap-1 rounded",
+          base: "px-2 py-[5px] text-sm/4 gap-1 rounded",
           leading: "ps-2",
           trailing: "pe-2",
           leadingIcon: "size-4",
@@ -208,19 +210,19 @@ export const mizuTheme = {
           trailingIcon: "size-4",
         },
         md: {
-          base: "px-2.5 py-1.5 text-base/5 gap-1.5",
+          base: "px-2.5 py-[7px] text-base/5 gap-1.5",
           leading: "ps-2.5",
           trailing: "pe-2.5",
           leadingIcon: "size-5",
-          leadingAvatarSize: "2xs",
+          leadingAvatarSize: "3xs",
           trailingIcon: "size-5",
         },
         lg: {
-          base: "px-2.5 py-2 text-base/5 gap-2",
+          base: "px-2.5 py-[9px] text-base/5 gap-2",
           leading: "ps-2.5",
           trailing: "pe-2.5",
           leadingIcon: "size-5",
-          leadingAvatarSize: "2xs",
+          leadingAvatarSize: "3xs",
           trailingIcon: "size-5",
         },
       },
@@ -302,7 +304,7 @@ export const mizuTheme = {
     variants: {
       size: {
         sm: {
-          base: "px-2 py-1 text-sm/4 gap-1 rounded",
+          base: "px-2 py-[5px] text-sm/4 gap-1 rounded",
           leading: "ps-2",
           trailing: "pe-2",
           leadingIcon: "size-4",
@@ -364,11 +366,12 @@ export const mizuTheme = {
       leadingIcon: "shrink-0 text-[var(--input-text-color,var(--color-foreground-primary))]",
       trailingIcon:
         "shrink-0 text-[var(--input-text-color,var(--color-foreground-primary))] cursor-pointer",
+      leadingAvatar: "size-3.5",
     },
     variants: {
       size: {
         sm: {
-          base: "px-2 py-1 text-sm/4 gap-1 rounded",
+          base: "px-2 py-[5px] text-sm/4 gap-1 rounded",
           leading: "ps-2",
           trailing: "pe-2",
           leadingIcon: "size-4",
@@ -376,19 +379,19 @@ export const mizuTheme = {
           trailingIcon: "size-4",
         },
         md: {
-          base: "px-2.5 py-1.5 text-base/5 gap-1.5",
+          base: "px-2.5 py-[7px] text-base/5 gap-1.5",
           leading: "ps-2.5",
           trailing: "pe-2.5",
           leadingIcon: "size-5",
-          leadingAvatarSize: "2xs",
+          leadingAvatarSize: "3xs",
           trailingIcon: "size-5",
         },
         lg: {
-          base: "px-2.5 py-2 text-base/5 gap-2",
+          base: "px-2.5 py-[9px] text-base/5 gap-2",
           leading: "ps-2.5",
           trailing: "pe-2.5",
           leadingIcon: "size-5",
-          leadingAvatarSize: "2xs",
+          leadingAvatarSize: "3xs",
           trailingIcon: "size-5",
         },
       },

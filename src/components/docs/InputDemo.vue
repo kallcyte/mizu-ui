@@ -1,5 +1,6 @@
 ﻿<script setup lang="ts">
-import { ref, computed } from "vue";
+import { ref, computed, onMounted, onUnmounted } from "vue";
+import { vMaska } from "maska/vue";
 import CodeCollapsible from "./CodeCollapsible.vue";
 
 const inputValue = ref("");
@@ -14,6 +15,12 @@ const charLimitValue = ref("");
 const floatingLabelValue = ref("");
 const formFieldValue = ref("");
 const requiredFieldValue = ref("");
+const requiredFieldError = ref("");
+const requiredFieldTouched = ref(false);
+const shortcutInputRef = ref(null);
+const maskValue = ref("");
+const currencyValue = ref("");
+const cardValue = ref("");
 const fieldGroupLeft = ref("");
 const fieldGroupRight = ref("");
 
@@ -48,11 +55,26 @@ async function handleCopy() {
   } catch { /* clipboard unavailable */ }
 }
 
+function validateRequired() {
+  requiredFieldTouched.value = true;
+  requiredFieldError.value = requiredFieldValue.value.trim() ? "" : "Full name is required";
+}
+
+function handleShortcutKeydown(e: KeyboardEvent) {
+  if ((e.ctrlKey || e.metaKey) && e.key === "/") {
+    e.preventDefault();
+    shortcutInputRef.value?.inputRef?.focus();
+  }
+}
+
+onMounted(() => document.addEventListener("keydown", handleShortcutKeydown));
+onUnmounted(() => document.removeEventListener("keydown", handleShortcutKeydown));
+
 // â”€â”€ Code block strings â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
-const sizesCode = `<UInput size="sm" placeholder="Small input" />
-<UInput size="md" placeholder="Medium input" />
-<UInput size="lg" placeholder="Large input" />`;
+const sizesCode = `<UInput size="sm" placeholder="Small (28px)" />
+<UInput size="md" placeholder="Medium (36px)" />
+<UInput size="lg" placeholder="Large (40px)" />`;
 
 const typeCode = `<UInput type="text" placeholder="Text input" />
 <UInput type="password" placeholder="Password" />
@@ -81,6 +103,11 @@ const iconCode = `<UInput icon="i-ph-magnifying-glass" placeholder="Search..." /
 
 const loadingCode = `<UInput loading placeholder="Loading..." />
 <UInput loading icon="i-ph-envelope" placeholder="Loading..." />`;
+
+const avatarCode = `<UInput :avatar="{ src: 'https://github.com/nuxt.png' }" placeholder="Username" />`;
+
+const loadingIconCode = `<UInput loading loading-icon="i-ph-spinner-gap" placeholder="Loading..." />
+<UInput loading loading-icon="i-ph-circle-notch" placeholder="Custom spinner..." />`;
 
 const disabledCode = `<UInput disabled placeholder="Disabled input" />`;
 
@@ -134,18 +161,20 @@ const charLimitCode = `<UInput v-model="bio" placeholder="Bio" :maxlength="100">
   </template>
 </UInput>`;
 
-const keyboardShortcutCode = `<UInput placeholder="Search...">
+const keyboardShortcutCode = `<UInput ref="inputRef" placeholder="Search...">
   <template #trailing>
-    <UKbd>⌘K</UKbd>
+    <UKbd>Ctrl+/</UKbd>
   </template>
 </UInput>`;
 
-const maskCode = `<!-- Install maska: pnpm add maska -->
-<script setup>
-import { vMaska } from 'maska';
-<\/script>
+const maskCode = `<!-- Phone -->
+<UInput v-model="phone" v-maska="'###-###-####'" placeholder="123-456-7890" />
 
-<UInput v-model="value" v-maska="'###-###-####'" placeholder="123-456-7890" />`;
+<!-- Currency -->
+<UInput v-model="amount" v-maska="{ mask: '#*', number: { fraction: 2 } }" placeholder="1,234.56" />
+
+<!-- Credit Card -->
+<UInput v-model="card" v-maska="'####-####-####-####'" placeholder="1234-5678-9012-3456" />`;
 
 const floatingLabelCode = `<UInput placeholder="Full name">
   <template #default>
@@ -158,11 +187,18 @@ const formFieldCode = `<UFormField label="Email" help="Enter your email address"
 </UFormField>`;
 
 
-const requiredFieldCode = `<UFormField class="w-full">
+const requiredFieldCode = `<UFormField class="w-full" :error="error || undefined" :help="touched && !error ? 'Looks good!' : undefined">
   <template #label>
     Full name <span class="text-red-500">*</span>
   </template>
-  <UInput class="w-full" placeholder="Enter your full name" required />
+  <UInput
+    v-model="value"
+    class="w-full"
+    placeholder="Enter your full name"
+    :highlight="!!error"
+    @blur="validate"
+    @input="error = ''"
+  />
 </UFormField>`;
 const fieldGroupCode = `<UFieldGroup>
   <UInput placeholder="First name" />
@@ -186,9 +222,9 @@ const phoneNumberCode = `<UFieldGroup>
       <h3>Sizes</h3>
       <CodeCollapsible :code="sizesCode">
         <div class="demo-col">
-          <UInput size="sm" placeholder="Small input" />
-          <UInput size="md" placeholder="Medium input" />
-          <UInput size="lg" placeholder="Large input" />
+          <UInput size="sm" placeholder="Small (28px)" />
+          <UInput size="md" placeholder="Medium (36px)" />
+          <UInput size="lg" placeholder="Large (40px)" />
         </div>
       </CodeCollapsible>
     </section>
@@ -254,11 +290,30 @@ const phoneNumberCode = `<UFieldGroup>
     </section>
 
     <section class="example-section">
+      <h3>Avatar</h3>
+      <CodeCollapsible :code="avatarCode">
+        <div class="demo-col">
+          <UInput :avatar="{ src: 'https://github.com/nuxt.png' }" placeholder="Username" />
+        </div>
+      </CodeCollapsible>
+    </section>
+
+    <section class="example-section">
       <h3>Loading</h3>
       <CodeCollapsible :code="loadingCode">
         <div class="demo-col">
           <UInput loading placeholder="Loading..." />
           <UInput loading icon="i-ph-envelope" placeholder="Loading..." />
+        </div>
+      </CodeCollapsible>
+    </section>
+
+    <section class="example-section">
+      <h3>Loading Icon</h3>
+      <CodeCollapsible :code="loadingIconCode">
+        <div class="demo-col">
+          <UInput loading loading-icon="i-ph-spinner-gap" placeholder="Loading..." />
+          <UInput loading loading-icon="i-ph-circle-notch" placeholder="Custom spinner..." />
         </div>
       </CodeCollapsible>
     </section>
@@ -368,9 +423,9 @@ const phoneNumberCode = `<UFieldGroup>
       <h3>With keyboard shortcut</h3>
       <CodeCollapsible :code="keyboardShortcutCode">
         <div class="demo-col">
-          <UInput placeholder="Search...">
+          <UInput ref="shortcutInputRef" placeholder="Search...">
             <template #trailing>
-              <UKbd>⌘K</UKbd>
+              <UKbd>Ctrl+/</UKbd>
             </template>
           </UInput>
         </div>
@@ -379,7 +434,13 @@ const phoneNumberCode = `<UFieldGroup>
 
     <section class="example-section">
       <h3>With mask</h3>
-      <CodeCollapsible :code="maskCode" />
+      <CodeCollapsible :code="maskCode">
+        <div class="demo-col">
+          <UInput v-model="maskValue" v-maska="'###-###-####'" placeholder="Phone: 123-456-7890" />
+          <UInput v-model="currencyValue" v-maska="{ mask: '#*', number: { fraction: 2 } }" placeholder="Amount: 1,234.56" />
+          <UInput v-model="cardValue" v-maska="'####-####-####-####'" placeholder="Card: 1234-5678-9012-3456" />
+        </div>
+      </CodeCollapsible>
     </section>
 
     <section class="example-section">
@@ -409,11 +470,18 @@ const phoneNumberCode = `<UFieldGroup>
       <h3>Required field</h3>
       <CodeCollapsible :code="requiredFieldCode">
         <div class="demo-col">
-          <UFormField class="w-full">
+          <UFormField class="w-full" :error="requiredFieldError || undefined" :help="requiredFieldTouched && !requiredFieldError ? 'Looks good!' : undefined">
             <template #label>
               Full name <span class="text-red-500">*</span>
             </template>
-            <UInput v-model="requiredFieldValue" class="w-full" placeholder="Enter your full name" required />
+            <UInput
+              v-model="requiredFieldValue"
+              class="w-full"
+              placeholder="Enter your full name"
+              :highlight="!!requiredFieldError"
+              @blur="validateRequired"
+              @input="requiredFieldError = ''"
+            />
           </UFormField>
         </div>
       </CodeCollapsible>
