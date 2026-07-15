@@ -7,6 +7,10 @@ const objectValue = ref<{ label: string; code: string } | null>(null);
 const countryValue = ref("");
 const multiValue = ref<string[]>([]);
 const searchValue = ref("");
+const creatableValue = ref("");
+const requiredValue = ref("");
+const requiredError = ref("");
+const requiredTouched = ref(false);
 
 const items = ["Backlog", "Todo", "In Progress", "Done"];
 
@@ -22,103 +26,235 @@ const countries = [
   { label: "+44", code: "+44" },
   { label: "+81", code: "+81" },
 ];
+
+function validateRequired() {
+  requiredTouched.value = true;
+  requiredError.value = requiredValue.value ? "" : "Role is required";
+}
 </script>
 
 <template>
   <div class="not-content demo-isolated demo-examples">
     <section class="example-section">
-      <h3>Sizes</h3>
-      <CodeCollapsible :code="`<USelectMenu size=&quot;sm&quot; :items=&quot;['SM']&quot; />
-<USelectMenu size=&quot;md&quot; :items=&quot;['MD']&quot; />
-<USelectMenu size=&quot;lg&quot; :items=&quot;['LG']&quot; />`">
+      <h3>Usage</h3>
+      <CodeCollapsible :code="`<script setup lang=&quot;ts&quot;>
+const items = ['Backlog', 'Todo', 'In Progress', 'Done']
+const value = ref('Backlog')
+<\/script>
+
+<template>
+  <USelectMenu v-model=&quot;value&quot; :items=&quot;items&quot; class=&quot;w-full&quot; />
+</template>`">
         <div class="demo-col">
-          <USelectMenu size="sm" :items="['SM']" placeholder="Size SM" />
-          <USelectMenu size="md" :items="['MD']" placeholder="Size MD" />
-          <USelectMenu size="lg" :items="['LG']" placeholder="Size LG" />
+          <USelectMenu class="w-full" v-model="singleValue" :items="items" placeholder="Select status" />
+          <p v-if="singleValue" class="mizu-value">Selected: {{ singleValue }}</p>
         </div>
       </CodeCollapsible>
     </section>
 
     <section class="example-section">
-      <h3>Basic</h3>
-      <CodeCollapsible :code="`<USelectMenu
-  v-model=&quot;value&quot;
-  :items=&quot;['Backlog', 'Todo', 'In Progress', 'Done']&quot;
-  placeholder=&quot;Select status&quot;
-/>`">
-        <div class="demo-col">
-          <USelectMenu v-model="singleValue" :items="items" placeholder="Select status" />
-          <p v-if="singleValue" class="mizu-select-value">Selected: {{ singleValue }}</p>
-        </div>
-      </CodeCollapsible>
-    </section>
+      <h3>Items (objects)</h3>
+      <CodeCollapsible :code="`<script setup lang=&quot;ts&quot;>
+const items = [
+  { label: 'United States', code: 'US' },
+  { label: 'Canada', code: 'CA' },
+]
+<\/script>
 
-    <section class="example-section">
-      <h3>With objects and value-key</h3>
-      <CodeCollapsible :code="`<USelectMenu
-  v-model=&quot;value&quot;
-  value-key=&quot;code&quot;
-  :items=&quot;[{ label: 'United States', code: 'US' }, ...]&quot;
-  placeholder=&quot;Select country&quot;
-/>`">
+<template>
+  <USelectMenu v-model=&quot;value&quot; value-key=&quot;code&quot; :items=&quot;items&quot; class=&quot;w-full&quot; placeholder=&quot;Select country&quot; />
+</template>`">
         <div class="demo-col">
-          <USelectMenu
+          <USelectMenu class="w-full"
             v-model="countryValue"
             value-key="code"
             :items="objectItems"
             placeholder="Select country"
           />
-          <p v-if="countryValue" class="mizu-select-value">Code: {{ countryValue }}</p>
+          <p v-if="countryValue" class="mizu-value">Code: {{ countryValue }}</p>
+        </div>
+      </CodeCollapsible>
+    </section>
+
+    <section class="example-section">
+      <h3>Placeholder</h3>
+      <CodeCollapsible code="<USelectMenu class=&quot;w-full&quot; :items=&quot;['Option 1', 'Option 2']&quot; placeholder=&quot;Choose an option...&quot; />">
+        <div class="demo-col">
+          <USelectMenu class="w-full" :items="['Option 1', 'Option 2']" placeholder="Choose an option..." />
+        </div>
+      </CodeCollapsible>
+    </section>
+
+    <section class="example-section">
+      <h3>Color</h3>
+      <CodeCollapsible :code="`<USelectMenu class=&quot;w-full&quot; color=&quot;primary&quot; :items=&quot;items&quot; placeholder=&quot;Primary&quot; />
+<USelectMenu class=&quot;w-full&quot; color=&quot;success&quot; :items=&quot;items&quot; placeholder=&quot;Success&quot; />
+<USelectMenu class=&quot;w-full&quot; color=&quot;error&quot; :items=&quot;items&quot; placeholder=&quot;Error&quot; />
+<USelectMenu class=&quot;w-full&quot; color=&quot;neutral&quot; :items=&quot;items&quot; placeholder=&quot;Neutral&quot; />`">
+        <div class="demo-col">
+          <USelectMenu class="w-full" color="primary" :items="items" placeholder="Primary" />
+          <USelectMenu class="w-full" color="success" :items="items" placeholder="Success" />
+          <USelectMenu class="w-full" color="error" :items="items" placeholder="Error" />
+          <USelectMenu class="w-full" color="neutral" :items="items" placeholder="Neutral" />
+        </div>
+      </CodeCollapsible>
+    </section>
+
+    <section class="example-section">
+      <h3>Variant</h3>
+      <CodeCollapsible :code="`<USelectMenu class=&quot;w-full&quot; variant=&quot;outline&quot; :items=&quot;items&quot; placeholder=&quot;Outline&quot; />
+<USelectMenu class=&quot;w-full&quot; variant=&quot;soft&quot; :items=&quot;items&quot; placeholder=&quot;Soft&quot; />
+<USelectMenu class=&quot;w-full&quot; variant=&quot;subtle&quot; :items=&quot;items&quot; placeholder=&quot;Subtle&quot; />
+<USelectMenu class=&quot;w-full&quot; variant=&quot;ghost&quot; :items=&quot;items&quot; placeholder=&quot;Ghost&quot; />
+<USelectMenu class=&quot;w-full&quot; variant=&quot;none&quot; :items=&quot;items&quot; placeholder=&quot;None&quot; />`">
+        <div class="demo-col">
+          <USelectMenu class="w-full" variant="outline" :items="items" placeholder="Outline" />
+          <USelectMenu class="w-full" variant="soft" :items="items" placeholder="Soft" />
+          <USelectMenu class="w-full" variant="subtle" :items="items" placeholder="Subtle" />
+          <USelectMenu class="w-full" variant="ghost" :items="items" placeholder="Ghost" />
+          <USelectMenu class="w-full" variant="none" :items="items" placeholder="None" />
+        </div>
+      </CodeCollapsible>
+    </section>
+
+    <section class="example-section">
+      <h3>Size</h3>
+      <CodeCollapsible :code="`<USelectMenu class=&quot;w-full&quot; size=&quot;sm&quot; :items=&quot;items&quot; placeholder=&quot;SM&quot; />
+<USelectMenu class=&quot;w-full&quot; size=&quot;md&quot; :items=&quot;items&quot; placeholder=&quot;MD&quot; />
+<USelectMenu class=&quot;w-full&quot; size=&quot;lg&quot; :items=&quot;items&quot; placeholder=&quot;LG&quot; />`">
+        <div class="demo-col">
+          <USelectMenu class="w-full" size="sm" :items="items" placeholder="SM" />
+          <USelectMenu class="w-full" size="md" :items="items" placeholder="MD" />
+          <USelectMenu class="w-full" size="lg" :items="items" placeholder="LG" />
+        </div>
+      </CodeCollapsible>
+    </section>
+
+    <section class="example-section">
+      <h3>Icon</h3>
+      <CodeCollapsible :code="`<USelectMenu class=&quot;w-full&quot; icon=&quot;i-ph-magnifying-glass&quot; :items=&quot;items&quot; placeholder=&quot;Search...&quot; />
+<USelectMenu class=&quot;w-full&quot; icon=&quot;i-ph-envelope&quot; :items=&quot;items&quot; placeholder=&quot;Email&quot; trailing-icon=&quot;i-ph-check&quot; />`">
+        <div class="demo-col">
+          <USelectMenu class="w-full" icon="i-ph-magnifying-glass" :items="items" placeholder="Search..." />
+          <USelectMenu class="w-full" icon="i-ph-envelope" :items="items" placeholder="Email" trailing-icon="i-ph-check" />
+        </div>
+      </CodeCollapsible>
+    </section>
+
+    <section class="example-section">
+      <h3>Avatar</h3>
+      <CodeCollapsible :code="`<USelectMenu class=&quot;w-full&quot; :avatar=&quot;{ src: 'https://github.com/nuxt.png', size: '2xs' }&quot; placeholder=&quot;User&quot; />`">
+        <div class="demo-col">
+          <USelectMenu class="w-full" :avatar="{ src: 'https://github.com/nuxt.png', size: '2xs' }" placeholder="User" />
+        </div>
+      </CodeCollapsible>
+    </section>
+
+    <section class="example-section">
+      <h3>Loading</h3>
+      <CodeCollapsible :code="`<USelectMenu class=&quot;w-full&quot; loading :items=&quot;items&quot; placeholder=&quot;Loading...&quot; />`">
+        <div class="demo-col">
+          <USelectMenu class="w-full" loading :items="items" placeholder="Loading..." />
+        </div>
+      </CodeCollapsible>
+    </section>
+
+    <section class="example-section">
+      <h3>Checkmarked</h3>
+      <CodeCollapsible :code="`<USelectMenu class=&quot;w-full&quot; checkmarked :items=&quot;items&quot; placeholder=&quot;Select a status...&quot; />`">
+        <div class="demo-col">
+          <USelectMenu class="w-full" checkmarked :items="items" placeholder="Select a status..." />
+        </div>
+      </CodeCollapsible>
+    </section>
+
+    <section class="example-section">
+      <h3>Clearable</h3>
+      <CodeCollapsible :code="`<USelectMenu class=&quot;w-full&quot; clear v-model=&quot;value&quot; :items=&quot;items&quot; placeholder=&quot;Select...&quot; />`">
+        <div class="demo-col">
+          <USelectMenu class="w-full" clear v-model="singleValue" :items="items" placeholder="Select..." />
         </div>
       </CodeCollapsible>
     </section>
 
     <section class="example-section">
       <h3>Multiple</h3>
-      <CodeCollapsible :code="`<USelectMenu
-  v-model=&quot;value&quot;
-  :items=&quot;['Backlog', 'Todo', 'In Progress', 'Done']&quot;
-  multiple
-  placeholder=&quot;Select statuses&quot;
-/>`">
+      <CodeCollapsible :code="`<script setup lang=&quot;ts&quot;>
+const items = ['Backlog', 'Todo', 'In Progress', 'Done']
+const value = ref([])
+<\/script>
+
+<template>
+  <USelectMenu v-model=&quot;value&quot; :items=&quot;items&quot; class=&quot;w-full&quot; multiple placeholder=&quot;Select statuses&quot; />
+</template>`">
         <div class="demo-col">
-          <USelectMenu v-model="multiValue" :items="items" multiple placeholder="Select statuses" />
-          <p v-if="multiValue.length" class="mizu-select-value">Selected: {{ multiValue.join(", ") }}</p>
+          <USelectMenu class="w-full" v-model="multiValue" :items="items" multiple placeholder="Select statuses" />
+          <p v-if="multiValue.length" class="mizu-value">Selected: {{ multiValue.join(", ") }}</p>
         </div>
       </CodeCollapsible>
     </section>
 
     <section class="example-section">
-      <h3>Searchable</h3>
-      <CodeCollapsible :code="`<USelectMenu
-  v-model=&quot;value&quot;
-  :items=&quot;['Apple', 'Banana', 'Blueberry', 'Grapes', 'Pineapple']&quot;
-  placeholder=&quot;Search fruit...&quot;
-/>`">
+      <h3>Creatable</h3>
+      <CodeCollapsible :code="`<USelectMenu class=&quot;w-full&quot; v-model=&quot;value&quot; :items=&quot;items&quot; create-item placeholder=&quot;Type to create...&quot; @create=&quot;console.log(item)&quot; />`">
         <div class="demo-col">
-          <USelectMenu v-model="searchValue" :items="['Apple', 'Banana', 'Blueberry', 'Grapes', 'Pineapple']" placeholder="Search fruit..." />
-          <p v-if="searchValue" class="mizu-select-value">Picked: {{ searchValue }}</p>
+          <USelectMenu class="w-full" v-model="creatableValue" :items="['Apple', 'Banana', 'Orange']" create-item placeholder="Type to create..." />
+          <p v-if="creatableValue" class="mizu-value">Value: {{ creatableValue }}</p>
         </div>
       </CodeCollapsible>
     </section>
 
     <section class="example-section">
       <h3>Disabled</h3>
-      <CodeCollapsible :code="`<USelectMenu disabled placeholder=&quot;Disabled&quot; :items=&quot;['Option 1']&quot; />`">
+      <CodeCollapsible code="<USelectMenu class=&quot;w-full&quot; disabled placeholder=&quot;Disabled&quot; :items=&quot;['Option 1']&quot; />">
         <div class="demo-col">
-          <USelectMenu disabled placeholder="Disabled" :items="['Option 1']" />
+          <USelectMenu class="w-full" disabled placeholder="Disabled" :items="['Option 1']" />
+        </div>
+      </CodeCollapsible>
+    </section>
+
+
+    <section class="example-section">
+      <h3>Required field</h3>
+      <CodeCollapsible :code="`<UFormField class=&quot;w-full&quot; :error=&quot;error || undefined&quot; :help=&quot;touched && !error ? 'Looks good!' : undefined&quot;>
+  <template #label>
+    Role <span class=&quot;text-red-500&quot;>*</span>
+  </template>
+  <USelectMenu
+    class=&quot;w-full&quot;
+    v-model=&quot;value&quot;
+    :items=&quot;['Admin', 'Editor', 'Viewer']&quot;
+    placeholder=&quot;Select a role&quot;
+    @blur=&quot;validate&quot;
+    @update:model-value=&quot;error = ''&quot;
+  />
+</UFormField>`">
+        <div class="demo-col">
+          <UFormField class="w-full" :error="requiredError || undefined" :help="requiredTouched && !requiredError ? 'Looks good!' : undefined">
+            <template #label>
+              Role <span class="text-red-500">*</span>
+            </template>
+            <USelectMenu
+              class="w-full"
+              v-model="requiredValue"
+              :items="['Admin', 'Editor', 'Viewer']"
+              placeholder="Select a role"
+              @blur="validateRequired"
+              @update:model-value="requiredError = ''"
+            />
+          </UFormField>
         </div>
       </CodeCollapsible>
     </section>
 
     <section class="example-section">
-      <h3>With label and help text</h3>
-      <CodeCollapsible :code="`<UFormField label=&quot;Country&quot; help=&quot;Select your country of residence&quot; class=&quot;w-full&quot;>
-  <USelectMenu class=&quot;w-full&quot; :items=&quot;['United States', 'Canada', 'United Kingdom']&quot; placeholder=&quot;Choose a country&quot; />
+      <h3>With label and help</h3>
+      <CodeCollapsible :code="`<UFormField label=&quot;Country&quot; help=&quot;Select your country of residence&quot;>
+  <USelectMenu class=&quot;w-full&quot; :items=&quot;countries&quot; placeholder=&quot;Choose a country&quot; />
 </UFormField>`">
         <div class="demo-col">
           <UFormField label="Country" help="Select your country of residence" class="w-full">
-            <USelectMenu class="w-full" :items="['United States', 'Canada', 'United Kingdom']" placeholder="Choose a country" />
+            <USelectMenu class="w-full" :items="objectItems" placeholder="Choose a country" />
           </UFormField>
         </div>
       </CodeCollapsible>
@@ -135,7 +271,7 @@ const countries = [
   />
   <UInput placeholder=&quot;Phone number&quot; />
 </UFieldGroup>`">
-        <div class="demo-col" style="max-width: 360px">
+        <div class="demo-col">
           <UFieldGroup>
             <USelectMenu
               :items="countries"
@@ -176,11 +312,11 @@ const countries = [
   all: revert;
   display: flex;
   flex-direction: column;
-  width: max-content;
+  width: 100%;
   gap: 8px;
-  max-width: 320px;
+  max-width: 360px;
 }
-.mizu-select-value {
+.mizu-value {
   font-size: 12px;
   color: var(--color-foreground-secondary, #4B5563);
   margin: 0;

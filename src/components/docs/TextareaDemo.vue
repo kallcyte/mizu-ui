@@ -116,17 +116,13 @@ const value = ref('This is a long text...')
 
     <section class="example-section">
       <h3>Size</h3>
-      <CodeCollapsible :code="`<UTextarea class=&quot;w-full&quot; size=&quot;xs&quot; placeholder=&quot;XS&quot; />
-<UTextarea class=&quot;w-full&quot; size=&quot;sm&quot; placeholder=&quot;SM&quot; />
+      <CodeCollapsible :code="`<UTextarea class=&quot;w-full&quot; size=&quot;sm&quot; placeholder=&quot;SM&quot; />
 <UTextarea class=&quot;w-full&quot; size=&quot;md&quot; placeholder=&quot;MD&quot; />
-<UTextarea class=&quot;w-full&quot; size=&quot;lg&quot; placeholder=&quot;LG&quot; />
-<UTextarea class=&quot;w-full&quot; size=&quot;xl&quot; placeholder=&quot;XL&quot; />`">
+<UTextarea class=&quot;w-full&quot; size=&quot;lg&quot; placeholder=&quot;LG&quot; />`">
         <div class="demo-col">
-          <UTextarea class="w-full" size="xs" placeholder="XS" />
           <UTextarea class="w-full" size="sm" placeholder="SM" />
           <UTextarea class="w-full" size="md" placeholder="MD" />
           <UTextarea class="w-full" size="lg" placeholder="LG" />
-          <UTextarea class="w-full" size="xl" placeholder="XL" />
         </div>
       </CodeCollapsible>
     </section>

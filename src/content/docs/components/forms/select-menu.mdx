@@ -5,7 +5,7 @@ description: An advanced searchable dropdown for selecting from a list of option
 
 import SelectMenuDemo from "../../../../components/docs/SelectMenuDemo.vue";
 
-<span style="display:inline-flex;margin-bottom:16px;padding:1px 8px;border-radius:9999px;font-size:11px;font-weight:500;background:#FFFBEB;color:#D97706;">Pending</span>
+<span style="display:inline-flex;margin-bottom:16px;padding:1px 8px;border-radius:9999px;font-size:11px;font-weight:500;background:#DCFCE7;color:#15803D;">Ready</span>
 A select menu is an advanced dropdown that supports searching, multiple selection, and rich item rendering. Use it over `USelect` when you need searchable options, object-based items, or multiple selection.
 
 ## Examples
@@ -60,6 +60,61 @@ Use `UFormField` to add labels, helper text, and error messages:
 <UFormField label="Country" help="Select your country of residence">
   <USelectMenu class="w-full" :items="['US', 'UK', 'CA']" placeholder="Choose a country" />
 </UFormField>
+```
+
+### Example Usage
+
+```vue
+<template>
+  <!-- Basic -->
+  <USelectMenu v-model="value" :items="['Backlog', 'Todo', 'Done']" class="w-full" />
+
+  <!-- Objects -->
+  <USelectMenu v-model="value" value-key="code" :items="[{ label: 'US', code: 'us' }]" class="w-full" placeholder="Select country" />
+
+  <!-- Color -->
+  <USelectMenu color="primary" :items="items" class="w-full" placeholder="Primary" />
+  <USelectMenu color="success" :items="items" class="w-full" placeholder="Success" />
+  <USelectMenu color="error" :items="items" class="w-full" placeholder="Error" />
+
+  <!-- Variant -->
+  <USelectMenu variant="outline" :items="items" class="w-full" placeholder="Outline" />
+  <USelectMenu variant="soft" :items="items" class="w-full" placeholder="Soft" />
+  <USelectMenu variant="subtle" :items="items" class="w-full" placeholder="Subtle" />
+  <USelectMenu variant="ghost" :items="items" class="w-full" placeholder="Ghost" />
+  <USelectMenu variant="none" :items="items" class="w-full" placeholder="None" />
+
+  <!-- Size -->
+  <USelectMenu size="sm" :items="items" class="w-full" placeholder="SM" />
+  <USelectMenu size="md" :items="items" class="w-full" placeholder="MD" />
+  <USelectMenu size="lg" :items="items" class="w-full" placeholder="LG" />
+
+  <!-- Icon -->
+  <USelectMenu icon="i-ph-magnifying-glass" :items="items" class="w-full" placeholder="Search..." />
+
+  <!-- Loading -->
+  <USelectMenu loading :items="items" class="w-full" placeholder="Loading..." />
+
+  <!-- Checkmarked -->
+  <USelectMenu checkmarked :items="items" class="w-full" placeholder="Select a status..." />
+
+  <!-- Clearable -->
+  <USelectMenu clear v-model="value" :items="items" class="w-full" placeholder="Select..." />
+
+  <!-- Multiple -->
+  <USelectMenu v-model="value" :items="items" class="w-full" multiple placeholder="Select statuses" />
+
+  <!-- Creatable -->
+  <USelectMenu v-model="value" :items="items" class="w-full" create-item placeholder="Type to create..." />
+
+  <!-- Disabled -->
+  <USelectMenu disabled :items="['Option']" class="w-full" placeholder="Disabled" />
+
+  <!-- With UFormField -->
+  <UFormField label="Country" help="Select your country">
+    <USelectMenu class="w-full" :items="['US', 'UK', 'CA']" placeholder="Choose a country" />
+  </UFormField>
+</template>
 ```
 
 ## Theme

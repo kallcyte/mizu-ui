@@ -110,17 +110,13 @@ const items: SelectItem[] = [
 
     <section class="example-section">
       <h3>Size</h3>
-      <CodeCollapsible :code="`<USelect size=&quot;xs&quot; :items=&quot;items&quot; class=&quot;w-full&quot; placeholder=&quot;XS&quot; />
-<USelect size=&quot;sm&quot; :items=&quot;items&quot; class=&quot;w-full&quot; placeholder=&quot;SM&quot; />
+      <CodeCollapsible :code="`<USelect size=&quot;sm&quot; :items=&quot;items&quot; class=&quot;w-full&quot; placeholder=&quot;SM&quot; />
 <USelect size=&quot;md&quot; :items=&quot;items&quot; class=&quot;w-full&quot; placeholder=&quot;MD&quot; />
-<USelect size=&quot;lg&quot; :items=&quot;items&quot; class=&quot;w-full&quot; placeholder=&quot;LG&quot; />
-<USelect size=&quot;xl&quot; :items=&quot;items&quot; class=&quot;w-full&quot; placeholder=&quot;XL&quot; />`">
+<USelect size=&quot;lg&quot; :items=&quot;items&quot; class=&quot;w-full&quot; placeholder=&quot;LG&quot; />`">
         <div class="demo-col">
-          <USelect size="xs" :items="items" class="w-full" placeholder="XS" />
           <USelect size="sm" :items="items" class="w-full" placeholder="SM" />
           <USelect size="md" :items="items" class="w-full" placeholder="MD" />
           <USelect size="lg" :items="items" class="w-full" placeholder="LG" />
-          <USelect size="xl" :items="items" class="w-full" placeholder="XL" />
         </div>
       </CodeCollapsible>
     </section>
