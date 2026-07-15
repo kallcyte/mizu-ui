@@ -222,9 +222,9 @@ const phoneNumberCode = `<UFieldGroup>
       <h3>Sizes</h3>
       <CodeCollapsible :code="sizesCode">
         <div class="demo-col">
-          <UInput size="sm" placeholder="Small (28px)" />
-          <UInput size="md" placeholder="Medium (36px)" />
-          <UInput size="lg" placeholder="Large (40px)" />
+          <UInput class="w-full" size="sm" placeholder="Small (28px)" />
+          <UInput class="w-full" size="md" placeholder="Medium (36px)" />
+          <UInput class="w-full" size="lg" placeholder="Large (40px)" />
         </div>
       </CodeCollapsible>
     </section>
@@ -233,10 +233,10 @@ const phoneNumberCode = `<UFieldGroup>
       <h3>Type</h3>
       <CodeCollapsible :code="typeCode">
         <div class="demo-col">
-          <UInput type="text" placeholder="Text input" />
-          <UInput type="password" placeholder="Password" />
-          <UInput type="number" placeholder="Number" />
-          <UInput type="file" />
+          <UInput class="w-full" type="text" placeholder="Text input" />
+          <UInput class="w-full" type="password" placeholder="Password" />
+          <UInput class="w-full" type="number" placeholder="Number" />
+          <UInput class="w-full" type="file" />
         </div>
       </CodeCollapsible>
     </section>
@@ -245,7 +245,7 @@ const phoneNumberCode = `<UFieldGroup>
       <h3>Placeholder</h3>
       <CodeCollapsible :code="placeholderCode">
         <div class="demo-col">
-          <UInput v-model="inputValue" placeholder="Enter your name" />
+          <UInput class="w-full" v-model="inputValue" placeholder="Enter your name" />
         </div>
       </CodeCollapsible>
     </section>
@@ -254,13 +254,13 @@ const phoneNumberCode = `<UFieldGroup>
       <h3>Color</h3>
       <CodeCollapsible :code="colorCode">
         <div class="demo-col">
-          <UInput color="primary" placeholder="Primary" highlight />
-          <UInput color="secondary" placeholder="Secondary" highlight />
-          <UInput color="success" placeholder="Success" highlight />
-          <UInput color="error" placeholder="Error" highlight />
-          <UInput color="warning" placeholder="Warning" highlight />
-          <UInput color="info" placeholder="Info" highlight />
-          <UInput color="neutral" placeholder="Neutral" highlight />
+          <UInput class="w-full" color="primary" placeholder="Primary" highlight />
+          <UInput class="w-full" color="secondary" placeholder="Secondary" highlight />
+          <UInput class="w-full" color="success" placeholder="Success" highlight />
+          <UInput class="w-full" color="error" placeholder="Error" highlight />
+          <UInput class="w-full" color="warning" placeholder="Warning" highlight />
+          <UInput class="w-full" color="info" placeholder="Info" highlight />
+          <UInput class="w-full" color="neutral" placeholder="Neutral" highlight />
         </div>
       </CodeCollapsible>
     </section>
@@ -269,11 +269,11 @@ const phoneNumberCode = `<UFieldGroup>
       <h3>Variant</h3>
       <CodeCollapsible :code="variantCode">
         <div class="demo-col">
-          <UInput variant="outline" placeholder="Outline" />
-          <UInput variant="soft" placeholder="Soft" />
-          <UInput variant="subtle" placeholder="Subtle" />
-          <UInput variant="ghost" placeholder="Ghost" />
-          <UInput variant="none" placeholder="None" />
+          <UInput class="w-full" variant="outline" placeholder="Outline" />
+          <UInput class="w-full" variant="soft" placeholder="Soft" />
+          <UInput class="w-full" variant="subtle" placeholder="Subtle" />
+          <UInput class="w-full" variant="ghost" placeholder="Ghost" />
+          <UInput class="w-full" variant="none" placeholder="None" />
         </div>
       </CodeCollapsible>
     </section>
@@ -282,9 +282,9 @@ const phoneNumberCode = `<UFieldGroup>
       <h3>Icon</h3>
       <CodeCollapsible :code="iconCode">
         <div class="demo-col">
-          <UInput icon="i-ph-magnifying-glass" placeholder="Search..." />
-          <UInput icon="i-ph-envelope" placeholder="Email" trailing />
-          <UInput leading-icon="i-ph-user" trailing-icon="i-ph-check" placeholder="Username" />
+          <UInput class="w-full" icon="i-ph-magnifying-glass" placeholder="Search..." />
+          <UInput class="w-full" icon="i-ph-envelope" placeholder="Email" trailing />
+          <UInput class="w-full" leading-icon="i-ph-user" trailing-icon="i-ph-check" placeholder="Username" />
         </div>
       </CodeCollapsible>
     </section>
@@ -293,7 +293,7 @@ const phoneNumberCode = `<UFieldGroup>
       <h3>Avatar</h3>
       <CodeCollapsible :code="avatarCode">
         <div class="demo-col">
-          <UInput :avatar="{ src: 'https://github.com/nuxt.png' }" placeholder="Username" />
+          <UInput class="w-full" :avatar="{ src: 'https://github.com/nuxt.png' }" placeholder="Username" />
         </div>
       </CodeCollapsible>
     </section>
@@ -302,8 +302,8 @@ const phoneNumberCode = `<UFieldGroup>
       <h3>Loading</h3>
       <CodeCollapsible :code="loadingCode">
         <div class="demo-col">
-          <UInput loading placeholder="Loading..." />
-          <UInput loading icon="i-ph-envelope" placeholder="Loading..." />
+          <UInput class="w-full" loading placeholder="Loading..." />
+          <UInput class="w-full" loading icon="i-ph-envelope" placeholder="Loading..." />
         </div>
       </CodeCollapsible>
     </section>
@@ -312,8 +312,8 @@ const phoneNumberCode = `<UFieldGroup>
       <h3>Loading Icon</h3>
       <CodeCollapsible :code="loadingIconCode">
         <div class="demo-col">
-          <UInput loading loading-icon="i-ph-spinner-gap" placeholder="Loading..." />
-          <UInput loading loading-icon="i-ph-circle-notch" placeholder="Custom spinner..." />
+          <UInput class="w-full" loading loading-icon="i-ph-spinner-gap" placeholder="Loading..." />
+          <UInput class="w-full" loading loading-icon="i-ph-circle-notch" placeholder="Custom spinner..." />
         </div>
       </CodeCollapsible>
     </section>
@@ -322,7 +322,7 @@ const phoneNumberCode = `<UFieldGroup>
       <h3>Disabled</h3>
       <CodeCollapsible :code="disabledCode">
         <div class="demo-col">
-          <UInput disabled placeholder="Disabled input" />
+          <UInput class="w-full" disabled placeholder="Disabled input" />
         </div>
       </CodeCollapsible>
     </section>
@@ -331,7 +331,7 @@ const phoneNumberCode = `<UFieldGroup>
       <h3>With clear button</h3>
       <CodeCollapsible :code="clearableCode">
         <div class="demo-col">
-          <UInput v-model="clearableValue" placeholder="Type something...">
+          <UInput class="w-full" v-model="clearableValue" placeholder="Type something...">
             <template #trailing>
               <UButton
                 v-if="clearableValue"
@@ -543,9 +543,9 @@ const phoneNumberCode = `<UFieldGroup>
   all: revert;
   display: flex;
   flex-direction: column;
-  width: max-content;
+  width: 100%;
   gap: 8px;
-  max-width: 320px;
+  max-width: 360px;
 }
 
 /* === Floating Label (custom CSS pattern) === */

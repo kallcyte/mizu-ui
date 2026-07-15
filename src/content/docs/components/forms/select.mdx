@@ -5,7 +5,7 @@ description: A dropdown menu for choosing from a list of options.
 
 import SelectDemo from "../../../../components/docs/SelectDemo.vue";
 
-<span style="display:inline-flex;margin-bottom:16px;padding:1px 8px;border-radius:9999px;font-size:11px;font-weight:500;background:#FFFBEB;color:#D97706;">Pending</span>
+<span style="display:inline-flex;margin-bottom:16px;padding:1px 8px;border-radius:9999px;font-size:11px;font-weight:500;background:#DCFCE7;color:#15803D;">Ready</span>
 
 A select component lets users pick a single value from a list. Mizu uses Nuxt UI's `USelect` with the same height scale as inputs and buttons (28/36/40px) for visual alignment in forms.
 
@@ -48,9 +48,63 @@ Reference: [Nuxt UI Select](https://ui.nuxt.com/docs/components/select)
 Use `UFormField` to add labels, helper text, and error messages:
 
 ```vue
-<UFormField label="Country" helper="Select your country of residence">
+<UFormField label="Country" help="Select your country of residence">
   <USelect class="w-full" :items="['US', 'UK', 'CA']" placeholder="Choose a country" />
 </UFormField>
+```
+
+### Example Usage
+
+```vue
+<template>
+  <!-- Basic -->
+  <USelect v-model="value" :items="['Backlog', 'Todo', 'Done']" class="w-full" placeholder="Select status..." />
+
+  <!-- Objects -->
+  <USelect v-model="value" :items="[{ label: 'Backlog', value: 'backlog' }, { label: 'Done', value: 'done' }]" class="w-full" />
+
+  <!-- Color -->
+  <USelect color="primary" :items="items" class="w-full" placeholder="Primary" />
+  <USelect color="success" :items="items" class="w-full" placeholder="Success" />
+  <USelect color="error" :items="items" class="w-full" placeholder="Error" />
+
+  <!-- Variant -->
+  <USelect variant="outline" :items="items" class="w-full" placeholder="Outline" />
+  <USelect variant="soft" :items="items" class="w-full" placeholder="Soft" />
+  <USelect variant="subtle" :items="items" class="w-full" placeholder="Subtle" />
+  <USelect variant="ghost" :items="items" class="w-full" placeholder="Ghost" />
+  <USelect variant="none" :items="items" class="w-full" placeholder="None" />
+
+  <!-- Size -->
+  <USelect size="xs" :items="items" class="w-full" placeholder="XS" />
+  <USelect size="sm" :items="items" class="w-full" placeholder="SM" />
+  <USelect size="md" :items="items" class="w-full" placeholder="MD" />
+  <USelect size="lg" :items="items" class="w-full" placeholder="LG" />
+  <USelect size="xl" :items="items" class="w-full" placeholder="XL" />
+
+  <!-- Icon -->
+  <USelect icon="i-ph-magnifying-glass" :items="items" class="w-full" placeholder="Search..." />
+
+  <!-- Loading -->
+  <USelect loading :items="items" class="w-full" placeholder="Loading..." />
+
+  <!-- Checkmarked -->
+  <USelect checkmarked :items="items" class="w-full" placeholder="Select a status..." />
+
+  <!-- Multiple -->
+  <USelect v-model="value" :items="items" class="w-full" multiple placeholder="Select statuses..." />
+
+  <!-- Searchable (USelectMenu) -->
+  <USelectMenu v-model="value" :items="items" class="w-full" placeholder="Search..." />
+
+  <!-- Disabled -->
+  <USelect disabled :items="['Option']" class="w-full" placeholder="Disabled" />
+
+  <!-- With UFormField -->
+  <UFormField label="Country" help="Select your country">
+    <USelect class="w-full" :items="['US', 'UK', 'CA']" placeholder="Choose a country" />
+  </UFormField>
+</template>
 ```
 
 ## Theme

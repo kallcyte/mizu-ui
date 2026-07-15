@@ -5,7 +5,7 @@ description: A multi-line text input for longer content.
 
 import TextareaDemo from "../../../../components/docs/TextareaDemo.vue";
 
-<span style="display:inline-flex;margin-bottom:16px;padding:1px 8px;border-radius:9999px;font-size:11px;font-weight:500;background:#FFFBEB;color:#D97706;">Pending</span>
+<span style="display:inline-flex;margin-bottom:16px;padding:1px 8px;border-radius:9999px;font-size:11px;font-weight:500;background:#DCFCE7;color:#15803D;">Ready</span>
 
 A textarea allows users to enter and edit multi-line text. Mizu uses Nuxt UI's `UTextarea` with the same height scale as inputs and buttons (28/36/40px) for visual alignment in forms.
 
@@ -46,9 +46,66 @@ Reference: [Nuxt UI Textarea](https://ui.nuxt.com/docs/components/textarea)
 Use `UFormField` to add labels, helper text, and error messages:
 
 ```vue
-<UFormField label="Description" helper="Describe your project in detail">
+<UFormField label="Description" help="Describe your project in detail">
   <UTextarea class="w-full" placeholder="Write something..." />
 </UFormField>
+```
+
+### Example Usage
+
+```vue
+<template>
+  <!-- Basic v-model -->
+  <UTextarea v-model="value" placeholder="Write something..." />
+
+  <!-- Rows -->
+  <UTextarea :rows="12" />
+
+  <!-- Autoresize -->
+  <UTextarea v-model="value" autoresize />
+
+  <!-- Max rows -->
+  <UTextarea v-model="value" :maxrows="4" autoresize />
+
+  <!-- Color -->
+  <UTextarea color="primary" placeholder="Primary" highlight />
+  <UTextarea color="success" placeholder="Success" highlight />
+  <UTextarea color="error" placeholder="Error" highlight />
+
+  <!-- Variant -->
+  <UTextarea variant="outline" placeholder="Outline" />
+  <UTextarea variant="soft" placeholder="Soft" />
+  <UTextarea variant="subtle" placeholder="Subtle" />
+  <UTextarea variant="ghost" placeholder="Ghost" />
+  <UTextarea variant="none" placeholder="None" />
+
+  <!-- Size -->
+  <UTextarea size="xs" placeholder="XS" />
+  <UTextarea size="sm" placeholder="SM" />
+  <UTextarea size="md" placeholder="MD" />
+  <UTextarea size="lg" placeholder="LG" />
+  <UTextarea size="xl" placeholder="XL" />
+
+  <!-- Icon -->
+  <UTextarea icon="i-ph-magnifying-glass" placeholder="Search..." />
+  <UTextarea icon="i-ph-envelope" placeholder="Email" trailing />
+  <UTextarea leading-icon="i-ph-pencil" trailing-icon="i-ph-check" placeholder="Notes" />
+
+  <!-- Avatar -->
+  <UTextarea :avatar="{ src: 'https://github.com/nuxt.png', size: '2xs' }" placeholder="Username" />
+
+  <!-- Loading -->
+  <UTextarea loading placeholder="Loading..." />
+  <UTextarea loading loading-icon="i-ph-circle-notch" placeholder="Custom spinner..." />
+
+  <!-- Disabled -->
+  <UTextarea disabled placeholder="Disabled textarea" />
+
+  <!-- With UFormField -->
+  <UFormField label="Bio" help="Tell us about yourself">
+    <UTextarea placeholder="Write a short bio..." rows="3" />
+  </UFormField>
+</template>
 ```
 
 ## Theme
