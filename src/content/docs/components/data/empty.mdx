@@ -5,7 +5,7 @@ description: A component to display an empty state.
 
 import EmptyDemo from "../../../../components/docs/EmptyDemo.vue";
 
-<span style="display:inline-flex;margin-bottom:16px;padding:1px 8px;border-radius:9999px;font-size:11px;font-weight:500;background:#FFFBEB;color:#D97706;">Pending</span>
+<span style="display:inline-flex;margin-bottom:16px;padding:1px 8px;border-radius:9999px;font-size:11px;font-weight:500;background:#DCFCE7;color:#15803D;">Ready</span>
 
 An empty state placeholder communicates that a view has no data, search results, or content yet. Use it to guide users toward creating their first item or to explain why a list is empty. Mizu uses Nuxt UI's `UEmpty`.
 
@@ -81,7 +81,18 @@ Reference: [Nuxt UI Empty](https://ui.nuxt.com/docs/components/empty)
     description="Try adjusting your search."
   />
 
-  <!-- Custom slots -->
+  <!-- Custom SVG image via slot -->
+  <UEmpty
+    title="No items"
+    description="There are no items in this collection yet."
+  >
+    <template #leading>
+      <img
+        src="/images/empty.svg"
+        alt="Empty state illustration"
+      />
+    </template>
+  </UEmpty>
   <UEmpty icon="i-lucide-database" title="No data">
     <template #description>
       <span class="text-brand-ycp">Custom description slot.</span>

@@ -59,7 +59,7 @@ Missing Nuxt UI core components to document, prioritized by category.
 | # | Component | Nuxt UI Slug | Status |
 |---|-----------|-------------|--------|
 | 5a | **Accordion** | `accordion` | Pending |
-| 5b | **Empty** | `empty` | Pending |
+| 5b | **Empty** | `empty` | Ready |
 | 5c | **Table** | `table` | Pending |
 | 5d | **Timeline** | `timeline` | Pending |
 | 5e | **Carousel** | `carousel` | Pending |

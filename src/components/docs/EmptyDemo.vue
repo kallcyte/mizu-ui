@@ -41,6 +41,18 @@ const slotsCode = `<UEmpty icon="i-lucide-database" title="No data">
     <UButton label="Create" color="primary" />
   </template>
 </UEmpty>`;
+const customImageCode = `<UEmpty
+  title="No items"
+  description="There are no items in this collection yet."
+>
+  <template #leading>
+    <img
+      src="/images/empty.svg"
+      alt="Empty state illustration"
+      class="empty-custom-img"
+    />
+  </template>
+</UEmpty>`;
 </script>
 
 <template>
@@ -110,6 +122,26 @@ const slotsCode = `<UEmpty icon="i-lucide-database" title="No data">
         </div>
       </CodeCollapsible>
     </section>
+
+    <section class="example-section">
+      <h3>Custom Image (SVG)</h3>
+      <CodeCollapsible :code="customImageCode">
+        <div class="demo-row">
+          <UEmpty
+            title="No items"
+            description="There are no items in this collection yet."
+          >
+            <template #leading>
+              <img
+                src="/images/empty.svg"
+                alt="Empty state illustration"
+                class="empty-custom-img"
+              />
+            </template>
+          </UEmpty>
+        </div>
+      </CodeCollapsible>
+    </section>
   </div>
 </template>
 
@@ -136,6 +168,12 @@ const slotsCode = `<UEmpty icon="i-lucide-database" title="No data">
   font-weight: 600;
   color: var(--sl-color-text);
   margin: 0;
+}
+.empty-custom-img {
+  all: revert;
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
 }
 .demo-row {
   all: revert;
