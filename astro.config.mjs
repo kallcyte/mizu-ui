@@ -29,7 +29,7 @@ export default defineConfig({
   integrations: [
     vue(),
     starlight({
-      title: "Mizu Design System v0.17.4",
+      title: "Mizu Design System v0.17.5",
       components: {
         ThemeSelect: "./src/components/overrides/ThemeSelect.astro",
       },

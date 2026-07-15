@@ -98,7 +98,7 @@ const customStep = ref(0);
   all: revert;
   display: flex;
   flex-direction: column;
-  width: max-content;
+  width: 100%;
   gap: 8px;
   max-width: 280px;
 }

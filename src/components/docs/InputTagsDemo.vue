@@ -97,7 +97,7 @@ const customCode = `<UInputTags
   all: revert;
   display: flex;
   flex-direction: column;
-  width: max-content;
+  width: 100%;
   gap: 8px;
   max-width: 400px;
 }

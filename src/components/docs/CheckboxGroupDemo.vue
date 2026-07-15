@@ -167,7 +167,7 @@ const selectAllModel = ref<any>(false);
   all: revert;
   display: flex;
   flex-direction: column;
-  width: max-content;
+  width: 100%;
   gap: 12px;
 }
 .mizu-select-value {

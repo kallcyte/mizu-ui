@@ -13,6 +13,24 @@ const people = [
   { id: 5, name: "Eve Davis", role: "Marketing" },
 ];
 
+// -- Async loading example --
+const asyncValue = ref("");
+const asyncItems = ref<string[]>([]);
+const asyncLoading = ref(false);
+let asyncTimeout: ReturnType<typeof setTimeout>;
+
+const fruitDb = ["Apple", "Banana", "Blueberry", "Grapes", "Orange", "Pineapple", "Peach", "Pear", "Plum", "Raspberry", "Strawberry", "Watermelon"];
+
+function onAsyncSearch(q: string) {
+  clearTimeout(asyncTimeout);
+  if (!q) { asyncItems.value = []; asyncLoading.value = false; return; }
+  asyncLoading.value = true;
+  asyncTimeout = setTimeout(() => {
+    asyncItems.value = fruitDb.filter(i => i.toLowerCase().includes(q.toLowerCase()));
+    asyncLoading.value = false;
+  }, 600);
+}
+
 const autocompleteCode = `<UInputMenu
   v-model="selected"
   :items="people"
@@ -48,6 +66,35 @@ const multipleCode = `<UInputMenu
     <span class="text-xs text-dimmed">{{ item.role }}</span>
   </template>
 </UInputMenu>`;
+
+const loadingCode = `<script setup lang="ts">
+const query = ref("")
+const items = ref<string[]>([])
+const loading = ref(false)
+let timeout: ReturnType<typeof setTimeout>
+
+function onSearch(q: string) {
+  clearTimeout(timeout)
+  if (!q) { items.value = []; loading.value = false; return }
+  loading.value = true
+  timeout = setTimeout(() => {
+    items.value = ['Apple', 'Banana', 'Blueberry', 'Grapes', 'Orange', 'Pineapple']
+      .filter(i => i.toLowerCase().includes(q.toLowerCase()))
+    loading.value = false
+  }, 500)
+}
+<\/script>
+
+<template>
+  <UInputMenu
+    v-model="value"
+    :items="items"
+    :loading="loading"
+    placeholder="Search fruit..."
+    @update:search-term="onSearch"
+  />
+</template>`;
+
 </script>
 
 <template>
@@ -56,7 +103,7 @@ const multipleCode = `<UInputMenu
       <h3>Basic autocomplete</h3>
       <CodeCollapsible :code="autocompleteCode">
         <div class="demo-col">
-          <UInputMenu
+          <UInputMenu class="w-full"
             v-model="selectedPerson"
             :items="people"
             value-key="id"
@@ -83,7 +130,7 @@ const multipleCode = `<UInputMenu
       <h3>Multiple selection</h3>
       <CodeCollapsible :code="multipleCode">
         <div class="demo-col">
-          <UInputMenu
+          <UInputMenu class="w-full"
             v-model="selectedPeople"
             :items="people"
             value-key="id"
@@ -101,6 +148,23 @@ const multipleCode = `<UInputMenu
         </div>
       </CodeCollapsible>
     </section>
+
+    <section class="example-section">
+      <h3>Loading (async)</h3>
+      <CodeCollapsible :code="loadingCode">
+        <div class="demo-col">
+          <UInputMenu class="w-full"
+            v-model="asyncValue"
+            :items="asyncItems"
+            :loading="asyncLoading"
+            placeholder="Type to search fruit..."
+            @update:search-term="onAsyncSearch"
+          />
+          <p v-if="asyncValue" class="mizu-value">Selected: {{ asyncValue }}</p>
+        </div>
+      </CodeCollapsible>
+    </section>
+
   </div>
 </template>
 
@@ -129,8 +193,13 @@ const multipleCode = `<UInputMenu
   all: revert;
   display: flex;
   flex-direction: column;
-  width: max-content;
+  width: 100%;
   gap: 8px;
   max-width: 360px;
+}
+.mizu-value {
+  font-size: 12px;
+  color: var(--color-foreground-secondary, #4B5563);
+  margin: 0;
 }
 </style>

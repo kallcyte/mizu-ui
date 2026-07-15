@@ -124,7 +124,7 @@ const dropdownItems = [
   />
   <UInput placeholder=&quot;Phone number&quot; />
 </UFieldGroup>`">
-        <div class="demo-col" style="max-width: 360px">
+        <div class="demo-col">
           <UFieldGroup>
             <USelectMenu
               v-model="phoneCode"
@@ -191,7 +191,7 @@ const dropdownItems = [
   all: revert;
   display: flex;
   flex-direction: column;
-  width: max-content;
+  width: 100%;
   gap: 8px;
   max-width: 320px;
 }
