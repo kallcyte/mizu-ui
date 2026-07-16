@@ -16,6 +16,14 @@ This project follows **semantic versioning** (SemVer) during pre-1.0 development
 Changes that require a minor bump: adding a new component, renaming tokens, changing component APIs, adding new packages (e.g. React).
 Changes that keep the patch version: renames, copy edits, styling tweaks, build config changes, favicon updates.
 
+## 0.17.6 (2026-07-16)
+
+### Changed
+
+- **Input, Textarea, Select, SelectMenu, InputMenu — reset to Nuxt UI defaults** — Removed all custom Mizu theme overrides for these 5 components. They now use Nuxt UI v4's built-in styling directly, ensuring consistent form behavior and appearance with the upstream library.
+- **Button — reduced focus outline width** — Changed `focus-visible:outline-3` to `focus-visible:outline-1` for a subtler focus indicator on all button color variants (nexus, ycp).
+- **InputTags — documentation completed** — Marked as Ready (green badge). Added comprehensive demos covering: Usage, Placeholder, Max Length, Color, Variant, Size, Icon, Avatar, Delete Icon, Loading, Disabled, Duplicate Prevention, and Preset Tags.
+
 ## 0.17.5 (2026-07-15)
 
 ### Changed

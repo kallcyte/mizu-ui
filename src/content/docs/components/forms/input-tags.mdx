@@ -5,7 +5,7 @@ description: An input element that displays interactive tags.
 
 import InputTagsDemo from "../../../../components/docs/InputTagsDemo.vue";
 
-<span style="display:inline-flex;margin-bottom:16px;padding:1px 8px;border-radius:9999px;font-size:11px;font-weight:500;background:#FFFBEB;color:#D97706;">Pending</span>
+<span style="display:inline-flex;margin-bottom:16px;padding:1px 8px;border-radius:9999px;font-size:11px;font-weight:500;background:#DCFCE7;color:#15803D;">Ready</span>
 
 A token-style input that allows users to add, view, and remove tags. Mizu uses Nuxt UI's `UInputTags` with the same height and color system as other form inputs.
 
@@ -60,24 +60,45 @@ Reference: [Nuxt UI InputTags](https://ui.nuxt.com/docs/components/input-tags)
 ### Example Usage
 
 ```vue
-<UInputTags
-  v-model="tags"
-  placeholder="Add a tag and press Enter..."
-  add-on-tab
-  add-on-blur
-/>
+<template>
+  <!-- Basic -->
+  <UInputTags v-model="tags" class="w-full" placeholder="Add a tag and press Enter..." />
 
-<!-- With object items and custom display -->
-<UInputTags
-  v-model="tags"
-  :items="[
-    { value: 'Vue' },
-    { value: 'React' },
-    { value: 'Svelte' },
-  ]"
-  value-key="value"
-  placeholder="Select frameworks..."
-/>
+  <!-- Max Length -->
+  <UInputTags class="w-full" :max-length="4" placeholder="Max 4 chars per tag..." />
+
+  <!-- Color -->
+  <UInputTags class="w-full" color="primary" :model-value="['Vue']" highlight />
+  <UInputTags class="w-full" color="success" :model-value="['Vue']" highlight />
+  <UInputTags class="w-full" color="error" :model-value="['Vue']" highlight />
+
+  <!-- Variant -->
+  <UInputTags class="w-full" variant="outline" :model-value="['Vue']" color="neutral" />
+  <UInputTags class="w-full" variant="soft" :model-value="['Vue']" color="neutral" />
+  <UInputTags class="w-full" variant="subtle" :model-value="['Vue']" color="neutral" />
+  <UInputTags class="w-full" variant="ghost" :model-value="['Vue']" color="neutral" />
+  <UInputTags class="w-full" variant="none" :model-value="['Vue']" color="neutral" />
+
+  <!-- Size -->
+  <UInputTags class="w-full" size="sm" :model-value="['Vue']" placeholder="SM" />
+  <UInputTags class="w-full" size="md" :model-value="['Vue']" placeholder="MD" />
+  <UInputTags class="w-full" size="lg" :model-value="['Vue']" placeholder="LG" />
+
+  <!-- Icon -->
+  <UInputTags class="w-full" icon="i-ph-tag" placeholder="Add tags..." />
+
+  <!-- Loading -->
+  <UInputTags class="w-full" loading :model-value="['Vue', 'Nuxt']" />
+
+  <!-- Disabled -->
+  <UInputTags class="w-full" disabled :model-value="['Vue', 'Nuxt']" />
+
+  <!-- Duplicate prevention -->
+  <UInputTags class="w-full" v-model="value" :duplicate="false" placeholder="Try typing the same tag twice..." />
+
+  <!-- Preset tags (uncontrolled) -->
+  <UInputTags class="w-full" :default-value="['Vue', 'React']" placeholder="Add more..." />
+</template>
 ```
 
 ## Anatomy
@@ -104,5 +125,6 @@ An input tags component consists of:
 4. **Preventing duplicates** — Set `duplicate` to `false` to prevent the same tag from being added twice. Compare behavior depends on the `by` prop or value identity.
 5. **Custom value conversion** — Use `convertValue` to transform raw input text and `displayValue` to control how tags are rendered. Useful when tags are objects with complex shapes.
 6. **Limiting tags** — Use `max` to cap the number of tags and `maxLength` to cap the character count per tag.
-7. **Suggestions** — Provide an `items` array for autocomplete-style suggestions. The menu appears as the user types and filters against the input value.
-8. **Read-only tags with suggestions** — When `items` is provided without free-text entry, the component behaves like a multi-select. Use this pattern for constrained tag sets like categories or labels.
+7. **Duplicate prevention** — Set `duplicate` to `false` to prevent the same tag from being added twice. Compare behavior depends on the `by` prop or value identity.
+8. **Preset tags** — Use `default-value` to initialize tags without a v-model binding. Useful for uncontrolled scenarios.
+9. **Autocomplete with tags** — For an autocomplete dropdown with tag-style selection, use `<UInputMenu multiple>` instead. It provides a search input with a visible dropdown and renders selections as tags. See the [InputMenu docs](/components/forms/input-menu) for examples.

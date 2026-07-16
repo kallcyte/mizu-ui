@@ -55,15 +55,15 @@ export const mizuTheme = {
       // Link variant: dashed underline with tight offset
       { variant: "link", class: "underline decoration-dashed underline-offset-2" },
       // Custom Mizu colors — solid variant
-      { color: "nexus", variant: "solid", class: "text-inverted bg-nexus-500 hover:bg-nexus-600 active:bg-nexus-600 disabled:bg-nexus-500 aria-disabled:bg-nexus-500 outline-nexus-500/25 focus-visible:outline-3" },
-      { color: "ycp", variant: "solid", class: "text-inverted bg-ycp-500 hover:bg-ycp-600 active:bg-ycp-600 disabled:bg-ycp-500 aria-disabled:bg-ycp-500 outline-ycp-500/25 focus-visible:outline-3" },
+      { color: "nexus", variant: "solid", class: "text-inverted bg-nexus-500 hover:bg-nexus-600 active:bg-nexus-600 disabled:bg-nexus-500 aria-disabled:bg-nexus-500 outline-nexus-500/25 focus-visible:outline-1" },
+      { color: "ycp", variant: "solid", class: "text-inverted bg-ycp-500 hover:bg-ycp-600 active:bg-ycp-600 disabled:bg-ycp-500 aria-disabled:bg-ycp-500 outline-ycp-500/25 focus-visible:outline-1" },
       // Custom Mizu colors — outline, ghost, soft
-      { color: "nexus", variant: "outline", class: "ring ring-inset ring-nexus-500/25 text-nexus-500 bg-transparent hover:bg-nexus-500/10 active:bg-nexus-500/10 outline-nexus-500/25 focus-visible:outline-3" },
-      { color: "ycp", variant: "outline", class: "ring ring-inset ring-ycp-500/25 text-ycp-500 bg-transparent hover:bg-ycp-500/10 active:bg-ycp-500/10 outline-ycp-500/25 focus-visible:outline-3" },
-      { color: "nexus", variant: "ghost", class: "text-nexus-500 hover:bg-nexus-500/10 active:bg-nexus-500/10 outline-nexus-500/25 focus-visible:outline-3" },
-      { color: "ycp", variant: "ghost", class: "text-ycp-500 hover:bg-ycp-500/10 active:bg-ycp-500/10 outline-ycp-500/25 focus-visible:outline-3" },
-      { color: "nexus", variant: "soft", class: "text-nexus-500 bg-nexus-500/10 hover:bg-nexus-500/15 active:bg-nexus-500/15 outline-nexus-500/25 focus-visible:outline-3" },
-      { color: "ycp", variant: "soft", class: "text-ycp-500 bg-ycp-500/10 hover:bg-ycp-500/15 active:bg-ycp-500/15 outline-ycp-500/25 focus-visible:outline-3" },
+      { color: "nexus", variant: "outline", class: "ring ring-inset ring-nexus-500/25 text-nexus-500 bg-transparent hover:bg-nexus-500/10 active:bg-nexus-500/10 outline-nexus-500/25 focus-visible:outline-1" },
+      { color: "ycp", variant: "outline", class: "ring ring-inset ring-ycp-500/25 text-ycp-500 bg-transparent hover:bg-ycp-500/10 active:bg-ycp-500/10 outline-ycp-500/25 focus-visible:outline-1" },
+      { color: "nexus", variant: "ghost", class: "text-nexus-500 hover:bg-nexus-500/10 active:bg-nexus-500/10 outline-nexus-500/25 focus-visible:outline-1" },
+      { color: "ycp", variant: "ghost", class: "text-ycp-500 hover:bg-ycp-500/10 active:bg-ycp-500/10 outline-ycp-500/25 focus-visible:outline-1" },
+      { color: "nexus", variant: "soft", class: "text-nexus-500 bg-nexus-500/10 hover:bg-nexus-500/15 active:bg-nexus-500/15 outline-nexus-500/25 focus-visible:outline-1" },
+      { color: "ycp", variant: "soft", class: "text-ycp-500 bg-ycp-500/10 hover:bg-ycp-500/15 active:bg-ycp-500/15 outline-ycp-500/25 focus-visible:outline-1" },
     ],
   },
 
@@ -100,72 +100,6 @@ export const mizuTheme = {
     },
   },
 
-  // --- Input ---
-  // Mizu spec: sm=28px, md=36px, lg=40px (same scale as Button)
-  // See: old MizuInput docs (git history)
-  input: {
-    slots: {
-      base: "rounded-md appearance-none disabled:cursor-not-allowed disabled:opacity-75 disabled:bg-[var(--color-surface-muted)] transition-colors placeholder:text-[var(--input-placeholder-color,var(--color-foreground-secondary))]/80 !ring-0 !outline-none focus-visible:!outline-none",
-      leadingIcon: "shrink-0 text-[var(--input-text-color,var(--color-foreground-primary))]",
-      leadingAvatar: "size-3.5",
-      trailingIcon: "shrink-0 text-[var(--input-text-color,var(--color-foreground-primary))]",
-    },
-    variants: {
-      size: {
-        sm: {
-          base: "px-2 py-[5px] text-sm/4 gap-1 rounded",
-          leading: "ps-2",
-          trailing: "pe-2",
-          leadingIcon: "size-4",
-          leadingAvatarSize: "3xs",
-          trailingIcon: "size-4",
-        },
-        md: {
-          base: "px-2.5 py-[7px] text-base/5 gap-1.5",
-          leading: "ps-2.5",
-          trailing: "pe-2.5",
-          leadingIcon: "size-5",
-          leadingAvatarSize: "3xs",
-          trailingIcon: "size-5",
-        },
-        lg: {
-          base: "px-2.5 py-[9px] text-base/5 gap-2",
-          leading: "ps-2.5",
-          trailing: "pe-2.5",
-          leadingIcon: "size-5",
-          leadingAvatarSize: "3xs",
-          trailingIcon: "size-5",
-        },
-      },
-      color: {
-        primary:
-          "[--input-text-color:var(--color-brand-primary)] [--input-border-color:var(--color-brand-primary)] [--input-placeholder-color:var(--color-brand-primary)]",
-        secondary:
-          "[--input-text-color:var(--color-brand-ycp)] [--input-border-color:var(--color-brand-ycp)] [--input-placeholder-color:var(--color-brand-ycp)]",
-        success:
-          "[--input-text-color:var(--color-feedback-success-base)] [--input-border-color:var(--color-feedback-success-base)] [--input-placeholder-color:var(--color-feedback-success-base)]",
-        error:
-          "[--input-text-color:var(--color-feedback-error-base)] [--input-border-color:var(--color-feedback-error-base)] [--input-placeholder-color:var(--color-feedback-error-base)]",
-        warning:
-          "[--input-text-color:var(--color-feedback-warning-base)] [--input-border-color:var(--color-feedback-warning-base)] [--input-placeholder-color:var(--color-feedback-warning-base)]",
-        info: "[--input-text-color:var(--color-feedback-info-base)] [--input-border-color:var(--color-feedback-info-base)] [--input-placeholder-color:var(--color-feedback-info-base)]",
-        neutral:
-          "[--input-text-color:var(--color-foreground-primary)] [--input-placeholder-color:var(--color-foreground-secondary)]",
-      },
-      variant: {
-        outline:
-          "text-[var(--input-text-color,var(--color-foreground-primary))] bg-[var(--color-surface-base)] border border-[var(--input-border-color,var(--color-foreground-secondary))]/50 focus-visible:border-[var(--input-border-color,var(--color-foreground-secondary))]",
-        subtle:
-          "text-[var(--input-text-color,var(--color-foreground-primary))] bg-[var(--color-surface-subtle)] border border-transparent",
-      },
-    },
-    defaultVariants: {
-      size: "md",
-      color: "neutral",
-      variant: "outline",
-    },
-  },
-
   // --- Card ---
   // Mizu spec: rounded-md (6px), outline variant by default
   card: {
@@ -187,73 +121,6 @@ export const mizuTheme = {
     },
   },
 
-  // --- Select ---
-  // Mizu spec: match Input sizing scale (sm=28px, md=36px, lg=40px)
-  // Override the trigger button sizing to mirror Input dimensions.
-  // --- Select --- adopt full Input styling (native select)
-  select: {
-    slots: {
-      base: "relative group rounded-md disabled:cursor-not-allowed disabled:opacity-75 disabled:bg-[var(--color-surface-muted)] transition-colors !ring-0 !outline-none focus-visible:!outline-none data-[state=open]:border-[var(--input-border-color,var(--color-foreground-secondary))]",
-      leadingIcon: "shrink-0 text-[var(--input-text-color,var(--color-foreground-primary))]",
-      trailingIcon:
-        "shrink-0 text-[var(--input-text-color,var(--color-foreground-primary))] cursor-pointer",
-      leadingAvatar: "size-3.5",
-    },
-    variants: {
-      size: {
-        sm: {
-          base: "px-2 py-[5px] text-sm/4 gap-1 rounded",
-          leading: "ps-2",
-          trailing: "pe-2",
-          leadingIcon: "size-4",
-          leadingAvatarSize: "3xs",
-          trailingIcon: "size-4",
-        },
-        md: {
-          base: "px-2.5 py-[7px] text-base/5 gap-1.5",
-          leading: "ps-2.5",
-          trailing: "pe-2.5",
-          leadingIcon: "size-5",
-          leadingAvatarSize: "3xs",
-          trailingIcon: "size-5",
-        },
-        lg: {
-          base: "px-2.5 py-[9px] text-base/5 gap-2",
-          leading: "ps-2.5",
-          trailing: "pe-2.5",
-          leadingIcon: "size-5",
-          leadingAvatarSize: "3xs",
-          trailingIcon: "size-5",
-        },
-      },
-      color: {
-        primary:
-          "[--input-text-color:var(--color-brand-primary)] [--input-border-color:var(--color-brand-primary)] [--input-placeholder-color:var(--color-brand-primary)]",
-        secondary:
-          "[--input-text-color:var(--color-brand-ycp)] [--input-border-color:var(--color-brand-ycp)] [--input-placeholder-color:var(--color-brand-ycp)]",
-        success:
-          "[--input-text-color:var(--color-feedback-success-base)] [--input-border-color:var(--color-feedback-success-base)] [--input-placeholder-color:var(--color-feedback-success-base)]",
-        error:
-          "[--input-text-color:var(--color-feedback-error-base)] [--input-border-color:var(--color-feedback-error-base)] [--input-placeholder-color:var(--color-feedback-error-base)]",
-        warning:
-          "[--input-text-color:var(--color-feedback-warning-base)] [--input-border-color:var(--color-feedback-warning-base)] [--input-placeholder-color:var(--color-feedback-warning-base)]",
-        info: "[--input-text-color:var(--color-feedback-info-base)] [--input-border-color:var(--color-feedback-info-base)] [--input-placeholder-color:var(--color-feedback-info-base)]",
-        neutral:
-          "[--input-text-color:var(--color-foreground-primary)] [--input-placeholder-color:var(--color-foreground-secondary)]",
-      },
-      variant: {
-        outline:
-          "text-[var(--input-text-color,var(--color-foreground-primary))] bg-[var(--color-surface-base)] border border-[var(--input-border-color,var(--color-foreground-secondary))]/50 focus-visible:border-[var(--input-border-color,var(--color-foreground-secondary))]",
-        subtle:
-          "text-[var(--input-text-color,var(--color-foreground-primary))] bg-[var(--color-surface-subtle)] border border-transparent",
-      },
-    },
-    defaultVariants: {
-      size: "md",
-      color: "neutral",
-      variant: "outline",
-    },
-  },
   // --- Checkbox ---
   // Mizu spec: border, ring, and outline follow Input style
   checkbox: {
@@ -289,138 +156,6 @@ export const mizuTheme = {
           base: "bg-[var(--color-surface-muted)]",
         },
       },
-    },
-  },
-
-  // --- Textarea --- adopt full Input styling
-  // Mizu spec: inherit Input scale + slots, color, variant (sm=28px, md=36px, lg=40px)
-  textarea: {
-    slots: {
-      base: "rounded-md appearance-none disabled:cursor-not-allowed disabled:opacity-75 disabled:bg-[var(--color-surface-muted)] transition-colors placeholder:text-[var(--input-placeholder-color,var(--color-foreground-secondary))]/80 !ring-0 !outline-none focus-visible:!outline-none",
-      leadingIcon: "shrink-0 text-[var(--input-text-color,var(--color-foreground-primary))]",
-      trailingIcon:
-        "shrink-0 text-[var(--input-text-color,var(--color-foreground-primary))] cursor-pointer",
-    },
-    variants: {
-      size: {
-        sm: {
-          base: "px-2 py-[5px] text-sm/4 gap-1 rounded",
-          leading: "ps-2",
-          trailing: "pe-2",
-          leadingIcon: "size-4",
-          leadingAvatarSize: "3xs",
-          trailingIcon: "size-4",
-        },
-        md: {
-          base: "px-2.5 py-1.5 text-base/5 gap-1.5",
-          leading: "ps-2.5",
-          trailing: "pe-2.5",
-          leadingIcon: "size-5",
-          leadingAvatarSize: "2xs",
-          trailingIcon: "size-5",
-        },
-        lg: {
-          base: "px-2.5 py-2 text-base/5 gap-2",
-          leading: "ps-2.5",
-          trailing: "pe-2.5",
-          leadingIcon: "size-5",
-          leadingAvatarSize: "2xs",
-          trailingIcon: "size-5",
-        },
-      },
-      color: {
-        primary:
-          "[--input-text-color:var(--color-brand-primary)] [--input-border-color:var(--color-brand-primary)] [--input-placeholder-color:var(--color-brand-primary)]",
-        secondary:
-          "[--input-text-color:var(--color-brand-ycp)] [--input-border-color:var(--color-brand-ycp)] [--input-placeholder-color:var(--color-brand-ycp)]",
-        success:
-          "[--input-text-color:var(--color-feedback-success-base)] [--input-border-color:var(--color-feedback-success-base)] [--input-placeholder-color:var(--color-feedback-success-base)]",
-        error:
-          "[--input-text-color:var(--color-feedback-error-base)] [--input-border-color:var(--color-feedback-error-base)] [--input-placeholder-color:var(--color-feedback-error-base)]",
-        warning:
-          "[--input-text-color:var(--color-feedback-warning-base)] [--input-border-color:var(--color-feedback-warning-base)] [--input-placeholder-color:var(--color-feedback-warning-base)]",
-        info: "[--input-text-color:var(--color-feedback-info-base)] [--input-border-color:var(--color-feedback-info-base)] [--input-placeholder-color:var(--color-feedback-info-base)]",
-        neutral:
-          "[--input-text-color:var(--color-foreground-primary)] [--input-placeholder-color:var(--color-foreground-secondary)]",
-      },
-      variant: {
-        outline:
-          "text-[var(--input-text-color,var(--color-foreground-primary))] bg-[var(--color-surface-base)] border border-[var(--input-border-color,var(--color-foreground-secondary))]/50 focus-visible:border-[var(--input-border-color,var(--color-foreground-secondary))]",
-        subtle:
-          "text-[var(--input-text-color,var(--color-foreground-primary))] bg-[var(--color-surface-subtle)] border border-transparent",
-      },
-    },
-    defaultVariants: {
-      size: "md",
-      color: "neutral",
-      variant: "outline",
-    },
-  },
-
-  // --- Select --- adopt full Input styling (native select)
-
-  // --- SelectMenu --- adopt full Input styling
-  selectMenu: {
-    slots: {
-      base: "relative group rounded-md disabled:cursor-not-allowed disabled:opacity-75 disabled:bg-[var(--color-surface-muted)] transition-colors !ring-0 !outline-none focus-visible:!outline-none data-[state=open]:border-[var(--input-border-color,var(--color-foreground-secondary))]",
-      leadingIcon: "shrink-0 text-[var(--input-text-color,var(--color-foreground-primary))]",
-      trailingIcon:
-        "shrink-0 text-[var(--input-text-color,var(--color-foreground-primary))] cursor-pointer",
-      leadingAvatar: "size-3.5",
-    },
-    variants: {
-      size: {
-        sm: {
-          base: "px-2 py-[5px] text-sm/4 gap-1 rounded",
-          leading: "ps-2",
-          trailing: "pe-2",
-          leadingIcon: "size-4",
-          leadingAvatarSize: "3xs",
-          trailingIcon: "size-4",
-        },
-        md: {
-          base: "px-2.5 py-[7px] text-base/5 gap-1.5",
-          leading: "ps-2.5",
-          trailing: "pe-2.5",
-          leadingIcon: "size-5",
-          leadingAvatarSize: "3xs",
-          trailingIcon: "size-5",
-        },
-        lg: {
-          base: "px-2.5 py-[9px] text-base/5 gap-2",
-          leading: "ps-2.5",
-          trailing: "pe-2.5",
-          leadingIcon: "size-5",
-          leadingAvatarSize: "3xs",
-          trailingIcon: "size-5",
-        },
-      },
-      color: {
-        primary:
-          "[--input-text-color:var(--color-brand-primary)] [--input-border-color:var(--color-brand-primary)] [--input-placeholder-color:var(--color-brand-primary)]",
-        secondary:
-          "[--input-text-color:var(--color-brand-ycp)] [--input-border-color:var(--color-brand-ycp)] [--input-placeholder-color:var(--color-brand-ycp)]",
-        success:
-          "[--input-text-color:var(--color-feedback-success-base)] [--input-border-color:var(--color-feedback-success-base)] [--input-placeholder-color:var(--color-feedback-success-base)]",
-        error:
-          "[--input-text-color:var(--color-feedback-error-base)] [--input-border-color:var(--color-feedback-error-base)] [--input-placeholder-color:var(--color-feedback-error-base)]",
-        warning:
-          "[--input-text-color:var(--color-feedback-warning-base)] [--input-border-color:var(--color-feedback-warning-base)] [--input-placeholder-color:var(--color-feedback-warning-base)]",
-        info: "[--input-text-color:var(--color-feedback-info-base)] [--input-border-color:var(--color-feedback-info-base)] [--input-placeholder-color:var(--color-feedback-info-base)]",
-        neutral:
-          "[--input-text-color:var(--color-foreground-primary)] [--input-placeholder-color:var(--color-foreground-secondary)]",
-      },
-      variant: {
-        outline:
-          "text-[var(--input-text-color,var(--color-foreground-primary))] bg-[var(--color-surface-base)] border border-[var(--input-border-color,var(--color-foreground-secondary))]/50 focus-visible:border-[var(--input-border-color,var(--color-foreground-secondary))]",
-        subtle:
-          "text-[var(--input-text-color,var(--color-foreground-primary))] bg-[var(--color-surface-subtle)] border border-transparent",
-      },
-    },
-    defaultVariants: {
-      size: "md",
-      color: "neutral",
-      variant: "outline",
     },
   },
 
