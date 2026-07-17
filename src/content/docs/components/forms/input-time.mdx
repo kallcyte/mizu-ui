@@ -24,7 +24,7 @@ Reference: [Nuxt UI InputTime](https://ui.nuxt.com/docs/components/input-time)
 | `modelValue` | `Time \| CalendarDateTime \| ZonedDateTime \| TimeRange` | — | v-model binding for the selected time(s) |
 | `defaultValue` | `Time \| CalendarDateTime \| ZonedDateTime \| TimeRange` | — | Initial value (uncontrolled) |
 | `range` | `boolean` | `false` | Enable time range selection (modelValue becomes `TimeRange`) |
-| `size` | `'xs' \| 'sm' \| 'md' \| 'lg' \| 'xl'` | `'md'` | Input size aligned with other form elements |
+| `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | Input size aligned with other form elements |
 | `color` | `'primary' \| 'secondary' \| 'success' \| 'error' \| 'warning' \| 'info' \| 'neutral'` | `'primary'` | Semantic color for focus ring |
 | `variant` | `'outline' \| 'soft' \| 'subtle' \| 'ghost' \| 'none'` | `'outline'` | Visual style |
 | `placeholder` | `string` | — | Placeholder text |
@@ -62,7 +62,7 @@ Reference: [Nuxt UI InputTime](https://ui.nuxt.com/docs/components/input-time)
 
 ```vue
 <script setup lang="ts">
-import { ref } from "vue";
+import { shallowRef } from "vue";
 import { Time, type TimeValue } from "@internationalized/date";
 
 interface TimeRange {
@@ -70,8 +70,8 @@ interface TimeRange {
   end: TimeValue;
 }
 
-const time = ref(new Time(14, 30));
-const range = ref<TimeRange>({
+const time = shallowRef(new Time(14, 30));
+const range = shallowRef<TimeRange>({
   start: new Time(9, 0),
   end: new Time(17, 0),
 });
@@ -79,13 +79,13 @@ const range = ref<TimeRange>({
 
 <template>
   <!-- Single time -->
-  <UInputTime v-model="time" placeholder="Select a time" />
+  <UInputTime v-model="time" />
 
   <!-- Time range -->
-  <UInputTime v-model="range" range placeholder="Select a time range" />
+  <UInputTime v-model="range" range />
 
   <!-- 12-hour format with 15-minute steps -->
-  <UInputTime v-model="time" hour-cycle="12" :step="{ minute: 15 }" />
+  <UInputTime v-model="time" :hour-cycle="12" :step="{ minute: 15 }" />
 
   <!-- With min/max constraints -->
   <UInputTime v-model="time" :min-value="new Time(9, 0)" :max-value="new Time(17, 0)" />
