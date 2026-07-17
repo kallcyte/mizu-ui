@@ -167,23 +167,19 @@ const tooltipText = ref("Copy to clipboard");
 
     <section class="example-section">
       <h3>With tooltip</h3>
-      <CodeCollapsible :code="`<UTooltipProvider>
-  <UFieldGroup>
-    <UTooltip :text=&quot;tooltipText&quot;>
+      <CodeCollapsible :code="`<UFieldGroup>
+  <UTooltip :text=&quot;tooltipText&quot;>
     <UButton color=&quot;neutral&quot; variant=&quot;subtle&quot; icon=&quot;i-ph-clipboard&quot; />
   </UTooltip>
-    <UInput placeholder=&quot;Enter token&quot; />
-  </UFieldGroup>
-</UTooltipProvider>`">
+  <UInput placeholder=&quot;Enter token&quot; />
+</UFieldGroup>`">
         <div class="demo-col">
-          <UTooltipProvider>
-            <UFieldGroup>
-              <UTooltip :text="tooltipText">
+          <UFieldGroup>
+            <UTooltip :text="tooltipText">
               <UButton color="neutral" variant="subtle" icon="i-ph-clipboard" />
             </UTooltip>
-              <UInput placeholder="Enter token" />
-            </UFieldGroup>
-          </UTooltipProvider>
+            <UInput placeholder="Enter token" />
+          </UFieldGroup>
         </div>
       </CodeCollapsible>
     </section>
