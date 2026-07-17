@@ -16,6 +16,26 @@ This project follows **semantic versioning** (SemVer) during pre-1.0 development
 Changes that require a minor bump: adding a new component, renaming tokens, changing component APIs, adding new packages (e.g. React).
 Changes that keep the patch version: renames, copy edits, styling tweaks, build config changes, favicon updates.
 
+## 0.18.0 (2026-07-17)
+
+### Added
+
+- **`MizuDateField`** — A custom date input that combines a formatted trigger label with a popover calendar. Unlike `UInputDate` (numeric segment editing), `MizuDateField` displays dates in human-readable formats via `Intl.DateTimeFormat`:
+  - Shorthand `dateStyle` prop: `short`, `medium`, `long`, `full`, and `compact` ("Fri, 17 Jul 2026")
+  - Full `Intl.DateTimeFormatOptions` control via `format` prop
+  - `locale` support (e.g. `de-DE` → "Freitag, 17. Juli 2026")
+  - `range` mode for date range selection with `rangePlaceholder`
+  - `v-model` binds to `CalendarDate` or `DateRange` from `@internationalized/date`
+  - Sizes: `sm`, `md`, `lg` matching the Mizu input scale
+  - Wraps `UPopover` + `UCalendar` internally; compatible with `UFormField`
+- **InputDate — color border ring** — Added `inputDate` compound variants to `mizuTheme` mapping the border ring to the selected color (`ring-primary/25`, `ring-secondary/25`, etc.) so each color variant shows a visually distinct border.
+- **InputDate docs — complete examples** — Added all Nuxt UI InputDate examples: Basic, Range, Disabled, Color, Variant, Size, Icon, Separator Icon, Unavailable dates (weekends), Min/max dates, Date picker (Popover + Calendar), Date range picker, and an interactive Locale switcher (8 locales).
+- **New doc page**: `components/forms/mizu-date-field` with live demo and full API reference.
+
+### Fixed
+
+- **InputDate — `placeholder` type mismatch** — Removed string `placeholder` props from demos and code examples. `UInputDate` expects `DateValue` objects, not strings. Docs API table corrected from `string` to `DateValue`.
+
 ## 0.17.6 (2026-07-16)
 
 ### Changed

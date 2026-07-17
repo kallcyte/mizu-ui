@@ -215,7 +215,7 @@
   /* ── Borders ──────────────────────────────────────────── */
   --ui-border: var(--color-surface-muted);
   --ui-border-muted: var(--color-surface-muted);
-  --ui-border-accented: var(--color-surface-muted);
+  --ui-border-accented: var(--color-foreground-tertiary);
   --ui-border-inverted: var(--color-foreground-primary);
 
   /* ── Foreground / text ────────────────────────────────── */

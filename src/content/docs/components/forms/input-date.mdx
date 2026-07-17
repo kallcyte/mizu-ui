@@ -9,6 +9,8 @@ import InputDateDemo from "../../../../components/docs/InputDateDemo.vue";
 
 A date picker input that opens a calendar for date selection. Mizu uses Nuxt UI's `UInputDate` with consistent form sizing and the Mizu color palette. Values use `@internationalized/date` objects.
 
+> **Date format**: The displayed format is locale-aware via `@internationalized/date`. Without an explicit `locale` prop, it uses the browser's default (typically `en-US` → **MM/DD/YYYY**). Set `locale="en-GB"` for **DD/MM/YYYY**, `locale="ja-JP"` for **YYYY/MM/DD**, etc.
+
 ## Examples
 
 <InputDateDemo client:only="vue" />
@@ -27,7 +29,7 @@ Reference: [Nuxt UI InputDate](https://ui.nuxt.com/docs/components/input-date)
 | `size` | `'xs' \| 'sm' \| 'md' \| 'lg' \| 'xl'` | `'md'` | Input size aligned with other form elements |
 | `color` | `'primary' \| 'secondary' \| 'success' \| 'error' \| 'warning' \| 'info' \| 'neutral'` | `'primary'` | Semantic color for focus ring and selection |
 | `variant` | `'outline' \| 'soft' \| 'subtle' \| 'ghost' \| 'none'` | `'outline'` | Visual style |
-| `placeholder` | `string` | — | Placeholder text |
+| `placeholder` | `DateValue` | — | Placeholder date value (not a text string; use a `CalendarDate` object) |
 | `disabled` | `boolean` | `false` | Disables interaction |
 | `readonly` | `boolean` | `false` | Read-only mode |
 | `required` | `boolean` | `false` | Marks the field as required |
@@ -79,11 +81,89 @@ const range = ref<DateRange>({
 
 <template>
   <!-- Single date -->
-  <UInputDate v-model="single" placeholder="Select a date" />
+  <UInputDate v-model="single" />
 
   <!-- Date range -->
-  <UInputDate v-model="range" range placeholder="Select a date range" />
+  <UInputDate v-model="range" range />
 </template>
+```
+
+
+### Date picker with Popover + Calendar
+
+```vue
+<script setup lang="ts">
+import { CalendarDate } from "@internationalized/date";
+
+const pickerDate = shallowRef(new CalendarDate(2026, 7, 9));
+</script>
+
+<template>
+  <UPopover>
+    <UButton
+      :label="pickerDate?.toString() || 'Pick a date'"
+      variant="outline"
+    />
+    <template #content>
+      <UCalendar v-model="pickerDate" />
+    </template>
+  </UPopover>
+</template>
+```
+
+### Unavailable dates
+
+```vue
+<script setup lang="ts">
+import { CalendarDate, type DateValue } from "@internationalized/date";
+
+const date = shallowRef(new CalendarDate(2026, 7, 9));
+
+function isWeekend(date: DateValue) {
+  return date.dayOfWeek === 6 || date.dayOfWeek === 0;
+}
+</script>
+
+<template>
+  <UInputDate v-model="date" :is-date-unavailable="isWeekend" />
+</template>
+```
+
+### Date range picker
+
+```vue
+<script setup lang="ts">
+import { CalendarDate, type DateValue } from "@internationalized/date";
+
+interface DateRange { start: DateValue; end: DateValue }
+
+const range = shallowRef<DateRange>({
+  start: new CalendarDate(2026, 7, 1),
+  end: new CalendarDate(2026, 7, 15),
+});
+</script>
+
+<template>
+  <UPopover>
+    <UButton :label="`${range.start} — ${range.end}`" variant="outline" />
+    <template #content>
+      <UCalendar v-model="range" range />
+    </template>
+  </UPopover>
+</template>
+```
+
+### Locale (date formatting)
+
+```vue
+<!-- en-US → MM/DD/YYYY (default) -->
+<UInputDate v-model="date" />
+
+<!-- en-GB → DD/MM/YYYY -->
+<UInputDate v-model="date" locale="en-GB" />
+
+<!-- ja-JP → YYYY/MM/DD -->
+<UInputDate v-model="date" locale="ja-JP" />
 ```
 
 ## Anatomy
@@ -114,3 +194,4 @@ An input date consists of:
 6. **Locale** — Set `locale` to format dates in the user's region (e.g. `'en-US'` for MM/DD/YYYY, `'en-GB'` for DD/MM/YYYY).
 7. **Custom time steps** — Use `step` to control time increment behavior. For example, `{ minute: 15 }` restricts minute selection to 0, 15, 30, 45.
 8. **Form integration** — Wrap with `UFormField` for labels, helper text, and error messages. The component integrates with native form validation via the `required` and `name` props.
+9. **Custom date display with `MizuDateField`** — For formatted trigger labels like "Fri, 17 Jul 2026" instead of numeric segments, use the `MizuDateField` component. See [MizuDateField](/docs/components/form/mizu-date-field) for details.

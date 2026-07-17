@@ -29,7 +29,7 @@ export default defineConfig({
   integrations: [
     vue(),
     starlight({
-      title: "Mizu Design System v0.17.5",
+      title: "Mizu Design System v0.18.0",
       components: {
         ThemeSelect: "./src/components/overrides/ThemeSelect.astro",
       },
@@ -106,6 +106,7 @@ export default defineConfig({
                 { label: "InputMenu", slug: "components/forms/input-menu" },
                 { label: "InputTags", slug: "components/forms/input-tags" },
                 { label: "InputDate", slug: "components/forms/input-date" },
+                { label: "MizuDateField", slug: "components/forms/mizu-date-field" },
                 { label: "InputTime", slug: "components/forms/input-time" },
                 { label: "FieldGroup", slug: "components/forms/field-group" },
                 { label: "Listbox", slug: "components/forms/listbox" },

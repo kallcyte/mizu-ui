@@ -1,0 +1,120 @@
+---
+title: MizuDateField
+description: A custom date input with formatted display labels.
+---
+
+import MizuDateFieldDemo from "../../../../components/docs/MizuDateFieldDemo.vue";
+
+<span style="display:inline-flex;margin-bottom:16px;padding:1px 8px;border-radius:9999px;font-size:11px;font-weight:500;background:#FFFBEB;color:#D97706;">New</span>
+
+A custom date input that combines a formatted trigger with a [`UPopover`](/docs/components/overlay/popover) + [`UCalendar`](/docs/components/element/calendar) popup. Unlike [`UInputDate`](/docs/components/forms/input-date), which renders numeric segments (month/day/year), `MizuDateField` shows a text label in any format you choose.
+
+The selected value is still a [`CalendarDate`](https://react-spectrum.adobe.com/internationalized/date/CalendarDate.html) from `@internationalized/date`, so it works seamlessly with [`UCalendar`](/docs/components/element/calendar) and [`UInputDate`](/docs/components/forms/input-date).
+
+## Examples
+
+<MizuDateFieldDemo client:only="vue" />
+
+### Basic
+
+```vue
+<script setup lang="ts">
+import { CalendarDate } from "@internationalized/date";
+import { shallowRef } from "vue";
+
+const date = shallowRef(new CalendarDate(2026, 7, 17));
+</script>
+
+<template>
+  <MizuDateField v-model="date" date-style="compact" />
+</template>
+```
+
+### Date style presets
+
+```vue
+<!-- short:   17/07/2026 -->
+<MizuDateField v-model="date" date-style="short" />
+
+<!-- medium:  17 Jul 2026 -->
+<MizuDateField v-model="date" date-style="medium" />
+
+<!-- long:    17 July 2026 -->
+<MizuDateField v-model="date" date-style="long" />
+
+<!-- full:    Friday, 17 July 2026 -->
+<MizuDateField v-model="date" date-style="full" />
+
+<!-- compact: Fri, 17 Jul 2026 -->
+<MizuDateField v-model="date" date-style="compact" />
+```
+
+### Range
+
+```vue
+<script setup lang="ts">
+import { CalendarDate } from "@internationalized/date";
+import { shallowRef } from "vue";
+import type { DateRange } from "@mizu/vue";
+
+const range = shallowRef<DateRange>({
+  start: new CalendarDate(2026, 7, 10),
+  end: new CalendarDate(2026, 7, 24),
+});
+</script>
+
+<template>
+  <MizuDateField v-model="range" range date-style="compact" />
+</template>
+```
+
+### Custom format
+
+Use the `format` prop for full control over `Intl.DateTimeFormatOptions`:
+
+```vue
+<MizuDateField
+  v-model="date"
+  :format="{ weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' }"
+/>
+```
+
+### Locale
+
+```vue
+<MizuDateField v-model="date" date-style="full" locale="de-DE" />
+<!-- Freitag, 17. Juli 2026 -->
+```
+
+## API
+
+### Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `modelValue` | `CalendarDate` | — | v-model binding |
+| `dateStyle` | `'short' \| 'medium' \| 'long' \| 'full' \| 'compact'` | `'medium'` | Format preset for the trigger label |
+| `format` | `Intl.DateTimeFormatOptions` | — | Full custom format (overrides `dateStyle`) |
+| `locale` | `string` | browser default | Locale for formatting (e.g. `'en-GB'`, `'de-DE'`) |
+| `placeholder` | `string` | `'Pick a date'` | Placeholder text when no date is selected |
+| `range` | `boolean` | `false` | Enable date range selection. `modelValue` becomes `{ start, end }` |
+| `rangePlaceholder` | `string` | `'Pick a date range'` | Placeholder when range mode and no dates selected |
+| `disabled` | `boolean` | `false` | Disable interaction |
+| `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | Size variant |
+
+### Date style comparison (en-GB)
+
+| Style | Output |
+|-------|--------|
+| `"short"` | 17/07/2026 |
+| `"medium"` | 17 Jul 2026 |
+| `"long"` | 17 July 2026 |
+| `"full"` | Friday, 17 July 2026 |
+| `"compact"` | Fri, 17 Jul 2026 |
+
+## Implementation Notes
+
+1. **Form value** — `modelValue` is a `CalendarDate` object (same as `UInputDate` / `UCalendar`). Compatible with `UFormField` for labels, helper text, and error messages.
+2. **Popup** — Uses `UPopover` internally with a `UCalendar` for date selection. Click outside or select a date to close.
+3. **Size** — The trigger button matches the Mizu input size scale (`sm=28px`, `md=36px`, `lg=40px`) and reuses Nuxt UI's border ring (`ring-accented`) and hover/focus states.
+4. **Integration** — Since the value type is `CalendarDate`, you can share the same ref between `MizuDateField`, `UInputDate`, and `UCalendar` interchangeably.

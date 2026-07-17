@@ -220,4 +220,21 @@ export const mizuTheme = {
       trigger: "w-full",
     },
   },
+
+  // --- InputDate ---
+  // The default Nuxt UI outline variant uses a neutral `ring-accented` border
+  // regardless of the color prop. These compound variants map the border ring
+  // to the selected color so each color is visually distinct.
+  inputDate: {
+    compoundVariants: [
+      { color: "primary", variant: ["outline", "subtle"], class: "ring-primary/25" },
+      { color: "secondary", variant: ["outline", "subtle"], class: "ring-secondary/25" },
+      { color: "success", variant: ["outline", "subtle"], class: "ring-success/25" },
+      { color: "info", variant: ["outline", "subtle"], class: "ring-info/25" },
+      { color: "warning", variant: ["outline", "subtle"], class: "ring-warning/25" },
+      { color: "error", variant: ["outline", "subtle"], class: "ring-error/25" },
+      { color: "neutral", variant: ["outline", "subtle"], class: "ring-inverted/25" },
+    ],
+  },
+
 };
