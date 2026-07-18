@@ -89,6 +89,37 @@ export const mizuTheme = {
     },
   },
 
+  // --- Input ---
+  // Mizu spec: sm=28px, md=36px, lg=40px (matches Button scale)
+  // See: .agents/plans/phase-10-mizu-theme-layer.md
+  input: {
+    variants: {
+      size: {
+        sm: {
+          base: "px-2 py-1.5 text-sm/4 gap-1 rounded",
+          leading: "ps-2",
+          trailing: "pe-2",
+          leadingIcon: "size-2.5",
+          trailingIcon: "size-2.5",
+        },
+        md: {
+          base: "px-2.5 py-2 text-base/5 gap-1.5 rounded-md",
+          leading: "ps-2.5",
+          trailing: "pe-2.5",
+          leadingIcon: "size-4",
+          trailingIcon: "size-4",
+        },
+        lg: {
+          base: "px-2.5 py-2.5 text-base/5 gap-2 rounded-md",
+          leading: "ps-2.5",
+          trailing: "pe-2.5",
+          leadingIcon: "size-5",
+          trailingIcon: "size-5",
+        },
+      },
+    },
+  },
+
   // --- FormField --- helper/error text at text-xs with Mizu tokens
   formField: {
     slots: {

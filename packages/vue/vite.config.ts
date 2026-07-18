@@ -42,6 +42,18 @@ export default defineConfig({
           return "[name].[ext]";
         },
       },
+      onwarn(warning, warn) {
+        // Vue compiler may emit an unused `resolveComponent` import when
+        // components are auto-imported via unplugin-vue-components. The call
+        // is tree-shaken, producing a harmless Rollup warning.
+        if (
+          warning.code === "UNUSED_EXTERNAL_IMPORT" &&
+          warning.message?.includes("resolveComponent")
+        ) {
+          return;
+        }
+        warn(warning);
+      },
     },
   },
 });

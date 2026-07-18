@@ -75,19 +75,35 @@ function toggle() {
 }
 
 async function copyCode() {
-  try {
-    await navigator.clipboard.writeText(props.code.trim());
-    copied.value = true;
-    setTimeout(() => {
-      copied.value = false;
-    }, 2000);
-  } catch {
-    const textarea = document.createElement("textarea");
-    textarea.value = props.code.trim();
-    document.body.appendChild(textarea);
-    textarea.select();
-    document.execCommand("copy");
-    document.body.removeChild(textarea);
+  const text = props.code.trim();
+  let success = false;
+
+  if (navigator.clipboard && window.isSecureContext) {
+    try {
+      await navigator.clipboard.writeText(text);
+      success = true;
+    } catch {
+      success = false;
+    }
+  }
+
+  if (!success) {
+    try {
+      const textarea = document.createElement("textarea");
+      textarea.value = text;
+      textarea.style.position = "fixed";
+      textarea.style.opacity = "0";
+      document.body.appendChild(textarea);
+      textarea.focus();
+      textarea.select();
+      success = document.execCommand("copy");
+      document.body.removeChild(textarea);
+    } catch {
+      success = false;
+    }
+  }
+
+  if (success) {
     copied.value = true;
     setTimeout(() => {
       copied.value = false;

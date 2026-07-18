@@ -16,6 +16,35 @@ This project follows **semantic versioning** (SemVer) during pre-1.0 development
 Changes that require a minor bump: adding a new component, renaming tokens, changing component APIs, adding new packages (e.g. React).
 Changes that keep the patch version: renames, copy edits, styling tweaks, build config changes, favicon updates.
 
+## 0.18.2 (2026-07-18)
+
+### Changed
+
+- **Input sizing aligned with Button** — Added `input` variant sizes to `mizuTheme` (`sm`: 28px, `md`: 36px, `lg`: 40px) matching the existing Button scale so FieldGroup children render at the same height.
+- **FieldGroup docs — Ready** — Marked the FieldGroup documentation page as Ready (green badge). Added interactive copy-to-clipboard demo showing a working input + clipboard button example.
+
+### Fixed
+
+- **FieldGroup demo — equal child heights** — Fixed a 4px height mismatch where `UInput` and `UButton` at the same `md` size rendered at different heights (32px vs 36px). The root cause was missing input sizing overrides in the theme.
+- **CodeCollapsible — copy to clipboard robustness** — Rewrote the copy function to gate `navigator.clipboard` behind `isSecureContext`, properly check `execCommand` return value, and only set the "copied" state on actual success.
+
+## 0.18.1 (2026-07-18)
+
+### Added
+
+- **`MizuDateField` unit tests** — Added 16 tests covering formatted display, `dateStyle` presets, custom `Intl.DateTimeFormat`, locale output, date ranges, placeholder text, disabled state, and size classes.
+
+### Changed
+
+- **InputDate docs — Ready** — Marked the InputDate documentation page as Ready (green badge) now that examples and API reference are complete.
+- **MizuDateField docs — API accuracy** — Updated the `modelValue` prop type from `CalendarDate` to `CalendarDate | DateRange` to reflect range mode support.
+- **Docs site — theme switcher re-enabled, defaults to light** — Removed the empty `ThemeSelect` override so Starlight's built-in theme switcher is visible again, added a default-to-light script, and fixed invisible text/ornaments by loading `@mizu/tokens/starlight.css` and `@mizu/tokens/dark.css` in the `starlight` cascade layer plus high-specificity light/dark color overrides.
+
+### Fixed
+
+- **Demo whitespace cleanup** — Removed stray blank lines in `FieldGroupDemo.vue` and `InputDateDemo.vue`.
+- **Build warning** — Suppressed the harmless `resolveComponent` unused-import Rollup warning emitted when Vue auto-imports are tree-shaken during the library build.
+
 ## 0.18.0 (2026-07-17)
 
 ### Added

@@ -5,7 +5,7 @@ description: Group multiple form elements with shared sizing and connected borde
 
 import FieldGroupDemo from "../../../../components/docs/FieldGroupDemo.vue";
 
-<span style="display:inline-flex;margin-bottom:16px;padding:1px 8px;border-radius:9999px;font-size:11px;font-weight:500;background:#FFFBEB;color:#D97706;">Pending</span>
+<span style="display:inline-flex;margin-bottom:16px;padding:1px 8px;border-radius:9999px;font-size:11px;font-weight:500;background:#F0FDF4;color:#16A34A;">Ready</span>
 A field group connects multiple form elements — inputs, buttons, selects, badges — into a single visual unit with shared sizing and merged borders. Use it for input groups, segmented controls, phone number inputs, and button groups.
 
 ## Examples
@@ -47,7 +47,7 @@ Use `UFormField` to wrap a `UFieldGroup` with label and helper text:
 
 ## Theme
 
-Mizu does not override Nuxt UI's FieldGroup theme. The component uses Nuxt UI's default styling, which handles the negative space between elements via `-space-x-px` (horizontal) or `-space-y-px` (vertical) to create connected borders.
+FieldGroup itself has no Mizu-specific overrides — it uses Nuxt UI's default styling with `-space-x-px` (horizontal) or `-space-y-px` (vertical) to create connected borders. Child components (`UInput`, `UButton`) share aligned sizing via Mizu's theme preset (28px / 36px / 40px).
 
 ```ts
 // app.config.ts

@@ -108,7 +108,6 @@ const dateRangePickerCode = `<UPopover>
     <UCalendar v-model="range" range />
   </template>
 </UPopover>`;
-
 </script>
 
 <template>
@@ -272,7 +271,6 @@ const dateRangePickerCode = `<UPopover>
         </div>
       </CodeCollapsible>
     </section>
-
   </div>
 </template>
 
@@ -322,7 +320,7 @@ const dateRangePickerCode = `<UPopover>
 .locale-hint {
   all: revert;
   font-size: 12px;
-  color: var(--color-foreground-secondary, #6B7280);
+  color: var(--color-foreground-secondary, #6b7280);
   margin: 0;
   line-height: 1.4;
 }

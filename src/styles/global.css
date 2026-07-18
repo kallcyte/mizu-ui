@@ -1,8 +1,8 @@
 @layer base, starlight, theme, components, utilities;
 
-@import '@astrojs/starlight-tailwind';
-@import 'tailwindcss/theme.css' layer(theme);
-@import 'tailwindcss/utilities.css' layer(utilities);
+@import "@astrojs/starlight-tailwind";
+@import "tailwindcss/theme.css" layer(theme);
+@import "tailwindcss/utilities.css" layer(utilities);
 
 /* Explicit scan paths (Vue files in Astro dev mode need @source) */
 @source "../components/docs/";
@@ -10,12 +10,53 @@
 @import "./tokens.css";
 @import "./scrollbar.css";
 
+/* Mizu Starlight theme variables (light + dark) — loaded in the starlight layer so they override Starlight defaults */
+@import "@mizu/tokens/starlight.css" layer(starlight);
+@import "@mizu/tokens/dark.css" layer(starlight);
+
+/* Critical light-mode overrides — guarantee readable text on light backgrounds */
+:root[data-theme="light"],
+.sl-theme-light {
+  --sl-color-text: var(--color-foreground-primary) !important;
+  --sl-color-text-light: var(--color-foreground-secondary) !important;
+  --sl-color-text-lighter: var(--color-foreground-tertiary) !important;
+  --sl-color-bg: var(--color-surface-base) !important;
+  --sl-color-bg-nav: var(--color-surface-subtle) !important;
+  --sl-color-bg-sidebar: var(--color-surface-subtle) !important;
+  --sl-color-bg-inline-code: var(--color-surface-muted) !important;
+  --sl-color-hairline: var(--color-surface-muted) !important;
+  --sl-color-hairline-shade: var(--color-surface-muted) !important;
+  --sl-color-accent: var(--color-brand-ycp) !important;
+  --sl-color-accent-high: var(--color-brand-primary) !important;
+  --sl-color-accent-low: var(--color-brand-primary-subtle) !important;
+  --sl-color-accent-subtle: var(--color-brand-ycp-subtle) !important;
+}
+
+/* Critical dark-mode overrides — guarantee readable text on dark backgrounds */
+:root[data-theme="dark"],
+.sl-theme-dark {
+  --sl-color-text: var(--color-foreground-primary) !important;
+  --sl-color-text-light: var(--color-foreground-secondary) !important;
+  --sl-color-text-lighter: var(--color-foreground-tertiary) !important;
+  --sl-color-bg: var(--color-surface-base) !important;
+  --sl-color-bg-nav: var(--color-surface-subtle) !important;
+  --sl-color-bg-sidebar: var(--color-surface-subtle) !important;
+  --sl-color-bg-inline-code: var(--color-surface-muted) !important;
+  --sl-color-hairline: var(--color-surface-muted) !important;
+  --sl-color-hairline-shade: var(--color-surface-muted) !important;
+  --sl-color-accent: var(--color-brand-primary) !important;
+  --sl-color-accent-high: var(--color-brand-primary) !important;
+  --sl-color-accent-low: var(--color-surface-subtle) !important;
+  --sl-color-accent-subtle: var(--color-surface-subtle) !important;
+}
 
 /* Mizu typography overrides for Starlight */
 @layer starlight {
   :root {
-    --sl-font: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-    --sl-font-mono: 'JetBrains Mono', 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
+    --sl-font:
+      "DM Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial,
+      sans-serif;
+    --sl-font-mono: "JetBrains Mono", "SF Mono", "Fira Code", "Cascadia Code", monospace;
     --sl-text-h1: 24px;
     --sl-text-h2: 18px;
     --sl-text-h3: 15px;
@@ -28,7 +69,18 @@
   }
 }
 /* Force Mizu body text size */
-body { font-size: 15px; line-height: 1.6; }
-.sl-markdown-content { font-size: 15px; line-height: 1.6; }
-.sl-markdown-content p { font-size: 15px; line-height: 1.6; }
-.sl-container main { font-size: 15px; }
+body {
+  font-size: 15px;
+  line-height: 1.6;
+}
+.sl-markdown-content {
+  font-size: 15px;
+  line-height: 1.6;
+}
+.sl-markdown-content p {
+  font-size: 15px;
+  line-height: 1.6;
+}
+.sl-container main {
+  font-size: 15px;
+}

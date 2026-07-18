@@ -5,7 +5,9 @@ description: A custom date input with formatted display labels.
 
 import MizuDateFieldDemo from "../../../../components/docs/MizuDateFieldDemo.vue";
 
-<span style="display:inline-flex;margin-bottom:16px;padding:1px 8px;border-radius:9999px;font-size:11px;font-weight:500;background:#FFFBEB;color:#D97706;">New</span>
+<span style="display:inline-flex;margin-bottom:16px;padding:1px 8px;border-radius:9999px;font-size:11px;font-weight:500;background:#FFFBEB;color:#D97706;">
+  New
+</span>
 
 A custom date input that combines a formatted trigger with a [`UPopover`](/docs/components/overlay/popover) + [`UCalendar`](/docs/components/element/calendar) popup. Unlike [`UInputDate`](/docs/components/forms/input-date), which renders numeric segments (month/day/year), `MizuDateField` shows a text label in any format you choose.
 
@@ -90,27 +92,27 @@ Use the `format` prop for full control over `Intl.DateTimeFormatOptions`:
 
 ### Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `modelValue` | `CalendarDate` | — | v-model binding |
-| `dateStyle` | `'short' \| 'medium' \| 'long' \| 'full' \| 'compact'` | `'medium'` | Format preset for the trigger label |
-| `format` | `Intl.DateTimeFormatOptions` | — | Full custom format (overrides `dateStyle`) |
-| `locale` | `string` | browser default | Locale for formatting (e.g. `'en-GB'`, `'de-DE'`) |
-| `placeholder` | `string` | `'Pick a date'` | Placeholder text when no date is selected |
-| `range` | `boolean` | `false` | Enable date range selection. `modelValue` becomes `{ start, end }` |
-| `rangePlaceholder` | `string` | `'Pick a date range'` | Placeholder when range mode and no dates selected |
-| `disabled` | `boolean` | `false` | Disable interaction |
-| `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | Size variant |
+| Prop               | Type                                                   | Default               | Description                                                        |
+| ------------------ | ------------------------------------------------------ | --------------------- | ------------------------------------------------------------------ |
+| `modelValue`       | `CalendarDate \| DateRange`                            | —                     | v-model binding                                                    |
+| `dateStyle`        | `'short' \| 'medium' \| 'long' \| 'full' \| 'compact'` | `'medium'`            | Format preset for the trigger label                                |
+| `format`           | `Intl.DateTimeFormatOptions`                           | —                     | Full custom format (overrides `dateStyle`)                         |
+| `locale`           | `string`                                               | browser default       | Locale for formatting (e.g. `'en-GB'`, `'de-DE'`)                  |
+| `placeholder`      | `string`                                               | `'Pick a date'`       | Placeholder text when no date is selected                          |
+| `range`            | `boolean`                                              | `false`               | Enable date range selection. `modelValue` becomes `{ start, end }` |
+| `rangePlaceholder` | `string`                                               | `'Pick a date range'` | Placeholder when range mode and no dates selected                  |
+| `disabled`         | `boolean`                                              | `false`               | Disable interaction                                                |
+| `size`             | `'sm' \| 'md' \| 'lg'`                                 | `'md'`                | Size variant                                                       |
 
 ### Date style comparison (en-GB)
 
-| Style | Output |
-|-------|--------|
-| `"short"` | 17/07/2026 |
-| `"medium"` | 17 Jul 2026 |
-| `"long"` | 17 July 2026 |
-| `"full"` | Friday, 17 July 2026 |
-| `"compact"` | Fri, 17 Jul 2026 |
+| Style       | Output               |
+| ----------- | -------------------- |
+| `"short"`   | 17/07/2026           |
+| `"medium"`  | 17 Jul 2026          |
+| `"long"`    | 17 July 2026         |
+| `"full"`    | Friday, 17 July 2026 |
+| `"compact"` | Fri, 17 Jul 2026     |
 
 ## Implementation Notes
 

@@ -5,7 +5,9 @@ description: An input component for date selection.
 
 import InputDateDemo from "../../../../components/docs/InputDateDemo.vue";
 
-<span style="display:inline-flex;margin-bottom:16px;padding:1px 8px;border-radius:9999px;font-size:11px;font-weight:500;background:#FFFBEB;color:#D97706;">Pending</span>
+<span style="display:inline-flex;margin-bottom:16px;padding:1px 8px;border-radius:9999px;font-size:11px;font-weight:500;background:#DCFCE7;color:#15803D;">
+  Ready
+</span>
 
 A date picker input that opens a calendar for date selection. Mizu uses Nuxt UI's `UInputDate` with consistent form sizing and the Mizu color palette. Values use `@internationalized/date` objects.
 
@@ -21,44 +23,44 @@ Reference: [Nuxt UI InputDate](https://ui.nuxt.com/docs/components/input-date)
 
 ### Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `modelValue` | `CalendarDate \| CalendarDateTime \| ZonedDateTime \| DateRange` | — | v-model binding for the selected date(s) |
-| `defaultValue` | `CalendarDate \| CalendarDateTime \| ZonedDateTime \| DateRange` | — | Initial value (uncontrolled) |
-| `range` | `boolean` | `false` | Enable date range selection (modelValue becomes `DateRange`) |
-| `size` | `'xs' \| 'sm' \| 'md' \| 'lg' \| 'xl'` | `'md'` | Input size aligned with other form elements |
-| `color` | `'primary' \| 'secondary' \| 'success' \| 'error' \| 'warning' \| 'info' \| 'neutral'` | `'primary'` | Semantic color for focus ring and selection |
-| `variant` | `'outline' \| 'soft' \| 'subtle' \| 'ghost' \| 'none'` | `'outline'` | Visual style |
-| `placeholder` | `DateValue` | — | Placeholder date value (not a text string; use a `CalendarDate` object) |
-| `disabled` | `boolean` | `false` | Disables interaction |
-| `readonly` | `boolean` | `false` | Read-only mode |
-| `required` | `boolean` | `false` | Marks the field as required |
-| `minValue` | `DateValue` | — | Earliest selectable date |
-| `maxValue` | `DateValue` | — | Latest selectable date |
-| `locale` | `string` | — | Locale for date formatting (e.g. `'en-US'`, `'ja-JP'`) |
-| `granularity` | `'day' \| 'hour' \| 'minute' \| 'second'` | `'day'` | Smallest unit of time to display and select |
-| `hourCycle` | `12 \| 24` | — | 12-hour or 24-hour clock for time display |
-| `hideTimeZone` | `boolean` | `false` | Hide the timezone display |
-| `isDateUnavailable` | `(date: DateValue) => boolean` | — | Function to mark specific dates as unavailable |
-| `separatorIcon` | `string` (Iconify) | — | Custom icon between start and end dates (range mode) |
-| `icon` | `string` (Iconify) | — | Icon displayed on the leading side |
-| `leadingIcon` | `string` (Iconify) | — | Explicit leading icon |
-| `trailingIcon` | `string` (Iconify) | — | Explicit trailing icon (overrides calendar icon) |
-| `step` | `number \| { hour, minute, second }` | — | Time step for granularity below `'day'` |
-| `stepSnapping` | `boolean` | `true` | Snap input to the nearest step value |
-| `name` | `string` | — | Native `name` attribute for form submissions |
-| `id` | `string` | — | HTML `id` attribute |
-| `highlight` | `boolean` | `false` | Force the focus ring to be visible |
-| `fixed` | `boolean` | `false` | Use `position: fixed` instead of `position: absolute` |
+| Prop                | Type                                                                                   | Default     | Description                                                             |
+| ------------------- | -------------------------------------------------------------------------------------- | ----------- | ----------------------------------------------------------------------- |
+| `modelValue`        | `CalendarDate \| CalendarDateTime \| ZonedDateTime \| DateRange`                       | —           | v-model binding for the selected date(s)                                |
+| `defaultValue`      | `CalendarDate \| CalendarDateTime \| ZonedDateTime \| DateRange`                       | —           | Initial value (uncontrolled)                                            |
+| `range`             | `boolean`                                                                              | `false`     | Enable date range selection (modelValue becomes `DateRange`)            |
+| `size`              | `'xs' \| 'sm' \| 'md' \| 'lg' \| 'xl'`                                                 | `'md'`      | Input size aligned with other form elements                             |
+| `color`             | `'primary' \| 'secondary' \| 'success' \| 'error' \| 'warning' \| 'info' \| 'neutral'` | `'primary'` | Semantic color for focus ring and selection                             |
+| `variant`           | `'outline' \| 'soft' \| 'subtle' \| 'ghost' \| 'none'`                                 | `'outline'` | Visual style                                                            |
+| `placeholder`       | `DateValue`                                                                            | —           | Placeholder date value (not a text string; use a `CalendarDate` object) |
+| `disabled`          | `boolean`                                                                              | `false`     | Disables interaction                                                    |
+| `readonly`          | `boolean`                                                                              | `false`     | Read-only mode                                                          |
+| `required`          | `boolean`                                                                              | `false`     | Marks the field as required                                             |
+| `minValue`          | `DateValue`                                                                            | —           | Earliest selectable date                                                |
+| `maxValue`          | `DateValue`                                                                            | —           | Latest selectable date                                                  |
+| `locale`            | `string`                                                                               | —           | Locale for date formatting (e.g. `'en-US'`, `'ja-JP'`)                  |
+| `granularity`       | `'day' \| 'hour' \| 'minute' \| 'second'`                                              | `'day'`     | Smallest unit of time to display and select                             |
+| `hourCycle`         | `12 \| 24`                                                                             | —           | 12-hour or 24-hour clock for time display                               |
+| `hideTimeZone`      | `boolean`                                                                              | `false`     | Hide the timezone display                                               |
+| `isDateUnavailable` | `(date: DateValue) => boolean`                                                         | —           | Function to mark specific dates as unavailable                          |
+| `separatorIcon`     | `string` (Iconify)                                                                     | —           | Custom icon between start and end dates (range mode)                    |
+| `icon`              | `string` (Iconify)                                                                     | —           | Icon displayed on the leading side                                      |
+| `leadingIcon`       | `string` (Iconify)                                                                     | —           | Explicit leading icon                                                   |
+| `trailingIcon`      | `string` (Iconify)                                                                     | —           | Explicit trailing icon (overrides calendar icon)                        |
+| `step`              | `number \| { hour, minute, second }`                                                   | —           | Time step for granularity below `'day'`                                 |
+| `stepSnapping`      | `boolean`                                                                              | `true`      | Snap input to the nearest step value                                    |
+| `name`              | `string`                                                                               | —           | Native `name` attribute for form submissions                            |
+| `id`                | `string`                                                                               | —           | HTML `id` attribute                                                     |
+| `highlight`         | `boolean`                                                                              | `false`     | Force the focus ring to be visible                                      |
+| `fixed`             | `boolean`                                                                              | `false`     | Use `position: fixed` instead of `position: absolute`                   |
 
 ### Slots
 
-| Slot | Props | Description |
-|------|-------|-------------|
-| `leading` | — | Content before the date input |
-| `default` | — | Default slot (not typically used) |
-| `trailing` | — | Content after the date input (before the calendar icon) |
-| `separator` | — | Custom separator element between start and end dates (range mode) |
+| Slot        | Props | Description                                                       |
+| ----------- | ----- | ----------------------------------------------------------------- |
+| `leading`   | —     | Content before the date input                                     |
+| `default`   | —     | Default slot (not typically used)                                 |
+| `trailing`  | —     | Content after the date input (before the calendar icon)           |
+| `separator` | —     | Custom separator element between start and end dates (range mode) |
 
 ### Example Usage
 
@@ -88,7 +90,6 @@ const range = ref<DateRange>({
 </template>
 ```
 
-
 ### Date picker with Popover + Calendar
 
 ```vue
@@ -100,10 +101,7 @@ const pickerDate = shallowRef(new CalendarDate(2026, 7, 9));
 
 <template>
   <UPopover>
-    <UButton
-      :label="pickerDate?.toString() || 'Pick a date'"
-      variant="outline"
-    />
+    <UButton :label="pickerDate?.toString() || 'Pick a date'" variant="outline" />
     <template #content>
       <UCalendar v-model="pickerDate" />
     </template>
@@ -135,7 +133,10 @@ function isWeekend(date: DateValue) {
 <script setup lang="ts">
 import { CalendarDate, type DateValue } from "@internationalized/date";
 
-interface DateRange { start: DateValue; end: DateValue }
+interface DateRange {
+  start: DateValue;
+  end: DateValue;
+}
 
 const range = shallowRef<DateRange>({
   start: new CalendarDate(2026, 7, 1),
@@ -170,19 +171,19 @@ const range = shallowRef<DateRange>({
 
 An input date consists of:
 
-| Part | Required | Description |
-|------|----------|-------------|
-| Root | Yes | Wrapper element |
-| Input | Yes | Clickable text input that displays the selected date |
-| Trigger Icon | Yes | Calendar icon (trailing) that opens the popover |
-| Popover | Yes | Floating calendar panel |
-| Calendar | Yes | Month grid with day cells |
-| Prev/Next Buttons | Yes | Navigate between months |
-| Day Cell | Yes | Individual date button, with states for selected, range, today, unavailable |
-| Time Inputs | No | Hour/minute/second fields (when granularity below `'day'`) |
-| Separator | No | Dash between start and end inputs (range mode) |
-| Leading | No | Content before the date input |
-| Trailing | No | Content after the date input |
+| Part              | Required | Description                                                                 |
+| ----------------- | -------- | --------------------------------------------------------------------------- |
+| Root              | Yes      | Wrapper element                                                             |
+| Input             | Yes      | Clickable text input that displays the selected date                        |
+| Trigger Icon      | Yes      | Calendar icon (trailing) that opens the popover                             |
+| Popover           | Yes      | Floating calendar panel                                                     |
+| Calendar          | Yes      | Month grid with day cells                                                   |
+| Prev/Next Buttons | Yes      | Navigate between months                                                     |
+| Day Cell          | Yes      | Individual date button, with states for selected, range, today, unavailable |
+| Time Inputs       | No       | Hour/minute/second fields (when granularity below `'day'`)                  |
+| Separator         | No       | Dash between start and end inputs (range mode)                              |
+| Leading           | No       | Content before the date input                                               |
+| Trailing          | No       | Content after the date input                                                |
 
 ## Implementation Notes
 
