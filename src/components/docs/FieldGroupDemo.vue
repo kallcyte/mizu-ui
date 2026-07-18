@@ -16,6 +16,7 @@ const dropdownItems = [
   [{ label: "Duplicate", icon: "i-ph-copy" }],
   [{ label: "Delete", icon: "i-ph-trash", color: "error" as const }],
 ];
+
 </script>
 
 <template>
@@ -144,10 +145,9 @@ const dropdownItems = [
       <CodeCollapsible :code="`<UFieldGroup>
   <UButton color=&quot;neutral&quot; variant=&quot;subtle&quot; label=&quot;Actions&quot; />
   <UDropdownMenu :items=&quot;[
-    { label: 'Edit', icon: 'i-ph-pencil' },
-    { label: 'Duplicate', icon: 'i-ph-copy' },
-    { type: 'separator' },
-    { label: 'Delete', icon: 'i-ph-trash', color: 'error' }
+    [{ label: 'Edit', icon: 'i-ph-pencil' }],
+    [{ label: 'Duplicate', icon: 'i-ph-copy' }],
+    [{ label: 'Delete', icon: 'i-ph-trash', color: 'error' }]
   ]&quot;>
     <UButton color=&quot;neutral&quot; variant=&quot;outline&quot; icon=&quot;i-ph-caret-down&quot; />
   </UDropdownMenu>
@@ -158,6 +158,21 @@ const dropdownItems = [
             <UDropdownMenu :items="dropdownItems">
               <UButton color="neutral" variant="outline" icon="i-ph-caret-down" />
             </UDropdownMenu>
+          </UFieldGroup>
+        </div>
+      </CodeCollapsible>
+    </section>
+
+    <section class="example-section">
+      <h3>With badge</h3>
+      <CodeCollapsible :code="`<UFieldGroup>
+  <UButton color=&quot;neutral&quot; variant=&quot;subtle&quot; label=&quot;Notifications&quot; />
+  <UBadge color=&quot;error&quot; size=&quot;md&quot;>3</UBadge>
+</UFieldGroup>`">
+        <div class="demo-col">
+          <UFieldGroup>
+            <UButton color="neutral" variant="subtle" label="Notifications" />
+            <UBadge color="error" size="md">3</UBadge>
           </UFieldGroup>
         </div>
       </CodeCollapsible>

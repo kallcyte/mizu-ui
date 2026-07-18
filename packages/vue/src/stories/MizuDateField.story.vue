@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import { shallowRef } from "vue";
 import { CalendarDate } from "@internationalized/date";
-import { MizuDateField, type DateRange } from "../components/MizuDateField.vue";
+import MizuDateField from "../components/MizuDateField.vue";
+import type { DateRange } from "../components/MizuDateField.vue";
 
 const single = shallowRef(new CalendarDate(2026, 7, 17));
 const range = shallowRef<DateRange>({

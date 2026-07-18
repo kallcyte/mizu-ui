@@ -107,6 +107,8 @@ const dateRangePickerCode = `<UPopover>
   <template #content>
     <UCalendar v-model="range" range />
   </template>
+</UPopover>`;
+
 </script>
 
 <template>
@@ -269,8 +271,6 @@ const dateRangePickerCode = `<UPopover>
           </UPopover>
         </div>
       </CodeCollapsible>
-    </section>
-
     </section>
 
   </div>

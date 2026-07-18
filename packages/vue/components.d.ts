@@ -12,8 +12,11 @@ export {}
 declare module 'vue' {
   export interface GlobalComponents {
     MizuDashList: typeof import('./src/components/MizuDashList.vue')['default']
+    MizuDateField: typeof import('./src/components/MizuDateField.vue')['default']
     MizuMetric: typeof import('./src/components/MizuMetric.vue')['default']
     MizuQuote: typeof import('./src/components/MizuQuote.vue')['default']
     MizuSkeleton: typeof import('./src/components/MizuSkeleton.vue')['default']
+    UCalendar: typeof import('./../../node_modules/.pnpm/@nuxt+ui@4.9.0_patch_hash=9_6ac119eb10beeaadbb753edcf5861f7c/node_modules/@nuxt/ui/dist/runtime/components/Calendar.vue')['default']
+    UPopover: typeof import('./../../node_modules/.pnpm/@nuxt+ui@4.9.0_patch_hash=9_6ac119eb10beeaadbb753edcf5861f7c/node_modules/@nuxt/ui/dist/runtime/components/Popover.vue')['default']
   }
 }

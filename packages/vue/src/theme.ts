@@ -23,7 +23,7 @@ export const mizuTheme = {
   // See: old MizuButton docs (git history)
   button: {
     slots: {
-      base: "cursor-pointer enabled:active:scale-95 transition-all duration-300 ease-emphasized",
+      base: "cursor-pointer enabled:active:scale-99 transition-all duration-300 ease-emphasized",
     },
     variants: {
       size: {
