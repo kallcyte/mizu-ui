@@ -12,7 +12,18 @@ const sizeMd = ref("");
 const sizeLg = ref("");
 const sizeXl = ref("");
 
-const fruits = ["Apple", "Banana", "Blueberry", "Cherry", "Grapes", "Mango", "Orange", "Peach", "Pineapple", "Strawberry"];
+const fruits = [
+  { label: "Apple", value: "apple" },
+  { label: "Banana", value: "banana" },
+  { label: "Blueberry", value: "blueberry" },
+  { label: "Cherry", value: "cherry" },
+  { label: "Grapes", value: "grapes" },
+  { label: "Mango", value: "mango" },
+  { label: "Orange", value: "orange" },
+  { label: "Peach", value: "peach" },
+  { label: "Pineapple", value: "pineapple" },
+  { label: "Strawberry", value: "strawberry" },
+];
 
 const countries = [
   { name: "United States", code: "US" },
@@ -29,15 +40,27 @@ const countries = [
     <section class="example-section">
       <h3>Basic listbox</h3>
       <CodeCollapsible
-        :code="`const fruits = ['Apple', 'Banana', 'Blueberry', 'Cherry', 'Grapes', 'Mango', 'Orange', 'Peach', 'Pineapple', 'Strawberry']
+        :code="`const fruits = [
+  { label: 'Apple', value: 'apple' },
+  { label: 'Banana', value: 'banana' },
+  { label: 'Blueberry', value: 'blueberry' },
+  { label: 'Cherry', value: 'cherry' },
+  { label: 'Grapes', value: 'grapes' },
+  { label: 'Mango', value: 'mango' },
+  { label: 'Orange', value: 'orange' },
+  { label: 'Peach', value: 'peach' },
+  { label: 'Pineapple', value: 'pineapple' },
+  { label: 'Strawberry', value: 'strawberry' },
+]
 const fruit = ref('')
 
-<UListbox v-model=&quot;fruit&quot; :items=&quot;fruits&quot; placeholder=&quot;Pick a fruit&quot; />`"
+<UListbox v-model=&quot;fruit&quot; :items=&quot;fruits&quot; value-key=&quot;value&quot; placeholder=&quot;Pick a fruit&quot; />`"
       >
         <div class="demo-col">
           <UListbox
             v-model="singleValue"
             :items="fruits"
+            value-key="value"
             placeholder="Pick a fruit"
           />
           <p v-if="singleValue" class="demo-selected">Selected: {{ singleValue }}</p>
@@ -48,15 +71,25 @@ const fruit = ref('')
     <section class="example-section">
       <h3>Multiple selection</h3>
       <CodeCollapsible
-        :code="`const fruits = ['Apple', 'Banana', 'Blueberry', 'Cherry', 'Grapes', 'Mango', 'Orange', 'Peach']
+        :code="`const fruits = [
+  { label: 'Apple', value: 'apple' },
+  { label: 'Banana', value: 'banana' },
+  { label: 'Blueberry', value: 'blueberry' },
+  { label: 'Cherry', value: 'cherry' },
+  { label: 'Grapes', value: 'grapes' },
+  { label: 'Mango', value: 'mango' },
+  { label: 'Orange', value: 'orange' },
+  { label: 'Peach', value: 'peach' },
+]
 const selected = ref<string[]>([])
 
-<UListbox v-model=&quot;selected&quot; :items=&quot;fruits&quot; multiple placeholder=&quot;Pick fruits&quot; />`"
+<UListbox v-model=&quot;selected&quot; :items=&quot;fruits&quot; value-key=&quot;value&quot; multiple placeholder=&quot;Pick fruits&quot; />`"
       >
         <div class="demo-col">
           <UListbox
             v-model="multiValue"
             :items="fruits"
+            value-key="value"
             multiple
             placeholder="Pick fruits"
           />
@@ -101,15 +134,25 @@ const country = ref('')
     <section class="example-section">
       <h3>With search filter</h3>
       <CodeCollapsible
-        :code="`const fruits = ['Apple', 'Banana', 'Blueberry', 'Cherry', 'Grapes', 'Mango', 'Orange', 'Peach']
+        :code="`const fruits = [
+  { label: 'Apple', value: 'apple' },
+  { label: 'Banana', value: 'banana' },
+  { label: 'Blueberry', value: 'blueberry' },
+  { label: 'Cherry', value: 'cherry' },
+  { label: 'Grapes', value: 'grapes' },
+  { label: 'Mango', value: 'mango' },
+  { label: 'Orange', value: 'orange' },
+  { label: 'Peach', value: 'peach' },
+]
 const fruit = ref('')
 
-<UListbox v-model=&quot;fruit&quot; :items=&quot;fruits&quot; filter placeholder=&quot;Search fruit...&quot; />`"
+<UListbox v-model=&quot;fruit&quot; :items=&quot;fruits&quot; value-key=&quot;value&quot; filter placeholder=&quot;Search fruit...&quot; />`"
       >
         <div class="demo-col">
           <UListbox
             v-model="filterValue"
             :items="fruits"
+            value-key="value"
             filter
             placeholder="Search fruit..."
           />
@@ -150,18 +193,24 @@ const country = ref('')
     <section class="example-section">
       <h3>Sizes</h3>
       <CodeCollapsible
-        :code="`const items = ['Apple', 'Banana', 'Blueberry', 'Cherry', 'Grapes']
+        :code="`const items = [
+  { label: 'Apple', value: 'apple' },
+  { label: 'Banana', value: 'banana' },
+  { label: 'Blueberry', value: 'blueberry' },
+  { label: 'Cherry', value: 'cherry' },
+  { label: 'Grapes', value: 'grapes' },
+]
 
-<UListbox size=&quot;sm&quot; :items=&quot;items&quot; />
-<UListbox size=&quot;md&quot; :items=&quot;items&quot; />
-<UListbox size=&quot;lg&quot; :items=&quot;items&quot; />
-<UListbox size=&quot;xl&quot; :items=&quot;items&quot; />`"
+<UListbox size=&quot;sm&quot; :items=&quot;items&quot; value-key=&quot;value&quot; />
+<UListbox size=&quot;md&quot; :items=&quot;items&quot; value-key=&quot;value&quot; />
+<UListbox size=&quot;lg&quot; :items=&quot;items&quot; value-key=&quot;value&quot; />
+<UListbox size=&quot;xl&quot; :items=&quot;items&quot; value-key=&quot;value&quot; />`"
       >
         <div class="demo-col">
-          <UListbox v-model="sizeSm" size="sm" :items="fruits" placeholder="Small" />
-          <UListbox v-model="sizeMd" size="md" :items="fruits" placeholder="Medium" />
-          <UListbox v-model="sizeLg" size="lg" :items="fruits" placeholder="Large" />
-          <UListbox v-model="sizeXl" size="xl" :items="fruits" placeholder="Extra large" />
+          <UListbox v-model="sizeSm" size="sm" :items="fruits" value-key="value" placeholder="Small" />
+          <UListbox v-model="sizeMd" size="md" :items="fruits" value-key="value" placeholder="Medium" />
+          <UListbox v-model="sizeLg" size="lg" :items="fruits" value-key="value" placeholder="Large" />
+          <UListbox v-model="sizeXl" size="xl" :items="fruits" value-key="value" placeholder="Extra large" />
         </div>
       </CodeCollapsible>
     </section>
