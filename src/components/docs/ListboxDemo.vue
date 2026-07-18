@@ -3,9 +3,14 @@ import { ref } from "vue";
 import CodeCollapsible from "./CodeCollapsible.vue";
 
 const singleValue = ref("");
+const filterValue = ref("");
 const multiValue = ref<string[]>([]);
 const countryValue = ref("");
-const sizeValue = ref("");
+const iconCountryValue = ref("");
+const sizeSm = ref("");
+const sizeMd = ref("");
+const sizeLg = ref("");
+const sizeXl = ref("");
 
 const fruits = ["Apple", "Banana", "Blueberry", "Cherry", "Grapes", "Mango", "Orange", "Peach", "Pineapple", "Strawberry"];
 
@@ -103,12 +108,41 @@ const fruit = ref('')
       >
         <div class="demo-col">
           <UListbox
-            v-model="singleValue"
+            v-model="filterValue"
             :items="fruits"
             filter
             placeholder="Search fruit..."
           />
-          <p v-if="singleValue" class="demo-selected">Picked: {{ singleValue }}</p>
+          <p v-if="filterValue" class="demo-selected">Picked: {{ filterValue }}</p>
+        </div>
+      </CodeCollapsible>
+    </section>
+
+    <section class="example-section">
+      <h3>With icons and descriptions</h3>
+      <CodeCollapsible
+        :code="`const items = [
+  { label: 'France', description: 'The Hexagon', icon: 'i-ph-map-pin', value: 'FR' },
+  { label: 'Germany', description: 'The Federal Republic', icon: 'i-ph-map-pin', value: 'DE' },
+  { label: 'Italy', description: 'The Boot', icon: 'i-ph-map-pin', value: 'IT' },
+  { label: 'Spain', description: 'The Bull Skin', icon: 'i-ph-map-pin', value: 'ES' },
+]
+const country = ref('')
+
+<UListbox v-model=&quot;country&quot; :items=&quot;items&quot; value-key=&quot;value&quot; />`"
+      >
+        <div class="demo-col">
+          <UListbox
+            v-model="iconCountryValue"
+            :items="[
+              { label: 'France', description: 'The Hexagon', icon: 'i-ph-map-pin', value: 'FR' },
+              { label: 'Germany', description: 'The Federal Republic', icon: 'i-ph-map-pin', value: 'DE' },
+              { label: 'Italy', description: 'The Boot', icon: 'i-ph-map-pin', value: 'IT' },
+              { label: 'Spain', description: 'The Bull Skin', icon: 'i-ph-map-pin', value: 'ES' },
+            ]"
+            value-key="value"
+          />
+          <p v-if="iconCountryValue" class="demo-selected">Code: {{ iconCountryValue }}</p>
         </div>
       </CodeCollapsible>
     </section>
@@ -124,60 +158,10 @@ const fruit = ref('')
 <UListbox size=&quot;xl&quot; :items=&quot;items&quot; />`"
       >
         <div class="demo-col">
-          <UListbox v-model="sizeValue" size="sm" :items="fruits" placeholder="Small" />
-          <UListbox v-model="sizeValue" size="md" :items="fruits" placeholder="Medium" />
-          <UListbox v-model="sizeValue" size="lg" :items="fruits" placeholder="Large" />
-          <UListbox v-model="sizeValue" size="xl" :items="fruits" placeholder="Extra large" />
-        </div>
-      </CodeCollapsible>
-    </section>
-
-    <section class="example-section">
-      <h3>Loading state</h3>
-      <CodeCollapsible
-        :code="`const items = [
-  { label: 'France', icon: 'i-lucide-map-pin', value: 'FR' },
-  { label: 'Germany', icon: 'i-lucide-map-pin', value: 'DE' },
-  { label: 'Italy', icon: 'i-lucide-map-pin', value: 'IT' },
-]
-
-<UListbox loading :items=&quot;items&quot; />`"
-      >
-        <div class="demo-col">
-          <UListbox
-            :items="[
-              { label: 'France', icon: 'i-lucide-map-pin', value: 'FR' },
-              { label: 'Germany', icon: 'i-lucide-map-pin', value: 'DE' },
-              { label: 'Italy', icon: 'i-lucide-map-pin', value: 'IT' },
-            ]"
-            loading
-            placeholder="Select a country"
-          />
-        </div>
-      </CodeCollapsible>
-    </section>
-
-    <section class="example-section">
-      <h3>Disabled</h3>
-      <CodeCollapsible
-        :code="`const items = [
-  { label: 'France', icon: 'i-lucide-map-pin', value: 'FR' },
-  { label: 'Germany', icon: 'i-lucide-map-pin', value: 'DE' },
-  { label: 'Italy', icon: 'i-lucide-map-pin', value: 'IT' },
-]
-
-<UListbox disabled :items=&quot;items&quot; />`"
-      >
-        <div class="demo-col">
-          <UListbox
-            :items="[
-              { label: 'France', icon: 'i-lucide-map-pin', value: 'FR' },
-              { label: 'Germany', icon: 'i-lucide-map-pin', value: 'DE' },
-              { label: 'Italy', icon: 'i-lucide-map-pin', value: 'IT' },
-            ]"
-            disabled
-            placeholder="Select a country"
-          />
+          <UListbox v-model="sizeSm" size="sm" :items="fruits" placeholder="Small" />
+          <UListbox v-model="sizeMd" size="md" :items="fruits" placeholder="Medium" />
+          <UListbox v-model="sizeLg" size="lg" :items="fruits" placeholder="Large" />
+          <UListbox v-model="sizeXl" size="xl" :items="fruits" placeholder="Extra large" />
         </div>
       </CodeCollapsible>
     </section>
