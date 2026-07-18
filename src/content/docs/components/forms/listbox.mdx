@@ -69,7 +69,13 @@ const fruit = ref("");
 const fruits = ref<string[]>([]);
 const country = ref<{ name: string; code: string } | null>(null);
 
-const items = ["Apple", "Banana", "Blueberry", "Cherry", "Grapes"];
+const items = [
+  { label: "Apple", value: "apple" },
+  { label: "Banana", value: "banana" },
+  { label: "Blueberry", value: "blueberry" },
+  { label: "Cherry", value: "cherry" },
+  { label: "Grapes", value: "grapes" },
+];
 
 const countries = [
   { name: "United States", code: "US" },
@@ -80,10 +86,10 @@ const countries = [
 
 <template>
   <!-- Basic listbox -->
-  <UListbox v-model="fruit" :items="items" placeholder="Pick a fruit" />
+  <UListbox v-model="fruit" :items="items" value-key="value" class="w-full" placeholder="Pick a fruit" />
 
   <!-- Multiple selection -->
-  <UListbox v-model="fruits" :items="items" multiple placeholder="Pick fruits" />
+  <UListbox v-model="fruits" :items="items" value-key="value" multiple class="w-full" placeholder="Pick fruits" />
 
   <!-- Object items with value-key -->
   <UListbox
@@ -91,14 +97,28 @@ const countries = [
     :items="countries"
     value-key="code"
     label-key="name"
+    class="w-full"
     placeholder="Select a country"
   />
 
   <!-- With search filter -->
-  <UListbox v-model="fruit" :items="items" filter placeholder="Search fruit..." />
+  <UListbox v-model="fruit" :items="items" value-key="value" filter class="w-full" placeholder="Search fruit..." />
+
+  <!-- With icons and descriptions -->
+  <UListbox
+    v-model="country"
+    :items="[
+      { label: 'France', description: 'The Hexagon', icon: 'i-ph-map-pin', value: 'FR' },
+      { label: 'Germany', description: 'The Federal Republic', icon: 'i-ph-map-pin', value: 'DE' },
+      { label: 'Italy', description: 'The Boot', icon: 'i-ph-map-pin', value: 'IT' },
+      { label: 'Spain', description: 'The Bull Skin', icon: 'i-ph-map-pin', value: 'ES' },
+    ]"
+    value-key="value"
+    class="w-full"
+  />
 
   <!-- Virtualized for large lists -->
-  <UListbox v-model="fruit" :items="largeList" virtualize filter />
+  <UListbox v-model="fruit" :items="largeList" value-key="value" virtualize filter />
 </template>
 ```
 
