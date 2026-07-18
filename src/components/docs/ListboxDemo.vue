@@ -6,6 +6,7 @@ const singleValue = ref("");
 const filterValue = ref("");
 const multiValue = ref<string[]>([]);
 const countryValue = ref("");
+const descValue = ref("");
 const iconValue = ref("");
 const sizeSm = ref("");
 const sizeMd = ref("");
@@ -212,12 +213,12 @@ const country = ref('')
       >
         <div class="demo-col">
           <UListbox
-            v-model="countryValue"
+            v-model="descValue"
             :items="countryList"
             value-key="value"
             class="w-full"
           />
-          <p v-if="countryValue" class="demo-selected">Code: {{ countryValue }}</p>
+          <p v-if="descValue" class="demo-selected">Code: {{ descValue }}</p>
         </div>
       </CodeCollapsible>
     </section>
