@@ -16,6 +16,14 @@ This project follows **semantic versioning** (SemVer) during pre-1.0 development
 Changes that require a minor bump: adding a new component, renaming tokens, changing component APIs, adding new packages (e.g. React).
 Changes that keep the patch version: renames, copy edits, styling tweaks, build config changes, favicon updates.
 
+## 0.18.7 (2026-07-18)
+
+### Fixed
+
+- **Listbox demo — object items format** — Converted all listbox examples from plain string arrays to `{ label, value }` object format. Nuxt UI v4's `UListbox` requires objects with at least a `label` property; plain strings caused empty content because `get(item, 'label')` returns `undefined` for primitives.
+- **Listbox demo — independent state** — Each listbox now uses its own independent `v-model` ref so selections in one example don't trigger reactive updates or scrolling in another. Added `w-full` class to all instances for consistent width.
+- **Listbox demo — alignment with Nuxt UI patterns** — Added Selected Icon example, trimmed item lists from 10 to 8 for cleaner layout, converted inline arrays to named ref-based data for consistency.
+
 ## 0.18.3 (2026-07-18)
 
 ### Changed
