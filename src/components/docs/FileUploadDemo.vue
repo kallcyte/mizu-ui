@@ -54,6 +54,46 @@ const insidePositionFiles = ref<File[]>([]);
     </section>
 
     <section class="example-section">
+      <h3>Dropzone disabled</h3>
+      <CodeCollapsible :code="`<UFileUpload :dropzone=&quot;false&quot; label=&quot;Upload files&quot; description=&quot;Click to select files&quot; class=&quot;w-full min-h-48&quot; />`">
+        <div class="demo-col">
+          <UFileUpload
+            v-model="singleFile"
+            :dropzone="false"
+            label="Upload files"
+            description="Click to select files"
+            class="w-full min-h-48"
+          />
+        </div>
+      </CodeCollapsible>
+    </section>
+
+    <section class="example-section">
+      <h3>Interactive disabled</h3>
+      <CodeCollapsible :code="`<UFileUpload :interactive=&quot;false&quot; multiple layout=&quot;list&quot; label=&quot;Drop your images here&quot; description=&quot;SVG, PNG, JPG or GIF (max. 2MB)&quot; class=&quot;w-full min-h-48&quot;>
+  <template #actions=&quot;{ open }&quot;>
+    <UButton label=&quot;Select images&quot; icon=&quot;i-lucide-upload&quot; color=&quot;neutral&quot; variant=&quot;outline&quot; @click=&quot;open()&quot; />
+  </template>
+</UFileUpload>`">
+        <div class="demo-col">
+          <UFileUpload
+            v-model="multipleFiles"
+            :interactive="false"
+            multiple
+            layout="list"
+            label="Drop your images here"
+            description="SVG, PNG, JPG or GIF (max. 2MB)"
+            class="w-full min-h-48"
+          >
+            <template #actions="{ open }">
+              <UButton label="Select images" icon="i-lucide-upload" color="neutral" variant="outline" @click="open()" />
+            </template>
+          </UFileUpload>
+        </div>
+      </CodeCollapsible>
+    </section>
+
+    <section class="example-section">
       <h3>Sizes</h3>
       <CodeCollapsible :code="`<UFileUpload size=&quot;xs&quot; label=&quot;Extra small&quot; />
 <UFileUpload size=&quot;sm&quot; label=&quot;Small&quot; />
@@ -66,6 +106,37 @@ const insidePositionFiles = ref<File[]>([]);
           <UFileUpload v-model="singleFile" size="md" label="Medium" class="w-full min-h-48" />
           <UFileUpload v-model="singleFile" size="lg" label="Large" class="w-full min-h-48" />
           <UFileUpload v-model="singleFile" size="xl" label="Extra large" class="w-full min-h-48" />
+        </div>
+      </CodeCollapsible>
+    </section>
+
+    <section class="example-section">
+      <h3>Icon</h3>
+      <CodeCollapsible :code="`<UFileUpload icon=&quot;i-lucide-image&quot; label=&quot;Drop your image here&quot; description=&quot;SVG, PNG, JPG or GIF (max. 2MB)&quot; class=&quot;w-full min-h-48&quot; />`">
+        <div class="demo-col">
+          <UFileUpload
+            v-model="singleFile"
+            icon="i-lucide-image"
+            label="Drop your image here"
+            description="SVG, PNG, JPG or GIF (max. 2MB)"
+            class="w-full min-h-48"
+          />
+        </div>
+      </CodeCollapsible>
+    </section>
+
+    <section class="example-section">
+      <h3>Color</h3>
+      <CodeCollapsible :code="`<UFileUpload color=&quot;neutral&quot; highlight label=&quot;Drop your image here&quot; description=&quot;SVG, PNG, JPG or GIF (max. 2MB)&quot; class=&quot;w-full min-h-48&quot; />`">
+        <div class="demo-col">
+          <UFileUpload
+            v-model="singleFile"
+            color="neutral"
+            highlight
+            label="Drop your image here"
+            description="SVG, PNG, JPG or GIF (max. 2MB)"
+            class="w-full min-h-48"
+          />
         </div>
       </CodeCollapsible>
     </section>
