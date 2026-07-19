@@ -4,47 +4,107 @@ import CodeCollapsible from "./CodeCollapsible.vue";
 
 const singleFile = ref<File | null>(null);
 const multipleFiles = ref<File[]>([]);
-
-const basicCode = `<UFileUpload
-  v-model="singleFile"
-  label="Upload a file"
-  description="Drag and drop or click to browse"
-  icon="i-lucide-cloud-upload"
-/>`;
-
-const buttonCode = `<UFileUpload
-  v-model="singleFile"
-  variant="button"
-  label="Choose file"
-  icon="i-lucide-folder-open"
-/>`;
+const imageFile = ref<File | null>(null);
+const listLayoutFiles = ref<File[]>([]);
+const insidePositionFiles = ref<File[]>([]);
 </script>
 
 <template>
   <div class="not-content demo-isolated demo-examples">
     <section class="example-section">
-      <h3>Drop zone (area variant)</h3>
-      <CodeCollapsible :code="basicCode">
+      <h3>Basic</h3>
+      <CodeCollapsible :code="`<UFileUpload v-model=&quot;value&quot; />`">
+        <div class="demo-col">
+          <UFileUpload v-model="singleFile" class="w-full min-h-48" />
+        </div>
+      </CodeCollapsible>
+    </section>
+
+    <section class="example-section">
+      <h3>Multiple files</h3>
+      <CodeCollapsible :code="`<UFileUpload v-model=&quot;value&quot; multiple />`">
+        <div class="demo-col">
+          <UFileUpload v-model="multipleFiles" multiple class="w-full min-h-48" />
+        </div>
+      </CodeCollapsible>
+    </section>
+
+    <section class="example-section">
+      <h3>Accept file types</h3>
+      <CodeCollapsible :code="`<UFileUpload v-model=&quot;value&quot; accept=&quot;image/*&quot; />`">
+        <div class="demo-col">
+          <UFileUpload v-model="imageFile" accept="image/*" class="w-full min-h-48" />
+        </div>
+      </CodeCollapsible>
+    </section>
+
+    <section class="example-section">
+      <h3>Label and description</h3>
+      <CodeCollapsible :code="`<UFileUpload label=&quot;Drop your image here&quot; description=&quot;SVG, PNG, JPG or GIF (max. 2MB)&quot; icon=&quot;i-lucide-image&quot; />`">
         <div class="demo-col">
           <UFileUpload
             v-model="singleFile"
-            label="Upload a file"
-            description="Drag and drop or click to browse"
-            icon="i-lucide-cloud-upload"
+            label="Drop your image here"
+            description="SVG, PNG, JPG or GIF (max. 2MB)"
+            icon="i-lucide-image"
+            class="w-full min-h-48"
           />
         </div>
       </CodeCollapsible>
     </section>
 
     <section class="example-section">
+      <h3>Sizes</h3>
+      <CodeCollapsible :code="`<UFileUpload size=&quot;xs&quot; label=&quot;Extra small&quot; />
+<UFileUpload size=&quot;sm&quot; label=&quot;Small&quot; />
+<UFileUpload size=&quot;md&quot; label=&quot;Medium&quot; />
+<UFileUpload size=&quot;lg&quot; label=&quot;Large&quot; />
+<UFileUpload size=&quot;xl&quot; label=&quot;Extra large&quot; />`">
+        <div class="demo-col">
+          <UFileUpload v-model="singleFile" size="xs" label="Extra small" class="w-full min-h-48" />
+          <UFileUpload v-model="singleFile" size="sm" label="Small" class="w-full min-h-48" />
+          <UFileUpload v-model="singleFile" size="md" label="Medium" class="w-full min-h-48" />
+          <UFileUpload v-model="singleFile" size="lg" label="Large" class="w-full min-h-48" />
+          <UFileUpload v-model="singleFile" size="xl" label="Extra large" class="w-full min-h-48" />
+        </div>
+      </CodeCollapsible>
+    </section>
+
+    <section class="example-section">
       <h3>Button variant</h3>
-      <CodeCollapsible :code="buttonCode">
-        <div class="demo-row">
+      <CodeCollapsible :code="`<UFileUpload v-model=&quot;value&quot; variant=&quot;button&quot; />`">
+        <div class="demo-col">
+          <UFileUpload v-model="singleFile" variant="button" class="w-full" />
+        </div>
+      </CodeCollapsible>
+    </section>
+
+    <section class="example-section">
+      <h3>List layout</h3>
+      <CodeCollapsible :code="`<UFileUpload layout=&quot;list&quot; multiple label=&quot;Drop your files here&quot; />`">
+        <div class="demo-col">
           <UFileUpload
-            v-model="singleFile"
-            variant="button"
-            label="Choose file"
-            icon="i-lucide-folder-open"
+            v-model="listLayoutFiles"
+            layout="list"
+            multiple
+            label="Drop your files here"
+            class="w-full min-h-48"
+          />
+        </div>
+      </CodeCollapsible>
+    </section>
+
+    <section class="example-section">
+      <h3>Position inside</h3>
+      <CodeCollapsible :code="`<UFileUpload position=&quot;inside&quot; layout=&quot;list&quot; multiple label=&quot;Drop your files here&quot; />`">
+        <div class="demo-col">
+          <UFileUpload
+            v-model="insidePositionFiles"
+            position="inside"
+            layout="list"
+            multiple
+            label="Drop your files here"
+            class="w-full min-h-48"
           />
         </div>
       </CodeCollapsible>
