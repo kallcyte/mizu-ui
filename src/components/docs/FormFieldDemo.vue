@@ -85,12 +85,12 @@ function validateEmail(val: string) {
     <section class="example-section">
       <h3>Horizontal Orientation</h3>
       <p class="demo-description">Uses <code>orientation="horizontal"</code> to place the label and input side-by-side instead of the default stacked layout.</p>
-      <CodeCollapsible :code="`<UFormField label=&quot;Name&quot; orientation=&quot;horizontal&quot; class=&quot;w-full&quot;>
-  <UInput placeholder=&quot;Your name&quot; class=&quot;w-full&quot; />
+      <CodeCollapsible :code="`<UFormField label=&quot;Name&quot; orientation=&quot;horizontal&quot; class=&quot;w-full min-w-0&quot;>
+  <UInput placeholder=&quot;Your name&quot; class=&quot;w-80&quot; />
 </UFormField>`">
         <div class="demo-col demo-col-wide">
-          <UFormField label="Name" orientation="horizontal" class="w-full">
-            <UInput v-model="horizontalName" placeholder="Your name" class="w-full" />
+          <UFormField label="Name" orientation="horizontal" class="w-full min-w-0">
+            <UInput v-model="horizontalName" placeholder="Your name" class="w-80" />
           </UFormField>
         </div>
       </CodeCollapsible>
