@@ -22,11 +22,11 @@ function validateEmail(val: string) {
     <section class="example-section">
       <h3>Basic</h3>
       <p class="demo-description">Wraps a form control with an accessible label using the <code>label</code> prop for structured form field display.</p>
-      <CodeCollapsible :code="`<UFormField label=&quot;Email&quot;>
+      <CodeCollapsible :code="`<UFormField label=&quot;Email&quot; size=&quot;xs&quot;>
   <UInput placeholder=&quot;Enter your email&quot; class=&quot;w-full&quot; />
 </UFormField>`">
         <div class="demo-col">
-          <UFormField label="Email">
+          <UFormField label="Email" size="xs">
             <UInput v-model="email" placeholder="Enter your email" class="w-full" />
           </UFormField>
         </div>
@@ -36,11 +36,11 @@ function validateEmail(val: string) {
     <section class="example-section">
       <h3>With Description &amp; Required</h3>
       <p class="demo-description">Adds a <code>description</code> below the label and a <code>required</code> indicator for mandatory form fields.</p>
-      <CodeCollapsible :code="`<UFormField label=&quot;Username&quot; description=&quot;Pick a unique name.&quot; required>
+      <CodeCollapsible :code="`<UFormField label=&quot;Username&quot; description=&quot;Pick a unique name.&quot; required size=&quot;xs&quot;>
   <UInput placeholder=&quot;Enter username&quot; class=&quot;w-full&quot; />
 </UFormField>`">
         <div class="demo-col">
-          <UFormField label="Username" description="Pick a unique name visible to others." required>
+          <UFormField label="Username" description="Pick a unique name visible to others." required size="xs">
             <UInput v-model="username" placeholder="Enter username" class="w-full" />
           </UFormField>
         </div>
@@ -50,13 +50,14 @@ function validateEmail(val: string) {
     <section class="example-section">
       <h3>Error State</h3>
       <p class="demo-description">Displays an error message via the <code>:error</code> prop for inline validation feedback on user input.</p>
-      <CodeCollapsible :code="`<UFormField label=&quot;Email&quot; :error=&quot;error&quot;>
+      <CodeCollapsible :code="`<UFormField label=&quot;Email&quot; :error=&quot;error&quot; size=&quot;xs&quot;>
   <UInput placeholder=&quot;Enter your email&quot; class=&quot;w-full&quot; />
 </UFormField>`">
         <div class="demo-col">
           <UFormField
             label="Email"
             :error="emailError || undefined"
+            size="xs"
           >
             <UInput
               placeholder="Enter your email"
@@ -71,11 +72,11 @@ function validateEmail(val: string) {
     <section class="example-section">
       <h3>With Help &amp; Hint</h3>
       <p class="demo-description">Combines the <code>help</code> prop for detailed guidance text and the <code>hint</code> prop for supplementary label annotations like "Optional".</p>
-      <CodeCollapsible :code="`<UFormField label=&quot;Bio&quot; hint=&quot;Optional&quot; help=&quot;Tell us a bit about yourself.&quot; size=&quot;lg&quot;>
+      <CodeCollapsible :code="`<UFormField label=&quot;Bio&quot; hint=&quot;Optional&quot; help=&quot;Tell us a bit about yourself.&quot; size=&quot;xs&quot;>
   <UTextarea placeholder=&quot;Tell us about yourself&quot; class=&quot;w-full&quot; />
 </UFormField>`">
         <div class="demo-col">
-          <UFormField label="Bio" hint="Optional" help="Tell us a bit about yourself." size="lg">
+          <UFormField label="Bio" hint="Optional" help="Tell us a bit about yourself." size="xs">
             <UTextarea v-model="bio" placeholder="Tell us about yourself" class="w-full" />
           </UFormField>
         </div>
@@ -85,11 +86,11 @@ function validateEmail(val: string) {
     <section class="example-section">
       <h3>Horizontal Orientation</h3>
       <p class="demo-description">Uses <code>orientation="horizontal"</code> to place the label and input side-by-side instead of the default stacked layout.</p>
-      <CodeCollapsible :code="`<UFormField label=&quot;Name&quot; orientation=&quot;horizontal&quot; class=&quot;w-full min-w-0&quot;>
+      <CodeCollapsible :code="`<UFormField label=&quot;Name&quot; orientation=&quot;horizontal&quot; size=&quot;xs&quot; class=&quot;w-full min-w-0&quot;>
   <UInput placeholder=&quot;Your name&quot; class=&quot;w-80&quot; />
 </UFormField>`">
         <div class="demo-col demo-col-wide">
-          <UFormField label="Name" orientation="horizontal" class="w-full min-w-0">
+          <UFormField label="Name" orientation="horizontal" size="xs" class="w-full min-w-0">
             <UInput v-model="horizontalName" placeholder="Your name" class="w-80" />
           </UFormField>
         </div>
