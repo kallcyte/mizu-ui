@@ -88,7 +88,7 @@ function validateEmail(val: string) {
       <CodeCollapsible :code="`<UFormField label=&quot;Name&quot; orientation=&quot;horizontal&quot; class=&quot;w-full&quot;>
   <UInput placeholder=&quot;Your name&quot; class=&quot;w-full&quot; />
 </UFormField>`">
-        <div class="demo-col">
+        <div class="demo-col demo-col-wide">
           <UFormField label="Name" orientation="horizontal" class="w-full">
             <UInput v-model="horizontalName" placeholder="Your name" class="w-full" />
           </UFormField>
@@ -138,5 +138,8 @@ function validateEmail(val: string) {
   width: 100%;
   gap: 8px;
   max-width: 320px;
+}
+.demo-col-wide {
+  max-width: 100%;
 }
 </style>

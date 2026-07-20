@@ -1,5 +1,16 @@
 # Changelog
 
+## [0.18.13] - 2026-07-20
+
+### Added
+
+- **Form docs — Ready** — Rewrote the Form documentation page to align with Nuxt UI. Added a new `FormDemo.vue` with interactive examples covering Basic custom validation, Zod schema validation, Error pattern (with `UInputTags`), `validate-on` control, `@error` event handling, HTML5 validation with programmatic `submit()`, and nested forms. Updated the API section with all `UForm` props, slots, emits, exposed methods, and state refs.
+- **FormField docs — Ready** — Marked the FormField documentation page as Ready (green badge). Added missing `as` and `ui` props to the API table, added the full `app.config.ts` theme configuration, and expanded the intro to reference the Form page.
+
+### Changed
+
+- Expanded `FormFieldDemo.vue` examples and made the horizontal orientation container full width so the side-by-side layout is visible.
+
 ## [0.18.12] - 2026-07-20
 
 ### Added

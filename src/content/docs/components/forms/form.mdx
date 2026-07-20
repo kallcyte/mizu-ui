@@ -1,105 +1,282 @@
 ---
 title: Form
-description: Validation-aware form wrapper with field-level error handling.
+description: A form component with built-in validation and submission handling.
 ---
 
+import FormDemo from "../../../../components/docs/FormDemo.vue";
 
-A Form provides validation lifecycle and error tracking for any set of inputs. Use it to build validated forms without managing error state manually — each field tracks its own touched/error state.
+<span style="display:inline-flex;margin-bottom:16px;padding:1px 8px;border-radius:9999px;font-size:11px;font-weight:500;background:#D1FAE5;color:#047857;">Ready</span>
+
+A form component that validates form data using any validation library supporting [Standard Schema](https://github.com/standard-schema/standard-schema) — such as [Valibot](https://github.com/fabian-hiller/valibot), [Zod](https://github.com/colinhacks/zod), [Yup](https://github.com/jquense/yup), [Joi](https://github.com/hapijs/joi) or [Superstruct](https://github.com/ianstormtaylor/superstruct) — or your own custom validation logic. It works with the [FormField](/docs/components/forms/form-field) component to display error messages around form elements automatically.
+
+## Examples
+
+<FormDemo client:only="vue" />
+
+## Usage
+
+### Schema validation
+
+Provide a `state` object and a `schema` to validate against. No validation library is included by default — install the one you need.
+
+```vue
+<script setup lang="ts">
+import * as z from "zod";
+import type { FormSubmitEvent } from "@nuxt/ui";
+
+const schema = z.object({
+  email: z.string().email("Invalid email"),
+  password: z.string().min(8, "Must be at least 8 characters")
+});
+
+type Schema = z.output<typeof schema>;
+
+const state = reactive<Partial<Schema>>({
+  email: undefined,
+  password: undefined
+});
+
+async function onSubmit(event: FormSubmitEvent<Schema>) {
+  console.log(event.data);
+}
+</script>
+
+<template>
+  <UForm :schema="schema" :state="state" class="space-y-4" @submit="onSubmit">
+    <UFormField label="Email" name="email">
+      <UInput v-model="state.email" />
+    </UFormField>
+
+    <UFormField label="Password" name="password">
+      <UInput v-model="state.password" type="password" />
+    </UFormField>
+
+    <UButton type="submit">Submit</UButton>
+  </UForm>
+</template>
+```
+
+### Custom validation
+
+Use the `validate` prop for your own validation logic. The function must return an array of `FormError` objects with `name` (the `name` of the `UFormField`) and `message`.
+
+```vue
+<script setup lang="ts">
+import type { FormError, FormSubmitEvent } from "@nuxt/ui";
+
+const state = reactive({ email: undefined, password: undefined });
+type Schema = typeof state;
+
+function validate(state: Partial<Schema>): FormError[] {
+  const errors: FormError[] = [];
+  if (!state.email) errors.push({ name: "email", message: "Required" });
+  if (!state.password) errors.push({ name: "password", message: "Required" });
+  return errors;
+}
+
+async function onSubmit(event: FormSubmitEvent<Schema>) {
+  console.log(event.data);
+}
+</script>
+
+<template>
+  <UForm :validate="validate" :state="state" class="space-y-4" @submit="onSubmit">
+    <UFormField label="Email" name="email">
+      <UInput v-model="state.email" />
+    </UFormField>
+
+    <UFormField label="Password" name="password">
+      <UInput v-model="state.password" type="password" />
+    </UFormField>
+
+    <UButton type="submit">Submit</UButton>
+  </UForm>
+</template>
+```
+
+### Error reporting
+
+Errors are matched to the corresponding `UFormField` using its `name` prop. Nested fields are matched using dot notation, e.g. `<UFormField name="user.email">`.
+
+> Errors on array items include the index in their name (e.g. `tags.0`, `tags.1`) and won't match `<UFormField name="tags">` by name alone. Use the `error-pattern` prop with a regular expression like `/^tags\..+/` to capture them. This is especially useful for components like [InputTags](/docs/components/forms/input-tags).
+
+```vue
+<UForm :schema="schema" :state="state" class="space-y-4" @submit="onSubmit">
+  <UFormField label="Tags" name="tags" :error-pattern="/^tags\..+/">
+    <UInputTags v-model="state.tags" />
+  </UFormField>
+</UForm>
+```
+
+### Input events
+
+The form automatically triggers validation when an input emits `input`, `change`, or `blur`:
+
+- `input` — as you type
+- `change` — when you commit to a value
+- `blur` — when an input loses focus
+
+Control this with the `validate-on` prop. The form always validates on submit.
+
+```vue
+<UForm :schema="schema" :state="state" :validate-on="['input','change','blur']" @submit="onSubmit">
+  ...
+</UForm>
+```
+
+### Error event
+
+Listen to the `@error` event to react when validation fails. The payload is a `FormErrorEvent` containing an array of `FormError` objects with `id`, `name`, and `message`.
+
+```vue
+<script setup lang="ts">
+import type { FormErrorEvent } from "@nuxt/ui";
+
+async function onError(event: FormErrorEvent) {
+  if (event?.errors?.[0]?.id) {
+    const element = document.getElementById(event.errors[0].id);
+    element?.focus();
+    element?.scrollIntoView({ behavior: "smooth", block: "center" });
+  }
+}
+</script>
+
+<template>
+  <UForm :validate="validate" :state="state" class="space-y-4" @submit="onSubmit" @error="onError">
+    ...
+  </UForm>
+</template>
+```
+
+### HTML5 validation
+
+When calling `form.submit()` programmatically, the Form component automatically triggers native HTML5 validation before submission. This is useful when the submit button is outside the form element, such as in a modal footer.
+
+```vue
+<script setup lang="ts">
+import { useTemplateRef } from "vue";
+
+const form = useTemplateRef("form");
+</script>
+
+<template>
+  <div class="space-y-4">
+    <UForm ref="form" :state="state" class="space-y-4" @submit="onSubmit">
+      <UFormField label="Email" name="email">
+        <UInput v-model="state.email" type="email" required />
+      </UFormField>
+    </UForm>
+    <UButton @click="form?.submit()">Submit</UButton>
+  </div>
+</template>
+```
+
+### Nesting forms
+
+Use the `nested` prop to nest multiple `UForm` components and link their validation. Nested forms inherit their parent's state; use the `name` prop to target a nested attribute within the parent's state.
+
+```vue
+<UForm :schema="schema" :state="state" class="space-y-4" @submit="onSubmit">
+  <UFormField label="Name" name="name">
+    <UInput v-model="state.name" />
+  </UFormField>
+
+  <UCheckbox v-model="state.news" name="news" label="Subscribe to newsletter" />
+
+  <UForm v-if="state.news" :schema="emailSchema" nested>
+    <UFormField label="Email" name="email">
+      <UInput v-model="state.email" />
+    </UFormField>
+  </UForm>
+
+  <UButton type="submit">Submit</UButton>
+</UForm>
+```
 
 ## API
 
-### UForm Props
+Reference: [Nuxt UI Form](https://ui.nuxt.com/docs/components/form)
 
-| Prop       | Type                           | Default | Description                                                |
-| ---------- | ------------------------------ | ------- | ---------------------------------------------------------- |
-| `state`    | `Record<string, unknown>`      | `{}`    | Reactive form state object — use `reactive()` or `ref()`   |
-| `validate` | `(state) => ValidationError[]` | —       | Validation function — return array of `{ field, message }` |
-| `submit`   | `(state) => Promise<void>`     | —       | Async submit handler — called with validated state         |
+### Props
 
-### UForm Events
+| Prop | Type | Default | Description |
+| ---- | ---- | ------- | ----------- |
+| `id` | `string \| number` | — | The `id` of the form element |
+| `state` | `Record<string, unknown>` | — | Reactive object holding the form's state |
+| `schema` | `StandardSchema \| Yup \| Joi \| Superstruct` | — | Schema to validate the form state |
+| `validate` | `(state) => FormError[] \| Promise<FormError[]>` | — | Custom validation function |
+| `validateOn` | `FormInputEvents[]` | `['input','change','blur']` | Input events that trigger validation |
+| `validateOnInputDelay` | `number` | `300` | Debounce delay in ms for input validation |
+| `disabled` | `boolean` | `false` | Disable all inputs inside the form |
+| `name` | `string` | — | `name` attribute of the form element; for nested forms, the path within parent state |
+| `transform` | `boolean` | `true` | Apply schema transformations on submit |
+| `nested` | `boolean` | `false` | Attach this form to its parent form |
+| `loadingAuto` | `boolean` | `true` | Disable all form elements on `@submit` |
+| `ui` | `{ base?: any }` | — | Theme configuration |
 
-| Event    | Payload                   | Description                                                       |
-| -------- | ------------------------- | ----------------------------------------------------------------- |
-| `submit` | `Record<string, unknown>` | Emitted after validation passes, before the `submit` prop handler |
+`UForm` also supports all native `<form>` HTML attributes: `acceptcharset`, `action`, `autocomplete`, `enctype`, `method`, `novalidate`, `target`, etc.
 
-### UFormField Props
+### Slots
 
-| Prop       | Type      | Default | Description                                               |
-| ---------- | --------- | ------- | --------------------------------------------------------- |
-| `name`     | `string`  | —       | Field name matching a key in the form state               |
-| `label`    | `string`  | —       | Label text rendered above the input                       |
-| `required` | `boolean` | `false` | Adds an asterisk to the label                             |
-| `help`     | `string`  | —       | Help text below the input (hidden when an error is shown) |
+| Slot | Description |
+| ---- | ----------- |
+| `default` | Form content, typically `UFormField` components |
 
-### UFormField Slot Props
+### Emits
 
-| Prop         | Type                  | Description                                                 |
-| ------------ | --------------------- | ----------------------------------------------------------- |
-| `error`      | `boolean`             | `true` when the field is touched and has a validation error |
-| `helperText` | `string \| undefined` | The error message (if errored) or help text (if not)        |
-| `id`         | `string`              | Auto-generated ID for `label[for]` / `input[id]` pairing    |
-| `name`       | `string`              | The field name (passthrough from the prop)                  |
-| `required`   | `boolean`             | Passthrough from the prop                                   |
-| `touched`    | `boolean`             | Whether the field has been focused and blurred              |
+| Event | Payload | Description |
+| ----- | ------- | ----------- |
+| `submit` | `FormSubmitEvent<FormData>` | Emitted after validation passes |
+| `error` | `FormErrorEvent` | Emitted when validation fails on submit |
 
-### ValidationError
+### Expose
+
+Access the typed component instance using [`useTemplateRef`](https://vuejs.org/api/composition-api-helpers.html#usetemplateref).
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| `submit` | `() => Promise<void>` | Trigger form submission with HTML5 validation |
+| `validate` | `(opts?) => Promise<T>` | Trigger form validation; set `opts.silent` to `true` to suppress errors |
+| `clear` | `(path?) => void` | Clear form errors for a path, or all errors if no path |
+| `getErrors` | `(path?) => FormErrorWithId[]` | Get errors for a path, or all errors |
+| `setErrors` | `(errors, name?) => void` | Set errors for a path, or override all errors |
+| `errors` | `Ref<FormErrorWithId[]>` | Reactive reference to all validation errors |
+| `disabled` | `Ref<boolean>` | Whether the form is disabled |
+| `dirty` | `Ref<boolean>` | `true` if at least one field has been modified |
+| `dirtyFields` | `ReadonlySet<keyof T>` | Fields modified by the user |
+| `touchedFields` | `ReadonlySet<keyof T>` | Fields the user interacted with |
+| `blurredFields` | `ReadonlySet<keyof T>` | Fields blurred by the user |
+
+### FormError
 
 ```ts
-interface ValidationError {
-  field: string;
+interface FormError {
+  name: string;
   message: string;
 }
 ```
 
-Return an array of `ValidationError` objects from the `validate` function. Only errors for fields that have been touched (focused then blurred) are displayed.
+Use `name` (not `field`) to target the `UFormField` that should display the error.
 
 ## Theme
 
-### Accessibility
-
-| Criterion          | Implementation                                                                       |
-| ------------------ | ------------------------------------------------------------------------------------ |
-| Label association  | `label[for]` is auto-linked to `input[id]` via the slot `id` prop                    |
-| Required fields    | Asterisk rendered with `aria-hidden="true"`; the label text itself conveys necessity |
-| Error announcement | Error text rendered below the input with high-contrast color                         |
-| Form submission    | Native `<form>` element with `preventDefault` for async handling                     |
-
-#### ARIA Attributes
-
-```html
-<form novalidate>
-  <label for="mizu-field-email">Email <span aria-hidden="true">*</span></label>
-  <input id="mizu-field-email" aria-invalid="true" aria-describedby="mizu-field-email-error" />
-  <span id="mizu-field-email-error" role="alert">Email is required</span>
-</form>
+```ts [app.config.ts]
+export default defineAppConfig({
+  ui: {
+    form: {
+      base: ''
+    }
+  }
+});
 ```
 
 ## Anatomy
 
-A form consists of 2 parts:
+A complete form consists of:
 
-| Part          | Required        | Description                                                                |
-| ------------- | --------------- | -------------------------------------------------------------------------- |
-| UForm         | Yes             | Wraps all fields, provides validation and submission lifecycle             |
-| UFormField    | Yes (per input) | Renders label, required indicator, and validation error for a single field |
+| Part | Required | Description |
+| ---- | -------- | ----------- |
+| `UForm` | Yes | Wraps all fields, provides validation and submission lifecycle |
+| `UFormField` | Yes (per input) | Renders label, description, error, and help text for a single field |
 
-## Composition
-
-```
-<UForm
-  ├── UFormField (name="email")
-  │     └── UInput (or any input)
-  ├── UFormField (name="password")
-  │     └── UInput (or any input)
-  └── UButton (type="submit")
-```
-
-## Implementation Notes
-
-1. Uses Vue `provide/inject` for form context — UFormField auto-connects to its parent UForm
-2. Error tracking is per-field via `touched` flags — errors only show after the field loses focus
-3. `@focusout` on the field wrapper automatically marks fields as touched without manual wiring
-4. The slot scope pattern passes `error`, `id`, and `helperText` to any child input component
-5. Validation runs on form submit and checks all fields against the `validate` function
-6. Submit is prevented when validation fails; the `submit` prop (or `@submit` event) runs on success
-7. All CSS tokens use `var(--color-*)` references from `@mizu/tokens`
+See [FormField](/docs/components/forms/form-field) for detailed field-level API.

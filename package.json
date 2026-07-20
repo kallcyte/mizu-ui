@@ -1,7 +1,7 @@
 {
   "name": "mizu-design-system",
   "type": "module",
-  "version": "0.18.12",
+  "version": "0.18.13",
   "packageManager": "pnpm@11.1.3",
   "scripts": {
     "dev": "pnpm --filter @mizu/tokens build && node scripts/clear-astro-cache.mjs && concurrently --names vue,astro,cache -c green,magenta,yellow \"pnpm --filter @mizu/vue dev\" \"astro dev\" \"node scripts/clear-astro-cache.mjs --watch\"",
@@ -17,7 +17,8 @@
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "clean": "node -e \"fs.rmSync('.astro',{recursive:true,force:true})\" && pnpm -r run clean",
-    "preview": "astro preview"
+    "preview": "astro preview",
+    "dev:bg": "astro dev stop && pnpm --filter @mizu/vue build && astro dev --background"
   },
   "dependencies": {
     "@astrojs/node": "^11.0.2",

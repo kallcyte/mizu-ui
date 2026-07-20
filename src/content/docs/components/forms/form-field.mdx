@@ -5,9 +5,9 @@ description: A wrapper for form elements that provides validation and error hand
 
 import FormFieldDemo from "../../../../components/docs/FormFieldDemo.vue";
 
-<span style="display:inline-flex;margin-bottom:16px;padding:1px 8px;border-radius:9999px;font-size:11px;font-weight:500;background:#FFFBEB;color:#D97706;">Pending</span>
+<span style="display:inline-flex;margin-bottom:16px;padding:1px 8px;border-radius:9999px;font-size:11px;font-weight:500;background:#D1FAE5;color:#047857;">Ready</span>
 
-A form field wraps any form control with a label, description, help text, and error display. Mizu uses Nuxt UI's `UFormField` to provide consistent validation and error handling across all form elements.
+A form field wraps any form control with a label, description, help text, and error display. Mizu uses Nuxt UI's `UFormField` to provide consistent validation and error handling across all form elements. It is designed to be used inside a [UForm](/docs/components/forms/form) for automatic validation, or standalone for manual error display.
 
 ## Examples
 
@@ -21,18 +21,20 @@ Reference: [Nuxt UI FormField](https://ui.nuxt.com/docs/components/form-field)
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
+| `as` | `string \| Component` | `'div'` | The element or component to render as the root |
 | `name` | `string` | — | Field name for form error matching |
 | `label` | `string` | — | Label text for the form control |
 | `description` | `string` | — | Descriptive text below the label |
 | `help` | `string` | — | Help text below the form control |
-| `error` | `string \| boolean` | — | Error message (takes precedence over `help`) |
+| `error` | `string \| boolean` | `undefined` | Error message (takes precedence over `help`) |
 | `hint` | `string` | — | Hint text displayed next to the label |
 | `size` | `'xs' \| 'sm' \| 'md' \| 'lg' \| 'xl'` | `'md'` | Proxied to the child form control |
 | `required` | `boolean` | `false` | Adds an asterisk next to the label |
-| `eagerValidation` | `boolean` | `false` | Validate on input instead of on blur |
+| `eagerValidation` | `boolean` | `false` | Validate on input immediately instead of waiting for blur |
 | `validateOnInputDelay` | `number` | — | Debounce delay (ms) for input validation |
 | `orientation` | `'vertical' \| 'horizontal'` | `'vertical'` | Label and control layout direction |
 | `errorPattern` | `RegExp` | — | Regex to match form error names (useful for arrays) |
+| `ui` | `{ root?, wrapper?, labelWrapper?, label?, container?, description?, error?, hint?, help? }` | — | Theme configuration per slot |
 
 ### Slots
 
@@ -59,6 +61,53 @@ Reference: [Nuxt UI FormField](https://ui.nuxt.com/docs/components/form-field)
 <UFormField label="Email" :error="formErrors.email">
   <UInput placeholder="Enter your email" class="w-full" />
 </UFormField>
+```
+
+## Theme
+
+```ts [app.config.ts]
+export default defineAppConfig({
+  ui: {
+    formField: {
+      slots: {
+        root: '',
+        wrapper: '',
+        labelWrapper: 'flex content-center items-center justify-between gap-1',
+        label: 'block font-medium text-default',
+        container: 'relative',
+        description: 'text-muted',
+        error: 'mt-2 text-error',
+        hint: 'text-muted',
+        help: 'mt-2 text-muted'
+      },
+      variants: {
+        size: {
+          xs: { root: 'text-xs' },
+          sm: { root: 'text-xs' },
+          md: { root: 'text-sm' },
+          lg: { root: 'text-sm' },
+          xl: { root: 'text-base' }
+        },
+        required: {
+          true: {
+            label: "after:content-['*'] after:ms-0.5 after:text-error"
+          }
+        },
+        orientation: {
+          vertical: {
+            container: 'mt-1'
+          },
+          horizontal: {
+            root: 'flex justify-between place-items-baseline gap-2'
+          }
+        }
+      },
+      defaultVariants: {
+        size: 'md'
+      }
+    }
+  }
+});
 ```
 
 ## Anatomy
