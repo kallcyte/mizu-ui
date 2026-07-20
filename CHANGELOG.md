@@ -1,5 +1,16 @@
 # Changelog
 
+## [0.18.11] - 2026-07-20
+
+### Added
+
+- **`reka-ui`** — Added as a direct dependency (pinned to `2.9.10`) so docs demos can import `TooltipProvider` for Nuxt UI tooltip-dependent components.
+
+### Changed
+
+- **Slider docs — Ready** — Marked the Slider documentation page as Ready (green badge). Wrapped `SliderDemo.vue` in `TooltipProvider` so the tooltip example renders. Expanded the demo with all Nuxt UI examples: Min/Max, Step, Orientation, Color (all 7 variants), Size, Inverted, Disabled, plus the existing Basic, With Tooltip, and Range examples.
+- **InputNumber docs — Ready** — Marked the InputNumber documentation page as Ready (green badge). Expanded the demo with missing Nuxt UI examples: Min/Max, Step, Placeholder, Orientation, Color (all 7 variants), Variant, Size (sm/md/lg only), Custom Increment/Decrement, Custom Icons, Without Buttons, Decimal Format, Percentage Format, Currency Format, With Slots, With FormField, and Disabled. Replaced `xs` button sizes with `sm` to align with the Mizu size scale.
+
 ## [0.18.10] - 2026-07-20
 
 ### Docs

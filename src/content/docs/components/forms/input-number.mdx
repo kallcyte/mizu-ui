@@ -5,7 +5,7 @@ description: An input for numerical values with a customizable range.
 
 import InputNumberDemo from "../../../../components/docs/InputNumberDemo.vue";
 
-<span style="display:inline-flex;margin-bottom:16px;padding:1px 8px;border-radius:9999px;font-size:11px;font-weight:500;background:#FFFBEB;color:#D97706;">Pending</span>
+<span style="display:inline-flex;margin-bottom:16px;padding:1px 8px;border-radius:9999px;font-size:11px;font-weight:500;background:#DCFCE7;color:#15803D;">Ready</span>
 
 A number input lets users enter or adjust numeric values with increment and decrement stepper buttons. Mizu uses Nuxt UI's `UInputNumber` with the same height scale as inputs and buttons for form row consistency.
 
@@ -61,6 +61,12 @@ Reference: [Nuxt UI InputNumber](https://ui.nuxt.com/docs/components/input-numbe
 <script setup lang="ts">
 const quantity = ref(1);
 const percentage = ref(50);
+const colorValue = ref(5);
+const variantValue = ref(5);
+const sized = ref(5);
+const decimal = ref(5);
+const percent = ref(0.05);
+const currency = ref(1500);
 </script>
 
 <template>
@@ -68,10 +74,51 @@ const percentage = ref(50);
 
   <UInputNumber v-model="percentage" :min="0" :max="100" :step="5" />
 
+  <UInputNumber v-model="colorValue" color="primary" highlight />
+  <UInputNumber v-model="colorValue" color="secondary" highlight />
+  <UInputNumber v-model="colorValue" color="success" highlight />
+  <UInputNumber v-model="colorValue" color="info" highlight />
+  <UInputNumber v-model="colorValue" color="warning" highlight />
+  <UInputNumber v-model="colorValue" color="error" highlight />
+  <UInputNumber v-model="colorValue" color="neutral" highlight />
+
+  <UInputNumber v-model="variantValue" variant="outline" color="neutral" />
+  <UInputNumber v-model="variantValue" variant="soft" color="neutral" />
+  <UInputNumber v-model="variantValue" variant="subtle" color="neutral" />
+  <UInputNumber v-model="variantValue" variant="ghost" color="neutral" />
+
+  <UInputNumber v-model="sized" size="sm" />
+  <UInputNumber v-model="sized" size="md" />
+  <UInputNumber v-model="sized" size="lg" />
+
+  <UInputNumber
+    v-model="decimal"
+    :format-options="{
+      signDisplay: 'exceptZero',
+      minimumFractionDigits: 1
+    }"
+  />
+
+  <UInputNumber
+    v-model="percent"
+    :step="0.01"
+    :format-options="{ style: 'percent' }"
+  />
+
+  <UInputNumber
+    v-model="currency"
+    :format-options="{
+      style: 'currency',
+      currency: 'EUR',
+      currencyDisplay: 'code',
+      currencySign: 'accounting'
+    }"
+  />
+
   <UInputNumber
     v-model="quantity"
-    :increment="{ color: 'neutral', variant: 'solid', size: 'xs' }"
-    :decrement="{ color: 'neutral', variant: 'solid', size: 'xs' }"
+    :increment="{ color: 'neutral', variant: 'solid', size: 'sm' }"
+    :decrement="{ color: 'neutral', variant: 'solid', size: 'sm' }"
   />
 
   <UFormField label="Quantity" help="Enter a number between 1 and 99.">

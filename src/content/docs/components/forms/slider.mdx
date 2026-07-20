@@ -5,7 +5,7 @@ description: An input to select a numeric value within a range.
 
 import SliderDemo from "../../../../components/docs/SliderDemo.vue";
 
-<span style="display:inline-flex;margin-bottom:16px;padding:1px 8px;border-radius:9999px;font-size:11px;font-weight:500;background:#FFFBEB;color:#D97706;">Pending</span>
+<span style="display:inline-flex;margin-bottom:16px;padding:1px 8px;border-radius:9999px;font-size:11px;font-weight:500;background:#DCFCE7;color:#15803D;">Ready</span>
 
 A slider lets users select a numeric value or range by dragging a thumb along a track. Mizu uses Nuxt UI's `USlider` with support for single and multi-thumb ranges.
 
@@ -41,14 +41,35 @@ Reference: [Nuxt UI Slider](https://ui.nuxt.com/docs/components/slider)
 <script setup lang="ts">
 const volume = ref(50);
 const priceRange = ref([25, 75]);
+const minMax = ref(25);
+const stepped = ref(50);
+const vertical = ref(50);
+const colorValue = ref(50);
+const sized = ref(50);
 </script>
 
 <template>
   <USlider v-model="volume" />
 
+  <USlider v-model="minMax" :min="0" :max="50" />
+
+  <USlider v-model="stepped" :step="10" />
+
   <USlider v-model="volume" tooltip color="neutral" />
 
   <USlider v-model="priceRange" :min-steps-between-thumbs="5" />
+
+  <USlider v-model="vertical" orientation="vertical" class="h-48" />
+
+  <USlider v-model="colorValue" color="primary" />
+  <USlider v-model="colorValue" color="secondary" />
+  <USlider v-model="colorValue" color="success" />
+  <USlider v-model="colorValue" color="info" />
+  <USlider v-model="colorValue" color="warning" />
+  <USlider v-model="colorValue" color="error" />
+  <USlider v-model="colorValue" color="neutral" />
+
+  <USlider v-model="sized" size="xl" />
 
   <USlider :default-value="30" inverted />
 </template>

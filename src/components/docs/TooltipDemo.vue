@@ -1,9 +1,11 @@
 <script setup lang="ts">
+import { TooltipProvider } from "reka-ui";
 import CodeCollapsible from "./CodeCollapsible.vue";
 </script>
 
 <template>
-  <div class="not-content demo-isolated demo-examples">
+  <TooltipProvider>
+    <div class="not-content demo-isolated demo-examples">
     <section class="example-section">
       <h3>Basic</h3>
       <p class="demo-description">Wrap any element with <code>UTooltip</code> and pass <code>text</code> to show a tooltip on hover.</p>
@@ -41,6 +43,7 @@ import CodeCollapsible from "./CodeCollapsible.vue";
       </CodeCollapsible>
     </section>
   </div>
+</TooltipProvider>
 </template>
 
 <style scoped>
