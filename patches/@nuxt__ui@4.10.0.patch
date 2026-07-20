@@ -1,0 +1,22 @@
+diff --git a/dist/runtime/vue/stubs/app-config.mjs b/dist/runtime/vue/stubs/app-config.mjs
+new file mode 100644
+index 0000000000000000000000000000000000000000..ff8b4c56321a3362fc00224b01800f62466f9a1f
+--- /dev/null
++++ b/dist/runtime/vue/stubs/app-config.mjs
+@@ -0,0 +1 @@
++export default {};
+diff --git a/package.json b/package.json
+index 942c3d4f46f246bc7de185468dbf394a87a93faa..9ebf977a383ca90384f713fb49be38f7c7cfaab7 100644
+--- a/package.json
++++ b/package.json
+@@ -91,7 +91,9 @@
+     }
+   },
+   "imports": {
+-    "#build/ui.css": "./.nuxt/ui.static.css"
++    "#build/ui.css": "./.nuxt/ui.static.css",
++    "#build/app.config": "./dist/runtime/vue/stubs/app-config.mjs",
++    "#imports": "./dist/runtime/vue/stubs/base.js"
+   },
+   "bin": {
+     "nuxt-ui": "./cli/index.mjs"

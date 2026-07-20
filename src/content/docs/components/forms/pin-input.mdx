@@ -5,7 +5,7 @@ description: An input element to enter a pin.
 
 import PinInputDemo from "../../../../components/docs/PinInputDemo.vue";
 
-<span style="display:inline-flex;margin-bottom:16px;padding:1px 8px;border-radius:9999px;font-size:11px;font-weight:500;background:#FFFBEB;color:#D97706;">Pending</span>
+<span style="display:inline-flex;margin-bottom:16px;padding:1px 8px;border-radius:9999px;font-size:11px;font-weight:500;background:#D1FAE5;color:#047857;">Ready</span>
 
 A pin input component for entering one-time passwords (OTP), verification codes, and PINs. Mizu uses Nuxt UI's `UPinInput` with the same sizing and style variants as other form inputs.
 
@@ -50,21 +50,67 @@ Reference: [Nuxt UI PinInput](https://ui.nuxt.com/docs/components/pin-input)
 ### Example Usage
 
 ```vue
-<!-- Basic 5-digit pin -->
-<UPinInput v-model="pin" :length="5" placeholder="·" />
+<script setup lang="ts">
+const pin = ref<string[]>([]);
+const numericPin = ref<string[]>([]);
+const maskedPin = ref<string[]>([]);
+const otpPin = ref<string[]>([]);
+const separatorPin = ref<string[]>([]);
+const colorPin = ref<string[]>([]);
+const variantPin = ref<string[]>([]);
+const sizePin = ref<string[]>([]);
+const slotPin = ref<string[]>([]);
+</script>
 
-<!-- Masked 6-digit OTP with native autofill -->
-<UPinInput v-model="otp" :length="6" mask otp placeholder="·" />
+<template>
+  <!-- Basic 5-digit pin -->
+  <UPinInput v-model="pin" :length="5" placeholder="·" />
 
-<!-- With a separator after the first 3 digits -->
-<UPinInput v-model="pin" :length="6" :separator="3" placeholder="·" />
+  <!-- Numeric input only -->
+  <UPinInput v-model="numericPin" type="number" placeholder="·" />
 
-<!-- Custom separator slot -->
-<UPinInput v-model="pin" :length="8" :separator="4">
-  <template #separator="{ index }">
-    <span class="text-foreground-tertiary">-</span>
-  </template>
-</UPinInput>
+  <!-- 6-character pin -->
+  <UPinInput v-model="pin" :length="6" placeholder="·" />
+
+  <!-- Masked pin -->
+  <UPinInput v-model="maskedPin" :length="6" mask placeholder="·" />
+
+  <!-- OTP autofill -->
+  <UPinInput v-model="otpPin" :length="6" otp placeholder="·" />
+
+  <!-- With separator after every 3 inputs -->
+  <UPinInput v-model="separatorPin" :length="6" :separator="3" placeholder="·" />
+
+  <!-- Color variants -->
+  <UPinInput v-model="colorPin" color="primary" highlight placeholder="·" />
+  <UPinInput v-model="colorPin" color="secondary" highlight placeholder="·" />
+  <UPinInput v-model="colorPin" color="success" highlight placeholder="·" />
+  <UPinInput v-model="colorPin" color="info" highlight placeholder="·" />
+  <UPinInput v-model="colorPin" color="warning" highlight placeholder="·" />
+  <UPinInput v-model="colorPin" color="error" highlight placeholder="·" />
+  <UPinInput v-model="colorPin" color="neutral" highlight placeholder="·" />
+
+  <!-- Variant styles -->
+  <UPinInput v-model="variantPin" variant="outline" color="neutral" placeholder="·" />
+  <UPinInput v-model="variantPin" variant="soft" color="neutral" placeholder="·" />
+  <UPinInput v-model="variantPin" variant="subtle" color="neutral" placeholder="·" />
+  <UPinInput v-model="variantPin" variant="ghost" color="neutral" placeholder="·" />
+
+  <!-- Sizes -->
+  <UPinInput v-model="sizePin" size="sm" placeholder="·" />
+  <UPinInput v-model="sizePin" size="md" placeholder="·" />
+  <UPinInput v-model="sizePin" size="lg" placeholder="·" />
+
+  <!-- Custom separator slot -->
+  <UPinInput v-model="slotPin" :length="6" :separator="3" placeholder="·">
+    <template #separator>
+      <UIcon name="i-lucide-minus" class="size-4" />
+    </template>
+  </UPinInput>
+
+  <!-- Disabled -->
+  <UPinInput disabled :length="5" placeholder="·" />
+</template>
 ```
 
 ## Anatomy

@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.18.12] - 2026-07-20
+
+### Added
+
+- **PinInput docs — Ready** — Expanded `PinInputDemo.vue` to cover all Nuxt UI examples: Basic, Type (`number`/`alphanumeric`), Length, Mask, OTP, Separator, Color (all 7 variants), Variant, Size (sm/md/lg), Custom Separator Slot, and Disabled. Updated the docs Example Usage block. Marked the PinInput page as Ready (green badge).
+- **InputRating docs — Ready** — Fixed `UInputRating` rendering by upgrading `@nuxt/ui` to `4.10.0` and pinning `reka-ui` to `2.10.1` (with the corresponding patch update). Expanded `InputRatingDemo.vue` with Basic, Step, Length, Hoverable, Clearable, Icon, Empty Icon, Color (all 7 variants), Size (sm/md/lg), Orientation, Readonly, and Disabled. Updated the docs Example Usage block. Marked the InputRating page as Ready (green badge).
+
+### Changed
+
+- Upgraded `@nuxt/ui` from `4.9.0` to `4.10.0` across the workspace and switched the patch from `patches/@nuxt__ui@4.9.0.patch` to `patches/@nuxt__ui@4.10.0.patch`.
+- Pinned `reka-ui` to `^2.10.1` to satisfy the `@nuxt/ui@4.10.0` peer requirement.
+
 ## [0.18.11] - 2026-07-20
 
 ### Added

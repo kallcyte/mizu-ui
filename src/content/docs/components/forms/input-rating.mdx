@@ -5,7 +5,7 @@ description: A component to display and collect ratings from users.
 
 import InputRatingDemo from "../../../../components/docs/InputRatingDemo.vue";
 
-<span style="display:inline-flex;margin-bottom:16px;padding:1px 8px;border-radius:9999px;font-size:11px;font-weight:500;background:#FFFBEB;color:#D97706;">Pending</span>
+<span style="display:inline-flex;margin-bottom:16px;padding:1px 8px;border-radius:9999px;font-size:11px;font-weight:500;background:#D1FAE5;color:#047857;">Ready</span>
 
 A rating input lets users provide feedback by selecting from a configurable number of icons — typically stars. Mizu uses Nuxt UI's `UInputRating` with support for fractional steps, hover preview, and clearing.
 
@@ -51,8 +51,15 @@ Reference: [Nuxt UI InputRating](https://ui.nuxt.com/docs/components/input-ratin
 import { ref } from "vue";
 
 const rating = ref(3);
-const detailed = ref(4.5);
-const hover = ref(0);
+const halfRating = ref(2.5);
+const hoverRating = ref(0);
+const clearableRating = ref(3);
+const lengthRating = ref(7);
+const iconRating = ref(4);
+const emptyIconRating = ref(3);
+const colorRating = ref(4);
+const sizeRating = ref(4);
+const verticalRating = ref(4);
 </script>
 
 <template>
@@ -60,19 +67,45 @@ const hover = ref(0);
   <UInputRating v-model="rating" />
 
   <!-- Half-step rating -->
-  <UInputRating v-model="detailed" :step="0.5" />
+  <UInputRating v-model="halfRating" :step="0.5" />
 
-  <!-- Hoverable with clear -->
-  <UInputRating v-model="hover" hoverable clearable />
+  <!-- 10-star rating -->
+  <UInputRating v-model="lengthRating" :length="10" />
 
-  <!-- Custom length and color -->
-  <UInputRating v-model="rating" :length="10" color="warning" />
+  <!-- Hoverable -->
+  <UInputRating v-model="hoverRating" hoverable />
 
-  <!-- Read-only display -->
-  <UInputRating :default-value="4" readonly />
+  <!-- Clearable -->
+  <UInputRating v-model="clearableRating" clearable />
 
-  <!-- Custom icons -->
-  <UInputRating v-model="rating" icon="i-ph-heart" empty-icon="i-ph-heart" color="error" />
+  <!-- Custom icon -->
+  <UInputRating v-model="iconRating" icon="i-lucide-heart" />
+
+  <!-- Empty icon -->
+  <UInputRating v-model="emptyIconRating" icon="i-ph-star-fill" empty-icon="i-ph-star" />
+
+  <!-- Colors -->
+  <UInputRating v-model="colorRating" color="primary" />
+  <UInputRating v-model="colorRating" color="secondary" />
+  <UInputRating v-model="colorRating" color="success" />
+  <UInputRating v-model="colorRating" color="info" />
+  <UInputRating v-model="colorRating" color="warning" />
+  <UInputRating v-model="colorRating" color="error" />
+  <UInputRating v-model="colorRating" color="neutral" />
+
+  <!-- Sizes -->
+  <UInputRating v-model="sizeRating" size="sm" />
+  <UInputRating v-model="sizeRating" size="md" />
+  <UInputRating v-model="sizeRating" size="lg" />
+
+  <!-- Vertical -->
+  <UInputRating v-model="verticalRating" orientation="vertical" />
+
+  <!-- Readonly -->
+  <UInputRating :default-value="4.5" readonly />
+
+  <!-- Disabled -->
+  <UInputRating disabled :default-value="3" />
 </template>
 ```
 
