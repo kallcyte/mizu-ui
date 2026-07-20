@@ -1,5 +1,16 @@
 # Changelog
 
+## [0.18.9] - 2026-07-20
+
+### Docs
+
+- Mark FileUpload, Checkbox, and CheckboxGroup component docs as Ready
+- Align Checkbox and CheckboxGroup demo examples with Nuxt UI docs
+
+### Fixes
+
+- Remove uppercase text-transform and wide letter-spacing from sidebar summary labels in `@mizu/tokens`
+
 ## [0.18.8] - 2026-07-20
 
 ### Docs

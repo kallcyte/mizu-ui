@@ -5,7 +5,7 @@ description: A set of checkboxes for selecting multiple options from a list.
 
 import CheckboxGroupDemo from "../../../../components/docs/CheckboxGroupDemo.vue";
 
-<span style="display:inline-flex;margin-bottom:16px;padding:1px 8px;border-radius:9999px;font-size:11px;font-weight:500;background:#FFFBEB;color:#D97706;">Pending</span>
+<span style="display:inline-flex;margin-bottom:16px;padding:1px 8px;border-radius:9999px;font-size:11px;font-weight:500;background:#DCFCE7;color:#15803D;">Ready</span>
 A checkbox group renders a list of checkboxes from an `items` array, with support for legends, descriptions, multiple variants, and horizontal/vertical layouts.
 
 ## Examples
@@ -20,6 +20,7 @@ Reference: [Nuxt UI CheckboxGroup](https://ui.nuxt.com/docs/components/checkbox-
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
+| `as` | `string \| Component` | `'div'` | Element or component to render as |
 | `items` | `string[] \| CheckboxGroupItem[]` | — | Array of strings or objects |
 | `modelValue` | `any[]` | — | v-model binding for selected values |
 | `defaultValue` | `any[]` | — | Initial selected values |
@@ -32,6 +33,8 @@ Reference: [Nuxt UI CheckboxGroup](https://ui.nuxt.com/docs/components/checkbox-
 | `valueKey` | `string` | `'value'` | Property to use as value when items are objects |
 | `labelKey` | `string` | `'label'` | Property to use as label |
 | `descriptionKey` | `string` | `'description'` | Property to use as description |
+| `icon` | `string` | `i-lucide-check` | Icon shown when checked |
+| `highlight` | `boolean` | `false` | Highlight the ring like a focus state |
 | `disabled` | `boolean` | `false` | Disables all checkboxes |
 | `required` | `boolean` | `false` | Marks the field as required |
 

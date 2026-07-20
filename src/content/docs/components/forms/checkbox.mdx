@@ -5,7 +5,7 @@ description: A toggle control for selecting one or more options.
 
 import CheckboxDemo from "../../../../components/docs/CheckboxDemo.vue";
 
-<span style="display:inline-flex;margin-bottom:16px;padding:1px 8px;border-radius:9999px;font-size:11px;font-weight:500;background:#FFFBEB;color:#D97706;">Pending</span>
+<span style="display:inline-flex;margin-bottom:16px;padding:1px 8px;border-radius:9999px;font-size:11px;font-weight:500;background:#DCFCE7;color:#15803D;">Ready</span>
 
 A checkbox allows users to toggle a state on or off, or select multiple items from a group. Mizu uses Nuxt UI's `UCheckbox` with the default size scale.
 
@@ -23,17 +23,19 @@ Reference: [Nuxt UI Checkbox](https://ui.nuxt.com/docs/components/checkbox)
 |------|------|---------|-------------|
 | `size` | `'xs' \| 'sm' \| 'md' \| 'lg' \| 'xl'` | `'md'` | Checkbox size |
 | `color` | `'primary' \| 'secondary' \| 'success' \| 'error' \| 'warning' \| 'info' \| 'neutral'` | `'primary'` | Semantic color |
-| `variant` | `'outline' \| 'soft' \| 'subtle' \| 'ghost' \| 'none'` | `'outline'` | Visual style |
+| `variant` | `'list' \| 'card'` | `'list'` | Visual style |
 | `label` | `string` | — | Label text |
 | `description` | `string` | — | Secondary description text below the label |
 | `required` | `boolean` | `false` | Marks the field as required |
 | `disabled` | `boolean` | `false` | Disables interaction |
-| `indeterminate` | `boolean` | `false` | Partial selection state |
 | `defaultValue` | `boolean \| 'indeterminate'` | — | Initial unchecked/checked/indeterminate state |
 | `modelValue` | `boolean \| 'indeterminate'` | — | v-model binding |
-| `checked` | `boolean \| 'indeterminate'` | — | Controlled checked state |
-| `uncheckedValue` | `boolean \| 'indeterminate'` | `false` | Value when unchecked |
-| `checkedValue` | `boolean \| 'indeterminate'` | `true` | Value when checked |
+| `trueValue` | `boolean` | `true` | Value when checked |
+| `falseValue` | `boolean` | `false` | Value when unchecked |
+| `icon` | `string` | `i-lucide-check` | Icon shown when checked |
+| `indeterminateIcon` | `string` | `i-lucide-minus` | Icon shown when indeterminate |
+| `indicator` | `'start' \| 'end' \| 'hidden'` | `'start'` | Indicator position |
+| `highlight` | `boolean` | `false` | Highlight the ring like a focus state |
 
 ### Slots
 
@@ -48,7 +50,7 @@ Reference: [Nuxt UI Checkbox](https://ui.nuxt.com/docs/components/checkbox)
 ```vue
 <UCheckbox label="Accept terms" description="I agree to the terms of service." />
 
-<UCheckbox indeterminate label="Select all" v-model="selectAll" />
+<UCheckbox label="Select all" v-model="selectAll" />
 
 <UCheckbox disabled label="Disabled option" />
 ```
@@ -96,6 +98,6 @@ A checkbox consists of:
 
 1. **Use `<UCheckbox>` directly** — No Mizu wrapper needed. Nuxt UI defaults match the Mizu design spec.
 2. **Indeterminate state** — Use `v-model="value"` with `value` set to `'indeterminate'`, or pass `defaultValue="indeterminate"` for uncontrolled use. Useful for "select all" patterns where some children are selected.
-3. **Card variant** — Set `variant="soft"` for a card-style checkbox with background fill.
+3. **Card variant** — Set `variant="card"` for a card-style checkbox with a bordered container.
 4. **Description slot** — Use the `description` prop for inline help text under the label.
 5. **Form integration** — Checkbox works inside `UFormField` for structured form layouts.

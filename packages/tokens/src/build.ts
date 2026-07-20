@@ -474,8 +474,8 @@ function generateStarlightCss(flat: Map<string, Token>): string {
   lines.push(".sidebar-pane summary {");
   lines.push("  font-weight: 600;");
   lines.push("  font-size: 0.6875rem;      /* text-label: 11px */");
-  lines.push("  text-transform: uppercase;");
-  lines.push("  letter-spacing: 0.06em;     /* tracking-wider */");
+
+  lines.push("");
   lines.push("}");
   lines.push("");
 

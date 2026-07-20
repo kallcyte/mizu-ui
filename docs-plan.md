@@ -28,7 +28,7 @@ Missing Nuxt UI core components to document, prioritized by category.
 | 2i | **Listbox** | `listbox` | Pending |
 | 2j | **InputRating** | `input-rating` | Pending |
 | 2k | **ColorPicker** | `color-picker` | Pending |
-| 2l | **FileUpload** | `file-upload` | Pending |
+| 2l | **FileUpload** | `file-upload` | Ready |
 | 2m | **PinInput** | `pin-input` | Pending |
 
 ## 3. Element (8)
