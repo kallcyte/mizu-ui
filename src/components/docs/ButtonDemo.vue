@@ -6,6 +6,8 @@ defineProps<{ section?: string }>();
 <template>
   <div class="not-content demo-isolated demo-examples">
     <section v-if="!section || section === 'patterns'" class="example-section">
+      <h3>Usage patterns</h3>
+      <p class="demo-description">Common button patterns showing primary actions, secondary actions, and destructive actions across different sizes.</p>
       <CodeCollapsible :code="`<!-- md -->
 <UButton icon=&quot;i-ph-floppy-disk&quot; color=&quot;primary&quot; size=&quot;md&quot;>Save Changes</UButton>
 <UButton variant=&quot;outline&quot; size=&quot;md&quot;>Open Page</UButton>
@@ -41,6 +43,8 @@ defineProps<{ section?: string }>();
     </section>
 
     <section v-if="!section || section === 'sizes'" class="example-section">
+      <h3>Sizes</h3>
+      <p class="demo-description">Three size variants: small for compact UIs, medium as default, and large for prominent actions.</p>
       <CodeCollapsible :code="`<UButton size=&quot;sm&quot;>Small</UButton>
 <UButton size=&quot;md&quot;>Medium</UButton>
 <UButton size=&quot;lg&quot;>Large</UButton>`">
@@ -53,6 +57,8 @@ defineProps<{ section?: string }>();
     </section>
 
     <section v-if="!section || section === 'colors'" class="example-section">
+      <h3>Colors</h3>
+      <p class="demo-description">Semantic color variants for different action types: primary for main actions, error for destructive actions, success for confirmations, etc.</p>
       <CodeCollapsible :code="`<UButton color=&quot;primary&quot;>Primary</UButton>
 <UButton color=&quot;secondary&quot;>Secondary</UButton>
 <UButton color=&quot;nexus&quot;>Nexus</UButton>
@@ -68,6 +74,8 @@ defineProps<{ section?: string }>();
     </section>
 
     <section v-if="!section || section === 'variants'" class="example-section">
+      <h3>Variants</h3>
+      <p class="demo-description">Four core variants: solid for primary actions, outline for secondary, ghost for tertiary, and link for navigation-style buttons.</p>
       <CodeCollapsible :code="`<UButton variant=&quot;solid&quot;>Solid</UButton>
 <UButton variant=&quot;outline&quot;>Outline</UButton>
 <UButton variant=&quot;ghost&quot;>Ghost</UButton>
@@ -90,6 +98,8 @@ defineProps<{ section?: string }>();
     </section>
 
     <section v-if="!section || section === 'icons'" class="example-section">
+      <h3>Icons</h3>
+      <p class="demo-description">Icon-only buttons, trailing icons, and buttons with both leading and trailing icons for clear visual communication.</p>
       <CodeCollapsible :code="`<UButton icon=&quot;i-ph-magnifying-glass&quot; size=&quot;md&quot; />
 <UButton icon=&quot;i-ph-plus&quot; size=&quot;md&quot; trailing>Add</UButton>
 <UButton icon=&quot;i-ph-gear-six&quot; size=&quot;md&quot;>Settings</UButton>
@@ -104,6 +114,8 @@ defineProps<{ section?: string }>();
     </section>
 
     <section v-if="!section || section === 'disabled'" class="example-section">
+      <h3>Disabled state</h3>
+      <p class="demo-description">Disabled buttons prevent user interaction and show a muted appearance to indicate they're not currently available.</p>
       <CodeCollapsible :code="`<UButton disabled>Disabled</UButton>
 <UButton disabled variant=&quot;outline&quot;>Outline Disabled</UButton>`">
         <div class="demo-row">
@@ -114,6 +126,8 @@ defineProps<{ section?: string }>();
     </section>
 
     <section v-if="!section || section === 'loading'" class="example-section">
+      <h3>Loading state</h3>
+      <p class="demo-description">Loading buttons show a spinner to indicate an action is in progress, preventing duplicate submissions.</p>
       <CodeCollapsible :code="`<UButton loading>Loading</UButton>
 <UButton loading loading-icon=&quot;i-ph-spinner-gap&quot;>Custom Spinner</UButton>
 <UButton loading variant=&quot;outline&quot;>Outline Loading</UButton>`">
@@ -126,6 +140,8 @@ defineProps<{ section?: string }>();
     </section>
 
     <section v-if="!section || section === 'link'" class="example-section">
+      <h3>Links</h3>
+      <p class="demo-description">Buttons can act as internal navigation links with the <code>to</code> prop or external links with the <code>href</code> prop.</p>
       <CodeCollapsible :code="`<UButton to=&quot;/getting-started&quot; variant=&quot;link&quot;>Internal Link</UButton>
 <UButton href=&quot;https://nuxt.com&quot; target=&quot;_blank&quot; variant=&quot;link&quot; trailing-icon=&quot;i-ph-arrow-square-out&quot;>External Link</UButton>`">
         <div class="demo-row">
@@ -136,6 +152,8 @@ defineProps<{ section?: string }>();
     </section>
 
     <section v-if="!section || section === 'block'" class="example-section">
+      <h3>Block layout</h3>
+      <p class="demo-description">Full-width block buttons with the <code>block</code> prop, and square icon buttons with the <code>square</code> prop for fixed-dimension controls.</p>
       <CodeCollapsible :code="`<UButton block>Full Width</UButton>
 <UButton square icon=&quot;i-ph-magnifying-glass&quot; />
 <UButton square icon=&quot;i-ph-plus&quot; color=&quot;secondary&quot; />`">
@@ -151,6 +169,8 @@ defineProps<{ section?: string }>();
     </section>
 
     <section v-if="!section || section === 'label'" class="example-section">
+      <h3>Label prop</h3>
+      <p class="demo-description">Use the <code>label</code> prop to set the button text, which is useful when you want to control the text separately from the slot content.</p>
       <CodeCollapsible :code="`<UButton label=&quot;Button&quot; />
 <UButton label=&quot;Primary&quot; color=&quot;primary&quot; />
 <UButton label=&quot;Outline&quot; variant=&quot;outline&quot; />`">
@@ -163,6 +183,8 @@ defineProps<{ section?: string }>();
     </section>
 
     <section v-if="!section || section === 'avatar'" class="example-section">
+      <h3>Avatar buttons</h3>
+      <p class="demo-description">Buttons with embedded user avatars for profile actions, user menus, and identity-based controls.</p>
       <CodeCollapsible :code="`<UButton :avatar=&quot;{ src: 'https://github.com/nuxt.png', size: '2xs' }&quot; size=&quot;sm&quot; variant=&quot;outline&quot;>Nuxt</UButton>
 <UButton :avatar=&quot;{ src: 'https://github.com/nuxt.png', size: '2xs' }&quot; size=&quot;sm&quot; color=&quot;neutral&quot; variant=&quot;ghost&quot; />
 <UButton :avatar=&quot;{ src: 'https://github.com/nuxt.png', size: '2xs' }&quot; size=&quot;sm&quot; trailing>Profile</UButton>`">
@@ -180,6 +202,21 @@ defineProps<{ section?: string }>();
 .demo-examples { all: revert; display: flex; flex-direction: column; gap: 32px; font-family: inherit; }
 .example-section { all: revert; display: flex; flex-direction: column; gap: 12px; margin-top: 8px; }
 .example-section h3 { all: revert; font-size: 14px; font-weight: 600; color: var(--sl-color-text); margin: 0; }
+.demo-description {
+  all: revert;
+  font-size: 13px;
+  color: var(--color-foreground-secondary, #4B5563);
+  margin: 0;
+  line-height: 1.5;
+}
+.demo-description code {
+  all: revert;
+  background: var(--color-surface-muted, #F3F4F6);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-family: "JetBrains Mono", "Fira Code", monospace;
+}
 .demo-row { all: revert; display: flex; align-items: center; gap: 8px; }
 .demo-row--wrap { flex-wrap: wrap; }
 </style>
