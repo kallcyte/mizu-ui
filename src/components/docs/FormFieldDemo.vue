@@ -141,5 +141,6 @@ function validateEmail(val: string) {
 }
 .demo-col-wide {
   max-width: 100%;
+  min-width: 60%;
 }
 </style>
