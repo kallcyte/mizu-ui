@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.18.10] - 2026-07-20
+
+### Docs
+
+- Mark Switch component docs as Ready
+- Expand Switch demo with all Nuxt UI examples (required, description, icons, loading, loading icon, colors, sizes, disabled)
+- Fix Switch API docs — remove incorrect `variant` prop, add missing props
+
 ## [0.18.9] - 2026-07-20
 
 ### Docs

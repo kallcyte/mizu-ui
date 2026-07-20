@@ -5,7 +5,7 @@ description: A toggle control for enabling or disabling a setting.
 
 import SwitchDemo from "../../../../components/docs/SwitchDemo.vue";
 
-<span style="display:inline-flex;margin-bottom:16px;padding:1px 8px;border-radius:9999px;font-size:11px;font-weight:500;background:#FFFBEB;color:#D97706;">Pending</span>
+<span style="display:inline-flex;margin-bottom:16px;padding:1px 8px;border-radius:9999px;font-size:11px;font-weight:500;background:#DCFCE7;color:#15803D;">Ready</span>
 
 A switch toggles a binary setting on or off. Unlike checkboxes (selection), switches are used for immediate-effect settings like enabling notifications. Mizu uses Nuxt UI's `USwitch` with the default size scale.
 
@@ -23,16 +23,22 @@ Reference: [Nuxt UI Switch](https://ui.nuxt.com/docs/components/switch)
 |------|------|---------|-------------|
 | `size` | `'xs' \| 'sm' \| 'md' \| 'lg' \| 'xl'` | `'md'` | Switch size |
 | `color` | `'primary' \| 'secondary' \| 'success' \| 'error' \| 'warning' \| 'info' \| 'neutral'` | `'primary'` | Semantic color for on state |
-| `variant` | `'outline' \| 'soft' \| 'subtle' \| 'ghost' \| 'none'` | `'outline'` | Visual style |
-| `label` | `string` | "” | Label text |
-| `description` | `string` | "” | Secondary description text below the label |
-| `checkedIcon` | `string` (Iconify) | "” | Icon displayed when checked |
-| `uncheckedIcon` | `string` (Iconify) | "” | Icon displayed when unchecked |
+| `label` | `string` | — | Label text |
+| `description` | `string` | — | Secondary description text below the label |
+| `checkedIcon` | `string` (Iconify) | — | Icon displayed when checked |
+| `uncheckedIcon` | `string` (Iconify) | — | Icon displayed when unchecked |
 | `loading` | `boolean` | `false` | Show a loading spinner on the thumb |
+| `loadingIcon` | `string` (Iconify) | `i-lucide-loader-circle` | Icon shown when loading |
+| `highlight` | `boolean` | `false` | Highlight the ring like a focus state |
 | `required` | `boolean` | `false` | Marks the field as required |
 | `disabled` | `boolean` | `false` | Disables interaction |
-| `defaultValue` | `boolean` | "” | Initial state |
-| `modelValue` | `boolean` | "” | v-model binding |
+| `defaultValue` | `boolean` | — | Initial state |
+| `modelValue` | `boolean` | — | v-model binding |
+| `trueValue` | `boolean` | `true` | Value when checked |
+| `falseValue` | `boolean` | `false` | Value when unchecked |
+| `id` | `string` | — | Element id |
+| `name` | `string` | — | Field name submitted with form |
+| `value` | `string` | — | Value given as data when submitted with `name` |
 
 ### Slots
 
