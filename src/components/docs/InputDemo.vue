@@ -220,6 +220,7 @@ const phoneNumberCode = `<UFieldGroup>
   <div class="not-content demo-isolated demo-examples">
     <section class="example-section">
       <h3>Sizes</h3>
+      <p class="demo-description">Three size variants: small (28px), medium (36px, default), and large (40px). Use <code>w-full</code> for consistent widths.</p>
       <CodeCollapsible :code="sizesCode">
         <div class="demo-col">
           <UInput class="w-full" size="sm" placeholder="Small (28px)" />
@@ -231,6 +232,7 @@ const phoneNumberCode = `<UFieldGroup>
 
     <section class="example-section">
       <h3>Type</h3>
+      <p class="demo-description">HTML input types: text, password, number, and file. The component automatically adapts behavior for each type.</p>
       <CodeCollapsible :code="typeCode">
         <div class="demo-col">
           <UInput class="w-full" type="text" placeholder="Text input" />
@@ -243,6 +245,7 @@ const phoneNumberCode = `<UFieldGroup>
 
     <section class="example-section">
       <h3>Placeholder</h3>
+      <p class="demo-description">Hint text shown when the input is empty. Use clear, descriptive placeholders to guide users.</p>
       <CodeCollapsible :code="placeholderCode">
         <div class="demo-col">
           <UInput class="w-full" v-model="inputValue" placeholder="Enter your name" />
@@ -252,6 +255,7 @@ const phoneNumberCode = `<UFieldGroup>
 
     <section class="example-section">
       <h3>Color</h3>
+      <p class="demo-description">Semantic color variants for different states: primary, secondary, success, error, warning, info, and neutral. Use <code>highlight</code> to show the focus ring.</p>
       <CodeCollapsible :code="colorCode">
         <div class="demo-col">
           <UInput class="w-full" color="primary" placeholder="Primary" highlight />
@@ -267,6 +271,7 @@ const phoneNumberCode = `<UFieldGroup>
 
     <section class="example-section">
       <h3>Variant</h3>
+      <p class="demo-description">Five variant styles: outline with border, soft with subtle background, subtle with muted style, ghost with no background, and none with minimal styling.</p>
       <CodeCollapsible :code="variantCode">
         <div class="demo-col">
           <UInput class="w-full" variant="outline" placeholder="Outline" />
@@ -280,6 +285,7 @@ const phoneNumberCode = `<UFieldGroup>
 
     <section class="example-section">
       <h3>Icon</h3>
+      <p class="demo-description">Add leading or trailing icons to provide visual context. Use <code>icon</code> for leading, <code>trailing</code> prop for trailing, or both with <code>leading-icon</code> and <code>trailing-icon</code>.</p>
       <CodeCollapsible :code="iconCode">
         <div class="demo-col">
           <UInput class="w-full" icon="i-ph-magnifying-glass" placeholder="Search..." />
@@ -291,6 +297,7 @@ const phoneNumberCode = `<UFieldGroup>
 
     <section class="example-section">
       <h3>Avatar</h3>
+      <p class="demo-description">Embed user avatars inside the input for identity-based fields like username or user search.</p>
       <CodeCollapsible :code="avatarCode">
         <div class="demo-col">
           <UInput class="w-full" :avatar="{ src: 'https://github.com/nuxt.png' }" placeholder="Username" />
@@ -300,6 +307,7 @@ const phoneNumberCode = `<UFieldGroup>
 
     <section class="example-section">
       <h3>Loading</h3>
+      <p class="demo-description">Show a loading spinner to indicate async operations or validation in progress.</p>
       <CodeCollapsible :code="loadingCode">
         <div class="demo-col">
           <UInput class="w-full" loading placeholder="Loading..." />
@@ -310,6 +318,7 @@ const phoneNumberCode = `<UFieldGroup>
 
     <section class="example-section">
       <h3>Loading Icon</h3>
+      <p class="demo-description">Customize the loading spinner icon to match your design system or indicate different types of operations.</p>
       <CodeCollapsible :code="loadingIconCode">
         <div class="demo-col">
           <UInput class="w-full" loading loading-icon="i-ph-spinner-gap" placeholder="Loading..." />
@@ -320,6 +329,7 @@ const phoneNumberCode = `<UFieldGroup>
 
     <section class="example-section">
       <h3>Disabled</h3>
+      <p class="demo-description">Prevent user interaction with the disabled state.</p>
       <CodeCollapsible :code="disabledCode">
         <div class="demo-col">
           <UInput class="w-full" disabled placeholder="Disabled input" />
@@ -329,6 +339,7 @@ const phoneNumberCode = `<UFieldGroup>
 
     <section class="example-section">
       <h3>With clear button</h3>
+      <p class="demo-description">Add a trailing clear button using the <code>#trailing</code> slot to reset the input value.</p>
       <CodeCollapsible :code="clearableCode">
         <div class="demo-col">
           <UInput class="w-full" v-model="clearableValue" placeholder="Type something...">
@@ -349,6 +360,7 @@ const phoneNumberCode = `<UFieldGroup>
 
     <section class="example-section">
       <h3>With copy button</h3>
+      <p class="demo-description">Create a read-only input with a copy button in the trailing slot for copying values to clipboard.</p>
       <CodeCollapsible :code="copyCode">
         <div class="demo-col">
           <UInput v-model="copyValue" readonly>
@@ -368,6 +380,7 @@ const phoneNumberCode = `<UFieldGroup>
 
     <section class="example-section">
       <h3>With password toggle</h3>
+      <p class="demo-description">Toggle password visibility by dynamically changing the <code>type</code> between "password" and "text" using a trailing button.</p>
       <CodeCollapsible :code="passwordToggleCode">
         <div class="demo-col">
           <UInput
@@ -391,6 +404,7 @@ const phoneNumberCode = `<UFieldGroup>
 
     <section class="example-section">
       <h3>With password strength indicator</h3>
+      <p class="demo-description">Combine the input with a progress bar to show password strength based on length and complexity.</p>
       <CodeCollapsible :code="passwordStrengthCode">
         <div class="demo-col">
           <UInput v-model="passwordStrengthValue" type="password" placeholder="Password" />
@@ -408,6 +422,7 @@ const phoneNumberCode = `<UFieldGroup>
 
     <section class="example-section">
       <h3>With character limit</h3>
+      <p class="demo-description">Use <code>maxlength</code> to limit input length and show a character counter in the trailing slot.</p>
       <CodeCollapsible :code="charLimitCode">
         <div class="demo-col">
           <UInput v-model="charLimitValue" placeholder="Bio" :maxlength="100">
@@ -421,6 +436,7 @@ const phoneNumberCode = `<UFieldGroup>
 
     <section class="example-section">
       <h3>With keyboard shortcut</h3>
+      <p class="demo-description">Add keyboard shortcut hints using <code>UKbd</code> in the trailing slot and listen for keydown events.</p>
       <CodeCollapsible :code="keyboardShortcutCode">
         <div class="demo-col">
           <UInput ref="shortcutInputRef" placeholder="Search...">
@@ -434,6 +450,7 @@ const phoneNumberCode = `<UFieldGroup>
 
     <section class="example-section">
       <h3>With mask</h3>
+      <p class="demo-description">Use <code>v-maska</code> directive for input masking: phone numbers, currency formatting, credit cards, etc.</p>
       <CodeCollapsible :code="maskCode">
         <div class="demo-col">
           <UInput v-model="maskValue" v-maska="'###-###-####'" placeholder="Phone: 123-456-7890" />
@@ -445,6 +462,7 @@ const phoneNumberCode = `<UFieldGroup>
 
     <section class="example-section">
       <h3>With floating label</h3>
+      <p class="demo-description">Implement a floating label pattern using the default slot. The label animates up when the input is focused or has a value.</p>
       <CodeCollapsible :code="floatingLabelCode">
         <div class="demo-col">
           <div class="demo-float-label" :class="{ active: floatingLabelValue }">
@@ -457,6 +475,7 @@ const phoneNumberCode = `<UFieldGroup>
 
     <section class="example-section">
       <h3>With label and helper text</h3>
+      <p class="demo-description">Wrap the input with <code>UFormField</code> to add a label and helper text. This provides proper form structure and accessibility.</p>
       <CodeCollapsible :code="formFieldCode">
         <div class="demo-col">
           <UFormField label="Email" help="Enter your email address" class="w-full">
@@ -468,6 +487,7 @@ const phoneNumberCode = `<UFieldGroup>
 
     <section class="example-section">
       <h3>Required field</h3>
+      <p class="demo-description">Add validation for required fields using <code>UFormField</code> with error handling, highlight state, and blur/input event validation.</p>
       <CodeCollapsible :code="requiredFieldCode">
         <div class="demo-col">
           <UFormField class="w-full" :error="requiredFieldError || undefined" :help="requiredFieldTouched && !requiredFieldError ? 'Looks good!' : undefined">
@@ -489,6 +509,7 @@ const phoneNumberCode = `<UFieldGroup>
 
     <section class="example-section">
       <h3>Within a FieldGroup</h3>
+      <p class="demo-description">Combine multiple inputs in a <code>UFieldGroup</code> for related fields like first name and last name.</p>
       <CodeCollapsible :code="fieldGroupCode">
         <div class="demo-col">
           <UFieldGroup>
@@ -501,6 +522,7 @@ const phoneNumberCode = `<UFieldGroup>
 
     <section class="example-section">
       <h3>As a phone number input</h3>
+      <p class="demo-description">Combine <code>USelectMenu</code> with <code>UInput</code> in a <code>UFieldGroup</code> to create a phone number input with country code selection.</p>
       <CodeCollapsible :code="phoneNumberCode">
         <div class="demo-col">
           <UFieldGroup>
@@ -538,6 +560,21 @@ const phoneNumberCode = `<UFieldGroup>
   font-weight: 600;
   color: var(--sl-color-text);
   margin: 0;
+}
+.demo-description {
+  all: revert;
+  font-size: 13px;
+  color: var(--color-foreground-secondary, #4B5563);
+  margin: 0;
+  line-height: 1.5;
+}
+.demo-description code {
+  all: revert;
+  background: var(--color-surface-muted, #F3F4F6);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-family: "JetBrains Mono", "Fira Code", monospace;
 }
 .demo-col {
   all: revert;
