@@ -40,10 +40,10 @@ async function onSubmit(event: FormSubmitEvent<typeof state>) {
 
 <template>
   <UForm :validate="validate" :state="state" class="space-y-4" @submit="onSubmit">
-    <UFormField size="xs" label="Email" name="email">
+    <UFormField label="Email" name="email">
       <UInput v-model="state.email" />
     </UFormField>
-    <UFormField size="xs" label="Password" name="password">
+    <UFormField label="Password" name="password">
       <UInput v-model="state.password" type="password" />
     </UFormField>
     <UButton type="submit">Submit</UButton>
@@ -85,10 +85,10 @@ async function onSubmit(event: FormSubmitEvent<Schema>) {
 
 <template>
   <UForm :schema="schema" :state="state" class="space-y-4" @submit="onSubmit">
-    <UFormField size="xs" label="Email" name="email">
+    <UFormField label="Email" name="email">
       <UInput v-model="state.email" />
     </UFormField>
-    <UFormField size="xs" label="Password" name="password">
+    <UFormField label="Password" name="password">
       <UInput v-model="state.password" type="password" />
     </UFormField>
     <UButton type="submit">Submit</UButton>
@@ -110,10 +110,10 @@ async function onTagsSubmit(event: FormSubmitEvent<TagsSchema>) {
   tagsSubmitted.value = JSON.stringify(event.data);
 }
 const errorPatternCode = `<UForm :schema="schema" :state="state" class="space-y-4" @submit="onSubmit">
-  <UFormField size="xs" label="Email" name="email">
+  <UFormField label="Email" name="email">
     <UInput v-model="state.email" />
   </UFormField>
-  <UFormField size="xs" label="Tags" name="tags" :error-pattern="/^tags\\..+/">
+  <UFormField label="Tags" name="tags" :error-pattern="/^tags\\..+/">
     <UInputTags v-model="state.tags" />
   </UFormField>
   <UButton type="submit">Submit</UButton>
@@ -193,35 +193,35 @@ async function onSubmit(event: FormSubmitEvent<Schema>) {
 <template>
   <UForm ref="form" :schema="schema" :state="state" :validate-on="validateOn" class="w-full" @submit="onSubmit">
     <div class="grid sm:grid-cols-2 gap-4">
-      <UFormField size="xs" label="Input" name="input">
+      <UFormField label="Input" name="input">
         <UInput v-model="state.input" placeholder="you@example.com" class="w-full" />
       </UFormField>
 
-      <UFormField size="xs" name="inputNumber" label="InputNumber">
+      <UFormField name="inputNumber" label="InputNumber">
         <UInputNumber v-model="state.inputNumber" placeholder="Enter a number" class="w-full" />
       </UFormField>
 
-      <UFormField size="xs" label="Textarea" name="textarea">
+      <UFormField label="Textarea" name="textarea">
         <UTextarea v-model="state.textarea" placeholder="Write your message..." class="w-full" :rows="1" />
       </UFormField>
 
-      <UFormField size="xs" name="select" label="Select">
+      <UFormField name="select" label="Select">
         <USelect v-model="state.select" :items="items" placeholder="Choose an option" class="w-full" />
       </UFormField>
 
-      <UFormField size="xs" name="switch" label="Switch">
+      <UFormField name="switch" label="Switch">
         <USwitch v-model="state.switch" label="Switch me" />
       </UFormField>
 
-      <UFormField size="xs" name="checkbox" label="Checkbox">
+      <UFormField name="checkbox" label="Checkbox">
         <UCheckbox v-model="state.checkbox" label="Check me" />
       </UFormField>
 
-      <UFormField size="xs" name="inputTags" label="InputTags">
+      <UFormField name="inputTags" label="InputTags">
         <UInputTags v-model="state.inputTags" placeholder="Add a tag..." class="w-full" />
       </UFormField>
 
-      <UFormField size="xs" name="slider" label="Slider">
+      <UFormField name="slider" label="Slider">
         <USlider v-model="state.slider" class="mt-2.5" />
       </UFormField>
     </div>
@@ -286,10 +286,10 @@ async function onError(event: FormErrorEvent) {
 
 <template>
   <UForm :validate="validate" :state="state" class="space-y-4" @submit="onSubmit" @error="onError">
-    <UFormField size="xs" label="Email" name="email">
+    <UFormField label="Email" name="email">
       <UInput v-model="state.email" />
     </UFormField>
-    <UFormField size="xs" label="Password" name="password">
+    <UFormField label="Password" name="password">
       <UInput v-model="state.password" type="password" />
     </UFormField>
     <UButton type="submit">Submit</UButton>
@@ -321,10 +321,10 @@ async function onSubmit(event: FormSubmitEvent<typeof state>) {
 <template>
   <div class="space-y-4">
     <UForm ref="form" :state="state" class="space-y-4" @submit="onSubmit">
-      <UFormField size="xs" label="Email" name="email">
+      <UFormField label="Email" name="email">
         <UInput v-model="state.email" type="email" required />
       </UFormField>
-      <UFormField size="xs" label="Age" name="age">
+      <UFormField label="Age" name="age">
         <UInput v-model="state.age" type="number" min="18" max="100" required />
       </UFormField>
     </UForm>
@@ -348,14 +348,14 @@ async function onNestedSubmit(event: FormSubmitEvent<NestedSchema>) {
   nestedSubmitted.value = JSON.stringify(event.data);
 }
 const nestedCode = `<UForm :schema="schema" :state="state" class="space-y-4" @submit="onSubmit">
-  <UFormField size="xs" label="Name" name="name">
+  <UFormField label="Name" name="name">
     <UInput v-model="state.name" />
   </UFormField>
 
   <UCheckbox v-model="state.news" name="news" label="Subscribe to newsletter" />
 
   <UForm v-if="state.news" :schema="emailSchema" nested>
-    <UFormField size="xs" label="Email" name="email">
+    <UFormField label="Email" name="email">
       <UInput v-model="state.email" />
     </UFormField>
   </UForm>
@@ -372,10 +372,10 @@ const nestedCode = `<UForm :schema="schema" :state="state" class="space-y-4" @su
       <CodeCollapsible :code="basicCode">
         <div class="demo-col">
           <UForm :validate="validateBasic" :state="basicState" class="space-y-4" @submit="onBasicSubmit">
-            <UFormField size="xs" label="Email" name="email">
+            <UFormField label="Email" name="email">
               <UInput v-model="basicState.email" />
             </UFormField>
-            <UFormField size="xs" label="Password" name="password">
+            <UFormField label="Password" name="password">
               <UInput v-model="basicState.password" type="password" />
             </UFormField>
             <UButton type="submit">Submit</UButton>
@@ -391,10 +391,10 @@ const nestedCode = `<UForm :schema="schema" :state="state" class="space-y-4" @su
       <CodeCollapsible :code="schemaCode">
         <div class="demo-col">
           <UForm :schema="loginSchema" :state="loginState" class="space-y-4" @submit="onLoginSubmit">
-            <UFormField size="xs" label="Email" name="email">
+            <UFormField label="Email" name="email">
               <UInput v-model="loginState.email" />
             </UFormField>
-            <UFormField size="xs" label="Password" name="password">
+            <UFormField label="Password" name="password">
               <UInput v-model="loginState.password" type="password" />
             </UFormField>
             <UButton type="submit">Submit</UButton>
@@ -410,10 +410,10 @@ const nestedCode = `<UForm :schema="schema" :state="state" class="space-y-4" @su
       <CodeCollapsible :code="errorPatternCode">
         <div class="demo-col">
           <UForm :schema="tagsSchema" :state="tagsState" class="space-y-4" @submit="onTagsSubmit">
-            <UFormField size="xs" label="Email" name="email">
+            <UFormField label="Email" name="email">
               <UInput v-model="tagsState.email" />
             </UFormField>
-            <UFormField size="xs" label="Tags" name="tags" :error-pattern="/^tags\..+/">
+            <UFormField label="Tags" name="tags" :error-pattern="/^tags\..+/">
               <UInputTags v-model="tagsState.tags" />
             </UFormField>
             <UButton type="submit">Submit</UButton>
@@ -431,35 +431,35 @@ const nestedCode = `<UForm :schema="schema" :state="state" class="space-y-4" @su
           <USelect v-model="validateOnEvents" :items="['input','change','blur']" multiple placeholder="Select events" class="w-48" />
           <UForm ref="validateOnForm" :schema="validateOnSchema" :state="validateOnState" :validate-on="validateOnEvents as any" class="w-full" @submit="onValidateOnSubmit">
             <div class="grid sm:grid-cols-2 gap-4">
-              <UFormField size="xs" label="Input" name="input">
+              <UFormField label="Input" name="input">
                 <UInput v-model="validateOnState.input" placeholder="you@example.com" class="w-full" />
               </UFormField>
 
-              <UFormField size="xs" name="inputNumber" label="InputNumber">
+              <UFormField name="inputNumber" label="InputNumber">
                 <UInputNumber v-model="validateOnState.inputNumber" placeholder="Enter a number" class="w-full" />
               </UFormField>
 
-              <UFormField size="xs" label="Textarea" name="textarea">
+              <UFormField label="Textarea" name="textarea">
                 <UTextarea v-model="validateOnState.textarea" placeholder="Write your message..." class="w-full" :rows="1" />
               </UFormField>
 
-              <UFormField size="xs" name="select" label="Select">
+              <UFormField name="select" label="Select">
                 <USelect v-model="validateOnState.select" :items="validateOnItems" placeholder="Choose an option" class="w-full" />
               </UFormField>
 
-              <UFormField size="xs" name="switch" label="Switch">
+              <UFormField name="switch" label="Switch">
                 <USwitch v-model="validateOnState.switch" label="Switch me" />
               </UFormField>
 
-              <UFormField size="xs" name="checkbox" label="Checkbox">
+              <UFormField name="checkbox" label="Checkbox">
                 <UCheckbox v-model="validateOnState.checkbox" label="Check me" />
               </UFormField>
 
-              <UFormField size="xs" name="inputTags" label="InputTags">
+              <UFormField name="inputTags" label="InputTags">
                 <UInputTags v-model="validateOnState.inputTags" placeholder="Add a tag..." class="w-full" />
               </UFormField>
 
-              <UFormField size="xs" name="slider" label="Slider">
+              <UFormField name="slider" label="Slider">
                 <USlider v-model="validateOnState.slider" class="mt-2.5" />
               </UFormField>
             </div>
@@ -480,10 +480,10 @@ const nestedCode = `<UForm :schema="schema" :state="state" class="space-y-4" @su
       <CodeCollapsible :code="errorEventCode">
         <div class="demo-col">
           <UForm :validate="validateErrorEvent" :state="errorEventState" class="space-y-4" @submit="onErrorEventSubmit" @error="onErrorEvent">
-            <UFormField size="xs" label="Email" name="email">
+            <UFormField label="Email" name="email">
               <UInput v-model="errorEventState.email" />
             </UFormField>
-            <UFormField size="xs" label="Password" name="password">
+            <UFormField label="Password" name="password">
               <UInput v-model="errorEventState.password" type="password" />
             </UFormField>
             <UButton type="submit">Submit</UButton>
@@ -500,10 +500,10 @@ const nestedCode = `<UForm :schema="schema" :state="state" class="space-y-4" @su
         <div class="demo-col">
           <div class="space-y-4">
             <UForm ref="html5Form" :state="html5State" class="space-y-4" @submit="onHtml5Submit">
-              <UFormField size="xs" label="Email" name="email">
+              <UFormField label="Email" name="email">
                 <UInput v-model="html5State.email" type="email" required />
               </UFormField>
-              <UFormField size="xs" label="Age" name="age">
+              <UFormField label="Age" name="age">
                 <UInput v-model="html5State.age" type="number" min="18" max="100" required />
               </UFormField>
             </UForm>
@@ -520,12 +520,12 @@ const nestedCode = `<UForm :schema="schema" :state="state" class="space-y-4" @su
       <CodeCollapsible :code="nestedCode">
         <div class="demo-col">
           <UForm :schema="nestedSchema" :state="nestedState" class="space-y-4" @submit="onNestedSubmit">
-            <UFormField size="xs" label="Name" name="name">
+            <UFormField label="Name" name="name">
               <UInput v-model="nestedState.name" />
             </UFormField>
             <UCheckbox v-model="nestedState.news" name="news" label="Subscribe to newsletter" />
             <UForm v-if="nestedState.news" :schema="nestedEmailSchema" nested>
-              <UFormField size="xs" label="Email" name="email">
+              <UFormField label="Email" name="email">
                 <UInput v-model="nestedState.email" />
               </UFormField>
             </UForm>

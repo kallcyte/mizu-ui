@@ -26,7 +26,7 @@ function validateEmail(val: string) {
   <UInput placeholder=&quot;Enter your email&quot; class=&quot;w-full&quot; />
 </UFormField>`">
         <div class="demo-col">
-          <UFormField label="Email" size="xs">
+          <UFormField label="Email">
             <UInput v-model="email" placeholder="Enter your email" class="w-full" />
           </UFormField>
         </div>
@@ -40,7 +40,7 @@ function validateEmail(val: string) {
   <UInput placeholder=&quot;Enter username&quot; class=&quot;w-full&quot; />
 </UFormField>`">
         <div class="demo-col">
-          <UFormField label="Username" description="Pick a unique name visible to others." required size="xs">
+          <UFormField label="Username" description="Pick a unique name visible to others." required>
             <UInput v-model="username" placeholder="Enter username" class="w-full" />
           </UFormField>
         </div>
@@ -57,7 +57,7 @@ function validateEmail(val: string) {
           <UFormField
             label="Email"
             :error="emailError || undefined"
-            size="xs"
+           
           >
             <UInput
               placeholder="Enter your email"
@@ -76,7 +76,7 @@ function validateEmail(val: string) {
   <UTextarea placeholder=&quot;Tell us about yourself&quot; class=&quot;w-full&quot; />
 </UFormField>`">
         <div class="demo-col">
-          <UFormField label="Bio" hint="Optional" help="Tell us a bit about yourself." size="xs">
+          <UFormField label="Bio" hint="Optional" help="Tell us a bit about yourself.">
             <UTextarea v-model="bio" placeholder="Tell us about yourself" class="w-full" />
           </UFormField>
         </div>
@@ -90,7 +90,7 @@ function validateEmail(val: string) {
   <UInput placeholder=&quot;Your name&quot; class=&quot;w-80&quot; />
 </UFormField>`">
         <div class="demo-col demo-col-wide">
-          <UFormField label="Name" orientation="horizontal" size="xs" class="w-full min-w-0">
+          <UFormField label="Name" orientation="horizontal" class="w-full min-w-0">
             <UInput v-model="horizontalName" placeholder="Your name" class="w-80" />
           </UFormField>
         </div>
