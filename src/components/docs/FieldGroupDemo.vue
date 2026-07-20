@@ -33,6 +33,7 @@ const dropdownItems = [
   <div class="not-content demo-isolated demo-examples">
     <section class="example-section">
       <h3>Basic</h3>
+      <p class="demo-description">Groups adjacent elements like buttons or inputs with seamless borders, removing the outer radii between them.</p>
       <CodeCollapsible
         :code="`<UFieldGroup>
   <UButton color=&quot;neutral&quot; variant=&quot;subtle&quot; label=&quot;Button&quot; />
@@ -50,6 +51,7 @@ const dropdownItems = [
 
     <section class="example-section">
       <h3>With input</h3>
+      <p class="demo-description">Combine an input with a trailing button to create a cohesive input-action unit like a token copy field.</p>
       <CodeCollapsible
         :code="`<UFieldGroup>
   <UInput v-model=&quot;token&quot; class=&quot;flex-1&quot; placeholder=&quot;Enter token&quot; />
@@ -83,6 +85,7 @@ const dropdownItems = [
 
     <section class="example-section">
       <h3>Sizes</h3>
+      <p class="demo-description">Supports <code>sm</code>, <code>md</code>, and <code>lg</code> sizes via the <code>size</code> prop to match the height of nested components.</p>
       <CodeCollapsible
         :code="`<UFieldGroup size=&quot;sm&quot;>
   <UButton color=&quot;neutral&quot; variant=&quot;subtle&quot; label=&quot;SM&quot; />
@@ -118,6 +121,7 @@ const dropdownItems = [
 
     <section class="example-section">
       <h3>Vertical orientation</h3>
+      <p class="demo-description">Use <code>orientation="vertical"</code> to stack elements vertically instead of the default horizontal layout.</p>
       <CodeCollapsible
         :code="`<UFieldGroup orientation=&quot;vertical&quot;>
   <UButton color=&quot;neutral&quot; variant=&quot;subtle&quot; label=&quot;Submit&quot; />
@@ -135,6 +139,7 @@ const dropdownItems = [
 
     <section class="example-section">
       <h3>Input group (name fields)</h3>
+      <p class="demo-description">Group multiple inputs together, such as first and last name fields, for a unified visual appearance.</p>
       <CodeCollapsible
         :code="`<UFieldGroup>
   <UInput class=&quot;flex-1&quot; placeholder=&quot;First name&quot; />
@@ -152,6 +157,7 @@ const dropdownItems = [
 
     <section class="example-section">
       <h3>Phone number input</h3>
+      <p class="demo-description">Pair a <code>USelectMenu</code> for country code selection with a phone number input in a single grouped control.</p>
       <CodeCollapsible
         :code="`<UFieldGroup>
   <USelectMenu
@@ -180,6 +186,7 @@ const dropdownItems = [
 
     <section class="example-section">
       <h3>With dropdown menu</h3>
+      <p class="demo-description">Attach a dropdown menu trigger to a button for contextual actions like edit, duplicate, or delete.</p>
       <CodeCollapsible
         :code="`<UFieldGroup>
   <UButton color=&quot;neutral&quot; variant=&quot;subtle&quot; label=&quot;Actions&quot; />
@@ -205,6 +212,7 @@ const dropdownItems = [
 
     <section class="example-section">
       <h3>With badge</h3>
+      <p class="demo-description">Combine a button with a <code>UBadge</code> to show counts or status indicators inline within the group.</p>
       <CodeCollapsible
         :code="`<UFieldGroup>
   <UButton color=&quot;error&quot; variant=&quot;outline&quot; label=&quot;Notifications&quot; />
@@ -242,6 +250,18 @@ const dropdownItems = [
   font-weight: 600;
   color: var(--sl-color-text);
   margin: 0;
+}
+.demo-description {
+  font-size: 13px;
+  color: var(--sl-color-text-light);
+  margin: 0;
+  line-height: 1.5;
+}
+.demo-description code {
+  font-size: 12px;
+  background: var(--color-surface-muted, #F3F4F6);
+  padding: 2px 6px;
+  border-radius: 4px;
 }
 .demo-col {
   all: revert;

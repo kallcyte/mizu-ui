@@ -10,6 +10,7 @@ const reasoningText = ref("Analyzing the query requires breaking it down into se
   <div class="not-content demo-isolated demo-examples">
     <section class="example-section">
       <h3>Basic</h3>
+      <p class="demo-description">Shows a collapsible reasoning section using the <code>text</code> prop to display the model's thought process.</p>
       <CodeCollapsible :code="`<UChatReasoning text=&quot;Analyzing the query...&quot; />`">
         <div class="demo-row">
           <UChatReasoning text="Analyzing the query requires breaking it down into several steps. First, we identify the key entities mentioned." />
@@ -19,6 +20,7 @@ const reasoningText = ref("Analyzing the query requires breaking it down into se
 
     <section class="example-section">
       <h3>Streaming</h3>
+      <p class="demo-description">Animated streaming indicator with the <code>streaming</code> prop, showing that reasoning is in progress.</p>
       <CodeCollapsible :code="`<UChatReasoning text=&quot;Thinking...&quot; streaming />`">
         <div class="demo-row">
           <UChatReasoning text="Thinking through the problem step by step..." streaming />
@@ -28,6 +30,7 @@ const reasoningText = ref("Analyzing the query requires breaking it down into se
 
     <section class="example-section">
       <h3>Default Open</h3>
+      <p class="demo-description">The reasoning panel starts expanded with the <code>default-open</code> prop for immediate visibility.</p>
       <CodeCollapsible :code="`<UChatReasoning default-open text=&quot;Reasoning steps...&quot; />`">
         <div class="demo-row">
           <UChatReasoning default-open :text="reasoningText" />
@@ -37,6 +40,7 @@ const reasoningText = ref("Analyzing the query requires breaking it down into se
 
     <section class="example-section">
       <h3>Controlled with v-model</h3>
+      <p class="demo-description">Two-way binding using <code>v-model:open</code> to programmatically control the panel's expanded state.</p>
       <CodeCollapsible :code="`<UChatReasoning v-model:open=&quot;open&quot; :text=&quot;text&quot; />`">
         <div class="demo-col">
           <UButton :label="reasoningOpen ? 'Close reasoning' : 'Open reasoning'" size="xs" color="neutral" variant="subtle" @click="reasoningOpen = !reasoningOpen" />
@@ -47,6 +51,7 @@ const reasoningText = ref("Analyzing the query requires breaking it down into se
 
     <section class="example-section">
       <h3>Disabled</h3>
+      <p class="demo-description">A non-expandable reasoning panel with the <code>disabled</code> prop, preventing user interaction.</p>
       <CodeCollapsible :code="`<UChatReasoning disabled text=&quot;Locked reasoning...&quot; />`">
         <div class="demo-row">
           <UChatReasoning disabled text="This reasoning panel is locked and cannot be expanded." />
@@ -76,6 +81,18 @@ const reasoningText = ref("Analyzing the query requires breaking it down into se
   font-weight: 600;
   color: var(--sl-color-text);
   margin: 0;
+}
+.demo-description {
+  font-size: 13px;
+  color: var(--sl-color-text-light);
+  margin: 0;
+  line-height: 1.5;
+}
+.demo-description code {
+  font-size: 12px;
+  background: var(--color-surface-muted, #F3F4F6);
+  padding: 2px 6px;
+  border-radius: 4px;
 }
 .demo-row {
   all: revert;

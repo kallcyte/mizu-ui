@@ -23,6 +23,7 @@ function addToast(color: string) {
   <div class="not-content demo-isolated demo-examples">
     <section class="example-section">
       <h3>Colors</h3>
+      <p class="demo-description">Display temporary notifications with the <code>color</code> prop — supports <code>success</code>, <code>error</code>, and <code>info</code>. Each toast has a <code>title</code> and <code>description</code>.</p>
       <CodeCollapsible :code="`<UToast
   v-for=&quot;toast in toasts&quot;
   :key=&quot;toast.id&quot;
@@ -47,6 +48,7 @@ function addToast(color: string) {
 
     <section class="example-section">
       <h3>With Actions</h3>
+      <p class="demo-description">Add interactive buttons to toasts via the <code>:actions</code> prop, useful for undo or dismiss operations.</p>
       <CodeCollapsible :code="`<UToast
   title=&quot;File saved&quot;
   description=&quot;Your changes have been saved.&quot;
@@ -81,6 +83,18 @@ function addToast(color: string) {
   font-weight: 600;
   color: var(--sl-color-text);
   margin: 0;
+}
+.demo-description {
+  font-size: 13px;
+  color: var(--sl-color-text-light);
+  margin: 0;
+  line-height: 1.5;
+}
+.demo-description code {
+  font-size: 12px;
+  background: var(--color-surface-muted, #F3F4F6);
+  padding: 2px 6px;
+  border-radius: 4px;
 }
 .demo-row {
   all: revert;

@@ -126,6 +126,7 @@ const builtinMinMaxCode = `<UInputTime
   <div class="not-content demo-isolated demo-examples">
     <section class="example-section">
       <h3>Basic</h3>
+      <p class="demo-description">A time picker using <code>Time</code> from @internationalized/date with <code>v-model</code> binding.</p>
       <CodeCollapsible :code="basicCode">
         <div class="demo-col">
           <UInputTime
@@ -138,6 +139,7 @@ const builtinMinMaxCode = `<UInputTime
 
     <section class="example-section">
       <h3>Time range</h3>
+      <p class="demo-description">Selects a start and end time pair with the <code>range</code> prop.</p>
       <CodeCollapsible :code="rangeCode">
         <div class="demo-col">
           <UInputTime
@@ -151,6 +153,7 @@ const builtinMinMaxCode = `<UInputTime
 
     <section class="example-section">
       <h3>Default value (uncontrolled)</h3>
+      <p class="demo-description">Sets an initial uncontrolled value with <code>default-value</code>.</p>
       <CodeCollapsible :code="defaultValueCode">
         <div class="demo-col">
           <UInputTime
@@ -163,6 +166,7 @@ const builtinMinMaxCode = `<UInputTime
 
     <section class="example-section">
       <h3>Hour Cycle</h3>
+      <p class="demo-description">Switches between 12-hour and 24-hour formats with <code>hour-cycle</code>.</p>
       <CodeCollapsible :code="hourCycleCode">
         <div class="demo-col">
           <UInputTime
@@ -179,6 +183,7 @@ const builtinMinMaxCode = `<UInputTime
 
     <section class="example-section">
       <h3>Color</h3>
+      <p class="demo-description">Semantic color themes applied with the <code>color</code> and <code>highlight</code> props.</p>
       <CodeCollapsible :code="colorCode">
         <div class="demo-row demo-row--wrap">
           <UInputTime color="primary" :hour-cycle="24" highlight />
@@ -194,6 +199,7 @@ const builtinMinMaxCode = `<UInputTime
 
     <section class="example-section">
       <h3>Variant</h3>
+      <p class="demo-description">Five visual variants: outline, soft, subtle, ghost, and none.</p>
       <CodeCollapsible :code="variantCode">
         <div class="demo-row demo-row--wrap">
           <UInputTime variant="outline" :hour-cycle="24" />
@@ -207,6 +213,7 @@ const builtinMinMaxCode = `<UInputTime
 
     <section class="example-section">
       <h3>Size</h3>
+      <p class="demo-description">Three size options: small, medium, and large.</p>
       <CodeCollapsible :code="sizeCode">
         <div class="demo-row demo-row--wrap">
           <UInputTime size="sm" :hour-cycle="24" />
@@ -218,6 +225,7 @@ const builtinMinMaxCode = `<UInputTime
 
     <section class="example-section">
       <h3>Icon</h3>
+      <p class="demo-description">Adds a leading icon with the <code>icon</code> prop.</p>
       <CodeCollapsible :code="iconCode">
         <div class="demo-col">
           <UInputTime
@@ -231,6 +239,7 @@ const builtinMinMaxCode = `<UInputTime
 
     <section class="example-section">
       <h3>Separator Icon</h3>
+      <p class="demo-description">Customizes the icon between range fields with <code>separator-icon</code>.</p>
       <CodeCollapsible :code="separatorCode">
         <div class="demo-col">
           <UInputTime
@@ -244,6 +253,7 @@ const builtinMinMaxCode = `<UInputTime
 
     <section class="example-section">
       <h3>Avatar</h3>
+      <p class="demo-description">Adds a leading avatar image with the <code>avatar</code> prop.</p>
       <CodeCollapsible :code="avatarCode">
         <div class="demo-col">
           <UInputTime
@@ -257,6 +267,7 @@ const builtinMinMaxCode = `<UInputTime
 
     <section class="example-section">
       <h3>Disabled</h3>
+      <p class="demo-description">Prevents user interaction with a muted appearance.</p>
       <CodeCollapsible :code="disabledCode">
         <div class="demo-col">
           <UInputTime
@@ -270,6 +281,7 @@ const builtinMinMaxCode = `<UInputTime
 
     <section class="example-section">
       <h3>Granularity</h3>
+      <p class="demo-description">Controls pickable precision: hour, minute, or second level.</p>
       <CodeCollapsible :code="granularityCode">
         <div class="demo-col">
           <UInputTime
@@ -293,6 +305,7 @@ const builtinMinMaxCode = `<UInputTime
 
     <section class="example-section">
       <h3>Form Field</h3>
+      <p class="demo-description">Wraps input in UFormField for label, helper text, and validation.</p>
       <CodeCollapsible :code="formFieldCode">
         <div class="demo-col">
           <UFormField label="Meeting time" helper="Select your preferred time slot">
@@ -304,6 +317,7 @@ const builtinMinMaxCode = `<UInputTime
 
     <section class="example-section">
       <h3>Step</h3>
+      <p class="demo-description">Snaps time values to 15-minute increments with <code>step</code> and <code>step-snapping</code>.</p>
       <CodeCollapsible :code="stepCode">
         <div class="demo-col">
           <UInputTime
@@ -318,6 +332,7 @@ const builtinMinMaxCode = `<UInputTime
 
     <section class="example-section">
       <h3>Readonly</h3>
+      <p class="demo-description">Read-only mode that displays the value without allowing edits.</p>
       <CodeCollapsible :code="readonlyCode">
         <div class="demo-col">
           <UInputTime
@@ -331,6 +346,7 @@ const builtinMinMaxCode = `<UInputTime
 
     <section class="example-section">
       <h3>Loading</h3>
+      <p class="demo-description">Shows a loading spinner to indicate a pending operation.</p>
       <CodeCollapsible :code="loadingCode">
         <div class="demo-col">
           <UInputTime
@@ -344,6 +360,7 @@ const builtinMinMaxCode = `<UInputTime
 
     <section class="example-section">
       <h3>Min / max</h3>
+      <p class="demo-description">Constrains the valid time range with <code>min-value</code> and <code>max-value</code>.</p>
       <CodeCollapsible :code="builtinMinMaxCode">
         <div class="demo-col">
           <UInputTime
@@ -378,6 +395,18 @@ const builtinMinMaxCode = `<UInputTime
   font-weight: 600;
   color: var(--sl-color-text);
   margin: 0;
+}
+.demo-description {
+  font-size: 13px;
+  color: var(--sl-color-text-light);
+  margin: 0;
+  line-height: 1.5;
+}
+.demo-description code {
+  font-size: 12px;
+  background: var(--color-surface-muted, #F3F4F6);
+  padding: 2px 6px;
+  border-radius: 4px;
 }
 .demo-row {
   all: revert;

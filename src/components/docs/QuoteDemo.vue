@@ -28,6 +28,7 @@ const multiParagraphCode = `<MizuQuote accent cite="APA Style">
   <div class="quote-examples">
     <section class="example-section">
       <h3>Basic</h3>
+      <p class="demo-description">Standard quote with left border indicator for simple citations.</p>
       <CodeCollapsible :code="basicCode">
         <MizuQuote>
           Design is not just what it looks like and feels like. Design is how it works.
@@ -37,6 +38,7 @@ const multiParagraphCode = `<MizuQuote accent cite="APA Style">
 
     <section class="example-section">
       <h3>With Cite</h3>
+      <p class="demo-description">Quote with attribution footer showing the author or source.</p>
       <CodeCollapsible :code="citeCode">
         <MizuQuote cite="Steve Jobs">
           Innovation distinguishes between a leader and a follower.
@@ -46,6 +48,7 @@ const multiParagraphCode = `<MizuQuote accent cite="APA Style">
 
     <section class="example-section">
       <h3>Accent Variant</h3>
+      <p class="demo-description">Accent styling with brand ycp border and subtle background for emphasis.</p>
       <CodeCollapsible :code="accentCode">
         <MizuQuote accent> The best design is the simplest one that works. </MizuQuote>
       </CodeCollapsible>
@@ -53,6 +56,7 @@ const multiParagraphCode = `<MizuQuote accent cite="APA Style">
 
     <section class="example-section">
       <h3>Accent With Cite</h3>
+      <p class="demo-description">Accent variant combined with attribution for prominent quotations.</p>
       <CodeCollapsible :code="accentCiteCode">
         <MizuQuote accent cite="Albert Einstein">
           Imagination is more important than knowledge. Knowledge is limited. Imagination encircles
@@ -63,6 +67,7 @@ const multiParagraphCode = `<MizuQuote accent cite="APA Style">
 
     <section class="example-section">
       <h3>Multi-paragraph</h3>
+      <p class="demo-description">Multi-paragraph quotes with proper spacing and formatting for longer citations.</p>
       <CodeCollapsible :code="multiParagraphCode">
         <MizuQuote accent cite="APA Style">
           <p>
@@ -102,5 +107,12 @@ const multiParagraphCode = `<MizuQuote accent cite="APA Style">
   font-weight: 600;
   color: var(--sl-color-text);
   margin: 0;
+}
+
+.demo-description {
+  font-size: 13px;
+  color: var(--sl-color-text-light);
+  margin: 0;
+  line-height: 1.5;
 }
 </style>

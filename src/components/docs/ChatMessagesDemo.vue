@@ -15,6 +15,7 @@ const status = ref("ready" as const);
   <div class="not-content demo-isolated demo-examples">
     <section class="example-section">
       <h3>Basic Message List</h3>
+      <p class="demo-description">Render a list of chat messages with alternating user and assistant roles.</p>
       <CodeCollapsible :code="`<UChatMessages
   :messages=&quot;messages&quot;
   status=&quot;ready&quot;
@@ -30,6 +31,7 @@ const status = ref("ready" as const);
 
     <section class="example-section">
       <h3>Streaming Status</h3>
+      <p class="demo-description">Show a loading indicator when the assistant is generating a response using the <code>status</code> prop.</p>
       <CodeCollapsible :code="`<UChatMessages
   :messages=&quot;messages&quot;
   status=&quot;streaming&quot;
@@ -45,6 +47,7 @@ const status = ref("ready" as const);
 
     <section class="example-section">
       <h3>With Custom User/Assistant Props</h3>
+      <p class="demo-description">Customize individual message styling with <code>:user</code> and <code>:assistant</code> prop objects.</p>
       <CodeCollapsible :code="`<UChatMessages
   :messages=&quot;messages&quot;
   :user=&quot;{ variant: 'soft', color: 'primary' }&quot;
@@ -83,6 +86,18 @@ const status = ref("ready" as const);
   font-weight: 600;
   color: var(--sl-color-text);
   margin: 0;
+}
+.demo-description {
+  font-size: 13px;
+  color: var(--sl-color-text-light);
+  margin: 0;
+  line-height: 1.5;
+}
+.demo-description code {
+  font-size: 12px;
+  background: var(--color-surface-muted, #F3F4F6);
+  padding: 2px 6px;
+  border-radius: 4px;
 }
 .demo-row {
   all: revert;

@@ -22,6 +22,7 @@ const verticalSteps = [
   <div class="not-content demo-isolated demo-examples">
     <section class="example-section">
       <h3>Horizontal (Linear)</h3>
+      <p class="demo-description">A step-by-step wizard with <code>v-model:step</code> for linear progression. Use <code>:items</code> to define step titles and descriptions.</p>
       <CodeCollapsible :code="`<UStepper
   :items=&quot;[
     { title: 'Account', description: 'Create your account' },
@@ -50,6 +51,7 @@ const verticalSteps = [
 
     <section class="example-section">
       <h3>Vertical</h3>
+      <p class="demo-description">Display steps in a vertical list using <code>orientation="vertical"</code>. Ideal for timelines or checklists.</p>
       <CodeCollapsible :code="`<UStepper
   :items=&quot;steps&quot;
   orientation=&quot;vertical&quot;
@@ -82,6 +84,18 @@ const verticalSteps = [
   font-weight: 600;
   color: var(--sl-color-text);
   margin: 0;
+}
+.demo-description {
+  font-size: 13px;
+  color: var(--sl-color-text-light);
+  margin: 0;
+  line-height: 1.5;
+}
+.demo-description code {
+  font-size: 12px;
+  background: var(--color-surface-muted, #F3F4F6);
+  padding: 2px 6px;
+  border-radius: 4px;
 }
 .demo-col {
   all: revert;

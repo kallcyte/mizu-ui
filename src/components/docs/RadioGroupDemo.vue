@@ -20,6 +20,7 @@ const sizes = ["SM", "MD", "LG", "XL"];
   <div class="not-content demo-isolated demo-examples">
     <section class="example-section">
       <h3>Basic</h3>
+      <p class="demo-description">A simple radio group bound with v-model, using string items and a legend for accessibility.</p>
       <CodeCollapsible :code="`<URadioGroup v-model=&quot;theme&quot; legend=&quot;Theme&quot; :items=&quot;['System', 'Light', 'Dark']&quot; />`">
         <div class="demo-col">
           <URadioGroup v-model="theme" legend="Theme" :items="themes" />
@@ -30,6 +31,7 @@ const sizes = ["SM", "MD", "LG", "XL"];
 
     <section class="example-section">
       <h3>Card Variant with Descriptions</h3>
+      <p class="demo-description">Card-style radio group using the <code>variant="card"</code> prop, with label and description for each option.</p>
       <CodeCollapsible :code="`<URadioGroup v-model=&quot;plan&quot; variant=&quot;card&quot; :items=&quot;plans&quot; />`">
         <div class="demo-col">
           <URadioGroup v-model="plan" variant="card" :items="plans" />
@@ -40,6 +42,7 @@ const sizes = ["SM", "MD", "LG", "XL"];
 
     <section class="example-section">
       <h3>Horizontal Orientation</h3>
+      <p class="demo-description">Radio group laid out horizontally using <code>orientation="horizontal"</code> instead of the default vertical layout.</p>
       <CodeCollapsible :code="`<URadioGroup v-model=&quot;size&quot; legend=&quot;Size&quot; orientation=&quot;horizontal&quot; :items=&quot;['SM', 'MD', 'LG', 'XL']&quot; />`">
         <div class="demo-col">
           <URadioGroup v-model="size" legend="Size" orientation="horizontal" :items="sizes" />
@@ -50,6 +53,7 @@ const sizes = ["SM", "MD", "LG", "XL"];
 
     <section class="example-section">
       <h3>Disabled</h3>
+      <p class="demo-description">A disabled radio group with <code>disabled</code> and <code>default-value</code> props, preventing user interaction.</p>
       <CodeCollapsible :code="`<URadioGroup disabled default-value=&quot;System&quot; :items=&quot;['System', 'Light', 'Dark']&quot; />`">
         <div class="demo-col">
           <URadioGroup disabled default-value="System" :items="themes" />
@@ -79,6 +83,18 @@ const sizes = ["SM", "MD", "LG", "XL"];
   font-weight: 600;
   color: var(--sl-color-text);
   margin: 0;
+}
+.demo-description {
+  font-size: 13px;
+  color: var(--sl-color-text-light);
+  margin: 0;
+  line-height: 1.5;
+}
+.demo-description code {
+  font-size: 12px;
+  background: var(--color-surface-muted, #F3F4F6);
+  padding: 2px 6px;
+  border-radius: 4px;
 }
 .demo-col {
   all: revert;

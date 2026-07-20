@@ -21,6 +21,7 @@ function validateEmail(val: string) {
   <div class="not-content demo-isolated demo-examples">
     <section class="example-section">
       <h3>Basic</h3>
+      <p class="demo-description">Wraps a form control with an accessible label using the <code>label</code> prop for structured form field display.</p>
       <CodeCollapsible :code="`<UFormField label=&quot;Email&quot;>
   <UInput placeholder=&quot;Enter your email&quot; class=&quot;w-full&quot; />
 </UFormField>`">
@@ -34,6 +35,7 @@ function validateEmail(val: string) {
 
     <section class="example-section">
       <h3>With Description &amp; Required</h3>
+      <p class="demo-description">Adds a <code>description</code> below the label and a <code>required</code> indicator for mandatory form fields.</p>
       <CodeCollapsible :code="`<UFormField label=&quot;Username&quot; description=&quot;Pick a unique name.&quot; required>
   <UInput placeholder=&quot;Enter username&quot; class=&quot;w-full&quot; />
 </UFormField>`">
@@ -47,6 +49,7 @@ function validateEmail(val: string) {
 
     <section class="example-section">
       <h3>Error State</h3>
+      <p class="demo-description">Displays an error message via the <code>:error</code> prop for inline validation feedback on user input.</p>
       <CodeCollapsible :code="`<UFormField label=&quot;Email&quot; :error=&quot;error&quot;>
   <UInput placeholder=&quot;Enter your email&quot; class=&quot;w-full&quot; />
 </UFormField>`">
@@ -67,6 +70,7 @@ function validateEmail(val: string) {
 
     <section class="example-section">
       <h3>With Help &amp; Hint</h3>
+      <p class="demo-description">Combines the <code>help</code> prop for detailed guidance text and the <code>hint</code> prop for supplementary label annotations like "Optional".</p>
       <CodeCollapsible :code="`<UFormField label=&quot;Bio&quot; hint=&quot;Optional&quot; help=&quot;Tell us a bit about yourself.&quot; size=&quot;lg&quot;>
   <UTextarea placeholder=&quot;Tell us about yourself&quot; class=&quot;w-full&quot; />
 </UFormField>`">
@@ -80,6 +84,7 @@ function validateEmail(val: string) {
 
     <section class="example-section">
       <h3>Horizontal Orientation</h3>
+      <p class="demo-description">Uses <code>orientation="horizontal"</code> to place the label and input side-by-side instead of the default stacked layout.</p>
       <CodeCollapsible :code="`<UFormField label=&quot;Name&quot; orientation=&quot;horizontal&quot; class=&quot;w-full&quot;>
   <UInput placeholder=&quot;Your name&quot; class=&quot;w-full&quot; />
 </UFormField>`">
@@ -113,6 +118,18 @@ function validateEmail(val: string) {
   font-weight: 600;
   color: var(--sl-color-text);
   margin: 0;
+}
+.demo-description {
+  font-size: 13px;
+  color: var(--sl-color-text-light);
+  margin: 0;
+  line-height: 1.5;
+}
+.demo-description code {
+  font-size: 12px;
+  background: var(--color-surface-muted, #F3F4F6);
+  padding: 2px 6px;
+  border-radius: 4px;
 }
 .demo-col {
   all: revert;

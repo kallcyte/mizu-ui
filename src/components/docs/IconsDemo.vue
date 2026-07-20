@@ -82,6 +82,7 @@ const sizeExample = `<UIcon name="i-ph-magnifying-glass" class="size-4" />
   <div class="icons-demo">
     <section class="example-section">
       <h3>Browse</h3>
+      <p class="demo-description">Search and browse the full icon library by name or alias, with collection filtering for quick discovery.</p>
       <div class="icons-demo__filters">
         <input v-model="search" type="search" placeholder="Search by name or alias..." class="icons-demo__search" />
         <select v-model="filter" class="icons-demo__select">
@@ -99,6 +100,7 @@ const sizeExample = `<UIcon name="i-ph-magnifying-glass" class="size-4" />
 
     <section class="example-section">
       <h3>Icon collections</h3>
+      <p class="demo-description">Mizu supports multiple icon collections via Iconify, with Phosphor as the default. Use the <code>i-{collection}-{name}</code> format with any collection.</p>
       <p class="example-note">
         Mizu uses <a href="https://iconify.design/" target="_blank" rel="noopener">Iconify</a>
         via Nuxt UI’s <code>&lt;UIcon&gt;</code>. Any Iconify collection is supported — use the
@@ -119,6 +121,7 @@ const sizeExample = `<UIcon name="i-ph-magnifying-glass" class="size-4" />
 
     <section class="example-section">
       <h3>Lucide → Phosphor mapping</h3>
+      <p class="demo-description">Mapping table to help port code from Lucide icon names to Mizu's Phosphor default equivalents.</p>
       <p class="example-note">
         Use this table when porting code or docs from Lucide-named icons to Mizu’s Phosphor default.
       </p>
@@ -152,6 +155,7 @@ const sizeExample = `<UIcon name="i-ph-magnifying-glass" class="size-4" />
 
     <section class="example-section">
       <h3>In a Button</h3>
+      <p class="demo-description">Use the <code>icon</code> and <code>trailing-icon</code> props on <code>UButton</code> to add icons before or after the button label.</p>
       <CodeCollapsible :code="buttonExample">
         <div class="demo-row">
           <UButton icon="i-ph-magnifying-glass" label="Search" />
@@ -163,6 +167,7 @@ const sizeExample = `<UIcon name="i-ph-magnifying-glass" class="size-4" />
 
     <section class="example-section">
       <h3>In an Input</h3>
+      <p class="demo-description">Use the <code>icon</code>, <code>leading-icon</code>, and <code>trailing-icon</code> props on <code>UInput</code> for decorated form fields with visual cues.</p>
       <CodeCollapsible :code="inputExample">
         <div class="demo-col">
           <UInput icon="i-ph-magnifying-glass" placeholder="Search..." />
@@ -174,6 +179,7 @@ const sizeExample = `<UIcon name="i-ph-magnifying-glass" class="size-4" />
 
     <section class="example-section">
       <h3>In a DropdownMenu</h3>
+      <p class="demo-description">Add icons to dropdown menu items via the <code>icon</code> property in the items array for scannable contextual actions.</p>
       <CodeCollapsible :code="dropdownExample">
         <div class="demo-row">
           <UDropdownMenu :items="[
@@ -190,6 +196,7 @@ const sizeExample = `<UIcon name="i-ph-magnifying-glass" class="size-4" />
 
     <section class="example-section">
       <h3>Standalone UIcon</h3>
+      <p class="demo-description">Render icons independently with the <code>UIcon</code> component using the <code>name</code> prop and Tailwind sizing and color utilities.</p>
       <CodeCollapsible :code="standaloneExample">
         <div class="demo-row">
           <UIcon name="i-ph-magnifying-glass" class="size-5" />
@@ -201,6 +208,7 @@ const sizeExample = `<UIcon name="i-ph-magnifying-glass" class="size-4" />
 
     <section class="example-section">
       <h3>Sizing with Tailwind</h3>
+      <p class="demo-description">Size icons with Tailwind utility classes like <code>size-4</code>, <code>size-5</code>, and <code>size-6</code> for consistent, precise icon dimensions.</p>
       <CodeCollapsible :code="sizeExample">
         <div class="demo-row items-end">
           <div class="flex flex-col items-center gap-1">
@@ -225,6 +233,18 @@ const sizeExample = `<UIcon name="i-ph-magnifying-glass" class="size-4" />
 .icons-demo { all: revert; display: flex; flex-direction: column; gap: 32px; font-family: inherit; }
 .example-section { all: revert; display: flex; flex-direction: column; gap: 12px; }
 .example-section h3 { all: revert; font-size: 14px; font-weight: 600; color: var(--sl-color-text); margin: 0; }
+.demo-description {
+  font-size: 13px;
+  color: var(--sl-color-text-light);
+  margin: 0;
+  line-height: 1.5;
+}
+.demo-description code {
+  font-size: 12px;
+  background: var(--color-surface-muted, #F3F4F6);
+  padding: 2px 6px;
+  border-radius: 4px;
+}
 .example-note { all: revert; font-size: 13px; color: var(--color-foreground-secondary, #4b5563); line-height: 1.6; margin: 0; }
 .example-note a { color: var(--color-brand-primary, #0070f2); text-decoration: none; }
 .example-note code, .icons-demo__name, .icons-demo__collection-prefix { all: revert; font-family: var(--font-family-mono, monospace); font-size: 12px; background: var(--color-surface-muted, #f3f4f6); padding: 1px 6px; border-radius: 4px; color: var(--color-foreground-primary, #001c44); }

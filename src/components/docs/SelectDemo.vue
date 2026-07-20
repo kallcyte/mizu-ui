@@ -30,6 +30,7 @@ function validateRequired() {
   <div class="not-content demo-isolated demo-examples">
     <section class="example-section">
       <h3>Usage</h3>
+      <p class="demo-description">Basic select component with v-model binding and an array of string items. Click to open the native dropdown.</p>
       <CodeCollapsible :code="`<script setup lang=&quot;ts&quot;>
 const items = ['Backlog', 'Todo', 'In Progress', 'Done']
 const value = ref('Backlog')
@@ -47,6 +48,7 @@ const value = ref('Backlog')
 
     <section class="example-section">
       <h3>Items (objects)</h3>
+      <p class="demo-description">Select using <code>SelectItem[]</code> objects with <code>label</code> and <code>value</code> properties for richer data.</p>
       <CodeCollapsible :code="`<script setup lang=&quot;ts&quot;>
 import type { SelectItem } from '@nuxt/ui'
 const items: SelectItem[] = [
@@ -69,6 +71,7 @@ const items: SelectItem[] = [
 
     <section class="example-section">
       <h3>Placeholder</h3>
+      <p class="demo-description">Use the <code>placeholder</code> prop to display guide text when no value is selected.</p>
       <CodeCollapsible code="<USelect :items=&quot;['Option 1', 'Option 2']&quot; class=&quot;w-full&quot; placeholder=&quot;Choose an option...&quot; />">
         <div class="demo-col">
           <USelect :items="['Option 1', 'Option 2']" class="w-full" placeholder="Choose an option..." />
@@ -78,6 +81,7 @@ const items: SelectItem[] = [
 
     <section class="example-section">
       <h3>Color</h3>
+      <p class="demo-description">Semantic color variants via the <code>color</code> prop: primary, success, error, and neutral for visual differentiation.</p>
       <CodeCollapsible :code="`<USelect color=&quot;primary&quot; :items=&quot;items&quot; class=&quot;w-full&quot; placeholder=&quot;Primary&quot; />
 <USelect color=&quot;success&quot; :items=&quot;items&quot; class=&quot;w-full&quot; placeholder=&quot;Success&quot; />
 <USelect color=&quot;error&quot; :items=&quot;items&quot; class=&quot;w-full&quot; placeholder=&quot;Error&quot; />
@@ -93,6 +97,7 @@ const items: SelectItem[] = [
 
     <section class="example-section">
       <h3>Variant</h3>
+      <p class="demo-description">Style variants via the <code>variant</code> prop: outline, soft, subtle, ghost, and none for different levels of visual prominence.</p>
       <CodeCollapsible :code="`<USelect variant=&quot;outline&quot; :items=&quot;items&quot; class=&quot;w-full&quot; placeholder=&quot;Outline&quot; />
 <USelect variant=&quot;soft&quot; :items=&quot;items&quot; class=&quot;w-full&quot; placeholder=&quot;Soft&quot; />
 <USelect variant=&quot;subtle&quot; :items=&quot;items&quot; class=&quot;w-full&quot; placeholder=&quot;Subtle&quot; />
@@ -110,6 +115,7 @@ const items: SelectItem[] = [
 
     <section class="example-section">
       <h3>Size</h3>
+      <p class="demo-description">Three sizes via the <code>size</code> prop: sm for compact layouts, md as default, and lg for prominent inputs.</p>
       <CodeCollapsible :code="`<USelect size=&quot;sm&quot; :items=&quot;items&quot; class=&quot;w-full&quot; placeholder=&quot;SM&quot; />
 <USelect size=&quot;md&quot; :items=&quot;items&quot; class=&quot;w-full&quot; placeholder=&quot;MD&quot; />
 <USelect size=&quot;lg&quot; :items=&quot;items&quot; class=&quot;w-full&quot; placeholder=&quot;LG&quot; />`">
@@ -123,6 +129,7 @@ const items: SelectItem[] = [
 
     <section class="example-section">
       <h3>Icon</h3>
+      <p class="demo-description">Leading and trailing icons via the <code>icon</code> and <code>trailing-icon</code> props for visual cues on the select trigger.</p>
       <CodeCollapsible :code="`<USelect icon=&quot;i-ph-magnifying-glass&quot; :items=&quot;items&quot; class=&quot;w-full&quot; placeholder=&quot;Search...&quot; />
 <USelect icon=&quot;i-ph-envelope&quot; :items=&quot;items&quot; class=&quot;w-full&quot; placeholder=&quot;Email&quot; trailing-icon=&quot;i-ph-check&quot; />`">
         <div class="demo-col">
@@ -134,6 +141,7 @@ const items: SelectItem[] = [
 
     <section class="example-section">
       <h3>Avatar</h3>
+      <p class="demo-description">Display an avatar on the select trigger using the <code>avatar</code> prop with a <code>src</code> and <code>size</code>.</p>
       <CodeCollapsible :code="`<USelect :avatar=&quot;{ src: 'https://github.com/nuxt.png', size: '2xs' }&quot; class=&quot;w-full&quot; placeholder=&quot;User&quot; />`">
         <div class="demo-col">
           <USelect :avatar="{ src: 'https://github.com/nuxt.png', size: '2xs' }" class="w-full" placeholder="User" />
@@ -143,6 +151,7 @@ const items: SelectItem[] = [
 
     <section class="example-section">
       <h3>Loading</h3>
+      <p class="demo-description">A loading state via the <code>loading</code> prop that shows a spinner while options are being fetched.</p>
       <CodeCollapsible :code="`<USelect loading :items=&quot;items&quot; class=&quot;w-full&quot; placeholder=&quot;Loading...&quot; />`">
         <div class="demo-col">
           <USelect loading :items="items" class="w-full" placeholder="Loading..." />
@@ -152,6 +161,7 @@ const items: SelectItem[] = [
 
     <section class="example-section">
       <h3>Checkmarked</h3>
+      <p class="demo-description">Use the <code>checkmarked</code> prop to show a checkmark indicator on the currently selected option in the dropdown.</p>
       <CodeCollapsible :code="`<USelect checkmarked :items=&quot;items&quot; class=&quot;w-full&quot; placeholder=&quot;Select a status...&quot; />`">
         <div class="demo-col">
           <USelect checkmarked :items="items" class="w-full" placeholder="Select a status..." />
@@ -161,6 +171,7 @@ const items: SelectItem[] = [
 
     <section class="example-section">
       <h3>Multiple</h3>
+      <p class="demo-description">Multi-select mode using the <code>multiple</code> prop, allowing selection of multiple values with checkboxes.</p>
       <CodeCollapsible :code="`<script setup lang=&quot;ts&quot;>
 const items = ['Backlog', 'Todo', 'In Progress', 'Done']
 const value = ref([])
@@ -178,6 +189,7 @@ const value = ref([])
 
     <section class="example-section">
       <h3>Searchable</h3>
+      <p class="demo-description">Use <code>USelectMenu</code> instead of <code>USelect</code> for a searchable dropdown with built-in filtering of options.</p>
       <CodeCollapsible :code="`<USelectMenu v-model=&quot;value&quot; :items=&quot;items&quot; class=&quot;w-full&quot; placeholder=&quot;Search...&quot; />`">
         <div class="demo-col">
           <USelectMenu v-model="searchableValue" :items="countries" class="w-full" placeholder="Search a country..." />
@@ -188,6 +200,7 @@ const value = ref([])
 
     <section class="example-section">
       <h3>Disabled</h3>
+      <p class="demo-description">A disabled select via the <code>disabled</code> prop, preventing user interaction and showing a muted appearance.</p>
       <CodeCollapsible code="<USelect disabled :items=&quot;['Option']&quot; class=&quot;w-full&quot; placeholder=&quot;Disabled&quot; />">
         <div class="demo-col">
           <USelect disabled :items="['Option']" class="w-full" placeholder="Disabled" />
@@ -197,6 +210,7 @@ const value = ref([])
 
     <section class="example-section">
       <h3>With label and help</h3>
+      <p class="demo-description">Wrap the select in <code>UFormField</code> with a <code>label</code> and <code>help</code> prop for accessible form layout.</p>
       <CodeCollapsible :code="`<UFormField label=&quot;Country&quot; help=&quot;Select your country of residence&quot;>
   <USelect class=&quot;w-full&quot; :items=&quot;countries&quot; placeholder=&quot;Choose a country&quot; />
 </UFormField>`">
@@ -210,6 +224,7 @@ const value = ref([])
 
     <section class="example-section">
       <h3>Required field</h3>
+      <p class="demo-description">Form validation with a required indicator, error state, and blur validation using <code>UFormField</code>.</p>
       <CodeCollapsible :code="`<UFormField :error=&quot;error || undefined&quot; :help=&quot;touched && !error ? 'Looks good!' : undefined&quot;>
   <template #label>
     Role <span class=&quot;text-red-500&quot;>*</span>
@@ -263,6 +278,18 @@ const value = ref([])
   font-weight: 600;
   color: var(--sl-color-text);
   margin: 0;
+}
+.demo-description {
+  font-size: 13px;
+  color: var(--sl-color-text-light);
+  margin: 0;
+  line-height: 1.5;
+}
+.demo-description code {
+  font-size: 12px;
+  background: var(--color-surface-muted, #F3F4F6);
+  padding: 2px 6px;
+  border-radius: 4px;
 }
 .demo-col {
   all: revert;

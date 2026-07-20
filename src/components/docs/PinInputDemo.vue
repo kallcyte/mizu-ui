@@ -24,6 +24,7 @@ const maskedCode = `<UPinInput
   <div class="not-content demo-isolated demo-examples">
     <section class="example-section">
       <h3>Basic pin input</h3>
+      <p class="demo-description">A 5-character pin input with <code>v-model</code> binding and a custom placeholder character for each digit.</p>
       <CodeCollapsible :code="basicCode">
         <div class="demo-row">
           <UPinInput
@@ -37,6 +38,7 @@ const maskedCode = `<UPinInput
 
     <section class="example-section">
       <h3>Masked OTP input</h3>
+      <p class="demo-description">A 6-character OTP input with <code>mask</code> for hidden characters and <code>otp</code> for autocomplete support.</p>
       <CodeCollapsible :code="maskedCode">
         <div class="demo-row">
           <UPinInput
@@ -72,6 +74,18 @@ const maskedCode = `<UPinInput
   font-weight: 600;
   color: var(--sl-color-text);
   margin: 0;
+}
+.demo-description {
+  font-size: 13px;
+  color: var(--sl-color-text-light);
+  margin: 0;
+  line-height: 1.5;
+}
+.demo-description code {
+  font-size: 12px;
+  background: var(--color-surface-muted, #F3F4F6);
+  padding: 2px 6px;
+  border-radius: 4px;
 }
 .demo-row {
   all: revert;

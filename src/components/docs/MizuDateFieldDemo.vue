@@ -72,6 +72,7 @@ const styleOptions = [
   <div class="not-content demo-isolated demo-examples">
     <section class="example-section">
       <h3>Basic</h3>
+      <p class="demo-description">Basic date field with compact style showing selected date and model value.</p>
       <CodeCollapsible :code="basicCode">
         <div class="demo-col">
           <MizuDateField v-model="date" date-style="compact" />
@@ -82,6 +83,7 @@ const styleOptions = [
 
     <section class="example-section">
       <h3>Date style presets</h3>
+      <p class="demo-description">Five date display styles from short numeric to full written format.</p>
       <CodeCollapsible :code="allStylesCode">
         <div class="demo-col">
           <div class="demo-row"><MizuDateField v-model="date" date-style="short" /><span class="yield">modelValue: {{ yieldSingle }}</span></div>
@@ -95,6 +97,7 @@ const styleOptions = [
 
     <section class="example-section">
       <h3>Interactive style picker</h3>
+      <p class="demo-description">Dynamic style selection showing real-time format changes with a dropdown menu.</p>
       <CodeCollapsible :code="pickerCode">
         <div class="demo-col">
           <div class="demo-row">
@@ -117,6 +120,7 @@ const styleOptions = [
 
     <section class="example-section">
       <h3>Date range</h3>
+      <p class="demo-description">Date range selection with start and end dates displayed as an interval.</p>
       <CodeCollapsible :code="rangeCode">
         <div class="demo-col">
           <MizuDateField v-model="rangeDate" range date-style="compact" />
@@ -127,6 +131,7 @@ const styleOptions = [
 
     <section class="example-section">
       <h3>Custom format</h3>
+      <p class="demo-description">Custom date formatting using Intl.DateTimeFormat options for full control.</p>
       <CodeCollapsible :code="customFormatCode">
         <div class="demo-col">
           <MizuDateField
@@ -140,6 +145,7 @@ const styleOptions = [
 
     <section class="example-section">
       <h3>Locale</h3>
+      <p class="demo-description">Locale-aware date formatting for internationalization support.</p>
       <CodeCollapsible :code="localeCode">
         <div class="demo-col">
           <MizuDateField v-model="customDate" date-style="full" locale="de-DE" />
@@ -170,6 +176,12 @@ const styleOptions = [
   font-weight: 600;
   color: var(--sl-color-text);
   margin: 0;
+}
+.demo-description {
+  font-size: 13px;
+  color: var(--sl-color-text-light);
+  margin: 0;
+  line-height: 1.5;
 }
 .demo-col {
   all: revert;

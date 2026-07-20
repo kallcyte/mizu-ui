@@ -9,6 +9,7 @@ const prompt = ref("");
   <div class="not-content demo-isolated demo-examples">
     <section class="example-section">
       <h3>Basic Prompt</h3>
+      <p class="demo-description">Standard chat input with v-model binding and placeholder for user messages.</p>
       <CodeCollapsible :code="`<UChatPrompt
   v-model=&quot;prompt&quot;
   placeholder=&quot;Ask a question...&quot;
@@ -24,6 +25,7 @@ const prompt = ref("");
 
     <section class="example-section">
       <h3>Variants</h3>
+      <p class="demo-description">Soft and subtle visual variants for different chat interface styles.</p>
       <CodeCollapsible :code="`<UChatPrompt variant=&quot;soft&quot; placeholder=&quot;Soft variant...&quot; />
 <UChatPrompt variant=&quot;subtle&quot; placeholder=&quot;Subtle variant...&quot; />`">
         <div class="demo-row demo-chat-row">
@@ -35,6 +37,7 @@ const prompt = ref("");
 
     <section class="example-section">
       <h3>Disabled</h3>
+      <p class="demo-description">Prevent user interaction with the <code>disabled</code> prop when chat is unavailable.</p>
       <CodeCollapsible :code="`<UChatPrompt
   v-model=&quot;prompt&quot;
   placeholder=&quot;Chat is disabled...&quot;
@@ -52,6 +55,7 @@ const prompt = ref("");
 
     <section class="example-section">
       <h3>With Icon</h3>
+      <p class="demo-description">Add a leading icon for visual context using the <code>icon</code> prop.</p>
       <CodeCollapsible :code="`<UChatPrompt
   v-model=&quot;prompt&quot;
   placeholder=&quot;Type your message...&quot;
@@ -89,6 +93,18 @@ const prompt = ref("");
   font-weight: 600;
   color: var(--sl-color-text);
   margin: 0;
+}
+.demo-description {
+  font-size: 13px;
+  color: var(--sl-color-text-light);
+  margin: 0;
+  line-height: 1.5;
+}
+.demo-description code {
+  font-size: 12px;
+  background: var(--color-surface-muted, #F3F4F6);
+  padding: 2px 6px;
+  border-radius: 4px;
 }
 .demo-row {
   all: revert;

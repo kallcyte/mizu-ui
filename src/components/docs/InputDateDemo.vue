@@ -114,6 +114,7 @@ const dateRangePickerCode = `<UPopover>
   <div class="not-content demo-isolated demo-examples">
     <section class="example-section example-section--locale">
       <h3>Locale</h3>
+      <p class="demo-description">Switch between locales to see how the <code>locale</code> prop changes date format rendering (DD/MM/YYYY, MM/DD/YYYY, etc.) in real time.</p>
       <p class="locale-hint">Switch the locale to see how the date format changes in real time.</p>
       <CodeCollapsible :code="localeDemoCode">
         <div class="locale-controls">
@@ -133,6 +134,7 @@ const dateRangePickerCode = `<UPopover>
 
     <section class="example-section">
       <h3>Basic</h3>
+      <p class="demo-description">Two-way date input with <code>v-model</code> binding using <code>CalendarDate</code> from <code>@internationalized/date</code>.</p>
       <CodeCollapsible :code="basicCode">
         <div class="demo-col">
           <UInputDate v-model="singleDate" />
@@ -142,6 +144,7 @@ const dateRangePickerCode = `<UPopover>
 
     <section class="example-section">
       <h3>Default value (uncontrolled)</h3>
+      <p class="demo-description">Set an initial date via the <code>:default-value</code> prop without two-way binding for uncontrolled usage.</p>
       <CodeCollapsible :code="defaultValueCode">
         <div class="demo-col">
           <UInputDate :default-value="defaultDate" />
@@ -151,6 +154,7 @@ const dateRangePickerCode = `<UPopover>
 
     <section class="example-section">
       <h3>Range</h3>
+      <p class="demo-description">Enable date range selection with the <code>range</code> prop, accepting a start and end date object via <code>v-model</code>.</p>
       <CodeCollapsible :code="rangeCode">
         <div class="demo-col">
           <UInputDate v-model="dateRange" range />
@@ -160,6 +164,7 @@ const dateRangePickerCode = `<UPopover>
 
     <section class="example-section">
       <h3>Disabled</h3>
+      <p class="demo-description">Prevents user interaction using the <code>disabled</code> prop, graying out the input and blocking the calendar popup.</p>
       <CodeCollapsible :code="disabledCode">
         <div class="demo-col">
           <UInputDate disabled />
@@ -169,6 +174,7 @@ const dateRangePickerCode = `<UPopover>
 
     <section class="example-section">
       <h3>Color</h3>
+      <p class="demo-description">Seven semantic color variants: primary, secondary, success, info, warning, error, and neutral via the <code>color</code> prop.</p>
       <CodeCollapsible :code="colorCode">
         <div class="demo-row demo-row--wrap">
           <UInputDate color="primary" />
@@ -184,6 +190,7 @@ const dateRangePickerCode = `<UPopover>
 
     <section class="example-section">
       <h3>Variant</h3>
+      <p class="demo-description">Five visual styles via the <code>variant</code> prop: outline (default), soft, subtle, ghost, and none.</p>
       <CodeCollapsible :code="variantCode">
         <div class="demo-row demo-row--wrap">
           <UInputDate variant="outline" />
@@ -197,6 +204,7 @@ const dateRangePickerCode = `<UPopover>
 
     <section class="example-section">
       <h3>Size</h3>
+      <p class="demo-description">Five size options from extra-small to extra-large: xs, sm, md, lg, and xl via the <code>size</code> prop.</p>
       <CodeCollapsible :code="sizeCode">
         <div class="demo-row demo-row--wrap">
           <UInputDate size="xs" />
@@ -210,6 +218,7 @@ const dateRangePickerCode = `<UPopover>
 
     <section class="example-section">
       <h3>Icon</h3>
+      <p class="demo-description">Add a leading calendar icon with the <code>icon</code> prop to provide a visual affordance for date input.</p>
       <CodeCollapsible :code="iconCode">
         <div class="demo-col">
           <UInputDate icon="i-lucide-calendar" />
@@ -219,6 +228,7 @@ const dateRangePickerCode = `<UPopover>
 
     <section class="example-section">
       <h3>Separator Icon</h3>
+      <p class="demo-description">Customize the separator between range dates using the <code>separator-icon</code> prop, defaulting to an arrow.</p>
       <CodeCollapsible :code="separatorCode">
         <div class="demo-col">
           <UInputDate range separator-icon="i-lucide-arrow-right" />
@@ -228,6 +238,7 @@ const dateRangePickerCode = `<UPopover>
 
     <section class="example-section">
       <h3>Unavailable dates (weekends blocked)</h3>
+      <p class="demo-description">Block specific dates from selection using the <code>:is-date-unavailable</code> callback prop, such as disabling weekends.</p>
       <CodeCollapsible :code="unavailableCode">
         <div class="demo-col">
           <UInputDate v-model="unavailableDate" :is-date-unavailable="isWeekend" />
@@ -237,6 +248,7 @@ const dateRangePickerCode = `<UPopover>
 
     <section class="example-section">
       <h3>Min / max dates</h3>
+      <p class="demo-description">Constrain the selectable date range with <code>:min-value</code> and <code>:max-value</code> props to limit the user's date choices.</p>
       <CodeCollapsible :code="minMaxCode">
         <div class="demo-col">
           <UInputDate v-model="minMaxDate" :min-value="minValue" :max-value="maxValue" />
@@ -246,6 +258,7 @@ const dateRangePickerCode = `<UPopover>
 
     <section class="example-section">
       <h3>Date picker (Popover + Calendar)</h3>
+      <p class="demo-description">Combine an <code>UInputDate</code> with a <code>UPopover</code> and <code>UCalendar</code> to create a full-featured date picker with a popup calendar.</p>
       <CodeCollapsible :code="datePickerCode">
         <div class="demo-col">
           <UPopover>
@@ -260,6 +273,7 @@ const dateRangePickerCode = `<UPopover>
 
     <section class="example-section">
       <h3>Date range picker (Popover + Calendar)</h3>
+      <p class="demo-description">Pair a range-mode <code>UInputDate</code> with a <code>UPopover</code> and range <code>UCalendar</code> for start-to-end date range picking.</p>
       <CodeCollapsible :code="dateRangePickerCode">
         <div class="demo-col">
           <UPopover>
@@ -294,6 +308,18 @@ const dateRangePickerCode = `<UPopover>
   font-weight: 600;
   color: var(--sl-color-text);
   margin: 0;
+}
+.demo-description {
+  font-size: 13px;
+  color: var(--sl-color-text-light);
+  margin: 0;
+  line-height: 1.5;
+}
+.demo-description code {
+  font-size: 12px;
+  background: var(--color-surface-muted, #F3F4F6);
+  padding: 2px 6px;
+  border-radius: 4px;
 }
 .demo-col {
   all: revert;

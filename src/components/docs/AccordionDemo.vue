@@ -58,6 +58,7 @@ const active = ref("");
   <div class="accordion-examples">
     <section class="example-section">
       <h3>Single (Default)</h3>
+      <p class="demo-description">Only one item can be open at a time. Opening another item automatically closes the previous one.</p>
       <CodeCollapsible :code="singleCode">
         <div class="demo-row">
           <UAccordion :items="items" class="w-full" />
@@ -67,6 +68,7 @@ const active = ref("");
 
     <section class="example-section">
       <h3>Multiple</h3>
+      <p class="demo-description">Allow multiple items to be open simultaneously using the <code>type="multiple"</code> prop.</p>
       <CodeCollapsible :code="multipleCode">
         <div class="demo-row">
           <UAccordion type="multiple" :items="items" class="w-full" />
@@ -76,6 +78,7 @@ const active = ref("");
 
     <section class="example-section">
       <h3>Default Open</h3>
+      <p class="demo-description">Specify an item to be open by default using the <code>default-value</code> prop.</p>
       <CodeCollapsible :code="defaultOpenCode">
         <div class="demo-row">
           <UAccordion :items="items" default-value="config" class="w-full" />
@@ -85,6 +88,7 @@ const active = ref("");
 
     <section class="example-section">
       <h3>Not Collapsible</h3>
+      <p class="demo-description">Prevent all items from being collapsed by setting <code>:collapsible="false"</code>. At least one item stays open.</p>
       <CodeCollapsible :code="collapsibleCode">
         <div class="demo-row">
           <UAccordion :items="items" :collapsible="false" class="w-full" />
@@ -94,6 +98,7 @@ const active = ref("");
 
     <section class="example-section">
       <h3>Unmount on Hide</h3>
+      <p class="demo-description">Keep content mounted in the DOM when collapsed by setting <code>:unmount-on-hide="false"</code>.</p>
       <CodeCollapsible :code="unmountCode">
         <div class="demo-row">
           <UAccordion :items="items" :unmount-on-hide="false" class="w-full" />
@@ -103,6 +108,7 @@ const active = ref("");
 
     <section class="example-section">
       <h3>Control Active Items</h3>
+      <p class="demo-description">Programmatically control which items are active using <code>v-model</code> binding.</p>
       <CodeCollapsible :code="controlCode">
         <div class="demo-row">
           <UAccordion v-model="active" :items="items" class="w-full" />
@@ -112,6 +118,7 @@ const active = ref("");
 
     <section class="example-section">
       <h3>Trailing Icon</h3>
+      <p class="demo-description">Customize the expand/collapse icon using the <code>#trailing</code> slot with conditional rendering based on open state.</p>
       <CodeCollapsible :code="trailingIconCode">
         <div class="demo-row">
           <UAccordion :items="items" class="w-full">
@@ -125,6 +132,7 @@ const active = ref("");
 
     <section class="example-section">
       <h3>Content Slot</h3>
+      <p class="demo-description">Override the content area for each item using the <code>#content</code> slot with custom styling.</p>
       <CodeCollapsible :code="contentSlotCode">
         <div class="demo-row">
           <UAccordion :items="items" class="w-full">
@@ -140,6 +148,7 @@ const active = ref("");
 
     <section class="example-section">
       <h3>Custom Slots</h3>
+      <p class="demo-description">Full customization with leading icons, custom body content, and item-specific data.</p>
       <CodeCollapsible :code="customSlotCode">
         <div class="demo-row">
           <UAccordion :items="itemsWithIcons" class="w-full">
@@ -158,6 +167,7 @@ const active = ref("");
 
     <section class="example-section">
       <h3>Disabled</h3>
+      <p class="demo-description">Disable the entire accordion to prevent user interaction.</p>
       <CodeCollapsible code="<UAccordion :items=&quot;items&quot; disabled />">
         <div class="demo-row">
           <UAccordion :items="items" disabled class="w-full" />
@@ -190,6 +200,18 @@ const active = ref("");
   font-weight: 600;
   color: var(--sl-color-text);
   margin: 0;
+}
+.demo-description {
+  font-size: 13px;
+  color: var(--sl-color-text-light);
+  margin: 0;
+  line-height: 1.5;
+}
+.demo-description code {
+  font-size: 12px;
+  background: var(--color-surface-muted, #F3F4F6);
+  padding: 2px 6px;
+  border-radius: 4px;
 }
 .demo-row {
   all: revert;

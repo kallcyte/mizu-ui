@@ -6,6 +6,7 @@ import CodeCollapsible from "./CodeCollapsible.vue";
   <div class="not-content demo-isolated demo-examples">
     <section class="example-section">
       <h3>Sizes</h3>
+      <p class="demo-description">Three size options: <code>sm</code>, <code>md</code>, and <code>lg</code>, demonstrated with a notification badge on a mail button.</p>
       <CodeCollapsible :code="`<UChip size=&quot;sm&quot; text=&quot;5&quot;>
   <UButton icon=&quot;i-lucide-mail&quot; color=&quot;neutral&quot; variant=&quot;subtle&quot; />
 </UChip>
@@ -31,6 +32,7 @@ import CodeCollapsible from "./CodeCollapsible.vue";
 
     <section class="example-section">
       <h3>Colors</h3>
+      <p class="demo-description">Four color variants: <code>primary</code>, <code>secondary</code>, <code>success</code>, and <code>error</code> for different semantic contexts.</p>
       <CodeCollapsible :code="`<UChip color=&quot;primary&quot; text=&quot;5&quot;>
   <UButton icon=&quot;i-lucide-mail&quot; color=&quot;neutral&quot; variant=&quot;subtle&quot; />
 </UChip>
@@ -59,6 +61,7 @@ import CodeCollapsible from "./CodeCollapsible.vue";
 
     <section class="example-section">
       <h3>Positions</h3>
+      <p class="demo-description">Four corner positions: <code>top-right</code>, <code>top-left</code>, <code>bottom-right</code>, and <code>bottom-left</code> using the <code>position</code> prop.</p>
       <CodeCollapsible :code="`<UChip position=&quot;top-right&quot; text=&quot;5&quot;>
   <UButton icon=&quot;i-lucide-mail&quot; color=&quot;neutral&quot; variant=&quot;subtle&quot; />
 </UChip>
@@ -90,6 +93,7 @@ import CodeCollapsible from "./CodeCollapsible.vue";
 
     <section class="example-section">
       <h3>Inset</h3>
+      <p class="demo-description">Overlaps an avatar with the <code>inset</code> prop for notification badges on user images.</p>
       <CodeCollapsible :code="`<UChip inset text=&quot;3&quot;>
   <UAvatar src=&quot;https://i.pravatar.cc/80&quot; alt=&quot;User&quot; />
 </UChip>`">
@@ -109,6 +113,7 @@ import CodeCollapsible from "./CodeCollapsible.vue";
 
     <section class="example-section">
       <h3>Standalone</h3>
+      <p class="demo-description">Chips rendered without a slotted element using the <code>standalone</code> prop for independent badge display.</p>
       <CodeCollapsible :code="`<UChip standalone text=&quot;4&quot; />
 <UChip standalone text=&quot;99+&quot; color=&quot;primary&quot; />
 <UChip standalone color=&quot;error&quot; />`">
@@ -142,6 +147,18 @@ import CodeCollapsible from "./CodeCollapsible.vue";
   font-weight: 600;
   color: var(--sl-color-text);
   margin: 0;
+}
+.demo-description {
+  font-size: 13px;
+  color: var(--sl-color-text-light);
+  margin: 0;
+  line-height: 1.5;
+}
+.demo-description code {
+  font-size: 12px;
+  background: var(--color-surface-muted, #F3F4F6);
+  padding: 2px 6px;
+  border-radius: 4px;
 }
 .demo-row {
   all: revert;

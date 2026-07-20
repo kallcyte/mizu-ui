@@ -6,6 +6,7 @@ import CodeCollapsible from "./CodeCollapsible.vue";
   <div class="not-content demo-isolated demo-examples">
     <section class="example-section">
       <h3>Title</h3>
+      <p class="demo-description">Simple banner with title text for displaying important messages at the top of pages.</p>
       <CodeCollapsible :code="`<UBanner title=&quot;This is a banner with an important message.&quot; />`">
         <div class="demo-row demo-row--block">
           <UBanner title="This is a banner with an important message." />
@@ -15,6 +16,7 @@ import CodeCollapsible from "./CodeCollapsible.vue";
 
     <section class="example-section">
       <h3>With Icon</h3>
+      <p class="demo-description">Add a leading icon for visual context and improved accessibility.</p>
       <CodeCollapsible :code="`<UBanner icon=&quot;i-lucide-info&quot; title=&quot;This is a banner with an icon.&quot; />`">
         <div class="demo-row demo-row--block">
           <UBanner icon="i-lucide-info" title="This is a banner with an icon." />
@@ -24,6 +26,7 @@ import CodeCollapsible from "./CodeCollapsible.vue";
 
     <section class="example-section">
       <h3>Colors</h3>
+      <p class="demo-description">Semantic color variants for different message types: primary, success, warning, error, and neutral.</p>
       <CodeCollapsible :code="`<UBanner color=&quot;primary&quot; icon=&quot;i-lucide-info&quot; title=&quot;Primary banner&quot; />
 <UBanner color=&quot;success&quot; icon=&quot;i-lucide-check-circle&quot; title=&quot;Success banner&quot; />
 <UBanner color=&quot;warning&quot; icon=&quot;i-lucide-alert-triangle&quot; title=&quot;Warning banner&quot; />
@@ -41,6 +44,7 @@ import CodeCollapsible from "./CodeCollapsible.vue";
 
     <section class="example-section">
       <h3>Closable</h3>
+      <p class="demo-description">Add a dismiss button with the <code>close</code> prop so users can hide the banner.</p>
       <CodeCollapsible :code="`<UBanner id=&quot;demo&quot; title=&quot;This is a closable banner.&quot; close />`">
         <div class="demo-row demo-row--block">
           <UBanner id="demo-close" title="This is a closable banner. Click the X to dismiss." close />
@@ -50,6 +54,7 @@ import CodeCollapsible from "./CodeCollapsible.vue";
 
     <section class="example-section">
       <h3>With Actions</h3>
+      <p class="demo-description">Add interactive action buttons using the <code>:actions</code> prop for banners requiring user input.</p>
       <CodeCollapsible :code="`<UBanner
   icon=&quot;i-lucide-info&quot;
   title=&quot;This is a banner with actions.&quot;
@@ -67,6 +72,7 @@ import CodeCollapsible from "./CodeCollapsible.vue";
 
     <section class="example-section">
       <h3>Link</h3>
+      <p class="demo-description">Turn the banner into a clickable link using the <code>to</code> and <code>target</code> props.</p>
       <CodeCollapsible :code="`<UBanner to=&quot;https://example.com&quot; target=&quot;_blank&quot; title=&quot;Click here to learn more.&quot; color=&quot;primary&quot; />`">
         <div class="demo-row demo-row--block">
           <UBanner to="https://example.com" target="_blank" title="Click here to learn more." color="primary" />
@@ -96,6 +102,18 @@ import CodeCollapsible from "./CodeCollapsible.vue";
   font-weight: 600;
   color: var(--sl-color-text);
   margin: 0;
+}
+.demo-description {
+  font-size: 13px;
+  color: var(--sl-color-text-light);
+  margin: 0;
+  line-height: 1.5;
+}
+.demo-description code {
+  font-size: 12px;
+  background: var(--color-surface-muted, #F3F4F6);
+  padding: 2px 6px;
+  border-radius: 4px;
 }
 .demo-row {
   all: revert;

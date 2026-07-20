@@ -101,6 +101,7 @@ function onSearch(q: string) {
   <div class="not-content demo-isolated demo-examples">
     <section class="example-section">
       <h3>Basic autocomplete</h3>
+      <p class="demo-description">Search and select items from a list with <code>search-term</code> enabled, custom item templates via the <code>#item</code> slot, and <code>value-key</code>/<code>label-key</code> for object arrays.</p>
       <CodeCollapsible :code="autocompleteCode">
         <div class="demo-col">
           <UInputMenu class="w-full"
@@ -128,6 +129,7 @@ function onSearch(q: string) {
 
     <section class="example-section">
       <h3>Multiple selection</h3>
+      <p class="demo-description">Select multiple items with the <code>multiple</code> prop, using <code>#item-leading</code> and <code>#item-description</code> slots for rich item display.</p>
       <CodeCollapsible :code="multipleCode">
         <div class="demo-col">
           <UInputMenu class="w-full"
@@ -151,6 +153,7 @@ function onSearch(q: string) {
 
     <section class="example-section">
       <h3>Loading (async)</h3>
+      <p class="demo-description">Handle async search with the <code>:loading</code> prop and <code>@update:search-term</code> event for server-side or debounced filtering.</p>
       <CodeCollapsible :code="loadingCode">
         <div class="demo-col">
           <UInputMenu class="w-full"
@@ -188,6 +191,18 @@ function onSearch(q: string) {
   font-weight: 600;
   color: var(--sl-color-text);
   margin: 0;
+}
+.demo-description {
+  font-size: 13px;
+  color: var(--sl-color-text-light);
+  margin: 0;
+  line-height: 1.5;
+}
+.demo-description code {
+  font-size: 12px;
+  background: var(--color-surface-muted, #F3F4F6);
+  padding: 2px 6px;
+  border-radius: 4px;
 }
 .demo-col {
   all: revert;

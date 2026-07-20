@@ -38,6 +38,7 @@ const placeholderCode = `<UEditor v-model="placeholderValue" placeholder="Start 
   <div class="not-content demo-isolated demo-examples">
     <section class="example-section">
       <h3>Rich text editor (HTML)</h3>
+      <p class="demo-description">A full-featured rich text editor that accepts and outputs HTML content by default, supporting common formatting like headings, paragraphs, bold, and blockquotes.</p>
       <CodeCollapsible :code="basicCode">
         <div class="demo-col">
           <UEditor v-model="htmlValue" class="w-full min-h-36" />
@@ -51,6 +52,7 @@ const placeholderCode = `<UEditor v-model="placeholderValue" placeholder="Start 
 
     <section class="example-section">
       <h3>JSON content type</h3>
+      <p class="demo-description">Accepts and returns structured <code>JSONContent</code> objects using the <code>content-type="json"</code> prop, useful for programmatic content manipulation.</p>
       <CodeCollapsible :code="jsonCode">
         <div class="demo-col">
           <UEditor v-model="jsonValue" content-type="json" class="w-full min-h-28" />
@@ -60,6 +62,7 @@ const placeholderCode = `<UEditor v-model="placeholderValue" placeholder="Start 
 
     <section class="example-section">
       <h3>With placeholder</h3>
+      <p class="demo-description">Shows a custom placeholder text when the editor is empty using the <code>placeholder</code> prop.</p>
       <CodeCollapsible :code="placeholderCode">
         <div class="demo-col">
           <UEditor
@@ -93,6 +96,18 @@ const placeholderCode = `<UEditor v-model="placeholderValue" placeholder="Start 
   font-weight: 600;
   color: var(--sl-color-text);
   margin: 0;
+}
+.demo-description {
+  font-size: 13px;
+  color: var(--sl-color-text-light);
+  margin: 0;
+  line-height: 1.5;
+}
+.demo-description code {
+  font-size: 12px;
+  background: var(--color-surface-muted, #F3F4F6);
+  padding: 2px 6px;
+  border-radius: 4px;
 }
 .demo-row {
   all: revert;

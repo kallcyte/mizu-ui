@@ -12,6 +12,7 @@ const assistantParts = ref([
   <div class="not-content demo-isolated demo-examples">
     <section class="example-section">
       <h3>User Message</h3>
+      <p class="demo-description">Right-aligned user message with soft variant and optional avatar.</p>
       <CodeCollapsible :code="`<UChatMessage
   id=&quot;msg-1&quot;
   role=&quot;user&quot;
@@ -33,6 +34,7 @@ const assistantParts = ref([
 
     <section class="example-section">
       <h3>Assistant Message</h3>
+      <p class="demo-description">Left-aligned assistant message with default subtle styling.</p>
       <CodeCollapsible :code="`<UChatMessage
   id=&quot;msg-2&quot;
   role=&quot;assistant&quot;
@@ -52,6 +54,7 @@ const assistantParts = ref([
 
     <section class="example-section">
       <h3>With Avatar</h3>
+      <p class="demo-description">Display user avatar alongside the message using the <code>:avatar</code> prop.</p>
       <CodeCollapsible :code="`<UChatMessage
   id=&quot;msg-3&quot;
   role=&quot;user&quot;
@@ -75,6 +78,7 @@ const assistantParts = ref([
 
     <section class="example-section">
       <h3>Compact</h3>
+      <p class="demo-description">Reduce padding and spacing with the <code>compact</code> prop for dense chat layouts.</p>
       <CodeCollapsible :code="`<UChatMessage
   id=&quot;msg-4&quot;
   role=&quot;assistant&quot;
@@ -114,6 +118,18 @@ const assistantParts = ref([
   font-weight: 600;
   color: var(--sl-color-text);
   margin: 0;
+}
+.demo-description {
+  font-size: 13px;
+  color: var(--sl-color-text-light);
+  margin: 0;
+  line-height: 1.5;
+}
+.demo-description code {
+  font-size: 12px;
+  background: var(--color-surface-muted, #F3F4F6);
+  padding: 2px 6px;
+  border-radius: 4px;
 }
 .demo-row {
   all: revert;

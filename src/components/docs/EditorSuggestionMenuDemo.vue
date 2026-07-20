@@ -36,6 +36,7 @@ const suggestionCode = `const items: EditorSuggestionMenuItem[] = [
   <div class="not-content demo-isolated demo-examples">
     <section class="example-section">
       <h3>Suggestion menu (type "/")</h3>
+      <p class="demo-description">Opens a slash-command suggestion menu when typing <code>/</code>, using <code>EditorSuggestionMenuItem[]</code> items with kinds like <code>heading</code>, <code>bulletList</code>, <code>blockquote</code>, and <code>codeBlock</code>.</p>
       <CodeCollapsible :code="suggestionCode">
         <div class="demo-col">
           <UEditor
@@ -72,6 +73,18 @@ const suggestionCode = `const items: EditorSuggestionMenuItem[] = [
   font-weight: 600;
   color: var(--sl-color-text);
   margin: 0;
+}
+.demo-description {
+  font-size: 13px;
+  color: var(--sl-color-text-light);
+  margin: 0;
+  line-height: 1.5;
+}
+.demo-description code {
+  font-size: 12px;
+  background: var(--color-surface-muted, #F3F4F6);
+  padding: 2px 6px;
+  border-radius: 4px;
 }
 .demo-row {
   all: revert;

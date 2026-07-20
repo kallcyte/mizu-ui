@@ -6,6 +6,7 @@ import CodeCollapsible from "./CodeCollapsible.vue";
   <div class="not-content demo-isolated demo-examples">
     <section class="example-section">
       <h3>Sizes</h3>
+      <p class="demo-description">Three size presets: small, medium, and large for keyboard key badges.</p>
       <CodeCollapsible :code="`<UKbd size=&quot;sm&quot;>Ctrl</UKbd>
 <UKbd size=&quot;md&quot;>K</UKbd>
 <UKbd size=&quot;lg&quot;>Cmd</UKbd>`">
@@ -19,6 +20,7 @@ import CodeCollapsible from "./CodeCollapsible.vue";
 
     <section class="example-section">
       <h3>Combinations</h3>
+      <p class="demo-description">Compose multiple Kbd components with plus separators for keyboard shortcuts.</p>
       <CodeCollapsible :code="`<UKbd>Ctrl</UKbd> + <UKbd>K</UKbd>`">
         <div class="demo-row">
           <UKbd>Ctrl</UKbd>
@@ -57,6 +59,18 @@ import CodeCollapsible from "./CodeCollapsible.vue";
   font-weight: 600;
   color: var(--sl-color-text);
   margin: 0;
+}
+.demo-description {
+  font-size: 13px;
+  color: var(--sl-color-text-light);
+  margin: 0;
+  line-height: 1.5;
+}
+.demo-description code {
+  font-size: 12px;
+  background: var(--color-surface-muted, #F3F4F6);
+  padding: 2px 6px;
+  border-radius: 4px;
 }
 .demo-row {
   all: revert;

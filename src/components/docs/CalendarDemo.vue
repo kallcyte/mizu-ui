@@ -14,6 +14,7 @@ const multipleValue = shallowRef([new CalendarDate(2022, 2, 4), new CalendarDate
   <div class="not-content demo-isolated demo-examples">
     <section class="example-section">
       <h3>Date Picker</h3>
+      <p class="demo-description">Standard single-date calendar for selecting a specific day.</p>
       <CodeCollapsible :code="`<UCalendar v-model=&quot;value&quot; />`">
         <div class="demo-row">
           <UCalendar v-model="singleValue" />
@@ -23,6 +24,7 @@ const multipleValue = shallowRef([new CalendarDate(2022, 2, 4), new CalendarDate
 
     <section class="example-section">
       <h3>Month Picker</h3>
+      <p class="demo-description">Month-only selection view using <code>type="month"</code>.</p>
       <CodeCollapsible :code="`<UCalendar type=&quot;month&quot; v-model=&quot;value&quot; />`">
         <div class="demo-row">
           <UCalendar type="month" v-model="monthValue" />
@@ -32,6 +34,7 @@ const multipleValue = shallowRef([new CalendarDate(2022, 2, 4), new CalendarDate
 
     <section class="example-section">
       <h3>Year Picker</h3>
+      <p class="demo-description">Year-only selection view using <code>type="year"</code>.</p>
       <CodeCollapsible :code="`<UCalendar type=&quot;year&quot; v-model=&quot;value&quot; />`">
         <div class="demo-row">
           <UCalendar type="year" v-model="yearValue" />
@@ -41,6 +44,7 @@ const multipleValue = shallowRef([new CalendarDate(2022, 2, 4), new CalendarDate
 
     <section class="example-section">
       <h3>Range</h3>
+      <p class="demo-description">Select a date range by setting the <code>range</code> prop.</p>
       <CodeCollapsible :code="`<UCalendar range v-model=&quot;value&quot; />`">
         <div class="demo-row">
           <UCalendar range v-model="rangeValue" />
@@ -50,6 +54,7 @@ const multipleValue = shallowRef([new CalendarDate(2022, 2, 4), new CalendarDate
 
     <section class="example-section">
       <h3>Multiple</h3>
+      <p class="demo-description">Select multiple individual dates using the <code>multiple</code> prop.</p>
       <CodeCollapsible :code="`<UCalendar multiple v-model=&quot;value&quot; />`">
         <div class="demo-row">
           <UCalendar multiple v-model="multipleValue" />
@@ -59,6 +64,7 @@ const multipleValue = shallowRef([new CalendarDate(2022, 2, 4), new CalendarDate
 
     <section class="example-section">
       <h3>Color &amp; Variant</h3>
+      <p class="demo-description">Customize the appearance with color and variant props.</p>
       <CodeCollapsible :code="`<UCalendar color=&quot;neutral&quot; variant=&quot;outline&quot; />
 <UCalendar color=&quot;primary&quot; variant=&quot;soft&quot; />`">
         <div class="demo-row demo-row--wrap">
@@ -70,6 +76,7 @@ const multipleValue = shallowRef([new CalendarDate(2022, 2, 4), new CalendarDate
 
     <section class="example-section">
       <h3>Number of Months</h3>
+      <p class="demo-description">Display multiple months side by side using <code>:number-of-months</code>.</p>
       <CodeCollapsible :code="`<UCalendar :number-of-months=&quot;3&quot; />`">
         <div class="demo-row">
           <UCalendar :number-of-months="3" />
@@ -99,6 +106,18 @@ const multipleValue = shallowRef([new CalendarDate(2022, 2, 4), new CalendarDate
   font-weight: 600;
   color: var(--sl-color-text);
   margin: 0;
+}
+.demo-description {
+  font-size: 13px;
+  color: var(--sl-color-text-light);
+  margin: 0;
+  line-height: 1.5;
+}
+.demo-description code {
+  font-size: 12px;
+  background: var(--color-surface-muted, #F3F4F6);
+  padding: 2px 6px;
+  border-radius: 4px;
 }
 .demo-row {
   all: revert;

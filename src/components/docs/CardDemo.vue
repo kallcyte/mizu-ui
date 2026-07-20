@@ -6,6 +6,7 @@ import CodeCollapsible from "./CodeCollapsible.vue";
   <div class="not-content demo-isolated demo-examples">
     <section class="example-section">
       <h3>Basic</h3>
+      <p class="demo-description">Simple card container with content slot for wrapping any content.</p>
       <CodeCollapsible :code="`<UCard>
   <template #content>
     <p>Card content goes here.</p>
@@ -21,6 +22,7 @@ import CodeCollapsible from "./CodeCollapsible.vue";
 
     <section class="example-section">
       <h3>With Header &amp; Footer</h3>
+      <p class="demo-description">Full-featured card with header, content, and footer sections for titles, body text, and actions.</p>
       <CodeCollapsible :code="`<UCard>
   <template #header>
     <h3>Card Title</h3>
@@ -52,6 +54,7 @@ import CodeCollapsible from "./CodeCollapsible.vue";
 
     <section class="example-section">
       <h3>Variants</h3>
+      <p class="demo-description">Four visual styles: solid, outline (Mizu default), soft, and subtle for different visual weights.</p>
       <CodeCollapsible :code="`<UCard variant=&quot;outline&quot;>
   <template #content>
     <p>Card with outline variant (Mizu default).</p>
@@ -89,6 +92,18 @@ import CodeCollapsible from "./CodeCollapsible.vue";
   font-weight: 600;
   color: var(--sl-color-text);
   margin: 0;
+}
+.demo-description {
+  font-size: 13px;
+  color: var(--sl-color-text-light);
+  margin: 0;
+  line-height: 1.5;
+}
+.demo-description code {
+  font-size: 12px;
+  background: var(--color-surface-muted, #F3F4F6);
+  padding: 2px 6px;
+  border-radius: 4px;
 }
 .demo-col {
   all: revert;

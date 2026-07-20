@@ -31,6 +31,7 @@ const dashboardCode = `<MizuMetric label="Total Sales" value="$84,250" trend="up
   <div class="metric-examples">
     <section class="example-section">
       <h3>Basic</h3>
+      <p class="demo-description">Basic metric display with label and value for common statistics.</p>
       <CodeCollapsible :code="basicCode">
         <div class="metric-grid">
           <MizuMetric label="Total Revenue" value="$128,500" />
@@ -42,6 +43,7 @@ const dashboardCode = `<MizuMetric label="Total Sales" value="$84,250" trend="up
 
     <section class="example-section">
       <h3>Sizes</h3>
+      <p class="demo-description">Three size variants (sm, md, lg) for different visual hierarchies and contexts.</p>
       <CodeCollapsible :code="sizesCode">
         <div class="metric-grid">
           <MizuMetric label="Small" value="1,234" size="sm" />
@@ -53,6 +55,7 @@ const dashboardCode = `<MizuMetric label="Total Sales" value="$84,250" trend="up
 
     <section class="example-section">
       <h3>Variants</h3>
+      <p class="demo-description">Six color-coded variants for different metric types and status indicators.</p>
       <CodeCollapsible :code="variantsCode">
         <div class="metric-grid">
           <MizuMetric label="Default" value="42" variant="default" />
@@ -67,6 +70,7 @@ const dashboardCode = `<MizuMetric label="Total Sales" value="$84,250" trend="up
 
     <section class="example-section">
       <h3>With Trend</h3>
+      <p class="demo-description">Trend indicators showing directional changes with color-coded up, down, or neutral states.</p>
       <CodeCollapsible :code="trendCode">
         <div class="metric-grid">
           <MizuMetric label="Revenue" value="$48,250" trend="up" trend-value="+12.5%" />
@@ -78,6 +82,7 @@ const dashboardCode = `<MizuMetric label="Total Sales" value="$84,250" trend="up
 
     <section class="example-section">
       <h3>Dashboard Example</h3>
+      <p class="demo-description">Complete dashboard layout combining multiple metrics with variants, sizes, and trends.</p>
       <CodeCollapsible :code="dashboardCode">
         <div class="dashboard-grid">
           <div class="dashboard-card">
@@ -151,6 +156,13 @@ const dashboardCode = `<MizuMetric label="Total Sales" value="$84,250" trend="up
   margin: 0;
 }
 
+.demo-description {
+  font-size: 13px;
+  color: var(--sl-color-text-light);
+  margin: 0;
+  line-height: 1.5;
+}
+
 .metric-grid {
   display: flex;
   flex-wrap: wrap;
@@ -164,7 +176,7 @@ const dashboardCode = `<MizuMetric label="Total Sales" value="$84,250" trend="up
 }
 
 .dashboard-card {
-  background: var(--sl-color-gray-3);
+  background: var(--color-surface-muted, #F3F4F6);
   padding: 16px;
   border-radius: 8px;
   border: 1px solid var(--sl-color-gray-4);

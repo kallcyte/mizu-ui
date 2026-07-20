@@ -6,6 +6,7 @@ import CodeCollapsible from "./CodeCollapsible.vue";
   <div class="not-content demo-isolated demo-examples">
     <section class="example-section">
       <h3>Sizes</h3>
+      <p class="demo-description">Two size variants: sm for compact contexts, md (default) for standard use.</p>
       <CodeCollapsible :code="`<UBadge size=&quot;sm&quot;>Small</UBadge>
 <UBadge size=&quot;md&quot;>Medium</UBadge>`">
         <div class="demo-row">
@@ -17,6 +18,7 @@ import CodeCollapsible from "./CodeCollapsible.vue";
 
     <section class="example-section">
       <h3>Colors</h3>
+      <p class="demo-description">Seven semantic color variants for different status types and visual contexts.</p>
       <CodeCollapsible :code="`<UBadge color=&quot;primary&quot;>Primary</UBadge>
 <UBadge color=&quot;secondary&quot;>Secondary</UBadge>
 <UBadge color=&quot;success&quot;>Success</UBadge>
@@ -39,6 +41,7 @@ import CodeCollapsible from "./CodeCollapsible.vue";
 
     <section class="example-section">
       <h3>Variants</h3>
+      <p class="demo-description">Four visual styles: solid for emphasis, outline for subtle borders, soft for medium background, subtle for minimal impact.</p>
       <CodeCollapsible :code="`<UBadge variant=&quot;solid&quot;>Solid</UBadge>
 <UBadge variant=&quot;outline&quot;>Outline</UBadge>
 <UBadge variant=&quot;soft&quot;>Soft</UBadge>
@@ -54,6 +57,7 @@ import CodeCollapsible from "./CodeCollapsible.vue";
 
     <section class="example-section">
       <h3>Status Indicators</h3>
+      <p class="demo-description">Common status patterns using color-coded badges: Online (success), Away (warning), Offline (error).</p>
       <CodeCollapsible :code="`<UBadge variant=&quot;soft&quot; color=&quot;success&quot;>Online</UBadge>
 <UBadge variant=&quot;soft&quot; color=&quot;warning&quot;>Away</UBadge>
 <UBadge variant=&quot;soft&quot; color=&quot;error&quot;>Offline</UBadge>`">
@@ -87,6 +91,18 @@ import CodeCollapsible from "./CodeCollapsible.vue";
   font-weight: 600;
   color: var(--sl-color-text);
   margin: 0;
+}
+.demo-description {
+  font-size: 13px;
+  color: var(--sl-color-text-light);
+  margin: 0;
+  line-height: 1.5;
+}
+.demo-description code {
+  font-size: 12px;
+  background: var(--color-surface-muted, #F3F4F6);
+  padding: 2px 6px;
+  border-radius: 4px;
 }
 .demo-row {
   all: revert;

@@ -51,6 +51,7 @@ const iconsCode = `<UTree
   <div class="tree-examples">
     <section class="example-section">
       <h3>Basic</h3>
+      <p class="demo-description">Render a hierarchical tree from nested <code>TreeItem</code> objects with <code>label</code> and optional <code>children</code> arrays.</p>
       <CodeCollapsible :code="basicCode">
         <UTree :items="items" />
       </CodeCollapsible>
@@ -58,6 +59,7 @@ const iconsCode = `<UTree
 
     <section class="example-section">
       <h3>Multiple Selection</h3>
+      <p class="demo-description">Enable checkboxes for selecting multiple tree nodes with the <code>multiple</code> prop.</p>
       <CodeCollapsible :code="multipleCode">
         <UTree :items="items" multiple />
       </CodeCollapsible>
@@ -65,6 +67,7 @@ const iconsCode = `<UTree
 
     <section class="example-section">
       <h3>Colors</h3>
+      <p class="demo-description">Change the active item highlight color using the <code>color</code> prop.</p>
       <CodeCollapsible :code="colorCode">
         <UTree :items="items" color="neutral" />
       </CodeCollapsible>
@@ -72,6 +75,7 @@ const iconsCode = `<UTree
 
     <section class="example-section">
       <h3>Sizes</h3>
+      <p class="demo-description">Control the tree's density with the <code>size</code> prop — available in <code>sm</code>, <code>md</code>, and <code>xl</code>.</p>
       <CodeCollapsible :code="sizeCode">
         <div class="tree-grid">
           <div>
@@ -92,6 +96,7 @@ const iconsCode = `<UTree
 
     <section class="example-section">
       <h3>Custom Icons</h3>
+      <p class="demo-description">Customize expand/collapse and trailing icons using <code>expanded-icon</code>, <code>collapsed-icon</code>, and <code>trailing-icon</code> props.</p>
       <CodeCollapsible :code="iconsCode">
         <UTree
           :items="items"
@@ -130,6 +135,19 @@ const iconsCode = `<UTree
   font-weight: 600;
   color: var(--sl-color-text);
   margin: 0;
+}
+
+.demo-description {
+  font-size: 13px;
+  color: var(--sl-color-text-light);
+  margin: 0;
+  line-height: 1.5;
+}
+.demo-description code {
+  font-size: 12px;
+  background: var(--color-surface-muted, #F3F4F6);
+  padding: 2px 6px;
+  border-radius: 4px;
 }
 
 .example-section h4 {

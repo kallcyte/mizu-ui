@@ -33,6 +33,7 @@ const columns = [
   <div class="not-content demo-isolated demo-examples">
     <section class="example-section">
       <h3>Basic</h3>
+      <p class="demo-description">Renders multi-column footer navigation using the <code>:columns</code> prop with nested label and children link arrays.</p>
       <CodeCollapsible :code="`<UFooterColumns
   :columns=&quot;[
     { label: 'Product', children: [
@@ -53,6 +54,7 @@ const columns = [
 
     <section class="example-section">
       <h3>With External Links</h3>
+      <p class="demo-description">Supports external links with <code>href</code>, <code>target</code>, and optional <code>icon</code> props for social or resource links.</p>
       <CodeCollapsible :code="`<UFooterColumns
   :columns=&quot;[
     { label: 'Social', children: [
@@ -99,6 +101,18 @@ const columns = [
   font-weight: 600;
   color: var(--sl-color-text);
   margin: 0;
+}
+.demo-description {
+  font-size: 13px;
+  color: var(--sl-color-text-light);
+  margin: 0;
+  line-height: 1.5;
+}
+.demo-description code {
+  font-size: 12px;
+  background: var(--color-surface-muted, #F3F4F6);
+  padding: 2px 6px;
+  border-radius: 4px;
 }
 .demo-col {
   all: revert;

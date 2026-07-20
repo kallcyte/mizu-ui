@@ -37,6 +37,7 @@ function validateRequired() {
   <div class="not-content demo-isolated demo-examples">
     <section class="example-section">
       <h3>Usage</h3>
+      <p class="demo-description">Basic select menu with v-model and an array of string items. Click to open a dropdown menu for selection.</p>
       <CodeCollapsible :code="`<script setup lang=&quot;ts&quot;>
 const items = ['Backlog', 'Todo', 'In Progress', 'Done']
 const value = ref('Backlog')
@@ -54,6 +55,7 @@ const value = ref('Backlog')
 
     <section class="example-section">
       <h3>Items (objects)</h3>
+      <p class="demo-description">Use object items with a custom <code>value-key</code> prop to specify which property holds the unique identifier.</p>
       <CodeCollapsible :code="`<script setup lang=&quot;ts&quot;>
 const items = [
   { label: 'United States', code: 'US' },
@@ -78,6 +80,7 @@ const items = [
 
     <section class="example-section">
       <h3>Placeholder</h3>
+      <p class="demo-description">The <code>placeholder</code> prop shows provisional text when no value is selected.</p>
       <CodeCollapsible code="<USelectMenu class=&quot;w-full&quot; :items=&quot;['Option 1', 'Option 2']&quot; placeholder=&quot;Choose an option...&quot; />">
         <div class="demo-col">
           <USelectMenu class="w-full" :items="['Option 1', 'Option 2']" placeholder="Choose an option..." />
@@ -87,6 +90,7 @@ const items = [
 
     <section class="example-section">
       <h3>Color</h3>
+      <p class="demo-description">Semantic color variants: primary, success, error, and neutral for visual differentiation.</p>
       <CodeCollapsible :code="`<USelectMenu class=&quot;w-full&quot; color=&quot;primary&quot; :items=&quot;items&quot; placeholder=&quot;Primary&quot; />
 <USelectMenu class=&quot;w-full&quot; color=&quot;success&quot; :items=&quot;items&quot; placeholder=&quot;Success&quot; />
 <USelectMenu class=&quot;w-full&quot; color=&quot;error&quot; :items=&quot;items&quot; placeholder=&quot;Error&quot; />
@@ -102,6 +106,7 @@ const items = [
 
     <section class="example-section">
       <h3>Variant</h3>
+      <p class="demo-description">Style variants via the <code>variant</code> prop: outline, soft, subtle, ghost, and none for different visual weights.</p>
       <CodeCollapsible :code="`<USelectMenu class=&quot;w-full&quot; variant=&quot;outline&quot; :items=&quot;items&quot; placeholder=&quot;Outline&quot; />
 <USelectMenu class=&quot;w-full&quot; variant=&quot;soft&quot; :items=&quot;items&quot; placeholder=&quot;Soft&quot; />
 <USelectMenu class=&quot;w-full&quot; variant=&quot;subtle&quot; :items=&quot;items&quot; placeholder=&quot;Subtle&quot; />
@@ -119,6 +124,7 @@ const items = [
 
     <section class="example-section">
       <h3>Size</h3>
+      <p class="demo-description">Three sizes: sm for compact UIs, md as default, and lg for prominent inputs.</p>
       <CodeCollapsible :code="`<USelectMenu class=&quot;w-full&quot; size=&quot;sm&quot; :items=&quot;items&quot; placeholder=&quot;SM&quot; />
 <USelectMenu class=&quot;w-full&quot; size=&quot;md&quot; :items=&quot;items&quot; placeholder=&quot;MD&quot; />
 <USelectMenu class=&quot;w-full&quot; size=&quot;lg&quot; :items=&quot;items&quot; placeholder=&quot;LG&quot; />`">
@@ -132,6 +138,7 @@ const items = [
 
     <section class="example-section">
       <h3>Icon</h3>
+      <p class="demo-description">Leading and trailing icons via the <code>icon</code> and <code>trailing-icon</code> props for visual cues on the trigger button.</p>
       <CodeCollapsible :code="`<USelectMenu class=&quot;w-full&quot; icon=&quot;i-ph-magnifying-glass&quot; :items=&quot;items&quot; placeholder=&quot;Search...&quot; />
 <USelectMenu class=&quot;w-full&quot; icon=&quot;i-ph-envelope&quot; :items=&quot;items&quot; placeholder=&quot;Email&quot; trailing-icon=&quot;i-ph-check&quot; />`">
         <div class="demo-col">
@@ -143,6 +150,7 @@ const items = [
 
     <section class="example-section">
       <h3>Avatar</h3>
+      <p class="demo-description">Display an avatar on the trigger button using the <code>avatar</code> prop with a <code>src</code> and <code>size</code>.</p>
       <CodeCollapsible :code="`<USelectMenu class=&quot;w-full&quot; :avatar=&quot;{ src: 'https://github.com/nuxt.png', size: '2xs' }&quot; placeholder=&quot;User&quot; />`">
         <div class="demo-col">
           <USelectMenu class="w-full" :avatar="{ src: 'https://github.com/nuxt.png', size: '2xs' }" placeholder="User" />
@@ -152,6 +160,7 @@ const items = [
 
     <section class="example-section">
       <h3>Loading</h3>
+      <p class="demo-description">A loading state via the <code>loading</code> prop that shows a spinner while options are being fetched.</p>
       <CodeCollapsible :code="`<USelectMenu class=&quot;w-full&quot; loading :items=&quot;items&quot; placeholder=&quot;Loading...&quot; />`">
         <div class="demo-col">
           <USelectMenu class="w-full" loading :items="items" placeholder="Loading..." />
@@ -161,6 +170,7 @@ const items = [
 
     <section class="example-section">
       <h3>Checkmarked</h3>
+      <p class="demo-description">Use the <code>checkmarked</code> prop to show a checkmark next to the selected item in the dropdown.</p>
       <CodeCollapsible :code="`<USelectMenu class=&quot;w-full&quot; checkmarked :items=&quot;items&quot; placeholder=&quot;Select a status...&quot; />`">
         <div class="demo-col">
           <USelectMenu class="w-full" checkmarked :items="items" placeholder="Select a status..." />
@@ -170,6 +180,7 @@ const items = [
 
     <section class="example-section">
       <h3>Clearable</h3>
+      <p class="demo-description">The <code>clear</code> prop adds a clear button to reset the selected value back to empty.</p>
       <CodeCollapsible :code="`<USelectMenu class=&quot;w-full&quot; clear v-model=&quot;value&quot; :items=&quot;items&quot; placeholder=&quot;Select...&quot; />`">
         <div class="demo-col">
           <USelectMenu class="w-full" clear v-model="singleValue" :items="items" placeholder="Select..." />
@@ -179,6 +190,7 @@ const items = [
 
     <section class="example-section">
       <h3>Multiple</h3>
+      <p class="demo-description">Multi-select mode using the <code>multiple</code> prop, allowing selection of several values at once.</p>
       <CodeCollapsible :code="`<script setup lang=&quot;ts&quot;>
 const items = ['Backlog', 'Todo', 'In Progress', 'Done']
 const value = ref([])
@@ -196,6 +208,7 @@ const value = ref([])
 
     <section class="example-section">
       <h3>Creatable</h3>
+      <p class="demo-description">Allow users to create new items on the fly using the <code>create-item</code> prop with an <code>@create</code> event handler.</p>
       <CodeCollapsible :code="`<USelectMenu class=&quot;w-full&quot; v-model=&quot;value&quot; :items=&quot;items&quot; create-item placeholder=&quot;Type to create...&quot; @create=&quot;console.log(item)&quot; />`">
         <div class="demo-col">
           <USelectMenu class="w-full" v-model="creatableValue" :items="['Apple', 'Banana', 'Orange']" create-item placeholder="Type to create..." />
@@ -206,6 +219,7 @@ const value = ref([])
 
     <section class="example-section">
       <h3>Disabled</h3>
+      <p class="demo-description">A disabled select menu via the <code>disabled</code> prop, preventing user interaction.</p>
       <CodeCollapsible code="<USelectMenu class=&quot;w-full&quot; disabled placeholder=&quot;Disabled&quot; :items=&quot;['Option 1']&quot; />">
         <div class="demo-col">
           <USelectMenu class="w-full" disabled placeholder="Disabled" :items="['Option 1']" />
@@ -216,6 +230,7 @@ const value = ref([])
 
     <section class="example-section">
       <h3>Required field</h3>
+      <p class="demo-description">Form validation with required indicator, error state, and blur validation using <code>UFormField</code>.</p>
       <CodeCollapsible :code="`<UFormField class=&quot;w-full&quot; :error=&quot;error || undefined&quot; :help=&quot;touched && !error ? 'Looks good!' : undefined&quot;>
   <template #label>
     Role <span class=&quot;text-red-500&quot;>*</span>
@@ -249,6 +264,7 @@ const value = ref([])
 
     <section class="example-section">
       <h3>With label and help</h3>
+      <p class="demo-description">Wrap the select menu in <code>UFormField</code> with <code>label</code> and <code>help</code> props for accessible form layout.</p>
       <CodeCollapsible :code="`<UFormField label=&quot;Country&quot; help=&quot;Select your country of residence&quot;>
   <USelectMenu class=&quot;w-full&quot; :items=&quot;countries&quot; placeholder=&quot;Choose a country&quot; />
 </UFormField>`">
@@ -262,6 +278,7 @@ const value = ref([])
 
     <section class="example-section">
       <h3>Within a FieldGroup</h3>
+      <p class="demo-description">Combine a select menu and an input inside a <code>UFieldGroup</code> for inline compound fields like phone numbers.</p>
       <CodeCollapsible :code="`<UFieldGroup>
   <USelectMenu
     :items=&quot;countries&quot;
@@ -307,6 +324,18 @@ const value = ref([])
   font-weight: 600;
   color: var(--sl-color-text);
   margin: 0;
+}
+.demo-description {
+  font-size: 13px;
+  color: var(--sl-color-text-light);
+  margin: 0;
+  line-height: 1.5;
+}
+.demo-description code {
+  font-size: 12px;
+  background: var(--color-surface-muted, #F3F4F6);
+  padding: 2px 6px;
+  border-radius: 4px;
 }
 .demo-col {
   all: revert;

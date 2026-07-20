@@ -25,6 +25,7 @@ const selectAllModel = ref<any>(false);
   <div class="not-content demo-isolated demo-examples">
     <section class="example-section">
       <h3>Basic</h3>
+      <p class="demo-description">A simple checkbox group bound with <code>v-model</code> to an array of string items.</p>
       <CodeCollapsible :code="`<UCheckboxGroup
   v-model=&quot;value&quot;
   :items=&quot;['System', 'Light', 'Dark']&quot;
@@ -38,6 +39,7 @@ const selectAllModel = ref<any>(false);
 
     <section class="example-section">
       <h3>Indeterminate Select-All</h3>
+      <p class="demo-description">Combines an independent <code>UCheckbox</code> with a <code>UCheckboxGroup</code> for a select-all/deselect-all pattern.</p>
       <CodeCollapsible :code="`<UCheckbox
   :model-value=&quot;selected.length ? (selected.length === 3 ? true : 'indeterminate') : false&quot;
   label=&quot;Select all&quot;
@@ -60,6 +62,7 @@ const selectAllModel = ref<any>(false);
 
     <section class="example-section">
       <h3>With Objects</h3>
+      <p class="demo-description">Items defined as objects with <code>label</code>, <code>description</code>, and <code>value</code> properties for richer options.</p>
       <CodeCollapsible :code="`<UCheckboxGroup
   v-model=&quot;value&quot;
   :items=&quot;[{ label: 'System', description: 'Follow the system preference.', value: 'system' }, ...]&quot;
@@ -73,6 +76,7 @@ const selectAllModel = ref<any>(false);
 
     <section class="example-section">
       <h3>With Legend</h3>
+      <p class="demo-description">Adds a legend label above the group using the <code>legend</code> prop for grouping context.</p>
       <CodeCollapsible :code="`<UCheckboxGroup legend=&quot;Theme&quot; :default-value=&quot;['System']&quot; :items=&quot;['System', 'Light', 'Dark']&quot; />`">
         <div class="demo-col">
           <UCheckboxGroup legend="Theme" :default-value="['System']" :items="items" />
@@ -82,6 +86,7 @@ const selectAllModel = ref<any>(false);
 
     <section class="example-section">
       <h3>Required with Helper Text</h3>
+      <p class="demo-description">A required checkbox group wrapped in a <code>UFormField</code> with helper text for form validation.</p>
       <CodeCollapsible :code="`<UFormField help=&quot;Select how you want to be notified.&quot; class=&quot;w-full&quot;>
   <UCheckboxGroup required legend=&quot;Channels&quot; :default-value=&quot;['Email']&quot; :items=&quot;['Email', 'SMS', 'Push']&quot; />
 </UFormField>`">
@@ -95,6 +100,7 @@ const selectAllModel = ref<any>(false);
 
     <section class="example-section">
       <h3>Colors</h3>
+      <p class="demo-description">Applies <code>color="primary"</code> and <code>color="neutral"</code> to the entire checkbox group.</p>
       <CodeCollapsible :code="`<UCheckboxGroup color=&quot;primary&quot; :default-value=&quot;['System']&quot; :items=&quot;items&quot; />
 <UCheckboxGroup color=&quot;neutral&quot; :default-value=&quot;['System']&quot; :items=&quot;items&quot; />`">
         <div class="demo-col">
@@ -106,6 +112,7 @@ const selectAllModel = ref<any>(false);
 
     <section class="example-section">
       <h3>Horizontal Orientation</h3>
+      <p class="demo-description">Arranges checkboxes horizontally using <code>orientation="horizontal"</code> for compact layouts.</p>
       <CodeCollapsible :code="`<UCheckboxGroup orientation=&quot;horizontal&quot; :default-value=&quot;['Backlog']&quot; :items=&quot;['Backlog', 'Todo', 'In Progress', 'Done']&quot; />`">
         <div class="demo-col">
           <UCheckboxGroup orientation="horizontal" v-model="horizontalValue" :items="horizontalItems" />
@@ -115,6 +122,7 @@ const selectAllModel = ref<any>(false);
 
     <section class="example-section">
       <h3>Card Variant</h3>
+      <p class="demo-description">Card-styled group with <code>variant="card"</code> for a visually distinct selection area.</p>
       <CodeCollapsible :code="`<UCheckboxGroup color=&quot;primary&quot; variant=&quot;card&quot; :default-value=&quot;['System']&quot; :items=&quot;['System', 'Light', 'Dark']&quot; />`">
         <div class="demo-col">
           <UCheckboxGroup color="primary" variant="card" :default-value="['System']" :items="items" />
@@ -124,6 +132,7 @@ const selectAllModel = ref<any>(false);
 
     <section class="example-section">
       <h3>Indicator End</h3>
+      <p class="demo-description">Positions the checkbox indicator at the end of the label with card variant styling.</p>
       <CodeCollapsible :code="`<UCheckboxGroup indicator=&quot;end&quot; variant=&quot;card&quot; :default-value=&quot;['System']&quot; :items=&quot;['System', 'Light', 'Dark']&quot; />`">
         <div class="demo-col">
           <UCheckboxGroup indicator="end" variant="card" :default-value="['System']" :items="items" />
@@ -133,6 +142,7 @@ const selectAllModel = ref<any>(false);
 
     <section class="example-section">
       <h3>Disabled</h3>
+      <p class="demo-description">A fully disabled checkbox group, preventing all user interaction.</p>
       <CodeCollapsible :code="`<UCheckboxGroup disabled :default-value=&quot;['System']&quot; :items=&quot;['System', 'Light', 'Dark']&quot; />`">
         <div class="demo-col">
           <UCheckboxGroup disabled :default-value="['System']" :items="items" />
@@ -162,6 +172,18 @@ const selectAllModel = ref<any>(false);
   font-weight: 600;
   color: var(--sl-color-text);
   margin: 0;
+}
+.demo-description {
+  font-size: 13px;
+  color: var(--sl-color-text-light);
+  margin: 0;
+  line-height: 1.5;
+}
+.demo-description code {
+  font-size: 12px;
+  background: var(--color-surface-muted, #F3F4F6);
+  padding: 2px 6px;
+  border-radius: 4px;
 }
 .demo-col {
   all: revert;

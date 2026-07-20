@@ -9,6 +9,7 @@ const currentPage = ref(1);
   <div class="not-content demo-isolated demo-examples">
     <section class="example-section">
       <h3>Basic</h3>
+      <p class="demo-description">Standard pagination controlled via <code>v-model:page</code>, with <code>:total</code> and <code>:page-size</code> props defining the range.</p>
       <CodeCollapsible :code="`<UPagination v-model:page=&quot;page&quot; :total=&quot;50&quot; :page-size=&quot;10&quot; />`">
         <div class="demo-col">
           <UPagination v-model:page="currentPage" :total="50" :page-size="10" />
@@ -18,6 +19,7 @@ const currentPage = ref(1);
 
     <section class="example-section">
       <h3>With Ellipsis</h3>
+      <p class="demo-description">When total pages exceed the display limit, ellipsis buttons appear to keep the pagination bar compact.</p>
       <CodeCollapsible :code="`<UPagination v-model:page=&quot;page&quot; :total=&quot;200&quot; :page-size=&quot;10&quot; />`">
         <div class="demo-col">
           <UPagination v-model:page="currentPage" :total="200" :page-size="10" />
@@ -47,6 +49,18 @@ const currentPage = ref(1);
   font-weight: 600;
   color: var(--sl-color-text);
   margin: 0;
+}
+.demo-description {
+  font-size: 13px;
+  color: var(--sl-color-text-light);
+  margin: 0;
+  line-height: 1.5;
+}
+.demo-description code {
+  font-size: 12px;
+  background: var(--color-surface-muted, #F3F4F6);
+  padding: 2px 6px;
+  border-radius: 4px;
 }
 .demo-col {
   all: revert;

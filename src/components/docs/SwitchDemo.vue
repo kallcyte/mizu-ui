@@ -9,6 +9,7 @@ const on = ref(false);
   <div class="not-content demo-isolated demo-examples">
     <section class="example-section">
       <h3>States</h3>
+      <p class="demo-description">A toggle switch controlled by <code>v-model</code>. Set <code>:default-value="true"</code> to make it checked by default.</p>
       <CodeCollapsible :code="`<USwitch v-model=&quot;on&quot; label=&quot;Enable notifications&quot; />
 <USwitch label=&quot;Checked&quot; :default-value=&quot;true&quot; />
 <USwitch label=&quot;Unchecked&quot; />`">
@@ -22,6 +23,7 @@ const on = ref(false);
 
     <section class="example-section">
       <h3>Disabled</h3>
+      <p class="demo-description">Use the <code>disabled</code> prop to prevent interaction. Works in both checked and unchecked states.</p>
       <CodeCollapsible :code="`<USwitch disabled label=&quot;Disabled&quot; :default-value=&quot;true&quot; />
 <USwitch disabled label=&quot;Disabled&quot; />`">
         <div class="demo-col">
@@ -53,6 +55,18 @@ const on = ref(false);
   font-weight: 600;
   color: var(--sl-color-text);
   margin: 0;
+}
+.demo-description {
+  font-size: 13px;
+  color: var(--sl-color-text-light);
+  margin: 0;
+  line-height: 1.5;
+}
+.demo-description code {
+  font-size: 12px;
+  background: var(--color-surface-muted, #F3F4F6);
+  padding: 2px 6px;
+  border-radius: 4px;
 }
 .demo-col {
   all: revert;

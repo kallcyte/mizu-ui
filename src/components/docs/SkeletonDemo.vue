@@ -7,6 +7,7 @@ import CodeCollapsible from "./CodeCollapsible.vue";
   <div class="not-content demo-examples">
     <section class="example-section">
       <h3>Variants</h3>
+      <p class="demo-description">Different shapes for text lines, avatars, and card placeholders.</p>
       <CodeCollapsible
         :code="`<!-- Text line -->
 <MizuSkeleton class=&quot;h-3.5 w-full rounded-md&quot; />
@@ -31,6 +32,7 @@ import CodeCollapsible from "./CodeCollapsible.vue";
 
     <section class="example-section">
       <h3>Multi-line Text</h3>
+      <p class="demo-description">Simulated multi-line text content with varying widths for natural appearance.</p>
       <CodeCollapsible
         :code="`<div class=&quot;flex flex-col gap-2&quot;>
   <MizuSkeleton class=&quot;h-3.5 w-full rounded-md&quot; />
@@ -48,6 +50,7 @@ import CodeCollapsible from "./CodeCollapsible.vue";
 
     <section class="example-section">
       <h3>Animations</h3>
+      <p class="demo-description">Three animation modes: shimmer sweep, pulse fade, or static placeholder.</p>
       <CodeCollapsible
         :code="`<!-- Shimmer (default) -->
 <MizuSkeleton class=&quot;h-4 w-48 rounded-md&quot; />
@@ -68,6 +71,7 @@ import CodeCollapsible from "./CodeCollapsible.vue";
 
     <section class="example-section">
       <h3>Content Loading</h3>
+      <p class="demo-description">User profile content loading pattern with avatar and text lines.</p>
       <CodeCollapsible
         :code="`<div class=&quot;flex items-center gap-4&quot;>
   <MizuSkeleton class=&quot;size-12 rounded-full shrink-0&quot; />
@@ -89,6 +93,7 @@ import CodeCollapsible from "./CodeCollapsible.vue";
 
     <section class="example-section">
       <h3>Profile Card</h3>
+      <p class="demo-description">Complete profile card skeleton with avatar, name, handle, and bio lines.</p>
       <CodeCollapsible
         :code="`<div class=&quot;p-5 rounded-xl border border-surface-muted bg-surface-base&quot;>
   <div class=&quot;flex items-center gap-4 mb-4&quot;>
@@ -143,6 +148,12 @@ import CodeCollapsible from "./CodeCollapsible.vue";
   font-weight: 600;
   color: var(--sl-color-text);
   margin: 0;
+}
+.demo-description {
+  font-size: 13px;
+  color: var(--sl-color-text-light);
+  margin: 0;
+  line-height: 1.5;
 }
 .demo-col {
   display: flex;

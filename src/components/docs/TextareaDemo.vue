@@ -20,6 +20,7 @@ function validateFeedback() {
   <div class="not-content demo-isolated demo-examples">
     <section class="example-section">
       <h3>Usage</h3>
+      <p class="demo-description">Multi-line text input with v-model binding. Use for longer content like descriptions, comments, or messages.</p>
       <CodeCollapsible :code="`<script setup lang=&quot;ts&quot;>
 const value = ref('')
 <\/script>
@@ -36,6 +37,7 @@ const value = ref('')
 
     <section class="example-section">
       <h3>Rows</h3>
+      <p class="demo-description">Control the initial height with the <code>rows</code> prop. Default is 3 rows.</p>
       <CodeCollapsible code="<UTextarea class=&quot;w-full&quot; :rows=&quot;12&quot; />">
         <div class="demo-col">
           <UTextarea class="w-full" :rows="12" />
@@ -45,6 +47,7 @@ const value = ref('')
 
     <section class="example-section">
       <h3>Placeholder</h3>
+      <p class="demo-description">Hint text shown when the textarea is empty. Use clear, descriptive placeholders to guide users.</p>
       <CodeCollapsible code="<UTextarea class=&quot;w-full&quot; placeholder=&quot;Type something...&quot; />">
         <div class="demo-col">
           <UTextarea class="w-full" placeholder="Type something..." />
@@ -54,6 +57,7 @@ const value = ref('')
 
     <section class="example-section">
       <h3>Autoresize</h3>
+      <p class="demo-description">Automatically adjusts height based on content using the <code>autoresize</code> prop. Great for dynamic text input.</p>
       <CodeCollapsible :code="`<script setup lang=&quot;ts&quot;>
 const value = ref('This is a long text...')
 <\/script>
@@ -69,6 +73,7 @@ const value = ref('This is a long text...')
 
     <section class="example-section">
       <h3>Max Rows</h3>
+      <p class="demo-description">Combine <code>autoresize</code> with <code>maxrows</code> to limit how tall the textarea can grow. Shows scrollbar after max rows.</p>
       <CodeCollapsible :code="`<UTextarea class=&quot;w-full&quot; v-model=&quot;value&quot; :maxrows=&quot;4&quot; autoresize />`">
         <div class="demo-col">
           <UTextarea class="w-full" v-model="autoresizeMaxValue" :maxrows="4" autoresize />
@@ -78,6 +83,7 @@ const value = ref('This is a long text...')
 
     <section class="example-section">
       <h3>Color</h3>
+      <p class="demo-description">Semantic color variants for different states: primary, secondary, success, error, warning, info, and neutral. Use <code>highlight</code> to show the focus ring.</p>
       <CodeCollapsible :code="`<UTextarea class=&quot;w-full&quot; color=&quot;primary&quot; placeholder=&quot;Primary&quot; highlight />
 <UTextarea class=&quot;w-full&quot; color=&quot;secondary&quot; placeholder=&quot;Secondary&quot; highlight />
 <UTextarea class=&quot;w-full&quot; color=&quot;success&quot; placeholder=&quot;Success&quot; highlight />
@@ -99,6 +105,7 @@ const value = ref('This is a long text...')
 
     <section class="example-section">
       <h3>Variant</h3>
+      <p class="demo-description">Five variant styles: outline with border, soft with subtle background, subtle with muted style, ghost with no background, and none with minimal styling.</p>
       <CodeCollapsible :code="`<UTextarea class=&quot;w-full&quot; variant=&quot;outline&quot; placeholder=&quot;Outline&quot; />
 <UTextarea class=&quot;w-full&quot; variant=&quot;soft&quot; placeholder=&quot;Soft&quot; />
 <UTextarea class=&quot;w-full&quot; variant=&quot;subtle&quot; placeholder=&quot;Subtle&quot; />
@@ -116,6 +123,7 @@ const value = ref('This is a long text...')
 
     <section class="example-section">
       <h3>Size</h3>
+      <p class="demo-description">Three size variants: small, medium (default), and large. Affects padding and text size.</p>
       <CodeCollapsible :code="`<UTextarea class=&quot;w-full&quot; size=&quot;sm&quot; placeholder=&quot;SM&quot; />
 <UTextarea class=&quot;w-full&quot; size=&quot;md&quot; placeholder=&quot;MD&quot; />
 <UTextarea class=&quot;w-full&quot; size=&quot;lg&quot; placeholder=&quot;LG&quot; />`">

@@ -52,6 +52,7 @@ const countryList = [
   <div class="not-content demo-isolated demo-examples">
     <section class="example-section">
       <h3>Basic listbox</h3>
+      <p class="demo-description">A simple single-select dropdown using <code>v-model</code> with an array of objects.</p>
       <CodeCollapsible
         :code="`const items = [
   { label: 'Apple', value: 'apple' },
@@ -88,6 +89,7 @@ const fruit = ref('')
 
     <section class="example-section">
       <h3>Multiple selection</h3>
+      <p class="demo-description">Enables selecting multiple items with the <code>multiple</code> prop.</p>
       <CodeCollapsible
         :code="`const items = [
   { label: 'Apple', value: 'apple' },
@@ -124,6 +126,7 @@ const selected = ref<string[]>([])
 
     <section class="example-section">
       <h3>With objects and value-key</h3>
+      <p class="demo-description">Maps display labels and values using <code>label-key</code> and <code>value-key</code> for object items.</p>
       <CodeCollapsible
         :code="`const countries = [
   { name: 'United States', code: 'US' },
@@ -159,6 +162,7 @@ const country = ref('')
 
     <section class="example-section">
       <h3>With search filter</h3>
+      <p class="demo-description">Enables in-listbox search filtering with the <code>filter</code> prop.</p>
       <CodeCollapsible
         :code="`const items = [
   { label: 'Apple', value: 'apple' },
@@ -195,6 +199,7 @@ const fruit = ref('')
 
     <section class="example-section">
       <h3>With icons and descriptions</h3>
+      <p class="demo-description">Each item can display an icon and a supporting description alongside its label.</p>
       <CodeCollapsible
         :code="`const items = [
   { label: 'France', description: 'The Hexagon', icon: 'i-ph-map-pin', value: 'FR' },
@@ -225,6 +230,7 @@ const country = ref('')
 
     <section class="example-section">
       <h3>Selected icon</h3>
+      <p class="demo-description">Customizes the icon shown for the currently selected item with <code>selected-icon</code>.</p>
       <CodeCollapsible
         :code="`const items = [
   { label: 'Backlog', icon: 'i-ph-circle-help', value: 'backlog' },
@@ -258,6 +264,7 @@ const status = ref('')
 
     <section class="example-section">
       <h3>Sizes</h3>
+      <p class="demo-description">Four size variants: sm, md, lg, and xl for different UI densities.</p>
       <CodeCollapsible
         :code="`const items = [
   { label: 'Apple', value: 'apple' },
@@ -303,6 +310,18 @@ const status = ref('')
   font-weight: 600;
   color: var(--sl-color-text);
   margin: 0;
+}
+.demo-description {
+  font-size: 13px;
+  color: var(--sl-color-text-light);
+  margin: 0;
+  line-height: 1.5;
+}
+.demo-description code {
+  font-size: 12px;
+  background: var(--color-surface-muted, #F3F4F6);
+  padding: 2px 6px;
+  border-radius: 4px;
 }
 .demo-col {
   all: revert;

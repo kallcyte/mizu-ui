@@ -6,6 +6,7 @@ import CodeCollapsible from "./CodeCollapsible.vue";
   <div class="not-content demo-isolated demo-examples">
     <section class="example-section">
       <h3>Basic</h3>
+      <p class="demo-description">Simple alert with title and description for inline notifications.</p>
       <CodeCollapsible :code="`<UAlert title=&quot;Heads up!&quot; description=&quot;You can change the primary color in your app config.&quot; />`">
         <div class="demo-row">
           <UAlert title="Heads up!" description="You can change the primary color in your app config." />
@@ -15,6 +16,7 @@ import CodeCollapsible from "./CodeCollapsible.vue";
 
     <section class="example-section">
       <h3>Colors</h3>
+      <p class="demo-description">Semantic color variants: primary, secondary, success, info, warning, error, and neutral.</p>
       <CodeCollapsible :code="`<UAlert color=&quot;primary&quot; title=&quot;Primary&quot; description=&quot;A primary alert.&quot; />
 <UAlert color=&quot;secondary&quot; title=&quot;Secondary&quot; description=&quot;A secondary alert.&quot; />
 <UAlert color=&quot;success&quot; title=&quot;Success&quot; description=&quot;A success alert.&quot; />
@@ -36,6 +38,7 @@ import CodeCollapsible from "./CodeCollapsible.vue";
 
     <section class="example-section">
       <h3>Variants</h3>
+      <p class="demo-description">Four visual variants: solid for emphasis, outline for subtlety, soft for medium prominence, and subtle for minimal visual weight.</p>
       <CodeCollapsible :code="`<UAlert variant=&quot;solid&quot; title=&quot;Solid&quot; description=&quot;A solid alert.&quot; />
 <UAlert variant=&quot;outline&quot; title=&quot;Outline&quot; description=&quot;An outline alert.&quot; />
 <UAlert variant=&quot;soft&quot; title=&quot;Soft&quot; description=&quot;A soft alert.&quot; />
@@ -51,6 +54,7 @@ import CodeCollapsible from "./CodeCollapsible.vue";
 
     <section class="example-section">
       <h3>With Icon</h3>
+      <p class="demo-description">Add a leading icon for visual context using the <code>icon</code> prop.</p>
       <CodeCollapsible :code="`<UAlert title=&quot;Heads up!&quot; description=&quot;You can change the primary color.&quot; icon=&quot;i-lucide-terminal&quot; />`">
         <div class="demo-row">
           <UAlert title="Heads up!" description="You can change the primary color." icon="i-lucide-terminal" />
@@ -60,6 +64,7 @@ import CodeCollapsible from "./CodeCollapsible.vue";
 
     <section class="example-section">
       <h3>With Close</h3>
+      <p class="demo-description">Add a dismiss button with the <code>close</code> prop to let users hide the alert.</p>
       <CodeCollapsible :code="`<UAlert title=&quot;Heads up!&quot; description=&quot;Dismiss this alert.&quot; color=&quot;neutral&quot; variant=&quot;outline&quot; close />`">
         <div class="demo-row">
           <UAlert title="Heads up!" description="Dismiss this alert." color="neutral" variant="outline" close />
@@ -69,6 +74,7 @@ import CodeCollapsible from "./CodeCollapsible.vue";
 
     <section class="example-section">
       <h3>With Actions</h3>
+      <p class="demo-description">Add interactive action buttons using the <code>:actions</code> prop for alerts that require user response.</p>
       <CodeCollapsible :code="`<UAlert title=&quot;Heads up!&quot; description=&quot;You can change the primary color.&quot; color=&quot;neutral&quot; variant=&quot;outline&quot; :actions=&quot;[{ label: 'Action 1' }, { label: 'Action 2', color: 'neutral', variant: 'subtle' }]&quot; />`">
         <div class="demo-row">
           <UAlert
@@ -84,6 +90,7 @@ import CodeCollapsible from "./CodeCollapsible.vue";
 
     <section class="example-section">
       <h3>Orientation</h3>
+      <p class="demo-description">Switch between vertical (default) and horizontal layout using the <code>orientation</code> prop.</p>
       <CodeCollapsible :code="`<UAlert title=&quot;Heads up!&quot; description=&quot;Horizontal layout.&quot; color=&quot;neutral&quot; variant=&quot;outline&quot; orientation=&quot;horizontal&quot; :actions=&quot;[{ label: 'Action 1' }, { label: 'Action 2', color: 'neutral', variant: 'subtle' }]&quot; />`">
         <div class="demo-row">
           <UAlert
@@ -100,6 +107,7 @@ import CodeCollapsible from "./CodeCollapsible.vue";
 
     <section class="example-section">
       <h3>With Avatar</h3>
+      <p class="demo-description">Display a user avatar alongside the alert content using the <code>:avatar</code> prop.</p>
       <CodeCollapsible :code="`<UAlert title=&quot;Heads up!&quot; description=&quot;A user avatar alert.&quot; color=&quot;neutral&quot; variant=&quot;subtle&quot; :avatar=&quot;{ src: 'https://github.com/nuxt.png' }&quot; />`">
         <div class="demo-row">
           <UAlert title="Heads up!" description="A user avatar alert." color="neutral" variant="subtle" :avatar="{ src: 'https://github.com/nuxt.png' }" />
@@ -129,6 +137,18 @@ import CodeCollapsible from "./CodeCollapsible.vue";
   font-weight: 600;
   color: var(--sl-color-text);
   margin: 0;
+}
+.demo-description {
+  font-size: 13px;
+  color: var(--sl-color-text-light);
+  margin: 0;
+  line-height: 1.5;
+}
+.demo-description code {
+  font-size: 12px;
+  background: var(--color-surface-muted, #F3F4F6);
+  padding: 2px 6px;
+  border-radius: 4px;
 }
 .demo-row {
   all: revert;

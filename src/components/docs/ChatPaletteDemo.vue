@@ -22,6 +22,7 @@ function sendMessage() {
   <div class="not-content demo-isolated demo-examples">
     <section class="example-section">
       <h3>Basic</h3>
+      <p class="demo-description">Full chat interface container with message area and prompt slot for building conversational UIs.</p>
       <CodeCollapsible :code="`<UChatPalette>
   <template #default>
     <div class=&quot;flex flex-col gap-2&quot;>
@@ -86,6 +87,18 @@ function sendMessage() {
   font-weight: 600;
   color: var(--sl-color-text);
   margin: 0;
+}
+.demo-description {
+  font-size: 13px;
+  color: var(--sl-color-text-light);
+  margin: 0;
+  line-height: 1.5;
+}
+.demo-description code {
+  font-size: 12px;
+  background: var(--color-surface-muted, #F3F4F6);
+  padding: 2px 6px;
+  border-radius: 4px;
 }
 .demo-col {
   all: revert;

@@ -59,6 +59,7 @@ const customImageCode = `<UEmpty
   <div class="empty-examples">
     <section class="example-section">
       <h3>Basic</h3>
+      <p class="demo-description">Displays a simple empty state with an icon, title, and description using the <code>icon</code>, <code>title</code>, and <code>description</code> props.</p>
       <CodeCollapsible :code="basicCode">
         <div class="demo-row">
           <UEmpty
@@ -72,6 +73,7 @@ const customImageCode = `<UEmpty
 
     <section class="example-section">
       <h3>With Actions</h3>
+      <p class="demo-description">Adds action buttons to the empty state using the <code>:actions</code> prop, accepting an array of button configs with <code>label</code> and <code>color</code>.</p>
       <CodeCollapsible :code="withActionsCode">
         <div class="demo-row">
           <UEmpty
@@ -86,6 +88,7 @@ const customImageCode = `<UEmpty
 
     <section class="example-section">
       <h3>With Avatar</h3>
+      <p class="demo-description">Replaces the icon with an avatar image using the <code>:avatar</code> prop with <code>src</code> and <code>alt</code> attributes.</p>
       <CodeCollapsible :code="avatarCode">
         <div class="demo-row">
           <UEmpty
@@ -99,6 +102,7 @@ const customImageCode = `<UEmpty
 
     <section class="example-section">
       <h3>Variants</h3>
+      <p class="demo-description">Five visual variants&mdash;<code>outline</code>, <code>solid</code>, <code>soft</code>, <code>subtle</code>, and <code>naked</code>&mdash;controlled via the <code>variant</code> prop.</p>
       <CodeCollapsible :code="variantsCode">
         <div class="empty-grid">
           <UEmpty variant="outline" icon="i-lucide-search" title="No results" description="Try adjusting your search." />
@@ -112,6 +116,7 @@ const customImageCode = `<UEmpty
 
     <section class="example-section">
       <h3>Sizes</h3>
+      <p class="demo-description">Five size variants&mdash;<code>xs</code>, <code>sm</code>, <code>md</code>, <code>lg</code>, and <code>xl</code>&mdash;controlled via the <code>size</code> prop to fit different contexts.</p>
       <CodeCollapsible :code="sizesCode">
         <div class="empty-grid">
           <UEmpty size="xs" icon="i-lucide-inbox" title="XS" description="Extra small empty state." />
@@ -125,6 +130,7 @@ const customImageCode = `<UEmpty
 
     <section class="example-section">
       <h3>Custom Image (SVG)</h3>
+      <p class="demo-description">Uses the <code>#leading</code> slot to replace the default icon with a custom SVG image for branded or illustrated empty states.</p>
       <CodeCollapsible :code="customImageCode">
         <div class="demo-row">
           <UEmpty
@@ -168,6 +174,18 @@ const customImageCode = `<UEmpty
   font-weight: 600;
   color: var(--sl-color-text);
   margin: 0;
+}
+.demo-description {
+  font-size: 13px;
+  color: var(--sl-color-text-light);
+  margin: 0;
+  line-height: 1.5;
+}
+.demo-description code {
+  font-size: 12px;
+  background: var(--color-surface-muted, #F3F4F6);
+  padding: 2px 6px;
+  border-radius: 4px;
 }
 .empty-custom-img {
   all: revert;

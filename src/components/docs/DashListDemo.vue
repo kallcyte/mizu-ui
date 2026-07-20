@@ -38,6 +38,7 @@ const horizontalCode = `<MizuDashList :items="productSpecs" size="md" orientatio
   <div class="dashlist-examples">
     <section class="example-section">
       <h3>Vertical (Default)</h3>
+      <p class="demo-description">Default vertical layout with stacked rows and dividers between items.</p>
       <CodeCollapsible :code="verticalCode">
         <MizuDashList :items="userInfo" size="md" />
       </CodeCollapsible>
@@ -45,6 +46,7 @@ const horizontalCode = `<MizuDashList :items="productSpecs" size="md" orientatio
 
     <section class="example-section">
       <h3>Sizes</h3>
+      <p class="demo-description">Three size variants (sm, md, lg) for different contexts and screen densities.</p>
       <CodeCollapsible :code="sizesCode">
         <div class="dashlist-grid">
           <div>
@@ -65,6 +67,7 @@ const horizontalCode = `<MizuDashList :items="productSpecs" size="md" orientatio
 
     <section class="example-section">
       <h3>Horizontal</h3>
+      <p class="demo-description">Horizontal layout with inline items, ideal for compact displays and metadata.</p>
       <CodeCollapsible :code="horizontalCode">
         <MizuDashList :items="productSpecs" size="md" orientation="horizontal" />
       </CodeCollapsible>
@@ -106,6 +109,13 @@ const horizontalCode = `<MizuDashList :items="productSpecs" size="md" orientatio
   color: var(--sl-color-text-light);
   margin-bottom: 8px;
   margin-top: 0;
+}
+
+.demo-description {
+  font-size: 13px;
+  color: var(--sl-color-text-light);
+  margin: 0;
+  line-height: 1.5;
 }
 
 .dashlist-grid {

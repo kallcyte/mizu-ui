@@ -16,6 +16,7 @@ const formatCode = `<UColorPicker v-model="hexColor" format="hex" />
   <div class="not-content demo-isolated demo-examples">
     <section class="example-section">
       <h3>Basic color picker</h3>
+      <p class="demo-description">A color picker with <code>v-model</code> binding that returns the selected color value, complete with an eyedropper and swatch presets.</p>
       <CodeCollapsible :code="basicCode">
         <div class="demo-row">
           <UColorPicker v-model="color" />
@@ -26,6 +27,7 @@ const formatCode = `<UColorPicker v-model="hexColor" format="hex" />
 
     <section class="example-section">
       <h3>Color formats</h3>
+      <p class="demo-description">Control the output format using the <code>format</code> prop—choose <code>"hex"</code> for hexadecimal or <code>"rgb"</code> for RGB strings.</p>
       <CodeCollapsible :code="formatCode">
         <div class="demo-col">
           <div class="demo-row">
@@ -62,6 +64,20 @@ const formatCode = `<UColorPicker v-model="hexColor" format="hex" />
   font-weight: 600;
   color: var(--sl-color-text);
   margin: 0;
+}
+.demo-description {
+  all: revert;
+  font-size: 13px;
+  color: var(--sl-color-text-light);
+  margin: 0;
+  line-height: 1.5;
+}
+.demo-description code {
+  all: revert;
+  font-size: 12px;
+  background: var(--color-surface-muted, #F3F4F6);
+  padding: 2px 6px;
+  border-radius: 4px;
 }
 .demo-row {
   all: revert;

@@ -12,6 +12,7 @@ const inverted = ref(30);
   <div class="not-content demo-isolated demo-examples">
     <section class="example-section">
       <h3>Basic</h3>
+      <p class="demo-description">A simple slider bound with v-model, supporting numeric values from 0 to 100 by default.</p>
       <CodeCollapsible :code="`<USlider v-model=&quot;volume&quot; />`">
         <div class="demo-col">
           <USlider v-model="volume" />
@@ -22,6 +23,7 @@ const inverted = ref(30);
 
     <section class="example-section">
       <h3>With Tooltip</h3>
+      <p class="demo-description">Use the <code>tooltip</code> prop to display the current value as a tooltip above the slider thumb.</p>
       <CodeCollapsible :code="`<USlider v-model=&quot;brightness&quot; tooltip />`">
         <div class="demo-col">
           <USlider v-model="brightness" tooltip />
@@ -32,6 +34,7 @@ const inverted = ref(30);
 
     <section class="example-section">
       <h3>Range (Multiple Thumbs)</h3>
+      <p class="demo-description">A range slider with two thumbs for selecting a min/max range, with <code>min-steps-between-thumbs</code> to enforce a minimum gap.</p>
       <CodeCollapsible :code="`<USlider v-model=&quot;range&quot; :min-steps-between-thumbs=&quot;5&quot; />`">
         <div class="demo-col">
           <USlider v-model="range" :min-steps-between-thumbs="5" />
@@ -42,6 +45,7 @@ const inverted = ref(30);
 
     <section class="example-section">
       <h3>Inverted</h3>
+      <p class="demo-description">An inverted slider using the <code>inverted</code> prop, where the track fills from the right end of the range.</p>
       <CodeCollapsible :code="`<USlider v-model=&quot;inverted&quot; inverted />`">
         <div class="demo-col">
           <USlider v-model="inverted" inverted />
@@ -52,6 +56,7 @@ const inverted = ref(30);
 
     <section class="example-section">
       <h3>Disabled</h3>
+      <p class="demo-description">A disabled slider via the <code>disabled</code> prop, preventing user interaction and showing a muted appearance.</p>
       <CodeCollapsible :code="`<USlider disabled :default-value=&quot;40&quot; />`">
         <div class="demo-col">
           <USlider disabled :default-value="40" />
@@ -81,6 +86,18 @@ const inverted = ref(30);
   font-weight: 600;
   color: var(--sl-color-text);
   margin: 0;
+}
+.demo-description {
+  font-size: 13px;
+  color: var(--sl-color-text-light);
+  margin: 0;
+  line-height: 1.5;
+}
+.demo-description code {
+  font-size: 12px;
+  background: var(--color-surface-muted, #F3F4F6);
+  padding: 2px 6px;
+  border-radius: 4px;
 }
 .demo-col {
   all: revert;

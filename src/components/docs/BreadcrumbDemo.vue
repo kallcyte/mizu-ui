@@ -6,6 +6,7 @@ import CodeCollapsible from "./CodeCollapsible.vue";
   <div class="not-content demo-isolated demo-examples">
     <section class="example-section">
       <h3>Basic</h3>
+      <p class="demo-description">Navigation breadcrumbs showing the current page location within a hierarchy. The last item is automatically treated as the current page.</p>
       <CodeCollapsible :code="`<UBreadcrumb :items=&quot;[
   { label: 'Home', href: '/' },
   { label: 'Docs', href: '/docs' },
@@ -23,6 +24,7 @@ import CodeCollapsible from "./CodeCollapsible.vue";
 
     <section class="example-section">
       <h3>With Icons</h3>
+      <p class="demo-description">Add leading icons to breadcrumb items using the <code>icon</code> property for enhanced visual navigation.</p>
       <CodeCollapsible :code="`<UBreadcrumb :items=&quot;[
   { label: 'Home', icon: 'i-ph-house' },
   { label: 'Dashboard' }
@@ -58,6 +60,18 @@ import CodeCollapsible from "./CodeCollapsible.vue";
   font-weight: 600;
   color: var(--sl-color-text);
   margin: 0;
+}
+.demo-description {
+  font-size: 13px;
+  color: var(--sl-color-text-light);
+  margin: 0;
+  line-height: 1.5;
+}
+.demo-description code {
+  font-size: 12px;
+  background: var(--color-surface-muted, #F3F4F6);
+  padding: 2px 6px;
+  border-radius: 4px;
 }
 .demo-col {
   all: revert;

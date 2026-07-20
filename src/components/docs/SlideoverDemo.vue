@@ -10,6 +10,7 @@ const leftOpen = ref(false);
   <div class="not-content demo-isolated demo-examples">
     <section class="example-section">
       <h3>Right (Default)</h3>
+      <p class="demo-description">A slideover panel opening from the right side with a title, body, and footer for detail panels or settings forms.</p>
       <CodeCollapsible :code="`<USlideover v-model:open=&quot;open&quot; title=&quot;Details&quot; side=&quot;right&quot;>
   <template #body>
     <p>Slideover content goes here.</p>
@@ -32,6 +33,7 @@ const leftOpen = ref(false);
 
     <section class="example-section">
       <h3>Left</h3>
+      <p class="demo-description">A slideover panel opening from the left side using <code>side="left"</code>, ideal for filter panels or navigation drawers.</p>
       <CodeCollapsible :code="`<USlideover v-model:open=&quot;open&quot; title=&quot;Filters&quot; side=&quot;left&quot;>
   <template #body>
     <p>Filter content goes here.</p>
@@ -74,6 +76,18 @@ const leftOpen = ref(false);
   font-weight: 600;
   color: var(--sl-color-text);
   margin: 0;
+}
+.demo-description {
+  font-size: 13px;
+  color: var(--sl-color-text-light);
+  margin: 0;
+  line-height: 1.5;
+}
+.demo-description code {
+  font-size: 12px;
+  background: var(--color-surface-muted, #F3F4F6);
+  padding: 2px 6px;
+  border-radius: 4px;
 }
 .demo-row {
   all: revert;

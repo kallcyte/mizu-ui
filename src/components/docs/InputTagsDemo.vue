@@ -29,6 +29,7 @@ function onDupKeydown(e: KeyboardEvent) {
   <div class="not-content demo-isolated demo-examples">
     <section class="example-section">
       <h3>Usage</h3>
+      <p class="demo-description">Core tag input with <code>v-model</code> binding. Press Enter to add tags and Backspace to remove the last one.</p>
       <CodeCollapsible code="<UInputTags class=&quot;w-full&quot; v-model=&quot;tags&quot; placeholder=&quot;Add a tag...&quot; />">
         <div class="demo-col">
           <UInputTags class="w-full" v-model="tags" placeholder="Add a tag and press Enter..." />
@@ -38,6 +39,7 @@ function onDupKeydown(e: KeyboardEvent) {
 
     <section class="example-section">
       <h3>Placeholder</h3>
+      <p class="demo-description">Shows placeholder text when no tags are present, guiding the user on expected input.</p>
       <CodeCollapsible code="<UInputTags class=&quot;w-full&quot; placeholder=&quot;Enter tags...&quot; />">
         <div class="demo-col">
           <UInputTags class="w-full" placeholder="Enter tags..." />
@@ -47,6 +49,7 @@ function onDupKeydown(e: KeyboardEvent) {
 
     <section class="example-section">
       <h3>Max Length</h3>
+      <p class="demo-description">Limits each tag to a maximum number of characters with <code>max-length</code>.</p>
       <CodeCollapsible code="<UInputTags class=&quot;w-full&quot; :max-length=&quot;4&quot; placeholder=&quot;Max 4 chars...&quot; />">
         <div class="demo-col">
           <UInputTags class="w-full" :max-length="4" placeholder="Max 4 chars per tag..." />
@@ -56,6 +59,7 @@ function onDupKeydown(e: KeyboardEvent) {
 
     <section class="example-section">
       <h3>Color</h3>
+      <p class="demo-description">Applies semantic color themes to tags using the <code>color</code> prop with <code>highlight</code>.</p>
       <CodeCollapsible code="<UInputTags class=&quot;w-full&quot; color=&quot;primary&quot; :model-value=&quot;['Vue']&quot; highlight />
 <UInputTags class=&quot;w-full&quot; color=&quot;success&quot; :model-value=&quot;['Vue']&quot; highlight />
 <UInputTags class=&quot;w-full&quot; color=&quot;error&quot; :model-value=&quot;['Vue']&quot; highlight />
@@ -71,6 +75,7 @@ function onDupKeydown(e: KeyboardEvent) {
 
     <section class="example-section">
       <h3>Variant</h3>
+      <p class="demo-description">Five visual styles: outline, soft, subtle, ghost, and none for different UI contexts.</p>
       <CodeCollapsible code="<UInputTags class=&quot;w-full&quot; variant=&quot;outline&quot; :model-value=&quot;['Vue']&quot; color=&quot;neutral&quot; />
 <UInputTags class=&quot;w-full&quot; variant=&quot;soft&quot; :model-value=&quot;['Vue']&quot; color=&quot;neutral&quot; />
 <UInputTags class=&quot;w-full&quot; variant=&quot;subtle&quot; :model-value=&quot;['Vue']&quot; color=&quot;neutral&quot; />
@@ -88,6 +93,7 @@ function onDupKeydown(e: KeyboardEvent) {
 
     <section class="example-section">
       <h3>Size</h3>
+      <p class="demo-description">Three size presets: small, medium, and large for different input densities.</p>
       <CodeCollapsible code="<UInputTags class=&quot;w-full&quot; size=&quot;sm&quot; :model-value=&quot;['Vue']&quot; placeholder=&quot;SM&quot; />
 <UInputTags class=&quot;w-full&quot; size=&quot;md&quot; :model-value=&quot;['Vue']&quot; placeholder=&quot;MD&quot; />
 <UInputTags class=&quot;w-full&quot; size=&quot;lg&quot; :model-value=&quot;['Vue']&quot; placeholder=&quot;LG&quot; />">
@@ -101,6 +107,7 @@ function onDupKeydown(e: KeyboardEvent) {
 
     <section class="example-section">
       <h3>Icon</h3>
+      <p class="demo-description">Adds leading or trailing icons with the <code>icon</code> and <code>trailing</code> props.</p>
       <CodeCollapsible code="<UInputTags class=&quot;w-full&quot; icon=&quot;i-ph-tag&quot; placeholder=&quot;Add tags...&quot; />
 <UInputTags class=&quot;w-full&quot; icon=&quot;i-ph-envelope&quot; placeholder=&quot;Emails...&quot; trailing />">
         <div class="demo-col">
@@ -112,6 +119,7 @@ function onDupKeydown(e: KeyboardEvent) {
 
     <section class="example-section">
       <h3>Avatar</h3>
+      <p class="demo-description">Adds a leading avatar image with the <code>avatar</code> prop.</p>
       <CodeCollapsible code="<UInputTags class=&quot;w-full&quot; :avatar=&quot;{ src: 'https://github.com/nuxt.png', size: '2xs' }&quot; placeholder=&quot;Add tags...&quot; />">
         <div class="demo-col">
           <UInputTags class="w-full" :avatar="{ src: 'https://github.com/nuxt.png', size: '2xs' }" placeholder="Add tags..." />
@@ -121,6 +129,7 @@ function onDupKeydown(e: KeyboardEvent) {
 
     <section class="example-section">
       <h3>Delete Icon</h3>
+      <p class="demo-description">Customizes the tag removal icon with the <code>delete-icon</code> prop.</p>
       <CodeCollapsible code="<UInputTags class=&quot;w-full&quot; delete-icon=&quot;i-ph-x-circle&quot; :model-value=&quot;['Vue', 'Nuxt']&quot; placeholder=&quot;Add tags...&quot; />">
         <div class="demo-col">
           <UInputTags class="w-full" delete-icon="i-ph-x-circle" :model-value="['Vue', 'Nuxt']" placeholder="Add tags..." />
@@ -130,6 +139,7 @@ function onDupKeydown(e: KeyboardEvent) {
 
     <section class="example-section">
       <h3>Loading</h3>
+      <p class="demo-description">Shows a loading spinner to indicate a pending operation.</p>
       <CodeCollapsible code="<UInputTags class=&quot;w-full&quot; loading :model-value=&quot;['Vue', 'Nuxt']&quot; placeholder=&quot;Loading...&quot; />
 <UInputTags class=&quot;w-full&quot; loading icon=&quot;i-ph-tag&quot; :model-value=&quot;['Vue']&quot; placeholder=&quot;Loading...&quot; />">
         <div class="demo-col">
@@ -141,6 +151,7 @@ function onDupKeydown(e: KeyboardEvent) {
 
     <section class="example-section">
       <h3>Disabled</h3>
+      <p class="demo-description">Prevents all interaction: no adding, editing, or removing tags.</p>
       <CodeCollapsible code="<UInputTags class=&quot;w-full&quot; disabled :model-value=&quot;['Vue', 'Nuxt']&quot; />">
         <div class="demo-col">
           <UInputTags class="w-full" disabled :model-value="['Vue', 'Nuxt']" />
@@ -150,6 +161,7 @@ function onDupKeydown(e: KeyboardEvent) {
 
     <section class="example-section">
       <h3>Duplicate prevention</h3>
+      <p class="demo-description">Demonstrates custom validation to prevent entering duplicate tags via keyboard events.</p>
       <CodeCollapsible code="<UInputTags class=&quot;w-full&quot; v-model=&quot;tags&quot; @update:model-value=&quot;onDupCheck&quot; placeholder=&quot;Try typing 'Vue' or 'React'...&quot; />">
         <div class="demo-col">
           <div :class="{ shake: dupShake }" class="dup-example">
@@ -167,6 +179,7 @@ function onDupKeydown(e: KeyboardEvent) {
 
     <section class="example-section">
       <h3>Preset tags (default-value)</h3>
+      <p class="demo-description">Initializes the input with pre-defined tags using <code>default-value</code>.</p>
       <CodeCollapsible code="<UInputTags class=&quot;w-full&quot; :default-value=&quot;['Vue', 'React']&quot; placeholder=&quot;Add more...&quot; />">
         <div class="demo-col">
           <UInputTags class="w-full" :default-value="['Vue', 'React']" placeholder="Add more..." />
@@ -196,6 +209,18 @@ function onDupKeydown(e: KeyboardEvent) {
   font-weight: 600;
   color: var(--sl-color-text);
   margin: 0;
+}
+.demo-description {
+  font-size: 13px;
+  color: var(--sl-color-text-light);
+  margin: 0;
+  line-height: 1.5;
+}
+.demo-description code {
+  font-size: 12px;
+  background: var(--color-surface-muted, #F3F4F6);
+  padding: 2px 6px;
+  border-radius: 4px;
 }
 .demo-col {
   all: revert;

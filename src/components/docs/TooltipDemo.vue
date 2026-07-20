@@ -6,6 +6,7 @@ import CodeCollapsible from "./CodeCollapsible.vue";
   <div class="not-content demo-isolated demo-examples">
     <section class="example-section">
       <h3>Basic</h3>
+      <p class="demo-description">Wrap any element with <code>UTooltip</code> and pass <code>text</code> to show a tooltip on hover.</p>
       <CodeCollapsible :code="`<UTooltip text=&quot;More info&quot;>
   <UButton label=&quot;Hover me&quot; />
 </UTooltip>`">
@@ -19,6 +20,7 @@ import CodeCollapsible from "./CodeCollapsible.vue";
 
     <section class="example-section">
       <h3>Positions</h3>
+      <p class="demo-description">Control tooltip placement using the <code>:popper</code> prop with <code>placement</code> set to <code>top</code>, <code>right</code>, <code>bottom</code>, or <code>left</code>.</p>
       <CodeCollapsible :code="`<UTooltip text=&quot;Top&quot; :popper=&quot;{ placement: 'top' }&quot;>
   <UButton label=&quot;Top&quot; />
 </UTooltip>`">
@@ -61,6 +63,18 @@ import CodeCollapsible from "./CodeCollapsible.vue";
   font-weight: 600;
   color: var(--sl-color-text);
   margin: 0;
+}
+.demo-description {
+  font-size: 13px;
+  color: var(--sl-color-text-light);
+  margin: 0;
+  line-height: 1.5;
+}
+.demo-description code {
+  font-size: 12px;
+  background: var(--color-surface-muted, #F3F4F6);
+  padding: 2px 6px;
+  border-radius: 4px;
 }
 .demo-row {
   all: revert;

@@ -52,6 +52,7 @@ const bubbleCode = `<UEditor v-slot="{ editor }" v-model="value">
   <div class="not-content demo-isolated demo-examples">
     <section class="example-section">
       <h3>Fixed toolbar</h3>
+      <p class="demo-description">A fixed-position formatting toolbar rendered above the editor, using <code>EditorToolbarItem[]</code> for marks, headings, lists, blockquotes, code blocks, and undo/redo actions.</p>
       <CodeCollapsible :code="toolbarCode">
         <div class="demo-col">
           <UEditor v-slot="{ editor }" v-model="value" class="w-full min-h-36">
@@ -63,6 +64,7 @@ const bubbleCode = `<UEditor v-slot="{ editor }" v-model="value">
 
     <section class="example-section">
       <h3>Bubble toolbar (select text)</h3>
+      <p class="demo-description">A floating bubble toolbar that appears on text selection using the <code>layout="bubble"</code> prop for an inline formatting experience.</p>
       <CodeCollapsible :code="bubbleCode">
         <div class="demo-col">
           <UEditor
@@ -99,6 +101,18 @@ const bubbleCode = `<UEditor v-slot="{ editor }" v-model="value">
   font-weight: 600;
   color: var(--sl-color-text);
   margin: 0;
+}
+.demo-description {
+  font-size: 13px;
+  color: var(--sl-color-text-light);
+  margin: 0;
+  line-height: 1.5;
+}
+.demo-description code {
+  font-size: 12px;
+  background: var(--color-surface-muted, #F3F4F6);
+  padding: 2px 6px;
+  border-radius: 4px;
 }
 .demo-row {
   all: revert;

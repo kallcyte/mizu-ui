@@ -10,6 +10,7 @@ const leftOpen = ref(false);
   <div class="not-content demo-isolated demo-examples">
     <section class="example-section">
       <h3>Bottom</h3>
+      <p class="demo-description">A bottom sheet drawer using <code>direction="bottom"</code>, ideal for mobile-friendly settings panels or action menus.</p>
       <CodeCollapsible :code="`<UDrawer v-model:open=&quot;open&quot; title=&quot;Settings&quot; direction=&quot;bottom&quot;>
   <template #body>
     <p>Drawer content goes here.</p>
@@ -32,6 +33,7 @@ const leftOpen = ref(false);
 
     <section class="example-section">
       <h3>Left</h3>
+      <p class="demo-description">A left-side drawer using <code>direction="left"</code>, commonly used for navigation menus, filters, or sidebars.</p>
       <CodeCollapsible :code="`<UDrawer v-model:open=&quot;open&quot; title=&quot;Navigation&quot; direction=&quot;left&quot;>
   <template #body>
     <p>Navigation content goes here.</p>
@@ -73,6 +75,20 @@ const leftOpen = ref(false);
   font-weight: 600;
   color: var(--sl-color-text);
   margin: 0;
+}
+.demo-description {
+  all: revert;
+  font-size: 13px;
+  color: var(--sl-color-text-light);
+  margin: 0;
+  line-height: 1.5;
+}
+.demo-description code {
+  all: revert;
+  font-size: 12px;
+  background: var(--color-surface-muted, #F3F4F6);
+  padding: 2px 6px;
+  border-radius: 4px;
 }
 .demo-row {
   all: revert;

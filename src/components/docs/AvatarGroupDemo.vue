@@ -6,6 +6,7 @@ import CodeCollapsible from "./CodeCollapsible.vue";
   <div class="not-content demo-isolated demo-examples">
     <section class="example-section">
       <h3>Default</h3>
+      <p class="demo-description">Groups multiple avatars together with overlapping layout and consistent spacing.</p>
       <CodeCollapsible :code="`<UAvatarGroup>
   <UAvatar src=&quot;https://i.pravatar.cc/80?img=1&quot; alt=&quot;User&quot; />
   <UAvatar src=&quot;https://i.pravatar.cc/80?img=2&quot; alt=&quot;User&quot; />
@@ -23,6 +24,7 @@ import CodeCollapsible from "./CodeCollapsible.vue";
 
     <section class="example-section">
       <h3>Sizes</h3>
+      <p class="demo-description">Three size variants for all avatars in the group: sm, md (default), and lg.</p>
       <CodeCollapsible :code="`<UAvatarGroup size=&quot;sm&quot;>
   <UAvatar src=&quot;...&quot; alt=&quot;User&quot; />
   <UAvatar src=&quot;...&quot; alt=&quot;User&quot; />
@@ -52,6 +54,7 @@ import CodeCollapsible from "./CodeCollapsible.vue";
 
     <section class="example-section">
       <h3>Truncated (Max)</h3>
+      <p class="demo-description">Limit the number of visible avatars using the <code>:max</code> prop. Excess avatars show a count badge.</p>
       <CodeCollapsible :code="`<UAvatarGroup :max=&quot;3&quot;>
   <UAvatar src=&quot;...&quot; alt=&quot;User&quot; />
   <UAvatar src=&quot;...&quot; alt=&quot;User&quot; />
@@ -73,6 +76,7 @@ import CodeCollapsible from "./CodeCollapsible.vue";
 
     <section class="example-section">
       <h3>Color</h3>
+      <p class="demo-description">Override the fallback color for avatars without images using the <code>color</code> prop.</p>
       <CodeCollapsible :code="`<UAvatarGroup color=&quot;primary&quot;>
   <UAvatar alt=&quot;User&quot; />
   <UAvatar alt=&quot;User&quot; />
@@ -120,6 +124,18 @@ import CodeCollapsible from "./CodeCollapsible.vue";
   font-weight: 600;
   color: var(--sl-color-text);
   margin: 0;
+}
+.demo-description {
+  font-size: 13px;
+  color: var(--sl-color-text-light);
+  margin: 0;
+  line-height: 1.5;
+}
+.demo-description code {
+  font-size: 12px;
+  background: var(--color-surface-muted, #F3F4F6);
+  padding: 2px 6px;
+  border-radius: 4px;
 }
 .demo-row {
   all: revert;

@@ -37,6 +37,7 @@ const reverseCode = `<UTimeline :items="items" reverse />`;
   <div class="timeline-examples">
     <section class="example-section">
       <h3>Vertical (Default)</h3>
+      <p class="demo-description">Display chronological events in a vertical stack. Each item supports <code>label</code>, <code>description</code>, and <code>date</code>.</p>
       <CodeCollapsible :code="verticalCode">
         <div class="demo-row">
           <UTimeline :items="items" class="w-full" />
@@ -46,6 +47,7 @@ const reverseCode = `<UTimeline :items="items" reverse />`;
 
     <section class="example-section">
       <h3>Horizontal</h3>
+      <p class="demo-description">Arrange timeline events side-by-side using <code>orientation="horizontal"</code> for space-efficient layouts.</p>
       <CodeCollapsible :code="horizontalCode">
         <div class="demo-row">
           <UTimeline :items="items" orientation="horizontal" class="w-full" />
@@ -55,6 +57,7 @@ const reverseCode = `<UTimeline :items="items" reverse />`;
 
     <section class="example-section">
       <h3>Colors</h3>
+      <p class="demo-description">Change the accent color with the <code>color</code> prop — supports <code>primary</code>, <code>success</code>, <code>warning</code>, and <code>error</code>.</p>
       <CodeCollapsible :code="colorsCode">
         <div class="timeline-grid">
           <UTimeline :items="items" color="primary" />
@@ -67,6 +70,7 @@ const reverseCode = `<UTimeline :items="items" reverse />`;
 
     <section class="example-section">
       <h3>Sizes</h3>
+      <p class="demo-description">Control indicator and text sizing with the <code>size</code> prop — available in <code>sm</code>, <code>md</code>, and <code>lg</code>.</p>
       <CodeCollapsible :code="sizesCode">
         <div class="timeline-grid">
           <UTimeline :items="items" size="sm" />
@@ -78,6 +82,7 @@ const reverseCode = `<UTimeline :items="items" reverse />`;
 
     <section class="example-section">
       <h3>Custom Slots</h3>
+      <p class="demo-description">Override indicator and date rendering using <code>#indicator</code> and <code>#date</code> named slots for custom content.</p>
       <CodeCollapsible :code="customSlotsCode">
         <div class="demo-row">
           <UTimeline :items="items" class="w-full" />
@@ -87,6 +92,7 @@ const reverseCode = `<UTimeline :items="items" reverse />`;
 
     <section class="example-section">
       <h3>Reversed</h3>
+      <p class="demo-description">Reverse the display order with the <code>reverse</code> prop to show the latest item first.</p>
       <CodeCollapsible :code="reverseCode">
         <div class="demo-row">
           <UTimeline :items="items" reverse class="w-full" />
@@ -119,6 +125,18 @@ const reverseCode = `<UTimeline :items="items" reverse />`;
   font-weight: 600;
   color: var(--sl-color-text);
   margin: 0;
+}
+.demo-description {
+  font-size: 13px;
+  color: var(--sl-color-text-light);
+  margin: 0;
+  line-height: 1.5;
+}
+.demo-description code {
+  font-size: 12px;
+  background: var(--color-surface-muted, #F3F4F6);
+  padding: 2px 6px;
+  border-radius: 4px;
 }
 .demo-row {
   all: revert;

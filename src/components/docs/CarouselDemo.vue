@@ -81,6 +81,7 @@ const loopCode = `<UCarousel :items="slides" arrows loop class="w-full max-w-lg"
   <div class="not-content demo-isolated demo-examples">
     <section class="example-section">
       <h3>Basic</h3>
+      <p class="demo-description">Simple horizontal carousel with swipe navigation using the default item template.</p>
       <CodeCollapsible :code="basicCode">
         <UCarousel :items="slides" class="w-full max-w-lg">
           <template #default="{ item }">
@@ -94,6 +95,7 @@ const loopCode = `<UCarousel :items="slides" arrows loop class="w-full max-w-lg"
 
     <section class="example-section">
       <h3>Vertical Orientation</h3>
+      <p class="demo-description">Scroll vertically by setting <code>orientation="vertical"</code> for side-scrolling content.</p>
       <CodeCollapsible :code="orientationCode">
         <UCarousel :items="slides" orientation="vertical" class="h-80 w-full max-w-xs">
           <template #default="{ item }">
@@ -107,6 +109,7 @@ const loopCode = `<UCarousel :items="slides" arrows loop class="w-full max-w-lg"
 
     <section class="example-section">
       <h3>With Arrows</h3>
+      <p class="demo-description">Enable previous and next arrow buttons with the <code>arrows</code> prop.</p>
       <CodeCollapsible :code="arrowsCode">
         <UCarousel :items="slides" arrows class="w-full max-w-lg">
           <template #default="{ item }">
@@ -120,6 +123,7 @@ const loopCode = `<UCarousel :items="slides" arrows loop class="w-full max-w-lg"
 
     <section class="example-section">
       <h3>With Dots</h3>
+      <p class="demo-description">Add dot indicators below the carousel using the <code>dots</code> prop.</p>
       <CodeCollapsible :code="dotsCode">
         <UCarousel :items="slides" dots class="w-full max-w-lg">
           <template #default="{ item }">
@@ -133,6 +137,7 @@ const loopCode = `<UCarousel :items="slides" arrows loop class="w-full max-w-lg"
 
     <section class="example-section">
       <h3>Custom Prev/Next Buttons</h3>
+      <p class="demo-description">Customize arrow button appearance with the <code>:prev</code> and <code>:next</code> props.</p>
       <CodeCollapsible :code="prevNextCode">
         <UCarousel :items="slides" arrows :prev="{ color: 'secondary', variant: 'soft' }" :next="{ color: 'secondary', variant: 'soft' }" class="w-full max-w-lg">
           <template #default="{ item }">
@@ -146,6 +151,7 @@ const loopCode = `<UCarousel :items="slides" arrows loop class="w-full max-w-lg"
 
     <section class="example-section">
       <h3>Autoplay</h3>
+      <p class="demo-description">Automatically advance slides with configurable delay using <code>autoplay</code> and <code>:autoplay</code>.</p>
       <CodeCollapsible :code="autoplayCode">
         <UCarousel :items="logoSlides" autoplay :autoplay="{ delay: 2000 }" class="w-full max-w-lg">
           <template #default="{ item }">
@@ -160,6 +166,7 @@ const loopCode = `<UCarousel :items="slides" arrows loop class="w-full max-w-lg"
 
     <section class="example-section">
       <h3>Loop</h3>
+      <p class="demo-description">Enable infinite looping so the carousel wraps around when reaching the start or end using the <code>loop</code> prop.</p>
       <CodeCollapsible :code="loopCode">
         <UCarousel :items="slides" arrows loop class="w-full max-w-lg">
           <template #default="{ item }">
@@ -193,5 +200,17 @@ const loopCode = `<UCarousel :items="slides" arrows loop class="w-full max-w-lg"
   font-weight: 600;
   color: var(--sl-color-text);
   margin: 0;
+}
+.demo-description {
+  font-size: 13px;
+  color: var(--sl-color-text-light);
+  margin: 0;
+  line-height: 1.5;
+}
+.demo-description code {
+  font-size: 12px;
+  background: var(--color-surface-muted, #F3F4F6);
+  padding: 2px 6px;
+  border-radius: 4px;
 }
 </style>

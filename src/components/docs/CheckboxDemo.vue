@@ -15,6 +15,7 @@ const fruits = ["Apple", "Banana", "Blueberry"];
   <div class="not-content demo-isolated demo-examples">
     <section class="example-section">
       <h3>States</h3>
+      <p class="demo-description">Demonstrates the four states: checked, unchecked, required, and indeterminate using <code>v-model</code> and <code>default-value</code>.</p>
       <CodeCollapsible :code="`<UCheckbox v-model=&quot;checked&quot; label=&quot;Accept terms&quot; />
 <UCheckbox label=&quot;Unchecked&quot; />
 <UCheckbox label=&quot;Required -- agree to continue&quot; required />
@@ -30,6 +31,7 @@ const fruits = ["Apple", "Banana", "Blueberry"];
 
     <section class="example-section">
       <h3>Indeterminate</h3>
+      <p class="demo-description">Shows a select-all pattern where the parent checkbox toggles between checked, unchecked, and indeterminate based on child selections.</p>
       <CodeCollapsible :code="`<UCheckbox
   v-model=&quot;selectAll&quot;
   :value=&quot;selectedFruits.length ? (selectedFruits.length === 3 ? true : 'indeterminate') : false&quot;
@@ -64,6 +66,7 @@ const fruits = ["Apple", "Banana", "Blueberry"];
 
     <section class="example-section">
       <h3>With Description</h3>
+      <p class="demo-description">Adds a supporting description below the label using the <code>description</code> prop for additional context.</p>
       <CodeCollapsible :code="`<UCheckbox label=&quot;Subscribe&quot; description=&quot;Receive product updates and tips.&quot; />`">
         <div class="demo-col">
           <UCheckbox label="Subscribe" description="Receive product updates and tips." />
@@ -73,6 +76,7 @@ const fruits = ["Apple", "Banana", "Blueberry"];
 
     <section class="example-section">
       <h3>Colors</h3>
+      <p class="demo-description">Seven color variants available: primary, secondary, success, info, warning, error, and neutral.</p>
       <CodeCollapsible :code="`<UCheckbox color=&quot;primary&quot; default-value label=&quot;Primary&quot; />
 <UCheckbox color=&quot;secondary&quot; default-value label=&quot;Secondary&quot; />
 <UCheckbox color=&quot;success&quot; default-value label=&quot;Success&quot; />
@@ -94,6 +98,7 @@ const fruits = ["Apple", "Banana", "Blueberry"];
 
     <section class="example-section">
       <h3>Sizes</h3>
+      <p class="demo-description">Four size options: <code>sm</code>, <code>md</code>, <code>lg</code>, and <code>xl</code> for different density requirements.</p>
       <CodeCollapsible :code="`<UCheckbox size=&quot;sm&quot; default-value label=&quot;Small&quot; />
 <UCheckbox size=&quot;md&quot; default-value label=&quot;Medium&quot; />
 <UCheckbox size=&quot;lg&quot; default-value label=&quot;Large&quot; />
@@ -109,6 +114,7 @@ const fruits = ["Apple", "Banana", "Blueberry"];
 
     <section class="example-section">
       <h3>Card Variant</h3>
+      <p class="demo-description">Card-styled checkboxes with <code>variant="card"</code> and descriptions for richer selection UI.</p>
       <CodeCollapsible :code="`<UCheckbox color=&quot;primary&quot; variant=&quot;card&quot; default-value label=&quot;Primary&quot; description=&quot;This is a primary card checkbox.&quot; />
 <UCheckbox color=&quot;neutral&quot; variant=&quot;card&quot; label=&quot;Neutral&quot; description=&quot;This is a neutral card checkbox.&quot; />
 <UCheckbox color=&quot;error&quot; variant=&quot;card&quot; default-value label=&quot;Error&quot; description=&quot;This is an error card checkbox.&quot; />`">
@@ -122,6 +128,7 @@ const fruits = ["Apple", "Banana", "Blueberry"];
 
     <section class="example-section">
       <h3>Indicator Position</h3>
+      <p class="demo-description">Control the indicator placement with the <code>indicator</code> prop: <code>start</code> (default), <code>end</code>, or <code>hidden</code>.</p>
       <CodeCollapsible :code="`<UCheckbox indicator=&quot;start&quot; default-value label=&quot;Start (default)&quot; />
 <UCheckbox indicator=&quot;end&quot; default-value label=&quot;End&quot; />
 <UCheckbox indicator=&quot;hidden&quot; default-value label=&quot;Hidden&quot; />`">
@@ -135,6 +142,7 @@ const fruits = ["Apple", "Banana", "Blueberry"];
 
     <section class="example-section">
       <h3>Disabled</h3>
+      <p class="demo-description">Disabled states for checked, unchecked, and indeterminate checkboxes, preventing user interaction.</p>
       <CodeCollapsible :code="`<UCheckbox disabled label=&quot;Checked -- disabled&quot; :default-value=&quot;true&quot; />
 <UCheckbox disabled label=&quot;Unchecked -- disabled&quot; />
 <UCheckbox disabled :default-value=&quot;'indeterminate'&quot; label=&quot;Indeterminate -- disabled&quot; />`">
@@ -168,6 +176,18 @@ const fruits = ["Apple", "Banana", "Blueberry"];
   font-weight: 600;
   color: var(--sl-color-text);
   margin: 0;
+}
+.demo-description {
+  font-size: 13px;
+  color: var(--sl-color-text-light);
+  margin: 0;
+  line-height: 1.5;
+}
+.demo-description code {
+  font-size: 12px;
+  background: var(--color-surface-muted, #F3F4F6);
+  padding: 2px 6px;
+  border-radius: 4px;
 }
 .demo-col {
   all: revert;

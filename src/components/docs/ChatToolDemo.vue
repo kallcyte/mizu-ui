@@ -6,6 +6,7 @@ import CodeCollapsible from "./CodeCollapsible.vue";
   <div class="not-content demo-isolated demo-examples">
     <section class="example-section">
       <h3>Loading</h3>
+      <p class="demo-description">Tool invocation in a loading state, showing a spinner to indicate an operation in progress.</p>
       <CodeCollapsible :code="`<UChatTool text=&quot;Searching files...&quot; loading />`">
         <div class="demo-row">
           <UChatTool text="Searching files..." loading />
@@ -15,6 +16,7 @@ import CodeCollapsible from "./CodeCollapsible.vue";
 
     <section class="example-section">
       <h3>Completed</h3>
+      <p class="demo-description">Completed tool with a content slot and <code>suffix</code> for displaying results like file contents.</p>
       <CodeCollapsible :code="`<UChatTool text=&quot;Read file&quot; suffix=&quot;app.ts&quot;>
   <template #default>
     <pre>export default defineAppConfig({ ... })</pre>
@@ -34,6 +36,7 @@ import CodeCollapsible from "./CodeCollapsible.vue";
 
     <section class="example-section">
       <h3>Card Variant</h3>
+      <p class="demo-description">Card-styled tool with <code>variant="card"</code> and expandable content for richer tool result display.</p>
       <CodeCollapsible :code="`<UChatTool variant=&quot;card&quot; text=&quot;Search results&quot; suffix=&quot;3 files&quot; />`">
         <div class="demo-row">
           <UChatTool variant="card" text="Search results" suffix="3 files" default-open>
@@ -49,6 +52,7 @@ import CodeCollapsible from "./CodeCollapsible.vue";
 
     <section class="example-section">
       <h3>With Actions</h3>
+      <p class="demo-description">Tool with interactive action buttons via the <code>actions</code> prop, useful for confirmation dialogs.</p>
       <CodeCollapsible :code="`<UChatTool
   text=&quot;Delete file?&quot;
   suffix=&quot;config.json&quot;
@@ -66,6 +70,7 @@ import CodeCollapsible from "./CodeCollapsible.vue";
 
     <section class="example-section">
       <h3>Streaming</h3>
+      <p class="demo-description">Animated streaming state with the <code>streaming</code> prop, indicating ongoing tool execution.</p>
       <CodeCollapsible :code="`<UChatTool text=&quot;Generating code...&quot; streaming />`">
         <div class="demo-row">
           <UChatTool text="Generating code..." streaming />
@@ -75,6 +80,7 @@ import CodeCollapsible from "./CodeCollapsible.vue";
 
     <section class="example-section">
       <h3>Disabled</h3>
+      <p class="demo-description">A non-interactive tool with the <code>disabled</code> prop, preventing expansion and interaction.</p>
       <CodeCollapsible :code="`<UChatTool disabled text=&quot;Locked tool...&quot; />`">
         <div class="demo-row">
           <UChatTool disabled text="This tool invocation is locked." />
@@ -104,6 +110,18 @@ import CodeCollapsible from "./CodeCollapsible.vue";
   font-weight: 600;
   color: var(--sl-color-text);
   margin: 0;
+}
+.demo-description {
+  font-size: 13px;
+  color: var(--sl-color-text-light);
+  margin: 0;
+  line-height: 1.5;
+}
+.demo-description code {
+  font-size: 12px;
+  background: var(--color-surface-muted, #F3F4F6);
+  padding: 2px 6px;
+  border-radius: 4px;
 }
 .demo-row {
   all: revert;

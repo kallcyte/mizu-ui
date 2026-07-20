@@ -238,6 +238,7 @@ const emptyCode = `<MizuDataTable
   <div class="data-table-examples">
     <section class="example-section">
       <h3>Basic</h3>
+      <p class="demo-description">A paginated data table with sortable columns, custom cell rendering, and <code>v-model:page</code> for page control.</p>
       <CodeCollapsible :code="basicCode">
         <MizuDataTable v-model:page="page1" :columns="columns" :data="allInvoices" :page-size="5" />
       </CodeCollapsible>
@@ -245,6 +246,7 @@ const emptyCode = `<MizuDataTable
 
     <section class="example-section">
       <h3>With Selection</h3>
+      <p class="demo-description">Enable row selection checkboxes with the <code>selectable</code> prop for bulk actions and multi-row operations.</p>
       <CodeCollapsible :code="selectionCode">
         <MizuDataTable
           v-model:page="page2"
@@ -258,6 +260,7 @@ const emptyCode = `<MizuDataTable
 
     <section class="example-section">
       <h3>Infinite Scroll</h3>
+      <p class="demo-description">Disable pagination with <code>:paginated="false"</code> and use intersection observers for infinite scroll loading.</p>
       <CodeCollapsible :code="infiniteCode">
         <div class="infinite-scroll-wrapper">
           <MizuDataTable :columns="columns" :data="infiniteData" :paginated="false" />
@@ -277,6 +280,7 @@ const emptyCode = `<MizuDataTable
 
     <section class="example-section">
       <h3>Multi-line Cells</h3>
+      <p class="demo-description">Render complex cell content with multiple lines using the <code>h()</code> function for customized layouts within columns.</p>
       <CodeCollapsible :code="multiLineCellsCode">
         <MizuDataTable :columns="contactColumns" :data="contacts" :paginated="false" />
       </CodeCollapsible>
@@ -284,6 +288,7 @@ const emptyCode = `<MizuDataTable
 
     <section class="example-section">
       <h3>Loading</h3>
+      <p class="demo-description">Display a loading skeleton state using the <code>loading</code> prop while data is being fetched asynchronously.</p>
       <CodeCollapsible :code="loadingCode">
         <MizuDataTable :columns="columns" :data="[]" :loading="true" />
       </CodeCollapsible>
@@ -291,6 +296,7 @@ const emptyCode = `<MizuDataTable
 
     <section class="example-section">
       <h3>Empty</h3>
+      <p class="demo-description">Customize the empty state message with the <code>empty-text</code> prop when no data rows are available.</p>
       <CodeCollapsible :code="emptyCode">
         <MizuDataTable :columns="columns" :data="[]" empty-text="No invoices found" />
       </CodeCollapsible>
@@ -324,6 +330,22 @@ const emptyCode = `<MizuDataTable
   font-weight: 600;
   color: var(--sl-color-text);
   margin: 0;
+}
+
+.demo-description {
+  all: revert;
+  font-size: 13px;
+  color: var(--sl-color-text-light);
+  margin: 0;
+  line-height: 1.5;
+}
+
+.demo-description code {
+  all: revert;
+  font-size: 12px;
+  background: var(--color-surface-muted, #F3F4F6);
+  padding: 2px 6px;
+  border-radius: 4px;
 }
 
 .infinite-scroll-wrapper {

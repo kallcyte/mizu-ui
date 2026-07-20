@@ -11,6 +11,7 @@ const scrollableOpen = ref(false);
   <div class="not-content demo-isolated demo-examples">
     <section class="example-section">
       <h3>Basic</h3>
+      <p class="demo-description">A simple modal dialog with title, body, and footer slots, controlled by <code>v-model:open</code> for visibility.</p>
       <CodeCollapsible :code="`<UModal v-model:open=&quot;open&quot; title=&quot;Edit Profile&quot;>
   <template #body>
     <p>Make changes to your profile here.</p>
@@ -31,6 +32,7 @@ const scrollableOpen = ref(false);
 
     <section class="example-section">
       <h3>Fullscreen</h3>
+      <p class="demo-description">The <code>fullscreen</code> prop makes the modal fill the entire viewport for immersive experiences or mobile layouts.</p>
       <CodeCollapsible :code="`<UModal v-model:open=&quot;open&quot; title=&quot;Welcome&quot; fullscreen />`">
         <div class="demo-row">
           <UButton label="Fullscreen" @click="fullscreenOpen = true" />
@@ -47,6 +49,7 @@ const scrollableOpen = ref(false);
 
     <section class="example-section">
       <h3>Scrollable</h3>
+      <p class="demo-description">The <code>scrollable</code> prop enables scrolling within the modal body when content exceeds the viewport height.</p>
       <CodeCollapsible :code="`<UModal v-model:open=&quot;open&quot; title=&quot;Terms&quot; scrollable />`">
         <div class="demo-row">
           <UButton label="Scrollable Modal" @click="scrollableOpen = true" />
@@ -88,6 +91,18 @@ const scrollableOpen = ref(false);
   font-weight: 600;
   color: var(--sl-color-text);
   margin: 0;
+}
+.demo-description {
+  font-size: 13px;
+  color: var(--sl-color-text-light);
+  margin: 0;
+  line-height: 1.5;
+}
+.demo-description code {
+  font-size: 12px;
+  background: var(--color-surface-muted, #F3F4F6);
+  padding: 2px 6px;
+  border-radius: 4px;
 }
 .demo-row {
   all: revert;
