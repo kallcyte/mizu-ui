@@ -11,7 +11,185 @@ A table displays structured data in rows and columns with built-in support for s
 
 ## Examples
 
-<TableDemo client:only="vue" />
+### Basic
+
+Render tabular data by passing `:data` and `:columns`. Each column uses an `accessorKey` to map to data fields.
+
+<TableDemo client:only="vue" section="basic" />
+
+### Columns
+
+Use Vue's `h()` render function and `resolveComponent` to render custom cells with badges, sortable button headers, and status indicators.
+
+<TableDemo client:only="vue" section="columns" />
+
+### Loading
+
+Show a loading state with a progress bar using `loading`, `loading-color`, and `loading-animation`. The loading bar renders below the header while data is visible underneath.
+
+<TableDemo client:only="vue" section="loading" />
+
+### Sorting
+
+Enable sorting with `:sorting` (or `v-model:sorting`) to set initial sort state.
+
+<TableDemo client:only="vue" section="sorting" />
+
+### Caption
+
+Add a `caption` prop to display a descriptive title above the table. It renders as an HTML `<caption>` element for screen readers and visual context.
+
+<TableDemo client:only="vue" section="caption" />
+
+### Empty State
+
+Display a custom message when no data is available using the `empty` prop.
+
+<TableDemo client:only="vue" section="empty" />
+
+### Row Selection
+
+Add checkboxes to each row using TanStack Table's row selection API with custom `h()` header/cell renderers.
+
+<TableDemo client:only="vue" section="selection" />
+
+### Expandable Rows
+
+Toggle expandable row content using the `#expanded` slot and a button in the column cell.
+
+<TableDemo client:only="vue" section="expandable" />
+
+### Pagination
+
+Combine `UTable` with `UPagination`, using `getPaginationRowModel` from TanStack Table.
+
+<TableDemo client:only="vue" section="pagination" />
+
+### Column Filters
+
+Filter rows by a specific column using the table API's `setFilterValue` with a `ref` bound to the input and the table ref.
+
+<TableDemo client:only="vue" section="column-filters" />
+
+### Slots
+
+Customize individual cells using named templates like `#name-cell` and `#email-cell` for rich row content.
+
+<TableDemo client:only="vue" section="slots" />
+
+### Row Actions
+
+Add a `UDropdownMenu` per row for contextual actions using a custom `actions` column with `h()`.
+
+<TableDemo client:only="vue" section="row-actions" />
+
+### Row Select Event
+
+Use `@select` to make rows clickable. The handler receives `Event` and `TableRow`.
+
+<TableDemo client:only="vue" section="row-select-event" />
+
+### Row Hover Event
+
+Use `@hover` to track mouse hover on rows. Receives `Event` and `TableRow | null`.
+
+<TableDemo client:only="vue" section="row-hover-event" />
+
+### Row Context Menu
+
+Wrap the table in `UContextMenu` and use `@contextmenu` to show row actions on right-click.
+
+<TableDemo client:only="vue" section="row-context-menu" />
+
+### Column Footer
+
+Use the `footer` property on column definitions to render summary information below the table body.
+
+<TableDemo client:only="vue" section="footer" />
+
+### Column Span
+
+Use `meta.colspan` or `meta.rowspan` to merge cells across columns or rows. Absorbed cells are hidden via a dynamic `class` function.
+
+<TableDemo client:only="vue" section="span" />
+
+### Column Visibility
+
+Let users toggle column visibility using the table API's `toggleVisibility` with a dropdown menu.
+
+<TableDemo client:only="vue" section="visibility" />
+
+### Global Filter
+
+Use `v-model:global-filter` to search across all columns simultaneously.
+
+<TableDemo client:only="vue" section="global-filter" />
+
+### Column Pinning
+
+Pin columns to the left or right using `v-model:column-pinning` so they stay visible during horizontal scroll. ID and Name are pinned left, the Department column is pinned right — scroll to see the effect.
+
+<TableDemo client:only="vue" section="column-pinning" />
+
+### Row Pinning
+
+Pin rows to the top or bottom using `v-model:row-pinning` with `get-row-id`.
+
+<TableDemo client:only="vue" section="row-pinning" />
+
+### Grouped Rows
+
+Group rows by a column value using `:grouping` and `getGroupedRowModel`. Aggregated values show counts and sums per group.
+
+<TableDemo client:only="vue" section="grouped" />
+
+### Fetched Data
+
+Load data asynchronously with `loading` state. The table clears data and shows a loading bar during fetch, then populates once the request completes.
+
+<TableDemo client:only="vue" section="fetched" />
+
+### Tree Data
+
+Render hierarchical data by adding `subRows` to data objects. Use `row.depth` for indentation.
+
+<TableDemo client:only="vue" section="tree" />
+
+### External Scroll
+
+Wrap the table in a scrollable container with `overflow-x-auto` for horizontal scrolling.
+
+<TableDemo client:only="vue" section="scroll" />
+
+### Drag & Drop
+
+Enable row reordering using `SortableJS` attached to the table's `<tbody>`. Drag the grab handle (☰) to reorder rows.
+
+<TableDemo client:only="vue" section="drag-drop" />
+
+### Virtualize
+
+Use the `virtualize` prop with a fixed height container for efficient rendering of thousands of rows.
+
+<TableDemo client:only="vue" section="virtualize" />
+
+### Infinite Scroll
+
+Rows load automatically as you scroll to the bottom via `IntersectionObserver`. Scroll down to trigger the next batch — the table grows with each page.
+
+<TableDemo client:only="vue" section="infinite-scroll" />
+
+### Meta (tr class)
+
+Use the `meta` prop with `TableMeta` to apply classes or styles to rows. Here, inactive rows get reduced opacity.
+
+<TableDemo client:only="vue" section="meta" />
+
+### Sticky
+
+Use the `sticky` prop to make the header (and footer) sticky when the table overflows vertically. The table below has a fixed max-height so the header stays visible while scrolling rows.
+
+<TableDemo client:only="vue" section="sticky" />
 
 ## API
 
