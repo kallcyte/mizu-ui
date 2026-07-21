@@ -1,0 +1,44 @@
+---
+import Default from "@astrojs/starlight/components/SiteTitle.astro";
+import packageJson from "../../../package.json";
+
+const version = packageJson.version;
+---
+
+<span class="site-title-with-badge sl-flex">
+  <Default><slot /></Default>
+  <a
+    href={`https://github.com/kallcyte/mizu-ui/releases/tag/v${version}`}
+    target="_blank"
+    rel="noopener"
+    class="version-badge"
+    aria-label={`Version ${version}`}
+  >
+    v{version}
+  </a>
+</span>
+
+<style>
+  .site-title-with-badge {
+    align-items: center;
+    gap: 0.625rem;
+  }
+
+  .version-badge {
+    display: inline-block;
+    padding: 0.125rem 0.625rem;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    line-height: 1.25rem;
+    background-color: var(--color-brand-primary);
+    color: #fff;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: opacity 0.15s ease;
+  }
+
+  .version-badge:hover {
+    opacity: 0.85;
+  }
+</style>

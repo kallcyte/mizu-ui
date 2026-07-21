@@ -32,8 +32,11 @@ export default defineConfig({
   integrations: [
     vue(),
     starlight({
-      title: "Mizu Design System v0.18.15",
+      title: "Mizu Design System",
       customCss: ["./src/styles/global.css", "@mizu/vue/style.css"],
+      components: {
+        SiteTitle: "./src/components/overrides/SiteTitleWithBadge.astro",
+      },
       head: [
         {
           tag: "link",
