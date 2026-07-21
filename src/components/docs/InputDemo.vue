@@ -595,7 +595,7 @@ const phoneNumberCode = `<UFieldGroup>
   left: 10px;
   z-index: 1;
   transform: translateY(-50%);
-  font-size: 14px;
+  font-size: 12px;
   color: var(--color-foreground-tertiary, #9CA3AF);
   transition: all 150ms;
   pointer-events: none;

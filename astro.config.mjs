@@ -114,7 +114,6 @@ export default defineConfig({
                 { label: "FileUpload", slug: "components/forms/file-upload" },
                 { label: "Checkbox", slug: "components/forms/checkbox" },
                 { label: "CheckboxGroup", slug: "components/forms/checkbox-group" },
-                { label: "ColorPicker", slug: "components/forms/color-picker" },
                 { label: "Switch", slug: "components/forms/switch" },
                 { label: "Form", slug: "components/forms/form" },
                 { label: "FormField", slug: "components/forms/form-field" },

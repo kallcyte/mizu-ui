@@ -185,12 +185,23 @@ export const mizuTheme = {
 
   // --- Switch ---
   switch: {
+    slots: {
+      label: "text-xs font-normal",
+    },
     variants: {
       disabled: {
         true: {
           base: "bg-[var(--color-surface-muted)]",
         },
       },
+    },
+  },
+
+  // --- RadioGroup ---
+  radioGroup: {
+    slots: {
+      legend: "text-xs font-normal",
+      label: "text-xs font-normal",
     },
   },
 
