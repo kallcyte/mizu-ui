@@ -5,7 +5,7 @@ description: An input for selecting a time.
 
 import InputTimeDemo from "../../../../components/docs/InputTimeDemo.vue";
 
-<span style="display:inline-flex;margin-bottom:16px;padding:1px 8px;border-radius:9999px;font-size:11px;font-weight:500;background:#FFFBEB;color:#D97706;">Pending</span>
+<span style="display:inline-flex;margin-bottom:16px;padding:1px 8px;border-radius:9999px;font-size:11px;font-weight:500;background:#D1FAE5;color:#047857;">Ready</span>
 
 A time picker input that lets users select a time or time range. Mizu uses Nuxt UI's `UInputTime` with consistent form sizing and the Mizu color palette. Values use `@internationalized/date` objects.
 
@@ -70,25 +70,61 @@ interface TimeRange {
   end: TimeValue;
 }
 
-const time = shallowRef(new Time(14, 30));
+const time = shallowRef(new Time(12, 30));
+const defaultTime = shallowRef(new Time(9, 45));
 const range = shallowRef<TimeRange>({
   start: new Time(9, 0),
   end: new Time(17, 0),
 });
+const hour24 = shallowRef(new Time(16, 30));
 </script>
 
 <template>
   <!-- Single time -->
   <UInputTime v-model="time" />
 
+  <!-- Default value -->
+  <UInputTime :default-value="defaultTime" />
+
   <!-- Time range -->
   <UInputTime v-model="range" range />
 
-  <!-- 12-hour format with 15-minute steps -->
-  <UInputTime v-model="time" :hour-cycle="12" :step="{ minute: 15 }" />
+  <!-- 24-hour format -->
+  <UInputTime v-model="hour24" :hour-cycle="24" />
 
-  <!-- With min/max constraints -->
-  <UInputTime v-model="time" :min-value="new Time(9, 0)" :max-value="new Time(17, 0)" />
+  <!-- Colors -->
+  <UInputTime color="primary" highlight />
+  <UInputTime color="secondary" highlight />
+  <UInputTime color="success" highlight />
+  <UInputTime color="info" highlight />
+  <UInputTime color="warning" highlight />
+  <UInputTime color="error" highlight />
+  <UInputTime color="neutral" highlight />
+
+  <!-- Variants -->
+  <UInputTime variant="outline" />
+  <UInputTime variant="soft" />
+  <UInputTime variant="subtle" />
+  <UInputTime variant="ghost" />
+
+  <!-- Sizes -->
+  <UInputTime size="sm" />
+  <UInputTime size="md" />
+  <UInputTime size="lg" />
+
+  <!-- With icon -->
+  <UInputTime v-model="time" icon="i-lucide-clock" />
+
+  <!-- Range with custom separator icon -->
+  <UInputTime v-model="range" range separator-icon="i-lucide-arrow-right" />
+
+  <!-- Within FormField -->
+  <UFormField label="Time" help="Specify the meeting time" required>
+    <UInputTime v-model="time" />
+  </UFormField>
+
+  <!-- Disabled -->
+  <UInputTime v-model="time" disabled />
 </template>
 ```
 

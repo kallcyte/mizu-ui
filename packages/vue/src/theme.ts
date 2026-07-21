@@ -203,6 +203,15 @@ export const mizuTheme = {
       legend: "text-xs font-normal",
       label: "text-xs font-normal",
     },
+    variants: {
+      size: {
+        xs: { legend: "text-xs", label: "text-xs" },
+        sm: { legend: "text-xs", label: "text-xs" },
+        md: { legend: "text-xs", label: "text-xs" },
+        lg: { legend: "text-xs", label: "text-xs" },
+        xl: { legend: "text-xs", label: "text-xs" },
+      },
+    },
   },
 
   //

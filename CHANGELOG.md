@@ -1,5 +1,20 @@
 # Changelog
 
+## [0.18.14] - 2026-07-20
+
+### Added
+
+- **RadioGroup docs — Ready** — Expanded `RadioGroupDemo.vue` with all Nuxt UI examples: Basic, Card Variant with Descriptions, Table Variant, Color (all 7), Size (sm/md/lg), Horizontal Orientation, Indicator Position (end), With Legend, and Disabled. Updated the docs Example Usage block. Marked the RadioGroup page as Ready.
+- **InputTime docs — Ready** — Expanded `InputTimeDemo.vue` with all Nuxt UI examples: Basic, Default Value, Time Range, Hour Cycle (24h), Color (all 7), Variant (outline/soft/subtle/ghost), Size (sm/md/lg), Icon, Range Separator Icon, With FormField, and Disabled. Updated the docs Example Usage block. Marked the InputTime page as Ready.
+
+### Changed
+
+- **Theme: form labels** — Set `text-xs font-normal` on `UFormField` label, `UInput` label (sm/md/lg), `UCheckbox` label, `USwitch` label, and `URadioGroup` legend/label slots with size variant overrides across the Mizu theme. Fixed `InputDemo.vue` floating label font-size from 14px to 12px.
+
+### Removed
+
+- **Archived ColorPicker** — Removed the ColorPicker component (demo, doc page, sidebar entry, homepage card, components list, and docs-plan row) as it lacks relevancy for Mizu.
+
 ## [0.18.13] - 2026-07-20
 
 ### Added

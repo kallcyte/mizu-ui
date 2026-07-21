@@ -5,7 +5,7 @@ description: A set of radio buttons to select a single option from a list.
 
 import RadioGroupDemo from "../../../../components/docs/RadioGroupDemo.vue";
 
-<span style="display:inline-flex;margin-bottom:16px;padding:1px 8px;border-radius:9999px;font-size:11px;font-weight:500;background:#FFFBEB;color:#D97706;">Pending</span>
+<span style="display:inline-flex;margin-bottom:16px;padding:1px 8px;border-radius:9999px;font-size:11px;font-weight:500;background:#D1FAE5;color:#047857;">Ready</span>
 
 A radio group presents a set of mutually exclusive options. Mizu uses Nuxt UI's `URadioGroup` with support for list, card, and table variants.
 
@@ -51,11 +51,14 @@ Reference: [Nuxt UI RadioGroup](https://ui.nuxt.com/docs/components/radio-group)
 
 ```vue
 <script setup lang="ts">
+import { ref } from "vue";
+import type { RadioGroupItem } from "@nuxt/ui";
+
 const theme = ref("System");
 const themes = ["System", "Light", "Dark"];
 
 const plan = ref("startup");
-const plans = [
+const plans: RadioGroupItem[] = [
   { label: "Pro", value: "pro", description: "For solo founders." },
   { label: "Startup", value: "startup", description: "For small teams." },
   { label: "Enterprise", value: "enterprise", description: "For organizations." },
@@ -63,9 +66,37 @@ const plans = [
 </script>
 
 <template>
+  <!-- Basic string items -->
   <URadioGroup v-model="theme" legend="Theme" :items="themes" />
 
+  <!-- Card variant with descriptions -->
   <URadioGroup v-model="plan" variant="card" :items="plans" />
+
+  <!-- Table variant -->
+  <URadioGroup default-value="System" variant="table" :items="themes" />
+
+  <!-- Colors -->
+  <URadioGroup color="primary" default-value="System" :items="themes" />
+  <URadioGroup color="secondary" default-value="System" :items="themes" />
+  <URadioGroup color="success" default-value="System" :items="themes" />
+  <URadioGroup color="info" default-value="System" :items="themes" />
+  <URadioGroup color="warning" default-value="System" :items="themes" />
+  <URadioGroup color="error" default-value="System" :items="themes" />
+  <URadioGroup color="neutral" default-value="System" :items="themes" />
+
+  <!-- Sizes -->
+  <URadioGroup size="sm" default-value="System" :items="themes" />
+  <URadioGroup size="md" default-value="System" :items="themes" />
+  <URadioGroup size="lg" default-value="System" :items="themes" />
+
+  <!-- Horizontal -->
+  <URadioGroup orientation="horizontal" variant="list" default-value="System" :items="themes" />
+
+  <!-- Indicator position -->
+  <URadioGroup indicator="end" variant="card" default-value="System" :items="themes" />
+
+  <!-- Disabled -->
+  <URadioGroup disabled default-value="System" :items="themes" />
 </template>
 ```
 
