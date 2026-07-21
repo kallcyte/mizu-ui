@@ -34,6 +34,9 @@ export default defineConfig({
     starlight({
       title: "Mizu Design System",
       customCss: ["./src/styles/global.css", "@mizu/vue/style.css"],
+      social: [
+        { icon: "github", label: "GitHub", href: "https://github.com/kallcyte/mizu-ui" },
+      ],
       components: {
         SiteTitle: "./src/components/overrides/SiteTitleWithBadge.astro",
       },
