@@ -33,6 +33,7 @@
     "@nuxt/kit": "^4.0.0",
     "@nuxt/ui": "^4.10.0",
     "astro": "^7.0.6",
+    "@tanstack/vue-table": "^8.21.3",
     "reka-ui": "^2.10.1",
     "better-sqlite3": "^12.10.0",
     "maska": "^3.2.0",

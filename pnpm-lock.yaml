@@ -45,6 +45,9 @@ importers:
       '@nuxt/ui':
         specifier: ^4.10.0
         version: 4.10.0(patch_hash=98f5908bcab9fd790fc13a7aeffe76aaa66373615c18401f94b90a8c726f7e3b)(b771e3d72c5464bc76367eeb09ba773f)
+      '@tanstack/vue-table':
+        specifier: ^8.21.3
+        version: 8.21.3(vue@3.5.39(typescript@5.9.3))
       astro:
         specifier: ^7.0.6
         version: 7.0.6(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.1)(@types/node@24.13.2)(jiti@2.7.0)(rollup@4.60.4)(tsx@4.22.3)
