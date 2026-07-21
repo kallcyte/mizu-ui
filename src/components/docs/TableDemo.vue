@@ -1,7 +1,8 @@
 <script setup lang="ts">
-import { ref, h, resolveComponent, useTemplateRef } from "vue";
+import { ref, h, resolveComponent, useTemplateRef, onMounted, nextTick } from "vue";
 import type { TableColumn, TableRow } from "@nuxt/ui";
 import { getPaginationRowModel, getGroupedRowModel } from "@tanstack/vue-table";
+import Sortable from "sortablejs";
 import CodeCollapsible from "./CodeCollapsible.vue";
 
 const UBadge = resolveComponent("UBadge");
@@ -203,7 +204,7 @@ const expanded = ref({})
 </template>`;
 
 // === Pagination ===
-const paginatedData = Array.from({ length: 30 }, (_, i) => ({
+const paginatedData = Array.from({ length: 100 }, (_, i) => ({
   id: i + 1,
   date: new Date(2024, 2, 11 - Math.floor(i / 3), 15 - i, 30).toISOString(),
   email: `user${i + 1}@example.com`,
@@ -233,23 +234,21 @@ const pagination = ref({ pageIndex: 0, pageSize: 5 })
 </template>`;
 
 // === Column Filters ===
-const filterColumns: TableColumn<Person>[] = [
-  { accessorKey: "name", header: "Name" },
-  { accessorKey: "title", header: "Title" },
-  { accessorKey: "email", header: "Email" },
-  { accessorKey: "role", header: "Role" },
-];
-const columnFilters = ref([{ id: "email", value: "" }]);
+const filterTableRef = useTemplateRef("filterTable");
+const emailFilter = ref("");
 const columnFiltersCode = `<script setup lang="ts">
-const columnFilters = ref([{ id: 'email', value: '' }])
+import { ref, useTemplateRef } from 'vue'
+const table = useTemplateRef('table')
+const filter = ref('')
 </` + `script>
 
 <template>
   <div class="flex flex-col flex-1 w-full">
     <div class="flex px-4 py-3.5 border-b">
-      <UInput v-model="columnFilters[0].value" class="max-w-sm" placeholder="Filter emails..." />
+      <UInput v-model="filter" class="max-w-sm" placeholder="Filter emails..."
+        @update:model-value="table?.tableApi?.getColumn('email')?.setFilterValue($event)" />
     </div>
-    <UTable v-model:column-filters="columnFilters" :data="data" :columns="columns" />
+    <UTable ref="table" :data="data" :columns="columns" />
   </div>
 </template>`;
 
@@ -374,18 +373,23 @@ const spanColumns: TableColumn<Person>[] = [
   {
     accessorKey: "title", header: "Profile",
     meta: { colspan: { td: 2 } },
-    cell: ({ row }: any) => h("div", { class: "flex flex-col" }, [h("span", {}, row.getValue("title")), h("span", { class: "text-xs text-muted lowercase" }, row.getValue("email"))]),
+    cell: ({ row }: any) => h("div", { class: "flex flex-col gap-0.5" }, [h("span", { class: "font-medium" }, row.getValue("title")), h("span", { class: "text-xs text-muted lowercase" }, (row.original as Person).email)]),
   },
-  { accessorKey: "role", header: "Role" },
+  { accessorKey: "email", header: "Email (hidden)" },
 ];
-const spanCode = `{
+const spanCode = `// Column 2 spans across Column 3 via meta.colspan
+{
   accessorKey: 'title',
-  header: 'Profile',
-  meta: { colspan: { td: 2 } },
-  cell: ({ row }) => h('div', { class: 'flex flex-col' }, [
-    h('span', {}, row.getValue('title')),
-    h('span', { class: 'text-xs text-muted' }, row.getValue('email'))
+  header: 'Profile',           // ← shown in header
+  meta: { colspan: { td: 2 } },  // the cell occupies 2 columns
+  cell: ({ row }) => h('div', { class: 'flex flex-col gap-0.5' }, [
+    h('span', { class: 'font-medium' }, row.getValue('title')),
+    h('span', { class: 'text-xs text-muted lowercase' }, row.original.email)
   ])
+},
+{
+  accessorKey: 'email',
+  header: 'Email (hidden)',    // ← header still shown, td hidden by span
 }`;
 
 // === Column Visibility ===
@@ -395,7 +399,7 @@ const visColumns: TableColumn<Person>[] = [
   { accessorKey: "email", header: "Email", enableHiding: true },
   { accessorKey: "role", header: "Role", enableHiding: true },
 ];
-const visTableRef = useTemplateRef("visTable");
+const visTableRef = useTemplateRef("visTableRef");
 const visibilityCode = `<script setup lang="ts">
 const table = useTemplateRef('table')
 </` + `script>
@@ -414,13 +418,16 @@ const table = useTemplateRef('table')
 </template>`;
 
 // === Column Pinning ===
-const pinColTableRef = useTemplateRef("pinColTable");
+const pinColTableRef = useTemplateRef("pinColTableRef");
 const colPinningCols: TableColumn<Person>[] = [
-  { accessorKey: "id", header: "ID", size: 60 },
+  { accessorKey: "id", header: "ID", size: 50 },
   { accessorKey: "name", header: "Name", size: 150 },
   { accessorKey: "title", header: "Title", size: 200 },
-  { accessorKey: "email", header: "Email", size: 200 },
-  { accessorKey: "role", header: "Role" },
+  { accessorKey: "email", header: "Email", size: 250 },
+  { accessorKey: "role", header: "Role", size: 100 },
+  { accessorKey: "status", header: "Status", size: 100 },
+  { id: "extra1", header: "Notes", cell: () => "—", size: 150 },
+  { id: "extra2", header: "Department", cell: () => "Engineering", size: 150 },
 ];
 const colPinningState = ref({ left: ["id", "name"], right: [] });
 const colPinningCode = `<script setup lang="ts">
@@ -434,7 +441,7 @@ const columnPinning = ref<ColumnPinningState>({ left: ['id', 'name'], right: [] 
 </template>`;
 
 // === Row Pinning ===
-const rowPinTableRef = useTemplateRef("rowPinTable");
+const rowPinTableRef = useTemplateRef("rowPinTableRef");
 const rowPinCols: TableColumn<Person>[] = [
   {
     id: "pin",
@@ -475,43 +482,46 @@ const groupedCols: TableColumn<PaymentItem>[] = [
   {
     id: "title", header: "Item",
     cell: ({ row }: any) => row.getIsGrouped()
-      ? h(UButton, { variant: "outline", color: "neutral", size: "xs", icon: row.getIsExpanded() ? "i-lucide-minus" : "i-lucide-plus", onClick: () => row.toggleExpanded() })
-      : row.getValue("name"),
+      ? h("span", { class: "font-medium" }, `Group: ${row.getValue("title") || row.groupingColumnId}`)
+      : h("span", {}, row.original.name),
   },
-  { accessorKey: "email", header: "Email", aggregationFn: "uniqueCount" },
+  { accessorKey: "email", header: "Email", aggregationFn: "uniqueCount", cell: ({ row }: any) => row.getIsGrouped() ? `${row.getValue("email")} customers` : row.getValue("email") },
   {
     accessorKey: "amount", header: "Amount",
     meta: { class: { th: "text-right", td: "text-right font-medium" } },
     cell: ({ row }: any) => !row.getIsGrouped() ? `$${row.getValue("amount")}` : `$${row.subRows.reduce((s: number, r: any) => s + r.original.amount, 0)}`,
+    aggregationFn: "sum",
   },
 ];
-const groupingOptions = ref({ groupedColumnMode: "reorder" as const, getGroupedRowModel: getGroupedRowModel() });
+const groupingOp = ref({ groupedColumnMode: "remove" as const, getGroupedRowModel: getGroupedRowModel() });
 const groupedCode = `<script setup lang="ts">
 import { getGroupedRowModel } from '@tanstack/vue-table'
-const groupingOptions = ref({ groupedColumnMode: 'reorder', getGroupedRowModel: getGroupedRowModel() })
+
+const columns = [
+  { id: 'title', header: 'Item', cell: ({ row }) => row.getIsGrouped() ? \`Group: \${row.groupingColumnId}\` : row.original.name },
+  { accessorKey: 'email', header: 'Email', aggregationFn: 'uniqueCount', cell: ({ row }) => row.getIsGrouped() ? \`\${row.getValue('email')} customers\` : row.getValue('email') },
+  { accessorKey: 'amount', header: 'Amount', aggregationFn: 'sum', cell: ({ row }) => row.getIsGrouped() ? \`$\${row.subRows.reduce((s, r) => s + r.original.amount, 0)}\` : \`$\${row.getValue('amount')}\` }
+]
+
+const options = ref({ groupedColumnMode: 'remove', getGroupedRowModel: getGroupedRowModel() })
 </` + `script>
 
 <template>
   <UTable :data="data" :columns="columns" :grouping="['account_id']"
-    :grouping-options="groupingOptions">
-    <template #title-cell="{ row }">
-      <UButton v-if="row.getIsGrouped()" variant="outline" color="neutral" size="xs"
-        :icon="row.getIsExpanded() ? 'i-lucide-minus' : 'i-lucide-plus'"
-        @click="row.toggleExpanded()" />
-    </template>
-  </UTable>
+    :grouping-options="options" class="flex-1" />
 </template>`;
 
 // === Fetch Data ===
 const fetchedData = ref<Person[]>([]);
 const fetchLoading = ref(false);
-const fetchTableRef = useTemplateRef("fetchTable");
+const fetchTableRef = useTemplateRef("fetchTableRef");
 function loadData() {
   fetchLoading.value = true;
+  fetchedData.value = [];
   setTimeout(() => {
     fetchedData.value = people.slice(0, 3);
     fetchLoading.value = false;
-  }, 1000);
+  }, 1500);
 }
 const fetchCode = `<script setup lang="ts">
 const data = ref([])
@@ -531,27 +541,45 @@ async function loadData() {
 // === Tree Data ===
 const treeCols: TableColumn<any>[] = [
   {
-    accessorKey: "name",
+    id: "tree",
     header: "Name",
-    cell: ({ row }: any) => h("span", { style: { paddingLeft: `${row.depth * 1.5}rem` } }, row.getValue("name")),
+    cell: ({ row }: any) => {
+      const indent = { paddingLeft: `${row.depth * 1.5}rem` };
+      if (row.getCanExpand()) {
+        return h("div", { class: "flex items-center gap-1", style: indent }, [
+          h(UButton, {
+            color: "neutral", variant: "ghost", icon: row.getIsExpanded() ? "i-lucide-chevron-down" : "i-lucide-chevron-right",
+            square: true, size: "xs",
+            ui: { leadingIcon: ["transition-transform", row.getIsExpanded() ? "duration-200 rotate-0" : ""] },
+            onClick: () => row.toggleExpanded(),
+          }),
+          h("span", { class: "font-medium" }, row.getValue("name")),
+        ]);
+      }
+      return h("span", { class: "font-medium", style: indent }, row.getValue("name"));
+    },
   },
   { accessorKey: "title", header: "Title" },
-  { accessorKey: "email", header: "Email" },
+  { accessorKey: "email", header: "Email", cell: ({ row }: any) => h("span", { class: "lowercase text-xs" }, row.getValue("email")) },
 ];
 const treeData = ref([
   { id: 1, name: "Lindsay Walton", title: "Front-end Developer", email: "lindsay@example.com", subRows: [
     { id: 2, name: "Courtney Henry", title: "Designer", email: "courtney@example.com" },
     { id: 3, name: "Tom Cook", title: "Product Manager", email: "tom@example.com" },
   ]},
-  { id: 4, name: "Whitney Francis", title: "Back-end Developer", email: "whitney@example.com" },
+  { id: 4, name: "Whitney Francis", title: "Back-end Developer", email: "whitney@example.com", subRows: [
+    { id: 5, name: "Leonard Krasner", title: "Senior Designer", email: "leonard@example.com" },
+  ]},
 ]);
 const treeCode = `const data = [
-  { id: 1, name: 'Parent', ..., subRows: [
-    { id: 2, name: 'Child 1', ... },
-    { id: 3, name: 'Child 2', ... }
+  { id: 1, name: 'Parent', title: 'Lead', email: 'parent@ex.com', subRows: [
+    { id: 2, name: 'Child 1', title: 'Dev', email: 'child1@ex.com' },
+    { id: 3, name: 'Child 2', title: 'Design', email: 'child2@ex.com' }
   ]},
-  { id: 4, name: 'Other', ... }
+  { id: 4, name: 'Sibling', title: 'PM', email: 'sib@ex.com', subRows: [...] }
 ]
+
+// Use row.getCanExpand() + row.depth + row.toggleExpanded()
 <UTable :data="data" :columns="columns" class="flex-1" />`;
 
 // === External Scroll ===
@@ -567,23 +595,63 @@ const scrollCode = `<div class="overflow-x-auto max-w-xs">
 </div>`;
 
 // === Drag & Drop ===
-const dndData = ref([...people].map((p, i) => ({ ...p, id: i + 1 })));
+const dndData = ref([...people.map((p, i) => ({ ...p, id: i + 1 }))]);
 const dndCols: TableColumn<any>[] = [
+  {
+    id: "drag", header: "",
+    cell: () => h("span", { class: "cursor-grab text-muted select-none", innerHTML: "&#x2630;" }),
+    size: 30,
+  },
   { accessorKey: "name", header: "Name" },
   { accessorKey: "title", header: "Title" },
   { accessorKey: "email", header: "Email" },
 ];
-function moveUp(i: number) { if (i > 0) { const t = dndData.value[i]; dndData.value[i] = dndData.value[i - 1]; dndData.value[i - 1] = t; } }
-function moveDown(i: number) { if (i < dndData.value.length - 1) { const t = dndData.value[i]; dndData.value[i] = dndData.value[i + 1]; dndData.value[i + 1] = t; } }
-const dndCode = `<UTable
-  v-model:data="data"
-  :columns="columns"
-  :row-selection-options="{ enableRowSelection: true }"
-  :drag-drop-options="{
-    enableDragAndDrop: true,
-    onDrop: (e, row) => { /* reorder data */ }
-  }"
-  class="flex-1" />`;
+const dndTableRef = useTemplateRef("dndTableRef");
+function shuffle() { dndData.value = [...dndData.value].sort(() => Math.random() - 0.5); }
+onMounted(async () => {
+  await nextTick();
+  const el = dndTableRef.value?.$el?.querySelector("tbody");
+  if (el) {
+    Sortable.create(el as HTMLElement, {
+      handle: ".cursor-grab",
+      animation: 150,
+      onEnd(evt) {
+        if (evt.oldIndex == null || evt.newIndex == null) return;
+        const items = [...dndData.value];
+        const [moved] = items.splice(evt.oldIndex, 1);
+        items.splice(evt.newIndex, 0, moved);
+        dndData.value = items;
+      },
+    });
+  }
+});
+const dndCode = `<script setup lang="ts">
+import { ref, onMounted } from 'vue'
+import Sortable from 'sortablejs'
+
+const data = ref([...])
+const tableRef = useTemplateRef('table')
+
+onMounted(() => {
+  const tbody = tableRef.value?.$el?.querySelector('tbody')
+  if (tbody) {
+    Sortable.create(tbody, {
+      handle: '.cursor-grab',
+      animation: 150,
+      onEnd(evt) {
+        const items = [...data.value]
+        const [moved] = items.splice(evt.oldIndex!, 1)
+        items.splice(evt.newIndex!, 0, moved)
+        data.value = items
+      }
+    })
+  }
+})
+</` + `script>
+
+<template>
+  <UTable ref="table" :data="data" :columns="columns" class="flex-1" />
+</template>`;
 
 // === Virtualize ===
 const virtualData = Array.from({ length: 1000 }, (_, i) => ({
@@ -603,16 +671,25 @@ const virtualCols: TableColumn<any>[] = [
 const virtualizeCode = `<UTable :data="data" :columns="columns" virtualize class="flex-1 h-80" />`;
 
 // === Infinite Scroll ===
-const infScrollCode = `<UTable
-  :data="data"
-  :columns="columns"
-  :fetch-options="{
-    onFetch: async ({ pageIndex, pageSize }) => {
-      const res = await fetch(\`/api/data?page=\${pageIndex}&size=\${pageSize}\`)
-      return res.json()
-    }
-  }"
-  class="flex-1" />`;
+const infScrollCode = `<script setup lang="ts">
+import { ref } from 'vue'
+
+const data = ref([])
+const page = ref(0)
+
+async function onFetch({ pageIndex }: { pageIndex: number }) {
+  const res = await fetch(\`/api/data?page=\${pageIndex}\`)
+  const newRows = await res.json()
+  data.value = pageIndex === 0 ? newRows : [...data.value, ...newRows]
+}
+</` + `script>
+
+<template>
+  <div style="max-height:320px;overflow-y:auto">
+    <UTable :data="data" :columns="columns"
+      :fetch-options="{ onFetch }" class="flex-1" />
+  </div>
+</template>`;
 </script>
 
 <template>
@@ -638,7 +715,7 @@ const infScrollCode = `<UTable
     <!-- 3. Loading -->
     <section class="example-section">
       <h3>Loading</h3>
-      <p class="demo-description">Show a loading skeleton overlay with the <code>loading</code>, <code>loading-color</code>, and <code>loading-animation</code> props.</p>
+      <p class="demo-description">Show a loading state with a progress bar using <code>loading</code>, <code>loading-color</code>, and <code>loading-animation</code>. The loading bar renders below the header while data is visible underneath.</p>
       <CodeCollapsible :code="loadingCode">
         <div class="demo-row"><UTable :data="people" :columns="basicColumns" loading loading-color="primary" loading-animation="carousel" class="flex-1" /></div>
       </CodeCollapsible>
@@ -656,7 +733,7 @@ const infScrollCode = `<UTable
     <!-- 5. Caption -->
     <section class="example-section">
       <h3>Caption</h3>
-      <p class="demo-description">Add a descriptive <code>caption</code> above the table for accessibility and context.</p>
+      <p class="demo-description">Add a <code>caption</code> prop to display a descriptive title above the table. It renders as an HTML <code>&lt;caption&gt;</code> element for screen readers and visual context.</p>
       <CodeCollapsible :code="captionCode">
         <div class="demo-row"><UTable :data="people" :columns="basicColumns" caption="Team members" class="flex-1" /></div>
       </CodeCollapsible>
@@ -688,7 +765,7 @@ const infScrollCode = `<UTable
         <div class="demo-row">
           <UTable v-model:expanded="expanded" :data="people" :columns="expandColumns" class="flex-1">
             <template #expanded="{ row }">
-              <div class="px-4 py-2 text-sm text-muted">ID: {{ (row.original as Person).id }} | Title: {{ (row.original as Person).title }}</div>
+              <div class="px-4 py-2 text-sm text-muted transition-all duration-200 ease-in-out">ID: {{ (row.original as Person).id }} | Title: {{ (row.original as Person).title }}</div>
             </template>
           </UTable>
         </div>
@@ -714,12 +791,14 @@ const infScrollCode = `<UTable
     <!-- 10. Column Filters -->
     <section class="example-section">
       <h3>Column Filters</h3>
-      <p class="demo-description">Filter table rows by a specific column using <code>v-model:column-filters</code> bound to a filter input.</p>
+      <p class="demo-description">Filter rows by a specific column using the table API's <code>setFilterValue</code> with a <code>ref</code> bound to the input and the table ref.</p>
       <CodeCollapsible :code="columnFiltersCode">
         <div class="demo-col">
           <div class="flex flex-col flex-1 w-full">
-            <div class="flex px-4 py-3.5 border-b"><UInput v-model="columnFilters[0].value" class="max-w-sm" placeholder="Filter emails..." /></div>
-            <UTable v-model:column-filters="columnFilters" :data="people" :columns="filterColumns" class="flex-1" />
+            <div class="flex px-4 py-3.5 border-b">
+              <UInput v-model="emailFilter" class="max-w-sm" placeholder="Filter emails..." @update:model-value="filterTableRef?.tableApi?.getColumn('email')?.setFilterValue($event)" />
+            </div>
+            <UTable ref="filterTableRef" :data="people" :columns="[{ accessorKey: 'name', header: 'Name' }, { accessorKey: 'title', header: 'Title' }, { accessorKey: 'email', header: 'Email' }, { accessorKey: 'role', header: 'Role' }]" class="flex-1" />
           </div>
         </div>
       </CodeCollapsible>
@@ -847,10 +926,10 @@ const infScrollCode = `<UTable
     <!-- 20. Column Pinning -->
     <section class="example-section">
       <h3>Column Pinning</h3>
-      <p class="demo-description">Pin columns to the left or right using <code>v-model:column-pinning</code> so they stay visible during horizontal scroll.</p>
+      <p class="demo-description">Pin columns to the left or right using <code>v-model:column-pinning</code> so they stay visible during horizontal scroll. ID and Name are pinned left — scroll to see the effect.</p>
       <CodeCollapsible :code="colPinningCode">
         <div class="demo-row" style="overflow-x:auto;max-width:100%;">
-          <UTable ref="pinColTableRef" v-model:column-pinning="colPinningState" :data="people" :columns="colPinningCols" class="flex-1" style="min-width:600px" />
+          <UTable ref="pinColTableRef" v-model:column-pinning="colPinningState" :data="people" :columns="colPinningCols" class="flex-1" style="min-width:900px" />
         </div>
       </CodeCollapsible>
     </section>
@@ -869,18 +948,10 @@ const infScrollCode = `<UTable
     <!-- 22. Grouped Rows -->
     <section class="example-section">
       <h3>Grouped Rows</h3>
-      <p class="demo-description">Group rows by a column value using <code>:grouping</code> and <code>getGroupedRowModel</code> from TanStack Table.</p>
+      <p class="demo-description">Group rows by a column value using <code>:grouping</code> and <code>getGroupedRowModel</code>. Aggregated values show counts and sums per group.</p>
       <CodeCollapsible :code="groupedCode">
         <div class="demo-row">
-          <UTable :data="groupedData" :columns="groupedCols" :grouping="['account_id']" :grouping-options="groupingOptions" class="flex-1">
-            <template #title-cell="{ row }">
-              <div v-if="row.getIsGrouped()" class="flex items-center">
-                <UButton variant="outline" color="neutral" size="xs" :icon="row.getIsExpanded() ? 'i-lucide-minus' : 'i-lucide-plus'" @click="row.toggleExpanded()" />
-                <span class="ml-2 font-medium text-sm">Account {{ row.original.account_id }}</span>
-              </div>
-              <span v-else>{{ row.original.name }}</span>
-            </template>
-          </UTable>
+          <UTable :data="groupedData" :columns="groupedCols" :grouping="['account_id']" :grouping-options="groupingOp" class="flex-1" />
         </div>
       </CodeCollapsible>
     </section>
@@ -888,7 +959,7 @@ const infScrollCode = `<UTable
     <!-- 23. Fetched Data -->
     <section class="example-section">
       <h3>Fetched Data</h3>
-      <p class="demo-description">Load data asynchronously with <code>loading</code> state, then pass it to the table when ready.</p>
+      <p class="demo-description">Load data asynchronously with <code>loading</code> state. The table clears data and shows a loading bar during fetch, then populates once the request completes.</p>
       <CodeCollapsible :code="fetchCode">
         <div class="demo-col">
           <UButton label="Load Data" @click="loadData" :loading="fetchLoading" class="mb-4" />
@@ -920,16 +991,11 @@ const infScrollCode = `<UTable
     <!-- 26. Drag & Drop -->
     <section class="example-section">
       <h3>Drag &amp; Drop</h3>
-      <p class="demo-description">Enable row reordering via drag-and-drop using the <code>drag-drop-options</code> prop with TanStack Table.</p>
+      <p class="demo-description">Enable row reordering using <code>SortableJS</code> attached to the table's <code>&lt;tbody&gt;</code>. Drag the grab handle (&#x2630;) to reorder rows.</p>
       <CodeCollapsible :code="dndCode">
         <div class="demo-col">
-          <div class="flex gap-2 mb-2">
-            <span class="text-xs text-muted">Use buttons to reorder rows (real drag-drop needs @dnd-kit or similar):</span>
-          </div>
-          <UTable :data="dndData" :columns="dndCols" class="flex-1" />
-          <div class="flex gap-2 mt-2">
-            <UButton size="xs" variant="outline" label="Shuffle" @click="dndData = [...people].sort(() => Math.random() - 0.5)" />
-          </div>
+          <UTable ref="dndTableRef" :data="dndData" :columns="dndCols" class="flex-1" />
+          <UButton size="xs" variant="outline" label="Shuffle" @click="shuffle" class="w-fit" />
         </div>
       </CodeCollapsible>
     </section>
@@ -948,11 +1014,13 @@ const infScrollCode = `<UTable
     <!-- 28. Infinite Scroll -->
     <section class="example-section">
       <h3>Infinite Scroll</h3>
-      <p class="demo-description">Use <code>fetch-options</code> with an <code>onFetch</code> callback to load more rows as the user scrolls.</p>
+      <p class="demo-description">Load more rows as the user scrolls using <code>fetch-options</code> with an <code>onFetch</code> callback. The table grows dynamically as new pages are fetched from the API.</p>
       <CodeCollapsible :code="infScrollCode">
         <div class="demo-col">
-          <span class="text-xs text-muted">This example uses a mock: data={{ virtualData.length }} rows, fetched as if from an API.</span>
-          <UTable :data="virtualData" :columns="virtualCols" class="flex-1" />
+          <p class="text-xs text-muted">Mock: <b>{{ virtualData.length }}</b> rows loaded (simulates a fetched dataset). In production, replace with <code>onFetch</code> callback.</p>
+          <div style="max-height:320px;overflow-y:auto" class="border rounded-md">
+            <UTable :data="virtualData" :columns="virtualCols" class="flex-1" />
+          </div>
         </div>
       </CodeCollapsible>
     </section>
