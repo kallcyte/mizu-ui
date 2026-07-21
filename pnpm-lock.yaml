@@ -6,6 +6,7 @@ settings:
 
 patchedDependencies:
   '@nuxt/ui@4.10.0': 98f5908bcab9fd790fc13a7aeffe76aaa66373615c18401f94b90a8c726f7e3b
+  '@tailwindcss/oxide@4.3.2': 5630dcfd26a94f00b6691f390835e29e80482dc0bf037998023e68663f3f63b9
 
 importers:
 
@@ -8467,7 +8468,7 @@ snapshots:
   '@tailwindcss/oxide-win32-x64-msvc@4.3.2':
     optional: true
 
-  '@tailwindcss/oxide@4.3.2':
+  '@tailwindcss/oxide@4.3.2(patch_hash=5630dcfd26a94f00b6691f390835e29e80482dc0bf037998023e68663f3f63b9)':
     optionalDependencies:
       '@tailwindcss/oxide-android-arm64': 4.3.2
       '@tailwindcss/oxide-darwin-arm64': 4.3.2
@@ -8486,21 +8487,21 @@ snapshots:
     dependencies:
       '@alloc/quick-lru': 5.2.0
       '@tailwindcss/node': 4.3.2
-      '@tailwindcss/oxide': 4.3.2
+      '@tailwindcss/oxide': 4.3.2(patch_hash=5630dcfd26a94f00b6691f390835e29e80482dc0bf037998023e68663f3f63b9)
       postcss: 8.5.16
       tailwindcss: 4.3.2
 
   '@tailwindcss/vite@4.3.2(vite@7.3.6(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(tsx@4.22.3))':
     dependencies:
       '@tailwindcss/node': 4.3.2
-      '@tailwindcss/oxide': 4.3.2
+      '@tailwindcss/oxide': 4.3.2(patch_hash=5630dcfd26a94f00b6691f390835e29e80482dc0bf037998023e68663f3f63b9)
       tailwindcss: 4.3.2
       vite: 7.3.6(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(tsx@4.22.3)
 
   '@tailwindcss/vite@4.3.2(vite@8.1.2(@types/node@24.13.2)(esbuild@0.28.1)(jiti@2.7.0)(tsx@4.22.3))':
     dependencies:
       '@tailwindcss/node': 4.3.2
-      '@tailwindcss/oxide': 4.3.2
+      '@tailwindcss/oxide': 4.3.2(patch_hash=5630dcfd26a94f00b6691f390835e29e80482dc0bf037998023e68663f3f63b9)
       tailwindcss: 4.3.2
       vite: 8.1.2(@types/node@24.13.2)(esbuild@0.28.1)(jiti@2.7.0)(tsx@4.22.3)
 

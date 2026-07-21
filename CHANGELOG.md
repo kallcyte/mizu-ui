@@ -11,6 +11,11 @@
 
 - Expanded `FormFieldDemo.vue` examples and made the horizontal orientation container full width so the side-by-side layout is visible.
 
+### Fixed
+
+- **Build: Vite 8 + Rolldown compatibility** — Fixed `[UNLOADABLE_DEPENDENCY]` build error on `@tailwindcss/oxide` native binary by patching the auto-generated NAPI-RS loader to use indirect `require()` calls that bundlers cannot statically resolve. Added `patches/@tailwindcss__oxide@4.3.2.patch`.
+- **Nuxt UI component imports** — Fixed `[MISSING_EXPORT]` build error where `import { UTree }` and `import { UUser }` from `@nuxt/ui` failed in Astro's static build. Switched to component-path imports (`@nuxt/ui/components/Tree.vue` / `User.vue`) since Nuxt UI v4's main export is the Nuxt module, not runtime components.
+
 ## [0.18.12] - 2026-07-20
 
 ### Added

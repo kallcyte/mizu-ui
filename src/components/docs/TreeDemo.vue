@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { UTree } from "@nuxt/ui";
+import UTree from "@nuxt/ui/components/Tree.vue";
 import type { TreeItem } from "@nuxt/ui";
 import CodeCollapsible from "./CodeCollapsible.vue";
 

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { UUser } from "@nuxt/ui";
+import UUser from "@nuxt/ui/components/User.vue";
 import CodeCollapsible from "./CodeCollapsible.vue";
 
 const basicCode = `<UUser name="John Doe" />`;

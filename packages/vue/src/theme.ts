@@ -96,6 +96,7 @@ export const mizuTheme = {
     variants: {
       size: {
         sm: {
+          label: "text-xs",
           base: "px-2 py-1.5 text-sm/4 gap-1 rounded",
           leading: "ps-2",
           trailing: "pe-2",
@@ -103,6 +104,7 @@ export const mizuTheme = {
           trailingIcon: "size-2.5",
         },
         md: {
+          label: "text-xs",
           base: "px-2.5 py-2 text-base/5 gap-1.5 rounded-md",
           leading: "ps-2.5",
           trailing: "pe-2.5",
@@ -110,6 +112,7 @@ export const mizuTheme = {
           trailingIcon: "size-4",
         },
         lg: {
+          label: "text-xs",
           base: "px-2.5 py-2.5 text-base/5 gap-2 rounded-md",
           leading: "ps-2.5",
           trailing: "pe-2.5",
@@ -123,6 +126,7 @@ export const mizuTheme = {
   // --- FormField --- helper/error text at text-xs with Mizu tokens
   formField: {
     slots: {
+      label: "text-xs",
       wrapper: "w-full",
       description: "text-xs text-[var(--color-foreground-tertiary)]",
       hint: "text-xs text-[var(--color-foreground-tertiary)]",
