@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.18.15] - 2026-07-20
+
+### Added
+
+- **Table docs — Ready** — Expanded `TableDemo.vue` with all key Nuxt UI examples: Basic, Columns (with `h()` render functions for badges, sort buttons, and status indicators), Loading, Sorting, Caption, Empty State, Row Selection (with checkboxes), Expandable Rows (with `#expanded` slot), and Pagination (with 50-row dataset). Updated the docs Example Usage block with real code patterns. Marked the Table page as Ready.
+
 ## [0.18.14] - 2026-07-20
 
 ### Added

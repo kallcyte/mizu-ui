@@ -5,7 +5,7 @@ description: A responsive table element to display data in rows and columns.
 
 import TableDemo from "../../../../components/docs/TableDemo.vue";
 
-<span style="display:inline-flex;margin-bottom:16px;padding:1px 8px;border-radius:9999px;font-size:11px;font-weight:500;background:#FFFBEB;color:#D97706;">Pending</span>
+<span style="display:inline-flex;margin-bottom:16px;padding:1px 8px;border-radius:9999px;font-size:11px;font-weight:500;background:#D1FAE5;color:#047857;">Ready</span>
 
 A table displays structured data in rows and columns with built-in support for sorting, selection, pagination, and virtualization. Use it for data grids, admin panels, and any tabular data. Mizu uses Nuxt UI's `UTable` backed by TanStack Table.
 
@@ -63,61 +63,80 @@ Reference: [Nuxt UI Table](https://ui.nuxt.com/docs/components/table)
 ### Example Usage
 
 ```vue
-<template>
-  <!-- Basic table -->
-  <UTable :data="people" :columns="columns" />
+<script setup lang="ts">
+import { ref, h, resolveComponent } from "vue";
+import type { TableColumn } from "@nuxt/ui";
 
-  <!-- With caption -->
-  <UTable :data="people" :columns="columns" caption="Team members" />
+const UBadge = resolveComponent("UBadge");
+const UCheckbox = resolveComponent("UCheckbox");
+const UButton = resolveComponent("UButton");
 
-  <!-- With sorting -->
-  <UTable
-    :data="people"
-    :columns="columns"
-    :sorting="[{ id: 'name', desc: false }]"
-  />
+type Person = { id: number; name: string; title: string; email: string; role: string; status: string; };
 
-  <!-- With pagination -->
-  <UTable
-    :data="people"
-    :columns="columns"
-    :pagination="{ pageIndex: 0, pageSize: 10 }"
-  />
+const data = ref<Person[]>([...]);
 
-  <!-- With row selection -->
-  <UTable
-    :data="people"
-    :columns="columns"
-    :row-selection-options="{ enableRowSelection: true }"
-  />
-
-  <!-- Loading state -->
-  <UTable :data="people" :columns="columns" loading />
-
-  <!-- Empty state -->
-  <UTable :data="[]" :columns="columns" empty="No results found." />
-
-  <!-- Controlled via v-model -->
-  <UTable
-    v-model:sorting="sorting"
-    v-model:pagination="pagination"
-    :data="people"
-    :columns="columns"
-  />
-</template>
-
-<script setup>
-const columns = [
-  { header: "Name", accessorKey: "name" },
-  { header: "Title", accessorKey: "title" },
-  { header: "Email", accessorKey: "email" },
-  { header: "Role", accessorKey: "role" },
-];
-
-const people = [
-  { id: 1, name: "Lindsay Walton", title: "Front-end Developer", email: "lindsay.walton@example.com", role: "Member" },
+const columns: TableColumn<Person>[] = [
+  // Selection checkboxes
+  {
+    id: "select",
+    header: ({ table }) => h(UCheckbox, {
+      modelValue: table.getIsSomePageRowsSelected() ? "indeterminate" : table.getIsAllPageRowsSelected(),
+      "onUpdate:modelValue": (v) => table.toggleAllPageRowsSelected(!!v),
+    }),
+    cell: ({ row }) => h(UCheckbox, {
+      modelValue: row.getIsSelected(),
+      "onUpdate:modelValue": (v) => row.toggleSelected(!!v),
+    }),
+  },
+  { accessorKey: "name", header: "Name" },
+  { accessorKey: "title", header: "Title" },
+  // Sortable header with custom button
+  {
+    accessorKey: "email",
+    header: ({ column }) => h(UButton, {
+      color: "neutral", variant: "ghost", label: "Email",
+      icon: column.getIsSorted() === "asc" ? "i-lucide-arrow-up" : "i-lucide-arrow-down",
+      onClick: () => column.toggleSorting(column.getIsSorted() === "asc"),
+    }),
+  },
+  // Custom cell with badge
+  {
+    accessorKey: "role",
+    header: "Role",
+    cell: ({ row }) => h(UBadge, { color: "primary", variant: "subtle" }, () => row.getValue("role")),
+  },
 ];
 </script>
+
+<template>
+  <!-- Basic -->
+  <UTable :data="data" :columns="columns" />
+
+  <!-- Loading -->
+  <UTable :data="data" :columns="columns" loading />
+
+  <!-- Empty -->
+  <UTable :data="[]" :columns="columns" empty="No results." />
+
+  <!-- With caption -->
+  <UTable :data="data" :columns="columns" caption="Team members" />
+
+  <!-- With sorting -->
+  <UTable :data="data" :columns="columns" :sorting="[{ id: 'name', desc: false }]" />
+
+  <!-- With selection -->
+  <UTable v-model:row-selection="selected" :data="data" :columns="selectColumns" />
+
+  <!-- Expandable rows -->
+  <UTable v-model:expanded="expanded" :data="data" :columns="expandColumns">
+    <template #expanded="{ row }">
+      <div class="px-4 py-2 text-sm">Details for {{ row.original.name }}</div>
+    </template>
+  </UTable>
+
+  <!-- Pagination -->
+  <UTable v-model:pagination="pagination" :data="data" :columns="columns" />
+</template>
 ```
 
 ## Anatomy
