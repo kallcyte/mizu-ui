@@ -10,6 +10,7 @@
 ### Changed
 
 - Expanded `FormFieldDemo.vue` examples and made the horizontal orientation container full width so the side-by-side layout is visible.
+- **Validation Patterns docs** — Removed the standalone Validation Patterns page since the Form documentation page (`form.mdx`) already covers form validation patterns comprehensively.
 
 ### Fixed
 

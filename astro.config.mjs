@@ -123,7 +123,6 @@ export default defineConfig({
                 { label: "InputNumber", slug: "components/forms/input-number" },
                 { label: "InputRating", slug: "components/forms/input-rating" },
                 { label: "PinInput", slug: "components/forms/pin-input" },
-                { label: "Validation Patterns", slug: "components/forms/validation-patterns" },
               ],
             },
             {
