@@ -17,9 +17,11 @@ disable-model-invocation: false
 3. **The `packages/vue/src/index.ts` is auto-generated** by `packages/vue/scripts/generate-index.mjs`. It runs automatically before `vite build` in the `@mizu/vue` build pipeline. Just add `.vue` files to `packages/vue/src/components/` and run `pnpm --filter @mizu/vue build` — the exports are generated for you.
 4. When you find gaps or missing conventions in this skill, flag them at the end of the session.
 
-5. **Astro Dev Server** — The docs site (Starlight) can be run in the background for quick visual feedback. Use these pnpm scripts:
+5. **Astro Dev Server** — The docs site (Starlight) can be run in the background for quick visual feedback. Use these commands:
 
-   - `pnpm run dev:docs --background` — Starts the Astro+Starlight dev server in the background.
+   - `pnpm run dev:bg` — Stops any running dev server, rebuilds `@mizu/vue`, and starts the Astro+Starlight dev server in the background. This is the primary command for previewing docs changes.
+
+   - `pnpm run dev:docs` — Runs the Astro dev server in the foreground (useful for debugging errors in real time).
 
    - `pnpm run dev:docs stop` — Kills the background Astro dev server.
 
@@ -27,7 +29,7 @@ disable-model-invocation: false
 
    - `pnpm run dev:docs logs` — Shows recent output from the background server.
 
-   - **After updating Starlight docs** (MDX files, `astro.config.mjs` sidebar, or demo components under `src/components/docs/`), restart the dev server:
+   - **After updating Starlight docs** (MDX files, `astro.config.mjs` sidebar, or demo components under `src/components/docs/`), restart with:
      `pnpm run dev:bg`
 
 ---
