@@ -33,6 +33,20 @@ if (process.argv.includes("--watch")) {
         clearCache();
       }
     }),
+    // Watch workspace package dist folders — built artifacts, not source,
+    // so HMR can't detect them. Invalidate Astro cache on rebuild.
+    watch(resolve(root, "packages/vue/dist"), { recursive: true }, (event, filename) => {
+      if (filename) {
+        console.log(`[cache-watch] packages/vue/dist/${filename} changed (${event}), clearing cache...`);
+        clearCache();
+      }
+    }),
+    watch(resolve(root, "packages/tokens/dist"), { recursive: true }, (event, filename) => {
+      if (filename) {
+        console.log(`[cache-watch] packages/tokens/dist/${filename} changed (${event}), clearing cache...`);
+        clearCache();
+      }
+    }),
   ];
 
   process.on("SIGINT", () => {
