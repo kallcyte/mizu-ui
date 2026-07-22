@@ -1,5 +1,10 @@
 <script setup lang="ts">
+import { ref } from "vue";
 import CodeCollapsible from "./CodeCollapsible.vue";
+
+const openClose = ref(true);
+const openCustomClose = ref(true);
+const openCloseIcon = ref(true);
 </script>
 
 <template>
@@ -10,6 +15,16 @@ import CodeCollapsible from "./CodeCollapsible.vue";
       <CodeCollapsible :code="`<UAlert title=&quot;Heads up!&quot; description=&quot;You can change the primary color in your app config.&quot; />`">
         <div class="demo-row">
           <UAlert title="Heads up!" description="You can change the primary color in your app config." />
+        </div>
+      </CodeCollapsible>
+    </section>
+
+    <section class="example-section">
+      <h3>Title Only</h3>
+      <p class="demo-description">An alert with just a <code>title</code> and no description for compact messages.</p>
+      <CodeCollapsible :code="`<UAlert title=&quot;Heads up!&quot; />`">
+        <div class="demo-row">
+          <UAlert title="Heads up!" />
         </div>
       </CodeCollapsible>
     </section>
@@ -63,11 +78,44 @@ import CodeCollapsible from "./CodeCollapsible.vue";
     </section>
 
     <section class="example-section">
-      <h3>With Close</h3>
-      <p class="demo-description">Add a dismiss button with the <code>close</code> prop to let users hide the alert.</p>
-      <CodeCollapsible :code="`<UAlert title=&quot;Heads up!&quot; description=&quot;Dismiss this alert.&quot; color=&quot;neutral&quot; variant=&quot;outline&quot; close />`">
+      <h3>With Avatar</h3>
+      <p class="demo-description">Display a user avatar alongside the alert content using the <code>:avatar</code> prop.</p>
+      <CodeCollapsible :code="`<UAlert title=&quot;Heads up!&quot; description=&quot;A user avatar alert.&quot; color=&quot;neutral&quot; variant=&quot;subtle&quot; :avatar=&quot;{ src: 'https://github.com/nuxt.png' }&quot; />`">
         <div class="demo-row">
-          <UAlert title="Heads up!" description="Dismiss this alert." color="neutral" variant="outline" close />
+          <UAlert title="Heads up!" description="A user avatar alert." color="neutral" variant="subtle" :avatar="{ src: 'https://github.com/nuxt.png' }" />
+        </div>
+      </CodeCollapsible>
+    </section>
+
+    <section class="example-section">
+      <h3>With Close</h3>
+      <p class="demo-description">Add a dismiss button with the <code>close</code> prop to let users hide the alert. Use <code>v-if</code> with <code>@update:open</code> to control visibility.</p>
+      <CodeCollapsible :code="`<UAlert v-if=&quot;open&quot; title=&quot;Heads up!&quot; description=&quot;Dismiss this alert.&quot; color=&quot;neutral&quot; variant=&quot;outline&quot; close @update:open=&quot;open = false&quot; />`">
+        <div class="demo-row demo-row--wrap">
+          <UAlert v-if="openClose" title="Heads up!" description="Dismiss this alert." color="neutral" variant="outline" close @update:open="openClose = false" />
+          <UButton v-if="!openClose" label="Show alert" color="neutral" variant="outline" size="xs" @click="openClose = true" />
+        </div>
+      </CodeCollapsible>
+    </section>
+
+    <section class="example-section">
+      <h3>Custom Close</h3>
+      <p class="demo-description">Customize the close button appearance by passing <code>ButtonProps</code> to the <code>close</code> prop.</p>
+      <CodeCollapsible :code="`<UAlert v-if=&quot;open&quot; title=&quot;Heads up!&quot; description=&quot;Custom close button.&quot; color=&quot;neutral&quot; variant=&quot;outline&quot; :close=&quot;{ color: 'primary', variant: 'outline', class: 'rounded-full' }&quot; @update:open=&quot;open = false&quot; />`">
+        <div class="demo-row demo-row--wrap">
+          <UAlert v-if="openCustomClose" title="Heads up!" description="Custom close button." color="neutral" variant="outline" :close="{ color: 'primary', variant: 'outline', class: 'rounded-full' }" @update:open="openCustomClose = false" />
+          <UButton v-if="!openCustomClose" label="Show alert" color="neutral" variant="outline" size="xs" @click="openCustomClose = true" />
+        </div>
+      </CodeCollapsible>
+    </section>
+
+    <section class="example-section">
+      <h3>Close Icon</h3>
+      <p class="demo-description">Replace the default close icon with a custom <code>close-icon</code> from Iconify.</p>
+      <CodeCollapsible :code="`<UAlert v-if=&quot;open&quot; title=&quot;Heads up!&quot; description=&quot;Custom close icon.&quot; color=&quot;neutral&quot; variant=&quot;outline&quot; close close-icon=&quot;i-lucide-arrow-right&quot; @update:open=&quot;open = false&quot; />`">
+        <div class="demo-row demo-row--wrap">
+          <UAlert v-if="openCloseIcon" title="Heads up!" description="Custom close icon." color="neutral" variant="outline" close close-icon="i-lucide-arrow-right" @update:open="openCloseIcon = false" />
+          <UButton v-if="!openCloseIcon" label="Show alert" color="neutral" variant="outline" size="xs" @click="openCloseIcon = true" />
         </div>
       </CodeCollapsible>
     </section>
@@ -106,11 +154,21 @@ import CodeCollapsible from "./CodeCollapsible.vue";
     </section>
 
     <section class="example-section">
-      <h3>With Avatar</h3>
-      <p class="demo-description">Display a user avatar alongside the alert content using the <code>:avatar</code> prop.</p>
-      <CodeCollapsible :code="`<UAlert title=&quot;Heads up!&quot; description=&quot;A user avatar alert.&quot; color=&quot;neutral&quot; variant=&quot;subtle&quot; :avatar=&quot;{ src: 'https://github.com/nuxt.png' }&quot; />`">
+      <h3>Custom <code>class</code></h3>
+      <p class="demo-description">Override base styles using the <code>class</code> prop for custom styling.</p>
+      <CodeCollapsible :code="`<UAlert title=&quot;Heads up!&quot; description=&quot;Rounded corners removed.&quot; class=&quot;rounded-none&quot; />`">
         <div class="demo-row">
-          <UAlert title="Heads up!" description="A user avatar alert." color="neutral" variant="subtle" :avatar="{ src: 'https://github.com/nuxt.png' }" />
+          <UAlert title="Heads up!" description="Rounded corners removed." class="rounded-none" />
+        </div>
+      </CodeCollapsible>
+    </section>
+
+    <section class="example-section">
+      <h3>Custom <code>ui</code></h3>
+      <p class="demo-description">Override slot styles using the <code>:ui</code> prop for granular control of individual parts.</p>
+      <CodeCollapsible :code="`<UAlert title=&quot;Heads up!&quot; description=&quot;Larger icon via ui prop.&quot; icon=&quot;i-lucide-rocket&quot; :ui=&quot;{ icon: 'size-11' }&quot; />`">
+        <div class="demo-row">
+          <UAlert title="Heads up!" description="Larger icon via ui prop." icon="i-lucide-rocket" :ui="{ icon: 'size-11' }" />
         </div>
       </CodeCollapsible>
     </section>

@@ -21,6 +21,7 @@ Reference: [Nuxt UI Alert](https://ui.nuxt.com/docs/components/alert)
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
+| `open` | `boolean` | `true` | Controls alert visibility. Use with `v-model:open` for dismissible alerts |
 | `title` | `string` | — | Alert title text |
 | `description` | `string` | — | Alert description text |
 | `icon` | `string` (Iconify) | — | Leading icon from Iconify (e.g. `'i-lucide-terminal'`) |
@@ -51,11 +52,32 @@ Reference: [Nuxt UI Alert](https://ui.nuxt.com/docs/components/alert)
 ### Example Usage
 
 ```vue
+<!-- Title only -->
+<UAlert title="Heads up!" />
+
+<!-- Title + description -->
 <UAlert
   title="Heads up!"
   description="You can change the primary color in your app config."
 />
 
+<!-- With icon -->
+<UAlert
+  title="Heads up!"
+  description="You can change the primary color."
+  icon="i-lucide-terminal"
+/>
+
+<!-- With avatar -->
+<UAlert
+  title="Heads up!"
+  description="A user avatar alert."
+  color="neutral"
+  variant="subtle"
+  :avatar="{ src: 'https://github.com/nuxt.png' }"
+/>
+
+<!-- Color + variant -->
 <UAlert
   title="Success!"
   description="Operation completed successfully."
@@ -64,8 +86,43 @@ Reference: [Nuxt UI Alert](https://ui.nuxt.com/docs/components/alert)
   icon="i-lucide-check-circle"
 />
 
+<!-- With close -->
 <UAlert
-  title="Warning"
+  v-if="open"
+  title="Heads up!"
+  description="Dismiss this alert."
+  color="neutral"
+  variant="outline"
+  close
+  @update:open="open = false"
+/>
+
+<!-- Custom close button -->
+<UAlert
+  v-if="open"
+  title="Heads up!"
+  description="Custom close button."
+  color="neutral"
+  variant="outline"
+  :close="{ color: 'primary', variant: 'outline', class: 'rounded-full' }"
+  @update:open="open = false"
+/>
+
+<!-- Custom close icon -->
+<UAlert
+  v-if="open"
+  title="Heads up!"
+  description="Custom close icon."
+  color="neutral"
+  variant="outline"
+  close
+  close-icon="i-lucide-arrow-right"
+  @update:open="open = false"
+/>
+
+<!-- With actions -->
+<UAlert
+  title="Heads up!"
   description="Your session will expire soon."
   color="warning"
   variant="outline"
@@ -75,12 +132,32 @@ Reference: [Nuxt UI Alert](https://ui.nuxt.com/docs/components/alert)
   ]"
 />
 
+<!-- Orientation horizontal -->
 <UAlert
-  title="Error"
-  description="Something went wrong."
-  color="error"
-  variant="soft"
-  close
+  title="Heads up!"
+  description="Horizontal layout."
+  color="neutral"
+  variant="outline"
+  orientation="horizontal"
+  :actions="[
+    { label: 'Action 1' },
+    { label: 'Action 2', color: 'neutral', variant: 'subtle' }
+  ]"
+/>
+
+<!-- Custom class -->
+<UAlert
+  title="Heads up!"
+  description="Rounded corners removed."
+  class="rounded-none"
+/>
+
+<!-- Custom ui prop -->
+<UAlert
+  title="Heads up!"
+  description="Larger icon via ui prop."
+  icon="i-lucide-rocket"
+  :ui="{ icon: 'size-11' }"
 />
 ```
 
@@ -100,7 +177,17 @@ An alert consists of up to 6 parts:
 ## Implementation Notes
 
 1. **Use `<UAlert>` directly** — No Mizu wrapper needed. Apply the theme preset and Nuxt UI handles the rest.
-2. **Close emits `update:open`** — When the close button is clicked, an `update:open` event fires with `false`. Use `v-model:open` or handle the event to control visibility.
+2. **Close requires `v-if` + `@update:open`** — The `close` prop only renders the close button. When clicked, it emits `update:open` with `false`. The alert does **not** dismiss itself — you must use `v-if` with the `@update:open` event to control visibility.
+
+   ```vue
+   <script setup>
+   const open = ref(true)
+   </script>
+
+   <template>
+     <UAlert v-if="open" title="Heads up!" close @update:open="open = false" />
+   </template>
+   ```
 3. **Color + variant combos** — `solid` variant uses the full color background. `outline`/`soft`/`subtle` are best for `neutral`-colored alerts. `solid` works well for high-emphasis feedback colors like `error` and `success`.
 4. **Orientation** — `vertical` (default) stacks actions below the description. `horizontal` places actions beside the close button inline.
 5. **`actions` format** — Pass an array of `ButtonProps` objects. `size` defaults to `'xs'` in alerts.

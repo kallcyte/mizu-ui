@@ -16,6 +16,27 @@ This project follows **semantic versioning** (SemVer) during pre-1.0 development
 Changes that require a minor bump: adding a new component, renaming tokens, changing component APIs, adding new packages (e.g. React).
 Changes that keep the patch version: renames, copy edits, styling tweaks, build config changes, favicon updates.
 
+## 0.18.16 (2026-07-22)
+
+### Added
+
+- **Alert demo — Title Only section** — New demo showing `UAlert` with just the `title` prop and no description for compact messages.
+- **Alert demo — Custom Close section** — New demo showing `:close` with custom `ButtonProps` (color, variant, rounded-full).
+- **Alert demo — Close Icon section** — New demo showing `close-icon` prop with custom icon.
+- **Alert demo — Custom `class` section** — New demo showing override of base styles via the `class` prop.
+- **Alert demo — Custom `ui` section** — New demo showing slot style overrides via the `:ui` prop.
+
+### Changed
+
+- **Alert demo — With Close section** — Fixed close button to actually dismiss the alert. Nuxt UI's `UAlert` only emits `update:open` on close — the parent must control rendering with `v-if` + `@update:open`. Added a "Show alert" reset button to re-show dismissed alerts.
+- **Alert demo — section order** — Reordered sections to match Nuxt UI docs flow (Avatar before Close).
+
+### Docs
+
+- **Alert documentation** — Expanded "Example Usage" from 4 examples to 13, covering all variants, close patterns, and customization props.
+- **Alert documentation — Implementation Notes** — Clarified that close requires `v-if` + `@update:open` (not `v-model:open`), with a complete code sample.
+- **Alert documentation** — Added `open` prop to the Props table.
+
 ## 0.18.15 (2026-07-21)
 
 ### Changed
