@@ -42,6 +42,13 @@ export default defineConfig({
       },
       head: [
         {
+          tag: "meta",
+          attrs: {
+            name: "robots",
+            content: "noindex, nofollow",
+          },
+        },
+        {
           tag: "link",
           attrs: {
             rel: "preconnect",
