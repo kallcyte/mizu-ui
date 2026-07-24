@@ -1,7 +1,15 @@
 {
   "name": "@mizu/vue",
-  "version": "0.18.16",
-    "type": "module",
+  "version": "0.18.17",
+  "type": "module",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/anomalyco/mizu-ui.git"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",

@@ -5,9 +5,7 @@ description: A succinct message to provide information or feedback.
 
 import ToastDemo from "../../../../components/docs/ToastDemo.vue";
 
-<span style="display:inline-flex;margin-bottom:16px;padding:1px 8px;border-radius:9999px;font-size:11px;font-weight:500;background:#FFFBEB;color:#D97706;">Pending</span>
-
-A toast is a non-disruptive notification that appears temporarily to provide feedback or information. Mizu uses Nuxt UI's `UToast` with configurable colors, actions, and auto-dismiss.
+A toast is a non-disruptive notification that appears temporarily to provide feedback or information. Mizu uses Nuxt UI's `UToast` with the `useToast()` composable for programmatic control — supporting configurable colors, icons, actions, orientation, progress, and auto-dismiss.
 
 ## Examples
 
@@ -47,13 +45,21 @@ Reference: [Nuxt UI Toast](https://ui.nuxt.com/docs/components/toast)
 ### Example Usage
 
 ```vue
+<script setup lang="ts">
+const toast = useToast()
+
+function onSave() {
+  toast.add({
+    title: 'File saved',
+    description: 'Your changes have been saved successfully.',
+    color: 'success',
+    actions: [{ label: 'Undo', color: 'neutral', variant: 'ghost', onClick: () => {} }]
+  })
+}
+</script>
+
 <template>
-  <UToast
-    title="File saved"
-    description="Your changes have been saved successfully."
-    color="success"
-    :actions="[{ label: 'Undo', color: 'neutral', variant: 'ghost' }]"
-  />
+  <UButton label="Save" color="primary" @click="onSave" />
 </template>
 ```
 
@@ -73,9 +79,10 @@ A toast consists of:
 
 ## Implementation Notes
 
-1. **Use `<UToast>` directly** — No Mizu wrapper needed. Apply the theme preset.
-2. **Toasts render in a portal** — Positioned in a fixed viewport overlay. No need to manage mounting.
-3. **Auto-dismiss** — Default duration is 5000ms. Set `duration` to `0` for persistent toasts that require manual dismissal.
-4. **Color variants** — Use `color` to set semantic meaning: `success` for confirmations, `error` for failures, `info` for neutral messages, `warning` for cautions.
-5. **Actions** — Pass an array of button configs to `actions`. Buttons render below content in vertical orientation, or beside the close button in horizontal orientation.
-6. **Progress tracking** — The `progress` prop (default `true`) renders a countdown bar. Pass `{ color: 'neutral' }` to customize, or `false` to hide.
+1. **Use `useToast()` composable** — Call `toast.add({...})` to programmatically show toasts. No manual `UToast` rendering needed.
+2. **Requires `UToaster` or `UApp` wrapper** — Wrap your app or component with `<UToaster>` to provide the Reka UI `ToastProvider` context and the portal viewport for toast rendering.
+3. **Toasts render in a portal** — Positioned in a fixed viewport overlay. No need to manage mounting.
+4. **Auto-dismiss** — Default duration is 5000ms. Set `duration` to `0` for persistent toasts that require manual dismissal.
+5. **Color variants** — Use `color` to set semantic meaning: `success` for confirmations, `error` for failures, `info` for neutral messages, `warning` for cautions.
+6. **Actions** — Pass an array of button configs to `actions`. Buttons render below content in vertical orientation, or beside the close button in horizontal orientation.
+7. **Progress tracking** — The `progress` prop (default `true`) renders a countdown bar. Pass `{ color: 'neutral' }` to customize, or `false` to hide.

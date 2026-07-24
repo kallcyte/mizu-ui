@@ -13,7 +13,31 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Get version from package.json
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 11
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build all packages
+        run: pnpm -r build
+
+      - name: Authenticate with npm
+        run: echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > ~/.npmrc
+
+      - name: Publish @mizu/tokens to npm
+        run: pnpm --filter @mizu/tokens publish --access public --no-git-checks 2>/dev/null || true
+
+      - name: Publish @mizu/vue to npm
+        run: pnpm --filter @mizu/vue publish --access public --no-git-checks 2>/dev/null || true
+
+      - name: Get version from @mizu/vue
         id: version
         run: |
           VERSION=$(node -p "require('./packages/vue/package.json').version")

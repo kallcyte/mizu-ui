@@ -16,6 +16,18 @@ This project follows **semantic versioning** (SemVer) during pre-1.0 development
 Changes that require a minor bump: adding a new component, renaming tokens, changing component APIs, adding new packages (e.g. React).
 Changes that keep the patch version: renames, copy edits, styling tweaks, build config changes, favicon updates.
 
+## 0.18.17 (2026-07-24)
+
+### Changed
+
+- **Toast demo — UToaster import** — Removed manual `import UToaster` from `ToastDemo.vue` that caused a `"not exported under conditions"` module resolution error under Astro. UToaster now auto-imports via `unplugin-vue-components`.
+- **Toast demo — Stacked toasts** — Replaced non-functional code-only demo with a live reactive toggle. A single `UToaster` with `:expand="!stackedMode"` lets users switch between expanded (default) and stacked (Sonner-style) modes and trigger toasts in either mode.
+- **Toast demo — Position** — New section demonstrating viewport position changes via the `position` prop on `UToaster`. Interactive 3×2 grid selector for all 6 position values (`top-left`, `top-center`, `top-right`, `bottom-left`, `bottom-center`, `bottom-right`). Active position highlights on selection; re-click resets to default.
+
+### Docs
+
+- **Toast documentation** — Expanded demo from 13 to 15 sections, adding live Stacked toasts (reactive toggle), Position (all 6 positions), Deduplicated toasts, With callback, and With HTML content.
+
 ## 0.18.16 (2026-07-22)
 
 ### Added
