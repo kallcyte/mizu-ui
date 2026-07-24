@@ -66,14 +66,15 @@ const selectedColor = ref<(typeof colors)[number]["value"]>("primary");
 ]&quot; />`">
         <div class="demo-col demo-gap-lg">
           <div class="color-selector">
-            <button
+            <UButton
               v-for="color in colors"
               :key="color.value"
-              :class="['color-chip', selectedColor === color.value && 'color-chip--active']"
+              :label="color.label"
+              :color="color.value"
+              :variant="selectedColor === color.value ? 'soft' : 'ghost'"
+              size="sm"
               @click="selectedColor = color.value"
-            >
-              {{ color.label }}
-            </button>
+            />
           </div>
           <UBreadcrumb :color="selectedColor" :items="[
             { label: 'Home', icon: 'i-lucide-book-open', href: '/' },

@@ -84,12 +84,15 @@ function to(pageNum: number) {
       <CodeCollapsible :code="`<UPagination v-model:page=&quot;page&quot; :total=&quot;100&quot; color=&quot;${selectedColor}&quot; />`">
         <div class="demo-col demo-gap-lg">
           <div class="chip-row">
-            <button
+            <UButton
               v-for="c in colors"
               :key="c"
-              :class="['chip', selectedColor === c && 'chip--active']"
+              :label="c"
+              :color="c"
+              :variant="selectedColor === c ? 'soft' : 'ghost'"
+              size="sm"
               @click="selectedColor = c"
-            >{{ c }}</button>
+            />
           </div>
           <UPagination v-model:page="page" :total="100" :color="selectedColor" />
         </div>
@@ -103,12 +106,14 @@ function to(pageNum: number) {
       <CodeCollapsible :code="`<UPagination v-model:page=&quot;page&quot; :total=&quot;100&quot; color=&quot;neutral&quot; variant=&quot;${selectedVariant}&quot; />`">
         <div class="demo-col demo-gap-lg">
           <div class="chip-row">
-            <button
+            <UButton
               v-for="v in variants"
               :key="v"
-              :class="['chip', selectedVariant === v && 'chip--active']"
+              :label="v"
+              :variant="selectedVariant === v ? 'soft' : 'ghost'"
+              size="sm"
               @click="selectedVariant = v"
-            >{{ v }}</button>
+            />
           </div>
           <UPagination v-model:page="page" :total="100" color="neutral" :variant="selectedVariant" />
         </div>
@@ -122,12 +127,15 @@ function to(pageNum: number) {
       <CodeCollapsible :code="`<UPagination v-model:page=&quot;page&quot; :total=&quot;100&quot; active-color=&quot;${selectedActiveColor}&quot; />`">
         <div class="demo-col demo-gap-lg">
           <div class="chip-row">
-            <button
+            <UButton
               v-for="c in colors"
               :key="c"
-              :class="['chip', selectedActiveColor === c && 'chip--active']"
+              :label="c"
+              :color="c"
+              :variant="selectedActiveColor === c ? 'soft' : 'ghost'"
+              size="sm"
               @click="selectedActiveColor = c"
-            >{{ c }}</button>
+            />
           </div>
           <UPagination v-model:page="page" :total="100" :active-color="selectedActiveColor" />
         </div>
@@ -141,12 +149,14 @@ function to(pageNum: number) {
       <CodeCollapsible :code="`<UPagination v-model:page=&quot;page&quot; :total=&quot;100&quot; active-color=&quot;primary&quot; active-variant=&quot;${selectedActiveVariant}&quot; />`">
         <div class="demo-col demo-gap-lg">
           <div class="chip-row">
-            <button
+            <UButton
               v-for="v in variants"
               :key="v"
-              :class="['chip', selectedActiveVariant === v && 'chip--active']"
+              :label="v"
+              :variant="selectedActiveVariant === v ? 'soft' : 'ghost'"
+              size="sm"
               @click="selectedActiveVariant = v"
-            >{{ v }}</button>
+            />
           </div>
           <UPagination v-model:page="page" :total="100" active-color="primary" :active-variant="selectedActiveVariant" />
         </div>
@@ -160,12 +170,14 @@ function to(pageNum: number) {
       <CodeCollapsible :code="`<UPagination v-model:page=&quot;page&quot; :total=&quot;100&quot; size=&quot;${selectedSize}&quot; />`">
         <div class="demo-col demo-gap-lg">
           <div class="chip-row">
-            <button
+            <UButton
               v-for="s in sizes"
               :key="s"
-              :class="['chip', selectedSize === s && 'chip--active']"
+              :label="s"
+              :variant="selectedSize === s ? 'soft' : 'ghost'"
+              size="sm"
               @click="selectedSize = s"
-            >{{ s }}</button>
+            />
           </div>
           <UPagination v-model:page="page" :total="100" :size="selectedSize" />
         </div>

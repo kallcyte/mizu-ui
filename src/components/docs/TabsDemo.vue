@@ -123,12 +123,15 @@ const bottomBarItems = [
       <CodeCollapsible :code="`<UTabs color=&quot;${selectedColor}&quot; :content=&quot;false&quot; :items=&quot;items&quot; class=&quot;w-full&quot; />`">
         <div class="demo-col demo-col-wide">
           <div class="chip-row">
-            <button
+            <UButton
               v-for="c in colors"
               :key="c"
-              :class="['chip', selectedColor === c && 'chip--active']"
+              :label="c"
+              :color="c"
+              :variant="selectedColor === c ? 'soft' : 'ghost'"
+              size="sm"
               @click="selectedColor = c"
-            >{{ c }}</button>
+            />
           </div>
           <UTabs :color="selectedColor" :content="false" :items="basicItems" class="w-full" />
         </div>
@@ -142,12 +145,14 @@ const bottomBarItems = [
       <CodeCollapsible :code="`<UTabs variant=&quot;${selectedVariant}&quot; :content=&quot;false&quot; :items=&quot;items&quot; class=&quot;w-full&quot; />`">
         <div class="demo-col demo-col-wide">
           <div class="chip-row">
-            <button
+            <UButton
               v-for="v in variants"
               :key="v"
-              :class="['chip', selectedVariant === v && 'chip--active']"
+              :label="v"
+              :variant="selectedVariant === v ? 'soft' : 'ghost'"
+              size="sm"
               @click="selectedVariant = v"
-            >{{ v }}</button>
+            />
           </div>
           <UTabs :variant="selectedVariant" :content="false" :items="basicItems" class="w-full" />
         </div>
@@ -161,12 +166,14 @@ const bottomBarItems = [
       <CodeCollapsible :code="`<UTabs size=&quot;${selectedSize}&quot; variant=&quot;pill&quot; :content=&quot;false&quot; :items=&quot;items&quot; class=&quot;w-full&quot; />`">
         <div class="demo-col demo-col-wide">
           <div class="chip-row">
-            <button
+            <UButton
               v-for="s in sizes"
               :key="s"
-              :class="['chip', selectedSize === s && 'chip--active']"
+              :label="s"
+              :variant="selectedSize === s ? 'soft' : 'ghost'"
+              size="sm"
               @click="selectedSize = s"
-            >{{ s }}</button>
+            />
           </div>
           <UTabs :size="selectedSize" variant="pill" :content="false" :items="basicItems" class="w-full" />
         </div>
@@ -180,12 +187,14 @@ const bottomBarItems = [
       <CodeCollapsible :code="`<UTabs orientation=&quot;${selectedOrientation}&quot; variant=&quot;pill&quot; :content=&quot;false&quot; :items=&quot;items&quot; class=&quot;w-full&quot; />`">
         <div class="demo-col demo-col-wide">
           <div class="chip-row">
-            <button
+            <UButton
               v-for="o in orientations"
               :key="o"
-              :class="['chip', selectedOrientation === o && 'chip--active']"
+              :label="o"
+              :variant="selectedOrientation === o ? 'soft' : 'ghost'"
+              size="sm"
               @click="selectedOrientation = o"
-            >{{ o }}</button>
+            />
           </div>
           <UTabs :orientation="selectedOrientation" variant="pill" :content="false" :items="basicItems" class="w-full" />
         </div>
@@ -249,7 +258,7 @@ const bottomBarItems = [
     <!-- With custom slot -->
     <section class="example-section">
       <h3>With Custom Slot</h3>
-      <p class="demo-description">Use the <code>slot</code> property on an item to replace both the trigger and content with a named slot. Each <code>#{{ item.slot }}</code> slot receives the item as a prop.</p>
+      <p class="demo-description">Use the <code>slot</code> property on an item to replace both the trigger and content with a named slot. Each named item slot receives the item as a prop.</p>
       <CodeCollapsible :code="`<UTabs :items=&quot;items&quot; variant=&quot;link&quot; :ui=&quot;{ trigger: 'grow' }&quot; class=&quot;gap-4 w-full&quot;>
   <template #account=&quot;{ item }&quot;>#account slot</template>
   <template #password=&quot;{ item }&quot;>#password slot</template>
