@@ -16,6 +16,17 @@ This project follows **semantic versioning** (SemVer) during pre-1.0 development
 Changes that require a minor bump: adding a new component, renaming tokens, changing component APIs, adding new packages (e.g. React).
 Changes that keep the patch version: renames, copy edits, styling tweaks, build config changes, favicon updates.
 
+## 0.18.19 (2026-07-24)
+
+### Changed
+
+- **Pagination docs — Ready** — Marked the Pagination documentation page as Ready (green badge).
+
+### Docs
+
+- **Pagination demo** — Expanded from 2 to 12 examples: Basic, Items Per Page (`items-per-page`), Sibling Count (`sibling-count`), Show Edges (`show-edges`), Show Controls (`show-controls`), Color (7-variant reactive selector), Variant (6-variant reactive selector), Active Color (`active-color`, 7-variant reactive selector), Active Variant (`active-variant`, 6-variant reactive selector), Size (xs-xl reactive selector), Disabled, and With links (`:to` route resolver).
+- **Pagination API** — Audited against Nuxt UI v4 `UPagination`: corrected `pageSize` → `items-per-page`, `max` → `sibling-count`, added `sibling-count`, `show-edges`, `active-color`, `active-variant`, `to`, and the full `default` slot signature. Fixed default values (`color="neutral"`, `active-color="primary"`, `active-variant="solid"`). Replaced the `## Anatomy` and `## Implementation Notes` section to match the demo's actual API surface.
+
 ## 0.18.18 (2026-07-24)
 
 ### Changed

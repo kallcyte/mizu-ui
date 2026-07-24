@@ -5,7 +5,7 @@ description: Page navigation controls for browsing paginated content.
 
 import PaginationDemo from "../../../../components/docs/PaginationDemo.vue";
 
-<span style="display:inline-flex;margin-bottom:16px;padding:1px 8px;border-radius:9999px;font-size:11px;font-weight:500;background:#FFFBEB;color:#D97706;">Pending</span>
+<span style="display:inline-flex;margin-bottom:16px;padding:1px 8px;border-radius:9999px;font-size:11px;font-weight:500;background:#DCFCE7;color:#15803D;">Ready</span>
 
 Pagination provides controls for navigating between pages of content. Mizu uses Nuxt UI's `UPagination` with the default button scale (32px height pages).
 
@@ -22,35 +22,49 @@ Reference: [Nuxt UI Pagination](https://ui.nuxt.com/docs/components/pagination)
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `total` | `number` | — | Total number of items |
-| `pageSize` | `number` | `10` | Items per page |
-| `max` | `number` | `7` | Maximum number of visible page buttons |
-| `size` | `'xs' \| 'sm' \| 'md' \| 'lg' \| 'xl'` | `'md'` | Button size |
-| `color` | `'primary' \| 'secondary' \| 'success' \| 'error' \| 'warning' \| 'info' \| 'neutral'` | `'primary'` | Active page color |
-| `variant` | `'outline' \| 'soft' \| 'subtle' \| 'ghost' \| 'none'` | `'outline'` | Visual style |
-| `disabled` | `boolean` | `false` | Disable pagination |
+| `page` (v-model) | `number` | `1` | Current page (controlled) |
 | `defaultPage` | `number` | `1` | Initial page (uncontrolled) |
-| `modelValue` | `number` | — | v-model binding for current page |
-| `showControls` | `boolean` | `true` | Show prev/next buttons |
+| `itemsPerPage` | `number` | `10` | Items per page |
+| `siblingCount` | `number` | `2` | Page buttons shown on each side of the active page |
+| `showEdges` | `boolean` | `false` | Always show first/last page and ellipsis |
+| `showControls` | `boolean` | `true` | Show first/prev/next/last navigation buttons |
+| `color` | `'primary' \| 'secondary' \| 'success' \| 'info' \| 'warning' \| 'error' \| 'neutral'` | `'neutral'` | Color of inactive page controls |
+| `variant` | `'outline' \| 'solid' \| 'soft' \| 'subtle' \| 'ghost' \| 'link'` | `'outline'` | Variant of inactive page controls |
+| `activeColor` | `'primary' \| 'secondary' \| 'success' \| 'info' \| 'warning' \| 'error' \| 'neutral'` | `'primary'` | Color of the active page button |
+| `activeVariant` | `'outline' \| 'solid' \| 'soft' \| 'subtle' \| 'ghost' \| 'link'` | `'solid'` | Variant of the active page button |
+| `size` | `'xs' \| 'sm' \| 'md' \| 'lg' \| 'xl'` | `'md'` | Button size |
+| `disabled` | `boolean` | `false` | Disable the entire pagination control |
+| `to` | `(page: number) => RouteLocationRaw` | — | Render page controls as links via a route resolver |
 
 ### Slots
 
 | Slot | Props | Description |
 |------|-------|-------------|
-| `default` | — | Entire pagination (overrides default rendering) |
+| `default` | `{ page, pageCount, total, itemsPerPage, pageSizes, prev, next, size, ellipsis, ui }` | Replaces the entire pagination rendering; expose `Pagination` from `@nuxt/ui` to compose custom layouts |
 
 ### Example Usage
 
 ```vue
-<UPagination v-model:page="page" :total="100" :page-size="10" />
+<UPagination v-model:page="page" :total="100" />
 
-<UPagination v-model:page="page" :total="500" :page-size="20" :max="5" />
+<UPagination v-model:page="page" :total="100" :items-per-page="20" />
+
+<UPagination v-model:page="page" :total="500" :sibling-count="1" show-edges />
+
+<UPagination
+  v-model:page="page"
+  :total="100"
+  :to="(p) => ({ query: { page: p } })"
+/>
+
+<UPagination v-model:page="page" :total="100" color="neutral" active-color="primary" />
 ```
 
 ## Theme
 
 Nuxt UI v4 pagination defaults (slot-based composition with button primitives) are already consistent with Mizu. No sizing variants needed — pagination inherits from the button/input scale.
 
-Default: `color="primary"`, `size="md"`.
+Default: `color="neutral"`, `active-color="primary"`, `active-variant="solid"`, `size="md"`.
 
 ## Anatomy
 
@@ -68,7 +82,10 @@ Pagination consists of:
 ## Implementation Notes
 
 1. **Use `<UPagination>` directly** — No Mizu wrapper needed.
-2. **Total and pageSize** — Pass `total` (item count) and `pageSize` (items per page). Nuxt UI calculates total pages automatically.
-3. **Max visible pages** — Use `max` to control how many page buttons are shown before collapsing with ellipsis.
-4. **Controlled state** — Use `v-model:page` for controlled pagination. Use `defaultPage` for uncontrolled.
-5. **Hiding controls** — Set `showControls` to `false` to hide prev/next arrows, showing only page number buttons.
+2. **Total and items-per-page** — Pass `total` (item count). Nuxt UI derives page count from `total / items-per-page` (default `10`).
+3. **Sibling count** — Use `sibling-count` to control how many page buttons appear on each side of the active page before collapsing with ellipsis.
+4. **Edges on demand** — Add `show-edges` to always render the first/last page button and the surrounding ellipsis when the range is truncated.
+5. **Controlled state** — Use `v-model:page` for controlled pagination. Use `defaultPage` for uncontrolled.
+6. **Hiding controls** — Set `show-controls` to `false` to hide first/prev/next/last buttons, showing only page number buttons.
+7. **Active vs. inactive** — Inactive controls use `color`/`variant`; the active page uses `active-color`/`active-variant`. Defaults: `color="neutral"` `variant="outline"`, `active-color="primary"` `active-variant="solid"`.
+8. **Links vs. buttons** — Pass a `:to` route resolver to render page controls as `<a>` links (e.g. for SEO-friendly query-string pagination).
