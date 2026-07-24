@@ -96,6 +96,7 @@ declare module 'vue' {
     TreeDemo: typeof import('./src/components/docs/TreeDemo.vue')['default']
     UAccordion: typeof import('./node_modules/.pnpm/@nuxt+ui@4.10.0_patch_hash=98f5908bcab9fd790fc13a7aeffe76aaa66373615c18401f94b90a8c726f_86cb7bcc6e5bba4e1b89a50cc5b4d591/node_modules/@nuxt/ui/dist/runtime/components/Accordion.vue')['default']
     UAlert: typeof import('./node_modules/.pnpm/@nuxt+ui@4.10.0_patch_hash=98f5908bcab9fd790fc13a7aeffe76aaa66373615c18401f94b90a8c726f_86cb7bcc6e5bba4e1b89a50cc5b4d591/node_modules/@nuxt/ui/dist/runtime/components/Alert.vue')['default']
+    UApp: typeof import('./node_modules/.pnpm/@nuxt+ui@4.10.0_patch_hash=98f5908bcab9fd790fc13a7aeffe76aaa66373615c18401f94b90a8c726f_86cb7bcc6e5bba4e1b89a50cc5b4d591/node_modules/@nuxt/ui/dist/runtime/components/App.vue')['default']
     UAvatar: typeof import('./node_modules/.pnpm/@nuxt+ui@4.10.0_patch_hash=98f5908bcab9fd790fc13a7aeffe76aaa66373615c18401f94b90a8c726f_86cb7bcc6e5bba4e1b89a50cc5b4d591/node_modules/@nuxt/ui/dist/runtime/components/Avatar.vue')['default']
     UAvatarGroup: typeof import('./node_modules/.pnpm/@nuxt+ui@4.10.0_patch_hash=98f5908bcab9fd790fc13a7aeffe76aaa66373615c18401f94b90a8c726f_86cb7bcc6e5bba4e1b89a50cc5b4d591/node_modules/@nuxt/ui/dist/runtime/components/AvatarGroup.vue')['default']
     UBadge: typeof import('./node_modules/.pnpm/@nuxt+ui@4.10.0_patch_hash=98f5908bcab9fd790fc13a7aeffe76aaa66373615c18401f94b90a8c726f_86cb7bcc6e5bba4e1b89a50cc5b4d591/node_modules/@nuxt/ui/dist/runtime/components/Badge.vue')['default']

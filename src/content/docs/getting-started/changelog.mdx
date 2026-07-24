@@ -16,6 +16,14 @@ This project follows **semantic versioning** (SemVer) during pre-1.0 development
 Changes that require a minor bump: adding a new component, renaming tokens, changing component APIs, adding new packages (e.g. React).
 Changes that keep the patch version: renames, copy edits, styling tweaks, build config changes, favicon updates.
 
+## 0.18.23 (2026-07-24)
+
+### Docs
+
+- **NavigationMenu demo** — Expanded from a single Basic example to 13 sections: Basic, With Icons, Grouped Items, Orientation, Collapsed, Collapsed with Popover, Highlight, Color, Variant, Arrow and Content Orientation, Control Active Item, With Custom Slot, Bottom Tab Bar. Every section that exposes a prop knob (collapsed, tooltip, popover, highlight, arrow, content orientation, variant, color, orientation) now ships a `UButton` chip-row toggle bound to a reactive `ref`; the rendered `code` prop is dynamically composed so the snippet tracks the live state. Two vertical collapsed previews use a new `demo-col-collapsed` wrapper to shrink to the menu's natural width instead of stretching with the chip row.
+- **NavigationMenu demo — overflow fix** — Scoped `:deep()` override plus `overflow: visible` on `.demo-examples`, `.example-section`, `.demo-col`, `.demo-col-wide`, `.code-collapsible`, and `.code-collapsible__preview` so the `UNavigationMenu` horizontal flyout's `viewportWrapper` (positioned `absolute top-full`) can escape `CodeCollapsible`'s `overflow: hidden` and render fully below the trigger. `demo-col-wide` now also sets `position: relative` so the absolute viewport anchors to the demo container.
+- **NavigationMenu demo — runtime fix** — Wrapped the demo in `<UApp>` so the `Collapsed` section's `tooltip` prop gets the `TooltipProvider` context from Reka UI it injects (previously threw `Injection Symbol(TooltipProviderContext) not found` and failed hydration).
+
 ## 0.18.22 (2026-07-24)
 
 ### Changed

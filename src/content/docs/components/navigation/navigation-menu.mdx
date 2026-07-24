@@ -5,7 +5,7 @@ description: A list of links that can be displayed horizontally or vertically wi
 
 import NavigationMenuDemo from "../../../../components/docs/NavigationMenuDemo.vue";
 
-<span style="display:inline-flex;margin-bottom:16px;padding:1px 8px;border-radius:9999px;font-size:11px;font-weight:500;background:#FFFBEB;color:#D97706;">Pending</span>
+<span style="display:inline-flex;margin-bottom:16px;padding:1px 8px;border-radius:9999px;font-size:11px;font-weight:500;background:#DCFCE7;color:#15803D;">Ready</span>
 
 NavigationMenu renders a list of links with support for nested sub-items, tooltips, and popover expansion. Mizu uses Nuxt UI's `UNavigationMenu` with pill variant links and horizontal orientation for top-level navigation.
 
@@ -21,56 +21,124 @@ Reference: [Nuxt UI NavigationMenu](https://ui.nuxt.com/docs/components/navigati
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `items` | `NavigationMenuItem[]` | — | Nested array of navigation items |
-| `modelValue` | `string` | — | v-model binding for selected value |
-| `defaultValue` | `string` | — | Initial selected value (uncontrolled) |
-| `color` | `'primary' \| 'secondary' \| 'success' \| 'error' \| 'warning' \| 'info' \| 'neutral'` | `'primary'` | Active item color |
-| `variant` | `'pill' \| 'link'` | `'pill'` | Visual style for items |
-| `orientation` | `'horizontal' \| 'vertical'` | `'horizontal'` | Layout direction |
-| `type` | `'single' \| 'multiple'` | `'single'` | Selection mode |
-| `collapsed` | `boolean` | `false` | Collapse sub-items by default |
-| `tooltip` | `boolean` | `false` | Show tooltips on collapsed items |
-| `popover` | `boolean` | `false` | Show sub-items in a popover |
-| `highlight` | `boolean` | `false` | Highlight currently active path |
-| `highlightColor` | `string` | — | Color for highlight indicator |
-| `arrow` | `boolean` | `false` | Show arrow on active item |
-| `contentOrientation` | `'horizontal' \| 'vertical'` | — | Orientation for sub-item content |
-| `trailingIcon` | `string` (Iconify) | — | Icon shown after item labels |
-| `externalIcon` | `string` (Iconify) | — | Icon shown on external links |
-| `valueKey` | `string` | `'value'` | Key to use as item value |
-| `labelKey` | `string` | `'label'` | Key to use as item label |
-| `delayDuration` | `number` | `0` | Delay before showing/hiding (ms) |
-| `skipDelayDuration` | `number` | `300` | Delay to skip when moving between items (ms) |
-| `disabled` | `boolean` | `false` | Disable entire menu |
-| `collapsible` | `boolean` | `true` | Allow collapsing expanded items |
-| `unmountOnHide` | `boolean` | `true` | Unmount hidden content from DOM |
-| `disableClickTrigger` | `boolean` | `false` | Disable click to expand/collapse |
-| `disableHoverTrigger` | `boolean` | `false` | Disable hover to expand/collapse |
-| `disablePointerLeaveClose` | `boolean` | `false` | Disable closing on pointer leave |
+| `items` | `NavigationMenuItem[] \| NavigationMenuItem[][]` | — | Array of items, or array-of-arrays to render grouped items (vertical orientation only). |
+| `modelValue` (`v-model`) | `NavigationMenuModelValue<K, O>` | — | Controlled active value: `string` in horizontal; `string` (single) or `string[]` (multiple) in vertical. |
+| `defaultValue` | `NavigationMenuModelValue<K, O>` | — | Initial active value (uncontrolled). |
+| `color` | `'primary' \| 'secondary' \| 'success' \| 'info' \| 'warning' \| 'error' \| 'neutral'` | `'primary'` | Color of active item indicator. |
+| `highlightColor` | `'primary' \| 'secondary' \| 'success' \| 'info' \| 'warning' \| 'error' \| 'neutral'` | `'primary'` | Color of the highlight border when `highlight` is enabled. |
+| `variant` | `'pill' \| 'link'` | `'pill'` | Visual style for items. |
+| `orientation` | `'horizontal' \| 'vertical'` | `'horizontal'` | Layout direction. Vertical uses an Accordion under the hood. |
+| `contentOrientation` | `'horizontal' \| 'vertical'` | `'horizontal'` | Orientation of the open content panel. Only applies when `orientation="horizontal"`. |
+| `type` | `'single' \| 'multiple'` | `'multiple'` | Selection mode for vertical orientation. |
+| `collapsed` | `boolean` | `false` | Collapse a vertical menu to icon-only. Vertical only. |
+| `tooltip` | `boolean \| TooltipProps` | `false` | Show tooltips on collapsed items. Vertical only. Pass props to customize the tooltip. |
+| `popover` | `boolean \| PopoverProps` | `false` | Show nested children in a floating popover when collapsed. |
+| `highlight` | `boolean` | `false` | Highlight a border on the active item. |
+| `arrow` | `boolean` | `false` | Display an arrow on the content panel that animates to the active item. |
+| `unmountOnHide` | `boolean` | `true` | Unmount the content panel from the DOM when closed. |
+| `trailingIcon` | `string` (Iconify) | `appConfig.ui.icons.chevronDown` | Trailing icon for items with children. |
+| `externalIcon` | `string \| boolean` | `true` | Icon shown on external links. Set to `false` to hide it. |
+| `valueKey` | `string` | `'value'` | Key used to match items when `v-model` / `defaultValue` is provided. |
+| `labelKey` | `string` | `'label'` | Key used to read each item's label. |
+| `as` | `any` | `'div'` | Element or component this component should render as. |
+| `disabled` | `boolean` | `false` | Disable the entire menu. |
+| `collapsible` | `boolean` | `true` | When `type="single"`, allow closing the active item by clicking its trigger. |
+| `delayDuration` | `number` | `0` | Delay in ms before opening on hover. |
+| `skipDelayDuration` | `number` | `300` | Time window in ms to skip the delay when moving between triggers. |
+| `disableClickTrigger` | `boolean` | `false` | Disable click-to-toggle on triggers. |
+| `disableHoverTrigger` | `boolean` | `false` | Disable hover-to-open on triggers. |
+| `disablePointerLeaveClose` | `boolean` | `false` | Prevent the menu from closing on pointer leave. |
+| `content` | `NavigationMenuContentProps & DismissableLayerEmits` | — | Props forwarded to the content panel (e.g. `align`, `side`). |
+| `ui` | `object` | — | Slot class overrides (`root`, `list`, `item`, `link`, `linkLeadingIcon`, `linkLabel`, `linkTrailingBadge`, `childList`, `childItem`, `childLink`, `childLinkLabel`, `childLinkDescription`, `viewport`, `content`, `arrow`, `indicator`, …). |
+
+### NavigationMenuItem
+
+A top-level item in the `items` array.
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `label` | `string` | Display text for the item. |
+| `icon` | `string` (Iconify) | Leading icon (e.g. `i-lucide-house`). |
+| `avatar` | `AvatarProps` | Leading avatar instead of an icon. |
+| `badge` | `string \| number \| BadgeProps` | Trailing badge. |
+| `chip` | `boolean \| ChipProps` | Wrap the leading icon with a Chip (v4.5+). |
+| `tooltip` | `TooltipProps` | Per-item tooltip. Always shown when set, even outside collapsed vertical. |
+| `popover` | `PopoverProps` | Per-item popover. Always shown when set, even outside collapsed vertical. |
+| `trailingIcon` | `string` (Iconify) | Override the trailing icon for this item. |
+| `type` | `'label' \| 'trigger' \| 'link'` | `'label'` renders a non-clickable group heading; `'trigger'` makes the item also act as a click target; `'link'` (default) is a regular link. |
+| `defaultOpen` | `boolean` | Open the item's children by default (vertical). |
+| `open` | `boolean` | Controlled open state (vertical). |
+| `value` | `string` | Unique value used to identify the item with `v-model`. Defaults to `item-${index}`. |
+| `active` | `boolean` | Mark the item as the currently active route. |
+| `disabled` | `boolean` | Disable this individual item. |
+| `slot` | `string` | Render a named slot instead of the default content. |
+| `onSelect` | `(e: Event) => void` | Click handler for the item. |
+| `children` | `NavigationMenuChildItem[]` | Nested sub-items rendered in the content panel. |
+| `class` | `any` | Extra class applied to the item root. |
+| `ui` | `object` | Per-item slot class overrides. |
+| *Link props* | — | Any Link props (`to`, `href`, `target`, `replace`, …) are forwarded. |
+
+### NavigationMenuChildItem
+
+A nested item inside `children`.
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `label` | `string` | Display text for the child item. |
+| `description` | `string` | Supporting text shown beneath the label. |
+| `icon` | `string` (Iconify) | Leading icon for the child item. |
+| `onSelect` | `(e: Event) => void` | Click handler for the child item. |
+| `class` | `any` | Extra class applied to the child item root. |
 
 ### Slots
 
 | Slot | Props | Description |
 |------|-------|-------------|
-| `item` | `{ item, index }` | Custom render for an entire item |
-| `item-leading` | `{ item, index }` | Content before the item label |
-| `item-label` | `{ item, index }` | Custom item label content |
-| `item-trailing` | `{ item, index }` | Content after the item label |
-| `item-content` | `{ item, index }` | Content area within an item |
-| `list-leading` | — | Content before the item list |
-| `list-trailing` | — | Content after the item list |
+| `item` | `{ item, index, active, ui }` | Custom render for an entire item. |
+| `item-leading` | `{ item, index, active, ui }` | Replace the leading icon / avatar / chip. |
+| `item-label` | `{ item, index, active }` | Custom item label content. |
+| `item-trailing` | `{ item, index, active, ui }` | Replace the trailing badge / icon. |
+| `item-content` | `{ item, index, active, ui }` | Custom content for items that have a content panel. |
+| `list-leading` | — | Content before the item list. |
+| `list-trailing` | — | Content after the item list. |
+| `#{{ item.slot }}` | `{ item, index, active, ui }` | Per-item named slot (matches `item.slot`). |
+| `#{{ item.slot }}-leading` | `{ item, index, active, ui }` | Leading slot for the per-item named slot. |
+| `#{{ item.slot }}-label` | `{ item, index, active }` | Label slot for the per-item named slot. |
+| `#{{ item.slot }}-trailing` | `{ item, index, active, ui }` | Trailing slot for the per-item named slot. |
+| `#{{ item.slot }}-content` | `{ item, index, active, ui }` | Content slot for the per-item named slot. |
+
+### Events
+
+| Event | Payload | Description |
+|-------|---------|-------------|
+| `update:modelValue` | `[value: NavigationMenuModelValue \| undefined]` | Emitted when the active item changes. |
 
 ### Example Usage
 
 ```vue
-<UNavigationMenu :items="[
-  { label: 'Home', to: '/' },
-  { label: 'Products', children: [
-    { label: 'Software', to: '/products/software' },
-    { label: 'Hardware', to: '/products/hardware' },
-  ]},
-  { label: 'About', to: '/about' },
-]" />
+<script setup lang="ts">
+import { ref } from "vue";
+import type { NavigationMenuItem } from "@nuxt/ui";
+
+const items: NavigationMenuItem[] = [
+  { label: "Home", icon: "i-lucide-house", to: "/" },
+  {
+    label: "Products",
+    icon: "i-lucide-box",
+    children: [
+      { label: "Software", description: "Tools for modern teams", icon: "i-lucide-laptop" },
+      { label: "Hardware", description: "Devices that work beautifully", icon: "i-lucide-monitor" },
+    ],
+  },
+  { label: "About", icon: "i-lucide-info", to: "/about" },
+];
+
+const active = ref<string>();
+</script>
+
+<template>
+  <UNavigationMenu v-model="active" :items="items" class="w-full" />
+</template>
 ```
 
 ## Anatomy
@@ -79,16 +147,32 @@ A NavigationMenu consists of:
 
 | Part | Required | Description |
 |------|----------|-------------|
-| Root | Yes | `<nav>` wrapper containing the menu items |
+| Root | Yes | Wrapper around the menu list |
 | Item | Yes | Each top-level navigation item |
-| Sub-item | No | Nested items within a parent, shown on expand |
-| Label | Yes | Display text for each item |
-| Icon | No | Optional leading or trailing icon per item |
+| Link | Yes | The clickable link inside an item |
+| Leading Icon | No | Optional icon before the label |
+| Label | Yes | Display text for the item |
+| Trailing | No | Optional badge or trailing icon |
+| Content Panel | No | Flyout panel that renders `children` |
+| Child Item | No | Nested link inside the content panel |
+| Highlight | No | Bottom (horizontal) or side (vertical) indicator on the active item |
+| Arrow | No | Visual arrow that follows the active trigger |
+
+## Theme
+
+Nuxt UI v4 NavigationMenu defaults are already consistent with Mizu: rounded pill variant, xs–xl sizing for child lists, color tokens aligned with the rest of the system. No overrides are needed for the default Mizu palette.
+
+Default: `color="primary"`, `highlightColor="primary"`, `variant="pill"`, `orientation="horizontal"`, `contentOrientation="horizontal"`, `unmountOnHide="true"`.
 
 ## Implementation Notes
 
 1. **Use `<UNavigationMenu>` directly** — No Mizu wrapper needed.
-2. **Items structure** — Items accept `label`, `to`/`href`, `icon`, and `children` (nested sub-items). Use `children` for dropdowns.
-3. **Orientation** — Use `orientation="vertical"` for sidebar navigation. Default `horizontal` is for top navigation bars.
-4. **Selection** — Set `type="multiple"` to allow expanding multiple sub-menus simultaneously. Default `single` collapses others on open.
-5. **Popovers** — Set `popover` on nested items to display children in a floating panel instead of inline expansion.
+2. **`v-model` not `v-model:active`** — Nuxt UI v4 binds the active value to `modelValue`; use `v-model="active"` (or `v-model:modelValue`).
+3. **`modelValue` shape depends on orientation + `type`** — Horizontal is always `string`; vertical with `type="single"` is `string`; vertical with `type="multiple"` is `string[]`. Type your reactive state accordingly.
+4. **Grouped items** — Pass `items` as an array of arrays (`NavigationMenuItem[][]`) to render separated groups. The first item of each group can be `type: 'label'` for a non-clickable heading.
+5. **Vertical orientation + `collapsed`** — Only vertical orientation supports `collapsed`. Pair with `tooltip` to preserve discoverability, or `popover` to expose nested children in a floating panel.
+6. **Highlight** — In horizontal orientation, `highlight` draws a bottom border under the active item. In vertical orientation, only nested (level 2) items get a side highlight.
+7. **Custom slots** — Use the `slot` field on an item to route to a per-item named slot (`#more`, `#github-trailing`, …). Combine with `#{{ item.slot }}-leading/-label/-trailing/-content` for granular overrides.
+8. **`content` prop** — Forward props to the floating panel (e.g. `:content="{ side: 'bottom', align: 'start' }"`) when the default positioning isn't right.
+9. **Trailing icon** — The default `trailing-icon` for items with children is `appConfig.ui.icons.chevronDown`. Set `trailingIcon` per item or `trailing-icon` globally to override.
+10. **Disabled menu vs. disabled item** — The root `disabled` disables the entire menu; per-item `disabled` blocks that single item.
