@@ -5,7 +5,7 @@ description: A set of steps to indicate progress through a multi-step process.
 
 import StepperDemo from "../../../../components/docs/StepperDemo.vue";
 
-<span style="display:inline-flex;margin-bottom:16px;padding:1px 8px;border-radius:9999px;font-size:11px;font-weight:500;background:#FFFBEB;color:#D97706;">Pending</span>
+<span style="display:inline-flex;margin-bottom:16px;padding:1px 8px;border-radius:9999px;font-size:11px;font-weight:500;background:#DCFCE7;color:#15803D;">Ready</span>
 
 Stepper provides a visual indicator of progress through a sequence of steps, commonly used in multi-step forms, onboarding flows, or checkout processes. Mizu uses Nuxt UI's `UStepper` with linear progression enabled by default.
 
@@ -21,49 +21,101 @@ Reference: [Nuxt UI Stepper](https://ui.nuxt.com/docs/components/stepper)
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `items` | `T[]` | *required* | Array of step items |
-| `modelValue` | `number` | — | v-model binding for current step index |
-| `defaultValue` | `number` | — | Initial step index |
-| `color` | `'primary' \| 'secondary' \| 'success' \| 'error' \| 'warning' \| 'info' \| 'neutral'` | `'primary'` | Color for active/completed steps |
-| `size` | `'xs' \| 'sm' \| 'md' \| 'lg' \| 'xl'` | `'md'` | Step indicator size |
+| `items` | `StepperItem[]` | — | Step items array |
+| `modelValue` (`v-model`) | `string \| number` | — | Active step value (controlled); falls back to the index |
+| `defaultValue` | `string \| number` | — | Active step value when uncontrolled |
+| `color` | `'primary' \| 'secondary' \| 'success' \| 'info' \| 'warning' \| 'error' \| 'neutral'` | `'primary'` | Color of active/completed indicators and separator |
+| `size` | `'xs' \| 'sm' \| 'md' \| 'lg' \| 'xl'` | `'md'` | Step indicator and label size |
 | `orientation` | `'horizontal' \| 'vertical'` | `'horizontal'` | Layout direction |
 | `linear` | `boolean` | `true` | Require steps to be completed in order |
 | `disabled` | `boolean` | `false` | Disable the stepper |
-| `valueKey` | `string` | `'value'` | Key to use as step value |
+| `valueKey` | `string` | `'value'` | Key used to match items when `v-model` / `defaultValue` is provided |
+| `as` | `any` | `'div'` | Element or component to render as |
+| `ui` | `object` | — | Slot class overrides (root, header, item, container, trigger, indicator, icon, separator, wrapper, title, description, content) |
+
+### StepperItem
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `title` | `string` | Step title text |
+| `description` | `string` | Step description text |
+| `icon` | `string` | Icon class (e.g. `i-lucide-house`) |
+| `content` | `string` | Inline content rendered for the active step |
+| `value` | `string \| number` | Unique value used to identify the step |
+| `disabled` | `boolean` | Disable this individual step |
+| `slot` | `string` | Render a named slot instead of default content |
+| `class` | `any` | Extra class on the step item |
+| `ui` | `object` | Per-item slot class overrides |
 
 ### Slots
 
 | Slot | Props | Description |
 |------|-------|-------------|
-| `indicator` | `{ step, index, isActive, isCompleted }` | Custom step indicator (number circle) |
-| `wrapper` | `{ step, index, isActive, isCompleted }` | Wrapper around each step |
-| `title` | `{ step, index, isActive, isCompleted }` | Step title content |
-| `description` | `{ step, index, isActive, isCompleted }` | Step description content |
-| `content` | `{ step, index }` | Content panel for the active step |
+| `indicator` | `{ item, ui }` | Replace the step indicator (number/icon) |
+| `wrapper` | `{ item }` | Wrapper around each step's label area |
+| `title` | `{ item }` | Custom step title content |
+| `description` | `{ item }` | Custom step description content |
+| `content` | `{ item }` | Active step content panel (use `item.content` for the inline value, or provide a full custom layout) |
+| `#{{ item.slot }}` | — | Rendered when an item has a matching `slot` name |
+
+### Events
+
+| Event | Payload | Description |
+|-------|---------|-------------|
+| `update:modelValue` | `[value: string \| number \| undefined]` | Emitted when the active step changes |
+| `next` | `[value: T]` | Emitted when `next()` is called |
+| `prev` | `[value: T]` | Emitted when `prev()` is called |
+
+### Expose
+
+Access via `useTemplateRef` (or `ref`).
+
+| Name | Type | Description |
+|------|------|-------------|
+| `next` | `() => void` | Advance to the next step (no-op at end) |
+| `prev` | `() => void` | Go to the previous step (no-op at start) |
+| `hasNext` | `Ref<boolean>` | `true` when there is a next step |
+| `hasPrev` | `Ref<boolean>` | `true` when there is a previous step |
 
 ### Example Usage
 
 ```vue
-<UStepper
-  :items="[
-    { title: 'Account', description: 'Create your account' },
-    { title: 'Profile', description: 'Set up your profile' },
-    { title: 'Confirm', description: 'Review and submit' },
-  ]"
-  v-model:step="currentStep"
->
-  <template #content="{ step }">
-    <div v-if="step.title === 'Account'">
-      <!-- Account form -->
-    </div>
-    <div v-else-if="step.title === 'Profile'">
-      <!-- Profile form -->
-    </div>
-    <div v-else>
-      <!-- Confirmation -->
-    </div>
-  </template>
-</UStepper>
+<script setup lang="ts">
+import { useTemplateRef, ref } from "vue";
+import type { StepperItem } from "@nuxt/ui";
+
+const items: StepperItem[] = [
+  { title: "Address", description: "Add your address here", icon: "i-lucide-house" },
+  { title: "Shipping", description: "Set your preferred shipping method", icon: "i-lucide-truck" },
+  { title: "Checkout", description: "Confirm your order", icon: "i-lucide-credit-card" },
+];
+
+const stepper = useTemplateRef("stepper");
+const active = ref(0);
+</script>
+
+<template>
+  <UStepper ref="stepper" v-model="active" :items="items" class="w-full">
+    <template #content="{ item }">
+      <div class="aspect-video flex items-center justify-center border border-dashed border-surface-muted rounded-md">
+        This is the {{ item?.title }} step.
+      </div>
+    </template>
+  </UStepper>
+
+  <div class="flex gap-2 justify-between mt-4">
+    <UButton
+      leading-icon="i-lucide-arrow-left"
+      :disabled="!stepper?.hasPrev"
+      @click="stepper?.prev()"
+    >Prev</UButton>
+    <UButton
+      trailing-icon="i-lucide-arrow-right"
+      :disabled="!stepper?.hasNext"
+      @click="stepper?.next()"
+    >Next</UButton>
+  </div>
+</template>
 ```
 
 ## Anatomy
@@ -72,18 +124,28 @@ A Stepper consists of:
 
 | Part | Required | Description |
 |------|----------|-------------|
-| Root | Yes | `<div>` wrapper containing all steps |
-| Step | Yes | Individual step with indicator + content |
-| Indicator | Yes | Numbered circle showing step index |
-| Connector | Yes | Line connecting consecutive steps |
+| Root | Yes | `<div>` wrapper containing header + content |
+| Header | Yes | List of step indicators + connectors |
+| Step | Yes | Individual step with indicator + label |
+| Indicator | Yes | Number or icon inside the step circle |
+| Separator | Yes | Line connecting consecutive steps |
 | Title | No | Heading text for the step |
 | Description | No | Supporting text below the title |
-| Content | No | Panel displaying active step content |
+| Content | No | Panel for the active step (`item.content` or `#content` slot) |
+
+## Theme
+
+Nuxt UI v4 stepper defaults are already consistent with Mizu: rounded-full triggers, xs–xl sizing that matches Button/Input, color tokens aligned with the rest of the system. No overrides are needed for the default Mizu palette.
+
+Default: `color="primary"`, `size="md"`, `orientation="horizontal"`, `linear="true"`.
 
 ## Implementation Notes
 
 1. **Use `<UStepper>` directly** — No Mizu wrapper needed.
-2. **Linear mode** — Default `linear` ensures users complete steps in order. Set `linear={false}` for non-sequential navigation.
-3. **Content slot** — Use `#content="{ step, index }"` to render content for the active step. Only the active step's content is shown.
-4. **State management** — Use `v-model:step` to track the current step programmatically. Each step item can store metadata (e.g. validation state).
-5. **Orientation** — Use `orientation="vertical"` for sidebar-style progress indicators common in checkout flows.
+2. **`v-model` not `v-model:step`** — Nuxt UI v4 binds the active value to `modelValue`; use `v-model="active"` (or `v-model:modelValue`).
+3. **Linear mode** — Default `linear` ensures users complete steps in order. Set `:linear="false"` for non-sequential navigation.
+4. **Item fields** — Prefer the canonical `value` field on each item and match it via `v-model` / `defaultValue`. The component falls back to the index when no `value` is set.
+5. **Content rendering** — Three options, in order of preference: (a) inline `content` on the item, (b) the `#content="{ item }"` slot for shared layouts, (c) the `slot: '…'` item field + matching named slot for fully per-step content.
+6. **Programmatic navigation** — Use `useTemplateRef` (or `ref`) to access `next()`, `prev()`, `hasNext`, `hasPrev` for custom controls.
+7. **Vertical orientation** — Set `orientation="vertical"` for sidebar-style progress. The connector becomes a vertical line between steps.
+8. **Disabled steps** — Per-item `disabled: true` blocks that step; the root `disabled` prop disables the entire stepper (useful for read-only states).

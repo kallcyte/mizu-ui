@@ -1,7 +1,7 @@
 {
   "name": "mizu-design-system",
   "type": "module",
-  "version": "0.18.21",
+  "version": "0.18.22",
     "packageManager": "pnpm@11.1.3",
   "scripts": {
     "dev": "pnpm --filter @mizu/tokens build && node scripts/clear-astro-cache.mjs && concurrently --names vue,astro,cache -c green,magenta,yellow \"pnpm --filter @mizu/vue dev\" \"astro dev\" \"node scripts/clear-astro-cache.mjs --watch\"",

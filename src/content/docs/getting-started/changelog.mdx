@@ -16,6 +16,17 @@ This project follows **semantic versioning** (SemVer) during pre-1.0 development
 Changes that require a minor bump: adding a new component, renaming tokens, changing component APIs, adding new packages (e.g. React).
 Changes that keep the patch version: renames, copy edits, styling tweaks, build config changes, favicon updates.
 
+## 0.18.22 (2026-07-24)
+
+### Changed
+
+- **Stepper docs — Ready** — Marked the Stepper documentation page as Ready (green badge).
+
+### Docs
+
+- **Stepper demo** — Expanded from 2 to 12 examples: Basic, Items with Content (inline `content` field), With Icons, Color (7-variant reactive `UButton` selector binding `:color`), Size (xs–xl reactive `UButton` selector), Orientation (horizontal/vertical reactive `UButton` selector), Vertical (canonical), Disabled (per-item), With Controls (`useTemplateRef` + `prev()` / `next()` / `hasPrev` / `hasNext`), Control Active Item (`v-model` + auto-advance `setInterval`, cleared on unmount), With Content Slot (`#content="{ item }"`), and With Custom Slot (`slot: 'address' | 'shipping' | 'checkout'` + matching named templates).
+- **Stepper API** — Audited against Nuxt UI v4 `UStepper`: corrected slot signatures from v3-style `{ step, index, isActive, isCompleted }` to v4 `{ item }` / `{ item, ui }`, corrected `modelValue` / `defaultValue` types to `string | number`, added missing props (`as`, `ui`), added `StepperItem` table (was absent — old docs only mentioned `title` / `description`), added missing item fields (`icon`, `content`, `value`, `disabled`, `slot`, `class`, `ui`), added missing events (`next`, `prev`, `update:modelValue`), added Expose table (`next`, `prev`, `hasNext`, `hasPrev`), rewrote Example Usage to use `v-model` (not `v-model:step`) and `useTemplateRef`.
+
 ## 0.18.21 (2026-07-24)
 
 ### Docs
