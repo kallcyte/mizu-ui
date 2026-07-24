@@ -16,6 +16,17 @@ This project follows **semantic versioning** (SemVer) during pre-1.0 development
 Changes that require a minor bump: adding a new component, renaming tokens, changing component APIs, adding new packages (e.g. React).
 Changes that keep the patch version: renames, copy edits, styling tweaks, build config changes, favicon updates.
 
+## 0.18.20 (2026-07-24)
+
+### Changed
+
+- **Tabs docs — Ready** — Marked the Tabs documentation page as Ready (green badge).
+
+### Docs
+
+- **Tabs demo** — Expanded from 3 to 15 examples: Basic, Items with Content (inline `content` prop), Toggle Only (`content={false}`), Unmount on Hide, With Icons, Color (7-variant reactive selector), Variant (pill/link reactive selector), Size (xs-xl reactive selector), Orientation (horizontal/vertical reactive selector), Disabled (per-item), Control Active Item (`v-model`), With Route Query (URL-string binding), With Content Slot (`#content` exposing `item`), With Custom Slot (`slot: 'account'` + named slot with form fields), and Bottom Tab Bar (`ui` prop for mobile-style layout).
+- **Tabs API** — Audited against Nuxt UI v4 `UTabs`: corrected `variant` (dropped `underline`/`fill`, only `pill`/`link` exist), corrected `disabled` (boolean only, not `boolean | number[]`), corrected `defaultValue` and `modelValue` types (`string | number`, default `'0'`), expanded `TabsItem` shape with `avatar`, `badge`, `content`, `value`, `slot`, `class`, `ui`, added missing props (`as`, `content`, `valueKey`, `labelKey`, `activationMode`, `unmountOnHide`, `ui`), added missing events (`update:modelValue`), added Expose (`triggersRef`), expanded slot signatures (content `{ item, index, ui }`, added `list-leading`, `list-trailing`, dynamic `{item.slot}`, `{item.slot}-leading`, `{item.slot}-trailing`).
+
 ## 0.18.19 (2026-07-24)
 
 ### Changed

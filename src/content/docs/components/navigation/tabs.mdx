@@ -5,7 +5,7 @@ description: A tabbed interface for switching between content panels.
 
 import TabsDemo from "../../../../components/docs/TabsDemo.vue";
 
-<span style="display:inline-flex;margin-bottom:16px;padding:1px 8px;border-radius:9999px;font-size:11px;font-weight:500;background:#FFFBEB;color:#D97706;">Pending</span>
+<span style="display:inline-flex;margin-bottom:16px;padding:1px 8px;border-radius:9999px;font-size:11px;font-weight:500;background:#DCFCE7;color:#15803D;">Ready</span>
 
 Tabs organize content into selectable panels. Mizu uses Nuxt UI's `UTabs` with the pill variant and the same sizing scale as buttons and inputs.
 
@@ -21,34 +21,82 @@ Reference: [Nuxt UI Tabs](https://ui.nuxt.com/docs/components/tabs)
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `items` | `{ label, icon, disabled }[]` | — | Tab items array |
-| `size` | `'xs' \| 'sm' \| 'md' \| 'lg' \| 'xl'` | `'md'` | Tab size |
-| `color` | `'primary' \| 'secondary' \| 'success' \| 'error' \| 'warning' \| 'info' \| 'neutral'` | `'primary'` | Semantic color for active tab indicator |
-| `variant` | `'pill' \| 'link' \| 'underline' \| 'fill'` | `'pill'` | Visual style |
+| `items` | `TabsItem[]` | — | Tab items array |
+| `color` | `'primary' \| 'secondary' \| 'success' \| 'info' \| 'warning' \| 'error' \| 'neutral'` | `'primary'` | Color of the active tab indicator |
+| `variant` | `'pill' \| 'link'` | `'pill'` | Visual style |
+| `size` | `'xs' \| 'sm' \| 'md' \| 'lg' \| 'xl'` | `'md'` | Trigger size |
 | `orientation` | `'horizontal' \| 'vertical'` | `'horizontal'` | Tab layout direction |
-| `disabled` | `boolean \| number[]` | `false` | Disable all or specific tab indexes |
-| `defaultValue` | `number` | `0` | Initial selected tab index |
-| `modelValue` | `number` | — | v-model binding for selected tab index |
+| `content` | `boolean` | `true` | Render the active panel content |
+| `value` (v-model) | `string \| number` | — | Active item value (controlled); falls back to the index as a string |
+| `defaultValue` | `string \| number` | `'0'` | Active item value when uncontrolled |
+| `valueKey` | `string` | `'value'` | Key used to match items when `v-model` or `defaultValue` is provided |
+| `labelKey` | `string` | `'label'` | Key used to get the label from each item |
+| `activationMode` | `'automatic' \| 'manual'` | `'automatic'` | Whether a tab activates on focus (automatic) or only on click (manual) |
+| `unmountOnHide` | `boolean` | `true` | Unmount the panel content when its tab is hidden |
+| `disabled` | `boolean` | `false` | Disable the entire tab control |
+| `as` | `string` | `'div'` | Element or component to render as |
+| `ui` | `object` | — | Slot-level class overrides (root, list, indicator, trigger, leadingIcon, leadingAvatar, label, trailingBadge, content) |
+
+### TabsItem
+
+| Prop | Type | Description |
+|------|------|-------------|
+| `label` | `string` | Display text |
+| `icon` | `string` (Iconify) | Leading icon |
+| `avatar` | `AvatarProps` | Leading avatar |
+| `badge` | `string \| number \| BadgeProps` | Trailing badge |
+| `content` | `string` | Inline panel content (when no `#content` slot is used) |
+| `value` | `string \| number` | Unique value for `v-model` matching |
+| `disabled` | `boolean` | Disable this tab |
+| `slot` | `string` | Named slot key for fully custom content |
+| `class` | `any` | Additional CSS classes on the trigger |
+| `ui` | `object` | Per-item slot class overrides |
 
 ### Slots
 
 | Slot | Props | Description |
 |------|-------|-------------|
-| `default` | — | Entire tabs content (triggers + panels) |
-| `content` | `{ selectedIndex }` | Content corresponding to active tab |
-| `leading` | — | Content before the tab triggers |
-| `trailing` | — | Content after the tab triggers |
+| `default` | `{ item, index }` | Default content (overrides the entire tabs) |
+| `content` | `{ item, index, ui }` | Replaces the active panel content; expose `TabsContent` from `@nuxt/ui` to compose custom layouts |
+| `leading` | `{ item, index, ui }` | Content before the trigger list |
+| `trailing` | `{ item, index, ui }` | Content after the trigger list |
+| `list-leading` | — | Content at the start of the trigger list |
+| `list-trailing` | — | Content at the end of the trigger list |
+| `{{ item.slot }}` | `{ item, index, ui }` | Custom content for an item with `slot: '<name>'` |
+| `{{ item.slot }}-leading` | `{ item, index, ui }` | Custom leading slot for a named item |
+| `{{ item.slot }}-trailing` | `{ item, index, ui }` | Custom trailing slot for a named item |
+
+### Events
+
+| Event | Payload | Description |
+|-------|---------|-------------|
+| `update:modelValue` | `string \| number` | Fired when the active tab changes |
+
+### Expose
+
+| Name | Type | Description |
+|------|------|-------------|
+| `triggersRef` | `Ref<ComponentPublicInstance[]>` | Template-ref array of trigger instances |
 
 ### Example Usage
 
 ```vue
-<UTabs :items="['Account', 'Billing', 'Security']">
-  <template #content="{ selectedIndex }">
-    <div v-if="selectedIndex === 0"><!-- Account content --></div>
-    <div v-else-if="selectedIndex === 1"><!-- Billing content --></div>
-    <div v-else><!-- Security content --></div>
+<UTabs :items="['Account', 'Billing', 'Security']" />
+
+<UTabs
+  :items="[
+    { label: 'Account', icon: 'i-lucide-user', content: 'Account settings' },
+    { label: 'Password', icon: 'i-lucide-lock', content: 'Password settings' }
+  ]"
+/>
+
+<UTabs :items="items" variant="link" :ui="{ trigger: 'grow' }">
+  <template #content="{ item }">
+    <p>This is the {{ item.label }} tab.</p>
   </template>
 </UTabs>
+
+<UTabs v-model="active" :content="false" :items="items" />
 ```
 
 ## Theme
@@ -59,20 +107,26 @@ Default: `color="primary"`, `variant="pill"`, `size="md"`.
 
 ## Anatomy
 
-Tabs consist of:
+A tabs control consists of:
 
 | Part | Required | Description |
 |------|----------|-------------|
 | Root | Yes | `<div>` wrapper containing triggers and panels |
 | List | Yes | Container for the tab trigger buttons |
 | Trigger | Yes | Individual `<button>` for each tab |
+| Indicator | Yes | Animated highlight on the active trigger |
 | Content | No | Panel displaying the active tab's content |
-| Leading | No | Content before triggers (search, filter, etc.) |
-| Trailing | No | Content after triggers (actions, buttons, etc.) |
+| Leading | No | Content before the trigger list (e.g. search) |
+| Trailing | No | Content after the trigger list (e.g. actions) |
 
 ## Implementation Notes
 
 1. **Use `<UTabs>` directly** — No Mizu wrapper needed.
-2. **Content slot** — Use `#content="{ selectedIndex }"` to conditionally render the active panel. Nuxt UI does not auto-hide inactive panels.
-3. **Items format** — Pass an array of strings for simple labels, or `{ label, icon, disabled }` objects for icons and disabled states.
-4. **Vertical orientation** — Set `orientation="vertical"` for sidebar-style tab navigation.
+2. **Three content modes** — (a) pass `content: '...'` on each item for inline panels, (b) use the `#content` slot for custom panels (exposes `item`, `index`, `ui`), (c) use a named `#{{ item.slot }}` slot to fully replace one item's trigger + content.
+3. **Default value** — `defaultValue` defaults to `'0'` (a string), so `v-model` should also be a string when matching by index. Use `value: 'account'` on items to bind by string instead.
+4. **`valueKey` / `labelKey`** — Override these if your items use different field names than `value` / `label`.
+5. **Toggle-only tabs** — Set `:content="false"` to render just the trigger row (e.g. for router-driven content). Pair with `v-model` to control the active tab.
+6. **Persisted panel state** — Set `:unmount-on-hide="false"` to keep inactive panels mounted so internal state (form values, scroll position) survives tab switches.
+7. **Vertical orientation** — Set `orientation="vertical"` for sidebar-style tab navigation. The `link` variant becomes a left-border indicator.
+8. **Mobile bottom tab bar** — Pass `ui: { list: 'justify-around w-full', trigger: 'grow flex-col gap-1 py-1', label: 'text-[10px]/3' }` to render a YouTube/Instagram-style bottom bar.
+9. **Manual activation** — Use `activation-mode="manual"` when focus-driven tab activation conflicts with adjacent focusable elements (e.g. inside a form).
