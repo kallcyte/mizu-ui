@@ -16,6 +16,18 @@ This project follows **semantic versioning** (SemVer) during pre-1.0 development
 Changes that require a minor bump: adding a new component, renaming tokens, changing component APIs, adding new packages (e.g. React).
 Changes that keep the patch version: renames, copy edits, styling tweaks, build config changes, favicon updates.
 
+## 0.18.18 (2026-07-24)
+
+### Changed
+
+- **Breadcrumb docs — Ready** — Marked the Breadcrumb documentation page as Ready (green badge).
+
+### Docs
+
+- **Breadcrumb demo** — Expanded from 2 to 7 examples: updated Basic with icons, added Separator Icon (custom `separator-icon`), Color (7-variant reactive selector), Sizes (xs-xl via `:ui` override with `text-*` classes), separator slot (custom "/" delimiter), custom slot with dropdown (collapsed ellipsis + `UDropdownMenu`), and With Icons.
+- **Breadcrumb API** — Audited against Nuxt UI v4: added `as`, `separatorIcon`, `labelKey`, `ui` props; added `avatar`, `slot`, `class`, `ui` to BreadcrumbItem; added all item-level slots (`item`, `item-leading`, `item-label`, `item-trailing`, dynamic `{item.slot}-*`); fixed Implementation Notes (wrong prop name).
+- **Breadcrumb demo — `to` → `href`** — Changed item link props from `to` to `href` to avoid runtime crashes from Vue Router `<NuxtLink>` in the Astro build.
+
 ## 0.18.17 (2026-07-24)
 
 ### Changed

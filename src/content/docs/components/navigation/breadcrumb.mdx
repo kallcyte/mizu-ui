@@ -5,7 +5,7 @@ description: A navigation trail showing the current page location in a hierarchy
 
 import BreadcrumbDemo from "../../../../components/docs/BreadcrumbDemo.vue";
 
-<span style="display:inline-flex;margin-bottom:16px;padding:1px 8px;border-radius:9999px;font-size:11px;font-weight:500;background:#FFFBEB;color:#D97706;">Pending</span>
+<span style="display:inline-flex;margin-bottom:16px;padding:1px 8px;border-radius:9999px;font-size:11px;font-weight:500;background:#DCFCE7;color:#15803D;">Ready</span>
 
 Breadcrumbs show the user's location within a site hierarchy and provide navigation links back to ancestor pages. Mizu uses Nuxt UI's `UBreadcrumb` with text-sm links and size-5 separator icons.
 
@@ -21,10 +21,12 @@ Reference: [Nuxt UI Breadcrumb](https://ui.nuxt.com/docs/components/breadcrumb)
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `items` | `BreadcrumbItem[]` | "” | Breadcrumb trail items |
-| `separator` | `string` (Iconify) | `'i-ph-caret-right'` | Separator icon between items |
-| `color` | `'primary' \| 'secondary' \| 'success' \| 'error' \| 'warning' \| 'info' \| 'neutral'` | `'primary'` | Color for the current (last) item |
-| `size` | `'xs' \| 'sm' \| 'md' \| 'lg' \| 'xl'` | `'md'` | Text size |
+| `as` | `string` | `'nav'` | Element or component to render as |
+| `items` | `BreadcrumbItem[]` | — | Breadcrumb trail items |
+| `separatorIcon` | `string` (Iconify) | `i-lucide-chevron-right` | Separator icon between items |
+| `color` | `'primary' \| 'secondary' \| 'success' \| 'info' \| 'warning' \| 'error' \| 'neutral'` | `'primary'` | Color for the current (last) item |
+| `labelKey` | `string` | `'label'` | Key used to get the label from each item |
+| `ui` | `object` | — | Slot-level class overrides (root, list, item, link, separator, etc.) |
 
 ### BreadcrumbItem
 
@@ -32,23 +34,36 @@ Reference: [Nuxt UI Breadcrumb](https://ui.nuxt.com/docs/components/breadcrumb)
 |------|------|-------------|
 | `label` | `string` | Display text |
 | `icon` | `string` (Iconify) | Leading icon |
+| `avatar` | `AvatarProps` | Leading avatar |
+| `slot` | `string` | Named slot key for custom content |
 | `to` | `string` | Vue Router route |
 | `href` | `string` | External link |
 | `target` | `string` | Link target (e.g. `_blank`) |
+| `class` | `string` | Additional CSS classes on the item |
+| `ui` | `object` | Per-item slot class overrides |
+
+Items without `to` or `href` are rendered as a `<span>` and treated as the current page (active).
 
 ### Slots
 
 | Slot | Props | Description |
 |------|-------|-------------|
-| `default` | "” | Entire breadcrumb (overrides items) |
-| `separator` | `{ ui }` | Custom separator between items |
+| `{{ item.slot }}` | `{ item, index, active, ui }` | Custom content for a specific item (via its `slot` key) |
+| `{{ item.slot }}-leading` | `{ item, index, active, ui }` | Custom leading content for a specific item |
+| `{{ item.slot }}-label` | `{ item, index, active }` | Custom label for a specific item |
+| `{{ item.slot }}-trailing` | `{ item, index, active }` | Custom trailing content for a specific item |
+| `item` | `{ item, index, active, ui }` | Custom content for all items |
+| `item-leading` | `{ item, index, active, ui }` | Custom leading content for all items |
+| `item-label` | `{ item, index, active }` | Custom label for all items |
+| `item-trailing` | `{ item, index, active }` | Custom trailing content for all items |
+| `separator` | `{ ui }` | Custom separator between all items |
 
 ### Example Usage
 
 ```vue
 <UBreadcrumb :items="[
-  { label: 'Home', href: '/' },
-  { label: 'Docs', href: '/docs' },
+  { label: 'Home', icon: 'i-lucide-book-open', to: '/' },
+  { label: 'Docs', icon: 'i-lucide-box', to: '/docs' },
   { label: 'Components' }
 ]" />
 ```
@@ -75,4 +90,4 @@ A breadcrumb consists of:
 1. **Use `<UBreadcrumb>` directly** "” No Mizu wrapper needed.
 2. **Links vs. current** "” The last item in the items array is automatically rendered as a non-clickable current page indicator. All preceding items are links.
 3. **Accessibility** "” Nuxt UI renders the breadcrumb inside a `<nav>` with `aria-label="Breadcrumb"`. The last item gets `aria-current="page"`.
-4. **Custom separators** "” Use the `separator` prop to change the icon (e.g. `'i-ph-slash'` for `/` separators).
+4. **Custom separators** — Use the `separatorIcon` prop to change the icon (e.g. `'i-ph-arrow-right'` for arrow separators) or the `#separator` slot for completely custom separators.
