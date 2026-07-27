@@ -32,14 +32,18 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Lint & test
-        run: |
-          pnpm lint
-          pnpm --filter @mizu-ui/vue typecheck
-          pnpm --filter @mizu-ui/vue test
+      - name: Lint
+        run: pnpm lint
 
       - name: Build all packages
+        # Must build first because vitest's CSS imports reference
+        # @mizu-ui/tokens/dist/light.css which only exists after build.
         run: pnpm -r build
+
+      - name: Typecheck & test
+        run: |
+          pnpm --filter @mizu-ui/vue typecheck
+          pnpm --filter @mizu-ui/vue test
 
       - name: Create Release Pull Request or Publish
         id: changesets
