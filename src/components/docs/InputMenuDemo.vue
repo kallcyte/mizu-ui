@@ -83,7 +83,7 @@ function onSearch(q: string) {
     loading.value = false
   }, 500)
 }
-<\/script>
+</` + `script>
 
 <template>
   <UInputMenu

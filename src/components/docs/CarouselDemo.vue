@@ -153,7 +153,7 @@ const loopCode = `<UCarousel :items="slides" arrows loop class="w-full max-w-lg"
       <h3>Autoplay</h3>
       <p class="demo-description">Automatically advance slides with configurable delay using <code>autoplay</code> and <code>:autoplay</code>.</p>
       <CodeCollapsible :code="autoplayCode">
-        <UCarousel :items="logoSlides" autoplay :autoplay="{ delay: 2000 }" class="w-full max-w-lg">
+        <UCarousel :items="logoSlides" :autoplay="{ delay: 2000 }" class="w-full max-w-lg">
           <template #default="{ item }">
             <div class="h-32 rounded-xl bg-surface-subtle flex items-center justify-center gap-2">
               <UIcon :name="item.icon" class="size-8" />
