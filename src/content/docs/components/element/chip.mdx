@@ -5,11 +5,11 @@ description: An indicator of a numeric value or a state.
 
 import ChipDemo from "../../../../components/docs/ChipDemo.vue";
 
-<span style="display:inline-flex;margin-bottom:16px;padding:1px 8px;border-radius:9999px;font-size:11px;font-weight:500;background:#FFFBEB;color:#D97706;">Pending</span>
+<span style="display:inline-flex;margin-bottom:16px;padding:1px 8px;border-radius:9999px;font-size:11px;font-weight:500;background:#DCFCE7;color:#15803D;">Ready</span>
 
-A chip displays a small indicator badge on top of any component, useful for showing notification counts, status indicators, or alerts. Mizu uses Nuxt UI's `UChip` with the default size scale (3xs–3xl).
+A chip is a small indicator badge that overlays a parent component, useful for showing notification counts, status indicators, or alerts. Mizu uses Nuxt UI's `UChip` with the default 9-step size scale (3xs-3xl) and full support for color, position, inset, and standalone rendering.
 
-## Examples
+## Demo
 
 <ChipDemo client:only="vue" />
 
@@ -21,82 +21,227 @@ Reference: [Nuxt UI Chip](https://ui.nuxt.com/docs/components/chip)
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
+| `as` | `any` (HTMLElement or component) | `'span'` | Element or component the root should render as |
 | `text` | `string \| number` | — | Text or number displayed inside the chip |
-| `color` | `'primary' \| 'secondary' \| 'success' \| 'info' \| 'warning' \| 'error' \| 'neutral'` | — | Semantic color |
-| `size` | `'3xs' \| '2xs' \| 'xs' \| 'sm' \| 'md' \| 'lg' \| 'xl' \| '2xl' \| '3xl'` | `'md'` | Chip size |
+| `color` | `'primary' \| 'secondary' \| 'success' \| 'info' \| 'warning' \| 'error' \| 'neutral'` | `'primary'` | Semantic color |
+| `size` | `'3xs' \| '2xs' \| 'xs' \| 'sm' \| 'md' \| 'lg' \| 'xl' \| '2xl' \| '3xl'` | `'md'` | Chip size (dot dimensions) |
 | `position` | `'top-right' \| 'bottom-right' \| 'top-left' \| 'bottom-left'` | `'top-right'` | Position relative to the wrapped element |
 | `inset` | `boolean` | `false` | Keep the chip inside the component for rounded elements |
 | `standalone` | `boolean` | `false` | Render the chip independently without a parent wrapper |
 | `show` | `boolean` | `true` | Toggle chip visibility |
+| `ui` | `{ root?: string; base?: string }` | — | Override the default slot classes |
 
 ### Slots
 
-| Slot | Props | Description |
-|------|-------|-------------|
-| `default` | — | The component the chip wraps around |
-| `content` | — | Custom chip content (overrides `text` prop) |
+| Slot | Description |
+|------|-------------|
+| `default` | The component the chip wraps around |
+| `content` | Custom chip content (overrides the `text` prop) |
 
-### Example Usage
+### Events
 
-```vue
-<!-- With a button -->
-<UChip text="5" color="primary">
-  <UButton icon="i-lucide-mail" color="neutral" variant="subtle" />
-</UChip>
-
-<!-- Inset with avatar -->
-<UChip inset text="3">
-  <UAvatar src="https://i.pravatar.cc/80" alt="User" />
-</UChip>
-
-<!-- Standalone -->
-<UChip standalone text="99+" color="error" />
-
-<!-- Positioned -->
-<UChip position="bottom-left" text="New">
-  <UButton label="Profile" />
-</UChip>
-```
-
-## Theme
-
-Mizu applies its design tokens to Nuxt UI's chip via `@mizu/vue/theme`:
-
-```ts
-// app.config.ts
-import { mizuTheme } from "@mizu/vue/theme";
-export default defineAppConfig({ ui: mizuTheme });
-```
-
-### Design Specs
-
-| Property | Value |
-|----------|-------|
-| Default Size | `md` |
-| Default Position | `top-right` |
-| Font Size | Inherited from size scale |
-| Font Weight | 500 (medium) |
-
-### Typography
-
-| Property | Value |
-|----------|-------|
-| Font Family | DM Sans (`--font-family-sans`) |
-| Font Weight | 500 (medium) |
+| Event | Payload | Description |
+|-------|---------|-------------|
+| `update:show` | `[value: boolean]` | Emitted when `show` changes. Use with `v-model:show` for two-way binding |
 
 ## Anatomy
 
-A chip wraps a parent component and positions itself in one corner:
+A chip consists of up to 2 parts:
 
 | Part | Required | Description |
 |------|----------|-------------|
 | Root | Yes | `<span>` wrapping both the parent slot and the chip content |
 | Indicator | Yes | Absolutely positioned span with text or slot content |
 
+When `standalone` is `false` (default), the chip is absolutely positioned in the selected `position` corner of the wrapped element. When `standalone` is `true`, the chip renders in normal flow without absolute positioning.
+
+## Size Specifications
+
+The chip uses the Mizu 9-step size scale. The Mizu spec bumps each size by 2px over the Nuxt UI defaults and adds a touch of horizontal padding (`px-0.5`) so text doesn't touch the rounded edge. The wrapped element's size is independent of the chip size.
+
+| Size | Height | Min Width | Text | Use Case |
+|------|--------|-----------|------|----------|
+| `3xs` | 6px | 6px | 4px | Microscopic dots only |
+| `2xs` | 7px | 7px | 5px | Microscopic dots only |
+| `xs` | 8px | 8px | 6px | Tiny status dots |
+| `sm` | 9px | 9px | 7px | Small status dots |
+| `md` | 10px | 10px | 8px | **Default** — bare dot indicators |
+| `lg` | 11px | 11px | 9px | Small text counts (1-9) |
+| `xl` | 12px | 12px | 10px | Counters (1-9) |
+| `2xl` | 13px | 13px | 11px | Counters (1-99) |
+| `3xl` | 14px | 14px | 12px | Larger counters (10-99+) |
+
+All sizes share the same `px-0.5` horizontal padding so text has 2px of breathing room on each side. The rendered width grows naturally to fit the text content, capped at the chip's minimum width. For text larger than 2-3 characters, prefer `lg` and above.
+
+## Color Specifications
+
+The chip uses a solid color background with `text-inverted` for the indicator. Color is purely cosmetic and applies to the indicator only.
+
+| Color | Background | Text | Common Use Case |
+|-------|------------|------|-----------------|
+| `primary` (default) | `bg-primary` (#001C44) | inverted | Default counters, brand notifications |
+| `secondary` | `bg-secondary` | inverted | Secondary notifications |
+| `success` | `bg-success` | inverted | Online status, success counts |
+| `info` | `bg-info` | inverted | Informational counts |
+| `warning` | `bg-warning` | inverted | Pending counts, warnings |
+| `error` | `bg-error` | inverted | Unread counts, errors |
+| `neutral` | `bg-inverted` | inverted | Neutral status, archive counts |
+
+The `ring ring-bg` class is applied so the chip is always surrounded by a 1px ring matching the page background — this visually separates the chip from the wrapped element regardless of overlap.
+
+## Spacing Details
+
+The chip has no internal padding. Width is `min-w-[size]` and grows with text. The `position` prop determines the chip's anchor relative to the wrapped element.
+
+### Position Anchors
+
+```
+┌─────────────────────┐
+│  TL            TR   │   TL = top-left      TR = top-right (default)
+│   ┌─────────────┐   │
+│   │             │   │   BR = bottom-right  BL = bottom-left
+│   │  wrapped    │   │
+│   │  element    │   │
+│   │             │   │
+│   └─────────────┘   │
+│  BL            BR   │
+└─────────────────────┘
+```
+
+| Position | Offset (non-inset) | Inset (rounded elements) |
+|----------|--------------------|--------------------------|
+| `top-right` (default) | `-translate-y-1/2 translate-x-1/2` — half above, half right | inside top-right corner |
+| `top-left` | `-translate-y-1/2 -translate-x-1/2` — half above, half left | inside top-left corner |
+| `bottom-right` | `translate-y-1/2 translate-x-1/2` — half below, half right | inside bottom-right corner |
+| `bottom-left` | `translate-y-1/2 -translate-x-1/2` — half below, half left | inside bottom-left corner |
+
+The non-inset transform places the chip's center at the corner, so half of the chip extends outside the wrapped element. Set `inset` when wrapping rounded elements (avatars, icon buttons) to keep the chip fully inside the bounding box.
+
+## Transitions
+
+| Property | Duration | Easing |
+|----------|----------|--------|
+| Show/hide | `duration-normal` (200ms) | `ease-out` |
+
+The `show` prop toggles with a default fade transition. Bind with `v-model:show` for reactive control.
+
+## Accessibility
+
+### Requirements
+
+| Criterion | Implementation |
+|-----------|----------------|
+| Decorative content | The chip indicator is decorative when the count is purely a counter (e.g. notification badges). The surrounding context should announce the count to screen readers via `aria-label` on the wrapped element |
+| Status indicators | When the chip conveys meaningful state (online/offline), the wrapped element should include accessible text or `aria-label` that describes the state |
+| Color is not the only signal | Pair color-coded chips with a numeric/text content. A red dot with no count is ambiguous to color-blind users |
+| Contrast | Solid color background with `text-inverted` foreground passes WCAG AA contrast for the visible dot and text |
+| `show` toggle | Bind `v-model:show` so assistive technology sees consistent state. Avoid `v-if` on the chip — the wrapper element must remain in the DOM for context |
+
+### ARIA Attributes
+
+```html
+<!-- Notification count on a button -->
+<button aria-label="3 unread messages">
+  <UChip text="3" color="error">
+    <span><!-- icon --></span>
+  </UChip>
+</button>
+
+<!-- Status indicator on an avatar -->
+<UChip inset color="success" :show="isOnline">
+  <img src="..." alt="User avatar" />
+</UChip>
+```
+
+## Token Mapping
+
+### CSS Custom Properties
+
+The chip itself does not consume custom properties directly — it relies on Nuxt UI's color tokens. The wrapped element and the surrounding context determine the actual token usage.
+
+| Token | Value | Usage |
+|-------|-------|-------|
+| `--color-primary` | #001C44 | `color="primary"` background |
+| `--color-secondary` | — | `color="secondary"` background |
+| `--color-success` | — | `color="success"` background |
+| `--color-info` | — | `color="info"` background |
+| `--color-warning` | — | `color="warning"` background |
+| `--color-error` | — | `color="error"` background |
+| `--color-inverted` | — | `color="neutral"` background |
+| `--font-family-sans` | DM Sans | Chip text content |
+
+## Vue Component API
+
+### UChip Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `as` | `any` | `'span'` | Element or component the root should render as |
+| `text` | `string \| number` | — | Text or number displayed inside the chip |
+| `color` | `'primary' \| 'secondary' \| 'success' \| 'info' \| 'warning' \| 'error' \| 'neutral'` | `'primary'` | Semantic color |
+| `size` | `'3xs' \| '2xs' \| 'xs' \| 'sm' \| 'md' \| 'lg' \| 'xl' \| '2xl' \| '3xl'` | `'md'` | Chip size |
+| `position` | `'top-right' \| 'bottom-right' \| 'top-left' \| 'bottom-left'` | `'top-right'` | Position relative to the wrapped element |
+| `inset` | `boolean` | `false` | Keep the chip inside the component for rounded elements |
+| `standalone` | `boolean` | `false` | Render the chip independently without a parent wrapper |
+| `show` | `boolean` | `true` | Toggle chip visibility |
+| `ui` | `{ root?: string; base?: string }` | — | Override default slot classes |
+
+### Slots
+
+| Slot | Description |
+|------|-------------|
+| `default` | The component the chip wraps around |
+| `content` | Custom chip content (overrides the `text` prop) |
+
+### Events
+
+| Event | Payload | Description |
+|-------|---------|-------------|
+| `update:show` | `[value: boolean]` | Emitted when `show` changes |
+
+### Example Usage
+
+```vue
+<!-- With a button (notification count) -->
+<UChip text="5" color="primary">
+  <UButton icon="i-lucide-mail" color="neutral" variant="subtle" />
+</UChip>
+
+<!-- Inset with avatar (status indicator) -->
+<UChip inset text="3">
+  <UAvatar src="https://i.pravatar.cc/80" alt="User" />
+</UChip>
+
+<!-- Standalone (badge in a list) -->
+<UChip standalone text="99+" color="error" />
+
+<!-- Positioned bottom-left -->
+<UChip position="bottom-left" text="New">
+  <UButton label="Profile" />
+</UChip>
+
+<!-- Toggle visibility with v-model:show -->
+<UChip v-model:show="hasNotifications" text="3" color="error">
+  <UButton icon="i-lucide-bell" color="neutral" variant="subtle" />
+</UChip>
+
+<!-- Custom slot content -->
+<UChip color="success">
+  <UAvatar src="..." alt="User" />
+  <template #content>
+    <UIcon name="i-lucide-check" class="size-2" />
+  </template>
+</UChip>
+```
+
 ## Implementation Notes
 
 1. **Use `<UChip>` directly** — No Mizu wrapper needed. Apply the theme preset and Nuxt UI handles the rest.
-2. **Position awareness** — The chip defaults to `top-right`. Use `position` to move it to other corners.
-3. **Inset for rounded elements** — Use `inset` when wrapping avatars or other rounded components to keep the chip visually inside.
-4. **Standalone** — Use `standalone` when you need a chip without wrapping a parent (e.g., in lists or table cells).
-5. **Show/hide** — Toggle `show` to conditionally display the chip based on state (e.g., hide when count is zero).
+2. **Wrapper required** — When `standalone` is `false`, the chip is absolutely positioned. The wrapped element must be a positioned ancestor (the chip relies on `position: relative` on the root).
+3. **`ring ring-bg` separator** — The chip has a 1px ring matching the page background. This visually separates the chip from the wrapped element. The ring inherits the page background, not the wrapped element's background.
+4. **Inset for rounded elements** — Use `inset` when wrapping avatars or other rounded components to keep the chip visually inside the bounding box. The position offsets (translate) become zero in inset mode.
+5. **Standalone** — Use `standalone` when you need a chip without wrapping a parent (e.g. in lists, table cells, or inline with text). The chip renders in normal flow.
+6. **Show/hide** — Toggle `show` to conditionally display the chip based on state (e.g. hide when count is zero). Bind with `v-model:show` for two-way reactivity.
+7. **Size scale is for the dot** — The 9-step size scale (3xs-3xl) controls only the dot dimensions. The wrapped element's size is controlled separately on the wrapped component (e.g. `UButton size`, `UAvatar size`).
+8. **Position offsets** — The default `top-right` translates the chip by 50% in both directions, centering the chip's middle on the corner. Use `inset` for rounded elements where this overlap looks awkward.
+9. **Mizu size override** — The Mizu theme preset (`mizuTheme`) bumps each Nuxt UI chip size by 2px and adds `px-0.5` horizontal padding so text doesn't touch the rounded edge. The chip stays small and dot-like but is more readable. Applied automatically when `mizuTheme` is registered in `app.config.ts`.

@@ -4,62 +4,62 @@ Missing Nuxt UI core components to document, prioritized by category.
 
 ---
 
-## 1. Overlay (4)
+## 1. Overlay (4) [1 Ready, 3 Pending]
 
 | # | Component | Nuxt UI Slug | Status |
 |---|-----------|-------------|--------|
-| 1a | **Toast** | `toast` | Pending |
+| 1a | **Toast** | `toast` | Ready |
 | 1b | **ContextMenu** | `context-menu` | Pending |
 | 1c | **Drawer** | `drawer` | Pending |
 | 1d | **Slideover** | `slideover` | Pending |
 
-## 2. Forms (13)
+## 2. Forms (12) [12 Ready]
 
 | # | Component | Nuxt UI Slug | Status |
 |---|-----------|-------------|--------|
-| 2a | **FormField** | `form-field` | Pending |
-| 2b | **RadioGroup** | `radio-group` | Pending |
-| 2c | **Slider** | `slider` | Pending |
-| 2d | **InputNumber** | `input-number` | Pending |
-| 2e | **InputMenu** | `input-menu` | Pending |
-| 2f | **InputTags** | `input-tags` | Pending |
-| 2g | **InputDate** | `input-date` | Pending |
-| 2h | **InputTime** | `input-time` | Pending |
-| 2i | **Listbox** | `listbox` | Pending |
-| 2j | **InputRating** | `input-rating` | Pending |
+| 2a | **FormField** | `form-field` | Ready |
+| 2b | **RadioGroup** | `radio-group` | Ready |
+| 2c | **Slider** | `slider` | Ready |
+| 2d | **InputNumber** | `input-number` | Ready |
+| 2e | **InputMenu** | `input-menu` | Ready |
+| 2f | **InputTags** | `input-tags` | Ready |
+| 2g | **InputDate** | `input-date` | Ready |
+| 2h | **InputTime** | `input-time` | Ready |
+| 2i | **Listbox** | `listbox` | Ready |
+| 2j | **InputRating** | `input-rating` | Ready |
 | 2l | **FileUpload** | `file-upload` | Ready |
-| 2m | **PinInput** | `pin-input` | Pending |
+| 2m | **PinInput** | `pin-input` | Ready |
 
-## 3. Element (8)
+## 3. Element (8) [5 Ready, 3 Pending]
 
 | # | Component | Nuxt UI Slug | Status |
 |---|-----------|-------------|--------|
-| 3a | **Alert** | `alert` | Pending |
-| 3b | **Collapsible** | `collapsible` | Pending |
+| 3a | **Alert** | `alert` | Ready |
+| 3b | **Collapsible** | `collapsible` | Ready |
 | 3c | **Icon** | `icon` | Pending |
 | 3d | **Separator** | `separator` | Pending |
-| 3e | **Chip** | `chip` | Pending |
-| 3f | **AvatarGroup** | `avatar-group` | Pending |
-| 3g | **Calendar** | `calendar` | Pending |
+| 3e | **Chip** | `chip` | Ready |
+| 3f | **AvatarGroup** | `avatar-group` | Ready |
+| 3g | **Calendar** | `calendar` | Ready |
 | 3h | **Banner** | `banner` | Pending |
 
-## 4. Navigation (5)
+## 4. Navigation (5) [2 Ready, 3 Pending]
 
 | # | Component | Nuxt UI Slug | Status |
 |---|-----------|-------------|--------|
 | 4a | **Link** | `link` | Pending |
-| 4b | **NavigationMenu** | `navigation-menu` | Pending |
+| 4b | **NavigationMenu** | `navigation-menu` | Ready |
 | 4c | **CommandPalette** | `command-palette` | Pending |
-| 4d | **Stepper** | `stepper` | Pending |
+| 4d | **Stepper** | `stepper` | Ready |
 | 4e | **FooterColumns** | `footer-columns` | Pending |
 
-## 5. Data (9)
+## 5. Data (9) [2 Ready, 7 Pending]
 
 | # | Component | Nuxt UI Slug | Status |
 |---|-----------|-------------|--------|
 | 5a | **Accordion** | `accordion` | Pending |
 | 5b | **Empty** | `empty` | Ready |
-| 5c | **Table** | `table` | Pending |
+| 5c | **Table** | `table` | Ready |
 | 5d | **Timeline** | `timeline` | Pending |
 | 5e | **Carousel** | `carousel` | Pending |
 | 5f | **ScrollArea** | `scroll-area` | Pending |
@@ -67,7 +67,7 @@ Missing Nuxt UI core components to document, prioritized by category.
 | 5h | **Tree** | `tree` | Pending |
 | 5i | **User** | `user` | Pending |
 
-## 6. AI Chat (8)
+## 6. AI Chat (8) [8 Pending]
 
 | # | Component | Nuxt UI Slug | Status |
 |---|-----------|-------------|--------|
@@ -80,7 +80,7 @@ Missing Nuxt UI core components to document, prioritized by category.
 | 6g | **ChatShimmer** | `chat-shimmer` | Pending |
 | 6h | **ChatPalette** | `chat-palette` | Pending |
 
-## 7. Editor (6)
+## 7. Editor (6) [6 Pending]
 
 | # | Component | Nuxt UI Slug | Status |
 |---|-----------|-------------|--------|
@@ -108,4 +108,4 @@ For each component:
 
 ---
 
-**Total: 53 components**
+**Total: 52 components (21 Ready, 31 Pending)**

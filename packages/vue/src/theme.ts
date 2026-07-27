@@ -89,6 +89,27 @@ export const mizuTheme = {
     },
   },
 
+  // --- Chip ---
+  // Mizu spec: Nuxt UI's default sizes (4-12px height) cram text into
+  // a single line at the same height. We bump each size by 2px and add
+  // a touch of horizontal padding (px-0.5) so text doesn't touch the
+  // rounded edge, but the chip still reads as a tiny indicator.
+  chip: {
+    variants: {
+      size: {
+        '3xs': "h-[6px] min-w-[6px] text-[4px] px-0.5",
+        '2xs': "h-[7px] min-w-[7px] text-[5px] px-0.5",
+        xs: "h-[8px] min-w-[8px] text-[6px] px-0.5",
+        sm: "h-[9px] min-w-[9px] text-[7px] px-0.5",
+        md: "h-[10px] min-w-[10px] text-[8px] px-0.5",
+        lg: "h-[11px] min-w-[11px] text-[9px] px-0.5",
+        xl: "h-[12px] min-w-[12px] text-[10px] px-0.5",
+        '2xl': "h-[13px] min-w-[13px] text-[11px] px-0.5",
+        '3xl': "h-[14px] min-w-[14px] text-[12px] px-0.5",
+      },
+    },
+  },
+
   // --- Input ---
   // Mizu spec: sm=28px, md=36px, lg=40px (matches Button scale)
   // See: .agents/plans/phase-10-mizu-theme-layer.md

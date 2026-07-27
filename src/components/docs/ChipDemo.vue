@@ -96,6 +96,12 @@ import CodeCollapsible from "./CodeCollapsible.vue";
       <p class="demo-description">Overlaps an avatar with the <code>inset</code> prop for notification badges on user images.</p>
       <CodeCollapsible :code="`<UChip inset text=&quot;3&quot;>
   <UAvatar src=&quot;https://i.pravatar.cc/80&quot; alt=&quot;User&quot; />
+</UChip>
+<UChip inset text=&quot;5&quot; color=&quot;primary&quot;>
+  <UAvatar src=&quot;https://i.pravatar.cc/80&quot; alt=&quot;User&quot; />
+</UChip>
+<UChip inset text=&quot;99+&quot; color=&quot;error&quot; size=&quot;lg&quot;>
+  <UAvatar src=&quot;https://i.pravatar.cc/80&quot; alt=&quot;User&quot; />
 </UChip>`">
         <div class="demo-row">
           <UChip inset text="3">

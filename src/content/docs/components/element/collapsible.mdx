@@ -5,11 +5,11 @@ description: A collapsible element to toggle visibility of its content.
 
 import CollapsibleDemo from "../../../../components/docs/CollapsibleDemo.vue";
 
-<span style="display:inline-flex;margin-bottom:16px;padding:1px 8px;border-radius:9999px;font-size:11px;font-weight:500;background:#FFFBEB;color:#D97706;">Pending</span>
+<span style="display:inline-flex;margin-bottom:16px;padding:1px 8px;border-radius:9999px;font-size:11px;font-weight:500;background:#DCFCE7;color:#15803D;">Ready</span>
 
-A collapsible is a container that toggles the visibility of its content section. Use it for accordions, expandable panels, and disclosure widgets. Mizu uses Nuxt UI's `UCollapsible`.
+A collapsible is a container that toggles the visibility of its content section. Use it for accordions, expandable panels, and disclosure widgets. Mizu uses Nuxt UI's `UCollapsible` with smooth height animation and `unmountOnHide` by default to keep the DOM lean.
 
-## Examples
+## Demo
 
 <CollapsibleDemo client:only="vue" />
 
@@ -21,17 +21,100 @@ Reference: [Nuxt UI Collapsible](https://ui.nuxt.com/docs/components/collapsible
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `open` | `boolean` | — | Controlled open state. Use with `v-model` |
-| `defaultOpen` | `boolean` | — | Initial open state when uncontrolled |
-| `disabled` | `boolean` | `false` | Prevent user interaction |
-| `unmountOnHide` | `boolean` | `true` | Unmount content DOM when closed |
+| `as` | `any` (HTMLElement or component) | `'div'` | Element or component the root should render as |
+| `open` | `boolean` | — | Controlled open state. Use with `v-model:open` |
+| `defaultOpen` | `boolean` | `false` | Initial open state when uncontrolled |
+| `disabled` | `boolean` | `false` | Prevent user interaction (locks the current state) |
+| `unmountOnHide` | `boolean` | `true` | Unmount the content DOM when closed. Set to `false` to preserve component state inside the content slot |
+| `ui` | `{ root?: string; content?: string }` | — | Override the default slot classes |
 
 ### Slots
 
-| Slot | Props | Description |
-|------|-------|-------------|
-| `default` | `{ open }` | Trigger element (e.g. a button to toggle) |
-| `content` | — | Content revealed when open |
+| Slot | Description |
+|------|-------------|
+| `default` | Trigger element (e.g. a button to toggle). Clicking anywhere inside the default slot toggles the open state |
+| `content` | The panel revealed when open. Hidden when closed (unless `unmountOnHide` is `false`) |
+
+### Events
+
+| Event | Payload | Description |
+|-------|---------|-------------|
+| `update:open` | `[value: boolean]` | Emitted when open state changes. Use with `v-model:open` for two-way binding |
+
+## Anatomy
+
+A collapsible consists of 2 parts:
+
+| Part | Required | Description |
+|------|----------|-------------|
+| Root | Yes | The wrapper that contains the trigger and content |
+| Content | Yes | The panel that expands/collapses with a height transition |
+
+The default slot provides the trigger (usually a button) and the `#content` slot provides the expandable panel. Any interactive element in the default slot toggles the collapsible.
+
+## Transitions
+
+| Property | Duration | Easing |
+|----------|----------|--------|
+| Content height | `duration-normal` (200ms) | `ease-out` |
+| Visibility | `duration-normal` (200ms) | — |
+
+The content wrapper animates `height` from 0 to the natural content height. Visibility (the CSS `visibility` property) flips at the end of the open transition and the start of the close transition so the content remains focusable while visible.
+
+## Accessibility
+
+### Requirements
+
+| Criterion | Implementation |
+|-----------|----------------|
+| Trigger is a button | The default slot should contain a `<button>` (or `<UButton>`) so the collapsible is keyboard-accessible. Avoid non-interactive triggers like `<div>` |
+| Disclosure semantics | When the trigger is a `<button>`, set `aria-expanded` and `aria-controls` to expose the disclosure pattern to screen readers. Reka UI sets these automatically on the trigger when used inside the default slot |
+| Focus management | When opened, focus is **not** moved to the content by default (per WAI-ARIA disclosure pattern). Users continue navigating from where they triggered the toggle |
+| Disabled state | `disabled` prevents both mouse and keyboard interaction. The trigger should reflect this with `aria-disabled="true"` if the button is rendered with a disabled look but still focusable |
+| Hidden content | When `unmountOnHide` is `true`, the content is removed from the accessibility tree when closed. When `false`, the content remains in the DOM but `inert` / `aria-hidden` semantics are applied during the transition |
+| Animation | The height transition respects `prefers-reduced-motion` — the transition duration is reduced to near-zero so users with motion sensitivity see instant open/close |
+
+### ARIA Attributes
+
+```html
+<!-- Disclosure pattern (Reka UI sets this automatically on the trigger) -->
+<button aria-expanded="false" aria-controls="content-id">
+  Toggle
+</button>
+<div id="content-id" role="region" hidden>
+  Content
+</div>
+```
+
+## Token Mapping
+
+The collapsible does not consume Mizu tokens directly — sizing, padding, and animation are inherited from the wrapped trigger and content. The trigger and content are responsible for their own visual styling (use `UButton` for the trigger, and any content element for the panel).
+
+| Token | Value | Usage |
+|-------|-------|-------|
+| `--font-family-sans` | DM Sans | Default text in the content slot |
+| `--duration-normal` | 200ms | Content height transition |
+| `--ease-out` | cubic-bezier | Content height transition easing |
+
+## Vue Component API
+
+### UCollapsible Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `as` | `any` | `'div'` | Element or component the root should render as |
+| `open` | `boolean` | — | Controlled open state |
+| `defaultOpen` | `boolean` | `false` | Initial open state when uncontrolled |
+| `disabled` | `boolean` | `false` | Prevent user interaction |
+| `unmountOnHide` | `boolean` | `true` | Unmount content DOM when closed |
+| `ui` | `{ root?: string; content?: string }` | — | Override the default slot classes |
+
+### Slots
+
+| Slot | Description |
+|------|-------------|
+| `default` | Trigger element (clicking it toggles the open state) |
+| `content` | The panel revealed when open |
 
 ### Events
 
@@ -42,52 +125,68 @@ Reference: [Nuxt UI Collapsible](https://ui.nuxt.com/docs/components/collapsible
 ### Example Usage
 
 ```vue
-<UCollapsible class="flex flex-col gap-2">
+<!-- Basic (uncontrolled) -->
+<UCollapsible class="flex flex-col gap-2 w-56">
   <UButton
-    label="Toggle"
+    label="Toggle content"
     color="neutral"
     variant="subtle"
     trailing-icon="i-lucide-chevron-down"
     block
   />
-
   <template #content>
-    <Placeholder class="h-48" />
+    <div class="rounded-md border border-dashed border-surface-muted p-4 text-center text-sm text-foreground-secondary">
+      Collapsible content
+    </div>
+  </template>
+</UCollapsible>
+
+<!-- Default open -->
+<UCollapsible default-open class="flex flex-col gap-2 w-56">
+  <UButton label="Initially open" block trailing-icon="i-lucide-chevron-down" color="neutral" variant="subtle" />
+  <template #content>
+    <p>Visible by default</p>
   </template>
 </UCollapsible>
 
 <!-- Controlled with v-model -->
-<UCollapsible v-model="isOpen" class="flex flex-col gap-2">
-  <UButton label="Toggle" color="neutral" variant="subtle" block />
+<script setup>
+const isOpen = ref(false);
+</script>
+
+<template>
+  <UButton label="Open" @click="isOpen = true" />
+  <UCollapsible v-model:open="isOpen" class="flex flex-col gap-2">
+    <UButton label="Toggle" block color="neutral" variant="subtle" />
+    <template #content>
+      <p>Controlled content</p>
+    </template>
+  </UCollapsible>
+</template>
+
+<!-- Disabled -->
+<UCollapsible disabled class="flex flex-col gap-2">
+  <UButton label="Cannot toggle" block color="neutral" variant="subtle" />
   <template #content>
-    <p>Controlled content</p>
+    <p>Locked in current state</p>
   </template>
 </UCollapsible>
 
-<!-- Keep content mounted when closed -->
+<!-- Keep content mounted (preserve form state) -->
 <UCollapsible :unmount-on-hide="false" class="flex flex-col gap-2">
-  <UButton label="Toggle" color="neutral" variant="subtle" block />
+  <UButton label="Keep mounted" block color="neutral" variant="subtle" />
   <template #content>
-    <p>Always in DOM</p>
+    <UInput model-value="Type here..." />
   </template>
 </UCollapsible>
 ```
 
-## Anatomy
-
-A collapsible consists of 2 parts:
-
-| Part | Required | Description |
-|------|----------|-------------|
-| Root | Yes | Container element with transition support |
-| Content | Yes | The panel revealed/collapsed when toggled |
-
-The default slot provides the trigger (usually a button), and the `#content` slot provides the expandable content.
-
 ## Implementation Notes
 
-1. **Use `<UCollapsible>` directly** — No Mizu wrapper needed. Apply the theme preset.
-2. **`unmountOnHide`** — Defaults to `true`. Set to `false` to keep content in the DOM even when closed (useful for preserving component state).
-3. **Trigger flexibility** — The default slot receives an `{ open }` prop, so you can render different trigger content based on open state. Any interactive element in the default slot toggles the collapsible.
-4. **Accordion patterns** — Combine multiple `UCollapsible` components with shared state management for accordion behavior. Unlike a dedicated accordion, you control which panels are open yourself.
-5. **Animation** — Collapsible uses CSS transitions for smooth expand/collapse. The content wrapper handles height animation automatically.
+1. **Use `<UCollapsible>` directly** — No Mizu wrapper needed. Apply the theme preset and Nuxt UI handles the trigger/content wiring.
+2. **`unmountOnHide` defaults to `true`** — Content is removed from the DOM when closed. Set to `false` when you need to preserve component state inside the content slot (form input values, scroll position, third-party widget state).
+3. **Trigger flexibility** — Any interactive element in the default slot toggles the collapsible. Use `<UButton>`, `<a>`, or a custom button. The trigger is *not* wrapped or styled by `UCollapsible` — the consumer chooses the trigger design.
+4. **Accordion patterns** — Combine multiple `UCollapsible` components with shared state management for accordion behavior. Unlike a dedicated accordion, you control which panels are open yourself. See [Accordion](../data/accordion) for a pre-built solution.
+5. **Height animation** — The content animates from `height: 0` to its natural height. The transition respects `prefers-reduced-motion`. Content with dynamic height (e.g. images loading after open) may cause a layout shift inside the panel.
+6. **Nested collapsibles** — `UCollapsible` can be nested. Each instance maintains its own state. Avoid putting a collapsible trigger inside another collapsible's content unless you also control the parent's `open` state.
+7. **ARIA semantics** — Reka UI (the underlying primitive) automatically wires `aria-expanded` / `aria-controls` on the trigger and `data-state` on the content for screen readers and CSS selectors.

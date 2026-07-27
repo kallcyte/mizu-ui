@@ -16,6 +16,29 @@ This project follows **semantic versioning** (SemVer) during pre-1.0 development
 Changes that require a minor bump: adding a new component, renaming tokens, changing component APIs, adding new packages (e.g. React).
 Changes that keep the patch version: renames, copy edits, styling tweaks, build config changes, favicon updates.
 
+## 0.18.31 (2026-07-27)
+
+### Changed
+
+- **Collapsible docs — Ready** — Marked the Collapsible documentation page as Ready (green badge).
+
+### Docs
+
+- **Collapsible docs — full rewrite** — Rewrote `src/content/docs/components/element/collapsible.mdx` against the Mizu standard template: frontmatter + intro, `## Demo` mounted via `<CollapsibleDemo client:only="vue" />`, full `## API` (Props: `as`, `open`, `defaultOpen`, `disabled`, `unmountOnHide`, `ui`; Slots: `default` + `content`; Events: `update:open` with `v-model:open` guidance), `## Anatomy` (Root + Content), `## Transitions` (height + visibility), `## Accessibility` (disclosure pattern criteria + ARIA snippet), `## Token Mapping` (CSS vars), expanded `## Vue Component API` (5 Example Usage snippets: Basic, Default Open, Controlled with v-model, Disabled, Keep Mounted), and `## Implementation Notes` covering `unmountOnHide`, trigger flexibility, accordion patterns, height animation, nested collapsibles, and Reka UI's automatic ARIA wiring.
+- **Collapsible demo** — Rebuilt the `v-model Controlled` section that was previously empty. Added a real working example: an external `<UButton>` toggles the `open` ref, and the `<UCollapsible>` uses `v-model:open="open"` so the external state stays in sync with the internal open state. Replaced all `<Placeholder>` references in the code snippets (Placeholder is not a real component) with the same `rounded-md border border-dashed border-surface-muted` div used in the live render. Reordered sections to Basic → Default Open → v-model Controlled → Disabled → Keep Mounted. Switched `.example-section h3` from `color: var(--sl-color-text)` to `color: inherit` so nested slot content (if added later) is not overridden (same fix used by other recent demos). Added a `.demo-col` class for the column layout used in the v-model section.
+
+## 0.18.30 (2026-07-27)
+
+### Changed
+
+- **Chip docs — Ready** — Marked the Chip documentation page as Ready (green badge).
+
+### Docs
+
+- **Chip docs — full rewrite** — Rewrote `src/content/docs/components/element/chip.mdx` against the Mizu standard template: frontmatter + intro, `## Demo` mounted via `<ChipDemo client:only="vue" />`, full `## API` (Props: `as`, `text`, `color` (7), `size` (9), `position` (4), `inset`, `standalone`, `show`, `ui`; Slots: `default` + `content`; Events: `update:show`), `## Anatomy` (Root + Indicator), `## Size Specifications` (all 9 sizes with Mizu override heights and `px-0.5` padding), `## Color Specifications` (state map for all 7 colors), `## Spacing Details` (position-anchor ASCII diagram + transform offsets), `## Transitions`, `## Accessibility` (criteria + ARIA snippet), `## Token Mapping` (CSS vars), expanded `## Vue Component API` (full props/slots/events/Example Usage block with 6 snippets), and `## Implementation Notes` covering wrapper requirement, ring separator, inset, standalone, show/hide, size scale, position offsets, and the Mizu theme override.
+- **Chip theme override** — Added a `chip` entry to the Mizu theme preset (`packages/vue/src/theme.ts`) that bumps each of the 9 Nuxt UI chip sizes by 2px and adds `px-0.5` horizontal padding. The override keeps the chip reading as a tiny dot indicator while giving text enough breathing room to not touch the rounded edge. `md` (default) is now 10px tall with 8px text instead of 8px/8px. Applied automatically when `mizuTheme` is registered in `app.config.ts`.
+- **Chip demo — code sync** — The Inset section's `CodeCollapsible` snippet was showing only the first example while the rendered code block below rendered three (text="3", text="5", text="99+"). Expanded the snippet so the code block matches the live preview.
+
 ## 0.18.29 (2026-07-27)
 
 ### Docs
