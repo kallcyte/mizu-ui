@@ -16,6 +16,14 @@ This project follows **semantic versioning** (SemVer) during pre-1.0 development
 Changes that require a minor bump: adding a new component, renaming tokens, changing component APIs, adding new packages (e.g. React).
 Changes that keep the patch version: renames, copy edits, styling tweaks, build config changes, favicon updates.
 
+## 0.18.32 (2026-07-27)
+
+### Changed
+
+- **Package rename** — Renamed all three packages from the `@mizu/...` scope to the `@mizu-ui/...` scope across 46 files. The npm `mizu` org was already taken, so the `@mizu-ui` org was created instead. Consumers must update imports from `@mizu/vue` → `@mizu-ui/vue` and `@mizu/tokens` → `@mizu-ui/tokens`.
+- **Version bump 0.18.31 → 0.18.32** — npm blocks reusing version numbers within 72 hours of an unpublish. The first attempt to publish `@mizu-ui/vue@0.18.31` failed with E403 because that version had been previously published then unpublished. Bumping to `0.18.32` (and `@mizu-ui/tokens` to `0.9.1`) clears the tombstone.
+- **First npm publish** — Initial manual publish of `@mizu-ui/tokens@0.9.1` and `@mizu-ui/vue@0.18.32` to the npm registry via the org `@mizu-ui`. The first publish must be manual because npm requires a package to exist before a Trusted Publisher can be attached. Future releases will be automated via the new `changesets` workflow.
+
 ## 0.18.31 (2026-07-27)
 
 ### Changed
