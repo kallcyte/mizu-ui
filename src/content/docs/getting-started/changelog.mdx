@@ -16,6 +16,17 @@ This project follows **semantic versioning** (SemVer) during pre-1.0 development
 Changes that require a minor bump: adding a new component, renaming tokens, changing component APIs, adding new packages (e.g. React).
 Changes that keep the patch version: renames, copy edits, styling tweaks, build config changes, favicon updates.
 
+## 0.18.34 (2026-07-27)
+
+### Changed
+
+- **Icon docs — Ready** — Marked the Icon documentation page as Ready (green badge).
+
+### Docs
+
+- **Icon docs — full rewrite** — Rewrote `src/content/docs/components/element/icon.mdx` against the Mizu standard template: frontmatter + intro, `## Demo` mounted via `<IconDemo client:only="vue" />`, `## Anatomy` (single SVG root), `## Size Specifications` (8 Tailwind size classes from `size-3` to `size-12` mapped to pixel sizes + use cases), `## Color Specifications` (currentColor inheritance, Tailwind text classes, `customize` callback for per-segment coloring), `## Accessibility` (decorative vs semantic patterns with `aria-hidden` and `role="img"`), `## Token Mapping` (foreground + brand + feedback tokens), `## Vue Component API` (Props/Slots/Example Usage with 8 snippets covering basic/collections/sizes/prop/color/css-mode/customize/button-decoupling), and `## Implementation Notes` covering Iconify format, SVG vs CSS mode, performance, and accessibility patterns.
+- **Icon demo** — Expanded from 4 to 6 sections: Basic, Sizes, Icon Collections (Lucide + Phosphor + Simple Icons), **Colors** (5 semantic color variants via Tailwind text classes), **Customize Callback** (per-segment recolor via `:customize` prop), and CSS Mode.
+
 ## 0.18.33 (2026-07-27)
 
 ### Changed

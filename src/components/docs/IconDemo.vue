@@ -45,6 +45,43 @@ import CodeCollapsible from "./CodeCollapsible.vue";
     </section>
 
     <section class="example-section">
+      <h3>Colors</h3>
+      <p class="demo-description">Inherits <code>currentColor</code> from the parent text color. Apply any Tailwind text color class to tint the icon.</p>
+      <CodeCollapsible :code="`<UIcon name=&quot;i-lucide-info&quot; class=&quot;size-5 text-brand-primary&quot; />
+<UIcon name=&quot;i-lucide-check-circle&quot; class=&quot;size-5 text-feedback-success-base&quot; />
+<UIcon name=&quot;i-lucide-alert-triangle&quot; class=&quot;size-5 text-feedback-warning-base&quot; />
+<UIcon name=&quot;i-lucide-x-circle&quot; class=&quot;size-5 text-feedback-error-base&quot; />
+<UIcon name=&quot;i-lucide-info&quot; class=&quot;size-5 text-foreground-tertiary&quot; />`">
+        <div class="demo-row">
+          <UIcon name="i-lucide-info" class="size-5 text-brand-primary" />
+          <UIcon name="i-lucide-check-circle" class="size-5 text-feedback-success-base" />
+          <UIcon name="i-lucide-alert-triangle" class="size-5 text-feedback-warning-base" />
+          <UIcon name="i-lucide-x-circle" class="size-5 text-feedback-error-base" />
+          <UIcon name="i-lucide-info" class="size-5 text-foreground-tertiary" />
+        </div>
+      </CodeCollapsible>
+    </section>
+
+    <section class="example-section">
+      <h3>Customize Callback</h3>
+      <p class="demo-description">Use the <code>:customize</code> callback to transform the rendered SVG, e.g. replacing <code>currentColor</code> with a specific token value for per-segment coloring.</p>
+      <CodeCollapsible :code="`<UIcon
+  name=&quot;i-lucide-circle-dot&quot;
+  :customize=&quot;(content) => content.replace(/currentColor/g, 'var(--color-feedback-success-base)')&quot;
+  class=&quot;size-5&quot;
+/>`">
+        <div class="demo-row">
+          <UIcon
+            name="i-lucide-circle-dot"
+            :customize="(content) => content.replace(/currentColor/g, 'var(--color-feedback-success-base)')"
+            class="size-5"
+          />
+          <UIcon name="i-lucide-circle-dot" class="size-5 text-foreground-tertiary" />
+        </div>
+      </CodeCollapsible>
+    </section>
+
+    <section class="example-section">
       <h3>CSS Mode</h3>
       <p class="demo-description">Uses the <code>mode="css"</code> prop to render icons via CSS background instead of inline SVG, useful for performance and caching.</p>
       <CodeCollapsible :code="`<UIcon name=&quot;i-lucide-zap&quot; mode=&quot;css&quot; class=&quot;size-5&quot; />`">
