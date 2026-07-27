@@ -16,6 +16,14 @@ This project follows **semantic versioning** (SemVer) during pre-1.0 development
 Changes that require a minor bump: adding a new component, renaming tokens, changing component APIs, adding new packages (e.g. React).
 Changes that keep the patch version: renames, copy edits, styling tweaks, build config changes, favicon updates.
 
+## 0.18.28 (2026-07-27)
+
+### Docs
+
+- **Badge docs — Ready** — Marked the Badge documentation page as Ready (green badge). Full template rewrite: frontmatter + intro, `## Demo`, `## API` (Props: `as`, `size`, `color`, `variant`, `icon`, `trailing`, `trailingIcon`, `label`, `square`; Slots: default/leading/trailing), `## Anatomy`, `## Size Specifications` (all 5 sizes with `rounded-full` radius), `## Color Specifications` (7 colors mapped to Mizu tokens + variant reference table), `## Transitions`, `## Accessibility` (criteria + ARIA snippet), `## Token Mapping`, `## Example Usage` (8 snippets covering default, label shorthand, leading/trailing icon, soft status, single-digit counter, square icon, outline), `## Implementation Notes`. Replaced garbled `'"”'` default cells with `—` and `color: var(--sl-color-text)` artifact with `color: inherit` in the scoped demo CSS.
+- **Badge demo** — Expanded from 4 to 8 sections: Sizes (all 5 `xs`→`xl`), Colors (7 semantic), Variants (4 visual styles), Variant × Color Matrix (4 rows × 7 columns), Icon (leading + trailing + several variants), Status Indicators (`variant="soft"` + `i-lucide-circle-dot` for Online / Away / Offline / In meeting), Counter & Label (notif-counter patterns including a single-digit circle that needs `min-w-[26px] gap-0 justify-center` to render centered), Square (3 icon-only circles). Each section is wrapped in `<CodeCollapsible>` so the rendered code is collapsible.
+- **Badge theme override** — Forced `rounded-full` on the `md` size (was `rounded-[10px]`); the `sm` size was already `rounded-full`. All Mizu badge sizes now render as pills regardless of label length.
+
 ## 0.18.27 (2026-07-27)
 
 ### Docs

@@ -68,7 +68,7 @@ export const mizuTheme = {
   },
 
   // --- Badge ---
-  // Mizu spec: sm(16px content), md(20px content)
+  // Mizu spec: sm(16px content), md(20px content), fully rounded
   // See: old MizuBadge docs (git history)
   badge: {
     variants: {
@@ -80,7 +80,7 @@ export const mizuTheme = {
           trailingIcon: "size-3",
         },
         md: {
-          base: "text-[11px] px-1.5 py-1 gap-1 rounded-[10px]",
+          base: "text-[11px] px-1.5 py-1 gap-1 rounded-full",
           leadingIcon: "size-4",
           leadingAvatarSize: "3xs",
           trailingIcon: "size-4",

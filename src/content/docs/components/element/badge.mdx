@@ -1,15 +1,15 @@
 ---
 title: Badge
-description: A short text to represent a status or a category.
+description: A short text to represent a status, category, or counter.
 ---
 
 import BadgeDemo from "../../../../components/docs/BadgeDemo.vue";
 
-<span style="display:inline-flex;margin-bottom:16px;padding:1px 8px;border-radius:9999px;font-size:11px;font-weight:500;background:#FFFBEB;color:#D97706;">Pending</span>
+<span style="display:inline-flex;margin-bottom:16px;padding:1px 8px;border-radius:9999px;font-size:11px;font-weight:500;background:#ECFDF5;color:#047857;">Ready</span>
 
-A badge displays a short label for status, categories, or metadata. Mizu uses Nuxt UI's `UBadge` with compact sizing (16/20px).
+A badge is a compact inline label for status, categories, or counters. Mizu uses Nuxt UI's `UBadge` with a compressed size scale (Mizu `sm`=16px, `md`=20px) and full support for color, variant, icons, and counters.
 
-## Examples
+## Demo
 
 <BadgeDemo client:only="vue" />
 
@@ -21,63 +21,23 @@ Reference: [Nuxt UI Badge](https://ui.nuxt.com/docs/components/badge)
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `size` | `'xs' \| 'sm' \| 'md' \| 'lg' \| 'xl'` | `'md'` | Badge size. Mizu overrides sm/md to 16/20px |
-| `color` | `'primary' \| 'secondary' \| 'success' \| 'error' \| 'warning' \| 'info' \| 'neutral'` | `'primary'` | Semantic color |
+| `as` | `any` (HTMLElement or component) | `'span'` | Element or component the badge root should render as |
+| `size` | `'xs' \| 'sm' \| 'md' \| 'lg' \| 'xl'` | `'md'` | Badge size. Mizu overrides `sm`=16px and `md`=20px for a compact scale |
+| `color` | `'primary' \| 'secondary' \| 'success' \| 'info' \| 'warning' \| 'error' \| 'neutral'` | `'primary'` | Semantic color |
 | `variant` | `'solid' \| 'outline' \| 'soft' \| 'subtle'` | `'solid'` | Visual style |
-| `icon` | `string` (Iconify) | â€” | Icon from Iconify (e.g. `'i-ph-check'`) |
-| `trailing` | `boolean` | `false` | When `true`, icon displays on the right |
-| `label` | `string \| number` | â€” | Shorthand for text content |
-| `square` | `boolean` | `false` | Equal padding on all sides |
+| `icon` | `string` (Iconify) | — | Leading icon (e.g. `'i-lucide-check'`) |
+| `trailing` | `boolean` | `false` | When `true`, the icon renders on the right side |
+| `trailingIcon` | `string` (Iconify) | — | Separate icon for the trailing slot when `icon` is empty |
+| `label` | `string \| number` | — | Shorthand for text content. Use instead of the default slot for simple text-only badges |
+| `square` | `boolean` | `false` | Equal padding on all sides. Useful for icon-only or numeric counters |
 
 ### Slots
 
 | Slot | Props | Description |
 |------|-------|-------------|
-| `default` | â€” | Badge label/content |
-| `leading` | `{ ui }` | Custom leading content |
-| `trailing` | `{ ui }` | Custom trailing content |
-
-## Theme
-
-Mizu overrides Nuxt UI's badge sizing to match the Mizu design spec. Consumers apply the theme via `@mizu/vue/theme`:
-
-```ts
-// app.config.ts
-import { mizuTheme } from "@mizu/vue/theme";
-export default defineAppConfig({ ui: mizuTheme });
-```
-
-### Design Specs
-
-| Property | SM | MD |
-|----------|----|----|
-| Min Width | 16px | 20px |
-| Height | 16px | 20px |
-| H-Padding | 4px | 6px |
-| Font Size | 10px (`text-[10px]/3`) | 11px (`text-[11px]`) |
-| Radius | 8px (`rounded-lg`) | 10px (`rounded-[10px]`) |
-| Font Weight | 500 | 500 |
-| Icon Size | 12px (`size-3`) | 16px (`size-4`) |
-
-### Color Map
-
-| Mizu Token | Nuxt UI Color |
-|------------|---------------|
-| `--color-brand-primary` | `primary` |
-| `--color-brand-ycp` | `secondary` |
-| `--color-feedback-success-base` | `success` |
-| `--color-feedback-error-base` | `error` |
-| `--color-feedback-warning-base` | `warning` |
-| `--color-feedback-info-base` | `info` |
-
-### Typography
-
-| Property | Value |
-|----------|-------|
-| Font Family | DM Sans (`--font-family-sans`) |
-| Font Weight | 500 (medium) |
-| Text Transform | None |
-| Letter Spacing | Normal |
+| `default` | — | Badge label/content (alternative to the `label` prop) |
+| `leading` | `{ ui }` | Custom leading content (overrides the `icon` prop) |
+| `trailing` | `{ ui }` | Custom trailing content (overrides the `trailingIcon` prop) |
 
 ## Anatomy
 
@@ -87,11 +47,119 @@ A badge is a single inline element:
 |------|----------|-------------|
 | Root | Yes | `<span>` element with padding, radius, and color |
 
-With optional leading icon and trailing icon inline.
+With optional leading icon, trailing icon, and default text content rendered inline.
+
+## Size Specifications
+
+| Size | Min Width | Height | H-Padding | Font Size | Radius | Icon Size |
+|------|-----------|--------|-----------|-----------|--------|-----------|
+| `xs` | — | 14px | 4px | 10px (`text-[10px]`) | `rounded-full` | 12px (`size-3`) |
+| `sm` | 16px | 16px | 4px | 10px (`text-[10px]`) | `rounded-full` | 12px (`size-3`) |
+| `md` | 20px | 20px | 6px | 11px (`text-[11px]`) | `rounded-full` | 16px (`size-4`) |
+| `lg` | — | 24px | 8px | 12px (`text-xs`) | `rounded-full` | 16px (`size-4`) |
+| `xl` | — | 28px | 8px | 14px (`text-sm`) | `rounded-full` | 20px (`size-5`) |
+
+**Mizu override** — `sm` and `md` are sized more compactly than Nuxt UI defaults to match the Mizu design scale. The overrides are applied via the `mizuTheme` preset in `app.config.ts`.
+
+## Color Specifications
+
+| Color | Mizu Token | Nuxt UI Mapping |
+|-------|------------|-----------------|
+| `primary` | `--color-brand-primary` | `#001C44` |
+| `secondary` | `--color-brand-ycp` | secondary token |
+| `success` | `--color-feedback-success-base` | success token |
+| `info` | `--color-feedback-info-base` | info token |
+| `warning` | `--color-feedback-warning-base` | warning token |
+| `error` | `--color-feedback-error-base` | error token |
+| `neutral` | `--color-surface-muted` | elevated token |
+
+Each variant (`solid`, `outline`, `soft`, `subtle`) renders the color at a different opacity. `solid` uses the full color (background + inverted text), `soft` uses the color at low opacity for background and the full color for text, `outline` uses the full color for the border and text, `subtle` uses the lowest opacity for background and the full color for text.
+
+### Variant Reference
+
+| Variant | Background | Border | Text |
+|---------|------------|--------|------|
+| `solid` | full color | — | inverted (`text-inverted`) |
+| `outline` | transparent | color | color |
+| `soft` | color/10 | — | color |
+| `subtle` | color/5 | — | color |
+
+## Transitions
+
+| Property | Duration | Easing |
+|----------|----------|--------|
+| Background color | `duration-fast` (150ms) | `ease-out` |
+
+## Accessibility
+
+### Requirements
+
+| Criterion | Implementation |
+|-----------|----------------|
+| Color is not the only signal | Always pair a color-coded badge with a text label or leading icon. Users with color blindness need a non-color cue |
+| Status indicators | For "Online / Away / Offline" patterns, use `variant="soft"` with a leading `i-lucide-circle-dot` icon plus a text label |
+| Sufficient contrast | `solid` variant on default surface passes WCAG AA for text. `outline`, `soft`, and `subtle` rely on color; check contrast on tinted backgrounds |
+| Counter semantics | Notification counts (`label="99+"`) are decorative. The surrounding context should announce the count to screen readers |
+
+### ARIA Attributes
+
+```html
+<span>Online</span>
+<span aria-label="3 new notifications">3</span>
+```
+
+## Token Mapping
+
+### CSS Custom Properties
+
+| Token | Value | Usage |
+|-------|-------|-------|
+| `--color-brand-primary` | #001C44 | Primary color background |
+| `--color-brand-ycp` | — | Secondary color background |
+| `--color-feedback-success-base` | — | Success color background |
+| `--color-feedback-info-base` | — | Info color background |
+| `--color-feedback-warning-base` | — | Warning color background |
+| `--color-feedback-error-base` | — | Error color background |
+| `--color-surface-muted` | — | Neutral fallback |
+| `--font-family-sans` | DM Sans | Badge text |
+
+## Example Usage
+
+```vue
+<!-- Text-only badge -->
+<UBadge>Default</UBadge>
+
+<!-- Using label shorthand -->
+<UBadge label="New" color="primary" variant="subtle" />
+
+<!-- With leading icon -->
+<UBadge icon="i-lucide-check" color="success">Verified</UBadge>
+
+<!-- With trailing icon -->
+<UBadge icon="i-lucide-arrow-right" trailing color="primary">Continue</UBadge>
+
+<!-- Status indicator -->
+<UBadge variant="soft" color="success" icon="i-lucide-circle-dot">Online</UBadge>
+
+<!-- Notification counter -->
+<UBadge label="99+" color="error" size="md" />
+
+<!-- Single-digit counter — force circular aspect with min-w matching height -->
+<UBadge label="3" color="error" size="md" :ui="{ base: 'min-w-[26px] gap-0 justify-center' }" />
+
+<!-- Square icon-only badge -->
+<UBadge square color="error" icon="i-lucide-bell" />
+
+<!-- Outline variant -->
+<UBadge variant="outline" color="primary">Draft</UBadge>
+```
 
 ## Implementation Notes
 
-1. **Use `<UBadge>` directly** â€” No Mizu wrapper needed. Apply the theme preset and Nuxt UI handles the rest.
-2. **Compact scale** â€” Mizu badges are smaller than Nuxt UI defaults. The theme preset overrides sm â†’ 16px, md â†’ 20px.
-3. **Status use** â€” Use `variant="soft"` for status indicators (Online, Away, Offline) with appropriate `color`.
-4. **`label` shorthand** â€” Prefer `<UBadge label="New" />` for simple text-only badges.
+1. **Use `<UBadge>` directly** — No Mizu wrapper needed. Apply the theme preset and Nuxt UI handles the rest.
+2. **Compact scale** — Mizu badges are smaller than Nuxt UI defaults. The theme preset overrides `sm` to 16px and `md` to 20px to match the Mizu design spec.
+3. **Fully rounded** — The theme preset forces all badge sizes to `rounded-full` so they read as pills regardless of width (longer labels like "In meeting" or "Online" stay pill-shaped instead of turning into rounded rectangles).
+4. **Status indicators** — Use `variant="soft"` with a semantic `color` and a leading icon (e.g. `i-lucide-circle-dot`) for "Online / Away / Offline" labels.
+5. **`label` shorthand** — Prefer `<UBadge label="New" />` over the default slot for simple text-only badges. Keeps the template line tidy.
+6. **Square for counters** — Set `square` when the badge contains only an icon or a short number so all sides have equal padding. For single-character labels like `label="3"`, pass `:ui="{ base: 'min-w-[26px] gap-0 justify-center' }"` (matching the badge height for `size="md"`, zeroing the flex gap, and centering the label) so the badge renders as a perfectly centered circle instead of an oval.
+7. **Color contrast** — `solid` provides the highest contrast; `outline`, `soft`, and `subtle` are designed for use on tinted backgrounds where you want a softer visual weight.
