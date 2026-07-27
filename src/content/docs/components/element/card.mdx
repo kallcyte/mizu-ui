@@ -5,11 +5,13 @@ description: Display content in a card with a header, body, and footer.
 
 import CardDemo from "../../../../components/docs/CardDemo.vue";
 
-<span style="display:inline-flex;margin-bottom:16px;padding:1px 8px;border-radius:9999px;font-size:11px;font-weight:500;background:#FFFBEB;color:#D97706;">Pending</span>
+<span style="display:inline-flex;margin-bottom:16px;padding:1px 8px;border-radius:9999px;font-size:11px;font-weight:500;background:#DCFCE7;color:#15803D;">Ready</span>
 
-A card is a container for grouping related content. Mizu uses Nuxt UI's `UCard` with a subtle outline border and rounded corners.
+A card is a container for grouping related content with optional header and
+footer sections. Mizu uses Nuxt UI's `UCard` with a subtle outline border and
+rounded corners.
 
-## Examples
+## Demo
 
 <CardDemo client:only="vue" />
 
@@ -21,26 +23,41 @@ Reference: [Nuxt UI Card](https://ui.nuxt.com/docs/components/card)
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
+| `as` | `any` (HTMLElement or component) | `'div'` | Element or component the card root should render as |
+| `title` | `string` | — | Header title shorthand |
+| `description` | `string` | — | Header description shorthand |
 | `variant` | `'solid' \| 'outline' \| 'soft' \| 'subtle'` | `'outline'` (Mizu default) | Visual style |
-| `title` | `string` | — | Card title (shorthand) |
-| `description` | `string` | — | Card description (shorthand) |
+| `class` | `string \| Record<string, any>` | — | Extra classes applied to the root slot |
+| `ui` | `{ root?: SlotClass; header?: SlotClass; title?: SlotClass; description?: SlotClass; body?: SlotClass; footer?: SlotClass }` | — | Override slot classes per-slot |
 
 ### Slots
 
 | Slot | Props | Description |
 |------|-------|-------------|
-| `header` | — | Top section, typically title + description |
-| `title` | — | Title content (alternative to `title` prop) |
-| `description` | — | Description content (alternative to `description` prop) |
+| `header` | — | Top section. When omitted, the header is rendered only if `title`/`description` props or their respective slots are present |
+| `title` | — | Custom title content (alternative to `title` prop) |
+| `description` | — | Custom description content (alternative to `description` prop) |
 | `default` | — | Main body content |
-| `footer` | — | Bottom section, typically actions |
+| `footer` | — | Bottom section, typically action buttons |
+
+## Anatomy
+
+A card consists of up to three optional regions:
+
+| Part | Required | Description |
+|------|----------|-------------|
+| Header | No | Top region containing title and description. Rendered automatically when `title`, `description`, or any of the matching slots are provided |
+| Body | No | Main region that wraps the default slot |
+| Footer | No | Bottom region rendered when the `footer` slot is provided |
+
+The root element wraps all three and receives the variant background, border,
+and overflow clipping.
 
 ## Theme
 
-Mizu overrides Nuxt UI's card defaults:
+Mizu inherits Nuxt UI's card defaults via `app.config.ts`:
 
 ```ts
-// app.config.ts
 import { mizuTheme } from "@mizu/vue/theme";
 export default defineAppConfig({ ui: mizuTheme });
 ```
@@ -50,30 +67,102 @@ export default defineAppConfig({ ui: mizuTheme });
 | Property | Value |
 |----------|-------|
 | Default Variant | `outline` |
-| Border Radius | 6px (`rounded-md`) |
-| Overflow | `hidden` (clips content to border radius) |
-| Padding | Nuxt UI default (inherited) |
+| Border Radius | 8px (`rounded-lg`) |
+| Overflow | `hidden` (clips descendants to the border radius) |
+| Header Padding | `p-4 sm:px-6` |
+| Body Padding | `p-4 sm:p-6` |
+| Footer Padding | `p-4 sm:px-6` |
+| Section Dividers (outline / soft / subtle) | `divide-y divide-default` |
+
+### Variant Reference
+
+| Variant | Background | Border / Ring | Best For |
+|---------|------------|---------------|----------|
+| `solid` | `bg-inverted` | — | High-emphasis panels, hero cards |
+| `outline` | `bg-default` | `ring ring-default` | **Mizu default** — most surfaces |
+| `soft` | `bg-elevated/50` | — | Low-emphasis groupings inside a card |
+| `subtle` | `bg-elevated/50` | `ring ring-default` | Quiet surfaces on elevated backgrounds |
 
 ### Typography
 
 | Property | Value |
 |----------|-------|
 | Font Family | DM Sans (`--font-family-sans`) |
-| Title Weight | 600 (semibold) |
+| Title | `text-highlighted font-semibold` |
+| Description | `mt-1 text-muted text-sm` |
 
-## Anatomy
+## Example Usage
 
-A card consists of three optional sections:
+```vue
+<!-- Basic -->
+<UCard>
+  <p>Card content goes here.</p>
+</UCard>
 
-| Part | Required | Description |
-|------|----------|-------------|
-| Header | No | Top section with title and description |
-| Body | No | Main content area |
-| Footer | No | Bottom section, typically with actions |
+<!-- Title shorthand -->
+<UCard title="Card with title" />
+
+<!-- Description shorthand -->
+<UCard
+  title="Card with description"
+  description="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+/>
+
+<!-- Header + footer slots -->
+<UCard>
+  <template #header>
+    <h3>Card Title</h3>
+    <p>Card description or subtitle</p>
+  </template>
+
+  <p>Main content area with body text.</p>
+
+  <template #footer>
+    <div class="flex gap-2">
+      <UButton variant="ghost">Cancel</UButton>
+      <UButton color="primary">Save changes</UButton>
+    </div>
+  </template>
+</UCard>
+
+<!-- Variant -->
+<UCard variant="subtle">
+  <p>Subtle variant card.</p>
+</UCard>
+
+<!-- Custom slot classes via ui prop -->
+<UCard
+  title="Custom card"
+  :ui="{ root: 'rounded-none', header: 'p-2', body: 'p-2 sm:p-3' }"
+>
+  <p>Body content.</p>
+</UCard>
+
+<!-- Render as a different element -->
+<UCard as="article" title="Article card">
+  <p>Body content.</p>
+</UCard>
+```
 
 ## Implementation Notes
 
-1. **Use `<UCard>` directly** — No Mizu wrapper needed. Apply the theme preset.
-2. **Default variant** — Mizu theme sets the default to `outline` for a subtle border. Override with `variant="solid"` for a filled background.
-3. **Header/Footer slots** — Use named slots for structured card layouts. The `title` and `description` props are shorthands.
-4. **Rounded corners** — Mizu applies `rounded-md` (6px) and `overflow-hidden` to clip child content to the border radius.
+1. **Use `<UCard>` directly** — No Mizu wrapper needed. Apply the theme preset
+   and Nuxt UI handles the rest.
+2. **Default variant is `outline`** — Mizu's theme overrides Nuxt UI's
+   default (`subtle`) so the unstyled card already has a subtle border.
+   Override with `variant="solid"` for a filled background.
+3. **Slot vs prop shortcuts** — `title` and `description` props render the
+   header even when the `header` slot is empty. Use named slots (`#title`,
+   `#description`) when you need custom markup; use the props for plain text.
+4. **Header is conditional** — The header region is rendered only when
+   `title`, `description`, or any of `#header` / `#title` / `#description`
+   slots are provided. Empty cards render nothing inside.
+5. **Section dividers** — `outline`, `soft`, and `subtle` variants apply
+   `divide-y divide-default` so the header / body / footer regions get a
+   subtle separator. `solid` does not.
+6. **`ui` prop scoping** — The `ui` prop merges with the theme, so you only
+   need to pass the slots you want to override. Reka UI's `<Primitive>`
+   forwards extra props to the root via `class`; both approaches compose.
+7. **Rounded corners** — Mizu applies `rounded-lg` (8px) and `overflow-hidden`
+   to clip child content to the border radius. Use `ui="{ root: 'rounded-none' }"`
+   to opt out for tightly-nested layouts.

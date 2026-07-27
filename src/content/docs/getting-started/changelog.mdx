@@ -16,6 +16,15 @@ This project follows **semantic versioning** (SemVer) during pre-1.0 development
 Changes that require a minor bump: adding a new component, renaming tokens, changing component APIs, adding new packages (e.g. React).
 Changes that keep the patch version: renames, copy edits, styling tweaks, build config changes, favicon updates.
 
+## 0.18.25 (2026-07-27)
+
+### Docs
+
+- **Card docs — Ready** — Marked the Card documentation page as Ready (green badge).
+- **Card demo** — Expanded from 3 to 6 sections: Basic, Title (prop shorthand), Description (prop shorthand), With Header & Footer (full slot composition with action buttons), Variant (reactive `UButton` chip-row switching among `solid` / `outline` / `soft` / `subtle` with a dynamically composed code snippet), and Custom UI (overriding slot classes via `:ui`). Every section uses `CodeCollapsible` so the rendered card sits next to its code.
+- **Card demo — header & footer bug** — The scoped `.example-section h3 { color: var(--sl-color-text) }` rule was overriding `color` on `<h3>` slot content inside `<UCard>` because Vue 3 scoped styles apply the parent's `data-v` attribute to slot nodes. On the `solid` variant this made the header `<h3>` render in Starlight's normal text color instead of the inherited `text-inverted`, so the title disappeared against the inverted background. Switched the rule to `color: inherit` so direct section headers stay visually identical (they still inherit Starlight's body color) while nested slot content can pick up the card root's `text-inverted`.
+- **Card demo — solid-variant buttons** — On the `solid` variant, `<UButton variant="ghost">` was defaulting to `color="primary"` and forcing `text-primary` blue, breaking the inverted look on the dark background. Switched the Cancel button to `color="neutral"` on `solid` so it inherits the card's inverted text; left it on `color="primary"` for the other variants where blue is correct.
+
 ## 0.18.24 (2026-07-27)
 
 ### Docs
