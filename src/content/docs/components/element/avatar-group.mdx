@@ -1,15 +1,15 @@
 ---
 title: AvatarGroup
-description: Stack multiple avatars in a group.
+description: Stack multiple avatars in a group with overlap and truncation.
 ---
 
 import AvatarGroupDemo from "../../../../components/docs/AvatarGroupDemo.vue";
 
-<span style="display:inline-flex;margin-bottom:16px;padding:1px 8px;border-radius:9999px;font-size:11px;font-weight:500;background:#FFFBEB;color:#D97706;">Pending</span>
+<span style="display:inline-flex;margin-bottom:16px;padding:1px 8px;border-radius:9999px;font-size:11px;font-weight:500;background:#DCFCE7;color:#15803D;">Ready</span>
 
-An avatar group stacks multiple avatars with overlapping spacing. Mizu uses Nuxt UI's `UAvatarGroup` to wrap `UAvatar` children with consistent overlap and truncation.
+An avatar group stacks multiple avatars with overlapping spacing and a `+N` overflow indicator. Mizu uses Nuxt UI's `UAvatarGroup` to wrap `UAvatar` children with consistent overlap and truncation.
 
-## Examples
+## Demo
 
 <AvatarGroupDemo client:only="vue" />
 
@@ -21,47 +21,16 @@ Reference: [Nuxt UI AvatarGroup](https://ui.nuxt.com/docs/components/avatar-grou
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `size` | `'3xs' \| '2xs' \| 'xs' \| 'sm' \| 'md' \| 'lg' \| 'xl' \| '2xl' \| '3xl'` | `'md'` | Size for all avatars in the group |
-| `color` | `'primary' \| 'secondary' \| 'success' \| 'info' \| 'warning' \| 'error' \| 'neutral'` | `'neutral'` | Color for all avatars (v4.8+) |
-| `max` | `string \| number` | — | Maximum visible avatars; extras show as `+N` |
+| `size` | `'3xs' \| '2xs' \| 'xs' \| 'sm' \| 'md' \| 'lg' \| 'xl' \| '2xl' \| '3xl'` | `'md'` | Size applied to all child avatars (overrides individual avatar `size`) |
+| `color` | `'primary' \| 'secondary' \| 'success' \| 'info' \| 'warning' \| 'error' \| 'neutral'` | `'neutral'` | Fallback color for child avatars without images (v4.8+). Individual avatars can override |
+| `max` | `string \| number` | — | Maximum visible avatars. Excess avatars collapse into a `+N` indicator |
+| `ui` | `{ root?: SlotClass }` | — | Override slot classes per-slot |
 
 ### Slots
 
-| Slot | Props | Description |
-|------|-------|-------------|
-| `default` | — | Wrap `UAvatar` children inside the group |
-
-### Example Usage
-
-```vue
-<!-- Default group -->
-<UAvatarGroup>
-  <UAvatar src="https://i.pravatar.cc/80?img=1" alt="User 1" />
-  <UAvatar src="https://i.pravatar.cc/80?img=2" alt="User 2" />
-  <UAvatar src="https://i.pravatar.cc/80?img=3" alt="User 3" />
-</UAvatarGroup>
-
-<!-- Sized group -->
-<UAvatarGroup size="lg">
-  <UAvatar src="..." alt="User 1" />
-  <UAvatar src="..." alt="User 2" />
-</UAvatarGroup>
-
-<!-- Truncated group -->
-<UAvatarGroup :max="3">
-  <UAvatar src="..." alt="User 1" />
-  <UAvatar src="..." alt="User 2" />
-  <UAvatar src="..." alt="User 3" />
-  <UAvatar src="..." alt="User 4" />
-  <UAvatar src="..." alt="User 5" />
-</UAvatarGroup>
-```
-
-## Theme
-
-Nuxt UI v4 avatar group defaults are already consistent with the Mizu design scale. No overrides are needed.
-
-Default: `size="md"`, `color="neutral"`.
+| Slot | Description |
+|------|-------------|
+| `default` | Wrap `UAvatar` children inside the group |
 
 ## Anatomy
 
@@ -70,12 +39,130 @@ An avatar group is a single container:
 | Part | Required | Description |
 |------|----------|-------------|
 | Root | Yes | `<div>` with flex layout and negative margin overlap |
+| Overflow | No | Rendered when `max` is set and the child count exceeds it. Shows `+N` for the remaining count |
 
 Each child `<UAvatar>` is stacked with `-ms-N` margin for overlapping. When `max` is set, a `+N` overflow avatar is rendered automatically.
 
+## Size Specifications
+
+| Size | Dimension (px) | Use Case |
+|------|----------------|----------|
+| `3xs` | 16 | Compact lists, dense tables |
+| `2xs` | 20 | Inline with text |
+| `xs` | 24 | Small buttons, mentions |
+| `sm` | 28 | Toolbar items, comments |
+| `md` | 32 | **Default** — most surfaces |
+| `lg` | 36 | Profile headers |
+| `xl` | 40 | Card headers |
+| `2xl` | 44 | Profile pages |
+| `3xl` | 48 | Hero sections |
+
+The group's `size` prop cascades to all child avatars. Individual avatars can override the group size with their own `size` prop.
+
+## Color Specifications
+
+The `color` prop applies the same tint rules as `UAvatar` (see [Avatar](./avatar#color-specifications)) to every child avatar that doesn't have an image. It's useful for groups where all members have auto-generated initials (e.g. team placeholders).
+
+| Color | Background | Text |
+|-------|------------|------|
+| `neutral` (default) | `bg-elevated` | `text-muted` |
+| `primary` | `bg-primary/10` | `text-primary` |
+| `secondary` | `bg-secondary/10` | `text-secondary` |
+| `success` | `bg-success/10` | `text-success` |
+| `info` | `bg-info/10` | `text-info` |
+| `warning` | `bg-warning/10` | `text-warning` |
+| `error` | `bg-error/10` | `text-error` |
+
+## Composition
+
+Avatar groups are built from `UAvatar` children. Each child can independently use src/text/icon/chip/color — the group only sets the default size and fallback color. For per-avatar APIs, see [Avatar](./avatar).
+
+## Accessibility
+
+### Requirements
+
+| Criterion | Implementation |
+|-----------|----------------|
+| Group context | The group root is a plain `<div>`. Screen readers announce each child avatar's `alt` sequentially |
+| Overflow indicator | The `+N` avatar should convey who is omitted from the visible group. Pass an `alt` like `"User 4"` or `"3 more users"` on the overflow slot if your use case needs screen-reader access |
+| Individual alts | Every child `<UAvatar>` should carry its own `alt` for accessible identification |
+
+### ARIA Attributes
+
+```html
+<div>
+  <span role="img" aria-label="John Doe"><img src="..." alt="John Doe" /></span>
+  <span role="img" aria-label="Jane Smith"><img src="..." alt="Jane Smith" /></span>
+  <span>+3</span>
+</div>
+```
+
+## Token Mapping
+
+### CSS Custom Properties
+
+| Token | Value | Usage |
+|-------|-------|-------|
+| `--color-primary` | #001C44 | Primary fallback tint |
+| `--color-secondary` | — | Secondary fallback tint |
+| `--color-success` | — | Success fallback tint |
+| `--color-info` | — | Info fallback tint |
+| `--color-warning` | — | Warning fallback tint |
+| `--color-error` | — | Error fallback tint |
+| `--color-elevated` | #FFFFFF | Neutral fallback background |
+
+## Example Usage
+
+```vue
+<!-- Default group -->
+<UAvatarGroup>
+  <UAvatar src="https://i.pravatar.cc/120?img=1" alt="User 1" />
+  <UAvatar src="https://i.pravatar.cc/120?img=2" alt="User 2" />
+  <UAvatar src="https://i.pravatar.cc/120?img=3" alt="User 3" />
+</UAvatarGroup>
+
+<!-- Sized group -->
+<UAvatarGroup size="lg">
+  <UAvatar src="https://i.pravatar.cc/120?img=1" alt="User 1" />
+  <UAvatar src="https://i.pravatar.cc/120?img=2" alt="User 2" />
+  <UAvatar src="https://i.pravatar.cc/120?img=3" alt="User 3" />
+</UAvatarGroup>
+
+<!-- Truncated group -->
+<UAvatarGroup :max="3">
+  <UAvatar src="https://i.pravatar.cc/120?img=1" alt="User 1" />
+  <UAvatar src="https://i.pravatar.cc/120?img=2" alt="User 2" />
+  <UAvatar src="https://i.pravatar.cc/120?img=3" alt="User 3" />
+  <UAvatar src="https://i.pravatar.cc/120?img=4" alt="User 4" />
+  <UAvatar src="https://i.pravatar.cc/120?img=5" alt="User 5" />
+</UAvatarGroup>
+
+<!-- Color override -->
+<UAvatarGroup color="primary">
+  <UAvatar alt="User 1" />
+  <UAvatar alt="User 2" />
+  <UAvatar alt="User 3" />
+</UAvatarGroup>
+
+<!-- Mixed fallback types -->
+<UAvatarGroup>
+  <UAvatar src="https://i.pravatar.cc/120?img=1" alt="User 1" />
+  <UAvatar text="JS" alt="Jane Smith" />
+  <UAvatar icon="i-lucide-user-plus" alt="Add user" />
+</UAvatarGroup>
+
+<!-- With status chips -->
+<UAvatarGroup>
+  <UAvatar src="..." alt="User 1" chip-color="success" />
+  <UAvatar src="..." alt="User 2" chip-color="warning" chip-position="top-right" />
+  <UAvatar src="..." alt="User 3" />
+</UAvatarGroup>
+```
+
 ## Implementation Notes
 
-1. **Use `<UAvatarGroup>` directly** — No Mizu wrapper needed.
-2. **Size propagates** — The `size` prop on `UAvatarGroup` applies to all child avatars automatically.
-3. **Truncation** — Use `max` to limit visible avatars and show a count of remaining members.
-4. **Color inheritance** — The `color` prop on the group acts as a default for all child avatars (v4.8+). Individual avatars can override it.
+1. **Use `<UAvatarGroup>` directly** — No Mizu wrapper needed. Apply the theme preset and Nuxt UI handles the overlap and overflow indicator.
+2. **Size cascades** — The `size` prop on `UAvatarGroup` applies to all child avatars. Individual avatars can override it with their own `size` prop.
+3. **Color affects fallback only** — `color` tints the fallback (text/icon) background and text. Avatars with `src` use the image and ignore the color.
+4. **Truncation** — Set `max` to limit visible avatars. The overflow indicator shows the count of remaining children but renders as a `UAvatar` placeholder (no image, color-tinted, with the `+N` text).
+5. **Per-avatar props work** — Each child `<UAvatar>` can independently use `src`, `text`, `icon`, `chip`, and `color`. The group only sets the defaults.

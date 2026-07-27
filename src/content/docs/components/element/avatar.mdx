@@ -1,15 +1,15 @@
 ---
 title: Avatar
-description: A user image with fallback for initials or placeholder.
+description: A user image with fallback for initials, icon, or placeholder.
 ---
 
 import AvatarDemo from "../../../../components/docs/AvatarDemo.vue";
 
-<span style="display:inline-flex;margin-bottom:16px;padding:1px 8px;border-radius:9999px;font-size:11px;font-weight:500;background:#FFFBEB;color:#D97706;">Pending</span>
+<span style="display:inline-flex;margin-bottom:16px;padding:1px 8px;border-radius:9999px;font-size:11px;font-weight:500;background:#DCFCE7;color:#15803D;">Ready</span>
 
-An avatar displays a user's photo, initials, or a placeholder. Mizu uses Nuxt UI's `UAvatar` with the default size scale (3xs-3xl).
+An avatar displays a user's photo, initials, or placeholder. Mizu uses Nuxt UI's `UAvatar` with the default size scale (3xs-3xl) and color tokens.
 
-## Examples
+## Demo
 
 <AvatarDemo client:only="vue" />
 
@@ -21,52 +21,165 @@ Reference: [Nuxt UI Avatar](https://ui.nuxt.com/docs/components/avatar)
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
+| `src` | `string` | — | Image source URL |
+| `alt` | `string` | — | Alt text for the image. Used to generate initials when no image is available |
+| `icon` | `string` (Iconify) | — | Fallback icon when no image is available (e.g. `'i-lucide-user'`) |
+| `text` | `string` | — | Fallback text (overrides auto-generated initials) |
 | `size` | `'3xs' \| '2xs' \| 'xs' \| 'sm' \| 'md' \| 'lg' \| 'xl' \| '2xl' \| '3xl'` | `'md'` | Avatar size |
-| `src` | `string` | "” | Image source URL |
-| `alt` | `string` | "” | Alt text for the image. Used to generate initials when no image is available |
-| `text` | `string` | "” | Fallback text (overrides auto-generated initials) |
-| `icon` | `string` (Iconify) | "” | Fallback icon when no image is available |
-| `loading` | `boolean` | `false` | Show a loading skeleton while the image loads |
+| `color` | `'primary' \| 'secondary' \| 'success' \| 'info' \| 'warning' \| 'error' \| 'neutral'` | `'neutral'` | Color used for the fallback background and text |
+| `chip` | `boolean \| ChipProps` | `false` | Show a status indicator chip on the avatar. Pass an object to customize color and position |
+| `chipColor` | `'primary' \| 'secondary' \| 'success' \| 'info' \| 'warning' \| 'error' \| 'neutral'` | — | Shortcut to set the chip's color without passing a `chip` object |
+| `chipPosition` | `'top-right' \| 'top-left' \| 'bottom-right' \| 'bottom-left'` | `'bottom-right'` | Position of the chip |
+| `loading` | `'lazy' \| 'eager'` | `'lazy'` | Lazy-load behavior for the image (`loading="lazy"` vs `loading="eager"`) |
+| `as` | `any` (HTMLElement or component) | `'span'` | Element or component the avatar root should render as |
 
 ### Slots
 
-| Slot | Props | Description |
-|------|-------|-------------|
-| `default` | "” | Default slot (overrides image, text, and icon) |
+| Slot | Description |
+|------|-------------|
+| `default` | Custom content (overrides image, text, and icon) |
 
-### Example Usage
+### Events
 
-```vue
-<UAvatar src="https://i.pravatar.cc/80" alt="John Doe" />
-
-<UAvatar alt="Jane Smith" text="JS" />
-
-<UAvatar size="lg" icon="i-ph-user" />
-
-<UAvatar :src="url" alt="User">
-  <UIcon name="i-ph-user" />
-</UAvatar>
-```
-
-## Theme
-
-Nuxt UI v4 avatar defaults are already consistent with the Mizu design scale. The granular sizes (3xs-3xl, from 4px to 12px radius) match Mizu's icon and component sizing. No overrides are needed.
-
-Default: `size="md"` (32px), `color="neutral"`.
+| Event | Payload | Description |
+|-------|---------|-------------|
+| `@load` | — | Emitted when the image successfully loads |
 
 ## Anatomy
 
-An avatar is a single element:
+An avatar is a single root element:
 
 | Part | Required | Description |
 |------|----------|-------------|
 | Root | Yes | `<span>` with border-radius, overflow hidden, and background color |
 
-When an image is provided, it renders an `<img>` inside. Otherwise, it shows fallback text or an icon.
+When an image is provided, an `<img>` is rendered inside the root. Otherwise, the root shows the fallback text, icon, or default slot content.
+
+## Composition
+
+For stacking multiple avatars with overlap and truncation, see [AvatarGroup](./avatar-group).
+
+## Size Specifications
+
+| Size | Dimension (px) | Tailwind token | Use Case |
+|------|----------------|----------------|----------|
+| `3xs` | 16 | `size-4` | Compact lists, dense tables |
+| `2xs` | 20 | `size-5` | Inline with text, chips |
+| `xs` | 24 | `size-6` | Small buttons, mentions |
+| `sm` | 28 | `size-7` | Toolbar items, comments |
+| `md` | 32 | `size-8` | **Default** — most surfaces |
+| `lg` | 36 | `size-9` | Profile headers |
+| `xl` | 40 | `size-10` | Card headers |
+| `2xl` | 44 | `size-11` | Profile pages |
+| `3xl` | 48 | `size-12` | Hero sections, large profiles |
+
+All sizes share the same `rounded-full` shape and `overflow-hidden` clipping.
+
+## Color Specifications
+
+| State | Background | Text |
+|-------|------------|------|
+| `neutral` (default) | `bg-elevated` (#FFFFFF surface on default mode) | `text-muted` |
+| `primary` | `bg-primary/10` (#001C44 at 10% opacity) | `text-primary` (#001C44) |
+| `secondary` | `bg-secondary/10` | `text-secondary` |
+| `success` | `bg-success/10` | `text-success` |
+| `info` | `bg-info/10` | `text-info` |
+| `warning` | `bg-warning/10` | `text-warning` |
+| `error` | `bg-error/10` | `text-error` |
+
+The color tint applies to the fallback (text/icon) state only — when an image is provided via `src`, the image fills the avatar and the color is unused.
+
+## Transitions
+
+| Property | Duration | Easing |
+|----------|----------|--------|
+| Background color | `duration-normal` (200ms) | `ease-out` |
+| Image opacity (load) | `duration-normal` (200ms) | `ease-out` |
+
+## Accessibility
+
+### Requirements
+
+| Criterion | Implementation |
+|-----------|----------------|
+| Alt text required | Always pass `alt` when using `src`. Without it, the image is treated as decorative and screen readers ignore it |
+| Decorative avatars | If the avatar is purely decorative, omit `alt` (or pass an empty string). Combine with surrounding context like the user's name in adjacent text |
+| Meaningful fallback | When no image is available, ensure the fallback (initials or icon) is meaningful — initials derived from `alt` give screen-reader users the same identity information |
+| Status chips | A `chip` is decorative; the surrounding text should convey online/offline status if it matters |
+
+### ARIA Attributes
+
+```html
+<span role="img" aria-label="John Doe">
+  <img src="https://example.com/avatar.jpg" alt="John Doe" />
+</span>
+```
+
+## Token Mapping
+
+### CSS Custom Properties
+
+| Token | Value | Usage |
+|-------|-------|-------|
+| `--color-primary` | #001C44 | Primary tint background and text |
+| `--color-secondary` | — | Secondary tint background and text |
+| `--color-success` | — | Success tint background and text |
+| `--color-info` | — | Info tint background and text |
+| `--color-warning` | — | Warning tint background and text |
+| `--color-error` | — | Error tint background and text |
+| `--color-elevated` | #FFFFFF | Neutral fallback background |
+
+## Example Usage
+
+```vue
+<!-- Image -->
+<UAvatar src="https://i.pravatar.cc/120" alt="John Doe" />
+
+<!-- Initials (auto-generated from alt) -->
+<UAvatar alt="John Doe" />
+
+<!-- Initials (explicit text) -->
+<UAvatar text="JD" alt="John Doe" />
+
+<!-- Icon fallback -->
+<UAvatar icon="i-lucide-user" alt="User" />
+
+<!-- Sized -->
+<UAvatar size="lg" src="https://i.pravatar.cc/120" alt="User" />
+
+<!-- Colored fallback -->
+<UAvatar text="PR" color="primary" alt="Primary" />
+
+<!-- Status chip -->
+<UAvatar src="..." alt="User" chip />
+<UAvatar src="..." alt="User" chip-color="success" />
+<UAvatar src="..." alt="User" :chip="{ color: 'warning', position: 'top-right' }" />
+
+<!-- Custom shape via mask -->
+<UAvatar
+  src="https://i.pravatar.cc/120"
+  alt="User"
+  :ui="{
+    root: {
+      maskImage: 'url(\'data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\"><path d=\"M50 0C25 0 0 25 0 50c0 25 25 50 50 50s50-25 50-50C100 25 75 0 50 0z\"/></svg>\')',
+      maskRepeat: 'no-repeat',
+      maskPosition: 'center',
+      maskSize: '100% 100%'
+    }
+  }"
+/>
+
+<!-- Custom slot -->
+<UAvatar alt="User">
+  <UIcon name="i-lucide-user" />
+</UAvatar>
+```
 
 ## Implementation Notes
 
-1. **Use `<UAvatar>` directly** "” No Mizu wrapper needed.
-2. **Automatic initials** "” When `alt` is provided without `text` or `src`, Nuxt UI auto-generates initials from the alt text.
-3. **Avatar groups** "” Use multiple `<UAvatar>` elements with negative margin stacking (`-ms-2`) for group layouts.
-4. **Loading state** "” Set `loading` to `true` to show a skeleton placeholder while images load.
+1. **Use `<UAvatar>` directly** — No Mizu wrapper needed. Apply the theme preset and Nuxt UI handles the rest.
+2. **Automatic initials** — When `alt` is provided without `text` or `src`, Nuxt UI auto-generates initials from the alt text (e.g. `"John Doe"` → `"JD"`).
+3. **Color only affects fallback** — The `color` prop applies to the text/icon fallback only. When `src` is set, the image fills the avatar and color is unused.
+4. **Avatar groups** — For stacking multiple avatars with overlap and a `+N` overflow indicator, wrap them in `<UAvatarGroup>`. See [AvatarGroup](./avatar-group).
+5. **Lazy vs eager loading** — `loading="lazy"` (default) defers offscreen images; use `loading="eager"` for above-the-fold avatars to avoid layout shift.
+6. **Custom shape** — The root slot accepts any CSS — combine `mask-image` with an inline SVG data URI for non-circular shapes (squircle, hex, etc.) without an extra wrapper element.
