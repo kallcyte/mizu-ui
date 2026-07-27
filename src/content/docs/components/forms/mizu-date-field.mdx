@@ -5,8 +5,8 @@ description: A custom date input with formatted display labels.
 
 import MizuDateFieldDemo from "../../../../components/docs/MizuDateFieldDemo.vue";
 
-<span style="display:inline-flex;margin-bottom:16px;padding:1px 8px;border-radius:9999px;font-size:11px;font-weight:500;background:#FFFBEB;color:#D97706;">
-  New
+<span style="display:inline-flex;margin-bottom:16px;padding:1px 8px;border-radius:9999px;font-size:11px;font-weight:500;background:#DCFCE7;color:#15803D;">
+  Ready
 </span>
 
 A custom date input that combines a formatted trigger with a [`UPopover`](/docs/components/overlay/popover) + [`UCalendar`](/docs/components/element/calendar) popup. Unlike [`UInputDate`](/docs/components/forms/input-date), which renders numeric segments (month/day/year), `MizuDateField` shows a text label in any format you choose.
@@ -120,3 +120,4 @@ Use the `format` prop for full control over `Intl.DateTimeFormatOptions`:
 2. **Popup** — Uses `UPopover` internally with a `UCalendar` for date selection. Click outside or select a date to close.
 3. **Size** — The trigger button matches the Mizu input size scale (`sm=28px`, `md=36px`, `lg=40px`) and reuses Nuxt UI's border ring (`ring-accented`) and hover/focus states.
 4. **Integration** — Since the value type is `CalendarDate`, you can share the same ref between `MizuDateField`, `UInputDate`, and `UCalendar` interchangeably.
+5. **Range styling** — When `range` is enabled, the inner `UCalendar` renders with the same continuous-band range selection styling as the standalone `UCalendar`. Selected cells form a single band with rounded ends, no gaps between days, and a hover preview while the user is still picking the end date.

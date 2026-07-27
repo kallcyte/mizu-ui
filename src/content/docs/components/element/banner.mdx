@@ -9,11 +9,82 @@ import BannerDemo from "../../../../components/docs/BannerDemo.vue";
 
 A banner displays a prominent announcement at the top of the page, ideal for important messages, alerts, or calls to action. Mizu uses Nuxt UI's `UBanner` with dismiss persistence and action support.
 
-## Examples
+## Demo
 
 <BannerDemo client:only="vue" />
 
-## API
+## Anatomy
+
+A banner consists of a single horizontal bar:
+
+| Part | Required | Description |
+|------|----------|-------------|
+| Root | Yes | `<div>` container spanning full width |
+| Left | No | Leading slot + icon |
+| Center | Yes | Title text or slot |
+| Right | No | Actions + close button |
+
+## Color Specifications
+
+| Color | Mizu Token | Hex | Nuxt UI Mapping |
+|-------|------------|-----|-----------------|
+| `primary` | `--color-brand-primary` | `#0070F2` | primary |
+| `secondary` | `--color-brand-ycp` | `#001C44` | secondary |
+| `success` | `--color-feedback-success-base` | `#15803D` | success |
+| `info` | `--color-feedback-info-base` | `#0284C7` | info |
+| `warning` | `--color-feedback-warning-base` | `#D97706` | warning |
+| `error` | `--color-feedback-error-base` | `#DC2626` | error |
+| `neutral` | `--color-surface-muted` | `#F3F4F6` | elevated |
+
+Each color renders the banner background at full saturation with inverted (`text-inverted`) text by default. The banner uses the softest available tint so it sits at the top of the page without dominating the content underneath.
+
+## Transitions
+
+| Property | Duration | Easing |
+|----------|----------|--------|
+| Visibility (close) | `duration-fast` (150ms) | `ease-out` |
+| Color (hover/active) | `duration-fast` (150ms) | `ease-out` |
+
+## Accessibility
+
+### Requirements
+
+| Criterion | Implementation |
+|-----------|----------------|
+| Color is not the only signal | Always pair a colored banner with a leading `icon` or descriptive `title`. Users with color blindness need a non-color cue |
+| Dismissal persistence | When `close` is set, also provide an `id` prop so the dismiss state persists across page reloads via `localStorage` |
+| Keyboard dismissal | The close button is rendered through `<UButton>` and inherits its keyboard activation (`Enter` / `Space`) |
+| Touch target | The close button meets the 44×44 minimum touch target via `<UButton>` defaults |
+| Link semantics | When `to` is set, the banner is wrapped in `<ULink>` with `aria-label` set to `title`, exposing a single accessible name for the whole bar |
+
+### ARIA Attributes
+
+```html
+<div role="region" aria-label="Announcement">
+  <UBanner
+    id="welcome-banner"
+    title="Welcome to Mizu!"
+    close
+  />
+</div>
+```
+
+## Token Mapping
+
+### CSS Custom Properties
+
+| Token | Value | Usage |
+|-------|-------|-------|
+| `--color-brand-primary` | `#0070F2` | `color="primary"` background |
+| `--color-brand-ycp` | `#001C44` | `color="secondary"` background |
+| `--color-feedback-success-base` | `#15803D` | `color="success"` background |
+| `--color-feedback-info-base` | `#0284C7` | `color="info"` background |
+| `--color-feedback-warning-base` | `#D97706` | `color="warning"` background |
+| `--color-feedback-error-base` | `#DC2626` | `color="error"` background |
+| `--color-surface-muted` | `#F3F4F6` | `color="neutral"` background |
+| `--font-family-sans` | DM Sans | Banner title and actions |
+
+## Vue Component API
 
 Reference: [Nuxt UI Banner](https://ui.nuxt.com/docs/components/banner)
 
@@ -21,11 +92,12 @@ Reference: [Nuxt UI Banner](https://ui.nuxt.com/docs/components/banner)
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `id` | `string` | — | Unique ID for localStorage dismiss persistence |
+| `as` | `any` (HTMLElement or component) | `'div'` | Element or component the banner root should render as |
+| `id` | `string` | — | Unique ID for `localStorage` dismiss persistence |
 | `icon` | `string` (Iconify) | — | Icon displayed next to the title |
 | `title` | `string` | — | Banner message text |
-| `actions` | `ButtonProps[]` | — | Array of action button configs |
-| `to` | `string` | — | Makes the banner a clickable link (NuxtLink) |
+| `actions` | `ButtonProps[]` | — | Array of action button configs (default `color="neutral"`, `size="xs"`) |
+| `to` | `string` | — | Makes the banner a clickable link (`<ULink>`) |
 | `target` | `'_blank' \| '_parent' \| '_self' \| '_top'` | — | Link target when `to` is set |
 | `color` | `'primary' \| 'secondary' \| 'success' \| 'info' \| 'warning' \| 'error' \| 'neutral'` | `'primary'` | Semantic color |
 | `close` | `boolean \| ButtonProps` | — | Show a dismiss close button |
@@ -35,10 +107,16 @@ Reference: [Nuxt UI Banner](https://ui.nuxt.com/docs/components/banner)
 
 | Slot | Props | Description |
 |------|-------|-------------|
-| `leading` | — | Custom leading content (before icon) |
+| `leading` | `{ ui }` | Custom leading content (overrides `icon`) |
 | `title` | — | Custom title content (overrides `title` prop) |
 | `actions` | — | Custom actions content (overrides `actions` prop) |
-| `close` | — | Custom close button content |
+| `close` | — | Custom close button content (overrides `close` button) |
+
+### Events
+
+| Event | Payload | Description |
+|-------|---------|-------------|
+| `close` | — | Emitted when the user dismisses the banner via the close button. If `id` is set, the dismiss state is also written to `localStorage` |
 
 ### Example Usage
 
@@ -74,47 +152,16 @@ Reference: [Nuxt UI Banner](https://ui.nuxt.com/docs/components/banner)
 <UBanner
   to="https://example.com"
   target="_blank"
-  title="Learn more about the new release →"
+  title="Learn more about the new release"
   color="primary"
 />
 ```
 
-## Theme
-
-Mizu applies its design tokens to Nuxt UI's banner via `@mizu/vue/theme`:
-
-```ts
-// app.config.ts
-import { mizuTheme } from "@mizu/vue/theme";
-export default defineAppConfig({ ui: mizuTheme });
-```
-
-### Color Map
-
-| Mizu Token | Nuxt UI Color |
-|------------|---------------|
-| `--color-brand-primary` | `primary` |
-| `--color-brand-ycp` | `secondary` |
-| `--color-feedback-success-base` | `success` |
-| `--color-feedback-error-base` | `error` |
-| `--color-feedback-warning-base` | `warning` |
-| `--color-feedback-info-base` | `info` |
-
-## Anatomy
-
-A banner consists of a single horizontal bar:
-
-| Part | Required | Description |
-|------|----------|-------------|
-| Root | Yes | `<div>` container spanning full width |
-| Left | No | Leading slot + icon |
-| Center | Yes | Title text or slot |
-| Right | No | Actions + close button |
-
 ## Implementation Notes
 
-1. **Use `<UBanner>` directly** — No Mizu wrapper needed. Apply the theme preset.
+1. **Use `<UBanner>` directly** — No Mizu wrapper needed. Apply the `mizuTheme` preset in `app.config.ts` and Nuxt UI handles the rest.
 2. **Dismiss persistence** — Always provide an `id` prop when using `close`. The dismiss state is saved to `localStorage` under `banner-{id}`. Without an `id`, the banner reappears on page reload.
-3. **Action buttons** — Actions default to `color="neutral"` and `size="xs"`. Pass custom `ButtonProps` to override.
-4. **Link behavior** — When `to` is set, the entire banner becomes clickable and navigates to the given URL. Use with `target="_blank"` for external links.
-5. **Placement** — The banner renders inline where placed. For a full-width top banner, place it at the top of your layout, outside the main content container.
+3. **`useHead` requires app context** — `<UBanner>` calls `useHead()` internally to inject a pre-hydrate script that hides the banner before paint if it was previously dismissed. In Astro/Starlight demos mounted with `client:only="vue"`, this throws unless a `createHead()` instance is provided on the demo's `appContext.provides['usehead']`. `BannerDemo.vue` ships this wiring inline.
+4. **Action buttons** — Actions default to `color="neutral"` and `size="xs"`. Pass custom `ButtonProps` to override.
+5. **Link behavior** — When `to` is set, the entire banner becomes clickable and navigates to the given URL. Use with `target="_blank"` for external links.
+6. **Placement** — The banner renders inline where placed. For a full-width top banner, place it at the top of your layout, outside the main content container.

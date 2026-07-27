@@ -1,5 +1,17 @@
 <script setup lang="ts">
+import { getCurrentInstance } from "vue";
+import { createHead } from "@unhead/vue/client";
 import CodeCollapsible from "./CodeCollapsible.vue";
+
+// Provide unhead context so UBanner's useHead() resolves when this
+// demo runs inside a `client:only="vue"` Astro island.
+const head = createHead();
+const instance = getCurrentInstance();
+if (instance) {
+  instance.appContext.provides["usehead"] = head;
+  instance.appContext.config.globalProperties.$head = head;
+  instance.appContext.config.globalProperties.$unhead = head;
+}
 </script>
 
 <template>
@@ -44,10 +56,10 @@ import CodeCollapsible from "./CodeCollapsible.vue";
 
     <section class="example-section">
       <h3>Closable</h3>
-      <p class="demo-description">Add a dismiss button with the <code>close</code> prop so users can hide the banner.</p>
-      <CodeCollapsible :code="`<UBanner id=&quot;demo&quot; title=&quot;This is a closable banner.&quot; close />`">
+      <p class="demo-description">Add a dismiss button with the <code>close</code> prop so users can hide the banner. Without an <code>id</code>, the close is session-only; add an <code>id</code> to persist the dismiss state in <code>localStorage</code>.</p>
+      <CodeCollapsible :code="`<UBanner title=&quot;This is a closable banner. Click the X to dismiss.&quot; close />`">
         <div class="demo-row demo-row--block">
-          <UBanner id="demo-close" title="This is a closable banner. Click the X to dismiss." close />
+          <UBanner title="This is a closable banner. Click the X to dismiss." close />
         </div>
       </CodeCollapsible>
     </section>
@@ -100,7 +112,7 @@ import CodeCollapsible from "./CodeCollapsible.vue";
   all: revert;
   font-size: 14px;
   font-weight: 600;
-  color: var(--sl-color-text);
+  color: inherit;
   margin: 0;
 }
 .demo-description {

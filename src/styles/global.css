@@ -84,3 +84,55 @@ body {
 .sl-container main {
   font-size: 15px;
 }
+
+/* ---------------------------------------------------------------------------
+ * Calendar range band
+ *
+ * Style UCalendar range selection as a continuous band with rounded ends
+ * instead of separate circular pills. Applies globally so any UCalendar
+ * usage — including the MizuDateField popover rendered to <body> via
+ * Reka UI portal — inherits the styling.
+ *
+ * - The grid rows are `display: grid; grid-template-columns: repeat(7, ...)`
+ *   with `place-items: center`, so <td>s shrink to content by default. To
+ *   make them fill their column we force `justify-items: stretch` on the
+ *   row in range mode, then paint each <td> via its cellTrigger child.
+ * - `data-selection-start` / `data-selection-end` only exist on
+ *   RangeCalendarCellTrigger, never on single CalendarCellTrigger, so
+ *   `:has([data-selection-start])` safely gates range-mode styling.
+ * - Hover preview (`data-highlighted`) is dimmed via opacity so the actual
+ *   selection stands out.
+ * ------------------------------------------------------------------------- */
+[data-slot="grid"]:has([data-selection-start]) [data-slot="gridRow"] {
+  justify-items: stretch !important;
+  align-items: stretch !important;
+}
+[data-slot="grid"]:has([data-selection-start]) [data-slot="cell"] {
+  width: 100% !important;
+}
+/* Selected (and highlighted-preview) triggers: fill the <td> edge-to-edge,
+   no inset margin so adjacent selected cells meet seamlessly. */
+[data-slot="grid"]:has([data-selection-start]) [data-slot="cellTrigger"][data-selected],
+[data-slot="grid"]:has([data-highlighted-start]) [data-slot="cellTrigger"][data-highlighted]:not([data-selected]) {
+  margin-inline: 0 !important;
+  width: 100% !important;
+  max-width: none !important;
+  min-width: 0 !important;
+  border-radius: 0 !important;
+}
+/* Round only the left edge on range start (and highlighted preview start) */
+[data-slot="grid"]:has([data-selection-start]) [data-slot="cellTrigger"][data-selection-start],
+[data-slot="grid"]:has([data-highlighted-start]) [data-slot="cellTrigger"][data-highlighted-start]:not([data-selected]) {
+  border-top-left-radius: 9999px !important;
+  border-bottom-left-radius: 9999px !important;
+}
+/* Round only the right edge on range end (and highlighted preview end) */
+[data-slot="grid"]:has([data-selection-start]) [data-slot="cellTrigger"][data-selection-end],
+[data-slot="grid"]:has([data-highlighted-start]) [data-slot="cellTrigger"][data-highlighted-end]:not([data-selected]) {
+  border-top-right-radius: 9999px !important;
+  border-bottom-right-radius: 9999px !important;
+}
+/* Hover preview (highlighted) range: subdued color so the actual selection stands out. */
+[data-slot="grid"]:has([data-highlighted-start]) [data-slot="cellTrigger"][data-highlighted]:not([data-selected]) {
+  opacity: 0.35;
+}

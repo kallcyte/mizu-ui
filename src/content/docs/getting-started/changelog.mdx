@@ -16,6 +16,18 @@ This project follows **semantic versioning** (SemVer) during pre-1.0 development
 Changes that require a minor bump: adding a new component, renaming tokens, changing component APIs, adding new packages (e.g. React).
 Changes that keep the patch version: renames, copy edits, styling tweaks, build config changes, favicon updates.
 
+## 0.18.29 (2026-07-27)
+
+### Docs
+
+- **MizuDateField docs — Ready** — Marked the MizuDateField documentation page as Ready (green badge). Added Implementation Note #5 documenting that the inner `UCalendar` inherits the same continuous-band range selection styling as the standalone `UCalendar` (selected cells form a single band with rounded ends, no gaps between days, hover preview while picking the end date).
+- **Calendar range band — moved to global stylesheet** — The range-band CSS that was previously scoped to the Calendar demo (`CalendarDemo.vue`) was promoted to `src/styles/global.css` so every `UCalendar` usage inherits it, including the `MizuDateField` popover which is rendered to `<body>` via Reka UI's portal (a scoped selector wouldn't reach it). The selectors and architecture comments are unchanged; only the location moved.
+- **Calendar demo — scoped CSS cleanup** — Removed the duplicated range-band CSS block from `CalendarDemo.vue` now that it lives globally. The single `:deep()` ruleset that remains handles demo-specific tweaks only.
+- **Banner demo — `useHead` context for `client:only` islands** — `UBanner` internally calls `useHead()` to inject a pre-hydrate script that hides the banner before paint if it was previously dismissed. In Astro/Starlight demos mounted with `client:only="vue"`, that throw triggers because there's no unhead context in the demo's `appContext`. `BannerDemo.vue` now creates a `createHead()` instance and registers it on `appContext.provides['usehead']` plus `globalProperties.$head` / `$unhead` so `UBanner`'s `useHead()` resolves cleanly. Also pinned the matching `@unhead/vue` and `@unhead/vue/client` aliases in `astro.config.mjs` (vite resolve.alias) to the package pnpm resolved, since the @unhead peer resolution diverges between the Astro and the Vue package builds.
+- **Banner demo — Closable section copy** — Updated the description to explain that `close` without an `id` is session-only; persisting the dismiss state in `localStorage` requires an `id`. Removed the previous demo's stale `id="demo-close"` from the rendered snippet so the live example matches the code block.
+- **Banner demo — scoped style fix** — Replaced `color: var(--sl-color-text)` with `color: inherit` on `.example-section h3` so the section heading doesn't override text color of nested slot content (same fix as the Card demo).
+- **Banner docs — full rewrite** — Rewrote `src/content/docs/components/element/banner.mdx` against the Mizu standard template: frontmatter + intro, `## Demo`, `## Anatomy` (Root / Left / Center / Right table), `## Color Specifications` (7-color table mapping Mizu tokens to Nuxt UI color names with hexes), `## Transitions`, `## Accessibility` (criteria + ARIA snippet), `## Token Mapping` (CSS vars), expanded `## Vue Component API` (added `as` prop; documented default `color="neutral"` + `size="xs"` for action buttons; documented `close` button using `<UButton>`; documented `to` using `<ULink>`; added `### Events` table for `close`; added Implementation Notes 3 and 6 about `useHead` context and full-width placement), trimmed the redundant `## Theme` and `## API` sections.
+
 ## 0.18.28 (2026-07-27)
 
 ### Docs

@@ -26,6 +26,8 @@ export default defineConfig({
     resolve: {
       alias: {
         "@": "/src",
+        "@unhead/vue/client": "/node_modules/.pnpm/@unhead+vue@2.1.15_vue@3.5.39_typescript@5.9.3_/node_modules/@unhead/vue/dist/client.mjs",
+        "@unhead/vue": "/node_modules/.pnpm/@unhead+vue@2.1.15_vue@3.5.39_typescript@5.9.3_/node_modules/@unhead/vue/dist/index.mjs",
       },
     },
   },
