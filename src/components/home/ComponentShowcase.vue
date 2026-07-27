@@ -41,13 +41,14 @@ const components = [
     <div class="comp-showcase">
       <!-- Alert -->
       <div class="comp-preview-card group">
-        <div class="comp-preview-area">
+        <div class="comp-preview-area w-full text-left">
           <UAlert
             title="Heads up!"
             description="Used for inline feedback."
             color="primary"
             variant="subtle"
             icon="i-lucide-info"
+            class="w-full"
           />
         </div>
         <div class="comp-preview-meta">
@@ -70,7 +71,7 @@ const components = [
       <!-- Avatar -->
       <div class="comp-preview-card group">
         <div class="comp-preview-area">
-          <div class="flex -space-x-2">
+          <div class="centered flex -space-x-2">
             <UAvatar src="https://i.pravatar.cc/64?img=1" alt="User 1" class="ring-2 ring-surface-base" />
             <UAvatar src="https://i.pravatar.cc/64?img=2" alt="User 2" class="ring-2 ring-surface-base" />
             <UAvatar src="https://i.pravatar.cc/64?img=3" alt="User 3" class="ring-2 ring-surface-base" />
@@ -89,7 +90,7 @@ const components = [
       <!-- Badge -->
       <div class="comp-preview-card group">
         <div class="comp-preview-area">
-          <div class="flex gap-2 flex-wrap">
+          <div class="centered flex gap-2 flex-wrap">
             <UBadge color="primary">New</UBadge>
             <UBadge color="success" variant="subtle">Active</UBadge>
             <UBadge color="warning" variant="soft">Pending</UBadge>
@@ -107,18 +108,17 @@ const components = [
 
       <!-- Banner -->
       <div class="comp-preview-card group">
-        <div class="comp-preview-area">
-          <div class="w-full">
-            <UAlert
-              v-if="bannerVisible"
-              title="Scheduled maintenance Sunday at 02:00 UTC."
-              icon="i-lucide-megaphone"
-              color="neutral"
-              variant="outline"
-              close
-              @update:open="bannerVisible = false"
-            />
-          </div>
+        <div class="comp-preview-area w-full">
+          <UAlert
+            v-if="bannerVisible"
+            title="Scheduled maintenance Sunday at 02:00 UTC."
+            icon="i-lucide-megaphone"
+            color="neutral"
+            variant="outline"
+            close
+            class="w-full"
+            @update:open="bannerVisible = false"
+          />
         </div>
         <div class="comp-preview-meta">
           <div class="comp-preview-meta-top">
@@ -132,7 +132,7 @@ const components = [
       <!-- Button -->
       <div class="comp-preview-card group">
         <div class="comp-preview-area">
-          <div class="flex flex-wrap gap-2 items-center justify-center">
+          <div class="centered flex flex-wrap gap-2 items-center justify-center">
             <UButton color="primary" size="sm">Save</UButton>
             <UButton color="neutral" variant="outline" size="sm">Cancel</UButton>
             <UButton icon="i-lucide-plus" size="sm" />
@@ -150,8 +150,8 @@ const components = [
 
       <!-- Card -->
       <div class="comp-preview-card group">
-        <div class="comp-preview-area">
-          <UCard variant="outline" class="w-full max-w-[220px] text-left">
+        <div class="comp-preview-area w-full">
+          <UCard variant="outline" class="w-full text-left">
             <template #header>
               <div class="flex items-center gap-2">
                 <UIcon name="i-lucide-folder" class="size-4 text-brand-primary" />
@@ -179,8 +179,8 @@ const components = [
 
       <!-- Checkbox -->
       <div class="comp-preview-card group">
-        <div class="comp-preview-area">
-          <div class="flex flex-col gap-2 text-left text-[13px]">
+        <div class="comp-preview-area text-left">
+          <div class="flex flex-col gap-2 text-[13px]">
             <UCheckbox v-model="todoA" label="Design tokens" />
             <UCheckbox v-model="todoB" label="Component docs" />
             <UCheckbox v-model="todoC" label="Release notes" />
@@ -198,7 +198,7 @@ const components = [
       <!-- Chip -->
       <div class="comp-preview-card group">
         <div class="comp-preview-area">
-          <div class="flex items-center gap-4">
+          <div class="centered flex items-center gap-4">
             <UChip color="primary" text="3">
               <UButton icon="i-lucide-mail" color="neutral" variant="subtle" />
             </UChip>
@@ -221,8 +221,8 @@ const components = [
 
       <!-- Input -->
       <div class="comp-preview-card group">
-        <div class="comp-preview-area">
-          <div class="w-full max-w-[220px] text-left">
+        <div class="comp-preview-area w-full">
+          <div class="w-full">
             <UInput model-value="hello@mizu-ui.com" icon="i-lucide-mail" placeholder="Email" />
             <p class="text-[11px] text-foreground-secondary mt-2 m-0">Standalone text input.</p>
           </div>
@@ -238,9 +238,11 @@ const components = [
 
       <!-- Progress -->
       <div class="comp-preview-card group">
-        <div class="comp-preview-area w-full max-w-[220px]">
-          <UProgress :value="65" color="primary" />
-          <UProgress :value="40" color="success" status />
+        <div class="comp-preview-area w-full">
+          <div class="w-full flex flex-col gap-2 items-center">
+            <UProgress :value="65" color="primary" />
+            <UProgress :value="40" color="success" status />
+          </div>
         </div>
         <div class="comp-preview-meta">
           <div class="comp-preview-meta-top">
@@ -255,6 +257,7 @@ const components = [
       <div class="comp-preview-card group">
         <div class="comp-preview-area">
           <URadioGroup
+            class="centered"
             model-value="primary"
             :items="[
               { label: 'Primary', value: 'primary' },
@@ -275,7 +278,7 @@ const components = [
 
       <!-- Tabs -->
       <div class="comp-preview-card group">
-        <div class="comp-preview-area">
+        <div class="comp-preview-area w-full">
           <UTabs
             v-model="selectedTab"
             :items="[
@@ -283,6 +286,7 @@ const components = [
               { label: 'Activity', value: 'tab2' },
               { label: 'Settings', value: 'tab3' },
             ]"
+            class="w-full"
           />
         </div>
         <div class="comp-preview-meta">
@@ -296,12 +300,13 @@ const components = [
 
       <!-- Accordion -->
       <div class="comp-preview-card group">
-        <div class="comp-preview-area w-full max-w-[220px]">
+        <div class="comp-preview-area w-full">
           <UAccordion
             :items="[
               { label: 'What is Mizu?', content: 'A design system layer on top of Nuxt UI.' },
               { label: 'How do I install it?', content: 'pnpm add @mizu/vue' },
             ]"
+            class="w-full"
           />
         </div>
         <div class="comp-preview-meta">
@@ -315,8 +320,8 @@ const components = [
 
       <!-- Switch -->
       <div class="comp-preview-card group">
-        <div class="comp-preview-area">
-          <div class="flex flex-col gap-3 text-left text-[13px]">
+        <div class="comp-preview-area text-left">
+          <div class="flex flex-col gap-3 text-[13px]">
             <USwitch v-model="switchValue" label="Wi-Fi" />
             <USwitch model-value label="Bluetooth" />
           </div>
@@ -332,8 +337,8 @@ const components = [
 
       <!-- Slider -->
       <div class="comp-preview-card group">
-        <div class="comp-preview-area w-full max-w-[220px]">
-          <USlider :model-value="40" />
+        <div class="comp-preview-area w-full">
+          <USlider :model-value="40" class="w-full" />
         </div>
         <div class="comp-preview-meta">
           <div class="comp-preview-meta-top">
@@ -348,7 +353,7 @@ const components = [
       <div class="comp-preview-card group">
         <div class="comp-preview-area">
           <UTooltip text="Copied to clipboard">
-            <UButton icon="i-lucide-copy" variant="outline" />
+            <UButton icon="i-lucide-copy" variant="outline" class="centered" />
           </UTooltip>
         </div>
         <div class="comp-preview-meta">
@@ -362,15 +367,16 @@ const components = [
 
       <!-- Toast -->
       <div class="comp-preview-card group">
-        <div class="comp-preview-area w-full max-w-[220px] text-left">
+        <div class="comp-preview-area w-full text-left">
           <UAlert
             v-if="toastOpen"
             title="Saved"
             description="Your changes were saved."
             color="success"
             variant="subtle"
-            icon="i-lucide-check-circle"
+            icon="i-lucide-close"
             close
+            class="w-full"
             @update:open="toastOpen = false"
           />
         </div>
@@ -385,8 +391,8 @@ const components = [
 
       <!-- Skeleton -->
       <div class="comp-preview-card group">
-        <div class="comp-preview-area w-full max-w-[220px]">
-          <div class="flex flex-col gap-2">
+        <div class="comp-preview-area w-full">
+          <div class="w-full flex flex-col gap-2">
             <USkeleton class="h-3 w-full" />
             <USkeleton class="h-3 w-full" />
             <USkeleton class="h-3 w-3/5" />
@@ -404,7 +410,7 @@ const components = [
       <!-- InputRating -->
       <div class="comp-preview-card group">
         <div class="comp-preview-area">
-          <UInputRating v-model="rating" />
+          <UInputRating v-model="rating" class="centered" />
         </div>
         <div class="comp-preview-meta">
           <div class="comp-preview-meta-top">
@@ -418,7 +424,7 @@ const components = [
       <!-- Modal -->
       <div class="comp-preview-card group">
         <div class="comp-preview-area">
-          <UButton color="error" variant="outline" size="sm" @click="modalOpen = true">Delete</UButton>
+          <UButton color="error" variant="outline" size="sm" class="centered" @click="modalOpen = true">Delete</UButton>
         </div>
         <div class="comp-preview-meta">
           <div class="comp-preview-meta-top">
@@ -453,7 +459,8 @@ const components = [
   width: 100%;
   border-radius: 14px;
   border: 1px solid var(--color-surface-muted, #E5E7EB);
-  background: var(--color-surface-base, #FFFFFF);
+  background: #FFFFFF;
+  color: #111827;
   transition:
     transform var(--duration-fast, 150ms) ease,
     box-shadow var(--duration-fast, 150ms) ease,
@@ -468,13 +475,19 @@ const components = [
 
 .comp-preview-area {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   width: 100%;
   min-height: 140px;
   padding: 18px;
-  background: var(--color-surface-subtle, #F9FAFB);
-  border-bottom: 1px solid var(--color-surface-muted, #E5E7EB);
+  background: #FFFFFF;
+  border-bottom: 1px solid #E5E7EB;
+  color: #111827;
+}
+
+.comp-preview-area > .w-full {
+  width: 100%;
 }
 
 .comp-preview-meta {
@@ -484,6 +497,8 @@ const components = [
   width: 100%;
   padding: 12px 14px 14px;
   text-align: left;
+  color: #111827;
+  margin-top: auto;
 }
 
 .comp-preview-meta-top {
@@ -498,13 +513,13 @@ const components = [
   margin: 0;
   font-size: 14px;
   font-weight: 600;
-  color: var(--sl-color-white, #111827);
+  color: #111827;
 }
 
 .comp-preview-meta p {
   margin: 0;
   font-size: 12px;
-  color: var(--sl-color-text-light, #6B7280);
+  color: #6B7280;
   line-height: 1.4;
 }
 
