@@ -5,7 +5,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/anomalyco/mizu-ui.git"
+    "url": "git+https://github.com/kallcyte/mizu-ui.git"
   },
   "publishConfig": {
     "access": "public"

@@ -6,57 +6,47 @@ on:
 
 permissions:
   contents: write
+  pull-requests: write
+  id-token: write # required for npm OIDC Trusted Publishing
+
+concurrency: ${{ github.workflow }}-${{ github.ref }}
 
 jobs:
   release:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # full history so changesets can detect all changes
 
       - uses: pnpm/action-setup@v4
-        with:
-          version: 11
+        # version omitted on purpose — resolved from the "packageManager"
+        # field in root package.json; verify that field is set correctly
 
       - uses: actions/setup-node@v4
         with:
-          node-version: 22
+          node-version: 22 # bump to 24+ if you rely on npm v11 OIDC locally too
           cache: pnpm
+          registry-url: https://registry.npmjs.org
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
+      - name: Lint & test
+        run: |
+          pnpm -r lint
+          pnpm -r test
+
       - name: Build all packages
         run: pnpm -r build
 
-      - name: Authenticate with npm
-        run: echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > ~/.npmrc
-
-      - name: Publish @mizu/tokens to npm
-        run: pnpm --filter @mizu/tokens publish --access public --no-git-checks 2>/dev/null || true
-
-      - name: Publish @mizu/vue to npm
-        run: pnpm --filter @mizu/vue publish --access public --no-git-checks 2>/dev/null || true
-
-      - name: Get version from @mizu/vue
-        id: version
-        run: |
-          VERSION=$(node -p "require('./packages/vue/package.json').version")
-          echo "version=$VERSION" >> $GITHUB_OUTPUT
-          echo "tag=v$VERSION" >> $GITHUB_OUTPUT
-
-      - name: Check if release already exists
-        id: check
-        run: |
-          if gh release view "v${{ steps.version.outputs.version }}" > /dev/null 2>&1; then
-            echo "exists=true" >> $GITHUB_OUTPUT
-          else
-            echo "exists=false" >> $GITHUB_OUTPUT
-          fi
+      - name: Create Release Pull Request or Publish
+        id: changesets
+        uses: changesets/action@v1
+        with:
+          publish: pnpm changeset publish
+          version: pnpm changeset version
+          title: "chore: version packages"
+          commit: "chore: version packages"
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Create GitHub Release
-        if: steps.check.outputs.exists == 'false'
-        run: gh release create "v${{ steps.version.outputs.version }}" --title "v${{ steps.version.outputs.version }}" --generate-notes
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
