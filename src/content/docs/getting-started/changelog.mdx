@@ -16,6 +16,14 @@ This project follows **semantic versioning** (SemVer) during pre-1.0 development
 Changes that require a minor bump: adding a new component, renaming tokens, changing component APIs, adding new packages (e.g. React).
 Changes that keep the patch version: renames, copy edits, styling tweaks, build config changes, favicon updates.
 
+## 0.18.24 (2026-07-27)
+
+### Docs
+
+- **Calendar docs — Ready** — Marked the Calendar documentation page as Ready (green badge).
+- **Calendar demo — range styling fix** — Range selection now renders as a continuous band with rounded ends instead of separate circular pills. The grid `<tr>` is forced to `justify-items: stretch` so each `<td>` fills its `1/7` column, then selected/highlighted `cellTrigger`s drop the `m-0.5` margin and stretch to 100% width; only the `[data-selection-start]` and `[data-selection-end]` triggers keep asymmetric border radii, and hover preview (`[data-highlighted]`) is dimmed via `opacity` so the actual selection stands out. Selectors use `[data-slot="grid"]` (Reka UI's `RangeCalendarGrid` sets `role="application"`, not `"grid"`), gated by `:has([data-selection-start])` so single-select calendars are untouched.
+- **Calendar demo — TS fix** — Replaced broken `as DateValue` casts on `controlledDate.subtract/add` with `as CalendarDate` to satisfy TS narrowing in the `Controlled Date` example.
+
 ## 0.18.23 (2026-07-24)
 
 ### Docs

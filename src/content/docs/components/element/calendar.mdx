@@ -5,7 +5,7 @@ description: A calendar component for selecting single dates, multiple dates or 
 
 import CalendarDemo from "../../../../components/docs/CalendarDemo.vue";
 
-<span style="display:inline-flex;margin-bottom:16px;padding:1px 8px;border-radius:9999px;font-size:11px;font-weight:500;background:#FFFBEB;color:#D97706;">Pending</span>
+<span style="display:inline-flex;margin-bottom:16px;padding:1px 8px;border-radius:9999px;font-size:11px;font-weight:500;background:#DCFCE7;color:#15803D;">Ready</span>
 
 A calendar component for selecting dates. Supports single dates, multiple dates, and date ranges with month and year views. Mizu uses Nuxt UI's `UCalendar` with the `@internationalized/date` package for locale-aware formatting.
 
@@ -22,30 +22,45 @@ Reference: [Nuxt UI Calendar](https://ui.nuxt.com/docs/components/calendar)
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `modelValue` | `CalendarDate \| CalendarDateTime \| ZonedDateTime \| DateRange \| DateValue[]` | — | Selected date(s) |
+| `defaultValue` | `CalendarDate \| CalendarDateTime \| ZonedDateTime \| DateRange \| DateValue[]` | — | Initial value (uncontrolled) |
+| `placeholder` | `DateValue` | — | The focused month/year when `modelValue` is empty |
+| `defaultPlaceholder` | `DateValue` | — | Initial placeholder (uncontrolled) |
 | `type` | `'date' \| 'month' \| 'year'` | `'date'` | Picker type — date, month, or year |
 | `range` | `boolean` | `false` | Enable date range selection |
 | `multiple` | `boolean` | `false` | Enable multiple date selection |
 | `color` | `'primary' \| 'secondary' \| 'success' \| 'info' \| 'warning' \| 'error' \| 'neutral'` | `'primary'` | Accent color for selected dates |
-| `variant` | `'solid' \| 'outline' \| 'soft' \| 'subtle'` | — | Visual variant for selected dates |
+| `variant` | `'solid' \| 'outline' \| 'soft' \| 'subtle'` | `'solid'` | Visual variant for selected dates |
 | `size` | `'xs' \| 'sm' \| 'md' \| 'lg' \| 'xl'` | `'md'` | Calendar size |
 | `numberOfMonths` | `number` | `1` | Number of months displayed |
-| `weekStartsOn` | `0 \| 1 \| 2 \| 3 \| 4 \| 5 \| 6` | — | Day the week starts on (0 = Sunday) |
+| `weekStartsOn` | `0 \| 1 \| 2 \| 3 \| 4 \| 5 \| 6` | `0` | Day the week starts on (0 = Sunday) |
 | `weekdayFormat` | `'narrow' \| 'short' \| 'long'` | `'short'` | Format for weekday labels |
 | `fixedWeeks` | `boolean` | `true` | Always show 6 weeks in the grid |
 | `weekNumbers` | `boolean` | `false` | Show ISO week numbers (v4.4+) |
 | `disabled` | `boolean` | `false` | Disable the entire calendar |
 | `readonly` | `boolean` | `false` | Make the calendar read-only |
-| `minValue` | `CalendarDate \| CalendarDateTime \| ZonedDateTime` | — | Minimum selectable date |
-| `maxValue` | `CalendarDate \| CalendarDateTime \| ZonedDateTime` | — | Maximum selectable date |
+| `minValue` | `DateValue` | — | Minimum selectable date |
+| `maxValue` | `DateValue` | — | Maximum selectable date |
 | `locale` | `string` | — | Locale for formatting (e.g., `'en-US'`) |
 | `isDateDisabled` | `Matcher` | — | Function to disable specific dates |
 | `isDateUnavailable` | `Matcher` | — | Function to mark dates as unavailable |
 | `isDateHighlightable` | `Matcher` | — | Function to highlight specific dates |
+| `isMonthDisabled` | `Matcher` | — | Function to disable months (month/year picker) |
+| `isMonthUnavailable` | `Matcher` | — | Function to mark months as unavailable |
+| `isYearDisabled` | `Matcher` | — | Function to disable years (year picker) |
+| `isYearUnavailable` | `Matcher` | — | Function to mark years as unavailable |
 | `monthControls` | `boolean` | `true` | Show previous/next month buttons |
 | `yearControls` | `boolean` | `true` | Show previous/next year buttons |
-| `viewControl` | `boolean \| ButtonProps` | `true` | Heading toggles between day/month/year views (v4.9+) |
-| `prevMonth` / `nextMonth` | `ButtonProps` | — | Override previous/next month button config |
-| `prevYear` / `nextYear` | `ButtonProps` | — | Override previous/next year button config |
+| `viewControl` | `boolean \| Omit<ButtonProps, LinkPropsKeys>` | `true` | Heading toggles between day/month/year views (v4.9+) |
+| `prevMonthIcon` | `string` | `appConfig.ui.icons.chevronLeft` | Icon for the previous month button |
+| `nextMonthIcon` | `string` | `appConfig.ui.icons.chevronRight` | Icon for the next month button |
+| `prevYearIcon` | `string` | `appConfig.ui.icons.chevronDoubleLeft` | Icon for the previous year button |
+| `nextYearIcon` | `string` | `appConfig.ui.icons.chevronDoubleRight` | Icon for the next year button |
+| `prevMonth` | `Omit<ButtonProps, LinkPropsKeys>` | — | Override previous month button config |
+| `nextMonth` | `Omit<ButtonProps, LinkPropsKeys>` | — | Override next month button config |
+| `prevYear` | `Omit<ButtonProps, LinkPropsKeys>` | — | Override previous year button config |
+| `nextYear` | `Omit<ButtonProps, LinkPropsKeys>` | — | Override next year button config |
+| `prevPage` | `(placeholder: DateValue) => DateValue` | — | Custom handler for previous-page button |
+| `nextPage` | `(placeholder: DateValue) => DateValue` | — | Custom handler for next-page button |
 | `initialFocus` | `boolean` | `false` | Focus the selected/today date on mount |
 | `preventDeselect` | `boolean` | `false` | Prevent deselecting the only selected date |
 | `allowNonContiguousRanges` | `boolean` | `false` | Allow ranges that include unavailable dates |
@@ -53,40 +68,56 @@ Reference: [Nuxt UI Calendar](https://ui.nuxt.com/docs/components/calendar)
 | `maximumDays` | `number` | — | Max days in a range selection |
 | `fixedDate` | `'start' \| 'end'` | — | Fixed part of a range |
 | `disableDaysOutsideCurrentView` | `boolean` | `false` | Disable days from adjacent months |
-| `isMonthDisabled` | `Matcher` | — | Function to disable months (month/year picker) |
-| `isMonthUnavailable` | `Matcher` | — | Function to mark months as unavailable |
-| `isYearDisabled` | `Matcher` | — | Function to disable years (year picker) |
-| `isYearUnavailable` | `Matcher` | — | Function to mark years as unavailable |
+| `as` | `any` | `'div'` | Root element to render |
+| `ui` | `Partial<{ root: string, header: string, body: string, heading: string, headingLabel: string, grid: string, gridRow: string, gridWeekDaysRow: string, gridBody: string, headCell: string, headCellWeek: string, cell: string, cellTrigger: string, cellWeek: string }>` | — | Slot class overrides |
+
+### Events
+
+| Event | Payload | Description |
+|-------|---------|-------------|
+| `update:modelValue` | `CalendarModelValue<R, M>` | Emitted when the selection changes |
+| `update:placeholder` | `[date: DateValue]` | Emitted when the focused placeholder changes |
+| `update:startValue` | `[date: DateValue \| undefined]` | Emitted when the range start changes |
+| `update:validModelValue` | `[date: DateRange]` | Emitted when a fully valid range is committed |
 
 ### Slots
 
 | Slot | Props | Description |
 |------|-------|-------------|
-| `heading` | — | Custom calendar heading |
-| `day` | — | Custom day cell content |
-| `week-day` | — | Custom weekday header cell |
-| `month-cell` | — | Custom month cell (month picker) |
-| `year-cell` | — | Custom year cell (year picker) |
+| `heading` | `{ value: string; view: CalendarView; date: DateValue; setView: (view: CalendarView) => void; setPlaceholder: (date: DateValue) => void; }` | Custom calendar heading |
+| `day` | `Pick<CalendarCellTriggerProps, "day">` | Custom day cell content |
+| `week-day` | `{ day: string }` | Custom weekday header cell |
+| `month-cell` | `{ month: DateValue; selected: boolean; disabled: boolean }` | Custom month cell (month picker) |
+| `year-cell` | `{ year: DateValue; selected: boolean; disabled: boolean }` | Custom year cell (year picker) |
 
 ### Example Usage
 
 ```vue
 <script setup lang="ts">
+import { ref, shallowRef } from "vue";
 import { CalendarDate } from "@internationalized/date";
 
-const value = shallowRef(new CalendarDate(2022, 2, 3));
+const value = shallowRef(new CalendarDate(2025, 4, 15));
+const rangeValue = shallowRef({
+  start: new CalendarDate(2025, 4, 1),
+  end: new CalendarDate(2025, 4, 7),
+});
 </script>
 
 <template>
+  <!-- Single date -->
   <UCalendar v-model="value" />
 
-  <UCalendar type="month" v-model="value" />
-
-  <UCalendar type="year" v-model="value" />
-
+  <!-- Range -->
   <UCalendar range v-model="rangeValue" />
 
-  <UCalendar multiple v-model="multipleValue" />
+  <!-- Date picker in a popover -->
+  <UPopover>
+    <UButton color="neutral" variant="subtle" icon="i-lucide-calendar" :label="format(value)" />
+    <template #content>
+      <UCalendar v-model="value" class="p-2" />
+    </template>
+  </UPopover>
 </template>
 ```
 
@@ -99,6 +130,39 @@ Mizu applies its design tokens to Nuxt UI's calendar via `@mizu/vue/theme`:
 import { mizuTheme } from "@mizu/vue/theme";
 export default defineAppConfig({ ui: mizuTheme });
 ```
+
+### Slot Map
+
+| Slot | Class |
+|------|-------|
+| `root` | — |
+| `header` | `flex items-center justify-between` |
+| `body` | `flex flex-col space-y-4 pt-4 sm:flex-row sm:space-x-4 sm:space-y-0` |
+| `heading` | `flex-1 min-w-0 text-center` |
+| `headingLabel` | `font-medium block truncate p-1.5` |
+| `grid` | `w-full border-collapse select-none space-y-1 focus:outline-none` |
+| `gridRow` | `flex` |
+| `gridWeekDaysRow` | `flex` |
+| `gridBody` | `flex flex-col` |
+| `headCell` | `flex-1 text-center` |
+| `headCellWeek` | `flex-1 text-center` |
+| `cell` | `flex-1 text-center` |
+| `cellTrigger` | `mizu-calendar-cell-trigger` |
+| `cellWeek` | `flex-1 text-center` |
+
+### Variants
+
+| Group | Options |
+|-------|---------|
+| `color` | `primary`, `secondary`, `success`, `info`, `warning`, `error`, `neutral` |
+| `variant` | `solid`, `outline`, `soft`, `subtle` |
+| `size` | `xs`, `sm`, `md`, `lg`, `xl` |
+| `view` | `day`, `month`, `year` |
+| `weekNumbers` | `false` (default), `true` |
+
+### Defaults
+
+`size: 'md'` · `color: 'primary'` · `variant: 'solid'` · `view: 'day'` · `weekNumbers: false`
 
 ### Color Map
 
@@ -113,19 +177,24 @@ export default defineAppConfig({ ui: mizuTheme });
 
 ## Anatomy
 
-A calendar consists of several sections:
+A calendar is composed of a header and a body. The body changes based on the active view:
 
 | Part | Required | Description |
 |------|----------|-------------|
-| Header | Yes | Navigation with previous/next buttons and heading |
-| Grid | Yes | Day/month/year grid with selectable cells |
-| Weekday Row | Yes (date) | "Sun Mon Tue ..." labels |
-| Cell Trigger | Yes | Clickable button per day/month/year cell |
+| Header | Yes | Navigation buttons + heading |
+| Body — Day view | Yes (date type) | Weekday row + day grid |
+| Body — Month view | Yes (month type) | 3×4 month grid |
+| Body — Year view | Yes (year type) | 3×4 year grid |
+| Grid Cell Trigger | Yes | Clickable button per day/month/year cell |
+| Week Number Cell | No | ISO week number column (when `weekNumbers` is true) |
 
 ## Implementation Notes
 
 1. **Use `<UCalendar>` directly** — No Mizu wrapper needed. Apply the theme preset.
-2. **Date library** — Uses `@internationalized/date`. Import `CalendarDate`, `CalendarDateTime`, or `ZonedDateTime` for typed models.
-3. **v-model binding** — Use `shallowRef` for single dates, `ref` for reactive objects when using `range` or `multiple`.
-4. **Type switching** — With `type="date"` (default), clicking the heading switches to month then year views for quick navigation. Use `viewControl` to configure or disable this behavior.
-5. **Range constraints** — Combine `minValue`, `maxValue`, `isDateDisabled`, and `isDateUnavailable` for fine-grained date restrictions.
+2. **Date library** — Uses `@internationalized/date`. Import `CalendarDate`, `CalendarDateTime`, `HebrewCalendar`, `getLocalTimeZone`, `today`, `DateFormatter` for typed models and locale helpers.
+3. **`shallowRef` vs `ref`** — Use `shallowRef` for `CalendarDate` instances (immutable) and reactive arrays/objects (`{start, end}` or `DateValue[]`) since the values are class instances and reassigning them is the typical update path.
+4. **Type switching** — With `type="date"` (default), clicking the heading switches to month then year views for quick navigation. Use `viewControl` to configure or disable this behavior (also accepts a `ButtonProps` override for styling).
+5. **Range constraints** — Combine `minValue`, `maxValue`, `isDateDisabled`, and `isDateUnavailable` for fine-grained date restrictions. The matchers receive a `DateValue` and return a boolean.
+6. **External controls** — Mutate the `v-model` `CalendarDate` with `.add({ months: 1 })` / `.subtract({ months: 1 })` to drive the calendar from external Prev/Next buttons. Cast to `DateValue` since `.add` returns `Mutable<DateValue>`.
+7. **Calendar systems** — Pass any `@internationalized/date` calendar (e.g. `HebrewCalendar`) as the first constructor arg of `CalendarDate` to render alternative systems. The `locale` prop still controls label formatting.
+8. **Popover composition** — Wrap the calendar in `<UPopover>` with `<template #content>` containing the calendar. Pair with a `UButton` (e.g. `color="neutral"` `variant="subtle"` `icon="i-lucide-calendar"`) to build compact date pickers.
