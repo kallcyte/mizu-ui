@@ -30,7 +30,7 @@ Missing Nuxt UI core components to document, prioritized by category.
 | 2l | **FileUpload** | `file-upload` | Ready |
 | 2m | **PinInput** | `pin-input` | Ready |
 
-## 3. Element (8) [5 Ready, 3 Pending]
+## 3. Element (8) [6 Ready, 2 Pending]
 
 | # | Component | Nuxt UI Slug | Status |
 |---|-----------|-------------|--------|
@@ -41,7 +41,7 @@ Missing Nuxt UI core components to document, prioritized by category.
 | 3e | **Chip** | `chip` | Ready |
 | 3f | **AvatarGroup** | `avatar-group` | Ready |
 | 3g | **Calendar** | `calendar` | Ready |
-| 3h | **Banner** | `banner` | Pending |
+| 3h | **Banner** | `banner` | Ready |
 
 ## 4. Navigation (5) [2 Ready, 3 Pending]
 
@@ -108,4 +108,4 @@ For each component:
 
 ---
 
-**Total: 52 components (21 Ready, 31 Pending)**
+**Total: 52 components (22 Ready, 30 Pending)**
