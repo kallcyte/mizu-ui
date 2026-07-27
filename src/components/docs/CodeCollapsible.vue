@@ -1,3 +1,19 @@
+<script lang="ts">
+import { createHighlighter } from "shiki/bundle/web";
+
+let highlighterPromise: Promise<any> | null = null;
+
+function getHighlighter() {
+  if (!highlighterPromise) {
+    highlighterPromise = createHighlighter({
+      themes: ["github-dark", "github-light"],
+      langs: ["html"],
+    });
+  }
+  return highlighterPromise;
+}
+</script>
+
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted, watch } from "vue";
 
@@ -14,22 +30,9 @@ function escapeHtml(text: string) {
   return text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
 }
 
-let highlighter: any = null;
-
-async function getHighlighter() {
-  if (!highlighter) {
-    const { createHighlighter } = await import("shiki/bundle/web");
-    highlighter = await createHighlighter({
-      themes: ["github-dark", "github-light"],
-      langs: ["html"],
-    });
-  }
-  return highlighter;
-}
-
 async function highlightCode(code: string) {
   try {
-    await getHighlighter();
+    const highlighter = await getHighlighter();
     highlightedHtml.value = highlighter.codeToHtml(code.trim(), {
       lang: "html",
       theme: currentTheme.value === "dark" ? "github-dark" : "github-light",

@@ -16,6 +16,15 @@ This project follows **semantic versioning** (SemVer) during pre-1.0 development
 Changes that require a minor bump: adding a new component, renaming tokens, changing component APIs, adding new packages (e.g. React).
 Changes that keep the patch version: renames, copy edits, styling tweaks, build config changes, favicon updates.
 
+## 0.18.26 (2026-07-27)
+
+### Docs
+
+- **Alert docs — Ready** — Marked the Alert documentation page as Ready (green badge).
+- **Homepage components section — live showcase** — Replaced the 64 static text-link cards on `src/components/home/ComponentsSection.astro` with a live `<ComponentShowcase>` Vue island (rendered `client:only="vue"`). The new section renders 20 working component previews in a responsive grid (Alert, Avatar, Badge, Banner, Button, Card, Checkbox, Chip, Input, Progress, RadioGroup, Tabs, Accordion, Switch, Slider, Tooltip, Toast, Skeleton, InputRating, Modal) — each card shows the live component centered in a tinted preview area, with the component name and a one-line description, plus a `UButton` ("View", `variant="ghost"`, `size="xs"`, trailing `i-lucide-arrow-right`) that links to the docs page. The card itself is no longer a clickable anchor — only the button is. Titles render at full opacity by default, cards are full-width within their grid track, the preview area uses the `surface-subtle` base, and the showcase is wrapped in `TooltipProvider` from `reka-ui` so the `UTooltip` preview can mount without a `UApp` parent.
+- **Skeleton docs — Ready** — Marked the Skeleton documentation page as Ready (green badge); it was the only remaining MDX without a status badge.
+- **CodeCollapsible — Shiki singleton** — The `CodeCollapsible` demo component was creating a new Shiki highlighter per instance (the `let highlighter` was inside `<script setup>` which runs per component instance, so a single page with 10+ code blocks spawned 10+ highlighter instances and triggered the `[Shiki] 10 instances have been created` warning). Moved the highlighter to module scope via a separate `<script>` block so all `<CodeCollapsible>` instances share one cached `createHighlighter()` promise.
+
 ## 0.18.25 (2026-07-27)
 
 ### Docs
