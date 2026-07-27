@@ -54,4 +54,7 @@ jobs:
           title: "chore: version packages"
           commit: "chore: version packages"
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # GitHub blocks using 'GITHUB_TOKEN' as a custom secret name, so
+          # we store the PAT under 'MIZU' and re-expose it as GITHUB_TOKEN
+          # here for the changesets action to consume.
+          GITHUB_TOKEN: ${{ secrets.MIZU }}
