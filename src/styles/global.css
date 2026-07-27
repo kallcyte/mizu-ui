@@ -11,8 +11,8 @@
 @import "./scrollbar.css";
 
 /* Mizu Starlight theme variables (light + dark) — loaded in the starlight layer so they override Starlight defaults */
-@import "@mizu/tokens/starlight.css" layer(starlight);
-@import "@mizu/tokens/dark.css" layer(starlight);
+@import "@mizu-ui/tokens/starlight.css" layer(starlight);
+@import "@mizu-ui/tokens/dark.css" layer(starlight);
 
 /* Critical light-mode overrides — guarantee readable text on light backgrounds */
 :root[data-theme="light"],

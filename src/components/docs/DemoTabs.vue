@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from "vue";
-import { MizuTabsRoot, MizuTabsList, MizuTabsTrigger, MizuTabsContent } from "@mizu/vue";
+import { MizuTabsRoot, MizuTabsList, MizuTabsTrigger, MizuTabsContent } from "@mizu-ui/vue";
 
 const props = defineProps<{
   code: string;

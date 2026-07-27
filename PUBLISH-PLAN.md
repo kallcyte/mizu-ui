@@ -1,8 +1,8 @@
-# Plan: Publish @mizu/vue and @mizu/tokens to npm
+# Plan: Publish @mizu-ui/vue and @mizu-ui/tokens to npm
 
 ## Overview
 
-Set up automated publishing for `@mizu/tokens` and `@mizu/vue` to npmjs.org
+Set up automated publishing for `@mizu-ui/tokens` and `@mizu-ui/vue` to npmjs.org
 using changesets for version management, authenticated via npm's OIDC
 **Trusted Publishing** (no long-lived `NPM_TOKEN` stored in CI).
 
@@ -14,13 +14,13 @@ using changesets for version management, authenticated via npm's OIDC
   (or publish directly as the existing `mizu` user)
 - **One-time manual publish required first:** npm requires a package to
   already exist before you can attach a Trusted Publisher to it. Publish
-  `@mizu/tokens` and `@mizu/vue` once from your local machine
+  `@mizu-ui/tokens` and `@mizu-ui/vue` once from your local machine
   (`npm login` → `npm publish --access public` from each package dir)
   before wiring up CI.
 
 ### 2. Configure Trusted Publishing (per package)
 
-For **each** package (`@mizu/tokens`, `@mizu/vue`) on npmjs.com:
+For **each** package (`@mizu-ui/tokens`, `@mizu-ui/vue`) on npmjs.com:
 - Go to the package's Settings → Trusted Publishing
 - Add a GitHub Actions publisher with:
   - Organization/user + repository (case-sensitive)
@@ -73,13 +73,13 @@ Add `"private": true` and these scripts:
   "access": "public",
   "baseBranch": "master",
   "updateInternalDependencies": "patch",
-  "ignore": ["@mizu/mcp-server"]
+  "ignore": ["@mizu-ui/mcp-server"]
 }
 ```
 
 ### Step 4: Audit each package's package.json
 
-Before the first automated publish, confirm `@mizu/tokens` and `@mizu/vue`
+Before the first automated publish, confirm `@mizu-ui/tokens` and `@mizu-ui/vue`
 each have:
 - `"publishConfig": { "access": "public" }` (belt-and-suspenders alongside
   the changesets config's `access: "public"`)

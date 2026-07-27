@@ -7,7 +7,7 @@
  * @example
  * ```ts
  * // app.config.ts
- * import { mizuTheme } from "@mizu/vue/theme";
+ * import { mizuTheme } from "@mizu-ui/vue/theme";
  * export default defineAppConfig({ ui: mizuTheme });
  * ```
  *

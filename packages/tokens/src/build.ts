@@ -540,7 +540,7 @@ function generateStarlightCss(flat: Map<string, Token>): string {
 }
 
 function main() {
-  console.log("Building @mizu/tokens...");
+  console.log("Building @mizu-ui/tokens...");
 
   const raw = JSON.parse(readFileSync(TOKENS_PATH, "utf-8"));
   const { $schema, description, ...tokenCategories } = raw;

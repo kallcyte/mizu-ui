@@ -35,10 +35,10 @@ jobs:
         run: pnpm lint
 
       - name: Typecheck (Vue)
-        run: pnpm --filter @mizu/vue typecheck
+        run: pnpm --filter @mizu-ui/vue typecheck
 
       - name: Test
-        run: pnpm --filter @mizu/vue test
+        run: pnpm --filter @mizu-ui/vue test
 
       - name: Build Vue
         run: pnpm build:vue

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted, computed, h } from "vue";
-import { MizuDataTable } from "@mizu/vue";
+import { MizuDataTable } from "@mizu-ui/vue";
 import type { ColumnDef } from "@tanstack/vue-table";
 import CodeCollapsible from "./CodeCollapsible.vue";
 

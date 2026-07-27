@@ -1,6 +1,6 @@
 @import "tailwindcss";
-@import "@mizu/tokens/light.css" layer(base);
-/* @import "@mizu/tokens/dark.css" layer(base); -- dark mode postponed */
+@import "@mizu-ui/tokens/light.css" layer(base);
+/* @import "@mizu-ui/tokens/dark.css" layer(base); -- dark mode postponed */
 
 /* Font aliases (same as index.css) */
 @theme {

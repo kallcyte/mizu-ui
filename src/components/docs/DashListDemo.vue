@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { MizuDashList } from "@mizu/vue";
+import { MizuDashList } from "@mizu-ui/vue";
 import CodeCollapsible from "./CodeCollapsible.vue";
 
 const userInfo = [

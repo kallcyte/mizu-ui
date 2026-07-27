@@ -6,26 +6,26 @@ Constraint-based design tokens and multi-framework UI components for building co
 
 - **Tokens** — DTCG-compliant (`tokens.json`) with 13 categories: color, typography, spacing, shadows, and more
 - **Docs site** — Astro 5 + Tailwind CSS v4
-- **Vue components** — `@mizu/vue` built on Reka UI primitives
-- **React components** — `@mizu/react` built on shadcn/ui + ReUI _(future release)_
+- **Vue components** — `@mizu-ui/vue` built on Reka UI primitives
+- **React components** — `@mizu-ui/react` built on shadcn/ui + ReUI _(future release)_
 
 ## Packages
 
-| Package        | Description                                            |
-| -------------- | ------------------------------------------------------ |
-| `@mizu/tokens` | Typed JS/TS exports from `tokens.json`                 |
-| `@mizu/vue`    | Vue 3 component library with Reka UI                   |
-| `@mizu/react`  | React component library with shadcn/ui _(coming soon)_ |
+| Package           | Description                                            |
+| ----------------- | ------------------------------------------------------ |
+| `@mizu-ui/tokens` | Typed JS/TS exports from `tokens.json`                 |
+| `@mizu-ui/vue`    | Vue 3 component library with Reka UI                   |
+| `@mizu-ui/react`  | React component library with shadcn/ui _(coming soon)_ |
 
 ## Quick Start
 
 ```bash
-npm install @mizu/vue
+npm install @mizu-ui/vue
 ```
 
 ```vue
 <script setup>
-import { MizuButton } from "@mizu/vue";
+import { MizuButton } from "@mizu-ui/vue";
 </script>
 
 <template>

@@ -96,11 +96,11 @@ Reference: [Nuxt UI Button](https://ui.nuxt.com/docs/components/button)
 
 ## Theme
 
-Mizu overrides Nuxt UI's button sizing to match the Mizu design spec. Consumers apply the theme via `@mizu/vue/theme`:
+Mizu overrides Nuxt UI's button sizing to match the Mizu design spec. Consumers apply the theme via `@mizu-ui/vue/theme`:
 
 ```ts
 // app.config.ts
-import { mizuTheme } from "@mizu/vue/theme";
+import { mizuTheme } from "@mizu-ui/vue/theme";
 export default defineAppConfig({ ui: mizuTheme });
 ```
 
@@ -163,7 +163,7 @@ With optional leading icon, label, and trailing icon inline.
 ## Implementation Notes
 
 1. **Use `<UButton>` directly** — No Mizu wrapper needed. Apply the theme preset and Nuxt UI handles the rest.
-2. **Mizu sizing is opt-in via theme** — Consumers must import `@mizu/vue/theme` and merge into `app.config.ts`. Without it, Nuxt UI defaults apply.
+2. **Mizu sizing is opt-in via theme** — Consumers must import `@mizu-ui/vue/theme` and merge into `app.config.ts`. Without it, Nuxt UI defaults apply.
 3. **Icon naming** — Uses Iconify format. Mizu's default collection is Phosphor (`i-ph-*`); other collections like Lucide (`i-lucide-*`) and Heroicons (`i-heroicons-*`) work too. See the [Icons guide](/getting-started/icons) for the full reference.
 4. **`leadingIcon` / `trailingIcon`** — The theme preset also overrides icon sizes per button size variant.
 5. **Loading state** — Set `loading` to `true` to show a spinner. The `loadingAuto` prop auto-detects async `@click` handlers.

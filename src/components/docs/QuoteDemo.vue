@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { MizuQuote } from "@mizu/vue";
+import { MizuQuote } from "@mizu-ui/vue";
 import CodeCollapsible from "./CodeCollapsible.vue";
 
 const basicCode = `<MizuQuote>

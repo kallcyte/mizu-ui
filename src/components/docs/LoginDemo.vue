@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from "vue";
-import { MizuSkeleton } from "@mizu/vue";
+import { MizuSkeleton } from "@mizu-ui/vue";
 
 const proofPoints = [
   { value: "500+", label: "local professionals" },

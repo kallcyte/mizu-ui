@@ -7,19 +7,19 @@ disable-model-invocation: false
 ## Development
 
 1. This project follows semantic versioning (SemVer) during pre-1.0 development.
-2. **Always rebuild `@mizu/vue` after adding or modifying components, and at the end of every task** — run `pnpm --filter @mizu/vue build`. If the dist is stale, new components render as `undefined` and pages crash. This is the final verification step before declaring a task complete.
+2. **Always rebuild `@mizu-ui/vue` after adding or modifying components, and at the end of every task** — run `pnpm --filter @mizu-ui/vue build`. If the dist is stale, new components render as `undefined` and pages crash. This is the final verification step before declaring a task complete.
 
    **After the build, restart the docs dev server** so changes are picked up:
 
    ```sh
    pnpm run dev:bg
    ```
-3. **The `packages/vue/src/index.ts` is auto-generated** by `packages/vue/scripts/generate-index.mjs`. It runs automatically before `vite build` in the `@mizu/vue` build pipeline. Just add `.vue` files to `packages/vue/src/components/` and run `pnpm --filter @mizu/vue build` — the exports are generated for you.
+3. **The `packages/vue/src/index.ts` is auto-generated** by `packages/vue/scripts/generate-index.mjs`. It runs automatically before `vite build` in the `@mizu-ui/vue` build pipeline. Just add `.vue` files to `packages/vue/src/components/` and run `pnpm --filter @mizu-ui/vue build` — the exports are generated for you.
 4. When you find gaps or missing conventions in this skill, flag them at the end of the session.
 
 5. **Astro Dev Server** — The docs site (Starlight) can be run in the background for quick visual feedback. Use these commands:
 
-   - `pnpm run dev:bg` — Stops any running dev server, rebuilds `@mizu/vue`, and starts the Astro+Starlight dev server in the background. This is the primary command for previewing docs changes.
+   - `pnpm run dev:bg` — Stops any running dev server, rebuilds `@mizu-ui/vue`, and starts the Astro+Starlight dev server in the background. This is the primary command for previewing docs changes.
 
    - `pnpm run dev:docs` — Runs the Astro dev server in the foreground (useful for debugging errors in real time).
 
@@ -70,7 +70,7 @@ import UComponent from "../components/UComponent.vue";
 </template>
 ```
 
-Run `pnpm --filter @mizu/vue story:dev` to preview stories locally. Use `pnpm --filter @mizu/vue story:build` to verify they compile. Every variant-group should cover the main prop dimensions (variants × sizes × states). Compound components should include one "Composition" variant showing the full hierarchy.
+Run `pnpm --filter @mizu-ui/vue story:dev` to preview stories locally. Use `pnpm --filter @mizu-ui/vue story:build` to verify they compile. Every variant-group should cover the main prop dimensions (variants × sizes × states). Compound components should include one "Composition" variant showing the full hierarchy.
 
 ## Documentation
 
@@ -93,7 +93,7 @@ Run `pnpm --filter @mizu/vue story:dev` to preview stories locally. Use `pnpm --
 - Add the component to the Starlight sidebar under the "Components" group in `astro.config.mjs`.
 - Verify all three stay in sync: sidebar entries, homepage cards, and docs pages. Compare the sidebar component list in `astro.config.mjs` against `src/components/home/ComponentsSection.astro` and `src/content/docs/components/` after every batch.
 
-10. Before documenting a new component, run `pnpm --filter @mizu/vue build` to regenerate `packages/vue/src/index.ts`, then verify every exported component has a corresponding sidebar entry (`astro.config.mjs`), docs page (`src/content/docs/components/`), and homepage card (`src/components/home/ComponentsSection.astro`). The three must always be in sync — a missing homepage card is a documentation bug.
+10. Before documenting a new component, run `pnpm --filter @mizu-ui/vue build` to regenerate `packages/vue/src/index.ts`, then verify every exported component has a corresponding sidebar entry (`astro.config.mjs`), docs page (`src/content/docs/components/`), and homepage card (`src/components/home/ComponentsSection.astro`). The three must always be in sync — a missing homepage card is a documentation bug.
 11. Create a new changelog entry in `src/content/docs/getting-started/changelog.mdx` before committing.
 12. **Bump the patch version** (e.g., `0.12.0` → `0.12.1`) in `packages/vue/package.json` and `package.json` (root) after adding a new component.
 13. After a version bump, update the version number in:
@@ -141,7 +141,7 @@ gh release create v{VERSION} \
 1. **Don't perform repository or release operations without fresh, explicit permission in the user's latest message.** This includes `git commit`, `git push`, creating or pushing tags, package publishing, and creating, updating, or deleting GitHub releases. Permission from an earlier message expires after the requested operation is completed or whenever the user asks for more changes. Preparing a changelog, bumping a version, marking documentation ready, or saying work "looks good" does not authorize any of these operations.
 2. Don't create a new component without my command. A new component should only be created when I specifically request it.
 3. Don't add components to `src/components/home/` (legacy) — put new component demos under `src/components/docs/{Name}Demo.vue`.
-4. Don't edit `packages/vue/src/index.ts` directly — it's auto-generated by `packages/vue/scripts/generate-index.mjs`. Add new `.vue` files to `packages/vue/src/components/` and run `pnpm --filter @mizu/vue build`.
+4. Don't edit `packages/vue/src/index.ts` directly — it's auto-generated by `packages/vue/scripts/generate-index.mjs`. Add new `.vue` files to `packages/vue/src/components/` and run `pnpm --filter @mizu-ui/vue build`.
 5. **Don't let the Starlight sidebar and docs content collection get out of sync.** Every sidebar `slug` in `astro.config.mjs` must resolve to a matching `.mdx` file under `src/content/docs/`, and every `.mdx` file must appear somewhere in the sidebar. A mismatch triggers `AstroUserError: Update the Starlight config to reference a valid entry slug`. The slug format is the file path relative to `src/content/docs/`, minus the `.mdx` extension (e.g., `src/content/docs/components/button.mdx` → `"components/button"`). When adding, renaming, or deleting an `.mdx` file, always update the sidebar in the same commit.
 6. **Don't break syntax when editing** — always verify that edits produce valid syntax before proceeding. JSON files (`package.json`, `tsconfig.json`) are especially fragile: a missing trailing comma, stray quote, or malformed string will break the entire build. After every `edit_file` call on structured files, read the edited region back and confirm the syntax is valid. For version bumps across multiple files, prefer `sed` for simple find-replace to avoid partial edits, then verify all occurrences with `grep`.
 7. **NO RESTART DEV SERVER WITHOUT MY PERMISSION** — never run `pnpm run dev:bg`, `pnpm run dev:docs`, `astro dev`, or kill the dev server process without explicit approval. The dev server is mine to manage.
@@ -246,4 +246,4 @@ Insert any of these between Transitions and Accessibility when relevant:
 - **Tables** for any tabular data (variants, sizes, state maps, props, slots, events, tokens). Avoid prose lists.
 - **No emojis** in tables, headings, or code blocks.
 - **Example blocks** fence with ` ```vue ` for component examples and ` ```html ` for raw ARIA/HTML snippets.
-- **Demo components** must be self-contained and only depend on the published `@mizu/vue` import (no internal src paths).
+- **Demo components** must be self-contained and only depend on the published `@mizu-ui/vue` import (no internal src paths).

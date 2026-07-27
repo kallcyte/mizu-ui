@@ -1,7 +1,7 @@
 import { defineConfig } from "astro/config";
 import tailwindcss from "@tailwindcss/vite";
 import ui from "@nuxt/ui/vite";
-import { mizuTheme } from "@mizu/vue/theme";
+import { mizuTheme } from "@mizu-ui/vue/theme";
 
 import vue from "@astrojs/vue";
 
@@ -35,7 +35,7 @@ export default defineConfig({
     vue(),
     starlight({
       title: "Mizu Design System",
-      customCss: ["./src/styles/global.css", "@mizu/vue/style.css"],
+      customCss: ["./src/styles/global.css", "@mizu-ui/vue/style.css"],
       social: [
         { icon: "github", label: "GitHub", href: "https://github.com/kallcyte/mizu-ui" },
       ],

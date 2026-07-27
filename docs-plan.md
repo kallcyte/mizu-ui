@@ -103,7 +103,7 @@ For each component:
 4. Add to sidebar in `astro.config.mjs`
 5. Add to `src/pages/components.astro`
 6. Add to `src/components/home/ComponentsSection.astro`
-7. Rebuild: `pnpm --filter @mizu/vue build`
+7. Rebuild: `pnpm --filter @mizu-ui/vue build`
 8. Restart docs: `pnpm run dev:bg`
 
 ---

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { MizuSkeleton } from "@mizu/vue";
+import { MizuSkeleton } from "@mizu-ui/vue";
 import CodeCollapsible from "./CodeCollapsible.vue";
 </script>
 

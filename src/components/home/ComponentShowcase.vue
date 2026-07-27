@@ -304,7 +304,7 @@ const components = [
           <UAccordion
             :items="[
               { label: 'What is Mizu?', content: 'A design system layer on top of Nuxt UI.' },
-              { label: 'How do I install it?', content: 'pnpm add @mizu/vue' },
+              { label: 'How do I install it?', content: 'pnpm add @mizu-ui/vue' },
             ]"
             class="w-full"
           />

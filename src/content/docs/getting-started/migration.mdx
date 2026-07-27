@@ -53,7 +53,7 @@ The `useToast` composable has been removed. Use Nuxt UI's auto-imported `useToas
 
 ```ts
 // Before
-import { useToast } from "@mizu/vue";
+import { useToast } from "@mizu-ui/vue";
 const toast = useToast();
 toast.show({ title: "Success", description: "Saved!", variant: "success" });
 
@@ -66,7 +66,7 @@ toast.add({ title: "Success", description: "Saved!", color: "success" });
 
 ```ts
 // Keep this if you had it
-import "@mizu/vue/style.css";
+import "@mizu-ui/vue/style.css";
 ```
 
 This bundles Mizu tokens and the Nuxt UI theme. Your Nuxt UI components will automatically use Mizu colors, fonts, and spacing.
@@ -93,11 +93,11 @@ These Mizu components are **still available** — they solve unique UI problems 
 
 ## Theme Preset Setup
 
-Mizu provides a theme preset (`@mizu/vue/theme`) that overrides Nuxt UI's component defaults — sizing, spacing, radius, and typography — to match Mizu's design language. Apply it once in your app config:
+Mizu provides a theme preset (`@mizu-ui/vue/theme`) that overrides Nuxt UI's component defaults — sizing, spacing, radius, and typography — to match Mizu's design language. Apply it once in your app config:
 
 ```ts
 // app.config.ts
-import { mizuTheme } from "@mizu/vue/theme";
+import { mizuTheme } from "@mizu-ui/vue/theme";
 
 export default defineAppConfig({
   ui: mizuTheme,
@@ -142,7 +142,7 @@ Mizu maps its design tokens to Nuxt UI's semantic color system. You can further 
 
 ```ts
 // app.config.ts
-import { mizuTheme } from "@mizu/vue/theme";
+import { mizuTheme } from "@mizu-ui/vue/theme";
 
 export default defineAppConfig({
   ui: {

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { MizuMetric } from "@mizu/vue";
+import { MizuMetric } from "@mizu-ui/vue";
 import CodeCollapsible from "./CodeCollapsible.vue";
 
 const basicCode = `<MizuMetric label="Total Revenue" value="$128,500" />

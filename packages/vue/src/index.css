@@ -1,14 +1,14 @@
 @import "tailwindcss";
 @import "@nuxt/ui";
 
-@import "@mizu/tokens/light.css" layer(base);
-/* @import "@mizu/tokens/dark.css" layer(base); -- dark mode postponed */
+@import "@mizu-ui/tokens/light.css" layer(base);
+/* @import "@mizu-ui/tokens/dark.css" layer(base); -- dark mode postponed */
 
 /*
  * Mizu font aliases.
  * Tailwind v4's font-sans/mono/serif utilities emit font-family declarations
  * that reference these CSS variables, which resolve to the Mizu token values
- * at runtime (set by @mizu/tokens/light.css).
+ * at runtime (set by @mizu-ui/tokens/light.css).
  */
 @theme {
   --font-family-sans: var(--font-family-sans);
@@ -202,7 +202,7 @@
  * Unlayered :root beats Nuxt UI's @layer theme defaults per cascade rules.
  * Because every value is a var() reference to a Mizu token (e.g.
  * --color-surface-base), light vs dark mode switching happens automatically
- * — the token CSS in @mizu/tokens already handles [data-theme="dark"].
+ * — the token CSS in @mizu-ui/tokens already handles [data-theme="dark"].
  */
 :root {
   /* ── Surface backgrounds ──────────────────────────────── */

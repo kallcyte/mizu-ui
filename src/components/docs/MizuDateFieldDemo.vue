@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { shallowRef, ref, computed } from "vue";
 import { CalendarDate } from "@internationalized/date";
-import { MizuDateField, type DateRange } from "@mizu/vue";
+import { MizuDateField, type DateRange } from "@mizu-ui/vue";
 import CodeCollapsible from "./CodeCollapsible.vue";
 
 const date = shallowRef(new CalendarDate(2026, 7, 17));
