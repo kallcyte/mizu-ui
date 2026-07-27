@@ -34,8 +34,9 @@ jobs:
 
       - name: Lint & test
         run: |
-          pnpm -r lint
-          pnpm -r test
+          pnpm lint
+          pnpm --filter @mizu-ui/vue typecheck
+          pnpm --filter @mizu-ui/vue test
 
       - name: Build all packages
         run: pnpm -r build
