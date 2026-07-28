@@ -1,4 +1,4 @@
-<script setup lang="ts">
+﻿<script setup lang="ts">
 import { ref, computed } from "vue";
 import CodeCollapsible from "./CodeCollapsible.vue";
 
@@ -71,7 +71,7 @@ const dropdownExample = `<UDropdownMenu :items="[
 </UDropdownMenu>`;
 
 const standaloneExample = `<UIcon name="i-ph-magnifying-glass" class="size-5" />
-<UIcon name="i-ph-gear-six" class="size-6 text-brand-primary" />`;
+<UIcon name="i-ph-gear-six" class="size-6 text-hub-primary" />`;
 
 const sizeExample = `<UIcon name="i-ph-magnifying-glass" class="size-4" />
 <UIcon name="i-ph-magnifying-glass" class="size-5" />
@@ -200,7 +200,7 @@ const sizeExample = `<UIcon name="i-ph-magnifying-glass" class="size-4" />
       <CodeCollapsible :code="standaloneExample">
         <div class="demo-row">
           <UIcon name="i-ph-magnifying-glass" class="size-5" />
-          <UIcon name="i-ph-gear-six" class="size-6 text-brand-primary" />
+          <UIcon name="i-ph-gear-six" class="size-6 text-hub-primary" />
           <UIcon name="i-ph-envelope" class="size-6 text-feedback-info-base" />
         </div>
       </CodeCollapsible>
@@ -246,7 +246,7 @@ const sizeExample = `<UIcon name="i-ph-magnifying-glass" class="size-4" />
   border-radius: 4px;
 }
 .example-note { all: revert; font-size: 13px; color: var(--color-foreground-secondary, #4b5563); line-height: 1.6; margin: 0; }
-.example-note a { color: var(--color-brand-primary, #0070f2); text-decoration: none; }
+.example-note a { color: var(--color-hub-primary, #0070f2); text-decoration: none; }
 .example-note code, .icons-demo__name, .icons-demo__collection-prefix { all: revert; font-family: var(--font-family-mono, monospace); font-size: 12px; background: var(--color-surface-muted, #f3f4f6); padding: 1px 6px; border-radius: 4px; color: var(--color-foreground-primary, #001c44); }
 .icons-demo__filters { all: revert; display: flex; gap: 8px; flex-wrap: wrap; }
 .icons-demo__search, .icons-demo__select { all: revert; padding: 8px 12px; border: 1px solid var(--color-surface-muted, #f3f4f6); border-radius: 6px; background: var(--color-surface-base, #fff); color: var(--color-foreground-primary, #001c44); font-family: inherit; font-size: 13px; min-width: 0; }
@@ -258,7 +258,7 @@ const sizeExample = `<UIcon name="i-ph-magnifying-glass" class="size-4" />
 .icons-demo__collections { all: revert; display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 12px; }
 .icons-demo__collection { all: revert; display: flex; flex-direction: column; gap: 6px; padding: 16px; border: 1px solid var(--color-surface-muted, #f3f4f6); border-radius: 8px; background: var(--color-surface-base, #fff); }
 .icons-demo__collection-header { all: revert; display: flex; align-items: center; gap: 8px; }
-.icons-demo__collection-icon { font-size: 20px; color: var(--color-brand-primary, #0070f2); }
+.icons-demo__collection-icon { font-size: 20px; color: var(--color-hub-primary, #0070f2); }
 .icons-demo__collection-header h4 { all: revert; margin: 0; font-size: 14px; font-weight: 600; color: var(--color-foreground-primary, #001c44); }
 .icons-demo__collection-desc { all: revert; font-size: 12px; color: var(--color-foreground-secondary, #4b5563); line-height: 1.5; margin: 0; }
 .icons-demo__collection-meta { all: revert; font-size: 11px; color: var(--color-foreground-tertiary, #9ca3af); margin: 0; }

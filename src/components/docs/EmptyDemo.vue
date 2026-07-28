@@ -34,7 +34,7 @@ const sizesCode = `<UEmpty size="xs" icon="i-lucide-inbox" title="Small" descrip
 
 const slotsCode = `<UEmpty icon="i-lucide-database" title="No data">
   <template #description>
-    <span class="text-brand-ycp">Custom description slot with styling.</span>
+    <span class="text-hub-ycp">Custom description slot with styling.</span>
   </template>
   <template #actions>
     <UButton label="Import" color="neutral" variant="outline" />
@@ -130,7 +130,7 @@ const customImageCode = `<UEmpty
 
     <section class="example-section">
       <h3>Custom Image (SVG)</h3>
-      <p class="demo-description">Uses the <code>#leading</code> slot to replace the default icon with a custom SVG image for branded or illustrated empty states.</p>
+      <p class="demo-description">Uses the <code>#leading</code> slot to replace the default icon with a custom SVG image for Hubed or illustrated empty states.</p>
       <CodeCollapsible :code="customImageCode">
         <div class="demo-row">
           <UEmpty

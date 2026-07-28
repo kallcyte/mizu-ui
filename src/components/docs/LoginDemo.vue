@@ -61,7 +61,7 @@ function handleSubmit() {
 
 <template>
   <div class="grid min-h-screen grid-cols-1 lg:grid-cols-2">
-    <!-- Left brand panel -->
+    <!-- Left Hub panel -->
     <aside
       class="relative hidden overflow-hidden text-foreground-inverse lg:flex lg:flex-col lg:justify-between bg-[radial-gradient(900px_600px_at_12%_8%,rgba(255,255,255,0.06),transparent_60%),radial-gradient(700px_500px_at_90%_100%,rgba(99,168,255,0.18),transparent_65%),linear-gradient(180deg,#001C44_0%,#02142e_100%)] px-12 py-14"
     >
@@ -120,11 +120,11 @@ function handleSubmit() {
     <!-- Right form panel -->
     <main class="flex items-center justify-center bg-surface-base px-6 py-14 text-foreground-primary lg:px-24">
       <div class="flex w-full max-w-[400px] flex-col gap-6">
-        <!-- Mobile-only brand mark -->
+        <!-- Mobile-only Hub mark -->
         <a
           href="https://hub.ycp.com"
           aria-label="YCP"
-          class="inline-flex items-center justify-center self-start text-brand-neutral no-underline lg:hidden"
+          class="inline-flex items-center justify-center self-start text-hub-neutral no-underline lg:hidden"
         >
           <svg
             class="block h-7 w-auto fill-current"
@@ -203,7 +203,7 @@ function handleSubmit() {
 
           <div class="flex items-center justify-between">
             <UCheckbox v-model="remember" label="Keep me signed in" />
-            <a href="#" class="text-[13px] text-brand-primary no-underline hover:underline">
+            <a href="#" class="text-[13px] text-hub-primary no-underline hover:underline">
               Reset password
             </a>
           </div>
@@ -240,7 +240,7 @@ function handleSubmit() {
             Don&rsquo;t have a YCP Hub account?
             <a
               href="https://hub.ycp.com/contact"
-              class="font-semibold text-brand-primary no-underline hover:underline"
+              class="font-semibold text-hub-primary no-underline hover:underline"
             >
               Contact your engagement lead
             </a>

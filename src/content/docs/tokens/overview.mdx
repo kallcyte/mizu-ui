@@ -11,7 +11,7 @@ Mizu includes 14 token categories:
 
 | Category          | Description                                 | Examples                                        |
 | ----------------- | ------------------------------------------- | ----------------------------------------------- |
-| **color**         | Brand, surface, foreground, feedback colors | `brand-primary`, `surface-base`, `error-subtle` |
+| **color**         | hub, surface, foreground, feedback colors | `hub-primary`, `surface-base`, `error-subtle` |
 | **color.scale**   | Nuxt UI 50–950 color ramps                 | `primary-500`, `success-100`, `nexus-700`       |
 | **color.dark**    | Dark mode color overrides                  | `dark-surface-base`, `dark-foreground-primary`  |
 | **fontFamily**    | Typeface definitions                        | `sans`, `mono`, `serif`                         |
@@ -27,28 +27,28 @@ Mizu includes 14 token categories:
 
 ## Color Tokens
 
-### Brand Colors
+### Hub colors
 
 | Token                    | Value   | Usage                             |
 | ------------------------ | ------- | --------------------------------- |
-| `brand-primary`          | #0070F2 | Primary brand color               |
-| `brand-primary-hover`    | #005AC2 | Primary hover state               |
-| `brand-primary-focus`    | #338DF5 | Primary focus state               |
-| `brand-primary-subtle`   | #CCE2FC | Light primary background          |
-| `brand-ycp`              | #001C44 | Interactive accent                |
-| `brand-ycp-hover`        | #001636 | Accent hover state                |
-| `brand-ycp-focus`        | #334969 | Accent focus state                |
-| `brand-ycp-subtle`       | #CCD2DA | Light accent background           |
-| `brand-secondary`        | #1524A9 | Supporting brand blue             |
-| `brand-secondary-hover`  | #101C82 | Secondary hover state             |
-| `brand-secondary-focus`  | #0C1561 | Secondary focus state             |
-| `brand-secondary-subtle` | #E1E7FF | Light secondary background        |
-| `brand-nexus`            | #4521D8 | Nexus purple for premium features |
-| `brand-nexus-hover`      | #371AAD | Nexus hover state                 |
-| `brand-nexus-focus`      | #6A4DE0 | Nexus focus state                 |
-| `brand-nexus-subtle`     | #DAD3F7 | Light nexus background            |
-| `brand-muted`            | #EDF0FF | Soft brand-tinted surface         |
-| `brand-neutral`          | #1B1B1D | Deep neutral for text and borders |
+| `hub-primary`          | #0070F2 | Primary Hub color               |
+| `hub-primary-hover`    | #005AC2 | Primary hover state               |
+| `hub-primary-focus`    | #338DF5 | Primary focus state               |
+| `hub-primary-subtle`   | #CCE2FC | Light primary background          |
+| `hub-ycp`              | #001C44 | Interactive accent                |
+| `hub-ycp-hover`        | #001636 | Accent hover state                |
+| `hub-ycp-focus`        | #334969 | Accent focus state                |
+| `hub-ycp-subtle`       | #CCD2DA | Light accent background           |
+| `hub-secondary`        | #1524A9 | Supporting hub blue             |
+| `hub-secondary-hover`  | #101C82 | Secondary hover state             |
+| `hub-secondary-focus`  | #0C1561 | Secondary focus state             |
+| `hub-secondary-subtle` | #E1E7FF | Light secondary background        |
+| `hub-nexus`            | #4521D8 | Nexus purple for premium features |
+| `hub-nexus-hover`      | #371AAD | Nexus hover state                 |
+| `hub-nexus-focus`      | #6A4DE0 | Nexus focus state                 |
+| `hub-nexus-subtle`     | #DAD3F7 | Light nexus background            |
+| `hub-muted`            | #EDF0FF | Soft hub-tinted surface         |
+| `hub-neutral`          | #1B1B1D | Deep neutral for text and borders |
 
 ### Surface Colors
 
@@ -198,7 +198,7 @@ Mizu tokens are mapped to Tailwind v4 utility classes:
 ### In JavaScript/TypeScript
 
 ```typescript
-import { COLOR_BRAND_PRIMARY } from "@mizu-ui/tokens";
+import { COLOR_HUB_PRIMARY } from "@mizu-ui/tokens";
 ```
 
 ## Naming Convention
@@ -209,7 +209,7 @@ Tokens follow a consistent naming pattern:
 | ----------------- | ------------------------------ | ------------------------- |
 | Surface colors    | `--color-surface-{variant}`    | `bg-surface-base`         |
 | Foreground colors | `--color-foreground-{variant}` | `text-foreground-primary` |
-| Brand colors      | `--color-brand-{variant}`      | `bg-brand-primary`        |
+| Hub colors      | `--color-hub-{variant}`      | `bg-hub-primary`        |
 | Feedback colors   | `--color-feedback-{type}-{state}`| `bg-feedback-error-subtle`  |
 | Scale colors      | `--color-{family}-{shade}`       | `bg-primary-500`            |
 | Dark colors       | `--color-dark-{category}-{key}`  | `text-dark-foreground-pri`  |

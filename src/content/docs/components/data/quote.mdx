@@ -59,8 +59,8 @@ A quote is a styled `<blockquote>` element for displaying cited passages, testim
 | Token                         | Default                              | Description               |
 | ----------------------------- | ------------------------------------ | ------------------------- |
 | `--color-surface-muted`       | `#F3F4F6` (light) / `#1E2030` (dark) | Default left border color |
-| `--color-brand-ycp`           | `#007FFF` (light) / `#93C5FD` (dark) | Accent left border color  |
-| `--color-brand-ycp-subtle`    | `#E0F2FE` (light) / `#1E3A5F` (dark) | Accent background         |
+| `--color-hub-ycp`           | `#007FFF` (light) / `#93C5FD` (dark) | Accent left border color  |
+| `--color-hub-ycp-subtle`    | `#E0F2FE` (light) / `#1E3A5F` (dark) | Accent background         |
 | `--color-foreground-primary`  | `#1B1B1D` (light) / `#F1F5F9` (dark) | Content text color        |
 | `--color-foreground-tertiary` | `#9CA3AF` (light) / `#6B7280` (dark) | Citation text color       |
 
@@ -109,7 +109,7 @@ A quote consists of two parts:
 
 1. **Native element** -- uses `<blockquote>` for semantic correctness.
 2. **Citation** -- uses `<footer>` and `<cite>` elements for proper semantic markup and machine-readable source attribution.
-3. **Accent variant** -- toggled via `accent` boolean prop; applies a `brand-ycp` left border and `brand-ycp-subtle` background.
+3. **Accent variant** -- toggled via `accent` boolean prop; applies a `hub-ycp` left border and `hub-ycp-subtle` background.
 4. **Class inheritance** -- accepts `class` prop via `useAttrs()` for Tailwind overrides.
 5. **Token-based colors** -- uses Mizu color tokens for automatic light/dark theme support.
 6. **Tree-shakeable** -- exported as ESM + CJS via Vite library mode.

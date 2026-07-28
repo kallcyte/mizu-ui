@@ -8,11 +8,11 @@ interface ColorCard {
   border?: boolean;
 }
 
-const brands: ColorCard[] = [
-  { hex: "#001C44", name: "YCP", desc: "Deep navy YCP for emphasis, dark branded surfaces, and hero sections." },
-  { hex: "#0070F2", name: "Primary", desc: "Primary brand blue for buttons, links, and key interactive elements." },
-  { hex: "#1524A9", name: "Secondary", desc: "Supporting brand blue for charts and secondary emphasis." },
-  { hex: "#EDF0FF", name: "Muted", desc: "Soft brand-tinted surface for subtle highlights and selected rows." },
+const Hubs: ColorCard[] = [
+  { hex: "#001C44", name: "YCP", desc: "Deep navy YCP for emphasis, dark Hubed surfaces, and hero sections." },
+  { hex: "#0070F2", name: "Primary", desc: "Primary hub blue for buttons, links, and key interactive elements." },
+  { hex: "#1524A9", name: "Secondary", desc: "Supporting hub blue for charts and secondary emphasis." },
+  { hex: "#EDF0FF", name: "Muted", desc: "Soft hub-tinted surface for subtle highlights and selected rows." },
   { hex: "#1B1B1D", name: "Neutral", desc: "Deep neutral for high-contrast text and key borders." },
   { hex: "#005AC2", name: "Primary Hover", desc: "Darker hover state for primary-filled buttons and interactive elements." },
   { hex: "#338DF5", name: "Primary Focus", desc: "Focus ring and outline state for primary interactive elements." },
@@ -20,22 +20,22 @@ const brands: ColorCard[] = [
   { hex: "#001636", name: "YCP Hover", desc: "Darker hover state for YCP-filled elements." },
   { hex: "#334969", name: "YCP Focus", desc: "Focus ring and outline state for YCP elements." },
   { hex: "#CCD2DA", name: "YCP Subtle", desc: "Light YCP-tinted background for subdued emphasis." },
-  { hex: "#101C82", name: "Secondary Hover", desc: "Darker hover state for secondary brand fills." },
+  { hex: "#101C82", name: "Secondary Hover", desc: "Darker hover state for secondary hub fills." },
   { hex: "#0C1561", name: "Secondary Focus", desc: "Deepest secondary for focus-visible outlines and pressed states." },
-  { hex: "#E1E7FF", name: "Secondary Subtle", desc: "Light surface counterpart for secondary branded backgrounds." },
+  { hex: "#E1E7FF", name: "Secondary Subtle", desc: "Light surface counterpart for secondary Hubed backgrounds." },
   { hex: "#4521D8", name: "Nexus", desc: "Nexus purple for premium features, special emphasis, and distinctive UI elements." },
   { hex: "#371AAD", name: "Nexus Hover", desc: "Darker hover state for nexus-filled elements." },
   { hex: "#6A4DE0", name: "Nexus Focus", desc: "Focus ring and outline state for nexus elements." },
   { hex: "#DAD3F7", name: "Nexus Subtle", desc: "Light nexus-tinted background for subtle highlights." },
 ];
 
-const brandsDark: ColorCard[] = [
+const HubsDark: ColorCard[] = [
   { hex: "#F1F5F9", name: "YCP (fg-primary)", desc: "Dark mode high-emphasis text (WCAG AA on #0F1117)." },
   { hex: "#338DF5", name: "Primary (scale-300)", desc: "Light primary for interactive states on dark. Matches focus token." },
   { hex: "#5A71F5", name: "Secondary (scale-300)", desc: "Light secondary for charts and emphasis on dark." },
   { hex: "#9BACFC", name: "Secondary (scale-200)", desc: "Lighter secondary variant for hover states on dark." },
   { hex: "#E1E7FF", name: "Secondary (scale-100)", desc: "Subtle secondary background on dark. Matches subtle token." },
-  { hex: "#1E2030", name: "Muted (surface-muted)", desc: "Dark mode tertiary surface for subtle brand-tinted zones." },
+  { hex: "#1E2030", name: "Muted (surface-muted)", desc: "Dark mode tertiary surface for subtle hub-tinted zones." },
   { hex: "#F1F5F9", name: "Neutral (fg-primary)", desc: "High-emphasis neutral text on dark backgrounds." },
   { hex: "#80B7F8", name: "Primary (scale-200)", desc: "Lighter primary hover for interactive elements on dark." },
   { hex: "#CCE2FC", name: "Primary (scale-100)", desc: "Light-tinted primary surface on dark. Matches subtle token." },
@@ -260,9 +260,9 @@ function shadeSwatchStyle(hex: string) {
   <div class="container">
     <SectionHeader num="03" title="Color" sub="Restrained palette. One navy primary, one blue accent, neutral grays. No second accent color." />
 
-    <h3 class="text-lg font-semibold mb-2 mt-8 text-foreground-secondary">Brand</h3>
+    <h3 class="text-lg font-semibold mb-2 mt-8 text-foreground-secondary">Hub</h3>
     <div class="color-grid color-light">
-      {brands.map(c => (
+      {Hubs.map(c => (
         <div class="rounded-xl overflow-hidden border border-surface-muted bg-surface-base">
           <div class="h-20 flex items-end p-2.5" style={swatchStyle(c)}>
             <span class="text-xs font-semibold px-2 py-0.5 rounded backdrop-blur font-mono" style="background: rgba(255,255,255,0.85);">{c.hex}</span>
@@ -275,7 +275,7 @@ function shadeSwatchStyle(hex: string) {
       ))}
     </div>
     <div class="color-grid color-dark">
-      {brandsDark.map(c => (
+      {HubsDark.map(c => (
         <div class="rounded-xl overflow-hidden border border-surface-muted bg-surface-base">
           <div class="h-20 flex items-end p-2.5" style={swatchStyle(c)}>
             <span class="text-xs font-semibold px-2 py-0.5 rounded backdrop-blur font-mono" style="background: rgba(0,0,0,0.6); color: #FFFFFF;">{c.hex}</span>
@@ -386,7 +386,7 @@ function shadeSwatchStyle(hex: string) {
                     <span class="text-[9px] font-mono font-semibold px-1 py-px rounded" style={`background:rgba(0,0,0,0.5);color:#fff;`}>{shade.hex}</span>
                   </div>
                   <div class="text-[10px] text-center text-foreground-tertiary mt-1 font-mono">{shadeLabels[i]}</div>
-                  {shade.match && <div class="text-[9px] text-center text-brand-primary font-medium leading-tight mt-0.5">({shade.match})</div>}
+                  {shade.match && <div class="text-[9px] text-center text-hub-primary font-medium leading-tight mt-0.5">({shade.match})</div>}
                 </div>
               ))}
             </div>

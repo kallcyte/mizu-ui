@@ -48,7 +48,7 @@ const multiParagraphCode = `<MizuQuote accent cite="APA Style">
 
     <section class="example-section">
       <h3>Accent Variant</h3>
-      <p class="demo-description">Accent styling with brand ycp border and subtle background for emphasis.</p>
+      <p class="demo-description">Accent styling with Hub ycp border and subtle background for emphasis.</p>
       <CodeCollapsible :code="accentCode">
         <MizuQuote accent> The best design is the simplest one that works. </MizuQuote>
       </CodeCollapsible>

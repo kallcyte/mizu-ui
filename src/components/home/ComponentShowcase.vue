@@ -1,4 +1,4 @@
-<script setup lang="ts">
+﻿<script setup lang="ts">
 import { ref } from "vue";
 import { TooltipProvider } from "reka-ui";
 
@@ -154,7 +154,7 @@ const components = [
           <UCard variant="outline" class="w-full text-left">
             <template #header>
               <div class="flex items-center gap-2">
-                <UIcon name="i-lucide-folder" class="size-4 text-brand-primary" />
+                <UIcon name="i-lucide-folder" class="size-4 text-hub-primary" />
                 <h5 class="font-semibold m-0 text-[13px]">Project Atlas</h5>
               </div>
             </template>
@@ -469,7 +469,7 @@ const components = [
 }
 
 .comp-preview-card:hover {
-  border-color: var(--color-brand-ycp, #0098C9);
+  border-color: var(--color-hub-ycp, #0098C9);
   box-shadow: 0 6px 24px rgba(0, 0, 0, 0.06);
 }
 

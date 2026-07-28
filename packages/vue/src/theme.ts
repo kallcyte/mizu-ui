@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Mizu theme preset for Nuxt UI v4.
  *
  * Apply Mizu's design language (sizing, spacing, radius, typography)
@@ -202,8 +202,8 @@ export const mizuTheme = {
     },
     variants: {
       color: {
-        primary: { base: "", indicator: "bg-[var(--color-brand-primary)]" },
-        secondary: { base: "", indicator: "bg-[var(--color-brand-ycp)]" },
+        primary: { base: "", indicator: "bg-[var(--color-hub-primary)]" },
+        secondary: { base: "", indicator: "bg-[var(--color-hub-ycp)]" },
         success: { base: "", indicator: "bg-[var(--color-feedback-success-base)]" },
         error: { base: "", indicator: "bg-[var(--color-feedback-error-base)]" },
         warning: { base: "", indicator: "bg-[var(--color-feedback-warning-base)]" },

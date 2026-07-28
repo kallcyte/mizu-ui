@@ -1,4 +1,4 @@
-<script setup lang="ts">
+﻿<script setup lang="ts">
 import CodeCollapsible from "./CodeCollapsible.vue";
 </script>
 
@@ -47,13 +47,13 @@ import CodeCollapsible from "./CodeCollapsible.vue";
     <section class="example-section">
       <h3>Colors</h3>
       <p class="demo-description">Inherits <code>currentColor</code> from the parent text color. Apply any Tailwind text color class to tint the icon.</p>
-      <CodeCollapsible :code="`<UIcon name=&quot;i-lucide-info&quot; class=&quot;size-5 text-brand-primary&quot; />
+      <CodeCollapsible :code="`<UIcon name=&quot;i-lucide-info&quot; class=&quot;size-5 text-hub-primary&quot; />
 <UIcon name=&quot;i-lucide-check-circle&quot; class=&quot;size-5 text-feedback-success-base&quot; />
 <UIcon name=&quot;i-lucide-alert-triangle&quot; class=&quot;size-5 text-feedback-warning-base&quot; />
 <UIcon name=&quot;i-lucide-x-circle&quot; class=&quot;size-5 text-feedback-error-base&quot; />
 <UIcon name=&quot;i-lucide-info&quot; class=&quot;size-5 text-foreground-tertiary&quot; />`">
         <div class="demo-row">
-          <UIcon name="i-lucide-info" class="size-5 text-brand-primary" />
+          <UIcon name="i-lucide-info" class="size-5 text-hub-primary" />
           <UIcon name="i-lucide-check-circle" class="size-5 text-feedback-success-base" />
           <UIcon name="i-lucide-alert-triangle" class="size-5 text-feedback-warning-base" />
           <UIcon name="i-lucide-x-circle" class="size-5 text-feedback-error-base" />

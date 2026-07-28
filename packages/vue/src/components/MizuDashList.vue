@@ -1,4 +1,4 @@
-<script setup lang="ts">
+﻿<script setup lang="ts">
 import { computed, useAttrs } from "vue";
 
 export interface DashItem {
@@ -115,7 +115,7 @@ const listClasses = computed(() => {
 }
 
 .mizu-dashlist__row--highlighted .mizu-dashlist__value {
-  color: var(--color-brand-primary);
+  color: var(--color-hub-primary);
   font-weight: 600;
 }
 

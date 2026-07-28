@@ -8,41 +8,41 @@ export interface Token {
 }
 
 /** Primary brand blue for buttons, links, and key interactive elements. */
-export const COLOR_BRAND_PRIMARY = "#0070F2" as const;
+export const COLOR_HUB_PRIMARY = "#0070F2" as const;
 /** Darker hover state for primary-filled buttons and interactive elements. */
-export const COLOR_BRAND_PRIMARY_HOVER = "#005AC2" as const;
+export const COLOR_HUB_PRIMARY_HOVER = "#005AC2" as const;
 /** Focus ring and outline state for primary interactive elements. */
-export const COLOR_BRAND_PRIMARY_FOCUS = "#338DF5" as const;
+export const COLOR_HUB_PRIMARY_FOCUS = "#338DF5" as const;
 /** Light primary-tinted background for selected states and highlights. */
-export const COLOR_BRAND_PRIMARY_SUBTLE = "#CCE2FC" as const;
+export const COLOR_HUB_PRIMARY_SUBTLE = "#CCE2FC" as const;
 /** Supporting brand blue for charts and secondary emphasis. */
-export const COLOR_BRAND_SECONDARY = "#1524A9" as const;
+export const COLOR_HUB_SECONDARY = "#1524A9" as const;
 /** Darker hover state for secondary brand fills. */
-export const COLOR_BRAND_SECONDARY_HOVER = "#101C82" as const;
+export const COLOR_HUB_SECONDARY_HOVER = "#101C82" as const;
 /** Deepest secondary for focus-visible outlines and pressed states. */
-export const COLOR_BRAND_SECONDARY_FOCUS = "#0C1561" as const;
+export const COLOR_HUB_SECONDARY_FOCUS = "#0C1561" as const;
 /** Light surface counterpart for secondary branded backgrounds. */
-export const COLOR_BRAND_SECONDARY_SUBTLE = "#E1E7FF" as const;
+export const COLOR_HUB_SECONDARY_SUBTLE = "#E1E7FF" as const;
 /** Deep navy YCP for emphasis, dark branded surfaces, and hero sections. */
-export const COLOR_BRAND_YCP = "#001C44" as const;
+export const COLOR_HUB_YCP = "#001C44" as const;
 /** Darker hover state for YCP-filled elements. */
-export const COLOR_BRAND_YCP_HOVER = "#001636" as const;
+export const COLOR_HUB_YCP_HOVER = "#001636" as const;
 /** Focus ring and outline state for YCP elements. */
-export const COLOR_BRAND_YCP_FOCUS = "#334969" as const;
+export const COLOR_HUB_YCP_FOCUS = "#334969" as const;
 /** Light YCP-tinted background for subdued emphasis. */
-export const COLOR_BRAND_YCP_SUBTLE = "#CCD2DA" as const;
+export const COLOR_HUB_YCP_SUBTLE = "#CCD2DA" as const;
 /** Soft brand-tinted surface for subtle highlights and selected rows. */
-export const COLOR_BRAND_MUTED = "#EDF0FF" as const;
+export const COLOR_HUB_MUTED = "#EDF0FF" as const;
 /** Deep neutral for high-contrast text and key borders. */
-export const COLOR_BRAND_NEUTRAL = "#1B1B1D" as const;
+export const COLOR_HUB_NEUTRAL = "#1B1B1D" as const;
 /** Nexus purple for premium features, special emphasis, and distinctive UI elements. */
-export const COLOR_BRAND_NEXUS = "#4521D8" as const;
+export const COLOR_HUB_NEXUS = "#4521D8" as const;
 /** Darker hover state for nexus-filled elements. */
-export const COLOR_BRAND_NEXUS_HOVER = "#371AAD" as const;
+export const COLOR_HUB_NEXUS_HOVER = "#371AAD" as const;
 /** Focus ring and outline state for nexus elements. */
-export const COLOR_BRAND_NEXUS_FOCUS = "#6A4DE0" as const;
+export const COLOR_HUB_NEXUS_FOCUS = "#6A4DE0" as const;
 /** Light nexus-tinted background for subtle highlights. */
-export const COLOR_BRAND_NEXUS_SUBTLE = "#DAD3F7" as const;
+export const COLOR_HUB_NEXUS_SUBTLE = "#DAD3F7" as const;
 /** Default page and card background. Highest-contrast surface. */
 export const COLOR_SURFACE_BASE = "#FFFFFF" as const;
 /** Secondary surface for grouped sections and side panels. */
@@ -404,24 +404,24 @@ export const EASE_ENTRANCE = "cubic-bezier(0.16, 1, 0.3, 1)" as const;
 
 /** Flat map of all tokens keyed by slash-separated path */
 export const tokens: Record<string, Token> = {
-  "color/brand/primary": { value: COLOR_BRAND_PRIMARY, type: "color" },
-  "color/brand/primary-hover": { value: COLOR_BRAND_PRIMARY_HOVER, type: "color" },
-  "color/brand/primary-focus": { value: COLOR_BRAND_PRIMARY_FOCUS, type: "color" },
-  "color/brand/primary-subtle": { value: COLOR_BRAND_PRIMARY_SUBTLE, type: "color" },
-  "color/brand/secondary": { value: COLOR_BRAND_SECONDARY, type: "color" },
-  "color/brand/secondary-hover": { value: COLOR_BRAND_SECONDARY_HOVER, type: "color" },
-  "color/brand/secondary-focus": { value: COLOR_BRAND_SECONDARY_FOCUS, type: "color" },
-  "color/brand/secondary-subtle": { value: COLOR_BRAND_SECONDARY_SUBTLE, type: "color" },
-  "color/brand/ycp": { value: COLOR_BRAND_YCP, type: "color" },
-  "color/brand/ycp-hover": { value: COLOR_BRAND_YCP_HOVER, type: "color" },
-  "color/brand/ycp-focus": { value: COLOR_BRAND_YCP_FOCUS, type: "color" },
-  "color/brand/ycp-subtle": { value: COLOR_BRAND_YCP_SUBTLE, type: "color" },
-  "color/brand/muted": { value: COLOR_BRAND_MUTED, type: "color" },
-  "color/brand/neutral": { value: COLOR_BRAND_NEUTRAL, type: "color" },
-  "color/brand/nexus": { value: COLOR_BRAND_NEXUS, type: "color" },
-  "color/brand/nexus-hover": { value: COLOR_BRAND_NEXUS_HOVER, type: "color" },
-  "color/brand/nexus-focus": { value: COLOR_BRAND_NEXUS_FOCUS, type: "color" },
-  "color/brand/nexus-subtle": { value: COLOR_BRAND_NEXUS_SUBTLE, type: "color" },
+  "color/hub/primary": { value: COLOR_HUB_PRIMARY, type: "color" },
+  "color/hub/primary-hover": { value: COLOR_HUB_PRIMARY_HOVER, type: "color" },
+  "color/hub/primary-focus": { value: COLOR_HUB_PRIMARY_FOCUS, type: "color" },
+  "color/hub/primary-subtle": { value: COLOR_HUB_PRIMARY_SUBTLE, type: "color" },
+  "color/hub/secondary": { value: COLOR_HUB_SECONDARY, type: "color" },
+  "color/hub/secondary-hover": { value: COLOR_HUB_SECONDARY_HOVER, type: "color" },
+  "color/hub/secondary-focus": { value: COLOR_HUB_SECONDARY_FOCUS, type: "color" },
+  "color/hub/secondary-subtle": { value: COLOR_HUB_SECONDARY_SUBTLE, type: "color" },
+  "color/hub/ycp": { value: COLOR_HUB_YCP, type: "color" },
+  "color/hub/ycp-hover": { value: COLOR_HUB_YCP_HOVER, type: "color" },
+  "color/hub/ycp-focus": { value: COLOR_HUB_YCP_FOCUS, type: "color" },
+  "color/hub/ycp-subtle": { value: COLOR_HUB_YCP_SUBTLE, type: "color" },
+  "color/hub/muted": { value: COLOR_HUB_MUTED, type: "color" },
+  "color/hub/neutral": { value: COLOR_HUB_NEUTRAL, type: "color" },
+  "color/hub/nexus": { value: COLOR_HUB_NEXUS, type: "color" },
+  "color/hub/nexus-hover": { value: COLOR_HUB_NEXUS_HOVER, type: "color" },
+  "color/hub/nexus-focus": { value: COLOR_HUB_NEXUS_FOCUS, type: "color" },
+  "color/hub/nexus-subtle": { value: COLOR_HUB_NEXUS_SUBTLE, type: "color" },
   "color/surface/base": { value: COLOR_SURFACE_BASE, type: "color" },
   "color/surface/subtle": { value: COLOR_SURFACE_SUBTLE, type: "color" },
   "color/surface/muted": { value: COLOR_SURFACE_MUTED, type: "color" },
@@ -605,24 +605,24 @@ export const tokens: Record<string, Token> = {
 
 /** Token values mapped to CSS custom property names (light mode only — dark mode overrides live in dark.css) */
 export const cssVariables: Record<string, string | number | readonly string[]> = {
-  "--color-brand-primary": COLOR_BRAND_PRIMARY,
-  "--color-brand-primary-hover": COLOR_BRAND_PRIMARY_HOVER,
-  "--color-brand-primary-focus": COLOR_BRAND_PRIMARY_FOCUS,
-  "--color-brand-primary-subtle": COLOR_BRAND_PRIMARY_SUBTLE,
-  "--color-brand-secondary": COLOR_BRAND_SECONDARY,
-  "--color-brand-secondary-hover": COLOR_BRAND_SECONDARY_HOVER,
-  "--color-brand-secondary-focus": COLOR_BRAND_SECONDARY_FOCUS,
-  "--color-brand-secondary-subtle": COLOR_BRAND_SECONDARY_SUBTLE,
-  "--color-brand-ycp": COLOR_BRAND_YCP,
-  "--color-brand-ycp-hover": COLOR_BRAND_YCP_HOVER,
-  "--color-brand-ycp-focus": COLOR_BRAND_YCP_FOCUS,
-  "--color-brand-ycp-subtle": COLOR_BRAND_YCP_SUBTLE,
-  "--color-brand-muted": COLOR_BRAND_MUTED,
-  "--color-brand-neutral": COLOR_BRAND_NEUTRAL,
-  "--color-brand-nexus": COLOR_BRAND_NEXUS,
-  "--color-brand-nexus-hover": COLOR_BRAND_NEXUS_HOVER,
-  "--color-brand-nexus-focus": COLOR_BRAND_NEXUS_FOCUS,
-  "--color-brand-nexus-subtle": COLOR_BRAND_NEXUS_SUBTLE,
+  "--color-hub-primary": COLOR_HUB_PRIMARY,
+  "--color-hub-primary-hover": COLOR_HUB_PRIMARY_HOVER,
+  "--color-hub-primary-focus": COLOR_HUB_PRIMARY_FOCUS,
+  "--color-hub-primary-subtle": COLOR_HUB_PRIMARY_SUBTLE,
+  "--color-hub-secondary": COLOR_HUB_SECONDARY,
+  "--color-hub-secondary-hover": COLOR_HUB_SECONDARY_HOVER,
+  "--color-hub-secondary-focus": COLOR_HUB_SECONDARY_FOCUS,
+  "--color-hub-secondary-subtle": COLOR_HUB_SECONDARY_SUBTLE,
+  "--color-hub-ycp": COLOR_HUB_YCP,
+  "--color-hub-ycp-hover": COLOR_HUB_YCP_HOVER,
+  "--color-hub-ycp-focus": COLOR_HUB_YCP_FOCUS,
+  "--color-hub-ycp-subtle": COLOR_HUB_YCP_SUBTLE,
+  "--color-hub-muted": COLOR_HUB_MUTED,
+  "--color-hub-neutral": COLOR_HUB_NEUTRAL,
+  "--color-hub-nexus": COLOR_HUB_NEXUS,
+  "--color-hub-nexus-hover": COLOR_HUB_NEXUS_HOVER,
+  "--color-hub-nexus-focus": COLOR_HUB_NEXUS_FOCUS,
+  "--color-hub-nexus-subtle": COLOR_HUB_NEXUS_SUBTLE,
   "--color-surface-base": COLOR_SURFACE_BASE,
   "--color-surface-subtle": COLOR_SURFACE_SUBTLE,
   "--color-surface-muted": COLOR_SURFACE_MUTED,

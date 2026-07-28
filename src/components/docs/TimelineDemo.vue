@@ -1,4 +1,4 @@
-<script setup lang="ts">
+﻿<script setup lang="ts">
 import CodeCollapsible from "./CodeCollapsible.vue";
 
 const items = [
@@ -26,7 +26,7 @@ const customSlotsCode = `<UTimeline :items="items">
     <UIcon :name="item.icon" class="size-5" />
   </template>
   <template #date="{ item }">
-    <span class="text-brand-ycp">{{ item.date }}</span>
+    <span class="text-hub-ycp">{{ item.date }}</span>
   </template>
 </UTimeline>`;
 

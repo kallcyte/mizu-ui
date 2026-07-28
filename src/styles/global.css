@@ -1,4 +1,4 @@
-@layer base, starlight, theme, components, utilities;
+﻿@layer base, starlight, theme, components, utilities;
 
 @import "@astrojs/starlight-tailwind";
 @import "tailwindcss/theme.css" layer(theme);
@@ -26,10 +26,10 @@
   --sl-color-bg-inline-code: var(--color-surface-muted) !important;
   --sl-color-hairline: var(--color-surface-muted) !important;
   --sl-color-hairline-shade: var(--color-surface-muted) !important;
-  --sl-color-accent: var(--color-brand-ycp) !important;
-  --sl-color-accent-high: var(--color-brand-primary) !important;
-  --sl-color-accent-low: var(--color-brand-primary-subtle) !important;
-  --sl-color-accent-subtle: var(--color-brand-ycp-subtle) !important;
+  --sl-color-accent: var(--color-hub-ycp) !important;
+  --sl-color-accent-high: var(--color-hub-primary) !important;
+  --sl-color-accent-low: var(--color-hub-primary-subtle) !important;
+  --sl-color-accent-subtle: var(--color-hub-ycp-subtle) !important;
 }
 
 /* Critical dark-mode overrides — guarantee readable text on dark backgrounds */
@@ -44,8 +44,8 @@
   --sl-color-bg-inline-code: var(--color-surface-muted) !important;
   --sl-color-hairline: var(--color-surface-muted) !important;
   --sl-color-hairline-shade: var(--color-surface-muted) !important;
-  --sl-color-accent: var(--color-brand-primary) !important;
-  --sl-color-accent-high: var(--color-brand-primary) !important;
+  --sl-color-accent: var(--color-hub-primary) !important;
+  --sl-color-accent-high: var(--color-hub-primary) !important;
   --sl-color-accent-low: var(--color-surface-subtle) !important;
   --sl-color-accent-subtle: var(--color-surface-subtle) !important;
 }

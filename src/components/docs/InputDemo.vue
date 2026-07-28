@@ -606,6 +606,6 @@ const phoneNumberCode = `<UFieldGroup>
 .demo-float-label.active .demo-float-label-text {
   top: 0;
   transform: translateY(-50%) scale(0.8);
-  color: var(--color-brand-primary, #0070F2);
+  color: var(--color-hub-primary, #0070F2);
 }
 </style>

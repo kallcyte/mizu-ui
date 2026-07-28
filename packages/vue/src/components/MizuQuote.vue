@@ -1,4 +1,4 @@
-<script setup lang="ts">
+﻿<script setup lang="ts">
 import { computed, useAttrs } from "vue";
 
 export interface QuoteProps {
@@ -45,8 +45,8 @@ const quoteClasses = computed(() => {
 }
 
 .mizu-quote--accent {
-  border-left-color: var(--color-brand-ycp);
-  background-color: var(--color-brand-ycp-subtle);
+  border-left-color: var(--color-hub-ycp);
+  background-color: var(--color-hub-ycp-subtle);
 }
 
 .mizu-quote__content {

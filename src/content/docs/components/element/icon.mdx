@@ -43,7 +43,7 @@ Icons inherit `currentColor` by default, which means they take the text color of
 | Technique | Example | Notes |
 |-----------|---------|-------|
 | Tailwind text color | `<UIcon class="size-5 text-primary" />` | Inherits via `currentColor` in SVG fill |
-| CSS color property | `<UIcon style="color: var(--color-brand-ycp)" />` | Works with any CSS color source |
+| CSS color property | `<UIcon style="color: var(--color-hub-ycp)" />` | Works with any CSS color source |
 | `customize` callback | `<UIcon :customize="(content) => content.replace(/currentColor/g, '#0070F2')" />` | Replaces `currentColor` SVG attribute at render time — useful for animations or per-segment coloring |
 
 The `customize` prop runs against the inlined SVG content before mount. It's most useful when you need different colors for different paths within the same icon (e.g. a status dot inside a circle).
@@ -86,7 +86,7 @@ The `customize` prop runs against the inlined SVG content before mount. It's mos
 | `--color-foreground-primary` | `#0F172A` | Default icon color via parent `text-foreground-primary` |
 | `--color-foreground-secondary` | `#475569` | Muted icons via parent `text-foreground-secondary` |
 | `--color-foreground-tertiary` | `#94A3B8` | Disabled-state icons |
-| `--color-brand-primary` | `#001C44` | Brand-themed icons via `text-brand-primary` |
+| `--color-hub-primary` | `#001C44` | Hub-themed icons via `text-hub-primary` |
 | `--color-feedback-{success,info,warning,error}-base` | varies | Status indicators via `text-success` etc. |
 
 The `customize` callback can substitute Mizu token values into the SVG content for per-segment coloring.

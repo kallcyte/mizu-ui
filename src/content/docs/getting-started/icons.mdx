@@ -13,7 +13,7 @@ Mizu's recommended icon collection is [Phosphor Icons](https://phosphoricons.com
 
 ```html
 <UIcon name="i-ph-magnifying-glass" class="size-5" />
-<UIcon name="i-ph-gear-six" class="size-6 text-brand-primary" />
+<UIcon name="i-ph-gear-six" class="size-6 text-hub-primary" />
 <UIcon name="i-ph-floppy-disk" class="size-5" />
 ```
 
@@ -49,7 +49,7 @@ Most Mizu/Nuxt UI components accept an `icon`, `leadingIcon`, `trailingIcon`, `a
 <UInput leading-icon="i-ph-user" trailing-icon="i-ph-check" placeholder="Username" />
 ```
 
-In Mizu, the leading/trailing icon **inherits the input's text color** — so when you use `color="primary"`, the icon is also brand-primary instead of the usual dimmed gray.
+In Mizu, the leading/trailing icon **inherits the input's text color** — so when you use `color="primary"`, the icon is also hub-primary instead of the usual dimmed gray.
 
 ### DropdownMenu
 
@@ -70,7 +70,7 @@ Use `<UIcon>` directly when you need an icon outside of a component slot — for
 
 ```vue
 <UIcon name="i-ph-magnifying-glass" class="size-5" />
-<UIcon name="i-ph-gear-six" class="size-6 text-brand-primary" />
+<UIcon name="i-ph-gear-six" class="size-6 text-hub-primary" />
 ```
 
 ## Other icon collections
@@ -113,7 +113,7 @@ Components like `<UInput>`, `<UButton>`, and `<UBadge>` size their icons automat
 Icons inherit the current text color via `currentColor`. Control it with any Tailwind text utility:
 
 ```vue
-<UIcon name="i-ph-magnifying-glass" class="size-5 text-brand-primary" />
+<UIcon name="i-ph-magnifying-glass" class="size-5 text-hub-primary" />
 <UIcon name="i-ph-magnifying-glass" class="size-5 text-feedback-error-base" />
 <UIcon name="i-ph-magnifying-glass" class="size-5 text-foreground-secondary" />
 ```

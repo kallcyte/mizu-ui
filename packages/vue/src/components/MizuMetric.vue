@@ -1,4 +1,4 @@
-<script setup lang="ts">
+﻿<script setup lang="ts">
 import { computed, useAttrs } from "vue";
 
 export interface MetricProps {
@@ -127,10 +127,10 @@ const trendColor = computed(() => {
 }
 
 .mizu-metric--primary .mizu-metric__value {
-  color: var(--color-brand-primary);
+  color: var(--color-hub-primary);
 }
 .mizu-metric--accent .mizu-metric__value {
-  color: var(--color-brand-ycp);
+  color: var(--color-hub-ycp);
 }
 .mizu-metric--success .mizu-metric__value {
   color: var(--color-feedback-success-base);

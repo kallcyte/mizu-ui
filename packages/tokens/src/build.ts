@@ -1,4 +1,4 @@
-import { readFileSync, writeFileSync, mkdirSync } from "node:fs";
+﻿import { readFileSync, writeFileSync, mkdirSync } from "node:fs";
 import { resolve, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -322,10 +322,10 @@ function generateStarlightCss(flat: Map<string, Token>): string {
   lines.push("  color-scheme: light;");
   lines.push("");
   lines.push("  /* Accent */");
-  lines.push("  --sl-color-accent: var(--color-brand-ycp);");
-  lines.push("  --sl-color-accent-high: var(--color-brand-primary);");
-  lines.push("  --sl-color-accent-low: var(--color-brand-primary-subtle);");
-  lines.push("  --sl-color-accent-subtle: var(--color-brand-ycp-subtle);");
+  lines.push("  --sl-color-accent: var(--color-hub-ycp);");
+  lines.push("  --sl-color-accent-high: var(--color-hub-primary);");
+  lines.push("  --sl-color-accent-low: var(--color-hub-primary-subtle);");
+  lines.push("  --sl-color-accent-subtle: var(--color-hub-ycp-subtle);");
   lines.push("");
   lines.push("  /* Gray ramp — Starlight requires a 9-step scale; Mizu does not emit one */");
   for (let i = 0; i < lightGray.length; i++) {
@@ -336,7 +336,7 @@ function generateStarlightCss(flat: Map<string, Token>): string {
   lines.push("  --sl-color-text: var(--color-foreground-primary);");
   lines.push("  --sl-color-text-light: var(--color-foreground-secondary);");
   lines.push("  --sl-color-text-lighter: var(--color-foreground-tertiary);");
-  lines.push("  --sl-color-text-accent: var(--color-brand-primary);");
+  lines.push("  --sl-color-text-accent: var(--color-hub-primary);");
   lines.push("");
   lines.push("  /* Background */");
   lines.push("  --sl-color-bg: var(--color-surface-base);");
@@ -387,10 +387,10 @@ function generateStarlightCss(flat: Map<string, Token>): string {
   lines.push("  color-scheme: dark;");
   lines.push("");
   lines.push("  /* Accent */");
-  lines.push("  --sl-color-accent: var(--color-brand-ycp);");
-  lines.push("  --sl-color-accent-high: var(--color-brand-primary);");
-  lines.push("  --sl-color-accent-low: var(--color-brand-primary-subtle);");
-  lines.push("  --sl-color-accent-subtle: var(--color-brand-ycp-subtle);");
+  lines.push("  --sl-color-accent: var(--color-hub-ycp);");
+  lines.push("  --sl-color-accent-high: var(--color-hub-primary);");
+  lines.push("  --sl-color-accent-low: var(--color-hub-primary-subtle);");
+  lines.push("  --sl-color-accent-subtle: var(--color-hub-ycp-subtle);");
   lines.push("");
   lines.push("  /* Gray ramp */");
   for (let i = 0; i < darkGray.length; i++) {
@@ -401,7 +401,7 @@ function generateStarlightCss(flat: Map<string, Token>): string {
   lines.push("  --sl-color-text: var(--color-foreground-primary);");
   lines.push("  --sl-color-text-light: var(--color-foreground-secondary);");
   lines.push("  --sl-color-text-lighter: var(--color-foreground-tertiary);");
-  lines.push("  --sl-color-text-accent: var(--color-brand-primary);");
+  lines.push("  --sl-color-text-accent: var(--color-hub-primary);");
   lines.push("");
   lines.push("  /* Background */");
   lines.push("  --sl-color-bg: var(--color-surface-base);");

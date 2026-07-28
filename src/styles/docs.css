@@ -1,4 +1,4 @@
-html {
+﻿html {
   scroll-behavior: smooth;
   scroll-padding-top: 72px;
 }
@@ -32,7 +32,7 @@ section:last-of-type {
   width: 600px;
   height: 600px;
   opacity: 0.25;
-  background: radial-gradient(circle, var(--color-brand-primary) 0%, transparent 70%);
+  background: radial-gradient(circle, var(--color-hub-primary) 0%, transparent 70%);
   pointer-events: none;
 }
 
@@ -133,7 +133,7 @@ section:last-of-type {
   transition: color var(--duration-fast);
 }
 .nav-link:hover {
-  color: var(--color-brand-ycp);
+  color: var(--color-hub-ycp);
 }
 
 .tag {
@@ -149,8 +149,8 @@ section:last-of-type {
   border: 1px solid transparent;
 }
 .tag-accent {
-  background: var(--color-brand-ycp-subtle);
-  color: var(--color-brand-ycp);
+  background: var(--color-hub-ycp-subtle);
+  color: var(--color-hub-ycp);
 }
 .tag-warning {
   background: var(--color-feedback-warning-subtle);

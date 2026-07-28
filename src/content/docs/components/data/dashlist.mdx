@@ -53,7 +53,7 @@ A dash list displays a collection of label-value pairs in a structured layout. U
 | ------------------------------ | ------------------------------------ | ------------------ |
 | `--color-foreground-secondary` | `#4B5563` (light) / `#9CA3AF` (dark) | Label color        |
 | `--color-foreground-primary`   | `#1B1B1D` (light) / `#F9FAFB` (dark) | Value color        |
-| `--color-brand-primary`        | `#001C44`                            | Highlighted value  |
+| `--color-hub-primary`        | `#001C44`                            | Highlighted value  |
 | `--color-surface-muted`        | `#F3F4F6` (light) / `#1E2030` (dark) | Row separator line |
 
 ### Variants
@@ -99,7 +99,7 @@ A dash list consists of rows, each containing two parts:
 ## Implementation Notes
 
 1. **Native elements** -- Uses `<dl>`, `<dt>`, and `<dd>` for semantic definition lists.
-2. **Highlighted items** -- The `highlighted` property sets the value color to `brand-primary` with semibold weight.
+2. **Highlighted items** -- The `highlighted` property sets the value color to `hub-primary` with semibold weight.
 3. **Orientation** -- `vertical` stacks rows with separators; `horizontal` lays them inline.
 4. **Class inheritance** -- Accepts `class` prop via `useAttrs()` for Tailwind overrides.
 5. **Tree-shakeable** -- Exported as ESM + CJS via Vite library mode.
