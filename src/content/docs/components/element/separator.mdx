@@ -5,64 +5,13 @@ description: Separates content horizontally or vertically.
 
 import SeparatorDemo from "../../../../components/docs/SeparatorDemo.vue";
 
-<span style="display:inline-flex;margin-bottom:16px;padding:1px 8px;border-radius:9999px;font-size:11px;font-weight:500;background:#FFFBEB;color:#D97706;">Pending</span>
+<span style="display:inline-flex;margin-bottom:16px;padding:1px 8px;border-radius:9999px;font-size:11px;font-weight:500;background:#DCFCE7;color:#15803D;">Ready</span>
 
-A separator is a visual divider that separates content sections either horizontally or vertically. It supports labels, icons, and avatars positioned along the line. Mizu uses Nuxt UI's `USeparator`.
+A separator is a visual divider that separates content sections either horizontally or vertically. It supports labels, icons, and avatars positioned along the line. Mizu uses Nuxt UI's `USeparator` with the default size scale (xs-xl) and full support for orientation, color, type, and decorative modes.
 
-## Examples
+## Demo
 
 <SeparatorDemo client:only="vue" />
-
-## API
-
-Reference: [Nuxt UI Separator](https://ui.nuxt.com/docs/components/separator)
-
-### Props
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `label` | `string` | — | Text label displayed on the separator |
-| `icon` | `string` (Iconify) | — | Icon displayed on the separator |
-| `avatar` | `AvatarProps` | — | Avatar displayed on the separator |
-| `color` | `'primary' \| 'secondary' \| 'success' \| 'info' \| 'warning' \| 'error' \| 'neutral'` | `'neutral'` | Separator color |
-| `size` | `'xs' \| 'sm' \| 'md' \| 'lg' \| 'xl'` | `'xs'` | Thickness of the separator line |
-| `type` | `'solid' \| 'dashed' \| 'dotted'` | `'solid'` | Line style |
-| `orientation` | `'horizontal' \| 'vertical'` | `'horizontal'` | Direction of the separator |
-| `position` | `'center' \| 'start' \| 'end'` | `'center'` | Position of label/icon/avatar along the line |
-| `decorative` | `boolean` | — | When `true`, hides from accessibility tree |
-
-### Slots
-
-| Slot | Props | Description |
-|------|-------|-------------|
-| `default` | — | Custom content displayed on the separator |
-
-### Example Usage
-
-```vue
-<!-- Basic horizontal separator -->
-<USeparator />
-
-<!-- With label and position -->
-<USeparator label="Section Title" position="start" />
-
-<!-- With icon -->
-<USeparator icon="i-simple-icons-nuxtdotjs" />
-
-<!-- Vertical separator -->
-<div class="flex items-center gap-4 h-12">
-  <span>Left</span>
-  <USeparator orientation="vertical" />
-  <span>Right</span>
-</div>
-
-<!-- Different types and sizes -->
-<USeparator type="dashed" size="sm" />
-<USeparator type="dotted" size="lg" />
-
-<!-- With avatar -->
-<USeparator :avatar="{ src: 'https://github.com/nuxt.png' }" />
-```
 
 ## Anatomy
 
@@ -76,10 +25,182 @@ A separator consists of up to 3 parts:
 
 When no label, icon, or avatar is set, the separator renders as a simple line. With content, two lines are drawn on either side of the centered content.
 
+## Size Specifications
+
+The separator's `size` prop controls the line thickness (border width):
+
+| Size | Border width | Visual | Common use case |
+|------|--------------|--------|-----------------|
+| `xs` (default) | 1px | Hairline | Most UI separators, dense layouts |
+| `sm` | 2px | Subtle | Content grouping |
+| `md` | 3px | Standard | Section breaks |
+| `lg` | 4px | Emphasized | Major section boundaries |
+| `xl` | 5px | Heavy | Decorative dividers, hero sections |
+
+For `orientation="horizontal"`, the size controls `border-t-[Npx]`. For `orientation="vertical"`, it controls `border-s-[Npx]`.
+
+## Color Specifications
+
+The separator's `color` prop maps to the corresponding Mizu semantic token via `border-{color}`:
+
+| Color | Nuxt UI class | Mizu Token | Use case |
+|-------|---------------|------------|----------|
+| `primary` (custom) | `border-primary` | `--color-brand-primary` | Brand-themed dividers |
+| `secondary` (custom) | `border-secondary` | `--color-brand-ycp` | Secondary brand dividers |
+| `success` | `border-success` | `--color-feedback-success-base` | Success-state dividers |
+| `info` | `border-info` | `--color-feedback-info-base` | Info-state dividers |
+| `warning` | `border-warning` | `--color-feedback-warning-base` | Warning dividers |
+| `error` | `border-error` | `--color-feedback-error-base` | Error-state dividers |
+| `neutral` (default) | `border-default` | `--color-surface-muted` | Standard neutral dividers |
+
+## Spacing Details
+
+The container (label/icon/avatar) has horizontal or vertical margin that varies with the `position` prop:
+
+| Orientation | Position | Container margin |
+|-------------|----------|------------------|
+| horizontal | `start` | `me-3` (12px margin-end) |
+| horizontal | `center` (default) | `mx-3` (12px margin-x) |
+| horizontal | `end` | `ms-3` (12px margin-start) |
+| vertical | `start` | `mb-2` (8px margin-bottom) |
+| vertical | `center` (default) | `my-2` (8px margin-y) |
+| vertical | `end` | `mt-2` (8px margin-top) |
+
+Vertical separators need an explicit height via Tailwind class (e.g. `class="h-8"` or `class="h-48"`). The separator expands to fill the available vertical space.
+
+## Accessibility
+
+### Requirements
+
+| Criterion | Implementation |
+|-----------|----------------|
+| `decorative` prop | Set `decorative` for purely visual separators. When `true`, the rendered element is removed from the accessibility tree (gets `role="none"` / `aria-hidden="true"`) |
+| Semantic role | When `decorative` is not set, the separator is exposed as a thematic break (`role="separator"`). Screen readers may announce it depending on context |
+| Vertical separator | A vertical separator needs `aria-orientation="vertical"` (handled automatically by the component based on the `orientation` prop) |
+| Focusable | Separators are not focusable by default. Don't add `tabindex` unless you have a specific accessibility reason |
+| Label / icon / avatar | When the separator carries a label, icon, or avatar, ensure the content has accessible meaning. Plain text labels are read by screen readers; decorative icons should be `aria-hidden` via the parent |
+| Adjacent heading structure | When using a label to introduce a new section, consider pairing with `<h2>` or `<h3>` instead of relying on the label alone for structure |
+
+### ARIA Attributes
+
+```html
+<!-- Decorative (most common) -->
+<div role="list" class="space-y-4">
+  <div role="listitem">First item</div>
+  <USeparator decorative />
+  <div role="listitem">Second item</div>
+</div>
+
+<!-- Semantic section break -->
+<USeparator label="Section break" />
+
+<!-- Vertical in a toolbar -->
+<div role="toolbar" aria-label="Text formatting">
+  <UButton icon="i-lucide-bold" aria-label="Bold" />
+  <USeparator orientation="vertical" class="h-6" decorative />
+  <UButton icon="i-lucide-italic" aria-label="Italic" />
+</div>
+```
+
+## Token Mapping
+
+### CSS Custom Properties
+
+The separator inherits color via Tailwind border classes mapped to Mizu tokens. It does not consume custom properties directly — the surrounding context determines the actual token values.
+
+| Token | Value | Usage |
+|-------|-------|-------|
+| `--color-brand-primary` | #001C44 | `color="primary"` border |
+| `--color-brand-ycp` | #001C44 | `color="secondary"` border |
+| `--color-feedback-success-base` | #15803D | `color="success"` border |
+| `--color-feedback-info-base` | #0284C7 | `color="info"` border |
+| `--color-feedback-warning-base` | #D97706 | `color="warning"` border |
+| `--color-feedback-error-base` | #DC2626 | `color="error"` border |
+| `--color-surface-muted` | #F3F4F6 | `color="neutral"` border (default) |
+| `--font-family-sans` | DM Sans | Label text via `font-medium text-default` |
+
+## Vue Component API
+
+### USeparator Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `as` | `any` (HTMLElement or component) | `'div'` | Element or component the separator root should render as |
+| `label` | `string` | — | Text label displayed on the separator |
+| `icon` | `string` (Iconify) | — | Icon displayed on the separator |
+| `avatar` | `AvatarProps` | — | Avatar props forwarded to the avatar rendered on the separator |
+| `color` | `'primary' \| 'secondary' \| 'success' \| 'info' \| 'warning' \| 'error' \| 'neutral'` | `'neutral'` | Separator border color |
+| `size` | `'xs' \| 'sm' \| 'md' \| 'lg' \| 'xl'` | `'xs'` | Border thickness (1-5px) |
+| `type` | `'solid' \| 'dashed' \| 'dotted'` | `'solid'` | Border line style |
+| `orientation` | `'horizontal' \| 'vertical'` | `'horizontal'` | Direction of the separator |
+| `position` | `'center' \| 'start' \| 'end'` | `'center'` | Position of label/icon/avatar along the line |
+| `decorative` | `boolean` | `false` | When `true`, removes from accessibility tree |
+| `ui` | `{ root?, border?, container?, icon?, avatar?, avatarSize?, label? }` | — | Override the default slot classes |
+
+### Slots
+
+| Slot | Description |
+|------|-------------|
+| `default` | Custom content displayed on the separator (overrides `label`, `icon`, and `avatar` props) |
+
+### Example Usage
+
+```vue
+<!-- Basic horizontal separator -->
+<USeparator />
+
+<!-- With label -->
+<USeparator label="Section Title" />
+
+<!-- Label position variants -->
+<USeparator position="start" label="Start" />
+<USeparator position="center" label="Center" />
+<USeparator position="end" label="End" />
+
+<!-- With icon -->
+<USeparator icon="i-simple-icons-nuxtdotjs" />
+
+<!-- With avatar -->
+<USeparator :avatar="{ src: 'https://github.com/nuxt.png', loading: 'lazy' }" />
+
+<!-- Custom slot content -->
+<USeparator>
+  <UBadge color="primary" label="OR" />
+</USeparator>
+
+<!-- Different types and sizes -->
+<USeparator type="dashed" size="sm" />
+<USeparator type="dotted" size="lg" />
+
+<!-- Color variants -->
+<USeparator color="primary" />
+<USeparator color="success" />
+<USeparator color="warning" />
+
+<!-- Vertical orientation (requires explicit height) -->
+<div class="flex items-center gap-4 h-12">
+  <span>Left</span>
+  <USeparator orientation="vertical" />
+  <span>Right</span>
+</div>
+
+<!-- Decorative separator in a list -->
+<ul class="divide-y divide-default">
+  <li>Item 1</li>
+  <li>Item 2</li>
+  <li>Item 3</li>
+</ul>
+<!-- Or using the component explicitly with decorative -->
+<USeparator decorative />
+```
+
 ## Implementation Notes
 
-1. **Use `<USeparator>` directly** — No Mizu wrapper needed. Apply the theme preset.
-2. **Vertical separators** — Set `orientation="vertical"` and provide an explicit height (e.g. `class="h-8"`). The separator expands to fill the available vertical space.
-3. **Accessibility** — Use `decorative` for purely visual separators. Without it, the separator is treated as a `<div>` in the accessibility tree.
-4. **Label positioning** — `position="start"` and `position="end"` offset the content from center. Useful for section headers.
-5. **Size scale** — `xs` through `xl` controls line thickness, from a hairline to a prominent divider. Default `xs` is suitable for most UI separators.
+1. **Use `<USeparator>` directly** — No Mizu wrapper needed. Apply the `mizuTheme` preset in `app.config.ts` and Nuxt UI handles the rest.
+2. **Default size is `xs`** — A 1px hairline. The Mizu spec keeps this default because most UI separators need to be subtle. Use `sm` or `md` for content grouping and `lg`/`xl` for major section boundaries.
+3. **Vertical separators need explicit height** — Set `orientation="vertical"` and add an explicit `h-N` Tailwind class (e.g. `class="h-8"`). Without it, the separator collapses to 0 height.
+4. **Accessibility** — Use `decorative` for purely visual separators. The component sets `role="none"` and `aria-hidden="true"` when `decorative` is true. Without it, the separator is exposed as `role="separator"` in the accessibility tree, which screen readers may or may not announce depending on context.
+5. **Label positioning** — `position="start"` and `position="end"` offset the content from center. Useful for section headers like "Section Title" where the line trails off to the right.
+6. **Container spacing** — The container has `me-3` / `mx-3` / `ms-3` margin on horizontal and `mb-2` / `my-2` / `mt-2` on vertical. Override via the `ui` prop for finer control.
+7. **Compound variants** — The theme combines `orientation` + `size` to apply the correct border side: `border-t-[Npx]` for horizontal, `border-s-[Npx]` for vertical. Don't try to override these via classes — use the `ui` prop instead.
+8. **vs. `<hr>` / `<div>`** — A native `<hr>` has implicit `role="separator"` and limited styling. `<USeparator>` adds label/icon/avatar slots, full color/size variants, and consistent accessibility behavior.

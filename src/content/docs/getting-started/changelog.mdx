@@ -16,6 +16,17 @@ This project follows **semantic versioning** (SemVer) during pre-1.0 development
 Changes that require a minor bump: adding a new component, renaming tokens, changing component APIs, adding new packages (e.g. React).
 Changes that keep the patch version: renames, copy edits, styling tweaks, build config changes, favicon updates.
 
+## 0.18.35 (2026-07-27)
+
+### Changed
+
+- **Separator docs — Ready** — Marked the Separator documentation page as Ready (green badge).
+
+### Docs
+
+- **Separator docs — full rewrite** — Rewrote `src/content/docs/components/element/separator.mdx` against the Mizu standard template: frontmatter + intro, `## Demo` mounted via `<SeparatorDemo client:only="vue" />`, `## Anatomy` (Line/Container/Content table), `## Size Specifications` (5 sizes mapped to border widths 1-5px), `## Color Specifications` (7-color Mizu token table), `## Spacing Details` (container margin table for orientation × position), `## Accessibility` (decorative prop + ARIA patterns for list/toolbar/section-break), `## Token Mapping` (CSS vars for borders + label font), `## Vue Component API` (full props with `as`, `ui` slot overrides, slots table, 9 Example Usage snippets), and `## Implementation Notes` covering default size, vertical height requirement, accessibility, label positioning, container spacing, compound variants, and comparison to `<hr>`.
+- **Separator demo** — Verified the existing demo has 9 sections (Basic, Types, Sizes, Colors, With Label, Label Position, With Icon, Vertical Orientation, With Avatar) covering all the major use cases documented in the new API section. No demo changes needed.
+
 ## 0.18.34 (2026-07-27)
 
 ### Changed
