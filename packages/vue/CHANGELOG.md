@@ -1,5 +1,41 @@
 # @mizu-ui/vue
 
+## 0.19.0
+
+### Minor Changes
+
+- 29c3ee5: Breaking token rename: `brand` → `hub` across all color tokens.
+
+  All `--color-brand-*` CSS custom properties, `bg-brand-*`/`text-brand-*`/`border-brand-*` Tailwind utilities, `COLOR_BRAND_*` TypeScript constants, and Style Dictionary `color/brand/*` keys renamed to `hub` equivalents.
+
+  55 files updated. Migration: replace `brand` with `hub` in all token references.
+  Also removed Histoire storybook from @mizu-ui/vue dev dependencies.
+
+### Patch Changes
+
+- 3b7c8e3: Mark Popover documentation as Ready. Fix fake v3 API and add full demo.
+
+  Fixed:
+  - Removed non-existent `title`, `description`, `modelValue`, `disabled`, `forceMount` props from docs. Popover v4 has none of these — replaced with correct `mode`, `open`, `modal`, `dismissible`, `arrow`, `content`, `openDelay`, `closeDelay`, `enableTouch`, `reference`, `ui`.
+
+  Documentation:
+  - Full template rewrite: popover.mdx with Demo, Anatomy (4-part), Variants (Click + Hover mode tables), Color/Spacing, Accessibility, Token Mapping, Vue Component API (13 props, 3 slots, 2 emits, 3 usage snippets), 8 Implementation Notes
+  - Demo expanded from 1 to 10 sections: Basic, Hover Mode, Content Positioning, Arrow, Modal, Non-Dismissible, Control Open State, With Command Palette, Following Cursor, Anchor Slot
+  - Added `#content="{ close }"` slot prop to non-dismissible example
+
+  docs-plan.md: Overlay now lists all 8 components (4 Ready, 4 Pending). Added missing DropdownMenu and updated total to 56 components.
+
+- e697c73: Mark Tooltip documentation as Ready.
+
+  Documentation:
+  - Full template rewrite: tooltip.mdx with Demo, Anatomy, Variants (4 behavioral toggles), Size/Color/Spacing, Accessibility (keyboard + ARIA), Token Mapping (4 CSS vars), Vue Component API (13 props, 2 slots, 1 emit, 3 usage snippets using v4 `content`/`side` API), 7 Implementation Notes
+  - Demo expanded from 2 to 8 sections: Basic, With Kbds, Delay Duration, Content Positioning (v4 API replacing broken v3 `:popper`), Arrow, Disabled, Control Open State, Following Cursor — all use Nuxt UI v4 `:content="{ side: '...' }"` API
+
+  docs-plan.md: Overlay 5→6 components, total 50→54 comps (27 Ready/27 Pending)
+
+- Updated dependencies [29c3ee5]
+  - @mizu-ui/tokens@0.10.0
+
 ## 0.18.36
 
 ### Patch Changes
