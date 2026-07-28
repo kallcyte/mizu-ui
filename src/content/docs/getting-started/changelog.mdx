@@ -16,6 +16,23 @@ This project follows **semantic versioning** (SemVer) during pre-1.0 development
 Changes that require a minor bump: adding a new component, renaming tokens, changing component APIs, adding new packages (e.g. React).
 Changes that keep the patch version: renames, copy edits, styling tweaks, build config changes, favicon updates.
 
+## 0.18.38 (2026-07-28)
+
+### Changed
+
+- **Popover docs — Ready** — Marked the Popover documentation page as Ready (green badge).
+
+### Fixed
+
+- **Popover docs — removed fake API** — The legacy docs and demo referenced non-existent `title`, `description`, `modelValue`, `disabled`, and `forceMount` props. Nuxt UI v4's `<UPopover>` has none of these. Replaced with correct v4 API: `mode`, `open`, `modal`, `dismissible`, `arrow`, `content`, `openDelay`, `closeDelay`, `enableTouch`, `reference`, `ui`.
+- **Popover demo — `#content="{ close }"` slot prop** — The legacy demo never showed the `{ close }` slot prop exposed in click mode. The non-dismissible example now demonstrates it.
+- **docs-plan.md — Overlay sync** — Added missing `DropdownMenu` and `Popover` to the Overlay category. Overlay now lists all 8 components (4 Ready, 4 Pending). Total: 56 components (28 Ready, 28 Pending).
+
+### Docs
+
+- **Popover docs — full rewrite** — Rewrote `src/content/docs/components/overlay/popover.mdx` to the Mizu standard template: frontmatter, `## Demo`, `## Anatomy` (4-part: Trigger, Content, Anchor, Arrow), `## Variants` (Click Mode and Hover Mode tables with all relevant props), `## Color Specifications` (surface/foreground token tables), `## Spacing Details`, `## Accessibility` (keyboard + ARIA + 3 key considerations), `## Token Mapping` (4 CSS custom properties), `## Vue Component API` (13 props, 3 slots, 2 emits, 3 usage snippets covering click/hover/non-dismissible), and `## Implementation Notes` (8 items highlighting no title/description props, click vs hover modes, anchor slot, positioning API).
+- **Popover demo — 10 sections** — Expanded from 1 legacy section (Basic with fake `title` prop) to 10: Basic, Hover Mode (`mode="hover" enable-touch`), Content Positioning (`:content="{ side: '...' }"`), Arrow, Modal, Non-Dismissible (`#content="{ close }"`), Control Open State (`v-model:open` + toggle button), With Command Palette (label picker), Following Cursor (`:reference` + pointermove), Anchor Slot (`#anchor` with UInput). All sections use correct v4 API. Demo wrapped in `TooltipProvider` from Reka UI.
+
 ## 0.18.37 (2026-07-28)
 
 ### Changed

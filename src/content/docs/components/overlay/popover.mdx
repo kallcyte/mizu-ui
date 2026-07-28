@@ -1,69 +1,180 @@
 ---
 title: Popover
-description: A floating card triggered by click, with a title and content.
+description: A non-modal dialog that floats around a trigger element.
 ---
 
 import PopoverDemo from "../../../../components/docs/PopoverDemo.vue";
 
-<span style="display:inline-flex;margin-bottom:16px;padding:1px 8px;border-radius:9999px;font-size:11px;font-weight:500;background:#FFFBEB;color:#D97706;">Pending</span>
+<span style="display:inline-flex;margin-bottom:16px;padding:1px 8px;border-radius:9999px;font-size:11px;font-weight:500;background:#ECFDF5;color:#059669;">Ready</span>
 
-A popover is a floating card that appears on click, useful for contextual actions, filters, or supplementary information. Mizu uses Nuxt UI's `UPopover` with rounded-md panels.
+A popover is a non-modal floating dialog that appears on click or hover, useful for contextual actions, filters, or supplementary information. Mizu uses Nuxt UI's `<UPopover>` directly — no Mizu wrapper component is needed.
 
-## Examples
+## Demo
 
-<PopoverDemo client:only="vue" />
+<PopoverDemo client:load />
 
-## API
+## Anatomy
 
-Reference: [Nuxt UI Popover](https://ui.nuxt.com/docs/components/popover)
+A popover consists of a trigger, content slot, and optional anchor:
+
+| Part | Required | Description |
+|------|----------|-------------|
+| Trigger | Yes (or `#anchor`) | The element that opens the popover |
+| Content | Yes | The floating card with title, description, and custom body |
+| Anchor | No (`#anchor` slot) | Custom element to position against (click mode only) |
+| Arrow | No | Directional arrow pointing at the trigger |
+
+## Variants
+
+Popover has two behavioral modes:
+
+### Click Mode (default)
+
+| Prop | Effect |
+|------|--------|
+| `modal` | When `true`, blocks interaction with outside content |
+| `dismissible` | When `false`, prevents close on click-outside and Escape |
+| `arrow` | Shows a directional arrow |
+
+### Hover Mode
+
+| Prop | Effect |
+|------|--------|
+| `enable-touch` | Allows tap-to-toggle on touch devices |
+| `openDelay` | Delay before opening on hover (ms) |
+| `closeDelay` | Delay before closing on mouse leave (ms) |
+
+## Color Specifications
+
+### Surface Tokens
+
+| Token | Usage |
+|-------|-------|
+| `--color-surface-base` | Popover content background |
+| `--color-surface-muted` | Ring border color |
+
+### Foreground Tokens
+
+| Token | Usage |
+|-------|-------|
+| `--color-foreground-primary` | Heading text |
+| `--color-foreground-secondary` | Body and description text |
+
+## Spacing Details
+
+The content panel uses Nuxt UI's default `rounded-md` (6px) border radius with a subtle `ring` and `shadow-lg`. Content padding is user-defined via the `#content` slot or the `ui.content` class override.
+
+## Accessibility
+
+### Keyboard Support
+
+| Key | Action |
+|-----|--------|
+| `Enter` / `Space` | Opens the popover (click mode) |
+| `Escape` | Closes the popover (unless `dismissible` is `false`) |
+| `Tab` | Moves focus within the popover |
+
+### ARIA Attributes
+
+| Attribute | Value | Target |
+|-----------|-------|--------|
+| `role="dialog"` | — | Content panel |
+| `aria-expanded` | `"true"` / `"false"` | Trigger element |
+| `aria-haspopup` | `"dialog"` | Trigger element |
+
+### Key Considerations
+
+1. In `hover` mode, the popover internally uses Reka UI's `HoverCard`. Keyboard focus does not trigger a hover-mode popover.
+2. The `#anchor` slot only works in `click` mode.
+3. The `{ close }` slot prop in `#content` is only available in `click` mode.
+
+## Token Mapping
+
+### CSS Custom Properties
+
+| Token | Value | Usage |
+|-------|-------|-------|
+| `--color-surface-base` | (white/gray-950) | Content background |
+| `--color-foreground-primary` | (gray-900/gray-100) | Heading text |
+| `--color-foreground-secondary` | (gray-500/gray-400) | Body text |
+| `--radius-md` | 6px | Content border radius |
+
+## Vue Component API
+
+Popover uses Nuxt UI's `<UPopover>` component directly. The Mizu theme leaves Nuxt UI defaults unchanged (rounded-md, shadow-lg, ring-default).
 
 ### Props
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `title` | `string` | — | Popover title text |
-| `description` | `string` | — | Popover description text |
-| `content` | `{ align, side, alignOffset, sideOffset, collisionPadding }` | — | Popper positioning options |
-| `closeDelay` | `number` | `0` | Delay before hiding (ms) |
-| `forceMount` | `boolean` | `false` | Always mount in DOM |
-| `disabled` | `boolean` | `false` | Disable popover |
-| `defaultOpen` | `boolean` | — | Initial open state |
-| `modelValue` | `boolean` | — | v-model binding for controlled state |
+| `mode` | `"click" \| "hover"` | `"click"` | Trigger mode |
+| `content` | `PopoverContentProps` | — | Positioning options (`side`, `align`, `sideOffset`, etc.) |
+| `arrow` | `boolean \| PopoverArrowProps` | `false` | Display a directional arrow |
+| `open` | `boolean` | — | Controlled open state (`v-model:open`) |
+| `defaultOpen` | `boolean` | — | Initial open state (uncontrolled) |
+| `modal` | `boolean` | `false` | Block outside interaction |
+| `dismissible` | `boolean` | `true` | Allow close on click-outside and Escape |
+| `portal` | `boolean \| string \| HTMLElement` | `true` | Render in a portal |
+| `reference` | `ReferenceElement` | — | Custom anchor for positioning |
+| `openDelay` | `number` | `0` | Delay before opening (hover mode) |
+| `closeDelay` | `number` | `0` | Delay before closing (hover mode) |
+| `enableTouch` | `boolean` | `false` | Enable touch toggle (hover mode) |
+| `ui` | `object` | — | Slot class overrides |
 
 ### Slots
 
 | Slot | Props | Description |
 |------|-------|-------------|
 | `default` | — | The trigger element |
-| `content` | `{ ui }` | Popover content (overrides title/description) |
+| `content` | `{ close }` | Popover body (close only in click mode) |
+| `anchor` | — | Custom anchor element (click mode only) |
+
+### Emits
+
+| Event | Payload | Description |
+|-------|---------|-------------|
+| `update:open` | `boolean` | Emitted when open state changes |
+| `close:prevent` | — | Emitted when close is prevented (`dismissible` is `false`) |
 
 ### Example Usage
 
 ```vue
-<UPopover title="Notifications">
+<!-- Click mode (default) -->
+<UPopover modal>
+  <UButton label="Open" color="neutral" variant="subtle" />
   <template #content>
-    <p>You have 3 new notifications.</p>
+    <div class="p-4">
+      <p>Popover body content</p>
+    </div>
   </template>
-  <UButton label="Open" />
+</UPopover>
+
+<!-- Hover mode with touch support -->
+<UPopover mode="hover" enable-touch>
+  <UButton label="Hover me" color="neutral" variant="subtle" />
+  <template #content>
+    <div class="p-4">
+      <p>Hover content</p>
+    </div>
+  </template>
+</UPopover>
+
+<!-- Non-dismissible with explicit close -->
+<UPopover :dismissible="false" :ui="{ content: 'p-4' }">
+  <UButton label="Open" color="neutral" variant="subtle" />
+  <template #content="{ close }">
+    <UButton label="Close" color="primary" @click="close" />
+  </template>
 </UPopover>
 ```
 
-## Theme
-
-Nuxt UI v4 popover defaults already use rounded-md (6px) — matching Mizu's default border radius. No overrides are needed.
-
-## Anatomy
-
-A popover consists of:
-
-| Part | Required | Description |
-|------|----------|-------------|
-| Trigger | Yes | Button or element that opens the popover |
-| Content | Yes | Floating card with title, description, and custom content |
-
 ## Implementation Notes
 
-1. **Use `<UPopover>` directly** — No Mizu wrapper needed.
-2. **Click trigger** — Unlike tooltips (hover), popovers open on click. Use for interactive content like forms, filters, or action menus.
-3. **Title and description** — Use the `title` and `description` props for simple headers. Use the `content` slot for full control over the popover body.
-4. **Positioning** — Use the `content` prop to control popper placement and alignment.
+1. **Use `<UPopover>` directly** — No Mizu wrapper component exists. Import from `@mizu-ui/vue` (re-exports Nuxt UI's `UPopover`).
+2. **No Mizu theme overrides** — Nuxt UI v4 popover defaults (rounded-md, shadow-lg, ring-default) already match Mizu specs. No customization needed.
+3. **No `title` or `description` props** — Popover does not accept `title` or `description` props. Use the `#content` slot to compose your own header, body, and footer.
+4. **Click vs. hover** — Default mode is `click`. Set `mode="hover"` for mouse-triggered popovers (internally uses Reka UI `HoverCard`). Add `enable-touch` for touch support in hover mode.
+5. **Modal behavior** — Set `modal` to block outside interaction (defaults to `false`). This changes the dialog from non-modal to modal.
+6. **Content close** — The `{ close }` slot prop is only available when `mode` is `"click"`, because Reka UI only exposes it for `Popover` (not `HoverCard`).
+7. **Anchor slot** — The `#anchor` slot allows positioning against a custom element. Only works in click mode.
+8. **Positioning** — Use `:content="{ side: '...', align: '...' }"` to control placement. This is the v4 popper API (not the v3 `:popper` prop).
