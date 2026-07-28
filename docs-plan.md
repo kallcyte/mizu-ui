@@ -4,15 +4,16 @@ Missing Nuxt UI core components to document, prioritized by category.
 
 ---
 
-## 1. Overlay (5) [2 Ready, 3 Pending]
+## 1. Overlay (6) [3 Ready, 3 Pending]
 
 | # | Component | Nuxt UI Slug | Status |
 |---|-----------|-------------|--------|
 | 1a | **Toast** | `toast` | Ready |
 | 1b | **Modal** | `modal` | Ready |
-| 1c | **ContextMenu** | `context-menu` | Pending |
-| 1d | **Drawer** | `drawer` | Pending |
-| 1e | **Slideover** | `slideover` | Pending |
+| 1c | **Tooltip** | `tooltip` | Ready |
+| 1d | **ContextMenu** | `context-menu` | Pending |
+| 1e | **Drawer** | `drawer` | Pending |
+| 1f | **Slideover** | `slideover` | Pending |
 
 ## 2. Forms (12) [12 Ready]
 
@@ -109,4 +110,4 @@ For each component:
 
 ---
 
-**Total: 52 components (25 Ready, 27 Pending)**
+**Total: 54 components (27 Ready, 27 Pending)**

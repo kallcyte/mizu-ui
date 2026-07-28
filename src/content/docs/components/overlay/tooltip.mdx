@@ -1,68 +1,153 @@
 ---
 title: Tooltip
-description: A short contextual message displayed on hover or focus.
+description: A contextual popup that reveals information on hover or focus.
 ---
 
 import TooltipDemo from "../../../../components/docs/TooltipDemo.vue";
 
-<span style="display:inline-flex;margin-bottom:16px;padding:1px 8px;border-radius:9999px;font-size:11px;font-weight:500;background:#FFFBEB;color:#D97706;">Pending</span>
+<span style="display:inline-flex;margin-bottom:16px;padding:1px 8px;border-radius:9999px;font-size:11px;font-weight:500;background:#ECFDF5;color:#059669;">Ready</span>
 
-A tooltip provides brief, contextual help text when hovering or focusing an element. Mizu uses Nuxt UI's `UTooltip` with compact dimensions (6px height, 12px font size).
+A tooltip is a short contextual popup that appears on hover or focus. Mizu uses Nuxt UI's `<UTooltip>` directly via theme preset — no Mizu wrapper component is needed.
 
-## Examples
+## Demo
 
-<TooltipDemo client:only="vue" />
+<TooltipDemo client:load />
 
-## API
+## Anatomy
 
-Reference: [Nuxt UI Tooltip](https://ui.nuxt.com/docs/components/tooltip)
+A tooltip consists of 2 parts:
+
+| Part | Required | Description |
+|------|----------|-------------|
+| Trigger | Yes | The element that reveals the tooltip on hover/focus |
+| Content | Yes | The popup text label (24px tall, 12px font, rounded-sm) |
+
+## Variants
+
+Tooltip has no visual variants — it is a single component with behavioral toggles:
+
+| Prop | Effect |
+|------|--------|
+| `arrow` | Shows a directional arrow pointing at the trigger |
+| `disabled` | Suppresses all tooltip behavior |
+| `kbds` | Renders keyboard shortcut hints next to the text |
+| `delayDuration` | Changes the delay before appearing (default: 700ms) |
+
+## Size Specifications
+
+Tooltip content uses Nuxt UI's default dimensions: `h-6` (24px), `px-2.5` (10px horizontal), `py-1` (4px vertical), and `text-xs` (12px). No Mizu-specific size tokens apply.
+
+## Color Specifications
+
+Tooltip colors are defined by Nuxt UI's `bg-default` and `text-highlighted` tokens, which map to the Mizu surface and foreground variables.
+
+### Surface Tokens
+
+| Token | Usage |
+|-------|-------|
+| `--color-surface-base` | Tooltip content background |
+
+### Foreground Tokens
+
+| Token | Usage |
+|-------|-------|
+| `--color-foreground-primary` | Tooltip text |
+
+## Spacing Details
+
+The content uses `gap-1` (4px) for text + kbds inline layout. Kbds use `gap-0.5` (2px) internally with `·` separators between keys.
+
+## Accessibility
+
+### Keyboard Support
+
+| Key | Action |
+|-----|--------|
+| `Tab` | Focus the trigger element, which shows the tooltip |
+| `Shift+Tab` | Move focus away, hiding the tooltip |
+| `Escape` | Dismiss the tooltip |
+
+### ARIA Attributes
+
+| Attribute | Value | Target |
+|-----------|-------|--------|
+| `role="tooltip"` | — | Content element |
+| `aria-hidden` | `"true"` / `"false"` | Content element |
+
+### Key Considerations
+
+1. Tooltips appear on both `:hover` and `:focus` to meet WCAG keyboard requirements.
+2. The `TooltipProvider` must wrap any usage — Nuxt UI's `App` component provides this in Nuxt; in Vue-only setups, import `TooltipProvider` from `reka-ui`.
+3. Tooltips should only contain short auxiliary text. For interactive content, use `Popover` instead.
+
+## Token Mapping
+
+### CSS Custom Properties
+
+| Token | Value | Usage |
+|-------|-------|-------|
+| `--color-surface-base` | (white/gray-950) | Content background |
+| `--color-foreground-primary` | (gray-900/gray-100) | Tooltip text |
+| `--radius-sm` | 4px | Content border radius |
+| `--font-size-xs` | 12px | Tooltip text |
+
+## Vue Component API
+
+Tooltip uses Nuxt UI's `<UTooltip>` component directly. The Mizu theme leaves Nuxt UI defaults unchanged (h-6, px-2.5, text-xs, rounded-sm).
 
 ### Props
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `text` | `string` | — | Tooltip text content |
-| `content` | `{ align, side, alignOffset, sideOffset, collisionPadding }` | — | Popper positioning options |
+| `kbds` | `string[] \| KbdProps[]` | — | Keyboard shortcut keys to display |
+| `content` | `TooltipContentProps` | — | Popper positioning options (`side`, `align`, `sideOffset`, etc.) |
+| `arrow` | `boolean \| TooltipArrowProps` | `false` | Display a directional arrow |
+| `portal` | `boolean \| string \| HTMLElement` | `true` | Render in a portal |
+| `reference` | `ReferenceElement` | — | Custom anchor element for positioning |
+| `open` | `boolean` | — | Controlled open state (`v-model:open`) |
+| `defaultOpen` | `boolean` | — | Initial open state (uncontrolled) |
 | `delayDuration` | `number` | `700` | Delay before showing (ms) |
 | `disabled` | `boolean` | `false` | Disable tooltip |
-| `defaultOpen` | `boolean` | — | Initial open state |
-| `open` | `boolean` | — | v-model:open binding for controlled state |
+| `disableHoverableContent` | `boolean` | `false` | Prevent content from staying open on hover |
+| `disableClosingTrigger` | `boolean` | `false` | Prevent trigger click from closing |
+| `ignoreNonKeyboardFocus` | `boolean` | `false` | Suppress if focus wasn't from keyboard |
 
 ### Slots
 
 | Slot | Props | Description |
 |------|-------|-------------|
 | `default` | — | The trigger element |
-| `content` | `{ ui }` | Custom tooltip content (overrides `text` prop) |
+| `content` | — | Custom tooltip content (overrides `text` prop) |
+
+### Emits
+
+| Event | Payload | Description |
+|-------|---------|-------------|
+| `update:open` | `boolean` | Emitted when open state changes |
 
 ### Example Usage
 
 ```vue
 <UTooltip text="Save changes">
-  <UButton icon="i-ph-floppy-disk" />
+  <UButton icon="i-lucide-save" />
 </UTooltip>
 
-<UTooltip text="Delete" :content="{ placement: 'top' }">
-  <UButton color="error" icon="i-ph-trash" />
+<UTooltip text="Open on GitHub" :kbds="['meta', 'G']">
+  <UButton label="Open" color="neutral" variant="subtle" />
+</UTooltip>
+
+<UTooltip text="Delete" :content="{ side: 'top' }">
+  <UButton color="error" icon="i-lucide-trash-2" />
 </UTooltip>
 ```
 
-## Theme
-
-Nuxt UI v4 tooltip defaults (compact h-6, px-2.5, text-xs, rounded-sm) are standard tooltip dimensions that don't require Mizu-specific adjustments. No overrides are needed.
-
-## Anatomy
-
-A tooltip consists of:
-
-| Part | Required | Description |
-|------|----------|-------------|
-| Trigger | Yes | The element that reveals the tooltip on hover/focus |
-| Content | Yes | The popup text label |
-
 ## Implementation Notes
 
-1. **Use `<UTooltip>` directly** "” No Mizu wrapper needed.
-2. **Text vs. slot** — Use the `text` prop for simple strings. Use the `content` slot for rich content or custom formatting.
-3. **Positioning** "” Use the `content` prop (popper options) to control placement. Default is `top`.
-4. **Keyboard accessibility** "” Tooltips are shown on `:focus` as well as `:hover`, meeting WCAG keyboard requirements.
+1. **Use `<UTooltip>` directly** — No Mizu wrapper component exists. Import from `@mizu-ui/vue` (re-exports Nuxt UI's `UTooltip`).
+2. **No Mizu theme overrides** — Nuxt UI v4 tooltip defaults (h-6, px-2.5, text-xs, rounded-sm) are standard tooltip dimensions. No Mizu-specific adjustments needed.
+3. **Text vs. slot** — Use `text` for simple strings. Use `#content` slot for rich content or dynamic values.
+4. **Provider required** — The `TooltipProvider` from Reka UI must wrap the app. In Nuxt, the `App` component provides this. In Vue-only setups, import `TooltipProvider` from `reka-ui` and wrap your content.
+5. **Positioning** — Use `:content="{ side: '...', align: '...' }"` to control placement. Default is top. The v4 API uses `side`/`align` (not the v3 `placement` prop).
+6. **Keyboard shortcuts** — The `kbds` prop accepts an array of strings or `KbdProps` objects. Special keys like `meta` display as platform-appropriate glyphs.
+7. **Accessibility constraint** — Tooltips are for auxiliary text only. Avoid placing interactive elements or critical information inside a tooltip.

@@ -16,6 +16,17 @@ This project follows **semantic versioning** (SemVer) during pre-1.0 development
 Changes that require a minor bump: adding a new component, renaming tokens, changing component APIs, adding new packages (e.g. React).
 Changes that keep the patch version: renames, copy edits, styling tweaks, build config changes, favicon updates.
 
+## 0.18.37 (2026-07-28)
+
+### Changed
+
+- **Tooltip docs — Ready** — Marked the Tooltip documentation page as Ready (green badge).
+
+### Docs
+
+- **Tooltip docs — full rewrite** — Rewrote `src/content/docs/components/overlay/tooltip.mdx` from legacy `## Examples` + `## API` format to the Mizu standard template: frontmatter, `## Demo` via `<TooltipDemo client:load />`, `## Anatomy` (2-part: Trigger + Content), `## Variants` (4 behavioral toggles), `## Size Specifications`, `## Color Specifications` (surface + foreground token tables), `## Spacing Details`, `## Accessibility` (keyboard support + ARIA table + 3 key considerations), `## Token Mapping` (4 CSS custom properties), `## Vue Component API` (13 props, 2 slots, 1 emit, 3 usage snippets using Nuxt UI v4 `content`/`side` API), and `## Implementation Notes` (7 items covering provider requirement, positioning, kbds, and accessibility constraint).
+- **Tooltip demo — 8 sections** — Expanded from 2 legacy sections (Basic with v3 `:popper` API, Positions) to 8: Basic, With Kbds (`:kbds="['meta', 'G']"`), Delay Duration (`:delay-duration="0"`), Content Positioning (v4 `:content="{ side: '...' }"` replacing broken v3 `:popper="{ placement: '...' }"`), Arrow, Disabled, Control Open State (`v-model:open` + toggle button), Following Cursor (`:reference` + pointermove). All sections use Nuxt UI v4 API. Demo wrapped in `TooltipProvider` from Reka UI.
+
 ## 0.18.36 (2026-07-28)
 
 ### Changed
