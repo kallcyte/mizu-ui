@@ -16,6 +16,31 @@ This project follows **semantic versioning** (SemVer) during pre-1.0 development
 Changes that require a minor bump: adding a new component, renaming tokens, changing component APIs, adding new packages (e.g. React).
 Changes that keep the patch version: renames, copy edits, styling tweaks, build config changes, favicon updates.
 
+## 0.19.0 (2026-07-28)
+
+### Breaking
+
+- **Token rename: `brand` → `hub`** — All color tokens using `brand` in the name have been renamed to `hub`. This affects every CSS custom property, Tailwind utility, TypeScript constant, and Style Dictionary key that referenced `brand`.
+
+  Migration: replace all occurrences of `--color-brand-*` with `--color-hub-*`, `bg-brand-*` with `bg-hub-*`, `text-brand-*` with `text-hub-*`, etc.
+
+  | Old | New |
+  |-----|-----|
+  | `--color-brand-primary` | `--color-hub-primary` |
+  | `--color-brand-ycp` | `--color-hub-ycp` |
+  | `--color-brand-secondary` | `--color-hub-secondary` |
+  | `--color-brand-nexus` | `--color-hub-nexus` |
+  | `--color-brand-muted` | `--color-hub-muted` |
+  | `--color-brand-neutral` | `--color-hub-neutral` |
+  | `COLOR_BRAND_*` (TS) | `COLOR_HUB_*` |
+  | `bg-brand-primary` | `bg-hub-primary` |
+
+  55 files, 337 insertions, 337 deletions. All token definitions, theme config, components, CSS, MDX docs, and Astro templates updated.
+
+### Removed
+
+- **Histoire storybook** — Removed `histoire` and `@histoire/plugin-vue` dev dependencies, 5 story files, config, CSS, and setup scripts from `@mizu-ui/vue`.
+
 ## 0.18.38 (2026-07-28)
 
 ### Changed
