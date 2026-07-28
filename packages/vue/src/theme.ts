@@ -169,11 +169,26 @@ export const mizuTheme = {
 
   // --- Modal ---
   // Mizu spec: rounded-md (6px) for dialog panels
-  // Nuxt UI defaults are close -- just pin the content radius.
+  // Fixes Nuxt UI v4 bugs: overlay z-index, fullscreen content missing `fixed`, and
+  // content behind overlay (overlay z-40 < content z-50).
   modal: {
     slots: {
+      overlay: "fixed inset-0 z-40 bg-black/25",
       content:
-        "[background:var(--color-surface-base)] divide-y divide-[var(--color-surface-muted)] flex flex-col focus:outline-none rounded-md",
+        "z-50 [background:var(--color-surface-base)] divide-y divide-[var(--color-surface-muted)] flex flex-col focus:outline-none rounded-md",
+      footer: "flex items-center gap-1.5 p-4 sm:px-6 justify-end",
+    },
+    variants: {
+      overlay: {
+        true: {
+          overlay: "bg-black/25",
+        },
+      },
+      fullscreen: {
+        true: {
+          content: "fixed inset-0 z-50 rounded-none",
+        },
+      },
     },
   },
 

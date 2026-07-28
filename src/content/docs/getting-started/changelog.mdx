@@ -16,6 +16,24 @@ This project follows **semantic versioning** (SemVer) during pre-1.0 development
 Changes that require a minor bump: adding a new component, renaming tokens, changing component APIs, adding new packages (e.g. React).
 Changes that keep the patch version: renames, copy edits, styling tweaks, build config changes, favicon updates.
 
+## 0.18.36 (2026-07-28)
+
+### Changed
+
+- **Modal docs — Ready** — Marked the Modal documentation page as Ready (green badge).
+
+### Fixed
+
+- **Modal theme — overlay z-index** — The overlay was rendering behind the Starlight sidebar and behind the modal content itself. Added `z-40` to the overlay slot and `z-50` to the content slot in the Mizu theme so the content always renders above the overlay.
+- **Modal theme — fullscreen content invisible** — Nuxt UI v4's default `fullscreen` variant only sets `inset-0` on content but omits `fixed`. Since Reka UI's `DialogContent` is a headless primitive (no built-in positioning), the content collapsed to 0×0 pixels. Overrode the variant in the Mizu theme to `fixed inset-0 z-50 rounded-none`.
+- **Modal theme — footer alignment** — Buttons in the `#footer` slot now default to `justify-end` (right-aligned) for consistency with common dialog patterns.
+- **Modal theme — overlay opacity** — Overlay background changed from Nuxt UI's `bg-elevated/75` (75% opacity) to `bg-black/25` (25% black) for a subtler backdrop.
+
+### Docs
+
+- **Modal docs — full rewrite** — Rewrote `src/content/docs/components/overlay/modal.mdx` against the Mizu standard template: frontmatter, `## Demo` mounted via `<ModalDemo client:load />`, `## Anatomy` (7-part table), `## Variants` (behavioral toggles table), `## Size Specifications`, `## Color Specifications` (surface + foreground Mizu token tables), `## Spacing Details`, `## Accessibility` (ARIA attributes + keyboard navigation + focus management), `## Token Mapping` (5 CSS custom properties), `## Vue Component API` (15 props, 9 slots, 6 emits, full example usage), and `## Implementation Notes` (8 items covering all Mizu theme overrides).
+- **Modal demo — 7 sections** — Expanded from 3 legacy sections (Basic, Fullscreen, Scrollable) to 7 sections: Basic, With Description, Fullscreen, Scrollable (20 items for visible scroll), Non-Dismissible, Nested (two-level), Footer Slot (`{ close }` pattern). All sections use the Nuxt UI pattern of trigger button inside default slot. Every modal now renders a visible `h-48` placeholder body matching the Nuxt UI docs convention. No separate `.demo-row` trigger buttons — everything self-contained within `<UModal>`.
+
 ## 0.18.35 (2026-07-27)
 
 ### Changed
