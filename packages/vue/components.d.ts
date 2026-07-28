@@ -16,7 +16,7 @@ declare module 'vue' {
     MizuMetric: typeof import('./src/components/MizuMetric.vue')['default']
     MizuQuote: typeof import('./src/components/MizuQuote.vue')['default']
     MizuSkeleton: typeof import('./src/components/MizuSkeleton.vue')['default']
-    UCalendar: typeof import('./../../node_modules/.pnpm/@nuxt+ui@4.10.0_patch_hash=_b1f54541b87c4be6b4b4641f1f715b7c/node_modules/@nuxt/ui/dist/runtime/components/Calendar.vue')['default']
-    UPopover: typeof import('./../../node_modules/.pnpm/@nuxt+ui@4.10.0_patch_hash=_b1f54541b87c4be6b4b4641f1f715b7c/node_modules/@nuxt/ui/dist/runtime/components/Popover.vue')['default']
+    UCalendar: typeof import('./../../node_modules/.pnpm/@nuxt+ui@4.10.0_patch_hash=_82a17850227e72992210df7b6b7d8aa7/node_modules/@nuxt/ui/dist/runtime/components/Calendar.vue')['default']
+    UPopover: typeof import('./../../node_modules/.pnpm/@nuxt+ui@4.10.0_patch_hash=_82a17850227e72992210df7b6b7d8aa7/node_modules/@nuxt/ui/dist/runtime/components/Popover.vue')['default']
   }
 }
